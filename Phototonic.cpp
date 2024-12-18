@@ -2667,6 +2667,7 @@ void Phototonic::newImage() {
 }
 
 void Phototonic::setDocksVisibility(bool visible) {
+    layout()->setEnabled(false);
     fileSystemDock->setVisible(visible ? Settings::fileSystemDockVisible : false);
     bookmarksDock->setVisible(visible ? Settings::bookmarksDockVisible : false);
     imagePreviewDock->setVisible(visible ? Settings::imagePreviewDockVisible : false);
@@ -2684,6 +2685,7 @@ void Phototonic::setDocksVisibility(bool visible) {
     addToolBar(imageToolBar);
 
     setContextMenuPolicy(Qt::PreventContextMenu);
+    layout()->setEnabled(true);
 }
 
 void Phototonic::viewImage() {
