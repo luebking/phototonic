@@ -340,7 +340,7 @@ void SettingsDialog::saveSettings() {
     for (i = 0; i < nZoomRadios; ++i) {
         if (fitLargeRadios[i]->isChecked()) {
             Settings::zoomOutFlags = i;
-            Settings::appSettings->setValue(Settings::optionViewerZoomOutFlags, (int) Settings::zoomOutFlags);
+            Settings::setValue(Settings::optionViewerZoomOutFlags, (int) Settings::zoomOutFlags);
             break;
         }
     }
@@ -348,7 +348,7 @@ void SettingsDialog::saveSettings() {
     for (i = 0; i < nZoomRadios; ++i) {
         if (fitSmallRadios[i]->isChecked()) {
             Settings::zoomInFlags = i;
-            Settings::appSettings->setValue(Settings::optionViewerZoomInFlags, (int) Settings::zoomInFlags);
+            Settings::setValue(Settings::optionViewerZoomInFlags, (int) Settings::zoomInFlags);
             break;
         }
     }

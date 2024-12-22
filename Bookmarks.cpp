@@ -71,14 +71,14 @@ void BookMarks::dragEnterEvent(QDragEnterEvent *event) {
 }
 
 void BookMarks::dragMoveEvent(QDragMoveEvent *event) {
-    setCurrentIndex(indexAt(event->pos()));
+    setCurrentIndex(indexAt(event->position().toPoint()));
 }
 
 void BookMarks::dropEvent(QDropEvent *event) {
     if (event->source()) {
         QString fileSystemTreeStr("FileSystemTree");
         bool dirOp = (event->source()->metaObject()->className() == fileSystemTreeStr);
-        emit dropOp(event->keyboardModifiers(), dirOp, event->mimeData()->urls().at(0).toLocalFile());
+        emit dropOp(event->modifiers(), dirOp, event->mimeData()->urls().at(0).toLocalFile());
     }
 }
 

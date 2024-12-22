@@ -112,8 +112,6 @@ bool ShortcutsTable::confirmOverwriteShortcut(QString action, QString shortcut) 
     msgBox.setIcon(MessageBox::Warning);
     msgBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
     msgBox.setDefaultButton(MessageBox::Cancel);
-    msgBox.setButtonText(MessageBox::Yes, tr("Yes"));
-    msgBox.setButtonText(MessageBox::Cancel, tr("Cancel"));
 
     return (msgBox.exec() == MessageBox::Yes);
 }

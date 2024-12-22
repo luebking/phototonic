@@ -23,12 +23,14 @@
 
 static const int RuleWidgetWidth = 5; // determines the active area for dragging
 
-QAction *GuideWidget::m_deleteAction(new QAction(GuideWidget::tr("Remove guide")));
+QAction *GuideWidget::m_deleteAction = nullptr;
 
 GuideWidget::GuideWidget(QWidget *parent, bool vertical) : QWidget(parent), m_vertical(vertical)
 {
     resizeToParent();
     setCursor(vertical ? Qt::SplitHCursor : Qt::SplitVCursor);
+    if (!m_deleteAction)
+        m_deleteAction = new QAction(GuideWidget::tr("Remove guide"));
     addAction(m_deleteAction);
     setContextMenuPolicy(Qt::ActionsContextMenu);
     connect(m_deleteAction, &QAction::triggered, this, &QObject::deleteLater);

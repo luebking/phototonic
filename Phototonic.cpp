@@ -53,8 +53,8 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
 
     connect(qApp, SIGNAL(focusChanged(QWidget * , QWidget * )), this, SLOT(updateActions()));
 
-    restoreGeometry(Settings::appSettings->value(Settings::optionGeometry).toByteArray());
-    restoreState(Settings::appSettings->value(Settings::optionWindowState).toByteArray());
+    restoreGeometry(Settings::value(Settings::optionGeometry).toByteArray());
+    restoreState(Settings::value(Settings::optionWindowState).toByteArray());
     defaultApplicationIcon = QIcon(":/images/phototonic.png");
     setWindowIcon(defaultApplicationIcon);
 
@@ -100,7 +100,7 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
         if (Settings::startupDir == Settings::SpecifiedDir) {
             Settings::currentDirectory = Settings::specifiedStartDir;
         } else if (Settings::startupDir == Settings::RememberLastDir) {
-            Settings::currentDirectory = Settings::appSettings->value(Settings::optionLastDir).toString();
+            Settings::currentDirectory = Settings::value(Settings::optionLastDir).toString();
         }
     }
     selectCurrentViewDir();
@@ -137,7 +137,7 @@ bool Phototonic::event(QEvent *event) {
 void Phototonic::createThumbsViewer() {
     metadataCache = std::make_shared<MetadataCache>();
     thumbsViewer = new ThumbsViewer(this, metadataCache);
-    thumbsViewer->thumbsSortFlags = (QDir::SortFlags) Settings::appSettings->value(
+    thumbsViewer->thumbsSortFlags = (QDir::SortFlags) Settings::value(
             Settings::optionThumbsSortFlags).toInt();
     thumbsViewer->thumbsSortFlags |= QDir::IgnoreCase;
 
@@ -310,7 +310,7 @@ void Phototonic::createImageViewer() {
     imageViewer->ImagePopUpMenu->addAction(settingsAction);
 
     imageViewer->setContextMenuPolicy(Qt::DefaultContextMenu);
-    Settings::isFullScreen = Settings::appSettings->value(Settings::optionFullScreenMode).toBool();
+    Settings::isFullScreen = Settings::value(Settings::optionFullScreenMode).toBool();
     fullScreenAction->setChecked(Settings::isFullScreen);
     thumbsViewer->setImageViewer(imageViewer);
     thumbsViewer->imagePreview->setImageViewer(imageViewer);
@@ -1852,8 +1852,6 @@ void Phototonic::deleteImages(bool trash) {
         msgBox.setIcon(MessageBox::Warning);
         msgBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
         msgBox.setDefaultButton(MessageBox::Yes);
-        msgBox.setButtonText(MessageBox::Yes, tr("Yes"));
-        msgBox.setButtonText(MessageBox::Cancel, tr("Cancel"));
 
         if (msgBox.exec() != MessageBox::Yes) {
             return;
@@ -1964,8 +1962,6 @@ void Phototonic::deleteFromViewer(bool trash) {
         msgBox.setIcon(MessageBox::Warning);
         msgBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
         msgBox.setDefaultButton(MessageBox::Yes);
-        msgBox.setButtonText(MessageBox::Yes, tr("Yes"));
-        msgBox.setButtonText(MessageBox::Cancel, tr("Cancel"));
 
         if (msgBox.exec() != MessageBox::Yes) {
             deleteConfirmed = false;
@@ -2156,57 +2152,57 @@ void Phototonic::updateActions() {
 
 void Phototonic::writeSettings() {
     if (Settings::layoutMode == ThumbViewWidget) {
-        Settings::appSettings->setValue(Settings::optionGeometry, saveGeometry());
-        Settings::appSettings->setValue(Settings::optionWindowState, saveState());
+        Settings::setValue(Settings::optionGeometry, saveGeometry());
+        Settings::setValue(Settings::optionWindowState, saveState());
     }
 
-    Settings::appSettings->setValue(Settings::optionThumbsSortFlags, (int) thumbsViewer->thumbsSortFlags);
-    Settings::appSettings->setValue(Settings::optionThumbsZoomLevel, thumbsViewer->thumbSize);
-    Settings::appSettings->setValue(Settings::optionFullScreenMode, (bool) Settings::isFullScreen);
-    Settings::appSettings->setValue(Settings::optionViewerBackgroundColor, Settings::viewerBackgroundColor);
-    Settings::appSettings->setValue(Settings::optionThumbsBackgroundColor, Settings::thumbsBackgroundColor);
-    Settings::appSettings->setValue(Settings::optionThumbsTextColor, Settings::thumbsTextColor);
-    Settings::appSettings->setValue(Settings::optionThumbsPagesReadCount, (int) Settings::thumbsPagesReadCount);
-    Settings::appSettings->setValue(Settings::optionThumbsLayout, (int) Settings::thumbsLayout);
-    Settings::appSettings->setValue(Settings::optionEnableAnimations, (bool) Settings::enableAnimations);
-    Settings::appSettings->setValue(Settings::optionExifRotationEnabled, (bool) Settings::exifRotationEnabled);
-    Settings::appSettings->setValue(Settings::optionExifThumbRotationEnabled,
+    Settings::setValue(Settings::optionThumbsSortFlags, (int) thumbsViewer->thumbsSortFlags);
+    Settings::setValue(Settings::optionThumbsZoomLevel, thumbsViewer->thumbSize);
+    Settings::setValue(Settings::optionFullScreenMode, (bool) Settings::isFullScreen);
+    Settings::setValue(Settings::optionViewerBackgroundColor, Settings::viewerBackgroundColor);
+    Settings::setValue(Settings::optionThumbsBackgroundColor, Settings::thumbsBackgroundColor);
+    Settings::setValue(Settings::optionThumbsTextColor, Settings::thumbsTextColor);
+    Settings::setValue(Settings::optionThumbsPagesReadCount, (int) Settings::thumbsPagesReadCount);
+    Settings::setValue(Settings::optionThumbsLayout, (int) Settings::thumbsLayout);
+    Settings::setValue(Settings::optionEnableAnimations, (bool) Settings::enableAnimations);
+    Settings::setValue(Settings::optionExifRotationEnabled, (bool) Settings::exifRotationEnabled);
+    Settings::setValue(Settings::optionExifThumbRotationEnabled,
                                     (bool) Settings::exifThumbRotationEnabled);
-    Settings::appSettings->setValue(Settings::optionReverseMouseBehavior, (bool) Settings::reverseMouseBehavior);
-    Settings::appSettings->setValue(Settings::optionScrollZooms, (bool) Settings::scrollZooms);
-    Settings::appSettings->setValue(Settings::optionDeleteConfirm, (bool) Settings::deleteConfirm);
-    Settings::appSettings->setValue(Settings::optionShowHiddenFiles, (bool) Settings::showHiddenFiles);
-    Settings::appSettings->setValue(Settings::optionWrapImageList, (bool) Settings::wrapImageList);
-    Settings::appSettings->setValue(Settings::optionImageZoomFactor, Settings::imageZoomFactor);
-    Settings::appSettings->setValue(Settings::optionShouldMaximize, (bool) isMaximized());
-    Settings::appSettings->setValue(Settings::optionDefaultSaveQuality, Settings::defaultSaveQuality);
-    Settings::appSettings->setValue(Settings::optionSlideShowDelay, Settings::slideShowDelay);
-    Settings::appSettings->setValue(Settings::optionSlideShowRandom, (bool) Settings::slideShowRandom);
-    Settings::appSettings->setValue(Settings::optionEditToolBarVisible, (bool) editToolBarVisible);
-    Settings::appSettings->setValue(Settings::optionGoToolBarVisible, (bool) goToolBarVisible);
-    Settings::appSettings->setValue(Settings::optionViewToolBarVisible, (bool) viewToolBarVisible);
-    Settings::appSettings->setValue(Settings::optionImageToolBarVisible, (bool) imageToolBarVisible);
-    Settings::appSettings->setValue(Settings::optionFileSystemDockVisible, (bool) Settings::fileSystemDockVisible);
-    Settings::appSettings->setValue(Settings::optionImageInfoDockVisible, (bool) Settings::imageInfoDockVisible);
-    Settings::appSettings->setValue(Settings::optionBookmarksDockVisible, (bool) Settings::bookmarksDockVisible);
-    Settings::appSettings->setValue(Settings::optionTagsDockVisible, (bool) Settings::tagsDockVisible);
-    Settings::appSettings->setValue(Settings::optionImagePreviewDockVisible, (bool) Settings::imagePreviewDockVisible);
-    Settings::appSettings->setValue(Settings::optionStartupDir, (int) Settings::startupDir);
-    Settings::appSettings->setValue(Settings::optionSpecifiedStartDir, Settings::specifiedStartDir);
-    Settings::appSettings->setValue(Settings::optionThumbsBackgroundImage, Settings::thumbsBackgroundImage);
-    Settings::appSettings->setValue(Settings::optionThumbsRepeatBackgroundImage, Settings::thumbsRepeatBackgroundImage);
-    Settings::appSettings->setValue(Settings::optionLastDir,
+    Settings::setValue(Settings::optionReverseMouseBehavior, (bool) Settings::reverseMouseBehavior);
+    Settings::setValue(Settings::optionScrollZooms, (bool) Settings::scrollZooms);
+    Settings::setValue(Settings::optionDeleteConfirm, (bool) Settings::deleteConfirm);
+    Settings::setValue(Settings::optionShowHiddenFiles, (bool) Settings::showHiddenFiles);
+    Settings::setValue(Settings::optionWrapImageList, (bool) Settings::wrapImageList);
+    Settings::setValue(Settings::optionImageZoomFactor, Settings::imageZoomFactor);
+    Settings::setValue(Settings::optionShouldMaximize, (bool) isMaximized());
+    Settings::setValue(Settings::optionDefaultSaveQuality, Settings::defaultSaveQuality);
+    Settings::setValue(Settings::optionSlideShowDelay, Settings::slideShowDelay);
+    Settings::setValue(Settings::optionSlideShowRandom, (bool) Settings::slideShowRandom);
+    Settings::setValue(Settings::optionEditToolBarVisible, (bool) editToolBarVisible);
+    Settings::setValue(Settings::optionGoToolBarVisible, (bool) goToolBarVisible);
+    Settings::setValue(Settings::optionViewToolBarVisible, (bool) viewToolBarVisible);
+    Settings::setValue(Settings::optionImageToolBarVisible, (bool) imageToolBarVisible);
+    Settings::setValue(Settings::optionFileSystemDockVisible, (bool) Settings::fileSystemDockVisible);
+    Settings::setValue(Settings::optionImageInfoDockVisible, (bool) Settings::imageInfoDockVisible);
+    Settings::setValue(Settings::optionBookmarksDockVisible, (bool) Settings::bookmarksDockVisible);
+    Settings::setValue(Settings::optionTagsDockVisible, (bool) Settings::tagsDockVisible);
+    Settings::setValue(Settings::optionImagePreviewDockVisible, (bool) Settings::imagePreviewDockVisible);
+    Settings::setValue(Settings::optionStartupDir, (int) Settings::startupDir);
+    Settings::setValue(Settings::optionSpecifiedStartDir, Settings::specifiedStartDir);
+    Settings::setValue(Settings::optionThumbsBackgroundImage, Settings::thumbsBackgroundImage);
+    Settings::setValue(Settings::optionThumbsRepeatBackgroundImage, Settings::thumbsRepeatBackgroundImage);
+    Settings::setValue(Settings::optionLastDir,
                                     Settings::startupDir == Settings::RememberLastDir ? Settings::currentDirectory
                                                                                       : "");
-    Settings::appSettings->setValue(Settings::optionShowImageName, (bool) Settings::showImageName);
-    Settings::appSettings->setValue(Settings::optionSmallToolbarIcons, (bool) Settings::smallToolbarIcons);
-    Settings::appSettings->setValue(Settings::optionHideDockTitlebars, (bool) Settings::hideDockTitlebars);
-    Settings::appSettings->setValue(Settings::optionShowViewerToolbar, (bool) Settings::showViewerToolbar);
-    Settings::appSettings->setValue(Settings::optionSetWindowIcon, (bool) Settings::setWindowIcon);
-    Settings::appSettings->setValue(Settings::optionUpscalePreview, (bool) Settings::upscalePreview);
+    Settings::setValue(Settings::optionShowImageName, (bool) Settings::showImageName);
+    Settings::setValue(Settings::optionSmallToolbarIcons, (bool) Settings::smallToolbarIcons);
+    Settings::setValue(Settings::optionHideDockTitlebars, (bool) Settings::hideDockTitlebars);
+    Settings::setValue(Settings::optionShowViewerToolbar, (bool) Settings::showViewerToolbar);
+    Settings::setValue(Settings::optionSetWindowIcon, (bool) Settings::setWindowIcon);
+    Settings::setValue(Settings::optionUpscalePreview, (bool) Settings::upscalePreview);
 
     /* Action shortcuts */
-    Settings::appSettings->beginGroup(Settings::optionShortcuts);
+    Settings::beginGroup(Settings::optionShortcuts);
     QMapIterator<QString, QAction *> shortcutsIterator(Settings::actionKeys);
     while (shortcutsIterator.hasNext()) {
         shortcutsIterator.next();
@@ -2215,7 +2211,7 @@ void Phototonic::writeSettings() {
     Settings::appSettings->endGroup();
 
     /* External apps */
-    Settings::appSettings->beginGroup(Settings::optionExternalApps);
+    Settings::beginGroup(Settings::optionExternalApps);
     Settings::appSettings->remove("");
     QMapIterator<QString, QString> eaIter(Settings::externalApps);
     while (eaIter.hasNext()) {
@@ -2226,7 +2222,7 @@ void Phototonic::writeSettings() {
 
     /* save bookmarks */
     int idx = 0;
-    Settings::appSettings->beginGroup(Settings::optionCopyMoveToPaths);
+    Settings::beginGroup(Settings::optionCopyMoveToPaths);
     Settings::appSettings->remove("");
     QSetIterator<QString> pathsIter(Settings::bookmarkPaths);
     while (pathsIter.hasNext()) {
@@ -2236,7 +2232,7 @@ void Phototonic::writeSettings() {
 
     /* save known Tags */
     idx = 0;
-    Settings::appSettings->beginGroup(Settings::optionKnownTags);
+    Settings::beginGroup(Settings::optionKnownTags);
     Settings::appSettings->remove("");
     QSetIterator<QString> tagsIter(Settings::knownTags);
     while (tagsIter.hasNext()) {
@@ -2249,45 +2245,45 @@ void Phototonic::readSettings() {
     initComplete = false;
     needThumbsRefresh = false;
 
-    if (!Settings::appSettings->contains(Settings::optionThumbsZoomLevel)) {
+    if (!Settings::appSettings->contains(QByteArray(Settings::optionThumbsZoomLevel))) {
         resize(800, 600);
-        Settings::appSettings->setValue(Settings::optionThumbsSortFlags, (int) 0);
-        Settings::appSettings->setValue(Settings::optionThumbsZoomLevel, (int) 200);
-        Settings::appSettings->setValue(Settings::optionFullScreenMode, (bool) false);
-        Settings::appSettings->setValue(Settings::optionViewerBackgroundColor, QColor(25, 25, 25));
-        Settings::appSettings->setValue(Settings::optionThumbsBackgroundColor, QColor(200, 200, 200));
-        Settings::appSettings->setValue(Settings::optionThumbsTextColor, QColor(25, 25, 25));
-        Settings::appSettings->setValue(Settings::optionThumbsPagesReadCount, (int) 2);
-        Settings::appSettings->setValue(Settings::optionThumbsLayout, (int) ThumbsViewer::Classic);
-        Settings::appSettings->setValue(Settings::optionViewerZoomOutFlags, (int) 1);
-        Settings::appSettings->setValue(Settings::optionViewerZoomInFlags, (int) 0);
-        Settings::appSettings->setValue(Settings::optionWrapImageList, (bool) false);
-        Settings::appSettings->setValue(Settings::optionImageZoomFactor, (float) 1.0);
-        Settings::appSettings->setValue(Settings::optionDefaultSaveQuality, (int) 90);
-        Settings::appSettings->setValue(Settings::optionEnableAnimations, (bool) true);
-        Settings::appSettings->setValue(Settings::optionExifRotationEnabled, (bool) true);
-        Settings::appSettings->setValue(Settings::optionExifThumbRotationEnabled, (bool) false);
-        Settings::appSettings->setValue(Settings::optionReverseMouseBehavior, (bool) false);
-        Settings::appSettings->setValue(Settings::optionScrollZooms, (bool) false);
-        Settings::appSettings->setValue(Settings::optionDeleteConfirm, (bool) true);
-        Settings::appSettings->setValue(Settings::optionShowHiddenFiles, (bool) false);
-        Settings::appSettings->setValue(Settings::optionSlideShowDelay, (int) 5);
-        Settings::appSettings->setValue(Settings::optionSlideShowRandom, (bool) false);
-        Settings::appSettings->setValue(Settings::optionEditToolBarVisible, (bool) true);
-        Settings::appSettings->setValue(Settings::optionGoToolBarVisible, (bool) true);
-        Settings::appSettings->setValue(Settings::optionViewToolBarVisible, (bool) true);
-        Settings::appSettings->setValue(Settings::optionImageToolBarVisible, (bool) false);
-        Settings::appSettings->setValue(Settings::optionFileSystemDockVisible, (bool) true);
-        Settings::appSettings->setValue(Settings::optionBookmarksDockVisible, (bool) true);
-        Settings::appSettings->setValue(Settings::optionTagsDockVisible, (bool) true);
-        Settings::appSettings->setValue(Settings::optionImagePreviewDockVisible, (bool) true);
-        Settings::appSettings->setValue(Settings::optionImageInfoDockVisible, (bool) true);
-        Settings::appSettings->setValue(Settings::optionShowImageName, (bool) false);
-        Settings::appSettings->setValue(Settings::optionSmallToolbarIcons, (bool) false);
-        Settings::appSettings->setValue(Settings::optionHideDockTitlebars, (bool) false);
-        Settings::appSettings->setValue(Settings::optionShowViewerToolbar, (bool) false);
-        Settings::appSettings->setValue(Settings::optionSmallToolbarIcons, (bool) true);
-        Settings::appSettings->setValue(Settings::optionUpscalePreview, (bool) false);
+        Settings::setValue(Settings::optionThumbsSortFlags, (int) 0);
+        Settings::setValue(Settings::optionThumbsZoomLevel, (int) 200);
+        Settings::setValue(Settings::optionFullScreenMode, (bool) false);
+        Settings::setValue(Settings::optionViewerBackgroundColor, QColor(25, 25, 25));
+        Settings::setValue(Settings::optionThumbsBackgroundColor, QColor(200, 200, 200));
+        Settings::setValue(Settings::optionThumbsTextColor, QColor(25, 25, 25));
+        Settings::setValue(Settings::optionThumbsPagesReadCount, (int) 2);
+        Settings::setValue(Settings::optionThumbsLayout, (int) ThumbsViewer::Classic);
+        Settings::setValue(Settings::optionViewerZoomOutFlags, (int) 1);
+        Settings::setValue(Settings::optionViewerZoomInFlags, (int) 0);
+        Settings::setValue(Settings::optionWrapImageList, (bool) false);
+        Settings::setValue(Settings::optionImageZoomFactor, (float) 1.0);
+        Settings::setValue(Settings::optionDefaultSaveQuality, (int) 90);
+        Settings::setValue(Settings::optionEnableAnimations, (bool) true);
+        Settings::setValue(Settings::optionExifRotationEnabled, (bool) true);
+        Settings::setValue(Settings::optionExifThumbRotationEnabled, (bool) false);
+        Settings::setValue(Settings::optionReverseMouseBehavior, (bool) false);
+        Settings::setValue(Settings::optionScrollZooms, (bool) false);
+        Settings::setValue(Settings::optionDeleteConfirm, (bool) true);
+        Settings::setValue(Settings::optionShowHiddenFiles, (bool) false);
+        Settings::setValue(Settings::optionSlideShowDelay, (int) 5);
+        Settings::setValue(Settings::optionSlideShowRandom, (bool) false);
+        Settings::setValue(Settings::optionEditToolBarVisible, (bool) true);
+        Settings::setValue(Settings::optionGoToolBarVisible, (bool) true);
+        Settings::setValue(Settings::optionViewToolBarVisible, (bool) true);
+        Settings::setValue(Settings::optionImageToolBarVisible, (bool) false);
+        Settings::setValue(Settings::optionFileSystemDockVisible, (bool) true);
+        Settings::setValue(Settings::optionBookmarksDockVisible, (bool) true);
+        Settings::setValue(Settings::optionTagsDockVisible, (bool) true);
+        Settings::setValue(Settings::optionImagePreviewDockVisible, (bool) true);
+        Settings::setValue(Settings::optionImageInfoDockVisible, (bool) true);
+        Settings::setValue(Settings::optionShowImageName, (bool) false);
+        Settings::setValue(Settings::optionSmallToolbarIcons, (bool) false);
+        Settings::setValue(Settings::optionHideDockTitlebars, (bool) false);
+        Settings::setValue(Settings::optionShowViewerToolbar, (bool) false);
+        Settings::setValue(Settings::optionSmallToolbarIcons, (bool) true);
+        Settings::setValue(Settings::optionUpscalePreview, (bool) false);
         Settings::bookmarkPaths.insert(QDir::homePath());
         const QString picturesLocation = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
         if (!picturesLocation.isEmpty()) {
@@ -2295,53 +2291,53 @@ void Phototonic::readSettings() {
         }
     }
 
-    Settings::viewerBackgroundColor = Settings::appSettings->value(
+    Settings::viewerBackgroundColor = Settings::value(
             Settings::optionViewerBackgroundColor).value<QColor>();
-    Settings::enableAnimations = Settings::appSettings->value(Settings::optionEnableAnimations).toBool();
-    Settings::exifRotationEnabled = Settings::appSettings->value(Settings::optionExifRotationEnabled).toBool();
-    Settings::exifThumbRotationEnabled = Settings::appSettings->value(
+    Settings::enableAnimations = Settings::value(Settings::optionEnableAnimations).toBool();
+    Settings::exifRotationEnabled = Settings::value(Settings::optionExifRotationEnabled).toBool();
+    Settings::exifThumbRotationEnabled = Settings::value(
             Settings::optionExifThumbRotationEnabled).toBool();
-    Settings::thumbsLayout = Settings::appSettings->value(
+    Settings::thumbsLayout = Settings::value(
             Settings::optionThumbsLayout).toInt();
-    Settings::reverseMouseBehavior = Settings::appSettings->value(Settings::optionReverseMouseBehavior).toBool();
-    Settings::scrollZooms = Settings::appSettings->value(Settings::optionScrollZooms).toBool();
-    Settings::deleteConfirm = Settings::appSettings->value(Settings::optionDeleteConfirm).toBool();
-    Settings::showHiddenFiles = Settings::appSettings->value(Settings::optionShowHiddenFiles).toBool();
-    Settings::wrapImageList = Settings::appSettings->value(Settings::optionWrapImageList).toBool();
-    Settings::imageZoomFactor = Settings::appSettings->value(Settings::optionImageZoomFactor).toFloat();
-    Settings::zoomOutFlags = Settings::appSettings->value(Settings::optionViewerZoomOutFlags).toUInt();
-    Settings::zoomInFlags = Settings::appSettings->value(Settings::optionViewerZoomInFlags).toUInt();
+    Settings::reverseMouseBehavior = Settings::value(Settings::optionReverseMouseBehavior).toBool();
+    Settings::scrollZooms = Settings::value(Settings::optionScrollZooms).toBool();
+    Settings::deleteConfirm = Settings::value(Settings::optionDeleteConfirm).toBool();
+    Settings::showHiddenFiles = Settings::value(Settings::optionShowHiddenFiles).toBool();
+    Settings::wrapImageList = Settings::value(Settings::optionWrapImageList).toBool();
+    Settings::imageZoomFactor = Settings::value(Settings::optionImageZoomFactor).toFloat();
+    Settings::zoomOutFlags = Settings::value(Settings::optionViewerZoomOutFlags).toUInt();
+    Settings::zoomInFlags = Settings::value(Settings::optionViewerZoomInFlags).toUInt();
     Settings::rotation = 0;
     Settings::keepTransform = false;
-    shouldMaximize = Settings::appSettings->value(Settings::optionShouldMaximize).toBool();
+    shouldMaximize = Settings::value(Settings::optionShouldMaximize).toBool();
     Settings::flipH = false;
     Settings::flipV = false;
-    Settings::defaultSaveQuality = Settings::appSettings->value(Settings::optionDefaultSaveQuality).toInt();
-    Settings::slideShowDelay = Settings::appSettings->value(Settings::optionSlideShowDelay).toInt();
-    Settings::slideShowRandom = Settings::appSettings->value(Settings::optionSlideShowRandom).toBool();
+    Settings::defaultSaveQuality = Settings::value(Settings::optionDefaultSaveQuality).toInt();
+    Settings::slideShowDelay = Settings::value(Settings::optionSlideShowDelay).toInt();
+    Settings::slideShowRandom = Settings::value(Settings::optionSlideShowRandom).toBool();
     Settings::slideShowActive = false;
-    editToolBarVisible = Settings::appSettings->value(Settings::optionEditToolBarVisible).toBool();
-    goToolBarVisible = Settings::appSettings->value(Settings::optionGoToolBarVisible).toBool();
-    viewToolBarVisible = Settings::appSettings->value(Settings::optionViewToolBarVisible).toBool();
-    imageToolBarVisible = Settings::appSettings->value(Settings::optionImageToolBarVisible).toBool();
-    Settings::fileSystemDockVisible = Settings::appSettings->value(Settings::optionFileSystemDockVisible).toBool();
-    Settings::bookmarksDockVisible = Settings::appSettings->value(Settings::optionBookmarksDockVisible).toBool();
-    Settings::tagsDockVisible = Settings::appSettings->value(Settings::optionTagsDockVisible).toBool();
-    Settings::imagePreviewDockVisible = Settings::appSettings->value(Settings::optionImagePreviewDockVisible).toBool();
-    Settings::imageInfoDockVisible = Settings::appSettings->value(Settings::optionImageInfoDockVisible).toBool();
-    Settings::startupDir = (Settings::StartupDir) Settings::appSettings->value(Settings::optionStartupDir).toInt();
-    Settings::specifiedStartDir = Settings::appSettings->value(Settings::optionSpecifiedStartDir).toString();
-    Settings::thumbsBackgroundImage = Settings::appSettings->value(Settings::optionThumbsBackgroundImage).toString();
-    Settings::thumbsRepeatBackgroundImage = Settings::appSettings->value(Settings::optionThumbsRepeatBackgroundImage).toBool();
-    Settings::showImageName = Settings::appSettings->value(Settings::optionShowImageName).toBool();
-    Settings::smallToolbarIcons = Settings::appSettings->value(Settings::optionSmallToolbarIcons).toBool();
-    Settings::hideDockTitlebars = Settings::appSettings->value(Settings::optionHideDockTitlebars).toBool();
-    Settings::showViewerToolbar = Settings::appSettings->value(Settings::optionShowViewerToolbar).toBool();
-    Settings::setWindowIcon = Settings::appSettings->value(Settings::optionSetWindowIcon).toBool();
-    Settings::upscalePreview = Settings::appSettings->value(Settings::optionUpscalePreview).toBool();
+    editToolBarVisible = Settings::value(Settings::optionEditToolBarVisible).toBool();
+    goToolBarVisible = Settings::value(Settings::optionGoToolBarVisible).toBool();
+    viewToolBarVisible = Settings::value(Settings::optionViewToolBarVisible).toBool();
+    imageToolBarVisible = Settings::value(Settings::optionImageToolBarVisible).toBool();
+    Settings::fileSystemDockVisible = Settings::value(Settings::optionFileSystemDockVisible).toBool();
+    Settings::bookmarksDockVisible = Settings::value(Settings::optionBookmarksDockVisible).toBool();
+    Settings::tagsDockVisible = Settings::value(Settings::optionTagsDockVisible).toBool();
+    Settings::imagePreviewDockVisible = Settings::value(Settings::optionImagePreviewDockVisible).toBool();
+    Settings::imageInfoDockVisible = Settings::value(Settings::optionImageInfoDockVisible).toBool();
+    Settings::startupDir = (Settings::StartupDir) Settings::value(Settings::optionStartupDir).toInt();
+    Settings::specifiedStartDir = Settings::value(Settings::optionSpecifiedStartDir).toString();
+    Settings::thumbsBackgroundImage = Settings::value(Settings::optionThumbsBackgroundImage).toString();
+    Settings::thumbsRepeatBackgroundImage = Settings::value(Settings::optionThumbsRepeatBackgroundImage).toBool();
+    Settings::showImageName = Settings::value(Settings::optionShowImageName).toBool();
+    Settings::smallToolbarIcons = Settings::value(Settings::optionSmallToolbarIcons).toBool();
+    Settings::hideDockTitlebars = Settings::value(Settings::optionHideDockTitlebars).toBool();
+    Settings::showViewerToolbar = Settings::value(Settings::optionShowViewerToolbar).toBool();
+    Settings::setWindowIcon = Settings::value(Settings::optionSetWindowIcon).toBool();
+    Settings::upscalePreview = Settings::value(Settings::optionUpscalePreview).toBool();
 
     /* read external apps */
-    Settings::appSettings->beginGroup(Settings::optionExternalApps);
+    Settings::beginGroup(Settings::optionExternalApps);
     QStringList extApps = Settings::appSettings->childKeys();
     for (int i = 0; i < extApps.size(); ++i) {
         Settings::externalApps[extApps.at(i)] = Settings::appSettings->value(extApps.at(i)).toString();
@@ -2349,7 +2345,7 @@ void Phototonic::readSettings() {
     Settings::appSettings->endGroup();
 
     /* read bookmarks */
-    Settings::appSettings->beginGroup(Settings::optionCopyMoveToPaths);
+    Settings::beginGroup(Settings::optionCopyMoveToPaths);
     QStringList paths = Settings::appSettings->childKeys();
     for (int i = 0; i < paths.size(); ++i) {
         Settings::bookmarkPaths.insert(Settings::appSettings->value(paths.at(i)).toString());
@@ -2357,7 +2353,7 @@ void Phototonic::readSettings() {
     Settings::appSettings->endGroup();
 
     /* read known tags */
-    Settings::appSettings->beginGroup(Settings::optionKnownTags);
+    Settings::beginGroup(Settings::optionKnownTags);
     QStringList tags = Settings::appSettings->childKeys();
     for (int i = 0; i < tags.size(); ++i) {
         Settings::knownTags.insert(Settings::appSettings->value(tags.at(i)).toString());
@@ -2494,7 +2490,7 @@ void Phototonic::loadShortcuts() {
     Settings::actionKeys[showHiddenFilesAction->objectName()] = showHiddenFilesAction;
     Settings::actionKeys[showViewerToolbarAction->objectName()] = showViewerToolbarAction;
 
-    Settings::appSettings->beginGroup(Settings::optionShortcuts);
+    Settings::beginGroup(Settings::optionShortcuts);
     QStringList groupKeys = Settings::appSettings->childKeys();
 
     if (groupKeys.size()) {
@@ -2776,8 +2772,8 @@ void Phototonic::setImageInfoDockVisibility() {
 void Phototonic::showViewer() {
     if (Settings::layoutMode == ThumbViewWidget) {
         Settings::layoutMode = ImageViewWidget;
-        Settings::appSettings->setValue("Geometry", saveGeometry());
-        Settings::appSettings->setValue("WindowState", saveState());
+        Settings::setValue("Geometry", saveGeometry());
+        Settings::setValue("WindowState", saveState());
 
         stackedLayout->setCurrentWidget(imageViewer);
         setDocksVisibility(false);
@@ -3018,8 +3014,8 @@ void Phototonic::hideViewer() {
         imageViewer->setCursorHiding(false);
     }
 
-    restoreGeometry(Settings::appSettings->value(Settings::optionGeometry).toByteArray());
-    restoreState(Settings::appSettings->value(Settings::optionWindowState).toByteArray());
+    restoreGeometry(Settings::value(Settings::optionGeometry).toByteArray());
+    restoreState(Settings::value(Settings::optionWindowState).toByteArray());
 
     Settings::layoutMode = ThumbViewWidget;
     stackedLayout->setCurrentWidget(thumbsViewer);
@@ -3105,9 +3101,8 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
         moveDirMessageBox.setWindowTitle(tr("Move directory"));
         moveDirMessageBox.setIcon(MessageBox::Warning);
         moveDirMessageBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
+        moveDirMessageBox.addButton(tr("Move Directory"), MessageBox::YesRole);
         moveDirMessageBox.setDefaultButton(MessageBox::Cancel);
-        moveDirMessageBox.setButtonText(MessageBox::Yes, tr("Move Directory"));
-        moveDirMessageBox.setButtonText(MessageBox::Cancel, tr("Cancel"));
         int ret = moveDirMessageBox.exec();
 
         if (ret == MessageBox::Yes) {
@@ -3386,9 +3381,8 @@ void Phototonic::removeMetadata() {
     msgBox.setWindowTitle(tr("Remove Metadata"));
     msgBox.setIcon(MessageBox::Warning);
     msgBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
+    msgBox.addButton(tr("Remove Metadata"), MessageBox::YesRole);
     msgBox.setDefaultButton(MessageBox::Cancel);
-    msgBox.setButtonText(MessageBox::Yes, tr("Remove Metadata"));
-    msgBox.setButtonText(MessageBox::Cancel, tr("Cancel"));
     int ret = msgBox.exec();
 
     if (ret == MessageBox::Yes) {
@@ -3436,9 +3430,8 @@ void Phototonic::deleteDirectory(bool trash) {
     msgBox.setWindowTitle(tr("Delete directory"));
     msgBox.setIcon(MessageBox::Warning);
     msgBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
+    msgBox.addButton(trash ? tr("OK") : tr("Delete Directory"), MessageBox::YesRole);
     msgBox.setDefaultButton(MessageBox::Cancel);
-    msgBox.setButtonText(MessageBox::Yes, trash ? tr("OK") : tr("Delete Directory"));
-    msgBox.setButtonText(MessageBox::Cancel, tr("Cancel"));
     int ret = msgBox.exec();
 
     QString trashError;

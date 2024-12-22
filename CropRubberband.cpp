@@ -137,7 +137,7 @@ void CropRubberBand::resizeEvent(QResizeEvent *) {
 
 void CropRubberBand::mousePressEvent(QMouseEvent *event)
 {
-    prevPos = event->globalPos();
+    prevPos = event->globalPosition().toPoint();
 }
 
 void CropRubberBand::mouseMoveEvent(QMouseEvent *event)
@@ -145,6 +145,6 @@ void CropRubberBand::mouseMoveEvent(QMouseEvent *event)
     if (!event->buttons()) {
         return;
     }
-    move(pos() + (event->globalPos() - prevPos));
-    prevPos = event->globalPos();
+    move(pos() + (event->globalPosition().toPoint() - prevPos));
+    prevPos = event->globalPosition().toPoint();
 }

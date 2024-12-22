@@ -71,6 +71,9 @@ namespace Settings {
     const char optionScrollZooms[] = "scrollZooms";
 
     QSettings *appSettings;
+    QVariant value(const char *c) { return appSettings->value(QByteArray(c)); }
+    void setValue(const char *c, const QVariant &value) { appSettings->setValue(QByteArray(c), value); }
+    void beginGroup(const char *c) { appSettings->beginGroup(QByteArray(c)); }
     unsigned int layoutMode;
     unsigned int zoomInFlags;
     unsigned int zoomOutFlags;

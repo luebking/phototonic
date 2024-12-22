@@ -49,12 +49,12 @@ int main(int argc, char *argv[]) {
         locale = QLocale(parser.value(langOption));
 
     QTranslator qTranslator;
-    qTranslator.load(locale, "qt", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    QApp.installTranslator(&qTranslator);
+    if (qTranslator.load(locale, "qt", "_", QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
+        QApp.installTranslator(&qTranslator);
 
     QTranslator qTranslatorPhototonic;
-    qTranslatorPhototonic.load(locale, "phototonic", "_", ":/translations");
-    QApp.installTranslator(&qTranslatorPhototonic);
+    if (qTranslatorPhototonic.load(locale, "phototonic", "_", ":/translations"))
+        QApp.installTranslator(&qTranslatorPhototonic);
 
     Phototonic phototonic(parser.positionalArguments(), 0);
     if (parser.isSet(targetDirectoryOption))

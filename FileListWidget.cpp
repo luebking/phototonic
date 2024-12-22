@@ -49,14 +49,14 @@ void FileListWidget::dragEnterEvent(QDragEnterEvent *event) {
 }
 
 void FileListWidget::dragMoveEvent(QDragMoveEvent *event) {
-    setCurrentIndex(indexAt(event->pos()));
+    setCurrentIndex(indexAt(event->position().toPoint()));
 }
 
 void FileListWidget::dropEvent(QDropEvent *event) {
     if (event->source()) {
         QString fileSystemTreeStr("FileSystemTree");
         bool dirOp = (event->source()->metaObject()->className() == fileSystemTreeStr);
-        emit dropOp(event->keyboardModifiers(), dirOp, event->mimeData()->urls().at(0).toLocalFile());
+        emit dropOp(event->modifiers(), dirOp, event->mimeData()->urls().at(0).toLocalFile());
     }
 }
 

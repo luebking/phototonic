@@ -28,12 +28,11 @@
 
 ThumbsViewer::ThumbsViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &metadataCache) : QListView(parent) {
     this->metadataCache = metadataCache;
-    Settings::thumbsBackgroundColor = Settings::appSettings->value(
-            Settings::optionThumbsBackgroundColor).value<QColor>();
-    Settings::thumbsTextColor = Settings::appSettings->value(Settings::optionThumbsTextColor).value<QColor>();
+    Settings::thumbsBackgroundColor = Settings::value(Settings::optionThumbsBackgroundColor).value<QColor>();
+    Settings::thumbsTextColor = Settings::value(Settings::optionThumbsTextColor).value<QColor>();
     setThumbColors();
-    Settings::thumbsPagesReadCount = Settings::appSettings->value(Settings::optionThumbsPagesReadCount).toUInt();
-    thumbSize = Settings::appSettings->value(Settings::optionThumbsZoomLevel).toInt();
+    Settings::thumbsPagesReadCount = Settings::value(Settings::optionThumbsPagesReadCount).toUInt();
+    thumbSize = Settings::value(Settings::optionThumbsZoomLevel).toInt();
     currentRow = 0;
 
     setViewMode(QListView::IconMode);
@@ -234,7 +233,7 @@ void ThumbsViewer::updateImageInfoViewer(int row) {
     infoView->addEntry(key, val);
 
     key = tr("Modified");
-    val = imageInfo.lastModified().toString(Qt::SystemLocaleShortDate);
+    val = imageInfo.lastModified().toString(QLocale::system().dateTimeFormat(QLocale::ShortFormat));
     infoView->addEntry(key, val);
 
     if (imageInfoReader.size().isValid()) {
@@ -1187,7 +1186,7 @@ void ThumbsViewer::storeThumbnail(const QString &originalPath, QImage thumbnail,
     if (info.metadataChangeTime() > info.lastModified()) {
         lastModified = info.metadataChangeTime();
     }
-    thumbnail.setText(QStringLiteral("Thumb::MTime"), QString::number(lastModified.toTime_t()));
+    thumbnail.setText(QStringLiteral("Thumb::MTime"), QString::number(lastModified.toSecsSinceEpoch()));
 
     QUrl url = QUrl::fromLocalFile(canonicalPath).adjusted(QUrl::RemovePassword);
     thumbnail.setText(QStringLiteral("Thumb::URI"), url.url());
