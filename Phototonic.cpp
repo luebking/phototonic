@@ -883,13 +883,13 @@ void Phototonic::createToolBars(QFileSystemModel *model) {
     pathLineEdit->setCompleter(new DirCompleter(pathLineEdit, model));
     std::unique_ptr<QMetaObject::Connection> pconn{new QMetaObject::Connection};
     QMetaObject::Connection &conn = *pconn;
-    connect(pathLineEdit, &QLineEdit::textEdited, [=](){model->setRootPath(""); QObject::disconnect(conn);});
+    conn = connect(pathLineEdit, &QLineEdit::textEdited, [=](){model->setRootPath(""); QObject::disconnect(conn);});
     pathLineEdit->setMinimumWidth(200);
-    pathLineEdit->setMaximumWidth(600);
     connect(pathLineEdit, SIGNAL(returnPressed()), this, SLOT(goPathBarDir()));
     goToolBar->addWidget(pathLineEdit);
     goToolBar->addAction(includeSubDirectoriesAction);
     goToolBar->addAction(findDupesAction);
+    goToolBar->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     connect(goToolBar->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setGoToolBarVisibility()));
 
     /* View */
@@ -915,6 +915,7 @@ void Phototonic::createToolBars(QFileSystemModel *model) {
     viewToolBar->addSeparator();
     viewToolBar->addWidget(filterLineEdit);
     viewToolBar->addAction(settingsAction);
+    viewToolBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
     connect(viewToolBar->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setViewToolBarVisibility()));
 
     /* image */
