@@ -23,6 +23,7 @@ DirCompleter::DirCompleter(QObject *parent) : QCompleter(parent)
 {
     QFileSystemModel *model = new QFileSystemModel;
     model->setFilter(QDir::AllDirs | QDir::Dirs | QDir::NoDotAndDotDot);
+    model->setRootPath("");
     setModel(model);
 }
 

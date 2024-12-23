@@ -2740,6 +2740,8 @@ void Phototonic::setImageToolBarVisibility() {
 }
 
 void Phototonic::setFileSystemDockVisibility() {
+    if (fileSystemDock->isVisible())
+        fileSystemTree->fileSystemModel->setRootPath("");
     if (Settings::layoutMode != ImageViewWidget) {
         Settings::fileSystemDockVisible = fileSystemDock->isVisible();
     }

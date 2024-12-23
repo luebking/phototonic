@@ -23,9 +23,9 @@ FileSystemTree::FileSystemTree(QWidget *parent) : QTreeView(parent) {
     setDragEnabled(true);
     setDragDropMode(QAbstractItemView::InternalMove);
 
-    fileSystemModel = new FileSystemModel();
-    fileSystemModel->setRootPath("");
+    fileSystemModel = new QFileSystemModel();
     setModelFlags();
+//    fileSystemModel->setRootPath("");
     setModel(fileSystemModel);
 
     for (int i = 1; i <= 3; ++i) {

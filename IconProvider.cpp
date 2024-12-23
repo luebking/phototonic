@@ -18,10 +18,10 @@ QIcon IconProvider::icon(const QFileInfo &info) const
         if (icon.isNull()) {
             icon = QIcon::fromTheme(mime.genericIconName());
         }
-        if (!icon.isNull()) {
-            return icon;
+        if (icon.isNull()) {
+            icon = m_unknownIcon;
         }
-        icon = m_unknownIcon;
+        m_cache[suffix] = icon;
         return icon;
     }
 

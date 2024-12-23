@@ -31,7 +31,7 @@ Q_OBJECT
 public:
     FileSystemTree(QWidget *parent);
 
-    FileSystemModel *fileSystemModel;
+    QFileSystemModel *fileSystemModel;
 
     QModelIndex getCurrentIndex();
 
