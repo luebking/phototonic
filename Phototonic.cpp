@@ -1201,9 +1201,7 @@ void Phototonic::externalAppError() {
 }
 
 void Phototonic::runExternalApp() {
-    const QString execCommand = Settings::externalApps[((QAction *) sender())->text()];
-
-    QStringList arguments;
+    QString execCommand = Settings::externalApps[((QAction *) sender())->text()];
 
     if (Settings::layoutMode == ImageViewWidget) {
         if (imageViewer->isNewImage()) {
@@ -1211,10 +1209,10 @@ void Phototonic::runExternalApp() {
             return;
         }
 
-        arguments += imageViewer->viewerImageFullPath;
+        execCommand += " " + imageViewer->viewerImageFullPath;
     } else {
         if (QApplication::focusWidget() == fileSystemTree) {
-            arguments += " \"" + getSelectedPath() + "\"";
+            execCommand += " \"" + getSelectedPath() + "\"";
         } else {
 
             QModelIndexList selectedIdxList = thumbsViewer->selectionModel()->selectedIndexes();
@@ -1224,8 +1222,7 @@ void Phototonic::runExternalApp() {
             }
 
             for (int tn = selectedIdxList.size() - 1; tn >= 0; --tn) {
-                arguments +=
-                                     thumbsViewer->thumbsViewerModel->item(selectedIdxList[tn].row())->data(
+                execCommand += " " + thumbsViewer->thumbsViewerModel->item(selectedIdxList[tn].row())->data(
                                              thumbsViewer->FileNameRole).toString();
             }
         }
@@ -1235,7 +1232,7 @@ void Phototonic::runExternalApp() {
     externalProcess->setProcessChannelMode(QProcess::ForwardedChannels);
     connect(externalProcess, SIGNAL(finished(int, QProcess::ExitStatus)), externalProcess, SLOT(deleteLater()));
     connect(externalProcess, SIGNAL(error(QProcess::ProcessError)), this, SLOT(externalAppError()));
-    externalProcess->start(execCommand, arguments);
+    externalProcess->startCommand(execCommand);
 }
 
 void Phototonic::updateExternalApps() {
