@@ -20,11 +20,12 @@
 #define DIR_COMPLETER_H
 
 #include <QCompleter>
+class QFileSystemModel;
 
 class DirCompleter : public QCompleter {
 Q_OBJECT
 public:
-    DirCompleter(QObject *parent = 0);
+    DirCompleter(QObject *parent = 0, QFileSystemModel *model = 0);
 
     QString pathFromIndex(const QModelIndex &index) const;
 

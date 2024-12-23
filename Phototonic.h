@@ -19,6 +19,8 @@
 #ifndef PHOTOTONIC_H
 #define PHOTOTONIC_H
 
+class QFileSystemModel;
+
 #include <QtWidgets>
 #include "ImageViewer.h"
 #include "ThumbsViewer.h"
@@ -499,11 +501,11 @@ private:
 
     void createMenus();
 
-    void createToolBars();
+    void createToolBars(QFileSystemModel *model);
 
     void createStatusBar();
 
-    void createFileSystemDock();
+    void createFileSystemDock(QFileSystemModel *model);
 
     void createBookmarksDock();
 

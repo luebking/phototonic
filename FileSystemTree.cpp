@@ -18,14 +18,13 @@
 
 #include "FileSystemTree.h"
 
-FileSystemTree::FileSystemTree(QWidget *parent) : QTreeView(parent) {
+FileSystemTree::FileSystemTree(QWidget *parent, QFileSystemModel *model) : QTreeView(parent) {
     setAcceptDrops(true);
     setDragEnabled(true);
     setDragDropMode(QAbstractItemView::InternalMove);
 
-    fileSystemModel = new QFileSystemModel();
+    fileSystemModel = model;
     setModelFlags();
-//    fileSystemModel->setRootPath("");
     setModel(fileSystemModel);
 
     for (int i = 1; i <= 3; ++i) {
@@ -78,9 +77,10 @@ void FileSystemTree::dropEvent(QDropEvent *event) {
 }
 
 void FileSystemTree::setModelFlags() {
-    fileSystemModel->setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
-    if (Settings::showHiddenFiles) {
+    return;
+    if (Settings::showHiddenFiles)
         fileSystemModel->setFilter(fileSystemModel->filter() | QDir::Hidden);
-    }
+    else
+        fileSystemModel->setFilter(fileSystemModel->filter() & ~QDir::Hidden);
 }
 

@@ -16,20 +16,22 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef FILE_SYSTEM_TREE_H
+#define FILE_SYSTEM_TREE_H
+
 #include <QtWidgets>
 #include <QtWidgets/QtWidgets>
 #include "Settings.h"
 #include "FileSystemModel.h"
 
-#ifndef FILE_SYSTEM_TREE_H
-#define FILE_SYSTEM_TREE_H
+class QFileSystemModel;
 
 class FileSystemTree : public QTreeView {
 
 Q_OBJECT
 
 public:
-    FileSystemTree(QWidget *parent);
+    FileSystemTree(QWidget *parent, QFileSystemModel *model);
 
     QFileSystemModel *fileSystemModel;
 

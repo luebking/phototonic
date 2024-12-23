@@ -35,14 +35,18 @@
 
 Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *parent) : QMainWindow(parent) {
     Settings::appSettings = new QSettings("phototonic", "phototonic");
+
+    QFileSystemModel *fileSystemModel = new QFileSystemModel(this);
+    fileSystemModel->setFilter(QDir::AllDirs | QDir::Dirs | QDir::NoDotAndDotDot);
+
     setDockOptions(QMainWindow::AllowNestedDocks);
     readSettings();
     createThumbsViewer();
     createActions();
     createMenus();
-    createToolBars();
+    createToolBars(fileSystemModel);
     createStatusBar();
-    createFileSystemDock();
+    createFileSystemDock(fileSystemModel);
     createBookmarksDock();
     createImagePreviewDock();
     createImageTagsDock();
@@ -853,7 +857,7 @@ void Phototonic::createMenus() {
     menuBar()->setVisible(true);
 }
 
-void Phototonic::createToolBars() {
+void Phototonic::createToolBars(QFileSystemModel *model) {
     /* Edit */
     editToolBar = addToolBar(tr("Edit Toolbar"));
     editToolBar->setObjectName("Edit");
@@ -876,7 +880,10 @@ void Phototonic::createToolBars() {
 
     /* path bar */
     pathLineEdit = new QLineEdit;
-    pathLineEdit->setCompleter(new DirCompleter(pathLineEdit));
+    pathLineEdit->setCompleter(new DirCompleter(pathLineEdit, model));
+    std::unique_ptr<QMetaObject::Connection> pconn{new QMetaObject::Connection};
+    QMetaObject::Connection &conn = *pconn;
+    connect(pathLineEdit, &QLineEdit::textEdited, [=](){model->setRootPath(""); QObject::disconnect(conn);});
     pathLineEdit->setMinimumWidth(200);
     pathLineEdit->setMaximumWidth(600);
     connect(pathLineEdit, SIGNAL(returnPressed()), this, SLOT(goPathBarDir()));
@@ -1003,14 +1010,14 @@ void Phototonic::onFileListSelected() {
     }
 }
 
-void Phototonic::createFileSystemDock() {
+void Phototonic::createFileSystemDock(QFileSystemModel *model) {
     fileSystemDock = new QDockWidget(tr("File System"), this);
     fileSystemDock->setObjectName("File System");
 
     fileListWidget = new FileListWidget(fileSystemDock);
     connect(fileListWidget, SIGNAL(itemSelectionChanged()), this, SLOT(onFileListSelected()));
 
-    fileSystemTree = new FileSystemTree(fileSystemDock);
+    fileSystemTree = new FileSystemTree(fileSystemDock, model);
     fileSystemTree->addAction(createDirectoryAction);
     fileSystemTree->addAction(renameAction);
     fileSystemTree->addAction(deleteAction);
