@@ -31,13 +31,8 @@ class FileSystemTree : public QTreeView {
 Q_OBJECT
 
 public:
-    FileSystemTree(QWidget *parent, QFileSystemModel *model);
-
-    QFileSystemModel *fileSystemModel;
-
+    FileSystemTree(QWidget *parent);
     QModelIndex getCurrentIndex();
-
-    void setModelFlags();
 
 protected:
     void dragEnterEvent(QDragEnterEvent *event);
@@ -47,7 +42,6 @@ protected:
     void dropEvent(QDropEvent *event);
 
 signals:
-
     void dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString cpMvDirPath);
 
 private:

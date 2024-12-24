@@ -36,7 +36,7 @@
 Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *parent) : QMainWindow(parent) {
     Settings::appSettings = new QSettings("phototonic", "phototonic");
 
-    QFileSystemModel *fileSystemModel = new QFileSystemModel(this);
+    fileSystemModel = new QFileSystemModel(this);
     fileSystemModel->setFilter(QDir::AllDirs | QDir::Dirs | QDir::NoDotAndDotDot);
 
     setDockOptions(QMainWindow::AllowNestedDocks);
@@ -44,9 +44,9 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     createThumbsViewer();
     createActions();
     createMenus();
-    createToolBars(fileSystemModel);
+    createToolBars();
     createStatusBar();
-    createFileSystemDock(fileSystemModel);
+    createFileSystemDock();
     createBookmarksDock();
     createImagePreviewDock();
     createImageTagsDock();
@@ -857,7 +857,7 @@ void Phototonic::createMenus() {
     menuBar()->setVisible(true);
 }
 
-void Phototonic::createToolBars(QFileSystemModel *model) {
+void Phototonic::createToolBars() {
     /* Edit */
     editToolBar = addToolBar(tr("Edit Toolbar"));
     editToolBar->setObjectName("Edit");
@@ -880,10 +880,10 @@ void Phototonic::createToolBars(QFileSystemModel *model) {
 
     /* path bar */
     pathLineEdit = new QLineEdit;
-    pathLineEdit->setCompleter(new DirCompleter(pathLineEdit, model));
+    pathLineEdit->setCompleter(new DirCompleter(pathLineEdit, fileSystemModel));
     std::unique_ptr<QMetaObject::Connection> pconn{new QMetaObject::Connection};
     QMetaObject::Connection &conn = *pconn;
-    conn = connect(pathLineEdit, &QLineEdit::textEdited, [=](){model->setRootPath(""); QObject::disconnect(conn);});
+    conn = connect(pathLineEdit, &QLineEdit::textEdited, [=](){fileSystemModel->setRootPath("/"); QObject::disconnect(conn);});
     pathLineEdit->setMinimumWidth(200);
     connect(pathLineEdit, SIGNAL(returnPressed()), this, SLOT(goPathBarDir()));
     goToolBar->addWidget(pathLineEdit);
@@ -1011,14 +1011,14 @@ void Phototonic::onFileListSelected() {
     }
 }
 
-void Phototonic::createFileSystemDock(QFileSystemModel *model) {
+void Phototonic::createFileSystemDock() {
     fileSystemDock = new QDockWidget(tr("File System"), this);
     fileSystemDock->setObjectName("File System");
 
     fileListWidget = new FileListWidget(fileSystemDock);
     connect(fileListWidget, SIGNAL(itemSelectionChanged()), this, SLOT(onFileListSelected()));
 
-    fileSystemTree = new FileSystemTree(fileSystemDock, model);
+    fileSystemTree = new FileSystemTree(fileSystemDock);
     fileSystemTree->addAction(createDirectoryAction);
     fileSystemTree->addAction(renameAction);
     fileSystemTree->addAction(deleteAction);
@@ -1030,36 +1030,15 @@ void Phototonic::createFileSystemDock(QFileSystemModel *model) {
     fileSystemTree->addAction(addBookmarkAction);
     fileSystemTree->setContextMenuPolicy(Qt::ActionsContextMenu);
 
-    connect(
-            fileSystemTree,
-                SIGNAL(clicked(const QModelIndex&)),
-            this,
-                SLOT(goSelectedDir(const QModelIndex &))
-        );
+    fileSystemTree->setModel(fileSystemModel);
+    connect(fileSystemTree, &FileSystemTree::clicked, this, &Phototonic::goSelectedDir);
+    connect(fileSystemModel, &QFileSystemModel::rowsRemoved, this, &Phototonic::checkDirState);
+    connect(fileSystemTree, &FileSystemTree::dropOp, this, &Phototonic::dropOp);
 
-    connect(
-            fileSystemTree->fileSystemModel,
-                SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
-            this,
-                SLOT(checkDirState(const QModelIndex &, int, int))
-        );
+//    fileSystemTree->setCurrentIndex(fileSystemModel->index(QDir::currentPath()));
+//    fileSystemTree->scrollTo(fileSystemModel->index(QDir::currentPath()));
 
-    connect(
-            fileSystemTree,
-                SIGNAL(dropOp(Qt::KeyboardModifiers, bool, QString)),
-            this,
-                SLOT(dropOp(Qt::KeyboardModifiers, bool, QString))
-        );
-
-    fileSystemTree->setCurrentIndex(fileSystemTree->fileSystemModel->index(QDir::currentPath()));
-    fileSystemTree->scrollTo(fileSystemTree->fileSystemModel->index(QDir::currentPath()));
-
-    connect(
-            fileSystemTree->selectionModel(),
-                SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
-            this,
-                SLOT(updateActions())
-        );
+    connect(fileSystemTree->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(updateActions()) );
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -1158,7 +1137,10 @@ void Phototonic::refreshThumbs(bool scrollToTop) {
 
 void Phototonic::showHiddenFiles() {
     Settings::showHiddenFiles = showHiddenFilesAction->isChecked();
-    fileSystemTree->setModelFlags();
+    if (Settings::showHiddenFiles)
+        fileSystemModel->setFilter(fileSystemModel->filter() | QDir::Hidden);
+    else
+        fileSystemModel->setFilter(fileSystemModel->filter() & ~QDir::Hidden);
     refreshThumbs(false);
 }
 
@@ -1868,7 +1850,7 @@ void Phototonic::deleteImages(bool trash) {
     timer.start();
 
     // Avoid a lot of not interesting updates while deleting
-    QSignalBlocker fsBlocker(fileSystemTree->fileSystemModel);
+    QSignalBlocker fsBlocker(fileSystemModel);
     QSignalBlocker scrollbarBlocker(thumbsViewer->verticalScrollBar());
 
     // Avoid reloading thumbnails all the time
@@ -2042,7 +2024,7 @@ void Phototonic::goTo(QString path) {
     Settings::isFileListLoaded = false;
     fileListWidget->clearSelection();
     thumbsViewer->setNeedToScroll(true);
-    fileSystemTree->setCurrentIndex(fileSystemTree->fileSystemModel->index(path));
+    fileSystemTree->setCurrentIndex(fileSystemModel->index(path));
     Settings::currentDirectory = path;
     refreshThumbs(true);
 }
@@ -2745,8 +2727,9 @@ void Phototonic::setImageToolBarVisibility() {
 }
 
 void Phototonic::setFileSystemDockVisibility() {
-    if (fileSystemDock->isVisible())
-        fileSystemTree->fileSystemModel->setRootPath("");
+    if (fileSystemDock->isVisible()) {
+        QTimer::singleShot(250, [=](){fileSystemModel->setRootPath("/");});
+    }
     if (Settings::layoutMode != ImageViewWidget) {
         Settings::fileSystemDockVisible = fileSystemDock->isVisible();
     }
@@ -3147,7 +3130,7 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
 }
 
 void Phototonic::selectCurrentViewDir() {
-    QModelIndex idx = fileSystemTree->fileSystemModel->index(Settings::currentDirectory);
+    QModelIndex idx = fileSystemModel->index(Settings::currentDirectory);
     if (idx.isValid()) {
         fileSystemTree->setCurrentIndex(idx);
         fileSystemTree->scrollTo(idx);
@@ -3249,7 +3232,7 @@ void Phototonic::setThumbsViewerWindowTitle() {
 
 void Phototonic::renameDir() {
     QModelIndexList selectedDirs = fileSystemTree->selectionModel()->selectedRows();
-    QFileInfo dirInfo = QFileInfo(fileSystemTree->fileSystemModel->filePath(selectedDirs[0]));
+    QFileInfo dirInfo = QFileInfo(fileSystemModel->filePath(selectedDirs[0]));
 
     bool renameOk;
     QString title = tr("Rename") + " " + dirInfo.completeBaseName();
@@ -3280,7 +3263,7 @@ void Phototonic::renameDir() {
     }
 
     if (Settings::currentDirectory == dirInfo.absoluteFilePath()) {
-        fileSystemTree->setCurrentIndex(fileSystemTree->fileSystemModel->index(newFullPathName));
+        fileSystemTree->setCurrentIndex(fileSystemModel->index(newFullPathName));
     } else {
         selectCurrentViewDir();
     }
@@ -3425,7 +3408,7 @@ void Phototonic::removeMetadata() {
 void Phototonic::deleteDirectory(bool trash) {
     bool removeDirectoryOk;
     QModelIndexList selectedDirs = fileSystemTree->selectionModel()->selectedRows();
-    QString deletePath = fileSystemTree->fileSystemModel->filePath(selectedDirs[0]);
+    QString deletePath = fileSystemModel->filePath(selectedDirs[0]);
     QModelIndex idxAbove = fileSystemTree->indexAbove(selectedDirs[0]);
     QFileInfo dirInfo = QFileInfo(deletePath);
     QString question = (trash ? tr("Move directory %1 to the trash?") : tr(
@@ -3474,7 +3457,7 @@ void Phototonic::deleteDirectory(bool trash) {
 
 void Phototonic::createSubDirectory() {
     QModelIndexList selectedDirs = fileSystemTree->selectionModel()->selectedRows();
-    QFileInfo dirInfo = QFileInfo(fileSystemTree->fileSystemModel->filePath(selectedDirs[0]));
+    QFileInfo dirInfo = QFileInfo(fileSystemModel->filePath(selectedDirs[0]));
 
     bool ok;
     QString newDirName = QInputDialog::getText(this, tr("New Sub directory"),
@@ -3516,7 +3499,7 @@ void Phototonic::setSaveDirectory(QString path) {
 QString Phototonic::getSelectedPath() {
     QModelIndexList selectedDirs = fileSystemTree->selectionModel()->selectedRows();
     if (selectedDirs.size() && selectedDirs[0].isValid()) {
-        QFileInfo dirInfo = QFileInfo(fileSystemTree->fileSystemModel->filePath(selectedDirs[0]));
+        QFileInfo dirInfo = QFileInfo(fileSystemModel->filePath(selectedDirs[0]));
         return dirInfo.absoluteFilePath();
     } else
         return "";

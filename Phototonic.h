@@ -453,6 +453,7 @@ private:
     bool interfaceDisabled;
     std::shared_ptr<MetadataCache> metadataCache;
     FileListWidget *fileListWidget;
+    QFileSystemModel *fileSystemModel;
     QStackedLayout *stackedLayout;
 
     int currentHistoryIdx;
@@ -501,11 +502,11 @@ private:
 
     void createMenus();
 
-    void createToolBars(QFileSystemModel *model);
+    void createToolBars();
 
     void createStatusBar();
 
-    void createFileSystemDock(QFileSystemModel *model);
+    void createFileSystemDock();
 
     void createBookmarksDock();
 

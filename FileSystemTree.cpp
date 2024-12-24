@@ -18,32 +18,22 @@
 
 #include "FileSystemTree.h"
 
-FileSystemTree::FileSystemTree(QWidget *parent, QFileSystemModel *model) : QTreeView(parent) {
+FileSystemTree::FileSystemTree(QWidget *parent) : QTreeView(parent) {
     setAcceptDrops(true);
     setDragEnabled(true);
     setDragDropMode(QAbstractItemView::InternalMove);
 
-    fileSystemModel = model;
-    setModelFlags();
-    setModel(fileSystemModel);
+//    setModel(fileSystemModel);
 
     for (int i = 1; i <= 3; ++i) {
         hideColumn(i);
     }
     setHeaderHidden(true);
 
-    connect(fileSystemModel, &QFileSystemModel::layoutChanged, this, [this]() {
-            scrollTo(currentIndex());
-        }, Qt::QueuedConnection);
+//    connect(fileSystemModel, &QFileSystemModel::layoutChanged, this, [this]() { scrollTo(currentIndex()); }, Qt::QueuedConnection);
 
-    connect(this, SIGNAL(expanded(
-                                 const QModelIndex &)),
-            this, SLOT(resizeTreeColumn(
-                               const QModelIndex &)));
-    connect(this, SIGNAL(collapsed(
-                                 const QModelIndex &)),
-            this, SLOT(resizeTreeColumn(
-                               const QModelIndex &)));
+    connect(this, SIGNAL(expanded(const QModelIndex &)), this, SLOT(resizeTreeColumn(const QModelIndex &)));
+    connect(this, SIGNAL(collapsed(const QModelIndex &)), this, SLOT(resizeTreeColumn(const QModelIndex &)));
 }
 
 QModelIndex FileSystemTree::getCurrentIndex() {
@@ -74,13 +64,5 @@ void FileSystemTree::dropEvent(QDropEvent *event) {
         emit dropOp(event->modifiers(), dirOp, event->mimeData()->urls().at(0).toLocalFile());
         setCurrentIndex(dndOrigSelection);
     }
-}
-
-void FileSystemTree::setModelFlags() {
-    return;
-    if (Settings::showHiddenFiles)
-        fileSystemModel->setFilter(fileSystemModel->filter() | QDir::Hidden);
-    else
-        fileSystemModel->setFilter(fileSystemModel->filter() & ~QDir::Hidden);
 }
 
