@@ -19,7 +19,7 @@
 #ifndef IMAGE_VIEWER_H
 #define IMAGE_VIEWER_H
 
-#include <QGraphicsDropShadowEffect>
+#include <QScrollArea>
 #include <exiv2/exiv2.hpp>
 #include "Settings.h"
 #include "CropRubberband.h"
@@ -28,7 +28,7 @@
 
 class Phototonic;
 
-class ImageViewer : public QWidget {
+class ImageViewer : public QScrollArea {
 Q_OBJECT
 
 public:
@@ -37,7 +37,6 @@ public:
     int mirrorLayout;
     QString viewerImageFullPath;
     QMenu *ImagePopUpMenu;
-    QScrollArea *scrollArea;
     QLabel *imageInfoLabel;
     CropRubberBand *cropRubberBand;
 
@@ -102,37 +101,26 @@ signals:
 public slots:
 
     void monitorCursorState();
-
     void saveImage();
-
     void saveImageAs();
-
     void copyImage();
-
     void pasteImage();
-
     void applyCropAndRotation();
 
 private slots:
 
     void unsetFeedback();
-
     void updateRubberBandFeedback(QRect geom);
 
 protected:
-    void resizeEvent(QResizeEvent *event);
-
-    void showEvent(QShowEvent *event);
-
-    void mouseMoveEvent(QMouseEvent *event);
-
     void contextMenuEvent(QContextMenuEvent *event);
-
     void mouseDoubleClickEvent(QMouseEvent *event);
-
+    void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
-
     void mouseReleaseEvent(QMouseEvent *event);
+    void resizeEvent(QResizeEvent *event);
+    void showEvent(QShowEvent *event);
+    void wheelEvent(QWheelEvent *event);
 
 private:
     Phototonic *phototonic;

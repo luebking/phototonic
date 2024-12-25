@@ -2114,7 +2114,7 @@ void Phototonic::updateActions() {
         setCopyCutActions(false);
     } else if (QApplication::focusWidget() == fileSystemTree) {
         setCopyCutActions(false);
-    } else if (Settings::layoutMode == ImageViewWidget || QApplication::focusWidget() == imageViewer->scrollArea) {
+    } else if (Settings::layoutMode == ImageViewWidget || QApplication::focusWidget() == imageViewer) {
         setCopyCutActions(false);
     } else {
         setCopyCutActions(false);
@@ -2125,7 +2125,7 @@ void Phototonic::updateActions() {
         fullScreenAction->setEnabled(true);
         CloseImageAction->setEnabled(true);
     } else {
-        if (QApplication::focusWidget() == imageViewer->scrollArea) {
+        if (QApplication::focusWidget() == imageViewer) {
             setViewerKeyEventsEnabled(true);
             fullScreenAction->setEnabled(false);
             CloseImageAction->setEnabled(false);
@@ -2590,7 +2590,7 @@ void Phototonic::mouseDoubleClickEvent(QMouseEvent *event) {
                 event->accept();
             }
         } else {
-            if (QApplication::focusWidget() == thumbsViewer->imagePreview->scrollArea) {
+            if (QApplication::focusWidget() == thumbsViewer->imagePreview) {
                 viewImage();
             }
         }
@@ -2625,7 +2625,7 @@ void Phototonic::mousePressEvent(QMouseEvent *event) {
                 event->accept();
             }
         }
-    } else if (QApplication::focusWidget() == thumbsViewer->imagePreview->scrollArea) {
+    } else if (QApplication::focusWidget() == thumbsViewer->imagePreview) {
         if (event->button() == Qt::MiddleButton) {
             viewImage();
         }
@@ -2681,8 +2681,8 @@ void Phototonic::viewImage() {
         goSelectedDir(fileSystemTree->getCurrentIndex());
         return;
     } else if (QApplication::focusWidget() == thumbsViewer
-               || QApplication::focusWidget() == thumbsViewer->imagePreview->scrollArea
-               || QApplication::focusWidget() == imageViewer->scrollArea) {
+               || QApplication::focusWidget() == thumbsViewer->imagePreview
+               || QApplication::focusWidget() == imageViewer) {
         QModelIndex selectedImageIndex;
         QModelIndexList selectedIndexes = thumbsViewer->selectionModel()->selectedIndexes();
         if (selectedIndexes.size() > 0) {

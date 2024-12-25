@@ -54,44 +54,29 @@ struct Exiv2LogHandler {
     }
 };
 
-class MyScrollArea : public QScrollArea {
-protected:
-    void wheelEvent(QWheelEvent *event) override {
-        event->ignore();
-        return;
-    }
-};
-
 } // anonymous namespace
 
 
-ImageViewer::ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &metadataCache) : QWidget(parent) {
+ImageViewer::ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &mdataCache) : QScrollArea(parent) {
     // This is a threadsafe way to ensure that we only register it once
     static Exiv2LogHandler handler;
 
-    this->phototonic = (Phototonic *) parent;
-    this->metadataCache = metadataCache;
+    phototonic = qobject_cast<Phototonic*>(parent);
+    metadataCache = mdataCache;
     cursorIsHidden = false;
     moveImageLocked = false;
     mirrorLayout = LayNone;
     imageWidget = new ImageWidget;
     animation = nullptr;
 
-    scrollArea = new MyScrollArea;
-    scrollArea->setContentsMargins(0, 0, 0, 0);
-    scrollArea->setAlignment(Qt::AlignCenter);
-    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setFrameStyle(0);
-    scrollArea->setWidget(imageWidget);
-    scrollArea->setWidgetResizable(false);
+    setContentsMargins(0, 0, 0, 0);
+    setAlignment(Qt::AlignCenter);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setFrameStyle(0);
+    setWidget(imageWidget);
+    setWidgetResizable(false);
     setBackgroundColor();
-
-    QVBoxLayout *scrollLayout = new QVBoxLayout;
-    scrollLayout->setContentsMargins(0, 0, 0, 0);
-    scrollLayout->setSpacing(0);
-    scrollLayout->addWidget(scrollArea);
-    this->setLayout(scrollLayout);
 
     imageInfoLabel = new QLabel(this);
     imageInfoLabel->setVisible(Settings::showImageName);
@@ -173,8 +158,8 @@ void ImageViewer::resizeImage() {
     int imageViewWidth = this->size().width();
     int imageViewHeight = this->size().height();
 
-    float positionY = scrollArea->verticalScrollBar()->value() > 0 ? scrollArea->verticalScrollBar()->value() / float(scrollArea->verticalScrollBar()->maximum()) : 0;
-    float positionX = scrollArea->horizontalScrollBar()->value() > 0 ? scrollArea->horizontalScrollBar()->value() / float(scrollArea->horizontalScrollBar()->maximum()) : 0;
+    float positionY = verticalScrollBar()->value() > 0 ? verticalScrollBar()->value() / float(verticalScrollBar()->maximum()) : 0;
+    float positionX = horizontalScrollBar()->value() > 0 ? horizontalScrollBar()->value() / float(horizontalScrollBar()->maximum()) : 0;
 
     if (tempDisableResize) {
         imageSize.scale(imageSize.width(), imageSize.height(), Qt::KeepAspectRatio);
@@ -279,14 +264,14 @@ void ImageViewer::resizeImage() {
     }
 
 
-    QPointF newPosition = scrollArea->widget()->pos();
-    scrollArea->widget()->setFixedSize(imageSize);
-    scrollArea->widget()->adjustSize();
+    QPointF newPosition = widget()->pos();
+    widget()->setFixedSize(imageSize);
+    widget()->adjustSize();
     if (newPosition.isNull() || imageSize.width() < width() + 100 || imageSize.height() < height() + 100) {
         centerImage(imageSize);
     } else {
-        scrollArea->horizontalScrollBar()->setValue(scrollArea->horizontalScrollBar()->maximum() * positionX);
-        scrollArea->verticalScrollBar()->setValue(scrollArea->verticalScrollBar()->maximum() * positionY);
+        horizontalScrollBar()->setValue(horizontalScrollBar()->maximum() * positionX);
+        verticalScrollBar()->setValue(verticalScrollBar()->maximum() * positionY);
     }
     busy = false;
 }
@@ -302,7 +287,7 @@ void ImageViewer::showEvent(QShowEvent *event) {
 }
 
 void ImageViewer::centerImage(QSize &imgSize) {
-    scrollArea->ensureVisible(imgSize.width()/2, imgSize.height()/2, width()/2, height()/2);
+    ensureVisible(imgSize.width()/2, imgSize.height()/2, width()/2, height()/2);
 }
 
 void ImageViewer::rotateByExifRotation(QImage &image, QString &imageFullPath) {
@@ -638,7 +623,7 @@ void ImageViewer::setImage(const QImage &image) {
         delete movieWidget;
         movieWidget = nullptr;
         imageWidget = new ImageWidget;
-        scrollArea->setWidget(imageWidget);
+        setWidget(imageWidget);
     }
 
     imageWidget->setImage(image);
@@ -716,7 +701,7 @@ void ImageViewer::reload() {
             if (!movieWidget) {
                 movieWidget = new QLabel();
                 movieWidget->setScaledContents(true);
-                scrollArea->setWidget(movieWidget); // deletes imageWidget
+                setWidget(movieWidget); // deletes imageWidget
                 imageWidget = nullptr;
             }
             movieWidget->setMovie(animation);
@@ -879,6 +864,11 @@ void ImageViewer::mouseReleaseEvent(QMouseEvent *event) {
     QWidget::mouseReleaseEvent(event);
 }
 
+void ImageViewer::wheelEvent(QWheelEvent *event) {
+    event->ignore();
+    return;
+}
+
 void ImageViewer::updateRubberBandFeedback(QRect geom) {
     if (!imageWidget) {
         return;
@@ -1010,8 +1000,8 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
             }
 
             if (needToMove) {
-                scrollArea->horizontalScrollBar()->setValue(-newX);
-                scrollArea->verticalScrollBar()->setValue(-newY);
+                horizontalScrollBar()->setValue(-newX);
+                verticalScrollBar()->setValue(-newY);
             }
         }
     }
@@ -1064,8 +1054,8 @@ void ImageViewer::keyMoveEvent(int direction) {
     }
 
     if (needToMove) {
-        scrollArea->horizontalScrollBar()->setValue(-newX);
-        scrollArea->verticalScrollBar()->setValue(-newY);
+        horizontalScrollBar()->setValue(-newX);
+        verticalScrollBar()->setValue(-newY);
     }
 }
 
@@ -1254,7 +1244,7 @@ void ImageViewer::setBackgroundColor() {
             .arg(Settings::viewerBackgroundColor.blue());
 
     QString styleSheet = "QWidget { " + bgColor + " }";
-    scrollArea->setStyleSheet(styleSheet);
+    setStyleSheet(styleSheet);
 }
 
 QPoint ImageViewer::getContextMenuPosition() {
