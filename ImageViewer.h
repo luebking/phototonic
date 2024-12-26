@@ -35,10 +35,7 @@ public:
     ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &metadataCache);
     bool tempDisableResize;
     bool batchMode = false;
-    int mirrorLayout;
-    QString viewerImageFullPath;
-    QMenu *ImagePopUpMenu;
-    QLabel *imageInfoLabel;
+    QString fullImagePath;
     CropRubberBand *cropRubberBand;
 
     enum ZoomMethods {
@@ -49,12 +46,12 @@ public:
         Disprop
     };
 
-    enum MirrorLayouts {
-        LayNone = 0,
-        LayDual,
-        LayTriple,
-        LayQuad,
-        LayVDual
+    enum MirrorLayout {
+        MirrorNone = 0,
+        MirrorDual,
+        MirrorTriple,
+        MirrorQuad,
+        MirrorVDual
     };
 
     void clearImage();
@@ -65,10 +62,12 @@ public:
     void resizeImage();
     void rotateByExifRotation(QImage &image, QString &imageFullPath);
     void setBackgroundColor();
+    void setContextMenu(QMenu *);
     void setCursorHiding(bool hide);
-    void setInfo(QString infoString);
     void setFeedback(QString feedbackString, bool timeLimited = true);
-    void setContextMenu();
+    void setInfo(QString infoString);
+    void setMirror(MirrorLayout layout);
+    void showFileName(bool yesno) { myFilenameLabel->setVisible(yesno); }
     void slideImage(QPoint delta);
 
     int getImageWidthPreCropped();
@@ -104,8 +103,10 @@ protected:
     void wheelEvent(QWheelEvent *event);
 
 private:
+    QMenu *myContextMenu;
+    QLabel *myFilenameLabel;
+    MirrorLayout myMirrorLayout;
     Phototonic *phototonic;
-    QMenu *contextMenu;
     QLabel *movieWidget = nullptr;
     ImageWidget *imageWidget = nullptr;
     QImage origImage;

@@ -86,8 +86,6 @@ public slots:
 
 private slots:
 
-    void about();
-
     void sortThumbnails();
 
     void reload();
@@ -102,8 +100,6 @@ private slots:
 
     void onReloadThumbs();
 
-    void findDuplicateImages();
-
     void renameDir();
 
     void setThumbsViewerWindowTitle();
@@ -116,8 +112,6 @@ private slots:
 
     void newImage();
 
-    void addNewBookmark();
-
     void deleteDirectory(bool trash);
 
     void createSubDirectory();
@@ -125,8 +119,6 @@ private slots:
     void checkDirState(const QModelIndex &, int, int);
 
     void goSelectedDir(const QModelIndex &currDir);
-
-    void bookmarkClicked(QTreeWidgetItem *item, int col);
 
     void goPathBarDir();
 
@@ -139,10 +131,6 @@ private slots:
     void goTo(QString path);
 
     void goForward();
-
-    void goUp();
-
-    void goHome();
 
     void toggleSlideShow();
 
@@ -208,29 +196,11 @@ private slots:
 
     void showColorsDialog();
 
-    void setMirrorDisabled();
-
-    void setMirrorDual();
-
-    void setMirrorTriple();
-
-    void setMirrorVDual();
-
-    void setMirrorQuad();
-
     void flipHorizontal();
 
     void addVerticalGuide();
 
     void addHorizontalGuide();
-
-    void moveRight();
-
-    void moveLeft();
-
-    void moveUp();
-
-    void moveDown();
 
     void setDocksVisibility(bool visible);
 
@@ -271,12 +241,6 @@ private slots:
     void setImageInfoDockVisibility();
 
     void lockDocks();
-
-    void cleanupCropDialog();
-
-    void cleanupResizeDialog();
-
-    void cleanupColorsDialog();
 
     void filterImagesFocus();
 
@@ -491,8 +455,6 @@ private:
     void processStartupArguments(QStringList argumentsList, int filesStartAt);
 
     void loadStartupFileList(QStringList argumentsList, int filesStartAt);
-
-    void addMenuSeparator(QWidget *widget);
 
     void createImageViewer();
 

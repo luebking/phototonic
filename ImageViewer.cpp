@@ -62,10 +62,11 @@ ImageViewer::ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &
     static Exiv2LogHandler handler;
 
     phototonic = qobject_cast<Phototonic*>(parent);
+    myContextMenu = nullptr;
     metadataCache = mdataCache;
     cursorIsHidden = false;
     moveImageLocked = false;
-    mirrorLayout = LayNone;
+    myMirrorLayout = MirrorNone;
     imageWidget = new ImageWidget;
     animation = nullptr;
 
@@ -78,11 +79,11 @@ ImageViewer::ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &
     setWidgetResizable(false);
     setBackgroundColor();
 
-    imageInfoLabel = new QLabel(this);
-    imageInfoLabel->setVisible(Settings::showImageName);
-    imageInfoLabel->setMargin(3);
-    imageInfoLabel->move(10, 10);
-    imageInfoLabel->setStyleSheet("QLabel { background-color : black; color : white; border-radius: 3px} ");
+    myFilenameLabel = new QLabel(this);
+    myFilenameLabel->setVisible(Settings::showImageName);
+    myFilenameLabel->setMargin(3);
+    myFilenameLabel->move(10, 10);
+    myFilenameLabel->setStyleSheet("QLabel { background-color : black; color : white; border-radius: 3px} ");
 
     feedbackLabel = new QLabel(this);
     feedbackLabel->setVisible(false);
@@ -91,7 +92,7 @@ ImageViewer::ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &
 
     QGraphicsOpacityEffect *infoEffect = new QGraphicsOpacityEffect;
     infoEffect->setOpacity(0.5);
-    imageInfoLabel->setGraphicsEffect(infoEffect);
+    myFilenameLabel->setGraphicsEffect(infoEffect);
     QGraphicsOpacityEffect *feedbackEffect = new QGraphicsOpacityEffect;
     feedbackEffect->setOpacity(0.5);
     feedbackLabel->setGraphicsEffect(feedbackEffect);
@@ -372,8 +373,8 @@ void ImageViewer::transform() {
 }
 
 void ImageViewer::mirror() {
-    switch (mirrorLayout) {
-        case LayDual: {
+    switch (myMirrorLayout) {
+        case MirrorDual: {
             mirrorImage = QImage(viewerImage.width() * 2, viewerImage.height(),
                                  QImage::Format_ARGB32);
             QPainter painter(&mirrorImage);
@@ -382,7 +383,7 @@ void ImageViewer::mirror() {
             break;
         }
 
-        case LayTriple: {
+        case MirrorTriple: {
             mirrorImage = QImage(viewerImage.width() * 3, viewerImage.height(),
                                  QImage::Format_ARGB32);
             QPainter painter(&mirrorImage);
@@ -392,7 +393,7 @@ void ImageViewer::mirror() {
             break;
         }
 
-        case LayQuad: {
+        case MirrorQuad: {
             mirrorImage = QImage(viewerImage.width() * 2, viewerImage.height() * 2,
                                  QImage::Format_ARGB32);
             QPainter painter(&mirrorImage);
@@ -404,7 +405,7 @@ void ImageViewer::mirror() {
             break;
         }
 
-        case LayVDual: {
+        case MirrorVDual: {
             mirrorImage = QImage(viewerImage.width(), viewerImage.height() * 2,
                                  QImage::Format_ARGB32);
             QPainter painter(&mirrorImage);
@@ -412,9 +413,23 @@ void ImageViewer::mirror() {
             painter.drawImage(0, viewerImage.height(), viewerImage.mirrored(false, true));
             break;
         }
+        default: break;
     }
 
     viewerImage = mirrorImage;
+}
+
+void ImageViewer::setMirror(MirrorLayout layout) {
+    myMirrorLayout = layout;
+    refresh();
+    switch (myMirrorLayout) {
+        case MirrorNone: setFeedback(tr("Mirroring Disabled")); break;
+        case MirrorDual: setFeedback(tr("Mirroring: Dual")); break;
+        case MirrorTriple: setFeedback(tr("Mirroring: Triple")); break;
+        case MirrorQuad: setFeedback(tr("Mirroring: Quad")); break;
+        case MirrorVDual: setFeedback(tr("Mirroring: Dual Vertical")); break;
+        default: qDebug() << "invalid mirror layout" << layout;
+    }
 }
 
 static inline int bound0To255(int val) {
@@ -610,7 +625,7 @@ void ImageViewer::refresh() {
         colorize();
     }
 
-    if (mirrorLayout) {
+    if (myMirrorLayout) {
         mirror();
     }
 
@@ -652,12 +667,12 @@ QImage createImageWithOverlay(const QImage &baseImage, const QImage &overlayImag
 
 void ImageViewer::reload() {
     if (Settings::showImageName) {
-        if (viewerImageFullPath.left(1) == ":") {
+        if (fullImagePath.left(1) == ":") {
             setInfo("No Image");
-        } else if (viewerImageFullPath.isEmpty()) {
+        } else if (fullImagePath.isEmpty()) {
             setInfo("Clipboard");
         } else {
-            setInfo(QFileInfo(viewerImageFullPath).fileName());
+            setInfo(QFileInfo(fullImagePath).fileName());
         }
     }
 
@@ -673,10 +688,10 @@ void ImageViewer::reload() {
 
         if (!Settings::keepTransform)
             Settings::cropLeft = Settings::cropTop = Settings::cropWidth = Settings::cropHeight = 0;
-        if (newImage || viewerImageFullPath.isEmpty()) {
+        if (newImage || fullImagePath.isEmpty()) {
 
             newImage = true;
-            viewerImageFullPath = CLIPBOARD_IMAGE_NAME;
+            fullImagePath = CLIPBOARD_IMAGE_NAME;
             origImage.load(":/images/no_image.png");
             viewerImage = origImage;
             setImage(viewerImage);
@@ -685,9 +700,9 @@ void ImageViewer::reload() {
         }
     }
 
-    QImageReader imageReader(viewerImageFullPath);
+    QImageReader imageReader(fullImagePath);
     if (batchMode && imageReader.supportsAnimation()) {
-        qWarning() << tr("skipping animation in batch mode:") << viewerImageFullPath;
+        qWarning() << tr("skipping animation in batch mode:") << fullImagePath;
         return;
     }
     if (Settings::enableAnimations && imageReader.supportsAnimation()) {
@@ -695,7 +710,7 @@ void ImageViewer::reload() {
             delete animation;
             animation = nullptr;
         }
-        animation = new QMovie(viewerImageFullPath);
+        animation = new QMovie(fullImagePath);
 
         if (animation->frameCount() > 1) {
             if (!movieWidget) {
@@ -716,14 +731,14 @@ void ImageViewer::reload() {
 
     if (imageReader.size().isValid() && imageReader.read(&origImage)) {
         if (Settings::exifRotationEnabled) {
-            rotateByExifRotation(origImage, viewerImageFullPath);
+            rotateByExifRotation(origImage, fullImagePath);
         }
         viewerImage = origImage;
 
         if (Settings::colorsActive || Settings::keepTransform) {
             colorize();
         }
-        if (mirrorLayout) {
+        if (myMirrorLayout) {
             mirror();
         }
     } else {
@@ -748,8 +763,8 @@ void ImageViewer::reload() {
 }
 
 void ImageViewer::setInfo(QString infoString) {
-    imageInfoLabel->setText(infoString);
-    imageInfoLabel->adjustSize();
+    myFilenameLabel->setText(infoString);
+    myFilenameLabel->adjustSize();
 }
 
 void ImageViewer::unsetFeedback() {
@@ -763,7 +778,7 @@ void ImageViewer::setFeedback(QString feedbackString, bool timeLimited) {
     feedbackLabel->setText(feedbackString);
     feedbackLabel->setVisible(true);
 
-    int margin = imageInfoLabel->isVisible() ? (imageInfoLabel->height() + 15) : 10;
+    int margin = myFilenameLabel->isVisible() ? (myFilenameLabel->height() + 15) : 10;
     feedbackLabel->move(10, margin);
 
     feedbackLabel->adjustSize();
@@ -774,7 +789,7 @@ void ImageViewer::setFeedback(QString feedbackString, bool timeLimited) {
 void ImageViewer::loadImage(QString imageFileName) {
     newImage = false;
     tempDisableResize = false;
-    viewerImageFullPath = imageFileName;
+    fullImagePath = imageFileName;
 
     if (!Settings::keepZoomFactor) {
         Settings::imageZoomFactor = 1.0;
@@ -788,6 +803,12 @@ void ImageViewer::clearImage() {
     origImage.load(":/images/no_image.png");
     viewerImage = origImage;
     setImage(viewerImage);
+}
+
+void ImageViewer::setContextMenu(QMenu *menu) {
+    delete myContextMenu;
+    myContextMenu = menu;
+    myContextMenu->setParent(this);
 }
 
 void ImageViewer::monitorCursorState() {
@@ -1067,7 +1088,7 @@ void ImageViewer::saveImage() {
     setFeedback(tr("Saving..."));
 
     try {
-        image = Exiv2::ImageFactory::open(viewerImageFullPath.toStdString());
+        image = Exiv2::ImageFactory::open(fullImagePath.toStdString());
         image->readMetadata();
     }
     catch (const Exiv2::Error &error) {
@@ -1075,11 +1096,11 @@ void ImageViewer::saveImage() {
         exifError = true;
     }
 
-    QImageReader imageReader(viewerImageFullPath);
-    QString savePath = viewerImageFullPath;
+    QImageReader imageReader(fullImagePath);
+    QString savePath = fullImagePath;
     if (!Settings::saveDirectory.isEmpty()) {
         QDir saveDir(Settings::saveDirectory);
-        savePath = saveDir.filePath(QFileInfo(viewerImageFullPath).fileName());
+        savePath = saveDir.filePath(QFileInfo(fullImagePath).fileName());
     }
     if (!viewerImage.save(savePath, imageReader.format().toUpper(), Settings::defaultSaveQuality)) {
         MessageBox msgBox(this);
@@ -1143,13 +1164,13 @@ void ImageViewer::saveImageAs() {
 
     QString fileName = QFileDialog::getSaveFileName(this,
                                                     tr("Save image as"),
-                                                    viewerImageFullPath,
+                                                    fullImagePath,
                                                     tr("Images") +
                                                     " (*.jpg *.jpeg *.png *.bmp *.tif *.tiff *.ppm *.pgm *.pbm *.xbm *.xpm *.cur *.ico *.icns *.wbmp *.webp)");
 
     if (!fileName.isEmpty()) {
         try {
-            exifImage = Exiv2::ImageFactory::open(viewerImageFullPath.toStdString());
+            exifImage = Exiv2::ImageFactory::open(fullImagePath.toStdString());
             exifImage->readMetadata();
         }
         catch (const Exiv2::Error &error) {
@@ -1186,7 +1207,7 @@ void ImageViewer::contextMenuEvent(QContextMenuEvent *) {
         QApplication::restoreOverrideCursor();
     }
     contextMenuPosition = QCursor::pos();
-    ImagePopUpMenu->exec(contextMenuPosition);
+    myContextMenu->exec(contextMenuPosition);
 }
 
 int ImageViewer::getImageWidthPreCropped() {
