@@ -97,6 +97,7 @@ public:
 
 signals:
     void toolsUpdated();
+    void onWheelEvent(QWheelEvent *we);
 
 public slots:
 

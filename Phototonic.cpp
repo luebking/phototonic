@@ -171,6 +171,14 @@ void Phototonic::createImageViewer() {
     connect(imageViewer, &ImageViewer::toolsUpdated, this, &Phototonic::onToolsUpdated);
     imageViewer->ImagePopUpMenu = new QMenu();
 
+    connect (imageViewer, &ImageViewer::onWheelEvent, [=](QWheelEvent *we){
+        if (we->angleDelta().y() > 0) {
+            we->modifiers() == Qt::ControlModifier ?  zoomOut() : loadPreviousImage();
+        } else if (we->angleDelta().y() < 0) {
+            we->modifiers() == Qt::ControlModifier ?  zoomIn() : loadNextImage();
+        }
+    });
+
     // Widget actions
     imageViewer->addAction(slideShowAction);
     imageViewer->addAction(nextImageAction);

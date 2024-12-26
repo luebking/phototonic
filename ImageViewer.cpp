@@ -865,6 +865,7 @@ void ImageViewer::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 void ImageViewer::wheelEvent(QWheelEvent *event) {
+    emit onWheelEvent(event);
     event->ignore();
     return;
 }
