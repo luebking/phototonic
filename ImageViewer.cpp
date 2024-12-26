@@ -1008,55 +1008,37 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 
-void ImageViewer::keyMoveEvent(int direction) {
+void ImageViewer::slideImage(QPoint delta) {
     if (!imageWidget) {
         return;
     }
 
-    int newX = layoutX = imageWidget->pos().x();
-    int newY = layoutY = imageWidget->pos().y();
+    QPoint newPos = imageWidget->pos() + delta;
+    layoutX = newPos.x();
+    layoutY = newPos.y();
     bool needToMove = false;
 
-    switch (direction) {
-        case MoveLeft:
-            newX += 50;
-            break;
-        case MoveRight:
-            newX -= 50;
-            break;
-        case MoveUp:
-            newY += 50;
-            break;
-        case MoveDown:
-            newY -= 50;
-            break;
-    }
-
     if (imageWidget->size().width() > size().width()) {
-        if (newX > 0) {
-            newX = 0;
-        } else if (newX < (size().width() - imageWidget->size().width())) {
-            newX = (size().width() - imageWidget->size().width());
+        if (newPos.x() > 0) {
+            newPos.setX(0);
+        } else if (newPos.x() < (size().width() - imageWidget->size().width())) {
+            newPos.setX(size().width() - imageWidget->size().width());
         }
         needToMove = true;
-    } else {
-        newX = layoutX;
     }
 
     if (imageWidget->size().height() > size().height()) {
-        if (newY > 0) {
-            newY = 0;
-        } else if (newY < (size().height() - imageWidget->size().height())) {
-            newY = (size().height() - imageWidget->size().height());
+        if (newPos.y() > 0) {
+            newPos.setY(0);
+        } else if (newPos.y() < (size().height() - imageWidget->size().height())) {
+            newPos.setY(size().height() - imageWidget->size().height());
         }
         needToMove = true;
-    } else {
-        newY = layoutY;
     }
 
     if (needToMove) {
-        horizontalScrollBar()->setValue(-newX);
-        verticalScrollBar()->setValue(-newY);
+        horizontalScrollBar()->setValue(-newPos.x());
+        verticalScrollBar()->setValue(-newPos.y());
     }
 }
 

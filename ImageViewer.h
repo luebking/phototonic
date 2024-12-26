@@ -32,6 +32,7 @@ class ImageViewer : public QScrollArea {
 Q_OBJECT
 
 public:
+    ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &metadataCache);
     bool tempDisableResize;
     bool batchMode = false;
     int mirrorLayout;
@@ -56,43 +57,22 @@ public:
         LayVDual
     };
 
-    enum Movement {
-        MoveUp = 0,
-        MoveDown,
-        MoveLeft,
-        MoveRight
-    };
-
-    ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &metadataCache);
-
-    void loadImage(QString imageFileName);
-
     void clearImage();
-
-    void resizeImage();
-
-    void setCursorHiding(bool hide);
-
+    bool isNewImage();
+    void loadImage(QString imageFileName);
     void refresh();
-
     void reload();
+    void resizeImage();
+    void rotateByExifRotation(QImage &image, QString &imageFullPath);
+    void setBackgroundColor();
+    void setCursorHiding(bool hide);
+    void setInfo(QString infoString);
+    void setFeedback(QString feedbackString, bool timeLimited = true);
+    void setContextMenu();
+    void slideImage(QPoint delta);
 
     int getImageWidthPreCropped();
-
     int getImageHeightPreCropped();
-
-    bool isNewImage();
-
-    void keyMoveEvent(int direction);
-
-    void rotateByExifRotation(QImage &image, QString &imageFullPath);
-
-    void setInfo(QString infoString);
-
-    void setFeedback(QString feedbackString, bool timeLimited = true);
-
-    void setBackgroundColor();
-
     QPoint getContextMenuPosition();
 
 signals:
@@ -125,6 +105,7 @@ protected:
 
 private:
     Phototonic *phototonic;
+    QMenu *contextMenu;
     QLabel *movieWidget = nullptr;
     ImageWidget *imageWidget = nullptr;
     QImage origImage;

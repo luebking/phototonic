@@ -1681,19 +1681,19 @@ void Phototonic::showColorsDialog() {
 }
 
 void Phototonic::moveRight() {
-    imageViewer->keyMoveEvent(ImageViewer::MoveRight);
+    imageViewer->slideImage(QPoint(-50, 0));
 }
 
 void Phototonic::moveLeft() {
-    imageViewer->keyMoveEvent(ImageViewer::MoveLeft);
+    imageViewer->slideImage(QPoint(50, 0));
 }
 
 void Phototonic::moveUp() {
-    imageViewer->keyMoveEvent(ImageViewer::MoveUp);
+    imageViewer->slideImage(QPoint(0, 50));
 }
 
 void Phototonic::moveDown() {
-    imageViewer->keyMoveEvent(ImageViewer::MoveDown);
+    imageViewer->slideImage(QPoint(0, -50));
 }
 
 void Phototonic::setMirrorDisabled() {
