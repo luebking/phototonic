@@ -74,7 +74,6 @@ namespace Settings {
     extern const char optionStartupDir[];
     extern const char optionSpecifiedStartDir[];
     extern const char optionThumbsBackgroundImage[];
-    extern const char optionThumbsRepeatBackgroundImage[];
     extern const char optionShowViewerToolbar[];
     extern const char optionLastDir[];
     extern const char optionGeometry[];

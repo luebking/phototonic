@@ -986,8 +986,6 @@ void Phototonic::createStatusBar() {
     busyMovie->setParent(busyLabel);
     statusBar()->addWidget(busyLabel);
     busyLabel->setVisible(false);
-
-    statusBar()->setStyleSheet("QStatusBar::item { border: 0px solid black }; ");
 }
 
 void Phototonic::onFileListSelected() {
@@ -2096,7 +2094,6 @@ void Phototonic::writeSettings() {
     Settings::setValue(Settings::optionStartupDir, (int) Settings::startupDir);
     Settings::setValue(Settings::optionSpecifiedStartDir, Settings::specifiedStartDir);
     Settings::setValue(Settings::optionThumbsBackgroundImage, Settings::thumbsBackgroundImage);
-    Settings::setValue(Settings::optionThumbsRepeatBackgroundImage, Settings::thumbsRepeatBackgroundImage);
     Settings::setValue(Settings::optionLastDir,
                                     Settings::startupDir == Settings::RememberLastDir ? Settings::currentDirectory
                                                                                       : "");
@@ -2234,7 +2231,6 @@ void Phototonic::readSettings() {
     Settings::startupDir = (Settings::StartupDir) Settings::value(Settings::optionStartupDir).toInt();
     Settings::specifiedStartDir = Settings::value(Settings::optionSpecifiedStartDir).toString();
     Settings::thumbsBackgroundImage = Settings::value(Settings::optionThumbsBackgroundImage).toString();
-    Settings::thumbsRepeatBackgroundImage = Settings::value(Settings::optionThumbsRepeatBackgroundImage).toBool();
     Settings::showImageName = Settings::value(Settings::optionShowImageName).toBool();
     Settings::smallToolbarIcons = Settings::value(Settings::optionSmallToolbarIcons).toBool();
     Settings::hideDockTitlebars = Settings::value(Settings::optionHideDockTitlebars).toBool();

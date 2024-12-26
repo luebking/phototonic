@@ -106,12 +106,9 @@ void ImagePreview::resizeEvent(QResizeEvent *event) {
 }
 
 void ImagePreview::setBackgroundColor() {
-    QString bgColor = "background: rgb(%1, %2, %3); ";
-    bgColor = bgColor.arg(Settings::thumbsBackgroundColor.red())
-            .arg(Settings::thumbsBackgroundColor.green()).arg(Settings::thumbsBackgroundColor.blue());
-
-    QString ss = "QWidget { " + bgColor + " }";
-    scrollArea->setStyleSheet(ss);
+    QPalette pal = scrollArea->palette();
+    pal.setColor(backgroundRole(), QColor(Settings::thumbsBackgroundColor.red(), Settings::thumbsBackgroundColor.green(), Settings::thumbsBackgroundColor.blue()));
+    scrollArea->setPalette(pal);
 }
 
 void ImagePreview::setImageViewer(ImageViewer *imageViewer) {

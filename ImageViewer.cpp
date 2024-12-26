@@ -83,19 +83,19 @@ ImageViewer::ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &
     myFilenameLabel->setVisible(Settings::showImageName);
     myFilenameLabel->setMargin(3);
     myFilenameLabel->move(10, 10);
-    myFilenameLabel->setStyleSheet("QLabel { background-color : black; color : white; border-radius: 3px} ");
+    myFilenameLabel->setAutoFillBackground(true);
+    myFilenameLabel->setFrameStyle(QFrame::Plain|QFrame::NoFrame);
+    QPalette pal = myFilenameLabel->palette();
+    pal.setColor(myFilenameLabel->backgroundRole(), QColor(0,0,0,128));
+    pal.setColor(myFilenameLabel->foregroundRole(), QColor(255,255,255,128));
+    myFilenameLabel->setPalette(pal);
 
     feedbackLabel = new QLabel(this);
     feedbackLabel->setVisible(false);
     feedbackLabel->setMargin(3);
-    feedbackLabel->setStyleSheet("QLabel { background-color : black; color : white; border-radius: 3px} ");
-
-    QGraphicsOpacityEffect *infoEffect = new QGraphicsOpacityEffect;
-    infoEffect->setOpacity(0.5);
-    myFilenameLabel->setGraphicsEffect(infoEffect);
-    QGraphicsOpacityEffect *feedbackEffect = new QGraphicsOpacityEffect;
-    feedbackEffect->setOpacity(0.5);
-    feedbackLabel->setGraphicsEffect(feedbackEffect);
+    feedbackLabel->setFrameStyle(QFrame::Plain|QFrame::NoFrame);
+    feedbackLabel->setAutoFillBackground(true);
+    feedbackLabel->setPalette(pal);
 
     mouseMovementTimer = new QTimer(this);
     connect(mouseMovementTimer, SIGNAL(timeout()), this, SLOT(monitorCursorState()));
@@ -1243,13 +1243,9 @@ void ImageViewer::pasteImage() {
 }
 
 void ImageViewer::setBackgroundColor() {
-    QString bgColor = "background: rgb(%1, %2, %3); ";
-    bgColor = bgColor.arg(Settings::viewerBackgroundColor.red())
-            .arg(Settings::viewerBackgroundColor.green())
-            .arg(Settings::viewerBackgroundColor.blue());
-
-    QString styleSheet = "QWidget { " + bgColor + " }";
-    setStyleSheet(styleSheet);
+    QPalette pal = palette();
+    pal.setColor(backgroundRole(), QColor(Settings::viewerBackgroundColor.red(), Settings::viewerBackgroundColor.green(), Settings::viewerBackgroundColor.blue()));
+    setPalette(pal);
 }
 
 QPoint ImageViewer::getContextMenuPosition() {

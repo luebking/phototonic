@@ -77,54 +77,15 @@ ThumbsViewer::ThumbsViewer(QWidget *parent, const std::shared_ptr<MetadataCache>
 }
 
 void ThumbsViewer::setThumbColors() {
-    QString backgroundColor = "background: rgb(%1, %2, %3); ";
-    backgroundColor = backgroundColor.arg(Settings::thumbsBackgroundColor.red())
-            .arg(Settings::thumbsBackgroundColor.green())
-            .arg(Settings::thumbsBackgroundColor.blue());
-
-    QString itemBackgroundColor = "background: rgba(%1, %2, %3, 0.5); ";
-    itemBackgroundColor = itemBackgroundColor.arg(Settings::thumbsBackgroundColor.red())
-            .arg(Settings::thumbsBackgroundColor.green())
-            .arg(Settings::thumbsBackgroundColor.blue());
-
-    QString backgroundRepeat;
-    if (!Settings::thumbsRepeatBackgroundImage) {
-        backgroundRepeat =
-            "   background-repeat: no-repeat; "
-            "   background-position: center; ";
-
-    }
-
-
     QColor background = Settings::thumbsLayout == Squares ? Qt::transparent : Settings::thumbsBackgroundColor;
-    QString styleSheet =
-            "QListView { "
-            "   background: " + background.name(QColor::HexRgb) + ";"
-            "   background-image: url(" + Settings::thumbsBackgroundImage + ");"
-            "   background-attachment: fixed; " +
-            backgroundRepeat +
-            "} ";
-    if (Settings::thumbsLayout != Squares) {
-        if (!Settings::thumbsBackgroundImage.isEmpty()) {
-            styleSheet +=
-                "QListView::item { "
-                "   background: " + background.name(QColor::HexArgb) + ";"
-                "   color: " + Settings::thumbsTextColor.name(QColor::HexRgb) + ";"
-                "}"
-                "QListView::item:selected { "
-                "   background: " + background.name(QColor::HexRgb) + ";"
-                "}"
-                ;
-        }
+    QPalette pal = palette();
+    pal.setColor(QPalette::Base, background);
+    pal.setColor(QPalette::Text, Settings::thumbsTextColor);
+    if (!Settings::thumbsBackgroundImage.isEmpty()) {
+        QImage bgImg(Settings::thumbsBackgroundImage);
+        pal.setBrush(QPalette::Base, bgImg);
     }
-
-    setStyleSheet(styleSheet);
-
-    QPalette scrollBarOriginalPalette = verticalScrollBar()->palette();
-    QPalette thumbViewerOriginalPalette = palette();
-    thumbViewerOriginalPalette.setColor(QPalette::Text, Settings::thumbsTextColor);
-    setPalette(thumbViewerOriginalPalette);
-    verticalScrollBar()->setPalette(scrollBarOriginalPalette);
+    setPalette(pal);
 }
 
 void ThumbsViewer::selectCurrentIndex() {

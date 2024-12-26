@@ -19,7 +19,11 @@
 #ifndef SETTINGS_DIALOG_H
 #define SETTINGS_DIALOG_H
 
-#include <QtWidgets/QtWidgets>
+#include <QDialog>
+#include <QSpinBox>
+#include <QCheckBox>
+#include <QLineEdit>
+#include <QRadioButton>
 #include "Settings.h"
 #include "ShortcutsTable.h"
 
@@ -77,7 +81,7 @@ private:
     QCheckBox *setWindowIconCheckBox;
     QCheckBox *upscalePreviewCheckBox;
 
-    void setButtonBgColor(QColor &color, QToolButton *button);
+    void setButtonBgColor(QColor &color, QAbstractButton *button);
 };
 
 #endif // SETTINGS_DIALOG_H

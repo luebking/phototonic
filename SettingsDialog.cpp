@@ -16,6 +16,7 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QLabel>
 #include "SettingsDialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
@@ -57,14 +58,13 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     // imageViewer background color
     QLabel *backgroundColorLabel = new QLabel(tr("Background color:"));
     backgroundColorButton = new QToolButton();
-    backgroundColorButton->setFixedSize(48, 24);
+    backgroundColorButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     QHBoxLayout *backgroundColorHBox = new QHBoxLayout;
     backgroundColorHBox->addWidget(backgroundColorLabel);
     backgroundColorHBox->addWidget(backgroundColorButton);
     backgroundColorHBox->addStretch(1);
     connect(backgroundColorButton, SIGNAL(clicked()), this, SLOT(pickColor()));
     setButtonBgColor(Settings::viewerBackgroundColor, backgroundColorButton);
-    backgroundColorButton->setAutoFillBackground(true);
     imageViewerBackgroundColor = Settings::viewerBackgroundColor;
 
     // Wrap image list
@@ -113,27 +113,25 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     // thumbsViewer background color
     QLabel *thumbsBackgroundColorLabel = new QLabel(tr("Thumbnails and Preview Background Color:"));
     thumbsColorPickerButton = new QToolButton();
-    thumbsColorPickerButton->setFixedSize(48, 24);
+    thumbsColorPickerButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     QHBoxLayout *thumbsBackgroundColorLayout = new QHBoxLayout;
     thumbsBackgroundColorLayout->addWidget(thumbsBackgroundColorLabel);
     thumbsBackgroundColorLayout->addWidget(thumbsColorPickerButton);
     thumbsBackgroundColorLayout->addStretch(1);
     connect(thumbsColorPickerButton, SIGNAL(clicked()), this, SLOT(pickThumbsColor()));
     setButtonBgColor(Settings::thumbsBackgroundColor, thumbsColorPickerButton);
-    thumbsColorPickerButton->setAutoFillBackground(true);
     thumbsBackgroundColor = Settings::thumbsBackgroundColor;
 
     // thumbsViewer text color
     QLabel *thumbLabelColorLabel = new QLabel(tr("Label color:"));
     thumbsLabelColorButton = new QToolButton();
-    thumbsLabelColorButton->setFixedSize(48, 24);
+    thumbsLabelColorButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     QHBoxLayout *thumbsLabelColorLayout = new QHBoxLayout;
     thumbsLabelColorLayout->addWidget(thumbLabelColorLabel);
     thumbsLabelColorLayout->addWidget(thumbsLabelColorButton);
     thumbsLabelColorLayout->addStretch(1);
     connect(thumbsLabelColorButton, SIGNAL(clicked()), this, SLOT(pickThumbsTextColor()));
     setButtonBgColor(Settings::thumbsTextColor, thumbsLabelColorButton);
-    thumbsLabelColorButton->setAutoFillBackground(true);
     thumbsTextColor = Settings::thumbsTextColor;
 
     // thumbsViewer background image
@@ -143,15 +141,12 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     thumbsBackgroundImageLineEdit->setMinimumWidth(200);
 
 
-    QToolButton *chooseThumbsBackImageButton = new QToolButton();
+    QPushButton *chooseThumbsBackImageButton = new QPushButton();
     chooseThumbsBackImageButton->setIcon(QIcon::fromTheme("document-open", QIcon(":/images/open.png")));
     chooseThumbsBackImageButton->setFixedSize(26, 26);
     chooseThumbsBackImageButton->setIconSize(QSize(16, 16));
     connect(chooseThumbsBackImageButton, SIGNAL(clicked()), this, SLOT(pickBackgroundImage()));
 
-    // repeat background image
-    thumbsRepeatBackgroundImageCheckBox = new QCheckBox(tr("Repeat background"));
-    thumbsRepeatBackgroundImageCheckBox->setChecked(Settings::thumbsRepeatBackgroundImage);
 
     QHBoxLayout *thumbsBackgroundImageLayout = new QHBoxLayout;
     thumbsBackgroundImageLayout->addWidget(thumbsBackgroundImageLabel);
@@ -182,7 +177,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     thumbsOptsBox->addLayout(thumbsBackgroundColorLayout);
 
     thumbsOptsBox->addLayout(thumbsBackgroundImageLayout);
-    thumbsOptsBox->addWidget(thumbsRepeatBackgroundImageCheckBox);
 
     thumbsOptsBox->addLayout(thumbsLabelColorLayout);
     thumbsOptsBox->addWidget(enableThumbExifCheckBox);
@@ -212,7 +206,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     startupDirLineEdit->setMinimumWidth(300);
     startupDirLineEdit->setMaximumWidth(400);
 
-    QToolButton *chooseStartupDirButton = new QToolButton();
+    QPushButton *chooseStartupDirButton = new QPushButton();
     chooseStartupDirButton->setIcon(QIcon::fromTheme("document-open", QIcon(":/images/open.png")));
     chooseStartupDirButton->setFixedSize(26, 26);
     chooseStartupDirButton->setIconSize(QSize(16, 16));
@@ -357,7 +351,6 @@ void SettingsDialog::saveSettings() {
     Settings::thumbsBackgroundColor = thumbsBackgroundColor;
     Settings::thumbsTextColor = thumbsTextColor;
     Settings::thumbsBackgroundImage = thumbsBackgroundImageLineEdit->text();
-    Settings::thumbsRepeatBackgroundImage = thumbsRepeatBackgroundImageCheckBox->isChecked();
     Settings::thumbsPagesReadCount = (unsigned int) thumbPagesSpinBox->value();
     Settings::wrapImageList = wrapListCheckBox->isChecked();
     Settings::defaultSaveQuality = saveQualitySpinBox->value();
@@ -397,10 +390,17 @@ void SettingsDialog::pickColor() {
     }
 }
 
-void SettingsDialog::setButtonBgColor(QColor &color, QToolButton *button) {
-    QString style = "background: rgb(%1, %2, %3);";
-    style = style.arg(color.red()).arg(color.green()).arg(color.blue());
-    button->setStyleSheet(style);
+void SettingsDialog::setButtonBgColor(QColor &color, QAbstractButton *button) {
+    const int s = qMin(button->width(),button->height());
+    QPixmap pix(s, s);
+    pix.fill(Qt::transparent);
+    QPainter p(&pix);
+    p.setRenderHint(QPainter::Antialiasing);
+    p.setBrush(color);
+    p.drawEllipse(pix.rect());
+    p.end();
+    button->setIcon(pix);
+    button->setText(color.name());
 }
 
 void SettingsDialog::pickThumbsColor() {
