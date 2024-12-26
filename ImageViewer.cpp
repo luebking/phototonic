@@ -886,9 +886,10 @@ void ImageViewer::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 void ImageViewer::wheelEvent(QWheelEvent *event) {
-    emit onWheelEvent(event);
-    event->ignore();
-    return;
+    /// @todo there's some QWidget between this and phototonic that sucks away the wheel event,
+    // so we accept and send it there directly
+    event->accept();
+    QApplication::sendEvent(phototonic, event);
 }
 
 void ImageViewer::updateRubberBandFeedback(QRect geom) {
