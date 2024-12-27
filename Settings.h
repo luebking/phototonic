@@ -60,9 +60,6 @@ namespace Settings {
     extern const char optionDefaultSaveQuality[];
     extern const char optionSlideShowDelay[];
     extern const char optionSlideShowRandom[];
-    extern const char optionEditToolBarVisible[];
-    extern const char optionGoToolBarVisible[];
-    extern const char optionViewToolBarVisible[];
     extern const char optionImageToolBarVisible[];
     extern const char optionFileSystemDockVisible[];
     extern const char optionBookmarksDockVisible[];

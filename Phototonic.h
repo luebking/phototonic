@@ -222,12 +222,6 @@ private slots:
 
     void externalAppError();
 
-    void setEditToolBarVisibility();
-
-    void setGoToolBarVisibility();
-
-    void setViewToolBarVisibility();
-
     void setImageToolBarVisibility();
 
     void setFileSystemDockVisibility();
@@ -263,23 +257,11 @@ private slots:
     void onToolsUpdated();
 
 private:
-    QMenu *fileMenu;
-    QMenu *editMenu;
-    QMenu *goMenu;
-    QMenu *sortMenu;
-    QMenu *viewMenu;
-    QMenu *helpMenu;
-    QMenu *zoomSubMenu;
-    QMenu *transformSubMenu;
+    QMenu *myMainMenu;
     QMenu *batchSubMenu;
-    QMenu *viewSubMenu;
-    QMenu *MirroringSubMenu;
-    QMenu *guideSubMenu;
     QMenu *openWithSubMenu;
 
-    QToolBar *viewToolBar;
-    QToolBar *editToolBar;
-    QToolBar *goToolBar;
+    QToolBar *myMainToolBar;
     QToolBar *imageToolBar;
 
     QAction *exitAction;
@@ -426,9 +408,6 @@ private:
     bool needThumbsRefresh;
     bool shouldMaximize;
 
-    bool editToolBarVisible;
-    bool goToolBarVisible;
-    bool viewToolBarVisible;
     bool imageToolBarVisible;
 
     QMovie *busyMovie;

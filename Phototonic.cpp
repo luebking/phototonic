@@ -229,56 +229,56 @@ void Phototonic::createImageViewer() {
     contextMenu->addAction(slideShowAction);
 
     contextMenu->addSeparator();
-    zoomSubMenu = new QMenu(tr("Zoom"));
+    QMenu *menu = new QMenu(tr("Zoom"));
     zoomSubMenuAction = new QAction(tr("Zoom"), this);
     zoomSubMenuAction->setIcon(QIcon::fromTheme("edit-find", QIcon(":/images/zoom.png")));
-    zoomSubMenuAction->setMenu(zoomSubMenu);
+    zoomSubMenuAction->setMenu(menu);
     contextMenu->addAction(zoomSubMenuAction);
-    zoomSubMenu->addAction(zoomInAction);
-    zoomSubMenu->addAction(zoomOutAction);
-    zoomSubMenu->addAction(origZoomAction);
-    zoomSubMenu->addAction(resetZoomAction);
-    zoomSubMenu->addSeparator();
-    zoomSubMenu->addAction(keepZoomAction);
+    menu->addAction(zoomInAction);
+    menu->addAction(zoomOutAction);
+    menu->addAction(origZoomAction);
+    menu->addAction(resetZoomAction);
+    menu->addSeparator();
+    menu->addAction(keepZoomAction);
 
-    MirroringSubMenu = new QMenu(tr("Mirroring"));
+    menu = new QMenu(tr("Mirroring"));
     mirrorSubMenuAction = new QAction(tr("Mirroring"), this);
-    mirrorSubMenuAction->setMenu(MirroringSubMenu);
+    mirrorSubMenuAction->setMenu(menu);
     mirroringActionGroup = new QActionGroup(this);
     mirroringActionGroup->addAction(mirrorDisabledAction);
     mirroringActionGroup->addAction(mirrorDualAction);
     mirroringActionGroup->addAction(mirrorTripleAction);
     mirroringActionGroup->addAction(mirrorDualVerticalAction);
     mirroringActionGroup->addAction(mirrorQuadAction);
-    MirroringSubMenu->addActions(mirroringActionGroup->actions());
+    menu->addActions(mirroringActionGroup->actions());
 
-    guideSubMenu = new QMenu(tr("Guides"));
+    menu = new QMenu(tr("Guides"));
     guideSubMenuAction = new QAction(tr("Guides"), this);
-    guideSubMenuAction->setMenu(guideSubMenu);
+    guideSubMenuAction->setMenu(menu);
     guideAddVerticalAction = new QAction(tr("Add vertical guide"), this);
     guideAddHorizontalAction = new QAction(tr("Add horizontal guide"), this);
-    guideSubMenu->addAction(guideAddVerticalAction);
-    guideSubMenu->addAction(guideAddHorizontalAction);
+    menu->addAction(guideAddVerticalAction);
+    menu->addAction(guideAddHorizontalAction);
     connect(guideAddVerticalAction, &QAction::triggered, this, &Phototonic::addVerticalGuide);
     connect(guideAddHorizontalAction, &QAction::triggered, this, &Phototonic::addHorizontalGuide);
 
-    transformSubMenu = new QMenu(tr("Transform"));
+    menu = new QMenu(tr("Transform"));
     transformSubMenuAction = new QAction(tr("Transform"), this);
-    transformSubMenuAction->setMenu(transformSubMenu);
+    transformSubMenuAction->setMenu(menu);
     contextMenu->addAction(resizeAction);
     contextMenu->addAction(applyCropAndRotationAction);
     contextMenu->addAction(transformSubMenuAction);
-    transformSubMenu->addAction(colorsAction);
-    transformSubMenu->addAction(rotateRightAction);
-    transformSubMenu->addAction(rotateLeftAction);
-    transformSubMenu->addAction(freeRotateRightAction);
-    transformSubMenu->addAction(freeRotateLeftAction);
-    transformSubMenu->addAction(flipHorizontalAction);
-    transformSubMenu->addAction(flipVerticalAction);
-    transformSubMenu->addAction(cropAction);
+    menu->addAction(colorsAction);
+    menu->addAction(rotateRightAction);
+    menu->addAction(rotateLeftAction);
+    menu->addAction(freeRotateRightAction);
+    menu->addAction(freeRotateLeftAction);
+    menu->addAction(flipHorizontalAction);
+    menu->addAction(flipVerticalAction);
+    menu->addAction(cropAction);
 
-    transformSubMenu->addSeparator();
-    transformSubMenu->addAction(keepTransformAction);
+    menu->addSeparator();
+    menu->addAction(keepTransformAction);
     contextMenu->addAction(mirrorSubMenuAction);
     contextMenu->addAction(guideSubMenuAction);
 
@@ -293,14 +293,14 @@ void Phototonic::createImageViewer() {
     contextMenu->addAction(openWithMenuAction);
 
     contextMenu->addSeparator();
-    viewSubMenu = new QMenu(tr("View"));
+    menu = new QMenu(tr("View"));
     viewSubMenuAction = new QAction(tr("View"), this);
-    viewSubMenuAction->setMenu(viewSubMenu);
+    viewSubMenuAction->setMenu(menu);
     contextMenu->addAction(viewSubMenuAction);
-    viewSubMenu->addAction(fullScreenAction);
-    viewSubMenu->addAction(showClipboardAction);
-    viewSubMenu->addAction(showViewerToolbarAction);
-    viewSubMenu->addAction(refreshAction);
+    menu->addAction(fullScreenAction);
+    menu->addAction(showClipboardAction);
+    menu->addAction(showViewerToolbarAction);
+    menu->addAction(refreshAction);
     contextMenu->addAction(copyImageAction);
     contextMenu->addAction(pasteImageAction);
     contextMenu->addAction(CloseImageAction);
@@ -757,63 +757,65 @@ void Phototonic::createActions() {
 }
 
 void Phototonic::createMenus() {
-    fileMenu = menuBar()->addMenu(tr("&File"));
-    fileMenu->addAction(includeSubDirectoriesAction);
-    fileMenu->addAction(createDirectoryAction);
-    fileMenu->addAction(setSaveDirectoryAction);
-    fileMenu->addAction(showClipboardAction);
-    fileMenu->addAction(addBookmarkAction);
-    fileMenu->addSeparator();
-    fileMenu->addAction(exitAction);
+    myMainMenu = new QMenu(this);
+    QMenu *menu;
+    menu = myMainMenu->addMenu(tr("&File"));
+    menu->addAction(includeSubDirectoriesAction);
+    menu->addAction(createDirectoryAction);
+    menu->addAction(setSaveDirectoryAction);
+    menu->addAction(showClipboardAction);
+    menu->addAction(addBookmarkAction);
+    menu->addSeparator();
+    menu->addAction(exitAction);
 
-    editMenu = menuBar()->addMenu(tr("&Edit"));
-    editMenu->addAction(cutAction);
-    editMenu->addAction(copyAction);
-    editMenu->addAction(copyToAction);
-    editMenu->addAction(moveToAction);
-    editMenu->addAction(pasteAction);
-    editMenu->addAction(renameAction);
-    editMenu->addAction(removeMetadataAction);
-    editMenu->addAction(deleteAction);
-    editMenu->addAction(deletePermanentlyAction);
-    editMenu->addSeparator();
-    editMenu->addAction(selectAllAction);
-    editMenu->addAction(selectByBrightnesAction);
-    editMenu->addAction(sortBySimilarityAction);
-    editMenu->addAction(invertSelectionAction);
-    editMenu->addAction(batchSubMenuAction);
+    menu = myMainMenu->addMenu(tr("&Edit"));
+    menu->addAction(cutAction);
+    menu->addAction(copyAction);
+    menu->addAction(copyToAction);
+    menu->addAction(moveToAction);
+    menu->addAction(pasteAction);
+    menu->addAction(renameAction);
+    menu->addAction(removeMetadataAction);
+    menu->addAction(deleteAction);
+    menu->addAction(deletePermanentlyAction);
+    menu->addSeparator();
+    menu->addAction(selectAllAction);
+    menu->addAction(selectByBrightnesAction);
+    menu->addAction(sortBySimilarityAction);
+    menu->addAction(invertSelectionAction);
+    menu->addAction(batchSubMenuAction);
     addAction(filterImagesFocusAction);
     addAction(setPathFocusAction);
-    editMenu->addSeparator();
-    editMenu->addAction(externalAppsAction);
-    editMenu->addAction(settingsAction);
+    menu->addSeparator();
+    menu->addAction(externalAppsAction);
+    menu->addAction(settingsAction);
 
-    goMenu = menuBar()->addMenu(tr("&Go"));
-    goMenu->addAction(goBackAction);
-    goMenu->addAction(goFrwdAction);
-    goMenu->addAction(goUpAction);
-    goMenu->addAction(goHomeAction);
-    goMenu->addSeparator();
-    goMenu->addAction(prevImageAction);
-    goMenu->addAction(nextImageAction);
-    goMenu->addSeparator();
-    goMenu->addAction(thumbsGoToTopAction);
-    goMenu->addAction(thumbsGoToBottomAction);
+    menu = myMainMenu->addMenu(tr("&Go"));
+    menu->addAction(goBackAction);
+    menu->addAction(goFrwdAction);
+    menu->addAction(goUpAction);
+    menu->addAction(goHomeAction);
+    menu->addSeparator();
+    menu->addAction(prevImageAction);
+    menu->addAction(nextImageAction);
+    menu->addSeparator();
+    menu->addAction(thumbsGoToTopAction);
+    menu->addAction(thumbsGoToBottomAction);
 
-    viewMenu = menuBar()->addMenu(tr("&View"));
-    viewMenu->addAction(slideShowAction);
-    viewMenu->addSeparator();
+    menu = myMainMenu->addMenu(tr("&View"));
+    menu->addAction(slideShowAction);
+    menu->addSeparator();
 
     thumbLayoutsGroup = new QActionGroup(this);
     thumbLayoutsGroup->addAction(setClassicThumbsAction);
     thumbLayoutsGroup->addAction(setSquareThumbsAction);
     thumbLayoutsGroup->addAction(setCompactThumbsAction);
-    viewMenu->addActions(thumbLayoutsGroup->actions());
-    viewMenu->addSeparator();
+    menu->addActions(thumbLayoutsGroup->actions());
+    menu->addSeparator();
 
-    viewMenu->addAction(thumbsZoomInAction);
-    viewMenu->addAction(thumbsZoomOutAction);
-    sortMenu = viewMenu->addMenu(tr("Thumbnails Sorting"));
+    menu->addAction(thumbsZoomInAction);
+    menu->addAction(thumbsZoomOutAction);
+    QMenu *sortMenu = menu->addMenu(tr("Thumbnails Sorting"));
     sortTypesGroup = new QActionGroup(this);
     sortTypesGroup->addAction(sortByNameAction);
     sortTypesGroup->addAction(sortByTimeAction);
@@ -823,14 +825,14 @@ void Phototonic::createMenus() {
     sortMenu->addActions(sortTypesGroup->actions());
     sortMenu->addSeparator();
     sortMenu->addAction(sortReverseAction);
-    viewMenu->addSeparator();
+    menu->addSeparator();
 
-    viewMenu->addAction(showHiddenFilesAction);
-    viewMenu->addSeparator();
-    viewMenu->addAction(refreshAction);
-    viewMenu->addSeparator();
+    menu->addAction(showHiddenFilesAction);
+    menu->addSeparator();
+    menu->addAction(refreshAction);
+    menu->addSeparator();
 
-    viewMenu->addAction(findDupesAction);
+    menu->addAction(findDupesAction);
 
     // thumbs viewer context menu
     thumbsViewer->addAction(viewImageAction);
@@ -843,29 +845,31 @@ void Phototonic::createMenus() {
     thumbsViewer->addAction(invertSelectionAction);
     thumbsViewer->addAction(batchSubMenuAction);
     thumbsViewer->setContextMenuPolicy(Qt::ActionsContextMenu);
-    menuBar()->setVisible(true);
 }
 
 void Phototonic::createToolBars() {
-    /* Edit */
-    editToolBar = addToolBar(tr("Edit Toolbar"));
-    editToolBar->setObjectName("Edit");
-    editToolBar->addAction(cutAction);
-    editToolBar->addAction(copyAction);
-    editToolBar->addAction(pasteAction);
-    editToolBar->addAction(deleteAction);
-    editToolBar->addAction(deletePermanentlyAction);
-    editToolBar->addAction(showClipboardAction);
-    connect(editToolBar->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setEditToolBarVisibility()));
 
-    /* Navigation */
-    goToolBar = addToolBar(tr("Navigation Toolbar"));
-    goToolBar->setObjectName("Navigation");
-    goToolBar->addAction(goBackAction);
-    goToolBar->addAction(goFrwdAction);
-    goToolBar->addAction(goUpAction);
-    goToolBar->addAction(goHomeAction);
-    goToolBar->addAction(refreshAction);
+    myMainToolBar = addToolBar("Toolbar");
+    myMainToolBar->setObjectName("MainBar");
+    QAction *mainMenu = new QAction(tr("Menu"), this);
+    mainMenu->setIcon(QIcon::fromTheme("preferences-system", QIcon(":/images/settings.png")));
+    mainMenu->setMenu(myMainMenu);
+    myMainToolBar->addAction(mainMenu);
+    static_cast<QToolButton*>(myMainToolBar->widgetForAction(mainMenu))->setPopupMode(QToolButton::InstantPopup);
+    // edit
+//    myMainToolBar->addAction(cutAction);
+//    myMainToolBar->addAction(copyAction);
+//    myMainToolBar->addAction(pasteAction);
+//    myMainToolBar->addAction(deleteAction);
+//    myMainToolBar->addAction(deletePermanentlyAction);
+//    myMainToolBar->addAction(showClipboardAction);
+
+    // navi
+    myMainToolBar->addAction(goBackAction);
+    myMainToolBar->addAction(goFrwdAction);
+    myMainToolBar->addAction(goUpAction);
+    myMainToolBar->addAction(goHomeAction);
+    myMainToolBar->addAction(refreshAction);
 
     /* path bar */
     pathLineEdit = new QLineEdit;
@@ -875,37 +879,21 @@ void Phototonic::createToolBars() {
     conn = connect(pathLineEdit, &QLineEdit::textEdited, [=](){fileSystemModel->setRootPath("/"); QObject::disconnect(conn);});
     pathLineEdit->setMinimumWidth(200);
     connect(pathLineEdit, SIGNAL(returnPressed()), this, SLOT(goPathBarDir()));
-    goToolBar->addWidget(pathLineEdit);
-    goToolBar->addAction(includeSubDirectoriesAction);
-    goToolBar->addAction(findDupesAction);
-    goToolBar->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
-    connect(goToolBar->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setGoToolBarVisibility()));
+    myMainToolBar->addWidget(pathLineEdit);
+    myMainToolBar->addAction(includeSubDirectoriesAction);
+    myMainToolBar->addAction(findDupesAction);
 
-    /* View */
-    viewToolBar = addToolBar(tr("View Toolbar"));
-    viewToolBar->setObjectName("View");
-    viewToolBar->addAction(thumbsZoomInAction);
-    viewToolBar->addAction(thumbsZoomOutAction);
-    viewToolBar->addAction(slideShowAction);
+    myMainToolBar->addAction(slideShowAction);
 
     /* filter bar */
-    QAction *filterAct = new QAction(tr("Filter"), this);
-    filterAct->setIcon(QIcon::fromTheme("edit-find", QIcon(":/images/zoom.png")));
-    connect(filterAct, SIGNAL(triggered()), this, SLOT(setThumbsFilter()));
     filterLineEdit = new QLineEdit;
     filterLineEdit->setMinimumWidth(100);
     filterLineEdit->setMaximumWidth(200);
     connect(filterLineEdit, SIGNAL(returnPressed()), this, SLOT(setThumbsFilter()));
-    connect(filterLineEdit, SIGNAL(textChanged(
-                                           const QString&)), this, SLOT(clearThumbsFilter()));
-    filterLineEdit->setClearButtonEnabled(true);
-    filterLineEdit->addAction(filterAct, QLineEdit::LeadingPosition);
+    connect(filterLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(clearThumbsFilter()));
 
-    viewToolBar->addSeparator();
-    viewToolBar->addWidget(filterLineEdit);
-    viewToolBar->addAction(settingsAction);
-    viewToolBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
-    connect(viewToolBar->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setViewToolBarVisibility()));
+    myMainToolBar->addSeparator();
+    myMainToolBar->addWidget(filterLineEdit);
 
     /* image */
     imageToolBar = new QToolBar(tr("Image Toolbar"));
@@ -972,9 +960,7 @@ void Phototonic::setToolbarIconSize() {
     int iconSize = Settings::smallToolbarIcons ? 16 : 24;
     QSize iconQSize(iconSize, iconSize);
 
-    editToolBar->setIconSize(iconQSize);
-    goToolBar->setIconSize(iconQSize);
-    viewToolBar->setIconSize(iconQSize);
+    myMainToolBar->setIconSize(iconQSize);
     imageToolBar->setIconSize(iconQSize);
 }
 
@@ -1138,10 +1124,7 @@ void Phototonic::toggleImageViewerToolbar() {
 
 void Phototonic::filterImagesFocus() {
     if (Settings::layoutMode == ThumbViewWidget) {
-        if (!viewToolBar->isVisible()) {
-            viewToolBar->setVisible(true);
-        }
-        setViewToolBarVisibility();
+        myMainMenu->show();
         filterLineEdit->setFocus(Qt::OtherFocusReason);
         filterLineEdit->selectAll();
     }
@@ -1149,10 +1132,7 @@ void Phototonic::filterImagesFocus() {
 
 void Phototonic::setPathFocus() {
     if (Settings::layoutMode == ThumbViewWidget) {
-        if (!goToolBar->isVisible()) {
-            goToolBar->setVisible(true);
-        }
-        setGoToolBarVisibility();
+        myMainMenu->show();
         pathLineEdit->setFocus(Qt::OtherFocusReason);
         pathLineEdit->selectAll();
     }
@@ -2087,9 +2067,6 @@ void Phototonic::writeSettings() {
     Settings::setValue(Settings::optionDefaultSaveQuality, Settings::defaultSaveQuality);
     Settings::setValue(Settings::optionSlideShowDelay, Settings::slideShowDelay);
     Settings::setValue(Settings::optionSlideShowRandom, (bool) Settings::slideShowRandom);
-    Settings::setValue(Settings::optionEditToolBarVisible, (bool) editToolBarVisible);
-    Settings::setValue(Settings::optionGoToolBarVisible, (bool) goToolBarVisible);
-    Settings::setValue(Settings::optionViewToolBarVisible, (bool) viewToolBarVisible);
     Settings::setValue(Settings::optionImageToolBarVisible, (bool) imageToolBarVisible);
     Settings::setValue(Settings::optionFileSystemDockVisible, (bool) Settings::fileSystemDockVisible);
     Settings::setValue(Settings::optionImageInfoDockVisible, (bool) Settings::imageInfoDockVisible);
@@ -2177,9 +2154,6 @@ void Phototonic::readSettings() {
         Settings::setValue(Settings::optionShowHiddenFiles, (bool) false);
         Settings::setValue(Settings::optionSlideShowDelay, (int) 5);
         Settings::setValue(Settings::optionSlideShowRandom, (bool) false);
-        Settings::setValue(Settings::optionEditToolBarVisible, (bool) true);
-        Settings::setValue(Settings::optionGoToolBarVisible, (bool) true);
-        Settings::setValue(Settings::optionViewToolBarVisible, (bool) true);
         Settings::setValue(Settings::optionImageToolBarVisible, (bool) false);
         Settings::setValue(Settings::optionFileSystemDockVisible, (bool) true);
         Settings::setValue(Settings::optionBookmarksDockVisible, (bool) true);
@@ -2224,9 +2198,6 @@ void Phototonic::readSettings() {
     Settings::slideShowDelay = Settings::value(Settings::optionSlideShowDelay).toInt();
     Settings::slideShowRandom = Settings::value(Settings::optionSlideShowRandom).toBool();
     Settings::slideShowActive = false;
-    editToolBarVisible = Settings::value(Settings::optionEditToolBarVisible).toBool();
-    goToolBarVisible = Settings::value(Settings::optionGoToolBarVisible).toBool();
-    viewToolBarVisible = Settings::value(Settings::optionViewToolBarVisible).toBool();
     imageToolBarVisible = Settings::value(Settings::optionImageToolBarVisible).toBool();
     Settings::fileSystemDockVisible = Settings::value(Settings::optionFileSystemDockVisible).toBool();
     Settings::bookmarksDockVisible = Settings::value(Settings::optionBookmarksDockVisible).toBool();
@@ -2275,9 +2246,9 @@ void Phototonic::setupDocks() {
     addDockWidget(Qt::RightDockWidgetArea, imageInfoDock);
     addDockWidget(Qt::RightDockWidgetArea, tagsDock);
 
-    menuBar()->addMenu(createPopupMenu())->setText(tr("Window"));
-    menuBar()->addSeparator();
-    helpMenu = menuBar()->addMenu(tr("&Help"));
+    myMainMenu->addMenu(createPopupMenu())->setText(tr("Window"));
+    myMainMenu->addSeparator();
+    QMenu *helpMenu = myMainMenu->addMenu(tr("&Help"));
     helpMenu->addAction(aboutAction);
 
     fileSystemDockOrigWidget = fileSystemDock->titleBarWidget();
@@ -2314,6 +2285,7 @@ void Phototonic::lockDocks() {
 
 QMenu *Phototonic::createPopupMenu() {
     QMenu *extraActsMenu = QMainWindow::createPopupMenu();
+    qDebug() << extraActsMenu->actions();
     extraActsMenu->addSeparator();
     extraActsMenu->addAction(smallToolbarIconsAction);
     extraActsMenu->addAction(lockDocksAction);
@@ -2577,13 +2549,9 @@ void Phototonic::setDocksVisibility(bool visible) {
     tagsDock->setVisible(visible ? Settings::tagsDockVisible : false);
     imageInfoDock->setVisible(visible ? Settings::imageInfoDockVisible : false);
 
-    menuBar()->setVisible(visible);
-    menuBar()->setDisabled(!visible);
     statusBar()->setVisible(visible);
 
-    editToolBar->setVisible(visible ? editToolBarVisible : false);
-    goToolBar->setVisible(visible ? goToolBarVisible : false);
-    viewToolBar->setVisible(visible ? viewToolBarVisible : false);
+    myMainToolBar->setVisible(visible);
     imageToolBar->setVisible(visible ? imageToolBarVisible : Settings::showViewerToolbar);
     addToolBar(imageToolBar);
 
@@ -2628,18 +2596,6 @@ void Phototonic::viewImage() {
         goPathBarDir();
         return;
     }
-}
-
-void Phototonic::setEditToolBarVisibility() {
-    editToolBarVisible = editToolBar->isVisible();
-}
-
-void Phototonic::setGoToolBarVisibility() {
-    goToolBarVisible = goToolBar->isVisible();
-}
-
-void Phototonic::setViewToolBarVisibility() {
-    viewToolBarVisible = viewToolBar->isVisible();
 }
 
 void Phototonic::setImageToolBarVisibility() {
@@ -3507,10 +3463,7 @@ void Phototonic::setInterfaceEnabled(bool enable) {
     fileSystemTree->setEnabled(enable);
     bookmarks->setEnabled(enable);
     thumbsViewer->imageTags->setEnabled(enable);
-    menuBar()->setEnabled(enable);
-    editToolBar->setEnabled(enable);
-    goToolBar->setEnabled(enable);
-    viewToolBar->setEnabled(enable);
+    myMainToolBar->setEnabled(enable);
     interfaceDisabled = !enable;
 
     if (enable) {
