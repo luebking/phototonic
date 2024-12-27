@@ -1,8 +1,5 @@
 # Phototonic Image Viewer: batch-processing fork
 
-### Notice
-
-This project is unmaintained. See Geeqie for an alternative.
 
 ### About
 
@@ -11,7 +8,7 @@ The ec1oud fork is for work on batch-processing features: specifically to take a
 webcam shots and align them well enough to make a time-lapse video.
 
 ### Features
-+ Support for [common image formats](https://doc.qt.io/qt-5/qimage.html#reading-and-writing-image-files) and GIF animation
++ Support for [common image formats](https://doc.qt.io/qt-6/qimage.html#reading-and-writing-image-files) and GIF animation
 + Supports tagging images, and filtering images by tags (IPTC)
 + Browse thumbnails recursively down a folder tree
 + Dynamic thumbnails loading
@@ -24,6 +21,9 @@ webcam shots and align them well enough to make a time-lapse video.
 <img src="images/screenshot.jpg" width="300">
 
 ### Updates:
+
+##### December 2024
++ revive and Qt6 port
 
 ##### 11 Mar 2018 - v2.1
 + Rotate preview by Exif rotation
@@ -68,8 +68,8 @@ webcam shots and align them well enough to make a time-lapse video.
 [Older updates](HISTORY.md)
 
 ##### Optional Dependencies
-+ qt5-imageformats (TIFF and TGA support)
-+ qt5-svg (SVG support)
++ qt6-imageformats (TIFF and TGA support)
++ qt6-svg (SVG support)
 
 ##### Quick Build Instructions on Linux
 ```
