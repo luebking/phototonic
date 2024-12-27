@@ -32,12 +32,14 @@
 #include "RenameDialog.h"
 #include "Trashcan.h"
 #include "MessageBox.h"
+#include "IconProvider.h"
 
 Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *parent) : QMainWindow(parent) {
     Settings::appSettings = new QSettings("phototonic", "phototonic");
 
     fileSystemModel = new QFileSystemModel(this);
     fileSystemModel->setFilter(QDir::AllDirs | QDir::Dirs | QDir::NoDotAndDotDot);
+    fileSystemModel->setIconProvider(new IconProvider);
 
     setDockOptions(QMainWindow::AllowNestedDocks);
     readSettings();
@@ -1013,6 +1015,9 @@ void Phototonic::createFileSystemDock() {
     fileSystemTree->setContextMenuPolicy(Qt::ActionsContextMenu);
 
     fileSystemTree->setModel(fileSystemModel);
+    for (int i = 1; i < fileSystemModel->columnCount(); ++i) {
+        fileSystemTree->hideColumn(i);
+    }
     connect(fileSystemTree, &FileSystemTree::clicked, this, &Phototonic::goSelectedDir);
     connect(fileSystemModel, &QFileSystemModel::rowsRemoved, this, &Phototonic::checkDirState);
     connect(fileSystemTree, &FileSystemTree::dropOp, this, &Phototonic::dropOp);
@@ -2643,7 +2648,7 @@ void Phototonic::setImageToolBarVisibility() {
 
 void Phototonic::setFileSystemDockVisibility() {
     if (fileSystemDock->isVisible()) {
-        QTimer::singleShot(250, [=](){fileSystemModel->setRootPath("/");});
+        QTimer::singleShot(50, [=](){fileSystemModel->setRootPath("/");});
     }
     if (Settings::layoutMode != ImageViewWidget) {
         Settings::fileSystemDockVisible = fileSystemDock->isVisible();

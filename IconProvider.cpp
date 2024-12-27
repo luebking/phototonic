@@ -5,6 +5,8 @@ QIcon IconProvider::icon(const QFileInfo &info) const
     if (info.filePath().endsWith('/') || info.isDir()) {
         return m_dirIcon;
     }
+    return m_unknownIcon;
+/*
     const QString fileName = info.fileName();
     const int lastDot = info.fileName().lastIndexOf('.');
     if (lastDot != -1 && lastDot != 0) {
@@ -26,4 +28,5 @@ QIcon IconProvider::icon(const QFileInfo &info) const
     }
 
     return m_unknownIcon;
+*/
 }

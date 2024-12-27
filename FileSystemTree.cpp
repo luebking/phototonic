@@ -23,11 +23,6 @@ FileSystemTree::FileSystemTree(QWidget *parent) : QTreeView(parent) {
     setDragEnabled(true);
     setDragDropMode(QAbstractItemView::InternalMove);
 
-//    setModel(fileSystemModel);
-
-    for (int i = 1; i <= 3; ++i) {
-        hideColumn(i);
-    }
     setHeaderHidden(true);
 
 //    connect(fileSystemModel, &QFileSystemModel::layoutChanged, this, [this]() { scrollTo(currentIndex()); }, Qt::QueuedConnection);
