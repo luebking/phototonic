@@ -1185,8 +1185,8 @@ void Phototonic::runExternalApp() {
             }
 
             for (int tn = selectedIdxList.size() - 1; tn >= 0; --tn) {
-                execCommand += " " + thumbsViewer->thumbsViewerModel->item(selectedIdxList[tn].row())->data(
-                                             thumbsViewer->FileNameRole).toString();
+                execCommand += " \"" + thumbsViewer->thumbsViewerModel->item(selectedIdxList[tn].row())->data(
+                                             thumbsViewer->FileNameRole).toString() + "\"";
             }
         }
     }
