@@ -19,8 +19,11 @@
 #ifndef COLORS_DIALOG_H
 #define COLORS_DIALOG_H
 
-#include <QtGui/QtGui>
-#include "ImageViewer.h"
+class ImageViewer;
+class QCheckBox;
+class QSlider;
+
+#include <QDialog>
 
 class ColorsDialog : public QDialog {
     Q_OBJECT

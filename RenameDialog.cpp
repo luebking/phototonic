@@ -16,10 +16,12 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtWidgets/qboxlayout.h>
-#include <QtGui/qicon.h>
-#include <QtWidgets/qlabel.h>
-#include <QtWidgets/QtWidgets>
+#include <QBoxLayout>
+#include <QDialog>
+#include <QIcon>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
 #include "RenameDialog.h"
 
 RenameDialog::RenameDialog(QWidget *parent) : QDialog(parent) {

@@ -16,6 +16,11 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QDragEnterEvent>
+#include <QDragMoveEvent>
+#include <QDropEvent>
+#include <QMimeData>
+
 #include "FileListWidget.h"
 
 FileListWidget::FileListWidget(QWidget *parent) : QTreeWidget(parent) {

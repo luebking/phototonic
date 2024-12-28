@@ -16,11 +16,16 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtWidgets>
-#include <QtWidgets/qboxlayout.h>
-#include <QtWidgets/qpushbutton.h>
-#include <QtWidgets/qlabel.h>
-#include <QtWidgets/QtWidgets>
+#include <QBoxLayout>
+#include <QCheckBox>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QDialog>
+#include <QIcon>
+#include <QLabel>
+#include <QPushButton>
+#include <QSlider>
+
 #include "ImageViewer.h"
 #include "ColorsDialog.h"
 #include "Settings.h"

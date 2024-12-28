@@ -19,8 +19,7 @@
 #ifndef FILE_LIST_WIDGET_H
 #define FILE_LIST_WIDGET_H
 
-#include <QtWidgets>
-#include "Settings.h"
+#include <QTreeWidget>
 
 class FileListWidget : public QTreeWidget {
 Q_OBJECT

@@ -19,9 +19,8 @@
 #ifndef GUIDEWIDGET_H
 #define GUIDEWIDGET_H
 
-#include <QWidget>
-
 class QAction;
+#include <QWidget>
 
 class GuideWidget : public QWidget
 {

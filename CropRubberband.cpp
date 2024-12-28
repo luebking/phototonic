@@ -16,6 +16,12 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QBoxLayout>
+#include <QKeyEvent>
+#include <QMouseEvent>
+#include <QRubberBand>
+#include <QSizeGrip>
+
 #include "CropRubberband.h"
 
 CropRubberBand::CropRubberBand(QWidget *parent) : QWidget(parent) {

@@ -19,7 +19,9 @@
 #ifndef SHORTCUTS_TABLE_H
 #define SHORTCUTS_TABLE_H
 
-#include <QtWidgets>
+class QMenu;
+class QStandardItemModel;
+#include <QTableView>
 
 class ShortcutsTable : public QTableView {
     Q_OBJECT

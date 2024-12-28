@@ -22,12 +22,13 @@
 #define THUMB_SIZE_MIN 25
 #define THUMB_SIZE_MAX 512
 
-#include <QSettings>
-#include <QModelIndexList>
-#include <QStringList>
+class QAction;
+class QSettings;
+
 #include <QColor>
-#include <QAction>
+#include <QModelIndexList>
 #include <QSet>
+#include <QStringList>
 
 namespace Settings {
 

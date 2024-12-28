@@ -19,8 +19,9 @@
 #ifndef COPY_MOVE_DIALOG_H
 #define COPY_MOVE_DIALOG_H
 
-#include <QtWidgets/qdialog.h>
-#include "ThumbsViewer.h"
+class ThumbsViewer;
+class QLabel;
+#include <QDialog>
 
 class CopyMoveDialog : public QDialog {
 Q_OBJECT

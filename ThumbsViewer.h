@@ -19,24 +19,25 @@
 #ifndef THUMBS_VIEWER_H
 #define THUMBS_VIEWER_H
 
-#include <QtWidgets>
-#include <exiv2/exiv2.hpp>
-#include "Settings.h"
-#include "FileSystemTree.h"
-#include "Bookmarks.h"
-#include "InfoViewer.h"
-#include "Tags.h"
-#include "MetadataCache.h"
-#include "ImagePreview.h"
-
+class ImagePreview;
+class ImageViewer;
+class ImageTags;
+class InfoView;
+class MetadataCache;
 class Phototonic;
 
-class ImageViewer;
+class QStandardItem;
+class QStandardItemModel;
+
+#include <QBitArray>
+#include <QDir>
+#include <QFileInfoList>
+#include <QListView>
+#include <QTimer>
 
 #define BAD_IMAGE_SIZE 64
 #define WINDOW_ICON_SIZE 48
 
-class ImageTags;
 
 struct DuplicateImage
 {

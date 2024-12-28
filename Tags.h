@@ -19,12 +19,14 @@
 #ifndef TAGS_H
 #define TAGS_H
 
-#include <QtWidgets>
-#include <exiv2/exiv2.hpp>
-#include "ThumbsViewer.h"
-#include "MetadataCache.h"
-
+class MetadataCache;
+class QTabBar;
 class ThumbsViewer;
+class QTreeWidget;
+class QTreeWidgetItem;
+
+#include <QWidget>
+
 
 enum TagsDisplayMode {
     DirectoryTagsDisplay,

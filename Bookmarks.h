@@ -19,8 +19,7 @@
 #ifndef BOOKMARKS_H
 #define BOOKMARKS_H
 
-#include <QtWidgets>
-#include "Settings.h"
+#include <QTreeWidget>
 
 class BookMarks : public QTreeWidget {
 Q_OBJECT

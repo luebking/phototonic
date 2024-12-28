@@ -19,8 +19,9 @@
 #ifndef CROP_DIALOG_H
 #define CROP_DIALOG_H
 
-#include <QtWidgets/QWidget>
-#include "ImageViewer.h"
+class ImageViewer;
+class QSpinBox;
+#include <QDialog>
 
 class CropDialog : public QDialog {
     Q_OBJECT

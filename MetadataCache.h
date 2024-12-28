@@ -19,7 +19,8 @@
 #ifndef META_DATA_CACHE_H
 #define META_DATA_CACHE_H
 
-#include <QtWidgets>
+#include <QMap>
+#include <QSet>
 
 class ImageMetadata {
 public:

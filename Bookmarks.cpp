@@ -16,7 +16,14 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QDragEnterEvent>
+#include <QDragMoveEvent>
+#include <QDropEvent>
+#include <QFileInfo>
+#include <QMimeData>
+
 #include "Bookmarks.h"
+#include "Settings.h"
 
 BookMarks::BookMarks(QWidget *parent) : QTreeWidget(parent) {
     setAcceptDrops(true);

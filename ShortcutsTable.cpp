@@ -16,6 +16,12 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QHeaderView>
+#include <QKeyEvent>
+#include <QMenu>
+#include <QStandardItem>
+#include <QStandardItemModel>
+
 #include "ShortcutsTable.h"
 #include "Settings.h"
 #include "MessageBox.h"

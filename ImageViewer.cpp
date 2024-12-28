@@ -16,9 +16,33 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QApplication>
+#include <QCheckBox>
+#include <QClipboard>
+#include <QDir>
+#include <QFileDialog>
+#include <QFileInfo>
+#include <QImageReader>
+#include <QLabel>
+#include <QLoggingCategory>
+#include <QMenu>
+#include <QMouseEvent>
+#include <QMovie>
+#include <QPainter>
+#include <QScrollBar>
+#include <QTimer>
+#include <QWheelEvent>
+
+
+#include "CropRubberband.h"
+#include "ImageWidget.h"
 #include "ImageViewer.h"
-#include "Phototonic.h"
 #include "MessageBox.h"
+#include "MetadataCache.h"
+#include "Phototonic.h"
+#include "Settings.h"
+#include "ThumbsViewer.h"
+
 
 #define CLIPBOARD_IMAGE_NAME "clipboard.png"
 #define ROUND(x) ((int) ((x) + 0.5))

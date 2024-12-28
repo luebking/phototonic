@@ -16,23 +16,60 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "DirCompleter.h"
-#include "Phototonic.h"
-#include "Settings.h"
+#include <QActionGroup>
+#include <QApplication>
+#include <QClipboard>
+#include <QCloseEvent>
+#include <QDockWidget>
+#include <QFileDialog>
+#include <QFileSystemModel>
+#include <QInputDialog>
+#include <QKeyEvent>
+#include <QLabel>
+#include <QLineEdit>
+#include <QMenu>
+#include <QMimeData>
+#include <QMouseEvent>
+#include <QMovie>
+#include <QProcess>
+#include <QScrollBar>
+#include <QSettings>
+#include <QStackedLayout>
+#include <QStandardPaths>
+#include <QStandardItemModel>
+#include <QStatusBar>
+#include <QToolBar>
+#include <QToolButton>
+#include <QWheelEvent>
+
+#include "Bookmarks.h"
 #include "CopyMoveDialog.h"
-#include "ResizeDialog.h"
-#include "CropDialog.h"
+#include "CopyMoveToDialog.h"
 #include "ColorsDialog.h"
+#include "CropDialog.h"
+#include "DirCompleter.h"
 #include "ExternalAppsDialog.h"
+#include "FileListWidget.h"
+#include "FileSystemTree.h"
+#include "GuideWidget.h"
+#include "IconProvider.h"
+#include "ImagePreview.h"
+#include "ImageViewer.h"
+#include "InfoViewer.h"
+#include "MessageBox.h"
+#include "MetadataCache.h"
+#include "Phototonic.h"
 #include "ProgressDialog.h"
 #include "RangeInputDialog.h"
-#include "ImagePreview.h"
-#include "FileListWidget.h"
-#include "GuideWidget.h"
 #include "RenameDialog.h"
+#include "ResizeDialog.h"
+#include "Settings.h"
+#include "SettingsDialog.h"
+#include "Tags.h"
+#include "ThumbsViewer.h"
 #include "Trashcan.h"
-#include "MessageBox.h"
-#include "IconProvider.h"
+
+#include <exiv2/exiv2.hpp>
 
 Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *parent) : QMainWindow(parent) {
     Settings::appSettings = new QSettings("phototonic", "phototonic");

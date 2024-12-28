@@ -19,6 +19,8 @@
 #include "Phototonic.h"
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QLibraryInfo>
+#include <QTranslator>
 
 int main(int argc, char *argv[]) {
     QApplication QApp(argc, argv);

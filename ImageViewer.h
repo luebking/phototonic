@@ -19,14 +19,15 @@
 #ifndef IMAGE_VIEWER_H
 #define IMAGE_VIEWER_H
 
+class CropRubberBand;
+class ImageWidget;
+class MetadataCache;
+class Phototonic;
+class QMovie;
+#include <QLabel>
+#include <QPointer>
 #include <QScrollArea>
 #include <exiv2/exiv2.hpp>
-#include "Settings.h"
-#include "CropRubberband.h"
-#include "ImageWidget.h"
-#include "MetadataCache.h"
-
-class Phototonic;
 
 class ImageViewer : public QScrollArea {
 Q_OBJECT

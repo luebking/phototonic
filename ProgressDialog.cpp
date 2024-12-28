@@ -16,6 +16,10 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QBoxLayout>
+#include <QLabel>
+#include <QPushButton>
+
 #include "ProgressDialog.h"
 
 ProgressDialog::ProgressDialog(QWidget *parent) : QDialog(parent) {

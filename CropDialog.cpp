@@ -16,7 +16,14 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QBoxLayout>
+#include <QGridLayout>
+#include <QPushButton>
+#include <QSlider>
+#include <QSpinBox>
+
 #include "CropDialog.h"
+#include "ImageViewer.h"
 #include "Settings.h"
 
 CropDialog::CropDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(parent) {

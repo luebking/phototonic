@@ -19,12 +19,9 @@
 #ifndef FILE_SYSTEM_TREE_H
 #define FILE_SYSTEM_TREE_H
 
-#include <QtWidgets>
-#include <QtWidgets/QtWidgets>
-#include "Settings.h"
-#include "FileSystemModel.h"
-
 class QFileSystemModel;
+#include <QTreeView>
+
 
 class FileSystemTree : public QTreeView {
 

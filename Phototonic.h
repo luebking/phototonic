@@ -19,19 +19,24 @@
 #ifndef PHOTOTONIC_H
 #define PHOTOTONIC_H
 
+class BookMarks;
+class ColorsDialog;
+class CopyMoveToDialog;
+class CropDialog;
+class FileListWidget;
+class FileSystemTree;
+class ImageViewer;
+class MetadataCache;
+class ResizeDialog;
+class SettingsDialog;
+class ThumbsViewer;
 class QFileSystemModel;
+class QLabel;
+class QLineEdit;
+class QStackedLayout;
 
-#include <QtWidgets>
-#include "ImageViewer.h"
-#include "ThumbsViewer.h"
-#include "SettingsDialog.h"
-#include "CopyMoveToDialog.h"
-#include "CropDialog.h"
-#include "ColorsDialog.h"
-#include "ResizeDialog.h"
-#include "FileListWidget.h"
-#include "FileSystemTree.h"
-#include <QStackedLayout>
+#include <QMainWindow>
+#include <QPointer>
 
 #include <memory>
 

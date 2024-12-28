@@ -16,8 +16,23 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QBoxLayout>
+#include <QCheckBox>
+#include <QColorDialog>
+#include <QFileDialog>
+#include <QGroupBox>
 #include <QLabel>
+#include <QLineEdit>
+#include <QPainter>
+#include <QPushButton>
+#include <QRadioButton>
+#include <QSpinBox>
+#include <QTabWidget>
+#include <QToolButton>
+
+#include "Settings.h"
 #include "SettingsDialog.h"
+#include "ShortcutsTable.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     setWindowTitle(tr("Preferences"));

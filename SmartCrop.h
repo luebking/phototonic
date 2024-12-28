@@ -1,3 +1,5 @@
+#ifndef SMARTCROP_H
+#define SMARTCROP_H
 #pragma once
 
 // Algorithm from https://github.com/jwagner/smartcrop.js/
@@ -44,3 +46,5 @@ struct CropOptions {
 QImage crop(const QImage &input, CropOptions options);
 QRect smartCropRect(const QImage &input, CropOptions options);
 }
+
+#endif // SMARTCROP_H

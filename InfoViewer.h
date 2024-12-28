@@ -19,7 +19,13 @@
 #ifndef INFO_VIEWER_H
 #define INFO_VIEWER_H
 
-#include <QtWidgets>
+class QLineEdit;
+class QMenu;
+class QStandardItemModel;
+class QTableView;
+
+#include <QModelIndex>
+#include <QWidget>
 
 class InfoView : public QWidget {
 Q_OBJECT

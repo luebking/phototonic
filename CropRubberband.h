@@ -19,7 +19,8 @@
 #ifndef CROPRUBBERBAND_H
 #define CROPRUBBERBAND_H
 
-#include <QtWidgets>
+class QRubberBand;
+#include <QWidget>
 
 class CropRubberBand : public QWidget {
     Q_OBJECT

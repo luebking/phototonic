@@ -19,8 +19,8 @@
 #ifndef DIR_COMPLETER_H
 #define DIR_COMPLETER_H
 
-#include <QCompleter>
 class QFileSystemModel;
+#include <QCompleter>
 
 class DirCompleter : public QCompleter {
 Q_OBJECT

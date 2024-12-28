@@ -16,11 +16,17 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QBoxLayout>
+#include <QLabel>
+#include <QMovie>
+#include <QPointer>
+#include <QScrollArea>
+#include <QScrollBar>
+
 #include "ImagePreview.h"
+#include "ImageViewer.h"
 #include "Settings.h"
 #include "ThumbsViewer.h"
-
-#include <QMovie>
 
 ImagePreview::ImagePreview(QWidget *parent) : QWidget(parent)
 {

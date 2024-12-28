@@ -16,6 +16,16 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QApplication>
+#include <QBoxLayout>
+#include <QClipboard>
+#include <QHeaderView>
+#include <QLineEdit>
+#include <QMenu>
+#include <QStandardItem>
+#include <QStandardItemModel>
+#include <QTableView>
+
 #include "InfoViewer.h"
 #include "ThumbsViewer.h"
 

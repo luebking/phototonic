@@ -19,10 +19,8 @@
 #ifndef PROGRESS_DIALOG_H
 #define PROGRESS_DIALOG_H
 
-#include <QtWidgets/qlabel.h>
-#include <QtWidgets/QWidget>
-#include <QtWidgets>
-#include "Settings.h"
+class QLabel;
+#include <QDialog>
 
 class ProgressDialog : public QDialog {
     Q_OBJECT

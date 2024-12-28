@@ -16,6 +16,10 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QDragEnterEvent>
+#include <QDragMoveEvent>
+#include <QDropEvent>
+#include <QMimeData>
 #include "FileSystemTree.h"
 
 FileSystemTree::FileSystemTree(QWidget *parent) : QTreeView(parent) {

@@ -1,3 +1,7 @@
+
+#ifndef ICONPROVIDER_H
+#define ICONPROVIDER_H
+
 #pragma once
 #include <QFileIconProvider>
 #include <QMimeDatabase>
@@ -20,3 +24,4 @@ private:
     QMimeDatabase m_mimeDb;
 };
 
+#endif // ICONPROVIDER_H

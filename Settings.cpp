@@ -16,6 +16,7 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QSettings>
 #include "Settings.h"
 
 namespace Settings {

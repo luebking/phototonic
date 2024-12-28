@@ -16,10 +16,26 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Tags.h"
-#include "Settings.h"
-#include "ProgressDialog.h"
+#include <QApplication>
+#include <QBoxLayout>
+#include <QInputDialog>
+#include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
+#include <QMenu>
+#include <QTabBar>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
+#include <QTreeWidgetItemIterator>
+
 #include "MessageBox.h"
+#include "MetadataCache.h"
+#include "ProgressDialog.h"
+#include "Settings.h"
+#include "Tags.h"
+#include "ThumbsViewer.h"
+
+#include <exiv2/exiv2.hpp>
 
 ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer, const std::shared_ptr<MetadataCache> &metadataCache) : QWidget(parent) {
     tagsTree = new QTreeWidget;

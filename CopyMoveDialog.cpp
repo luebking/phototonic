@@ -16,7 +16,18 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QApplication>
+#include <QBoxLayout>
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
+#include <QLabel>
+#include <QPushButton>
+#include <QStandardItemModel>
+
 #include "CopyMoveDialog.h"
+#include "Settings.h"
+#include "ThumbsViewer.h"
 
 static QString autoRename(QString &destDir, QString &currFile) {
     int extSep = currFile.lastIndexOf(".");

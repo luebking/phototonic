@@ -16,13 +16,37 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QApplication>
+#include <QCollator>
+#include <QColorSpace>
+#include <QDirIterator>
+#include <QCryptographicHash>
+#include <QDrag>
+#include <QImageReader>
+#include <QLabel>
+#include <QMimeData>
 #include <QMimeDatabase>
+#include <QMouseEvent>
+#include <QPainter>
+#include <QPen>
 #include <QProgressDialog>
 #include <QRandomGenerator>
+#include <QScrollBar>
+#include <QStandardItemModel>
+#include <QStandardPaths>
+#include <QTreeWidget>
 
-#include "ThumbsViewer.h"
+#include "ImagePreview.h"
+#include "ImageViewer.h"
+#include "InfoViewer.h"
+#include "MetadataCache.h"
 #include "Phototonic.h"
+#include "Settings.h"
 #include "SmartCrop.h"
+#include "Tags.h"
+#include "ThumbsViewer.h"
+
+#include <exiv2/exiv2.hpp>
 
 #define BATCH_SIZE 10
 

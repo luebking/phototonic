@@ -16,7 +16,16 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtWidgets/QWidget>
+#include <QBoxLayout>
+#include <QDialog>
+#include <QFileDialog>
+#include <QFileInfo>
+#include <QHeaderView>
+#include <QPushButton>
+#include <QStandardItem>
+#include <QStandardItemModel>
+#include <QTableView>
+
 #include "ExternalAppsDialog.h"
 #include "Settings.h"
 
