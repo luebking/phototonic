@@ -30,6 +30,7 @@ Q_OBJECT
 public:
     FileSystemTree(QWidget *parent);
     QModelIndex getCurrentIndex();
+    virtual void setModel(QAbstractItemModel *model) override;
 
 protected:
     void dragEnterEvent(QDragEnterEvent *event);

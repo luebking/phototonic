@@ -19,6 +19,7 @@
 #include <QDragEnterEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QFileSystemModel>
 #include <QMimeData>
 #include "FileSystemTree.h"
 
@@ -29,14 +30,19 @@ FileSystemTree::FileSystemTree(QWidget *parent) : QTreeView(parent) {
 
     setHeaderHidden(true);
 
-//    connect(fileSystemModel, &QFileSystemModel::layoutChanged, this, [this]() { scrollTo(currentIndex()); }, Qt::QueuedConnection);
-
     connect(this, SIGNAL(expanded(const QModelIndex &)), this, SLOT(resizeTreeColumn(const QModelIndex &)));
     connect(this, SIGNAL(collapsed(const QModelIndex &)), this, SLOT(resizeTreeColumn(const QModelIndex &)));
 }
 
 QModelIndex FileSystemTree::getCurrentIndex() {
     return selectedIndexes().first();
+}
+
+void FileSystemTree::setModel(QAbstractItemModel *m) {
+    if (model())
+        disconnect(model());
+    QTreeView::setModel(m);
+    connect(m, &QFileSystemModel::layoutChanged, this, [this]() { scrollTo(currentIndex()); }, Qt::QueuedConnection);
 }
 
 void FileSystemTree::resizeTreeColumn(const QModelIndex &index) {
