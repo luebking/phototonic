@@ -100,7 +100,6 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
     void resizeEvent(QResizeEvent *event);
     void showEvent(QShowEvent *event);
-    void wheelEvent(QWheelEvent *event);
 
 private:
     QMenu *myContextMenu;

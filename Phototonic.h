@@ -65,13 +65,11 @@ public:
     };
 
 protected:
-    void mouseDoubleClickEvent(QMouseEvent *event);
-
     void closeEvent(QCloseEvent *event);
-
-    void mousePressEvent(QMouseEvent *event);
-    
+    bool eventFilter(QObject *o, QEvent *e) override;
     void keyPressEvent(QKeyEvent *event);
+    void mouseDoubleClickEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
 
 public slots:
 
@@ -471,8 +469,6 @@ private:
     QString getSelectedPath();
 
     void setCopyCutActions(bool setEnabled);
-
-    void wheelEvent(QWheelEvent *event);
 
     void copyOrCutThumbs(bool copy);
 

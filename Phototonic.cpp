@@ -180,6 +180,7 @@ bool Phototonic::event(QEvent *event) {
 void Phototonic::createThumbsViewer() {
     metadataCache = std::make_shared<MetadataCache>();
     thumbsViewer = new ThumbsViewer(this, metadataCache);
+    thumbsViewer->viewport()->installEventFilter(this);
     thumbsViewer->thumbsSortFlags = (QDir::SortFlags) Settings::value(
             Settings::optionThumbsSortFlags).toInt();
     thumbsViewer->thumbsSortFlags |= QDir::IgnoreCase;
@@ -196,6 +197,7 @@ void Phototonic::createThumbsViewer() {
 
 void Phototonic::createImageViewer() {
     imageViewer = new ImageViewer(this, metadataCache);
+    imageViewer->viewport()->installEventFilter(this);
     connect(saveAction, SIGNAL(triggered()), imageViewer, SLOT(saveImage()));
     connect(saveAsAction, SIGNAL(triggered()), imageViewer, SLOT(saveImageAs()));
     connect(copyImageAction, SIGNAL(triggered()), imageViewer, SLOT(copyImage()));
@@ -3417,15 +3419,18 @@ QString Phototonic::getSelectedPath() {
         return "";
 }
 
-void Phototonic::wheelEvent(QWheelEvent *event)
+bool Phototonic::eventFilter(QObject *o, QEvent *e)
 {
-    const int scrollDelta = event->angleDelta().y();
+    if (e->type() != QEvent::Wheel)
+        return QMainWindow::eventFilter(o, e);
+    QWheelEvent *we = static_cast<QWheelEvent*>(e);
+    const int scrollDelta = we->angleDelta().y();
     if (scrollDelta == 0) {
-        return;
+        return QMainWindow::eventFilter(o, e);
     }
 
-    if (Settings::layoutMode == ImageViewWidget) {
-        if (event->modifiers() == Qt::ControlModifier || Settings::scrollZooms) {
+    if (o == imageViewer->viewport()) {
+        if (we->modifiers() == Qt::ControlModifier || Settings::scrollZooms) {
             if (scrollDelta < 0) {
                 zoomOut(scrollDelta / -120.);
             } else {
@@ -3437,15 +3442,17 @@ void Phototonic::wheelEvent(QWheelEvent *event)
             } else {
                 loadPreviousImage();
             }
+            return true;
         }
-        event->accept();
-    } else if (event->modifiers() == Qt::ControlModifier && QApplication::focusWidget() == thumbsViewer) {
+    } else if (we->modifiers() == Qt::ControlModifier && o == thumbsViewer->viewport()) {
         if (scrollDelta < 0) {
             thumbsZoomOut();
         } else {
             thumbsZoomIn();
         }
+        return true;
     }
+    return QMainWindow::eventFilter(o, e);
 }
 
 void Phototonic::showNewImageWarning() {
