@@ -2322,7 +2322,6 @@ void Phototonic::lockDocks() {
 
 QMenu *Phototonic::createPopupMenu() {
     QMenu *extraActsMenu = QMainWindow::createPopupMenu();
-    qDebug() << extraActsMenu->actions();
     extraActsMenu->addSeparator();
     extraActsMenu->addAction(smallToolbarIconsAction);
     extraActsMenu->addAction(lockDocksAction);
