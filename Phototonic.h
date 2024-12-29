@@ -101,7 +101,7 @@ private slots:
 
     void updateActions();
 
-    void onReloadThumbs();
+    void reloadThumbs();
 
     void renameDir();
 
@@ -124,10 +124,6 @@ private slots:
     void goSelectedDir(const QModelIndex &currDir);
 
     void goPathBarDir();
-
-    void setThumbsFilter();
-
-    void clearThumbsFilter();
 
     void goBack();
 
@@ -223,8 +219,6 @@ private slots:
 
     void runExternalApp();
 
-    void externalAppError();
-
     void setImageToolBarVisibility();
 
     void setFileSystemDockVisibility();
@@ -247,17 +241,6 @@ private slots:
 
     void moveImagesTo();
 
-    void onFileListSelected();
-
-    void setSquareThumbs();
-
-    void setCompactThumbs();
-
-    void setClassicThumbs();
-
-    void toggleRotateEnabled();
-
-    void onToolsUpdated();
 
 private:
     QMenu *myMainMenu;

@@ -203,7 +203,7 @@ void Phototonic::createImageViewer() {
     connect(copyImageAction, SIGNAL(triggered()), imageViewer, SLOT(copyImage()));
     connect(pasteImageAction, SIGNAL(triggered()), imageViewer, SLOT(pasteImage()));
     connect(applyCropAndRotationAction, SIGNAL(triggered()), imageViewer, SLOT(applyCropAndRotation()));
-    connect(imageViewer, &ImageViewer::toolsUpdated, this, &Phototonic::onToolsUpdated);
+    connect(imageViewer, &ImageViewer::toolsUpdated, [=](){ rotateToolAction->setChecked(Settings::mouseRotateEnabled); });
     QMenu *contextMenu = new QMenu(imageViewer);
 
     // Widget actions
@@ -417,19 +417,19 @@ void Phototonic::createActions() {
     setClassicThumbsAction->setCheckable(true);
     setClassicThumbsAction->setChecked(Settings::thumbsLayout == ThumbsViewer::Classic);
     setClassicThumbsAction->setObjectName("setClassicThumbs");
-    connect(setClassicThumbsAction, SIGNAL(triggered()), this, SLOT(setClassicThumbs()));
+    connect(setClassicThumbsAction, &QAction::triggered, [=](){ Settings::thumbsLayout = ThumbsViewer::Classic; refreshThumbs(false); });
 
     setSquareThumbsAction = new QAction(tr("Show square thumbnails"), this);
     setSquareThumbsAction->setCheckable(true);
     setSquareThumbsAction->setChecked(Settings::thumbsLayout == ThumbsViewer::Squares);
     setSquareThumbsAction->setObjectName("setSquareThumbs");
-    connect(setSquareThumbsAction, SIGNAL(triggered()), this, SLOT(setSquareThumbs()));
+    connect(setSquareThumbsAction, &QAction::triggered, [=](){ Settings::thumbsLayout = ThumbsViewer::Squares; refreshThumbs(false); });
 
     setCompactThumbsAction = new QAction(tr("Show compact thumbnails"), this);
     setCompactThumbsAction->setCheckable(true);
     setCompactThumbsAction->setChecked(Settings::thumbsLayout == ThumbsViewer::Compact);
     setCompactThumbsAction->setObjectName("setCompactThumbs");
-    connect(setCompactThumbsAction, SIGNAL(triggered()), this, SLOT(setCompactThumbs()));
+    connect(setCompactThumbsAction, &QAction::triggered, [=](){ Settings::thumbsLayout = ThumbsViewer::Compact; refreshThumbs(false); });
 
     copyToAction = new QAction(tr("Copy to..."), this);
     copyToAction->setObjectName("copyTo");
@@ -688,7 +688,7 @@ void Phototonic::createActions() {
     rotateToolAction->setObjectName("rotateRight");
     rotateToolAction->setIcon(QIcon::fromTheme("rotation-allowed", QIcon(":/images/rotate.png")));
     rotateToolAction->setCheckable(true);
-    connect(rotateToolAction, SIGNAL(triggered()), this, SLOT(toggleRotateEnabled()));
+    connect(rotateToolAction, &QAction::triggered, [=](){ Settings::mouseRotateEnabled = rotateToolAction->isChecked(); });
 
     flipHorizontalAction = new QAction(tr("Flip Horizontally"), this);
     flipHorizontalAction->setObjectName("flipH");
@@ -928,8 +928,16 @@ void Phototonic::createToolBars() {
     filterLineEdit = new QLineEdit;
     filterLineEdit->setMinimumWidth(100);
     filterLineEdit->setMaximumWidth(200);
-    connect(filterLineEdit, SIGNAL(returnPressed()), this, SLOT(setThumbsFilter()));
-    connect(filterLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(clearThumbsFilter()));
+    connect(filterLineEdit, &QLineEdit::returnPressed, [=](){
+        thumbsViewer->filterString = filterLineEdit->text();
+        refreshThumbs(true);
+    });
+    connect(filterLineEdit, &QLineEdit::textEdited, [=](){
+        if (filterLineEdit->text() == "") {
+            thumbsViewer->filterString = filterLineEdit->text();
+            refreshThumbs(true);
+        }
+    });
 
     myMainToolBar->addSeparator();
     myMainToolBar->addWidget(filterLineEdit);
@@ -967,31 +975,6 @@ void Phototonic::createToolBars() {
     setToolbarIconSize();
 }
 
-void Phototonic::setClassicThumbs() {
-    Settings::thumbsLayout = ThumbsViewer::Classic;
-    refreshThumbs(false);
-}
-
-void Phototonic::toggleRotateEnabled()
-{
-    Settings::mouseRotateEnabled = rotateToolAction->isChecked();
-}
-
-void Phototonic::onToolsUpdated()
-{
-    rotateToolAction->setChecked(Settings::mouseRotateEnabled);
-}
-
-void Phototonic::setSquareThumbs() {
-    Settings::thumbsLayout = ThumbsViewer::Squares;
-    refreshThumbs(false);
-}
-
-void Phototonic::setCompactThumbs() {
-    Settings::thumbsLayout = ThumbsViewer::Compact;
-    refreshThumbs(false);
-}
-
 void Phototonic::setToolbarIconSize() {
     if (initComplete) {
         Settings::smallToolbarIcons = smallToolbarIconsAction->isChecked();
@@ -1015,20 +998,18 @@ void Phototonic::createStatusBar() {
     busyLabel->setVisible(false);
 }
 
-void Phototonic::onFileListSelected() {
-    if (initComplete && fileListWidget->itemAt(0, 0)->isSelected()) {
-        Settings::isFileListLoaded = true;
-        fileSystemTree->clearSelection();
-        refreshThumbs(true);
-    }
-}
-
 void Phototonic::createFileSystemDock() {
     fileSystemDock = new QDockWidget(tr("File System"), this);
     fileSystemDock->setObjectName("File System");
 
     fileListWidget = new FileListWidget(fileSystemDock);
-    connect(fileListWidget, SIGNAL(itemSelectionChanged()), this, SLOT(onFileListSelected()));
+    connect(fileListWidget, &FileListWidget::itemSelectionChanged, [=](){
+        if (initComplete && fileListWidget->itemAt(0, 0)->isSelected()) {
+            Settings::isFileListLoaded = true;
+            fileSystemTree->clearSelection();
+            refreshThumbs(true);
+        }
+    });
 
     fileSystemTree = new FileSystemTree(fileSystemDock);
     fileSystemTree->addAction(createDirectoryAction);
@@ -1104,7 +1085,7 @@ void Phototonic::createImageTagsDock() {
 
     connect(tagsDock->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setTagsDockVisibility()));
     connect(tagsDock, SIGNAL(visibilityChanged(bool)), this, SLOT(setTagsDockVisibility()));
-    connect(thumbsViewer->imageTags, SIGNAL(reloadThumbs()), this, SLOT(onReloadThumbs()));
+    connect(thumbsViewer->imageTags, SIGNAL(reloadThumbs()), this, SLOT(reloadThumbs()));
     connect(thumbsViewer->imageTags->removeTagAction, SIGNAL(triggered()), this, SLOT(deleteOperation()));
 }
 
@@ -1143,7 +1124,7 @@ void Phototonic::setIncludeSubDirs() {
 
 void Phototonic::refreshThumbs(bool scrollToTop) {
     thumbsViewer->setNeedToScroll(scrollToTop);
-    QTimer::singleShot(0, this, SLOT(onReloadThumbs()));
+    QMetaObject::invokeMethod(this, "reloadThumbs", Qt::QueuedConnection);
 }
 
 void Phototonic::showHiddenFiles() {
@@ -1177,11 +1158,6 @@ void Phototonic::setPathFocus() {
     }
 }
 
-void Phototonic::externalAppError() {
-    MessageBox msgBox(this);
-    msgBox.critical(tr("Error"), tr("Failed to start external application."));
-}
-
 void Phototonic::runExternalApp() {
     QString execCommand = Settings::externalApps[((QAction *) sender())->text()];
 
@@ -1212,8 +1188,11 @@ void Phototonic::runExternalApp() {
 
     QProcess *externalProcess = new QProcess();
     externalProcess->setProcessChannelMode(QProcess::ForwardedChannels);
-    connect(externalProcess, SIGNAL(finished(int, QProcess::ExitStatus)), externalProcess, SLOT(deleteLater()));
-    connect(externalProcess, SIGNAL(error(QProcess::ProcessError)), this, SLOT(externalAppError()));
+    connect(externalProcess, &QProcess::finished, externalProcess, &QObject::deleteLater);
+    connect(externalProcess, &QProcess::errorOccurred, [=](){
+                        MessageBox msgBox(this);
+                        msgBox.critical(tr("Error"), tr("Failed to start external application."));
+    });
     externalProcess->startCommand(execCommand);
 }
 
@@ -2010,18 +1989,6 @@ void Phototonic::goPathBarDir() {
     selectCurrentViewDir();
 }
 
-void Phototonic::setThumbsFilter() {
-    thumbsViewer->filterString = filterLineEdit->text();
-    refreshThumbs(true);
-}
-
-void Phototonic::clearThumbsFilter() {
-    if (filterLineEdit->text() == "") {
-        thumbsViewer->filterString = filterLineEdit->text();
-        refreshThumbs(true);
-    }
-}
-
 void Phototonic::goBack() {
     if (currentHistoryIdx > 0) {
         needHistoryRecord = false;
@@ -2628,7 +2595,8 @@ void Phototonic::viewImage() {
         loadSelectedThumbImage(selectedImageIndex);
         return;
     } else if (QApplication::focusWidget() == filterLineEdit) {
-        setThumbsFilter();
+        thumbsViewer->filterString = filterLineEdit->text();
+        refreshThumbs(true);
         return;
     } else if (QApplication::focusWidget() == pathLineEdit) {
         goPathBarDir();
@@ -3062,7 +3030,7 @@ void Phototonic::checkDirState(const QModelIndex &, int, int) {
 
     if (!QDir().exists(Settings::currentDirectory)) {
         Settings::currentDirectory.clear();
-        QTimer::singleShot(0, this, SLOT(onReloadThumbs()));
+        QMetaObject::invokeMethod(this, "reloadThumbs", Qt::QueuedConnection);
     }
 }
 
@@ -3087,10 +3055,10 @@ void Phototonic::addPathHistoryRecord(QString dir) {
     }
 }
 
-void Phototonic::onReloadThumbs() {
+void Phototonic::reloadThumbs() {
     if (thumbsViewer->isBusy || !initComplete) {
         thumbsViewer->abort();
-        QTimer::singleShot(0, this, SLOT(onReloadThumbs()));
+        QTimer::singleShot(32, this, SLOT(reloadThumbs())); // rate control @30Hz
         return;
     }
 
