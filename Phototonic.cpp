@@ -1165,7 +1165,7 @@ void Phototonic::toggleImageViewerToolbar() {
 
 void Phototonic::filterImagesFocus() {
     if (Settings::layoutMode == ThumbViewWidget) {
-        myMainMenu->show();
+        myMainToolBar->show();
         filterLineEdit->setFocus(Qt::OtherFocusReason);
         filterLineEdit->selectAll();
     }
@@ -1173,7 +1173,7 @@ void Phototonic::filterImagesFocus() {
 
 void Phototonic::setPathFocus() {
     if (Settings::layoutMode == ThumbViewWidget) {
-        myMainMenu->show();
+        myMainToolBar->show();
         pathLineEdit->setFocus(Qt::OtherFocusReason);
         pathLineEdit->selectAll();
     }
