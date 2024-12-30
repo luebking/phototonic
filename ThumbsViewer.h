@@ -76,6 +76,14 @@ struct Histogram
 };
 Q_DECLARE_METATYPE(Histogram);
 
+struct Constraint
+{
+    qint64 younger = 0;
+    qint64 older = 0;
+    qint64 bigger = 0;
+    qint64 smaller = 0;
+};
+
 class ThumbsViewer : public QListView {
 Q_OBJECT
 
@@ -147,18 +155,16 @@ public:
     QString getSingleSelectionFilename();
 
     void setImageViewer(ImageViewer *imageViewer);
-
+    bool setFilter(const QString &filter, QString *error = nullptr);
     void sortBySimilarity();
 
     InfoView *infoView;
     ImagePreview *imagePreview;
     ImageTags *imageTags;
     QDir thumbsDir;
-    QStringList fileFilters;
     QStandardItemModel *thumbsViewerModel;
     QDir::SortFlags thumbsSortFlags;
     int thumbSize;
-    QString filterString;
     bool isBusy;
 
 protected:
@@ -208,6 +214,8 @@ private:
 
     QTimer m_selectionChangedTimer;
     QTimer m_loadThumbTimer;
+    QString m_filter;
+    QList<Constraint> m_constraints;
 
 public slots:
 

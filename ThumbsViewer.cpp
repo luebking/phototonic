@@ -565,10 +565,103 @@ void ThumbsViewer::loadSubDirectories() {
     onSelectionChanged();
 }
 
+bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
+    QStringList tokens = filter.split('/');
+    m_filter = tokens.first().trimmed();
+    m_constraints.clear();
+    bool sane = true;
+    for (int i = 1; i < tokens.size(); ++i) {
+        m_constraints.append(Constraint());
+        QStringList subtokens = tokens.at(i).split(' ', Qt::SkipEmptyParts);
+        char side = 0;
+        for (QString t : subtokens) {
+            if (t.startsWith("<")) {
+                side = side ? -1 : 1; t.remove(0,1);
+            } else if (t.startsWith("=")) {
+                side = side ? -1 : 3; t.remove(0,1);
+            } else if (t.startsWith(">")) {
+                side = side ? -1 : 2; t.remove(0,1);
+            }
+            if (side < 0) {
+                sane = false;
+                if (error)
+                    *error += "Invalid sequence: " + tokens.at(i) + "\n";
+                break;
+            }
+            if (side == 0)
+                side = 3;
+            if (t.isEmpty())
+                continue;
+            auto setSizeConstraint = [=](int multiplier) {
+                bool ok;
+                qint64 v = t.chopped(2).toFloat(&ok) * multiplier;
+                if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; return false; }
+                if (side & 1) m_constraints.last().smaller = v;
+                if (side & 2) m_constraints.last().bigger = v;
+                if ((side & 3) == 3) {
+                    m_constraints.last().smaller =  v * 101 / 100;
+                    m_constraints.last().bigger  =  v *  99 / 100;
+                }
+                return true;
+            };
+            auto setAgeConstraint = [=](int multiplier) {
+                bool ok;
+                qint64 v = t.chopped(1).toFloat(&ok) * multiplier;
+                if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; return false; }
+                if (side & 1) m_constraints.last().younger = v;
+                if (side & 2) m_constraints.last().older = v;
+                    if ((side & 3) == 3) {
+                    m_constraints.last().younger =  v * 101 / 100;
+                    m_constraints.last().older   =  v *  99 / 100;
+                }
+                return true;
+            };
+            if (t.endsWith("kb", Qt::CaseInsensitive)) {
+                if (!setSizeConstraint(1024)) { sane = false; break; }
+            } else if (t.endsWith("mb", Qt::CaseInsensitive)) {
+                if (!setSizeConstraint(1024*1024)) { sane = false; break; }
+            } else if (t.endsWith("gb", Qt::CaseInsensitive)) {
+                if (!setSizeConstraint(1024*1024*1024)) { sane = false; break; }
+            } else if (t.endsWith("m", Qt::CaseSensitive)) {
+                if (!setAgeConstraint(60)) { sane = false; break; }
+            } else if (t.endsWith("h", Qt::CaseInsensitive)) {
+                if (!setAgeConstraint(60*60)) { sane = false; break; }
+            } else if (t.endsWith("d", Qt::CaseInsensitive)) {
+                if (!setAgeConstraint(24*60*60)) { sane = false; break; }
+            } else if (t.endsWith("w", Qt::CaseInsensitive)) {
+                if (!setAgeConstraint(7*24*60*60)) { sane = false; break; }
+            } else if (t.endsWith("M", Qt::CaseInsensitive)) {
+                if (!setAgeConstraint(30*24*60*60)) { sane = false; break; }
+            } else if (t.endsWith("y", Qt::CaseInsensitive)) {
+                if (!setAgeConstraint(365*24*60*60)) { sane = false; break; }
+            } else {
+                QDateTime date = QDateTime::fromString(t, "yyyy-MM-dd");
+                if (!date.isValid()) {
+                    if (error) { *error += "Invalid value: " + t + "\n"; } sane = false; break;
+                }
+                qint64 secs = date.secsTo(QDateTime::currentDateTime());
+                if (secs < 0) {
+                    qWarning() << "warning, issued future date constraint";
+                    secs = 0;
+                }
+                if (side & 1) m_constraints.last().younger = secs;
+                if (side & 2) m_constraints.last().older = secs;
+                if ((side & 3) == 3) {
+                    m_constraints.last().younger += 24*60*60;
+                    m_constraints.last().older   -= 24*60*60;
+                }
+            }
+            side = 0;
+        }
+        side = 0;
+    }
+    return sane;
+}
+
 void ThumbsViewer::applyFilter() {
-    fileFilters.clear();
+    QStringList fileFilters;
     QString textFilter("*");
-    textFilter += filterString;
+    textFilter += m_filter;
 
     // Get all patterns supported by QImageReader
     static QStringList imageTypeGlobs;
@@ -730,6 +823,19 @@ void ThumbsViewer::initThumbs() {
         if (imageTags->dirFilteringActive && imageTags->isImageFilteredOut(thumbFileInfo.filePath())) {
             continue;
         }
+
+        bool constrained = false;
+        for (const Constraint &c : m_constraints) {
+            constrained = false;
+            if ((constrained = (c.smaller && thumbFileInfo.size() > c.smaller))) continue;
+            if ((constrained = (c.bigger  && thumbFileInfo.size() < c.bigger ))) continue;
+            qint64 age = thumbFileInfo.lastModified().secsTo(QDateTime::currentDateTime());
+            if ((constrained = (c.older   && age < c.older  ))) continue;
+            if ((constrained = (c.younger && age > c.younger))) continue;
+            break; // this constraint is sufficient
+        }
+        if (constrained)
+            continue;
 
         thumbItem = new QStandardItem();
         thumbItem->setData(false, LoadedRole);

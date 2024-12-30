@@ -40,6 +40,7 @@
 #include <QStatusBar>
 #include <QToolBar>
 #include <QToolButton>
+#include <QToolTip>
 #include <QWheelEvent>
 
 #include "Bookmarks.h"
@@ -928,14 +929,34 @@ void Phototonic::createToolBars() {
     filterLineEdit = new QLineEdit;
     filterLineEdit->setMinimumWidth(100);
     filterLineEdit->setMaximumWidth(200);
+    filterLineEdit->setPlaceholderText(tr("Filter - try \"/\"…"));
     connect(filterLineEdit, &QLineEdit::returnPressed, [=](){
-        thumbsViewer->filterString = filterLineEdit->text();
-        refreshThumbs(true);
+        QString error;
+        if (thumbsViewer->setFilter(filterLineEdit->text(), &error))
+            refreshThumbs(true);
+        else
+            QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
+                                error, filterLineEdit);
     });
+    static const QString rtfm =
+    tr( "<h2>[substring] [/ constraint [/ more constraints]]</h2>"
+        "<tt>foo / &gt; 5d &lt; 1M / &lt; 10kb</tt><br>"
+        "<i>matches foo, older than 5 days but younger than a month - or below 10kB</i>"
+        "<ul><li>Bigger than/After: &gt;</li>"
+        "<li>Smaller than/Before: &lt;</li>"
+        "<li>The exact age or (rounded) size is otherwise implied or explicit with: =</li></ul><hr>"
+        "<ul><li>Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)<li>"
+        "<li>Sizes are suffixed 4kB:MB:GB</li></ul>"
+        "<i>All suffixes are case-insensitive but m|inute and M|onth</i><br>"
+        "Subsequent \"/\" start a new sufficient condition group, the substring match is optional."
+    );
     connect(filterLineEdit, &QLineEdit::textEdited, [=](){
         if (filterLineEdit->text() == "") {
-            thumbsViewer->filterString = filterLineEdit->text();
+            thumbsViewer->setFilter("");
             refreshThumbs(true);
+        } else if (filterLineEdit->text().contains("/")) {
+            QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
+                                rtfm, filterLineEdit);
         }
     });
 
@@ -2595,8 +2616,12 @@ void Phototonic::viewImage() {
         loadSelectedThumbImage(selectedImageIndex);
         return;
     } else if (QApplication::focusWidget() == filterLineEdit) {
-        thumbsViewer->filterString = filterLineEdit->text();
-        refreshThumbs(true);
+        QString error;
+        if (thumbsViewer->setFilter(filterLineEdit->text(), &error))
+            refreshThumbs(true);
+        else
+            QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
+                                error, filterLineEdit);
         return;
     } else if (QApplication::focusWidget() == pathLineEdit) {
         goPathBarDir();
