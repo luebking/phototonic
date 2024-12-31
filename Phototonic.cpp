@@ -761,7 +761,7 @@ void Phototonic::createActions() {
     connect(moveUpAction, &QAction::triggered, [=](){ imageViewer->slideImage(QPoint(0, 50)); });
     moveDownAction = new QAction(tr("Move Image Down"), this);
     moveDownAction->setObjectName("moveDown");
-    connect(moveUpAction, &QAction::triggered, [=](){ imageViewer->slideImage(QPoint(0, -50)); });
+    connect(moveDownAction, &QAction::triggered, [=](){ imageViewer->slideImage(QPoint(0, -50)); });
 
     invertSelectionAction = new QAction(tr("Invert Selection"), this);
     invertSelectionAction->setObjectName("invertSelection");
@@ -1523,7 +1523,7 @@ void Phototonic::rotateLeft() {
     Settings::rotation -= 90;
     if (Settings::rotation < 0)
         Settings::rotation = 270;
-    imageViewer->refresh();
+    imageViewer->resizeImage();
     imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(Settings::rotation)));
 }
 
@@ -1531,19 +1531,19 @@ void Phototonic::rotateRight() {
     Settings::rotation += 90;
     if (Settings::rotation > 270)
         Settings::rotation = 0;
-    imageViewer->refresh();
+    imageViewer->resizeImage();
     imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(Settings::rotation)));
 }
 
 void Phototonic::flipVertical() {
     Settings::flipV = !Settings::flipV;
-    imageViewer->refresh();
+    imageViewer->resizeImage();
     imageViewer->setFeedback(Settings::flipV ? tr("Flipped Vertically") : tr("Unflipped Vertically"));
 }
 
 void Phototonic::flipHorizontal() {
     Settings::flipH = !Settings::flipH;
-    imageViewer->refresh();
+    imageViewer->resizeImage();
     imageViewer->setFeedback(Settings::flipH ? tr("Flipped Horizontally") : tr("Unflipped Horizontally"));
 }
 
@@ -1600,7 +1600,7 @@ void Phototonic::freeRotateLeft() {
     --Settings::rotation;
     if (Settings::rotation < 0)
         Settings::rotation = 359;
-    imageViewer->refresh();
+    imageViewer->resizeImage();
     imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(Settings::rotation)));
 }
 
@@ -1608,7 +1608,7 @@ void Phototonic::freeRotateRight() {
     ++Settings::rotation;
     if (Settings::rotation > 360)
         Settings::rotation = 1;
-    imageViewer->refresh();
+    imageViewer->resizeImage();
     imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(Settings::rotation)));
 }
 

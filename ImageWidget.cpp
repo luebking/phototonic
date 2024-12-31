@@ -21,7 +21,7 @@
 #include <QPainter>
 #include <QPaintEvent>
 
-ImageWidget::ImageWidget(QWidget *parent) : QWidget(parent)
+ImageWidget::ImageWidget(QWidget *parent) : QOpenGLWidget(parent)
 {
 }
 
@@ -30,7 +30,7 @@ bool ImageWidget::empty()
     return m_image.isNull();
 }
 
-QImage ImageWidget::image()
+const QImage &ImageWidget::image()
 {
     return m_image;
 }
@@ -38,6 +38,7 @@ QImage ImageWidget::image()
 void ImageWidget::setImage(const QImage &i)
 {
     m_image = i;
+    m_imageSize = i.size();
     m_rotation = 0;
     update();
 }
@@ -59,9 +60,16 @@ QPoint ImageWidget::mapToImage(QPoint p)
     return QPoint(p.x() - upperLeft.x(), p.y() - upperLeft.y());
 }
 
-QSize ImageWidget::imageSize() const
+void ImageWidget::setImageSize(const QSize &s)
 {
-    return m_image.size();
+    m_imageSize = s;
+    update();
+}
+
+void ImageWidget::setImagePosition(const QPoint &p)
+{
+    m_imagePos = p;
+    update();
 }
 
 QSize ImageWidget::sizeHint() const
@@ -71,39 +79,21 @@ QSize ImageWidget::sizeHint() const
 
 void ImageWidget::paintEvent(QPaintEvent *ev)
 {
-    float scale = qMax(float(width()) / m_image.width(), float(height()) / m_image.height());
+    float scale = qMax(float(m_imageSize.width()) / m_image.width(), float(m_imageSize.height()) / m_image.height());
+    if (scale == 0.0f)
+        return;
 
     QPainter painter(this);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
 
-    if (qFuzzyIsNull(m_rotation)) {
-        const float sx = qMax(-x() / scale, 0.f);
-        const float sy = qMax(-y() / scale, 0.f);
-        const float sw = qMin<float>(width() / scale, m_image.width());
-        const float sh = qMin<float>(height() / scale, m_image.height());
-
-        QRectF sourceRect(sx, sy, sw, sh);
-        QRectF targetRect = rect();
-        targetRect &= ev->rect();
-        sourceRect &= QRectF(ev->rect().x() / scale, ev->rect().y() / scale, ev->rect().width() / scale, ev->rect().height() / scale);
-
-        if (sourceRect.width() * sourceRect.height() < 500 * 500) {
-            painter.drawImage(targetRect.topLeft(), m_image.copy(sourceRect.toRect()).scaled(targetRect.toRect().size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation));
-
-        } else {
-            painter.drawImage(targetRect, m_image, sourceRect);
-        }
-
-        return;
-    }
-    painter.scale(scale, scale);
+    // rotate
     QPoint center(width() / 2, height() / 2);
     painter.translate(center);
     painter.rotate(m_rotation);
     painter.translate(center * -1);
-    QPoint upperLeft;
-    if (width() > m_image.width() * scale)
-        upperLeft.setX(center.x() - scale*m_image.width() / 2);
-    if (height() > m_image.height() * scale)
-        upperLeft.setY(center.y() - scale*m_image.height() / 2);
-    painter.drawImage(upperLeft, m_image);
+
+    // scale
+    painter.scale(scale, scale);
+
+    painter.drawImage(m_imagePos / scale, m_image);
 }

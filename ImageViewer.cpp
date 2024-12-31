@@ -163,140 +163,104 @@ static inline int calcZoom(int size) {
 
 void ImageViewer::resizeImage() {
     static bool busy = false;
-    if (busy) {
+    if (busy)
         return;
-    }
-    QSize imageSize;
-    if (animation) {
-        imageSize = animation->currentPixmap().size();
-    } else if (imageWidget) {
-        imageSize = imageWidget->imageSize();
-    } else {
+
+    QSize imageSize = animation ? animation->currentPixmap().size() : imageWidget->image().size();
+    if (imageSize.isEmpty())
         return;
-    }
-    if (imageSize.isEmpty()) {
-        return;
-    }
 
     busy = true;
-
-    int imageViewWidth = this->size().width();
-    int imageViewHeight = this->size().height();
-
-    float positionY = verticalScrollBar()->value() > 0 ? verticalScrollBar()->value() / float(verticalScrollBar()->maximum()) : 0;
-    float positionX = horizontalScrollBar()->value() > 0 ? horizontalScrollBar()->value() / float(horizontalScrollBar()->maximum()) : 0;
 
     if (tempDisableResize) {
         imageSize.scale(imageSize.width(), imageSize.height(), Qt::KeepAspectRatio);
     } else {
         switch (Settings::zoomInFlags) {
             case Disable:
-                if (imageSize.width() <= imageViewWidth && imageSize.height() <= imageViewHeight) {
-                    imageSize.scale(calcZoom(imageSize.width()),
-                                    calcZoom(imageSize.height()),
-                                    Qt::KeepAspectRatio);
+                if (imageSize.width() <= width() && imageSize.height() <= height()) {
+                    imageSize.scale(calcZoom(imageSize.width()), calcZoom(imageSize.height()), Qt::KeepAspectRatio);
                 }
                 break;
 
             case WidthAndHeight:
-                if (imageSize.width() <= imageViewWidth && imageSize.height() <= imageViewHeight) {
-                    imageSize.scale(calcZoom(imageViewWidth),
-                                    calcZoom(imageViewHeight),
-                                    Qt::KeepAspectRatio);
+                if (imageSize.width() <= width() && imageSize.height() <= height()) {
+                    imageSize.scale(calcZoom(width()), calcZoom(height()), Qt::KeepAspectRatio);
                 }
                 break;
 
             case Width:
-                if (imageSize.width() <= imageViewWidth) {
-                    imageSize.scale(calcZoom(imageViewWidth),
-                                    calcZoom(getHeightByWidth(imageSize.width(),
-                                                              imageSize.height(),
-                                                              imageViewWidth)),
-                                    Qt::KeepAspectRatio);
+                if (imageSize.width() <= width()) {
+                    imageSize.scale(calcZoom(width()), calcZoom(getHeightByWidth(imageSize.width(), imageSize.height(), width())), Qt::KeepAspectRatio);
                 }
                 break;
 
             case Height:
-                if (imageSize.height() <= imageViewHeight) {
-                    imageSize.scale(calcZoom(getWidthByHeight(imageSize.height(),
-                                                              imageSize.width(),
-                                                              imageViewHeight)),
-                                    calcZoom(imageViewHeight),
-                                    Qt::KeepAspectRatio);
+                if (imageSize.height() <= height()) {
+                    imageSize.scale(calcZoom(getWidthByHeight(imageSize.height(), imageSize.width(), height())), calcZoom(height()), Qt::KeepAspectRatio);
                 }
                 break;
 
             case Disprop:
-                int newWidth = imageSize.width(), newHeight = imageSize.height();
-                if (newWidth <= imageViewWidth) {
-                    newWidth = imageViewWidth;
-                }
-                if (newHeight <= imageViewHeight) {
-                    newHeight = imageViewHeight;
-                }
-                imageSize.scale(calcZoom(newWidth), calcZoom(newHeight), Qt::IgnoreAspectRatio);
+                imageSize.scale(calcZoom(qMax(imageSize.width(), width())), calcZoom(qMax(imageSize.height(), height())), Qt::IgnoreAspectRatio);
                 break;
         }
 
         switch (Settings::zoomOutFlags) {
             case Disable:
-                if (imageSize.width() >= imageViewWidth || imageSize.height() >= imageViewHeight) {
-                    imageSize.scale(calcZoom(imageSize.width()),
-                                    calcZoom(imageSize.height()),
-                                    Qt::KeepAspectRatio);
+                if (imageSize.width() >= width() || imageSize.height() >= height()) {
+                    imageSize.scale(calcZoom(imageSize.width()), calcZoom(imageSize.height()), Qt::KeepAspectRatio);
                 }
                 break;
 
             case WidthAndHeight:
-                if (imageSize.width() >= imageViewWidth || imageSize.height() >= imageViewHeight) {
-                    imageSize.scale(calcZoom(imageViewWidth),
-                                    calcZoom(imageViewHeight),
-                                    Qt::KeepAspectRatio);
+                if (imageSize.width() >= width() || imageSize.height() >= height()) {
+                    imageSize.scale(calcZoom(width()), calcZoom(height()), Qt::KeepAspectRatio);
                 }
                 break;
 
             case Width:
-                if (imageSize.width() >= imageViewWidth) {
-                    imageSize.scale(calcZoom(imageViewWidth),
-                                    calcZoom(getHeightByWidth(imageSize.width(),
-                                                              imageSize.height(),
-                                                              imageViewWidth)),
-                                    Qt::KeepAspectRatio);
+                if (imageSize.width() >= width()) {
+                    imageSize.scale(calcZoom(width()), calcZoom(getHeightByWidth(imageSize.width(), imageSize.height(), width())), Qt::KeepAspectRatio);
                 }
                 break;
 
             case Height:
-                if (imageSize.height() >= imageViewHeight) {
-                    imageSize.scale(calcZoom(getWidthByHeight(imageSize.height(),
-                                                              imageSize.width(),
-                                                              imageViewHeight)),
-                                    calcZoom(imageViewHeight),
-                                    Qt::KeepAspectRatio);
+                if (imageSize.height() >= height()) {
+                    imageSize.scale(calcZoom(getWidthByHeight(imageSize.height(), imageSize.width(), height())), calcZoom(height()), Qt::KeepAspectRatio);
                 }
                 break;
 
             case Disprop:
-                int newWidth = imageSize.width(), newHeight = imageSize.height();
-                if (newWidth >= imageViewWidth) {
-                    newWidth = imageViewWidth;
-                }
-                if (newHeight >= imageViewHeight) {
-                    newHeight = imageViewHeight;
-                }
-                imageSize.scale(calcZoom(newWidth), calcZoom(newHeight), Qt::IgnoreAspectRatio);
+                imageSize.scale(calcZoom(qMin(imageSize.width(), width())), calcZoom(qMin(imageSize.height(), height())), Qt::IgnoreAspectRatio);
                 break;
         }
     }
 
 
     QPointF newPosition = widget()->pos();
-    widget()->setFixedSize(imageSize);
-    widget()->adjustSize();
-    if (newPosition.isNull() || imageSize.width() < width() + 100 || imageSize.height() < height() + 100) {
-        centerImage(imageSize);
+    if (imageWidget) {
+        newPosition = imageWidget->imagePosition();
+        imageWidget->setRotation(Settings::rotation);
+        imageWidget->setFixedSize(size());
+        if (newPosition.isNull() || imageSize.width() < width() + 100 || imageSize.height() < height() + 100) {
+            centerImage(imageSize);
+        } else {
+            const double fx = double(imageSize.width())/imageWidget->imageSize().width(),
+                         fy = double(imageSize.height())/imageWidget->imageSize().height();
+            imageWidget->setImagePosition(QPoint(imageWidget->imagePosition().x()*fx, imageWidget->imagePosition().y()*fy));
+        }
+        imageWidget->setImageSize(imageSize);
     } else {
-        horizontalScrollBar()->setValue(horizontalScrollBar()->maximum() * positionX);
-        verticalScrollBar()->setValue(verticalScrollBar()->maximum() * positionY);
+        widget()->setFixedSize(imageSize);
+//        widget()->adjustSize();
+        if (newPosition.isNull() || imageSize.width() < width() + 100 || imageSize.height() < height() + 100) {
+            centerImage(imageSize);
+        } else {
+            float positionY = verticalScrollBar()->value() > 0 ? verticalScrollBar()->value() / float(verticalScrollBar()->maximum()) : 0;
+            float positionX = horizontalScrollBar()->value() > 0 ? horizontalScrollBar()->value() / float(horizontalScrollBar()->maximum()) : 0;
+            horizontalScrollBar()->setValue(horizontalScrollBar()->maximum() * positionX);
+            verticalScrollBar()->setValue(verticalScrollBar()->maximum() * positionY);
+        }
     }
     busy = false;
 }
@@ -312,7 +276,11 @@ void ImageViewer::showEvent(QShowEvent *event) {
 }
 
 void ImageViewer::centerImage(QSize &imgSize) {
-    ensureVisible(imgSize.width()/2, imgSize.height()/2, width()/2, height()/2);
+    if (imageWidget) {
+        imageWidget->setImagePosition(QPoint((imageWidget->width() - imgSize.width())/2, (imageWidget->height() - imgSize.height())/2));
+    } else {
+        ensureVisible(imgSize.width()/2, imgSize.height()/2, width()/2, height()/2);
+    }
 }
 
 void ImageViewer::rotateByExifRotation(QImage &image, QString &imageFullPath) {
@@ -356,11 +324,12 @@ void ImageViewer::rotateByExifRotation(QImage &image, QString &imageFullPath) {
 }
 
 void ImageViewer::transform() {
-    if (!qFuzzyCompare(Settings::rotation, 0)) {
-        QTransform trans;
-        trans.rotate(Settings::rotation);
-        viewerImage = viewerImage.transformed(trans, Qt::SmoothTransformation);
-    }
+    qDebug() << "meeek";
+//    if (!qFuzzyCompare(Settings::rotation, 0)) {
+//        QTransform trans;
+//        trans.rotate(Settings::rotation);
+//        viewerImage = viewerImage.transformed(trans, Qt::SmoothTransformation);
+//    }
 
     if (Settings::flipH || Settings::flipV) {
         viewerImage = viewerImage.mirrored(Settings::flipH, Settings::flipV);
@@ -643,7 +612,7 @@ void ImageViewer::refresh() {
         viewerImage = origImage;
     }
 
-    transform();
+//    transform();
 
     if (Settings::colorsActive || Settings::keepTransform) {
         colorize();
@@ -939,8 +908,8 @@ void ImageViewer::applyCropAndRotation() {
 
         bandTopLeft = imageWidget->mapToImage(imageWidget->mapFromGlobal(bandTopLeft));
         bandBottomRight = imageWidget->mapToImage(imageWidget->mapFromGlobal(bandBottomRight));
-        double scaledX = imageWidget->imageSize().width();
-        double scaledY = imageWidget->imageSize().height();
+        double scaledX = imageWidget->image().width();
+        double scaledY = imageWidget->image().height();
         scaledX = viewerImage.width() / scaledX;
         scaledY = viewerImage.height() / scaledY;
 
@@ -979,8 +948,8 @@ void ImageViewer::setMouseMoveData(bool lockMove, int lMouseX, int lMouseY) {
     moveImageLocked = lockMove;
     mouseX = lMouseX;
     mouseY = lMouseY;
-    layoutX = imageWidget->pos().x();
-    layoutY = imageWidget->pos().y();
+    layoutX = imageWidget->imagePosition().x();
+    layoutY = imageWidget->imagePosition().y();
 }
 
 void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
@@ -1011,38 +980,35 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
         }
 
         cropRubberBand->setGeometry(newRect.normalized());
-    } else {
-        if (moveImageLocked) {
-            int newX = layoutX + (event->pos().x() - mouseX);
-            int newY = layoutY + (event->pos().y() - mouseY);
-            bool needToMove = false;
+    } else if (moveImageLocked) {
+        int newX = layoutX + (event->pos().x() - mouseX);
+        int newY = layoutY + (event->pos().y() - mouseY);
+        bool needToMove = false;
 
-            if (imageWidget->size().width() > size().width()) {
-                if (newX > 0) {
-                    newX = 0;
-                } else if (newX < (size().width() - imageWidget->size().width())) {
-                    newX = (size().width() - imageWidget->size().width());
-                }
-                needToMove = true;
-            } else {
-                newX = layoutX;
+        if (imageWidget->imageSize().width() > size().width()) {
+            if (newX > 0) {
+                newX = 0;
+            } else if (newX < (size().width() - imageWidget->imageSize().width())) {
+                newX = (size().width() - imageWidget->imageSize().width());
             }
+            needToMove = true;
+        } else {
+            newX = layoutX;
+        }
 
-            if (imageWidget->size().height() > size().height()) {
-                if (newY > 0) {
-                    newY = 0;
-                } else if (newY < (size().height() - imageWidget->size().height())) {
-                    newY = (size().height() - imageWidget->size().height());
-                }
-                needToMove = true;
-            } else {
-                newY = layoutY;
+        if (imageWidget->imageSize().height() > size().height()) {
+            if (newY > 0) {
+                newY = 0;
+            } else if (newY < (size().height() - imageWidget->imageSize().height())) {
+                newY = (size().height() - imageWidget->imageSize().height());
             }
+            needToMove = true;
+        } else {
+            newY = layoutY;
+        }
 
-            if (needToMove) {
-                horizontalScrollBar()->setValue(-newX);
-                verticalScrollBar()->setValue(-newY);
-            }
+        if (needToMove) {
+            imageWidget->setImagePosition(QPoint(newX, newY));
         }
     }
 }
@@ -1052,32 +1018,31 @@ void ImageViewer::slideImage(QPoint delta) {
         return;
     }
 
-    QPoint newPos = imageWidget->pos() + delta;
+    QPoint newPos = imageWidget->imagePosition() + delta;
     layoutX = newPos.x();
     layoutY = newPos.y();
     bool needToMove = false;
 
-    if (imageWidget->size().width() > size().width()) {
+    if (imageWidget->imageSize().width() > size().width()) {
         if (newPos.x() > 0) {
             newPos.setX(0);
-        } else if (newPos.x() < (size().width() - imageWidget->size().width())) {
-            newPos.setX(size().width() - imageWidget->size().width());
+        } else if (newPos.x() < (size().width() - imageWidget->imageSize().width())) {
+            newPos.setX(size().width() - imageWidget->imageSize().width());
         }
         needToMove = true;
     }
 
-    if (imageWidget->size().height() > size().height()) {
+    if (imageWidget->imageSize().height() > size().height()) {
         if (newPos.y() > 0) {
             newPos.setY(0);
-        } else if (newPos.y() < (size().height() - imageWidget->size().height())) {
-            newPos.setY(size().height() - imageWidget->size().height());
+        } else if (newPos.y() < (size().height() - imageWidget->imageSize().height())) {
+            newPos.setY(size().height() - imageWidget->imageSize().height());
         }
         needToMove = true;
     }
 
     if (needToMove) {
-        horizontalScrollBar()->setValue(-newPos.x());
-        verticalScrollBar()->setValue(-newPos.y());
+        imageWidget->setImagePosition(newPos);
     }
 }
 

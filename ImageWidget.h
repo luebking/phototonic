@@ -19,20 +19,23 @@
 #ifndef IMAGEWIDGET_H
 #define IMAGEWIDGET_H
 
-#include <QWidget>
+#include <QOpenGLWidget>
 
-class ImageWidget : public QWidget
+class ImageWidget : public QOpenGLWidget
 {
     Q_OBJECT
 public:
     explicit ImageWidget(QWidget *parent = nullptr);
     bool empty();
-    QImage image();
+    const QImage &image();
+    const QPoint &imagePosition() { return m_imagePos; }
+    const QSize &imageSize() { return m_imageSize; }
     void setImage(const QImage &i);
+    void setImagePosition(const QPoint &p);
+    void setImageSize(const QSize &s);
     qreal rotation() { return m_rotation; }
     void setRotation(qreal r);
     QPoint mapToImage(QPoint p);
-    QSize imageSize() const;
 
 protected:
 
@@ -43,6 +46,8 @@ protected:
 private:
     QImage m_image;
     qreal m_rotation = 0;
+    QSize m_imageSize;
+    QPoint m_imagePos;
 };
 
 #endif // IMAGEWIDGET_H
