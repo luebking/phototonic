@@ -244,7 +244,6 @@ private slots:
 
 private:
     QMenu *myMainMenu;
-    QMenu *batchSubMenu;
     QMenu *openWithSubMenu;
 
     QToolBar *myMainToolBar;
@@ -269,12 +268,10 @@ private:
     QAction *addBookmarkAction;
     QAction *removeBookmarkAction;
 
-    QActionGroup *thumbLayoutsGroup;
     QAction *setClassicThumbsAction;
     QAction *setSquareThumbsAction;
     QAction *setCompactThumbsAction;
 
-    QActionGroup *sortTypesGroup;
     QAction *sortByNameAction;
     QAction *sortByTimeAction;
     QAction *sortBySizeAction;
@@ -290,7 +287,6 @@ private:
     QAction *settingsAction;
     QAction *thumbsZoomInAction;
     QAction *thumbsZoomOutAction;
-    QAction *zoomSubMenuAction;
     QAction *zoomInAction;
     QAction *zoomOutAction;
     QAction *resetZoomAction;
@@ -299,7 +295,6 @@ private:
     QAction *keepTransformAction;
     QAction *transformSubMenuAction;
     QAction *batchSubMenuAction;
-    QAction *viewSubMenuAction;
     QAction *rotateLeftAction;
     QAction *rotateRightAction;
     QAction *rotateToolAction;
@@ -311,16 +306,11 @@ private:
     QAction *freeRotateLeftAction;
     QAction *freeRotateRightAction;
     QAction *colorsAction;
-    QActionGroup *mirroringActionGroup;
-    QAction *mirrorSubMenuAction;
     QAction *mirrorDisabledAction;
     QAction *mirrorDualAction;
     QAction *mirrorTripleAction;
     QAction *mirrorDualVerticalAction;
     QAction *mirrorQuadAction;
-    QAction *guideSubMenuAction;
-    QAction *guideAddVerticalAction;
-    QAction *guideAddHorizontalAction;
     QAction *moveLeftAction;
     QAction *moveRightAction;
     QAction *moveUpAction;

@@ -260,94 +260,82 @@ void Phototonic::createImageViewer() {
     imageViewer->addAction(externalAppsAction);
 
     // Actions
+    contextMenu->addAction(openWithMenuAction);
     contextMenu->addSeparator();
-    contextMenu->addAction(nextImageAction);
-    contextMenu->addAction(prevImageAction);
-    contextMenu->addAction(firstImageAction);
-    contextMenu->addAction(lastImageAction);
-    contextMenu->addAction(randomImageAction);
-    contextMenu->addAction(slideShowAction);
 
-    contextMenu->addSeparator();
-    QMenu *menu = new QMenu(tr("Zoom"));
-    zoomSubMenuAction = new QAction(tr("Zoom"), this);
-    zoomSubMenuAction->setIcon(QIcon::fromTheme("edit-find", QIcon(":/images/zoom.png")));
-    zoomSubMenuAction->setMenu(menu);
-    contextMenu->addAction(zoomSubMenuAction);
-    menu->addAction(zoomInAction);
-    menu->addAction(zoomOutAction);
-    menu->addAction(origZoomAction);
-    menu->addAction(resetZoomAction);
-    menu->addSeparator();
-    menu->addAction(keepZoomAction);
+    QMenu *menu = contextMenu->addMenu(tr("Navigate"));
+    menu->addAction(nextImageAction);
+    menu->addAction(prevImageAction);
+    menu->addAction(firstImageAction);
+    menu->addAction(lastImageAction);
+    menu->addAction(randomImageAction);
+    menu->addAction(slideShowAction);
 
-    menu = new QMenu(tr("Mirroring"));
-    mirrorSubMenuAction = new QAction(tr("Mirroring"), this);
-    mirrorSubMenuAction->setMenu(menu);
-    mirroringActionGroup = new QActionGroup(this);
-    mirroringActionGroup->addAction(mirrorDisabledAction);
-    mirroringActionGroup->addAction(mirrorDualAction);
-    mirroringActionGroup->addAction(mirrorTripleAction);
-    mirroringActionGroup->addAction(mirrorDualVerticalAction);
-    mirroringActionGroup->addAction(mirrorQuadAction);
-    menu->addActions(mirroringActionGroup->actions());
+    menu = contextMenu->addMenu(tr("Guides"));
+    menu->addAction(tr("Add vertical guide"), this, SLOT(addVerticalGuide()));
+    menu->addAction(tr("Add horizontal guide"), this, SLOT(addHorizontalGuide()));
 
-    menu = new QMenu(tr("Guides"));
-    guideSubMenuAction = new QAction(tr("Guides"), this);
-    guideSubMenuAction->setMenu(menu);
-    guideAddVerticalAction = new QAction(tr("Add vertical guide"), this);
-    guideAddHorizontalAction = new QAction(tr("Add horizontal guide"), this);
-    menu->addAction(guideAddVerticalAction);
-    menu->addAction(guideAddHorizontalAction);
-    connect(guideAddVerticalAction, &QAction::triggered, this, &Phototonic::addVerticalGuide);
-    connect(guideAddHorizontalAction, &QAction::triggered, this, &Phototonic::addHorizontalGuide);
+    menu = contextMenu->addMenu(tr("Transform"));
 
-    menu = new QMenu(tr("Transform"));
-    transformSubMenuAction = new QAction(tr("Transform"), this);
-    transformSubMenuAction->setMenu(menu);
-    contextMenu->addAction(resizeAction);
-    contextMenu->addAction(applyCropAndRotationAction);
-    contextMenu->addAction(transformSubMenuAction);
-    menu->addAction(colorsAction);
-    menu->addAction(rotateRightAction);
-    menu->addAction(rotateLeftAction);
-    menu->addAction(freeRotateRightAction);
-    menu->addAction(freeRotateLeftAction);
-    menu->addAction(flipHorizontalAction);
-    menu->addAction(flipVerticalAction);
+    QMenu *submenu = menu->addMenu(QIcon::fromTheme("edit-find", QIcon(":/images/zoom.png")), tr("Zoom"));
+    submenu->addAction(zoomInAction);
+    submenu->addAction(zoomOutAction);
+    submenu->addAction(origZoomAction);
+    submenu->addAction(resetZoomAction);
+    submenu->addSeparator();
+    submenu->addAction(keepZoomAction);
+
+    submenu = contextMenu->addMenu(tr("Mirroring"));
+    QActionGroup *group = new QActionGroup(submenu);
+    submenu->addAction(flipHorizontalAction);
+    submenu->addAction(flipVerticalAction);
+    submenu->addSeparator();
+    group->addAction(mirrorDisabledAction);
+    group->addAction(mirrorDualAction);
+    group->addAction(mirrorTripleAction);
+    group->addAction(mirrorDualVerticalAction);
+    group->addAction(mirrorQuadAction);
+    submenu->addActions(group->actions());
+
+    submenu = menu->addMenu(tr("Rotate"));
+    submenu->addAction(rotateRightAction);
+    submenu->addAction(rotateLeftAction);
+    submenu->addAction(freeRotateRightAction);
+    submenu->addAction(freeRotateLeftAction);
+
     menu->addAction(cropAction);
-
+    menu->addAction(colorsAction);
     menu->addSeparator();
     menu->addAction(keepTransformAction);
-    contextMenu->addAction(mirrorSubMenuAction);
-    contextMenu->addAction(guideSubMenuAction);
 
-    contextMenu->addSeparator();
-    contextMenu->addAction(copyToAction);
-    contextMenu->addAction(moveToAction);
-    contextMenu->addAction(saveAction);
-    contextMenu->addAction(saveAsAction);
-    contextMenu->addAction(renameAction);
-    contextMenu->addAction(deleteAction);
-    contextMenu->addAction(deletePermanentlyAction);
-    contextMenu->addAction(openWithMenuAction);
 
-    contextMenu->addSeparator();
-    menu = new QMenu(tr("View"));
-    viewSubMenuAction = new QAction(tr("View"), this);
-    viewSubMenuAction->setMenu(menu);
-    contextMenu->addAction(viewSubMenuAction);
+    menu = contextMenu->addMenu(tr("Edit"));
+    menu->addAction(resizeAction);
+    menu->addAction(applyCropAndRotationAction);
+
+    menu = contextMenu->addMenu(tr("File"));
+    menu->addAction(copyToAction);
+    menu->addAction(moveToAction);
+    menu->addAction(saveAction);
+    menu->addAction(saveAsAction);
+    menu->addAction(renameAction);
+    menu->addSeparator();
+    menu->addAction(deleteAction);
+    menu->addAction(deletePermanentlyAction);
+
+
+    menu = contextMenu->addMenu(tr("View"));
     menu->addAction(fullScreenAction);
-    menu->addAction(showClipboardAction);
     menu->addAction(showViewerToolbarAction);
+    menu->addAction(showClipboardAction);
     menu->addAction(refreshAction);
+
+    contextMenu->addSeparator();
+
     contextMenu->addAction(copyImageAction);
     contextMenu->addAction(pasteImageAction);
-    contextMenu->addAction(CloseImageAction);
-    contextMenu->addAction(exitAction);
-
     contextMenu->addSeparator();
-    contextMenu->addAction(settingsAction);
+    contextMenu->addAction(CloseImageAction);
 
     imageViewer->setContextMenuPolicy(Qt::DefaultContextMenu);
     imageViewer->setContextMenu(contextMenu);
@@ -780,7 +768,7 @@ void Phototonic::createActions() {
     connect(invertSelectionAction, SIGNAL(triggered()), thumbsViewer, SLOT(invertSelection()));
 
     // There could be a Batch submenu if we had any more items to put there
-    batchSubMenu = new QMenu(tr("Batch"));
+    QMenu *batchSubMenu = new QMenu(tr("Batch"));
     batchSubMenuAction = new QAction(tr("Batch"), this);
     batchSubMenuAction->setMenu(batchSubMenu);
     batchTransformAction = new QAction(tr("Repeat Rotate and Crop"), this);
@@ -846,7 +834,7 @@ void Phototonic::createMenus() {
     menu->addAction(slideShowAction);
     menu->addSeparator();
 
-    thumbLayoutsGroup = new QActionGroup(this);
+    QActionGroup *thumbLayoutsGroup = new QActionGroup(this);
     thumbLayoutsGroup->addAction(setClassicThumbsAction);
     thumbLayoutsGroup->addAction(setSquareThumbsAction);
     thumbLayoutsGroup->addAction(setCompactThumbsAction);
@@ -856,7 +844,7 @@ void Phototonic::createMenus() {
     menu->addAction(thumbsZoomInAction);
     menu->addAction(thumbsZoomOutAction);
     QMenu *sortMenu = menu->addMenu(tr("Thumbnails Sorting"));
-    sortTypesGroup = new QActionGroup(this);
+    QActionGroup *sortTypesGroup = new QActionGroup(this);
     sortTypesGroup->addAction(sortByNameAction);
     sortTypesGroup->addAction(sortByTimeAction);
     sortTypesGroup->addAction(sortBySizeAction);
