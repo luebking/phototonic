@@ -28,12 +28,12 @@ public:
     explicit ImageWidget(QWidget *parent = nullptr);
     bool empty();
     const QImage &image();
-    const QPoint &imagePosition() { return m_imagePos; }
-    const QSize &imageSize() { return m_imageSize; }
+    const QPoint &imagePosition() const { return m_imagePos; }
+    const QSize &imageSize() const { return m_imageSize; }
     void setImage(const QImage &i);
     void setImagePosition(const QPoint &p);
     void setImageSize(const QSize &s);
-    qreal rotation() { return m_rotation; }
+    qreal rotation() const { return m_rotation; }
     void setRotation(qreal r);
     QPoint mapToImage(QPoint p);
 
