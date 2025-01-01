@@ -146,19 +146,15 @@ ImageViewer::ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &
 }
 
 static unsigned int getHeightByWidth(int imgWidth, int imgHeight, int newWidth) {
-    float aspect;
-    aspect = (float) imgWidth / (float) newWidth;
-    return (imgHeight / aspect);
+    return qRound(imgHeight * newWidth / double(imgWidth));
 }
 
 static unsigned int getWidthByHeight(int imgHeight, int imgWidth, int newHeight) {
-    float aspect;
-    aspect = (float) imgHeight / (float) newHeight;
-    return (imgWidth / aspect);
+    return qRound(imgWidth * newHeight / double(imgHeight));
 }
 
 static inline int calcZoom(int size) {
-    return size * Settings::imageZoomFactor;
+    return qRound(size * Settings::imageZoomFactor);
 }
 
 void ImageViewer::resizeImage() {
@@ -237,23 +233,27 @@ void ImageViewer::resizeImage() {
     }
 
 
-    QPointF newPosition = widget()->pos();
     if (imageWidget) {
-        newPosition = imageWidget->imagePosition();
         imageWidget->setRotation(Settings::rotation);
         imageWidget->setFixedSize(size());
-        if (newPosition.isNull() || imageSize.width() < width() + 100 || imageSize.height() < height() + 100) {
+        if (imageWidget->imagePosition().isNull() || imageSize.width() < width() || imageSize.height() < height()) {
             centerImage(imageSize);
         } else {
             const double fx = double(imageSize.width())/imageWidget->imageSize().width(),
                          fy = double(imageSize.height())/imageWidget->imageSize().height();
-            imageWidget->setImagePosition(QPoint(imageWidget->imagePosition().x()*fx, imageWidget->imagePosition().y()*fy));
+            int x = qRound(imageWidget->imagePosition().x()*fx);
+            if (imageSize.width() >= width())
+                x = qMax(qMin(x, 0),  width() - imageSize.width());
+            int y = qRound(imageWidget->imagePosition().y()*fy);
+            if (imageSize.height() >= height())
+                y = qMax(qMin(y, 0), height() - imageSize.height());
+            imageWidget->setImagePosition(QPoint(x,y));
         }
         imageWidget->setImageSize(imageSize);
     } else {
         widget()->setFixedSize(imageSize);
 //        widget()->adjustSize();
-        if (newPosition.isNull() || imageSize.width() < width() + 100 || imageSize.height() < height() + 100) {
+        if (widget()->pos().isNull() || imageSize.width() < width() + 100 || imageSize.height() < height() + 100) {
             centerImage(imageSize);
         } else {
             float positionY = verticalScrollBar()->value() > 0 ? verticalScrollBar()->value() / float(verticalScrollBar()->maximum()) : 0;
