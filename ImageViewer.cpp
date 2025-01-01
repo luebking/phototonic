@@ -325,11 +325,11 @@ void ImageViewer::rotateByExifRotation(QImage &image, QString &imageFullPath) {
 
 void ImageViewer::transform() {
     qDebug() << "meeek";
-//    if (!qFuzzyCompare(Settings::rotation, 0)) {
-//        QTransform trans;
-//        trans.rotate(Settings::rotation);
-//        viewerImage = viewerImage.transformed(trans, Qt::SmoothTransformation);
-//    }
+    if (!qFuzzyCompare(Settings::rotation, 0)) {
+        QTransform trans;
+        trans.rotate(Settings::rotation);
+        viewerImage = viewerImage.transformed(trans, Qt::SmoothTransformation);
+    }
 
     if (Settings::flipH || Settings::flipV) {
         viewerImage = viewerImage.mirrored(Settings::flipH, Settings::flipV);
@@ -612,7 +612,7 @@ void ImageViewer::refresh() {
         viewerImage = origImage;
     }
 
-//    transform();
+    transform();
 
     if (Settings::colorsActive || Settings::keepTransform) {
         colorize();
@@ -924,21 +924,21 @@ void ImageViewer::applyCropAndRotation() {
         Settings::cropHeight = viewerImage.height() - bandBottomRight.y();
         Settings::rotation = imageWidget->rotation();
 
-        cropRubberBand->hide();
-        refresh();
         didSomething = true;
     }
     if (!qFuzzyCompare(imageWidget->rotation(), 0)) {
-        refresh();
-        imageWidget->setRotation(0);
         didSomething = true;
     }
-    if (!didSomething) {
+    if (didSomething) {
+        refresh();
+    } else {
         MessageBox messageBox(this);
         messageBox.warning(tr("No selection for cropping, and no rotation"),
                            tr("To make a selection, hold down the Ctrl key and select a region using the mouse. "
                               "To rotate, hold down the Ctrl and Shift keys and drag the mouse near the right edge."));
     }
+    imageWidget->setRotation(0);
+    cropRubberBand->hide();
 }
 
 void ImageViewer::setMouseMoveData(bool lockMove, int lMouseX, int lMouseY) {
