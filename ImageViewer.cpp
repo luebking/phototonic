@@ -1189,8 +1189,8 @@ void ImageViewer::contextMenuEvent(QContextMenuEvent *) {
     while (QApplication::overrideCursor()) {
         QApplication::restoreOverrideCursor();
     }
-    contextMenuPosition = QCursor::pos();
-    myContextMenu->exec(contextMenuPosition);
+    m_contextSpot = QCursor::pos();
+    myContextMenu->exec(m_contextSpot);
 }
 
 int ImageViewer::getImageWidthPreCropped() {
@@ -1230,7 +1230,7 @@ void ImageViewer::setBackgroundColor() {
     setPalette(pal);
 }
 
-QPoint ImageViewer::getContextMenuPosition() {
-    return contextMenuPosition;
+QPoint ImageViewer::contextSpot() {
+    return m_contextSpot;
 }
 

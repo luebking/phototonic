@@ -197,10 +197,6 @@ private slots:
 
     void flipHorizontal();
 
-    void addVerticalGuide();
-
-    void addHorizontalGuide();
-
     void setDocksVisibility(bool visible);
 
     void goTop();

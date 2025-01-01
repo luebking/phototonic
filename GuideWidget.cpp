@@ -25,28 +25,40 @@ static const int RuleWidgetWidth = 5; // determines the active area for dragging
 
 QAction *GuideWidget::m_deleteAction = nullptr;
 
-GuideWidget::GuideWidget(QWidget *parent, bool vertical) : QWidget(parent), m_vertical(vertical)
+GuideWidget::GuideWidget(QWidget *parent, Qt::Orientation o, int offset) : QWidget(parent), m_vertical(o == Qt::Vertical)
 {
+    if (!parent) {
+        qWarning() << "GuideWidget requires a parent to guide around! I'm gonna die and you're gonna crash…";
+        deleteLater();
+        return;
+    }
     resizeToParent();
-    setCursor(vertical ? Qt::SplitHCursor : Qt::SplitVCursor);
+    parent->installEventFilter(this);
+    if (offset)
+        offset -= RuleWidgetWidth / 2;
+    setCursor(m_vertical ? Qt::SplitHCursor : Qt::SplitVCursor);
+    move(m_vertical ? offset : 0, m_vertical ? 0 : offset);
     if (!m_deleteAction)
         m_deleteAction = new QAction(GuideWidget::tr("Remove guide"));
     addAction(m_deleteAction);
     setContextMenuPolicy(Qt::ActionsContextMenu);
     connect(m_deleteAction, &QAction::triggered, this, &QObject::deleteLater);
+    show();
+}
+
+bool GuideWidget::eventFilter(QObject *o, QEvent *e)
+{
+    if (o == parent() && e->type() == QEvent::Resize)
+        resizeToParent();
+    return false;
 }
 
 void GuideWidget::resizeToParent()
 {
     if (m_vertical)
-        resize(5, parentWidget()->height());
+        resize(RuleWidgetWidth, parentWidget()->height());
     else
-        resize(parentWidget()->width(), 6);
-}
-
-int GuideWidget::halfThickness()
-{
-    return RuleWidgetWidth / 2;
+        resize(parentWidget()->width(), RuleWidgetWidth);
 }
 
 void GuideWidget::mouseMoveEvent(QMouseEvent *event)
@@ -56,17 +68,18 @@ void GuideWidget::mouseMoveEvent(QMouseEvent *event)
         return; // don't interfere with crop selection etc.
     }
     if (m_vertical)
-        move(x() + event->pos().x() - halfThickness(), 0);
+        move(x() + event->pos().x() - RuleWidgetWidth/2, 0);
     else
-        move(0, y() + event->pos().y() - halfThickness());
+        move(0, y() + event->pos().y() - RuleWidgetWidth/2);
 }
 
 void GuideWidget::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setPen(Qt::cyan);
+    int xy = RuleWidgetWidth / 2;
     if (m_vertical)
-        painter.drawLine(halfThickness(), 0, halfThickness(), height());
+        painter.drawLine(xy, 0, xy, height());
     else
-        painter.drawLine(0, halfThickness(), width(), halfThickness());
+        painter.drawLine(0, xy, width(), xy);
 }

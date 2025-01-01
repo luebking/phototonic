@@ -73,7 +73,7 @@ public:
 
     int getImageWidthPreCropped();
     int getImageHeightPreCropped();
-    QPoint getContextMenuPosition();
+    QPoint contextSpot();
 
 signals:
     void toolsUpdated();
@@ -123,7 +123,7 @@ private:
     int layoutY;
     QLabel *feedbackLabel;
     QPoint cropOrigin;
-    QPoint contextMenuPosition;
+    QPoint m_contextSpot;
     std::shared_ptr<MetadataCache> metadataCache;
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);

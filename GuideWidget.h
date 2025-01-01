@@ -26,16 +26,15 @@ class GuideWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GuideWidget(QWidget *parent = nullptr, bool vertical = false);
-
-    void resizeToParent();
-    static int halfThickness();
+    explicit GuideWidget(QWidget *parent, Qt::Orientation o = Qt::Horizontal, int offset = 0);
 
 protected:
+    bool eventFilter(QObject *o, QEvent *e) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void paintEvent(QPaintEvent *event) override;
 
 private:
+    void resizeToParent();
     bool m_vertical;
     static QAction *m_deleteAction;
 };

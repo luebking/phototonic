@@ -272,8 +272,12 @@ void Phototonic::createImageViewer() {
     menu->addAction(slideShowAction);
 
     menu = contextMenu->addMenu(tr("Guides"));
-    menu->addAction(tr("Add vertical guide"), this, SLOT(addVerticalGuide()));
-    menu->addAction(tr("Add horizontal guide"), this, SLOT(addHorizontalGuide()));
+    QAction *act = new QAction(tr("Add vertical guide"), menu);
+    connect(act, &QAction::triggered, [=]() { new GuideWidget(imageViewer, Qt::Vertical, imageViewer->contextSpot().x()); });
+    menu->addAction(act);
+    act = new QAction(tr("Add horizontal guide"), menu);
+    connect(act, &QAction::triggered, [=]() { new GuideWidget(imageViewer, Qt::Horizontal, imageViewer->contextSpot().y()); });
+    menu->addAction(act);
 
     menu = contextMenu->addMenu(tr("Transform"));
 
@@ -1545,20 +1549,6 @@ void Phototonic::flipHorizontal() {
     Settings::flipH = !Settings::flipH;
     imageViewer->resizeImage();
     imageViewer->setFeedback(Settings::flipH ? tr("Flipped Horizontally") : tr("Unflipped Horizontally"));
-}
-
-void Phototonic::addVerticalGuide()
-{
-    GuideWidget *g = new GuideWidget(imageViewer, true);
-    g->move(imageViewer->getContextMenuPosition().x() - GuideWidget::halfThickness(), 0);
-    g->show();
-}
-
-void Phototonic::addHorizontalGuide()
-{
-    GuideWidget *g = new GuideWidget(imageViewer, false);
-    g->move(0, imageViewer->getContextMenuPosition().y() - GuideWidget::halfThickness());
-    g->show();
 }
 
 void Phototonic::cropImage() {
