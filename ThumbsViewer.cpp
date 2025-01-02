@@ -1248,13 +1248,13 @@ void ThumbsViewer::storeThumbnail(const QString &originalPath, QImage thumbnail,
     if (maxSize >= 1024) {
         folder = QStringLiteral("xx-large/");
         thumbnail = thumbnail.scaled(1024, 1024, Qt::KeepAspectRatio);
-    } else if (maxSize >= 512) {
+    } else if (maxSize >= 384) {
         folder = QStringLiteral("x-large/");
         thumbnail = thumbnail.scaled(512, 512, Qt::KeepAspectRatio);
-    } else if (maxSize >= 256) {
+    } else if (maxSize > 200) {
         folder = QStringLiteral("large/");
         thumbnail = thumbnail.scaled(256, 256, Qt::KeepAspectRatio);
-    } else if (maxSize >= 128) {
+    } else if (maxSize >= 100) {
         folder = QStringLiteral("normal/");
         thumbnail = thumbnail.scaled(128, 128, Qt::KeepAspectRatio);
     } else {
