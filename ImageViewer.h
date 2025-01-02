@@ -60,7 +60,7 @@ public:
     void loadImage(QString imageFileName);
     void refresh();
     void reload();
-    void resizeImage();
+    void resizeImage(QPoint focus = QPoint(-1, -1));
     void rotateByExifRotation(QImage &image, QString &imageFullPath);
     void setBackgroundColor();
     void setContextMenu(QMenu *);

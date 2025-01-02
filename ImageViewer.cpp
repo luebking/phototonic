@@ -157,7 +157,7 @@ static inline int calcZoom(int size) {
     return qRound(size * Settings::imageZoomFactor);
 }
 
-void ImageViewer::resizeImage() {
+void ImageViewer::resizeImage(QPoint focus) {
     static bool busy = false;
     if (busy)
         return;
@@ -241,10 +241,17 @@ void ImageViewer::resizeImage() {
         } else {
             const double fx = double(imageSize.width())/imageWidget->imageSize().width(),
                          fy = double(imageSize.height())/imageWidget->imageSize().height();
-            int x = qRound(imageWidget->imagePosition().x()*fx);
+            int x,y;
+            if (focus.x() > -1 && focus.y() > -1) {
+                x = qRound(fx*(imageWidget->imagePosition().x() - focus.x()) + focus.x());
+                y = qRound(fy*(imageWidget->imagePosition().y() - focus.y()) + focus.y());
+            } else {
+                x = qRound(imageWidget->imagePosition().x()*fx);
+                y = qRound(imageWidget->imagePosition().y()*fy);
+            }
+
             if (imageSize.width() >= width())
                 x = qMax(qMin(x, 0),  width() - imageSize.width());
-            int y = qRound(imageWidget->imagePosition().y()*fy);
             if (imageSize.height() >= height())
                 y = qMax(qMin(y, 0), height() - imageSize.height());
             imageWidget->setImagePosition(QPoint(x,y));

@@ -644,12 +644,12 @@ void Phototonic::createActions() {
 
     zoomOutAction = new QAction(tr("Zoom Out"), this);
     zoomOutAction->setObjectName("zoomOut");
-    connect(zoomOutAction, SIGNAL(triggered()), this, SLOT(zoomOut()));
+    connect(zoomOutAction, &QAction::triggered, [=](){ zoom(-1.0f); });
     zoomOutAction->setIcon(QIcon::fromTheme("zoom-out", QIcon(":/images/zoom_out.png")));
 
     zoomInAction = new QAction(tr("Zoom In"), this);
     zoomInAction->setObjectName("zoomIn");
-    connect(zoomInAction, SIGNAL(triggered()), this, SLOT(zoomIn()));
+    connect(zoomInAction, &QAction::triggered, [=](){ zoom(1.0f); });
     zoomInAction->setIcon(QIcon::fromTheme("zoom-in", QIcon(":/images/zoom_out.png")));
 
     resetZoomAction = new QAction(tr("Reset Zoom"), this);
@@ -1447,40 +1447,35 @@ void Phototonic::thumbsZoomOut() {
     }
 }
 
-void Phototonic::zoomOut(const float multiplier) {
-    if (Settings::imageZoomFactor <= 4.0 && Settings::imageZoomFactor > 0.25) {
-        Settings::imageZoomFactor -= 0.1 * multiplier;
-    } else if (Settings::imageZoomFactor <= 8.0 && Settings::imageZoomFactor >= 4.0) {
-        Settings::imageZoomFactor -= 0.50 * multiplier;
-    } else if (Settings::imageZoomFactor <= 16.0 && Settings::imageZoomFactor >= 8.0) {
-        Settings::imageZoomFactor -= 1.0 * multiplier;
-    } else {
+void Phototonic::zoom(double multiplier, QPoint focus) {
+    if (multiplier > 0.0 && Settings::imageZoomFactor == 16.0) {
+        imageViewer->setFeedback(tr("Maximum zoom"));
+        return;
+    }
+    if (multiplier < 0.0 && Settings::imageZoomFactor == 0.1) {
         imageViewer->setFeedback(tr("Minimum zoom"));
         return;
     }
 
-    Settings::imageZoomFactor = qMax(Settings::imageZoomFactor, 0.25f);
+    // by size
+    multiplier *= Settings::imageZoomFactor * 0.5;
+
+    // by speed
+    static QElapsedTimer speedometer;
+    if (!speedometer.isValid() || speedometer.elapsed() > 250)
+        multiplier *= 0.05;
+    else if (speedometer.elapsed() > 150)
+        multiplier *= 0.1;
+    else if (speedometer.elapsed() > 75)
+        multiplier *= 0.5;
+    speedometer.restart();
+
+    // round and limit to 10%
+    multiplier = multiplier > 0.0 ? qMax(0.1, qRound(multiplier*10)*0.1) : qMin(-0.1, qRound(multiplier*10)*0.1);
 
     imageViewer->tempDisableResize = false;
-    imageViewer->resizeImage();
-    imageViewer->setFeedback(tr("Zoom %1%").arg(QString::number(Settings::imageZoomFactor * 100)));
-}
-
-void Phototonic::zoomIn(const float multiplier) {
-    if (Settings::imageZoomFactor < 4.0 && Settings::imageZoomFactor >= 0.25) {
-        Settings::imageZoomFactor += 0.1 * multiplier;
-    } else if (Settings::imageZoomFactor < 8.0 && Settings::imageZoomFactor >= 4.0) {
-        Settings::imageZoomFactor += 0.50 * multiplier;
-    } else if (Settings::imageZoomFactor < 16.0 && Settings::imageZoomFactor >= 8.0) {
-        Settings::imageZoomFactor += 1.00 * multiplier;
-    } else {
-        imageViewer->setFeedback(tr("Maximum zoom"));
-        return;
-    }
-    Settings::imageZoomFactor = qMin(Settings::imageZoomFactor, 16.f);
-
-    imageViewer->tempDisableResize = false;
-    imageViewer->resizeImage();
+    Settings::imageZoomFactor = qMin(16.0, qMax(0.1, Settings::imageZoomFactor + multiplier));
+    imageViewer->resizeImage(focus);
     imageViewer->setFeedback(tr("Zoom %1%").arg(QString::number(Settings::imageZoomFactor * 100)));
 }
 
@@ -3402,11 +3397,7 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
 
     if (o == imageViewer->viewport()) {
         if (we->modifiers() == Qt::ControlModifier || Settings::scrollZooms) {
-            if (scrollDelta < 0) {
-                zoomOut(scrollDelta / -120.);
-            } else {
-                zoomIn(scrollDelta / 120.);
-            }
+            zoom(scrollDelta / 120.0, we->position().toPoint());
         } else if (nextImageAction->isEnabled()) {
             if (scrollDelta < 0) {
                 loadNextImage();

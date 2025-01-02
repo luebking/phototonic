@@ -165,10 +165,6 @@ private slots:
 
     void thumbsZoomOut();
 
-    void zoomIn(const float multiplier = 1.);
-
-    void zoomOut(const float multiplier = 1.);
-
     void resetZoom();
 
     void origZoom();
@@ -452,6 +448,7 @@ private:
     void copyOrMoveImages(bool move);
 
     void setViewerKeyEventsEnabled(bool enabled);
+    void zoom(double multiplier = 1., QPoint focus = QPoint(-1, -1));
 };
 
 #endif // PHOTOTONIC_H
