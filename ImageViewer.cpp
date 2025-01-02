@@ -964,7 +964,7 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
         return;
     }
 
-    if (Settings::mouseRotateEnabled) {
+    if (Settings::mouseRotateEnabled || event->modifiers() == Qt::ShiftModifier) {
         QPointF fulcrum(QPointF(imageWidget->pos()) + QPointF(imageWidget->width() / 2.0, imageWidget->height() / 2.0));
         if (event->pos().x() > (width() * 3) / 4)
             fulcrum.setY(mouseY); // if the user pressed near the right edge, start with initial rotation of 0
@@ -972,7 +972,7 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
         imageWidget->setRotation(initialRotation - vector.angle());
         // qDebug() << "image center" << fulcrum << "line" << vector << "angle" << vector.angle() << "geom" << imageWidget->geometry();
 
-    } else if (event->modifiers() & Qt::ControlModifier) {
+    } else if (event->modifiers() == Qt::ControlModifier) {
         if (!cropRubberBand || !cropRubberBand->isVisible()) {
             return;
         }
