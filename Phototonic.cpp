@@ -32,6 +32,7 @@
 #include <QMouseEvent>
 #include <QMovie>
 #include <QProcess>
+#include <QRandomGenerator>
 #include <QScrollBar>
 #include <QSettings>
 #include <QStackedLayout>
@@ -135,8 +136,14 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
             return;
         } else {
             Settings::currentDirectory = firstArgument.absolutePath();
-            QString cliFileName = Settings::currentDirectory + QDir::separator() + firstArgument.fileName();
-            loadImageFromCliArguments(cliFileName);
+            const QString cliFileName = Settings::currentDirectory + QDir::separator() + firstArgument.fileName();
+            if (QFile::exists(cliFileName)) {
+                showViewer();
+                imageViewer->loadImage(cliFileName);
+                setWindowTitle(cliFileName + " - Phototonic");
+            } else {
+                MessageBox(this).critical(tr("Error"), tr("Failed to open file %1, file not found.").arg(cliFileName));
+            }
             QTimer::singleShot(1000, this, SLOT(updateIndexByViewerImage()));
         }
     } else {
@@ -589,26 +596,26 @@ void Phototonic::createActions() {
     nextImageAction = new QAction(tr("Next Image"), this);
     nextImageAction->setObjectName("nextImage");
     nextImageAction->setIcon(QIcon::fromTheme("go-next", QIcon(":/images/next.png")));
-    connect(nextImageAction, SIGNAL(triggered()), this, SLOT(loadNextImage()));
+    connect(nextImageAction, &QAction::triggered, [=](){ loadImage(Phototonic::Next); });
 
     prevImageAction = new QAction(tr("Previous Image"), this);
     prevImageAction->setObjectName("prevImage");
     prevImageAction->setIcon(QIcon::fromTheme("go-previous", QIcon(":/images/back.png")));
-    connect(prevImageAction, SIGNAL(triggered()), this, SLOT(loadPreviousImage()));
+    connect(prevImageAction, &QAction::triggered, [=](){ loadImage(Phototonic::Previous); });
 
     firstImageAction = new QAction(tr("First Image"), this);
     firstImageAction->setObjectName("firstImage");
     firstImageAction->setIcon(QIcon::fromTheme("go-first", QIcon(":/images/first.png")));
-    connect(firstImageAction, SIGNAL(triggered()), this, SLOT(loadFirstImage()));
+    connect(firstImageAction, &QAction::triggered, [=](){ loadImage(Phototonic::First); });
 
     lastImageAction = new QAction(tr("Last Image"), this);
     lastImageAction->setObjectName("lastImage");
     lastImageAction->setIcon(QIcon::fromTheme("go-last", QIcon(":/images/last.png")));
-    connect(lastImageAction, SIGNAL(triggered()), this, SLOT(loadLastImage()));
+    connect(lastImageAction, &QAction::triggered, [=](){ loadImage(Phototonic::Last); });
 
     randomImageAction = new QAction(tr("Random Image"), this);
     randomImageAction->setObjectName("randomImage");
-    connect(randomImageAction, SIGNAL(triggered()), this, SLOT(loadRandomImage()));
+    connect(randomImageAction, &QAction::triggered, [=](){ loadImage(Phototonic::Random); });
 
     viewImageAction = new QAction(tr("View Image"), this);
     viewImageAction->setObjectName("open");
@@ -2514,9 +2521,9 @@ void Phototonic::mousePressEvent(QMouseEvent *event) {
 
 void Phototonic::keyPressEvent(QKeyEvent *event) {
 	if (event->key() == Qt::Key_Left) {
-		loadPreviousImage();
+		loadImage(Phototonic::Previous);
    } else if (event->key() == Qt::Key_Right) {
-		loadNextImage();
+		loadImage(Phototonic::Next);
    }
    event->accept();
 }
@@ -2655,19 +2662,6 @@ void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
     thumbsViewer->setImageViewerWindowTitle();
 }
 
-void Phototonic::loadImageFromCliArguments(QString cliFileName) {
-    QFile imageFile(cliFileName);
-    if (!imageFile.exists()) {
-        MessageBox msgBox(this);
-        msgBox.critical(tr("Error"), tr("Failed to open file %1, file not found.").arg(cliFileName));
-        return;
-    }
-
-    showViewer();
-    imageViewer->loadImage(cliFileName);
-    setWindowTitle(cliFileName + " - Phototonic");
-}
-
 void Phototonic::toggleSlideShow() {
     if (Settings::slideShowActive) {
         Settings::slideShowActive = false;
@@ -2710,7 +2704,7 @@ void Phototonic::toggleSlideShow() {
 void Phototonic::slideShowHandler() {
     if (Settings::slideShowActive) {
         if (Settings::slideShowRandom) {
-            loadRandomImage();
+            loadImage(Phototonic::Random);
         } else {
             int currentRow = thumbsViewer->getCurrentRow();
             imageViewer->loadImage(
@@ -2730,102 +2724,48 @@ void Phototonic::slideShowHandler() {
     }
 }
 
-void Phototonic::loadNextImage() {
+void Phototonic::loadImage(SpecialImageIndex idx) {
     if (thumbsViewer->thumbsViewerModel->rowCount() <= 0) {
         return;
     }
 
-    int nextThumb = thumbsViewer->getNextRow();
-    if (nextThumb < 0) {
-        if (Settings::wrapImageList) {
-            nextThumb = 0;
-        } else {
+    int thumb;
+    switch (idx) {
+        case Phototonic::First:
+            thumb = 0;
+            break;
+        case Phototonic::Next:
+            thumb = thumbsViewer->getNextRow();
+            if (thumb < 0 && Settings::wrapImageList)
+                thumb = 0;
+            break;
+        case Phototonic::Previous:
+            thumb = thumbsViewer->getPrevRow();
+            if (thumb < 0 && Settings::wrapImageList)
+                thumb = thumbsViewer->thumbsViewerModel->rowCount() - 1;
+            break;
+        case Phototonic::Last:
+            thumb = thumbsViewer->thumbsViewerModel->rowCount() - 1;
+            break;
+        case Phototonic::Random:
+            thumb = QRandomGenerator::global()->bounded(thumbsViewer->thumbsViewerModel->rowCount());
+            break;
+        default:
+            qDebug() << "bogus special index" << idx;
             return;
-        }
     }
+    if (thumb < 0)
+        return;
 
     if (Settings::layoutMode == ImageViewWidget) {
-        imageViewer->loadImage(
-                thumbsViewer->thumbsViewerModel->item(nextThumb)->data(thumbsViewer->FileNameRole).toString());
+        imageViewer->loadImage(thumbsViewer->thumbsViewerModel->item(thumb)->data(thumbsViewer->FileNameRole).toString());
     }
 
-    thumbsViewer->setCurrentRow(nextThumb);
+    thumbsViewer->setCurrentRow(thumb);
     thumbsViewer->setImageViewerWindowTitle();
 
     if (Settings::layoutMode == ThumbViewWidget) {
-        thumbsViewer->selectThumbByRow(nextThumb);
-    }
-}
-
-void Phototonic::loadPreviousImage() {
-    if (thumbsViewer->thumbsViewerModel->rowCount() <= 0) {
-        return;
-    }
-
-    int previousThumb = thumbsViewer->getPrevRow();
-    if (previousThumb < 0) {
-        if (Settings::wrapImageList) {
-            previousThumb = thumbsViewer->getLastRow();
-        } else {
-            return;
-        }
-    }
-
-    if (Settings::layoutMode == ImageViewWidget) {
-        imageViewer->loadImage(
-                thumbsViewer->thumbsViewerModel->item(previousThumb)->data(thumbsViewer->FileNameRole).toString());
-    }
-
-    thumbsViewer->setCurrentRow(previousThumb);
-    thumbsViewer->setImageViewerWindowTitle();
-
-    if (Settings::layoutMode == ThumbViewWidget) {
-        thumbsViewer->selectThumbByRow(previousThumb);
-    }
-}
-
-void Phototonic::loadFirstImage() {
-    if (thumbsViewer->thumbsViewerModel->rowCount() <= 0) {
-        return;
-    }
-
-    imageViewer->loadImage(thumbsViewer->thumbsViewerModel->item(0)->data(thumbsViewer->FileNameRole).toString());
-    thumbsViewer->setCurrentRow(0);
-    thumbsViewer->setImageViewerWindowTitle();
-
-    if (Settings::layoutMode == ThumbViewWidget) {
-        thumbsViewer->selectThumbByRow(0);
-    }
-}
-
-void Phototonic::loadLastImage() {
-    if (thumbsViewer->thumbsViewerModel->rowCount() <= 0) {
-        return;
-    }
-
-    int lastRow = thumbsViewer->getLastRow();
-    imageViewer->loadImage(thumbsViewer->thumbsViewerModel->item(lastRow)->data(thumbsViewer->FileNameRole).toString());
-    thumbsViewer->setCurrentRow(lastRow);
-    thumbsViewer->setImageViewerWindowTitle();
-
-    if (Settings::layoutMode == ThumbViewWidget) {
-        thumbsViewer->selectThumbByRow(lastRow);
-    }
-}
-
-void Phototonic::loadRandomImage() {
-    if (thumbsViewer->thumbsViewerModel->rowCount() <= 0) {
-        return;
-    }
-
-    int randomRow = thumbsViewer->getRandomRow();
-    imageViewer->loadImage(
-            thumbsViewer->thumbsViewerModel->item(randomRow)->data(thumbsViewer->FileNameRole).toString());
-    thumbsViewer->setCurrentRow(randomRow);
-    thumbsViewer->setImageViewerWindowTitle();
-
-    if (Settings::layoutMode == ThumbViewWidget) {
-        thumbsViewer->selectThumbByRow(randomRow);
+        thumbsViewer->selectThumbByRow(thumb);
     }
 }
 
@@ -3367,9 +3307,9 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
             zoom(scrollDelta / 120.0, we->position().toPoint());
         } else if (nextImageAction->isEnabled()) {
             if (scrollDelta < 0) {
-                loadNextImage();
+                loadImage(Phototonic::Next);
             } else {
-                loadPreviousImage();
+                loadImage(Phototonic::Previous);
             }
             return true;
         }

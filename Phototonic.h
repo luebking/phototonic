@@ -46,14 +46,8 @@ class Phototonic : public QMainWindow {
 Q_OBJECT
 
 public:
-
-    int copyCutThumbsCount;
-
     Phototonic(QStringList argumentsList, int filesStartAt, QWidget *parent = 0);
-
-    QMenu *createPopupMenu();
-
-    void setStatus(QString state);
+    QMenu *createPopupMenu() override;
 
     enum CentralWidgets {
         ThumbViewWidget = 0,
@@ -61,30 +55,21 @@ public:
     };
 
 protected:
-    void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent *event) override;
     bool eventFilter(QObject *o, QEvent *e) override;
-    void keyPressEvent(QKeyEvent *event);
-    void mouseDoubleClickEvent(QMouseEvent *event);
-    void mousePressEvent(QMouseEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    bool event(QEvent *event) override;
 
 public slots:
-
-    bool event(QEvent *event);
-
-    void dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyMoveDirPath);
-
-    void showViewer();
-
     void loadSelectedThumbImage(const QModelIndex &idx);
-
-    void loadImageFromCliArguments(QString cliFileName);
-
-    void hideViewer();
-
     void setSaveDirectory(QString path = QString());
 
 private slots:
-
+    void showViewer();
+    void hideViewer();
+    void dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyMoveDirPath);
     void sortThumbnails();
 
     void reload();
@@ -130,16 +115,6 @@ private slots:
     void toggleSlideShow();
 
     void slideShowHandler();
-
-    void loadNextImage();
-
-    void loadPreviousImage();
-
-    void loadFirstImage();
-
-    void loadLastImage();
-
-    void loadRandomImage();
 
     void updateIndexByViewerImage();
 
@@ -231,6 +206,9 @@ private slots:
 
 
 private:
+    enum SpecialImageIndex {
+        First = 0, Previous, Next, Last, Random
+    };
     QMenu *myMainMenu;
     QMenu *openWithSubMenu;
 
@@ -380,7 +358,7 @@ private:
     QPointer<CropDialog> cropDialog;
 
     void refreshThumbs(bool noScroll);
-
+    void loadImage(SpecialImageIndex idx);
     void loadShortcuts();
 
     void setupDocks();
@@ -443,6 +421,8 @@ private:
 
     void setViewerKeyEventsEnabled(bool enabled);
     void zoom(double multiplier = 1., QPoint focus = QPoint(-1, -1));
+    int copyCutThumbsCount;
+    void setStatus(QString state);
 };
 
 #endif // PHOTOTONIC_H

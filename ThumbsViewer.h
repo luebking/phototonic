@@ -143,10 +143,6 @@ public:
 
     int getPrevRow();
 
-    int getLastRow();
-
-    int getRandomRow();
-
     int getCurrentRow();
 
     QStringList getSelectedThumbsList();

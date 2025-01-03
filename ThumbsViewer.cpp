@@ -30,7 +30,6 @@
 #include <QPainter>
 #include <QPen>
 #include <QProgressDialog>
-#include <QRandomGenerator>
 #include <QScrollBar>
 #include <QStandardItemModel>
 #include <QStandardPaths>
@@ -140,14 +139,6 @@ int ThumbsViewer::getPrevRow() {
     }
 
     return currentRow - 1;
-}
-
-int ThumbsViewer::getLastRow() {
-    return thumbsViewerModel->rowCount() - 1;
-}
-
-int ThumbsViewer::getRandomRow() {
-    return QRandomGenerator::global()->bounded(thumbsViewerModel->rowCount());
 }
 
 int ThumbsViewer::getCurrentRow() {
