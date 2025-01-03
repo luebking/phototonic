@@ -40,7 +40,6 @@
 #include "ImageViewer.h"
 #include "InfoViewer.h"
 #include "MetadataCache.h"
-#include "Phototonic.h"
 #include "Settings.h"
 #include "SmartCrop.h"
 #include "Tags.h"
@@ -95,7 +94,6 @@ ThumbsViewer::ThumbsViewer(QWidget *parent, const std::shared_ptr<MetadataCache>
 
     emptyImg.load(":/images/no_image.png");
 
-    phototonic = (Phototonic *) parent;
     infoView = new InfoView(this);
 
     imagePreview = new ImagePreview(this);
@@ -303,7 +301,7 @@ void ThumbsViewer::updateImageInfoViewer(int row) {
 void ThumbsViewer::onSelectionChanged() {
     infoView->clear();
     imagePreview->clear();
-    if (Settings::setWindowIcon && Settings::layoutMode == Phototonic::ThumbViewWidget) {
+    if (Settings::setWindowIcon) {
         window()->setWindowIcon(QApplication::windowIcon());
     }
 
@@ -319,7 +317,7 @@ void ThumbsViewer::onSelectionChanged() {
         }
 
         QPixmap imagePreviewPixmap = imagePreview->loadImage(thumbFullPath);
-        if (Settings::setWindowIcon && Settings::layoutMode == Phototonic::ThumbViewWidget) {
+        if (Settings::setWindowIcon) {
             window()->setWindowIcon(imagePreviewPixmap.scaled(WINDOW_ICON_SIZE, WINDOW_ICON_SIZE,
                                                                 Qt::KeepAspectRatio, Qt::SmoothTransformation));
         }
@@ -330,10 +328,8 @@ void ThumbsViewer::onSelectionChanged() {
     }
 
     if (selectedThumbs >= 1) {
-        QString statusStr;
-        statusStr = tr("Selected %1 of %2").arg(QString::number(selectedThumbs))
-                .arg(tr(" %n image(s)", "", thumbsViewerModel->rowCount()));
-        phototonic->setStatus(statusStr);
+        emit status(tr("Selected %1 of %2").arg(QString::number(selectedThumbs))
+                                           .arg(tr(" %n image(s)", "", thumbsViewerModel->rowCount())));
     } else if (!selectedThumbs) {
         updateThumbsCount();
     }
@@ -750,7 +746,7 @@ void ThumbsViewer::loadDuplicates()
     m_busy = true;
     loadPrepare();
 
-    phototonic->setStatus(tr("Searching duplicate images..."));
+    emit status(tr("Searching duplicate images..."));
 
     dupImageHashes.clear();
     findDupes(true);
@@ -864,15 +860,9 @@ void ThumbsViewer::initThumbs() {
 }
 
 void ThumbsViewer::updateThumbsCount() {
-    QString state;
-
-    if (thumbsViewerModel->rowCount() > 0) {
-        state = tr("%n image(s)", "", thumbsViewerModel->rowCount());
-    } else {
-        state = tr("No images");
-    }
+    emit status(thumbsViewerModel->rowCount() > 0 ? tr("%n image(s)", "", thumbsViewerModel->rowCount()) :
+                                                    tr("No images"));
     thumbsDir.setPath(Settings::currentDirectory);
-    phototonic->setStatus(state);
 }
 
 void ThumbsViewer::selectThumbByRow(int row) {
@@ -882,13 +872,11 @@ void ThumbsViewer::selectThumbByRow(int row) {
 
 void ThumbsViewer::updateFoundDupesState(int duplicates, int filesScanned, int originalImages)
 {
-    QString state;
-    state = tr("Scanned %1, displaying %2 (%3 and %4)")
-                .arg(tr("%n image(s)", "", filesScanned))
-                .arg(tr("%n image(s)", "", originalImages + duplicates))
-                .arg(tr("%n original(s)", "", originalImages))
-                .arg(tr("%n duplicate(s)", "", duplicates));
-    phototonic->setStatus(state);
+    emit status(tr("Scanned %1, displaying %2 (%3 and %4)")
+                    .arg(tr("%n image(s)", "", filesScanned))
+                    .arg(tr("%n image(s)", "", originalImages + duplicates))
+                    .arg(tr("%n original(s)", "", originalImages))
+                    .arg(tr("%n duplicate(s)", "", duplicates)));
 }
 
 void ThumbsViewer::findDupes(bool resetCounters)

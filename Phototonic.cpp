@@ -188,6 +188,7 @@ void Phototonic::createThumbsViewer() {
 
     connect(thumbsViewer->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
             this, SLOT(updateActions()));
+    connect (thumbsViewer, &ThumbsViewer::status, this, &Phototonic::setStatus);
 
     imageInfoDock = new QDockWidget(tr("Image Info"), this);
     imageInfoDock->setObjectName("Image Info");

@@ -24,7 +24,6 @@ class ImageViewer;
 class ImageTags;
 class InfoView;
 class MetadataCache;
-class Phototonic;
 
 class QStandardItem;
 class QStandardItemModel;
@@ -166,6 +165,9 @@ public:
     QDir::SortFlags thumbsSortFlags;
     int thumbSize;
 
+signals:
+    void status(QString s);
+
 protected:
     void startDrag(Qt::DropActions) override;
     void mousePressEvent(QMouseEvent *event) override;
@@ -199,7 +201,6 @@ private:
     QList<QString> histFiles;
     QPixmap emptyImg;
     QModelIndex currentIndex;
-    Phototonic *phototonic;
     std::shared_ptr<MetadataCache> metadataCache;
     ImageViewer *imageViewer;
     QHash<QBitArray, DuplicateImage> dupImageHashes;
