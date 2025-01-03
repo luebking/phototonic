@@ -99,8 +99,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
 
     restoreGeometry(Settings::value(Settings::optionGeometry).toByteArray());
     restoreState(Settings::value(Settings::optionWindowState).toByteArray());
-    defaultApplicationIcon = QIcon(":/images/phototonic.png");
-    setWindowIcon(defaultApplicationIcon);
+    QApplication::setWindowIcon(QIcon(":/images/phototonic.png"));
 
     stackedLayout = new QStackedLayout;
     QWidget *stackedLayoutWidget = new QWidget;
@@ -148,10 +147,6 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
         }
     }
     selectCurrentViewDir();
-}
-
-QIcon &Phototonic::getDefaultWindowIcon() {
-    return defaultApplicationIcon;
 }
 
 void Phototonic::loadStartupFileList(QStringList argumentsList, int filesStartAt) {
@@ -1282,7 +1277,7 @@ void Phototonic::showSettings() {
         }
 
         if (!Settings::setWindowIcon) {
-            setWindowIcon(defaultApplicationIcon);
+            setWindowIcon(QApplication::windowIcon());
         }
         writeSettings();
     }
@@ -3051,7 +3046,7 @@ void Phototonic::reloadThumbs() {
         thumbsViewer->infoView->clear();
         thumbsViewer->imagePreview->clear();
         if (Settings::setWindowIcon && Settings::layoutMode == Phototonic::ThumbViewWidget) {
-            setWindowIcon(defaultApplicationIcon);
+            setWindowIcon(QApplication::windowIcon());
         }
         pathLineEdit->setText(Settings::currentDirectory);
         addPathHistoryRecord(Settings::currentDirectory);

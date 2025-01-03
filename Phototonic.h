@@ -55,8 +55,6 @@ public:
 
     void setStatus(QString state);
 
-    QIcon &getDefaultWindowIcon();
-
     enum CentralWidgets {
         ThumbViewWidget = 0,
         ImageViewWidget
@@ -380,7 +378,6 @@ private:
     QPointer<ResizeDialog> resizeDialog;
     QPointer<ColorsDialog> colorsDialog;
     QPointer<CropDialog> cropDialog;
-    QIcon defaultApplicationIcon;
 
     void refreshThumbs(bool noScroll);
 

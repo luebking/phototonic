@@ -22,7 +22,6 @@
 class CropRubberBand;
 class ImageWidget;
 class MetadataCache;
-class Phototonic;
 class QMovie;
 #include <QLabel>
 #include <QPointer>
@@ -105,7 +104,6 @@ private:
     QMenu *myContextMenu;
     QLabel *myFilenameLabel;
     MirrorLayout myMirrorLayout;
-    Phototonic *phototonic;
     QLabel *movieWidget = nullptr;
     ImageWidget *imageWidget = nullptr;
     QImage origImage;

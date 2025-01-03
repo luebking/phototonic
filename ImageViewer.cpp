@@ -39,7 +39,6 @@
 #include "ImageViewer.h"
 #include "MessageBox.h"
 #include "MetadataCache.h"
-#include "Phototonic.h"
 #include "Settings.h"
 #include "ThumbsViewer.h"
 
@@ -85,7 +84,6 @@ ImageViewer::ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &
     // This is a threadsafe way to ensure that we only register it once
     static Exiv2LogHandler handler;
 
-    phototonic = qobject_cast<Phototonic*>(parent);
     myContextMenu = nullptr;
     metadataCache = mdataCache;
     cursorIsHidden = false;
@@ -755,10 +753,8 @@ void ImageViewer::reload() {
         imageWidget->setRotation(Settings::rotation);
     }
     if (Settings::setWindowIcon) {
-        QPixmap icon;
-        icon.convertFromImage(viewerImage.scaled(WINDOW_ICON_SIZE, WINDOW_ICON_SIZE,
-                                                 Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        phototonic->setWindowIcon(icon);
+        window()->setWindowIcon(QPixmap::fromImage(viewerImage.scaled(WINDOW_ICON_SIZE, WINDOW_ICON_SIZE,
+                                                                      Qt::KeepAspectRatio, Qt::SmoothTransformation)));
     }
 }
 
@@ -1187,7 +1183,7 @@ void ImageViewer::saveImageAs() {
             setFeedback(tr("Image saved."));
         }
     }
-    if (phototonic->isFullScreen()) {
+    if (window()->isFullScreen()) {
         setCursorHiding(true);
     }
 }
@@ -1225,9 +1221,9 @@ void ImageViewer::pasteImage() {
         origImage = QApplication::clipboard()->image();
         refresh();
     }
-    phototonic->setWindowTitle(tr("Clipboard") + " - Phototonic");
+    window()->setWindowTitle(tr("Clipboard") + " - Phototonic");
     if (Settings::setWindowIcon) {
-        phototonic->setWindowIcon(phototonic->getDefaultWindowIcon());
+        window()->setWindowIcon(QApplication::windowIcon());
     }
 }
 
