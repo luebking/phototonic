@@ -171,7 +171,7 @@ void ThumbsViewer::setImageViewerWindowTitle() {
                     + QString::number(thumbsViewerModel->rowCount())
                     + "] - Phototonic";
 
-    phototonic->setWindowTitle(title);
+    window()->setWindowTitle(title);
 }
 
 bool ThumbsViewer::setCurrentIndexByName(QString &fileName) {
@@ -303,7 +303,7 @@ void ThumbsViewer::onSelectionChanged() {
     infoView->clear();
     imagePreview->clear();
     if (Settings::setWindowIcon && Settings::layoutMode == Phototonic::ThumbViewWidget) {
-        phototonic->setWindowIcon(phototonic->getDefaultWindowIcon());
+        window()->setWindowIcon(QApplication::windowIcon());
     }
 
     QModelIndexList indexesList = selectionModel()->selectedIndexes();
@@ -319,7 +319,7 @@ void ThumbsViewer::onSelectionChanged() {
 
         QPixmap imagePreviewPixmap = imagePreview->loadImage(thumbFullPath);
         if (Settings::setWindowIcon && Settings::layoutMode == Phototonic::ThumbViewWidget) {
-            phototonic->setWindowIcon(imagePreviewPixmap.scaled(WINDOW_ICON_SIZE, WINDOW_ICON_SIZE,
+            window()->setWindowIcon(imagePreviewPixmap.scaled(WINDOW_ICON_SIZE, WINDOW_ICON_SIZE,
                                                                 Qt::KeepAspectRatio, Qt::SmoothTransformation));
         }
     }
