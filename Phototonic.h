@@ -55,8 +55,6 @@ public:
 
     void setStatus(QString state);
 
-    void showBusyAnimation(bool busy);
-
     QIcon &getDefaultWindowIcon();
 
     enum CentralWidgets {
@@ -377,9 +375,8 @@ private:
     bool shouldMaximize;
 
     bool imageToolBarVisible;
+    bool m_deleteInProgress;
 
-    QMovie *busyMovie;
-    QLabel *busyLabel;
     QPointer<ResizeDialog> resizeDialog;
     QPointer<ColorsDialog> colorsDialog;
     QPointer<CropDialog> cropDialog;

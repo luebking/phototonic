@@ -51,6 +51,7 @@
 #define BATCH_SIZE 10
 
 ThumbsViewer::ThumbsViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &metadataCache) : QListView(parent) {
+    m_busy = false;
     this->metadataCache = metadataCache;
     Settings::thumbsBackgroundColor = Settings::value(Settings::optionThumbsBackgroundColor).value<QColor>();
     Settings::thumbsTextColor = Settings::value(Settings::optionThumbsTextColor).value<QColor>();
@@ -397,6 +398,9 @@ void ThumbsViewer::startDrag(Qt::DropActions) {
 }
 
 void ThumbsViewer::abort(bool permanent) {
+    if (!m_busy)
+        return;
+
     isAbortThumbsLoading = true;
 
     if (!isClosing && permanent) {
@@ -508,15 +512,13 @@ void ThumbsViewer::loadFileList() {
         selectThumbByRow(0);
     }
 
-    phototonic->showBusyAnimation(false);
-    isBusy = false;
+    m_busy = false;
 }
 
 void ThumbsViewer::reLoad() {
     disconnect(verticalScrollBar(), &QScrollBar::valueChanged, this, &ThumbsViewer::loadVisibleThumbs);
+    m_busy = true;
 
-    isBusy = true;
-    phototonic->showBusyAnimation(true);
     loadPrepare();
 
     if (Settings::isFileListLoaded) {
@@ -533,9 +535,7 @@ void ThumbsViewer::reLoad() {
         loadSubDirectories();
     }
 
-    phototonic->showBusyAnimation(false);
-    isBusy = false;
-
+    m_busy = false;
     connect(verticalScrollBar(), &QScrollBar::valueChanged, this, &ThumbsViewer::loadVisibleThumbs);
 }
 
@@ -747,8 +747,7 @@ void ThumbsViewer::loadPrepare() {
 
 void ThumbsViewer::loadDuplicates()
 {
-    isBusy = true;
-    phototonic->showBusyAnimation(true);
+    m_busy = true;
     loadPrepare();
 
     phototonic->setStatus(tr("Searching duplicate images..."));
@@ -779,13 +778,11 @@ void ThumbsViewer::loadDuplicates()
 
 finish:
     thumbsViewerModel->sort(0);
-    isBusy = false;
-    phototonic->showBusyAnimation(false);
+    m_busy = false;
     return;
 }
 
 void ThumbsViewer::initThumbs() {
-    phototonic->showBusyAnimation(true);
     thumbFileInfoList = thumbsDir.entryInfoList();
 
     if (!(thumbsSortFlags & QDir::Time) && !(thumbsSortFlags & QDir::Size) && !(thumbsSortFlags & QDir::Type)) {
@@ -864,7 +861,6 @@ void ThumbsViewer::initThumbs() {
     if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
         selectThumbByRow(0);
     }
-    phototonic->showBusyAnimation(false);
 }
 
 void ThumbsViewer::updateThumbsCount() {

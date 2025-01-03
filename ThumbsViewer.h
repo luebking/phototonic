@@ -165,7 +165,6 @@ public:
     QStandardItemModel *thumbsViewerModel;
     QDir::SortFlags thumbsSortFlags;
     int thumbSize;
-    bool isBusy;
 
 protected:
     void startDrag(Qt::DropActions) override;
@@ -216,6 +215,7 @@ private:
     QTimer m_loadThumbTimer;
     QString m_filter;
     QList<Constraint> m_constraints;
+    bool m_busy;
 
 public slots:
 

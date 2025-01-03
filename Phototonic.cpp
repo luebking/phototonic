@@ -114,7 +114,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     colorsDialog = nullptr;
     cropDialog = nullptr;
     initComplete = true;
-    thumbsViewer->isBusy = false;
+    m_deleteInProgress = false;
     currentHistoryIdx = -1;
     needHistoryRecord = true;
     interfaceDisabled = false;
@@ -1002,13 +1002,6 @@ void Phototonic::setToolbarIconSize() {
 void Phototonic::createStatusBar() {
     statusLabel = new QLabel(tr("Initializing..."));
     statusBar()->addWidget(statusLabel);
-
-    busyMovie = new QMovie(":/images/busy.gif");
-    busyLabel = new QLabel(this);
-    busyLabel->setMovie(busyMovie);
-    busyMovie->setParent(busyLabel);
-    statusBar()->addWidget(busyLabel);
-    busyLabel->setVisible(false);
 }
 
 void Phototonic::createFileSystemDock() {
@@ -1781,7 +1774,7 @@ void Phototonic::deleteImages(bool trash) {
     QSignalBlocker scrollbarBlocker(thumbsViewer->verticalScrollBar());
 
     // Avoid reloading thumbnails all the time
-    thumbsViewer->isBusy = true;
+    m_deleteInProgress = true;
 
     ProgressDialog *progressDialog = new ProgressDialog(this);
 
@@ -1850,7 +1843,7 @@ void Phototonic::deleteImages(bool trash) {
     QString state = QString(tr("Deleted") + " " + tr("%n image(s)", "", deleteFilesCount));
     setStatus(state);
 
-    thumbsViewer->isBusy = false;
+    m_deleteInProgress = false;
 }
 
 void Phototonic::deleteFromViewer(bool trash) {
@@ -2658,25 +2651,6 @@ void Phototonic::showViewer() {
     }
 }
 
-void Phototonic::showBusyAnimation(bool busy) {
-    static int busyStatus = 0;
-
-    if (busy) {
-        ++busyStatus;
-    } else {
-        --busyStatus;
-    }
-
-    if (busyStatus > 0) {
-        busyMovie->start();
-        busyLabel->setVisible(true);
-    } else {
-        busyLabel->setVisible(false);
-        busyMovie->stop();
-        busyStatus = 0;
-    }
-}
-
 void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
     thumbsViewer->setCurrentRow(idx.row());
     showViewer();
@@ -3022,10 +2996,7 @@ void Phototonic::checkDirState(const QModelIndex &, int, int) {
         return;
     }
 
-    if (thumbsViewer->isBusy) {
-        thumbsViewer->abort();
-    }
-
+    thumbsViewer->abort();
     if (!QDir().exists(Settings::currentDirectory)) {
         Settings::currentDirectory.clear();
         QMetaObject::invokeMethod(this, "reloadThumbs", Qt::QueuedConnection);
@@ -3054,7 +3025,7 @@ void Phototonic::addPathHistoryRecord(QString dir) {
 }
 
 void Phototonic::reloadThumbs() {
-    if (thumbsViewer->isBusy || !initComplete) {
+    if (m_deleteInProgress || !initComplete) {
         thumbsViewer->abort();
         QTimer::singleShot(32, this, SLOT(reloadThumbs())); // rate control @30Hz
         return;
