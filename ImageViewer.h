@@ -56,7 +56,7 @@ public:
 
     void clearImage();
     bool isNewImage();
-    void loadImage(QString imageFileName);
+    void loadImage(QString imageFileName, const QImage &preview = QImage());
     void refresh();
     void reload();
     void resizeImage(QPoint focus = QPoint(-1, -1));

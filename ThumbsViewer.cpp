@@ -129,6 +129,14 @@ QString ThumbsViewer::fullPathOf(int idx)
     return m_model->item(idx)->data(FileNameRole).toString();
 }
 
+QIcon ThumbsViewer::icon(int idx)
+{
+    QIcon icon = m_model->item(idx)->icon();
+    if (icon.isNull() && loadThumb(idx, true))
+        icon = m_model->item(idx)->icon();
+    return icon;
+}
+
 int ThumbsViewer::getNextRow() {
     if (currentRow == m_model->rowCount() - 1) {
         return -1;
@@ -1268,7 +1276,7 @@ void ThumbsViewer::storeThumbnail(const QString &originalPath, QImage thumbnail,
     thumbnail.save(fullPath);
 }
 
-bool ThumbsViewer::loadThumb(int currThumb) {
+bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
     QImageReader thumbReader;
     QString imageFileName = m_model->item(currThumb)->data(FileNameRole).toString();
     QImage thumb;
@@ -1291,6 +1299,8 @@ bool ThumbsViewer::loadThumb(int currThumb) {
     } else {
         shouldStoreThumbnail = true;
     }
+    if (fastOnly && shouldStoreThumbnail)
+        return false;
 
     if (currentThumbSize.isValid()) {
         if (currentThumbSize.width() != thumbSize || currentThumbSize.height() != thumbSize) {

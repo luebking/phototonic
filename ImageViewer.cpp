@@ -782,13 +782,20 @@ void ImageViewer::setFeedback(QString feedbackString, bool timeLimited) {
         QTimer::singleShot(3000, this, SLOT(unsetFeedback()));
 }
 
-void ImageViewer::loadImage(QString imageFileName) {
+void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
     newImage = false;
     tempDisableResize = false;
     fullImagePath = imageFileName;
 
     if (!Settings::keepZoomFactor) {
         Settings::imageZoomFactor = 1.0;
+    }
+    if (!preview.isNull()) {
+        setImage(preview);
+        const int zif = Settings::zoomInFlags;
+        Settings::zoomInFlags = WidthAndHeight;
+        resizeImage();
+        Settings::zoomInFlags = zif;
     }
 
     QApplication::processEvents();

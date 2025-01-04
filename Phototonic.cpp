@@ -1727,7 +1727,7 @@ void Phototonic::loadCurrentImage(int currentRow) {
     }
 
     if (thumbsViewer->getNextRow() < 0 && currentRow > 0) {
-        imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow - 1));
+        imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow - 1), thumbsViewer->icon(currentRow - 1).pixmap(THUMB_SIZE_MAX).toImage());
     } else {
         if (thumbsViewer->model()->rowCount() == 0) {
             hideViewer();
@@ -1738,7 +1738,7 @@ void Phototonic::loadCurrentImage(int currentRow) {
         if (currentRow > (thumbsViewer->model()->rowCount() - 1))
             currentRow = thumbsViewer->model()->rowCount() - 1;
 
-        imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow));
+        imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow), thumbsViewer->icon(currentRow).pixmap(THUMB_SIZE_MAX).toImage());
     }
 
     Settings::wrapImageList = wrapImageListTmp;
@@ -2652,7 +2652,7 @@ void Phototonic::showViewer() {
 void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
     thumbsViewer->setCurrentRow(idx.row());
     showViewer();
-    imageViewer->loadImage(thumbsViewer->fullPathOf(idx.row()));
+    imageViewer->loadImage(thumbsViewer->fullPathOf(idx.row()), thumbsViewer->icon(idx.row()).pixmap(THUMB_SIZE_MAX).toImage());
     thumbsViewer->setImageViewerWindowTitle();
 }
 
@@ -2751,7 +2751,7 @@ void Phototonic::loadImage(SpecialImageIndex idx) {
         return;
 
     if (Settings::layoutMode == ImageViewWidget) {
-        imageViewer->loadImage(thumbsViewer->fullPathOf(thumb));
+        imageViewer->loadImage(thumbsViewer->fullPathOf(thumb), thumbsViewer->icon(thumb).pixmap(THUMB_SIZE_MAX).toImage());
     }
 
     thumbsViewer->setCurrentRow(thumb);

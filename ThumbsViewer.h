@@ -149,6 +149,7 @@ public:
 
     QString getSingleSelectionFilename();
     QString fullPathOf(int idx);
+    QIcon icon(int idx);
 
     void setImageViewer(ImageViewer *imageViewer);
     bool setFilter(const QString &filter, QString *error = nullptr);
@@ -171,7 +172,7 @@ protected:
 private:
     void initThumbs();
 
-    bool loadThumb(int row);
+    bool loadThumb(int row, bool fastOnly = false);
 
     void findDupes(bool resetCounters);
 
