@@ -1321,6 +1321,8 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
             int w = thumb.text("Thumb::Image::Width").toInt();
             int h = thumb.text("Thumb::Image::Height").toInt();
             if (origThumbSize != QSize(w, h)) {
+                if (fastOnly)
+                    return false;
                 qWarning() << "Invalid size in stored thumbnail" << w << h << "vs" << origThumbSize;
                 shouldStoreThumbnail = true;
                 thumbReader.setFileName(imageFileName);
