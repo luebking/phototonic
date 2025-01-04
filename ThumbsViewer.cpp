@@ -658,10 +658,6 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
 }
 
 void ThumbsViewer::applyFilter() {
-    QStringList fileFilters;
-    QString textFilter("*");
-    textFilter += m_filter;
-
     // Get all patterns supported by QImageReader
     static QStringList imageTypeGlobs;
     // Not threadsafe, but whatever
@@ -671,8 +667,19 @@ void ThumbsViewer::applyFilter() {
             imageTypeGlobs.append(db.mimeTypeForName(type).globPatterns());
         }
     }
-    for (const QString &glob : imageTypeGlobs) {
-        fileFilters.append(textFilter + glob);
+
+    QStringList fileFilters;
+    QStringList tokens = m_filter.split(" ", Qt::SkipEmptyParts);
+    if (tokens.isEmpty())
+        tokens.append(QString()); // basic filetype glob
+    for (const QString &t : tokens) {
+        if (imageTypeGlobs.contains(t))
+            fileFilters.append(t);
+        else {
+            for (const QString &glob : imageTypeGlobs) {
+                fileFilters.append("*" + t + glob);
+            }
+        }
     }
 
     thumbsDir.setNameFilters(fileFilters);
