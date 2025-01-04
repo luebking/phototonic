@@ -1101,18 +1101,19 @@ void Phototonic::createImageTagsDock() {
 void Phototonic::sortThumbnails() {
     thumbsViewer->thumbsSortFlags = QDir::IgnoreCase;
 
+    QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
     if (sortByNameAction->isChecked()) {
-        thumbsViewer->thumbsViewerModel->setSortRole(ThumbsViewer::SortRole);
+        thumbModel->setSortRole(ThumbsViewer::SortRole);
     } else if (sortByTimeAction->isChecked()) {
-        thumbsViewer->thumbsViewerModel->setSortRole(ThumbsViewer::TimeRole);
+        thumbModel->setSortRole(ThumbsViewer::TimeRole);
     } else if (sortBySizeAction->isChecked()) {
-        thumbsViewer->thumbsViewerModel->setSortRole(ThumbsViewer::SizeRole);
+        thumbModel->setSortRole(ThumbsViewer::SizeRole);
     } else if (sortByTypeAction->isChecked()) {
-        thumbsViewer->thumbsViewerModel->setSortRole(ThumbsViewer::TypeRole);
+        thumbModel->setSortRole(ThumbsViewer::TypeRole);
     } else if (sortBySimilarityAction->isChecked()) {
         thumbsViewer->sortBySimilarity();
     }
-    thumbsViewer->thumbsViewerModel->sort(0, sortReverseAction->isChecked() ? Qt::AscendingOrder : Qt::DescendingOrder);
+    thumbModel->sort(0, sortReverseAction->isChecked() ? Qt::AscendingOrder : Qt::DescendingOrder);
     thumbsViewer->loadVisibleThumbs(-1);
 }
 
@@ -1189,8 +1190,7 @@ void Phototonic::runExternalApp() {
             }
 
             for (int tn = selectedIdxList.size() - 1; tn >= 0; --tn) {
-                execCommand += " \"" + thumbsViewer->thumbsViewerModel->item(selectedIdxList[tn].row())->data(
-                                             thumbsViewer->FileNameRole).toString() + "\"";
+                execCommand += " \"" + thumbsViewer->fullPathOf(selectedIdxList[tn].row()) + "\"";
             }
         }
     }
@@ -1332,8 +1332,7 @@ void Phototonic::copyOrCutThumbs(bool isCopyOperation) {
 
     QList<QUrl> urlList;
     for (int thumb = 0; thumb < copyCutThumbsCount; ++thumb) {
-        const QString filePath = thumbsViewer->thumbsViewerModel->item(Settings::copyCutIndexList[thumb].
-                row())->data(thumbsViewer->FileNameRole).toString();
+        const QString filePath = thumbsViewer->fullPathOf(Settings::copyCutIndexList[thumb].row());
         Settings::copyCutFileList.append(filePath);
 
         urlList.append(QUrl::fromLocalFile(filePath)); // The standard apparently is URLs even for local files...
@@ -1407,7 +1406,7 @@ void Phototonic::copyOrMoveImages(bool isMoveOperation) {
             } else {
                 if (!copyMoveToDialog->copyOp) {
                     int currentRow = thumbsViewer->getCurrentRow();
-                    thumbsViewer->thumbsViewerModel->removeRow(currentRow);
+                    thumbsViewer->model()->removeRow(currentRow);
                     loadCurrentImage(currentRow);
                 }
             }
@@ -1695,9 +1694,9 @@ void Phototonic::pasteThumbs() {
         }
     } else {
         int row = copyMoveDialog->latestRow;
-        if (thumbsViewer->thumbsViewerModel->rowCount()) {
-            if (row >= thumbsViewer->thumbsViewerModel->rowCount()) {
-                row = thumbsViewer->thumbsViewerModel->rowCount() - 1;
+        if (thumbsViewer->model()->rowCount()) {
+            if (row >= thumbsViewer->model()->rowCount()) {
+                row = thumbsViewer->model()->rowCount() - 1;
             }
 
             thumbsViewer->setCurrentRow(row);
@@ -1723,25 +1722,23 @@ void Phototonic::loadCurrentImage(int currentRow) {
     bool wrapImageListTmp = Settings::wrapImageList;
     Settings::wrapImageList = false;
 
-    if (currentRow == thumbsViewer->thumbsViewerModel->rowCount()) {
+    if (currentRow == thumbsViewer->model()->rowCount()) {
         thumbsViewer->setCurrentRow(currentRow - 1);
     }
 
     if (thumbsViewer->getNextRow() < 0 && currentRow > 0) {
-        imageViewer->loadImage(thumbsViewer->thumbsViewerModel->item(currentRow - 1)->
-                data(thumbsViewer->FileNameRole).toString());
+        imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow - 1));
     } else {
-        if (thumbsViewer->thumbsViewerModel->rowCount() == 0) {
+        if (thumbsViewer->model()->rowCount() == 0) {
             hideViewer();
             refreshThumbs(true);
             return;
         }
 
-        if (currentRow > (thumbsViewer->thumbsViewerModel->rowCount() - 1))
-            currentRow = thumbsViewer->thumbsViewerModel->rowCount() - 1;
+        if (currentRow > (thumbsViewer->model()->rowCount() - 1))
+            currentRow = thumbsViewer->model()->rowCount() - 1;
 
-        imageViewer->loadImage(thumbsViewer->thumbsViewerModel->item(currentRow)->
-                data(thumbsViewer->FileNameRole).toString());
+        imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow));
     }
 
     Settings::wrapImageList = wrapImageListTmp;
@@ -1787,8 +1784,7 @@ void Phototonic::deleteImages(bool trash) {
     int row;
     QModelIndexList indexesList;
     while ((indexesList = thumbsViewer->selectionModel()->selectedIndexes()).size()) {
-        QString fileNameFullPath = thumbsViewer->thumbsViewerModel->item(
-                indexesList.first().row())->data(thumbsViewer->FileNameRole).toString();
+        QString fileNameFullPath = thumbsViewer->fullPathOf(indexesList.first().row());
 
         // Only show if it takes a lot of time, since popping this up for just
         // deleting a single image is annoying
@@ -1812,7 +1808,7 @@ void Phototonic::deleteImages(bool trash) {
         if (deleteOk) {
             row = indexesList.first().row();
             rows << row;
-            thumbsViewer->thumbsViewerModel->removeRow(row);
+            thumbsViewer->model()->removeRow(row);
         } else {
             MessageBox msgBox(this);
             msgBox.critical(tr("Error"),
@@ -1828,12 +1824,12 @@ void Phototonic::deleteImages(bool trash) {
         }
     }
 
-    if (thumbsViewer->thumbsViewerModel->rowCount() && rows.count()) {
+    if (thumbsViewer->model()->rowCount() && rows.count()) {
         std::sort(rows.begin(), rows.end());
         row = rows.at(0);
 
-        if (row >= thumbsViewer->thumbsViewerModel->rowCount()) {
-            row = thumbsViewer->thumbsViewerModel->rowCount() - 1;
+        if (row >= thumbsViewer->model()->rowCount()) {
+            row = thumbsViewer->model()->rowCount() - 1;
         }
 
         thumbsViewer->setCurrentRow(row);
@@ -1885,7 +1881,7 @@ void Phototonic::deleteFromViewer(bool trash) {
         ok = trash ? (Trash::moveToTrash(imageViewer->fullImagePath, trashError) == Trash::Success)
                    : QFile::remove(imageViewer->fullImagePath);
         if (ok) {
-            thumbsViewer->thumbsViewerModel->removeRow(currentRow);
+            thumbsViewer->model()->removeRow(currentRow);
             imageViewer->setFeedback(tr("Deleted ") + fileName);
         } else {
             MessageBox msgBox(this);
@@ -2571,13 +2567,12 @@ void Phototonic::viewImage() {
         if (selectedIndexes.size() > 0) {
             selectedImageIndex = selectedIndexes.first();
         } else {
-            if (thumbsViewer->thumbsViewerModel->rowCount() == 0) {
+            if (thumbsViewer->model()->rowCount() == 0) {
                 setStatus(tr("No images"));
                 return;
             }
-
-            selectedImageIndex = thumbsViewer->thumbsViewerModel->indexFromItem(
-                    thumbsViewer->thumbsViewerModel->item(0));
+            QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
+            selectedImageIndex = thumbModel->indexFromItem(thumbModel->item(0));
             thumbsViewer->selectionModel()->select(selectedImageIndex, QItemSelectionModel::Toggle);
             thumbsViewer->setCurrentRow(0);
         }
@@ -2657,8 +2652,7 @@ void Phototonic::showViewer() {
 void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
     thumbsViewer->setCurrentRow(idx.row());
     showViewer();
-    imageViewer->loadImage(
-            thumbsViewer->thumbsViewerModel->item(idx.row())->data(thumbsViewer->FileNameRole).toString());
+    imageViewer->loadImage(thumbsViewer->fullPathOf(idx.row()));
     thumbsViewer->setImageViewerWindowTitle();
 }
 
@@ -2672,7 +2666,7 @@ void Phototonic::toggleSlideShow() {
         SlideShowTimer->deleteLater();
         slideShowAction->setIcon(QIcon::fromTheme("media-playback-start", QIcon(":/images/play.png")));
     } else {
-        if (thumbsViewer->thumbsViewerModel->rowCount() <= 0) {
+        if (thumbsViewer->model()->rowCount() <= 0) {
             return;
         }
 
@@ -2707,8 +2701,7 @@ void Phototonic::slideShowHandler() {
             loadImage(Phototonic::Random);
         } else {
             int currentRow = thumbsViewer->getCurrentRow();
-            imageViewer->loadImage(
-                    thumbsViewer->thumbsViewerModel->item(currentRow)->data(thumbsViewer->FileNameRole).toString());
+            imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow));
             thumbsViewer->setImageViewerWindowTitle();
 
             if (thumbsViewer->getNextRow() > 0) {
@@ -2725,7 +2718,7 @@ void Phototonic::slideShowHandler() {
 }
 
 void Phototonic::loadImage(SpecialImageIndex idx) {
-    if (thumbsViewer->thumbsViewerModel->rowCount() <= 0) {
+    if (thumbsViewer->model()->rowCount() <= 0) {
         return;
     }
 
@@ -2742,13 +2735,13 @@ void Phototonic::loadImage(SpecialImageIndex idx) {
         case Phototonic::Previous:
             thumb = thumbsViewer->getPrevRow();
             if (thumb < 0 && Settings::wrapImageList)
-                thumb = thumbsViewer->thumbsViewerModel->rowCount() - 1;
+                thumb = thumbsViewer->model()->rowCount() - 1;
             break;
         case Phototonic::Last:
-            thumb = thumbsViewer->thumbsViewerModel->rowCount() - 1;
+            thumb = thumbsViewer->model()->rowCount() - 1;
             break;
         case Phototonic::Random:
-            thumb = QRandomGenerator::global()->bounded(thumbsViewer->thumbsViewerModel->rowCount());
+            thumb = QRandomGenerator::global()->bounded(thumbsViewer->model()->rowCount());
             break;
         default:
             qDebug() << "bogus special index" << idx;
@@ -2758,7 +2751,7 @@ void Phototonic::loadImage(SpecialImageIndex idx) {
         return;
 
     if (Settings::layoutMode == ImageViewWidget) {
-        imageViewer->loadImage(thumbsViewer->thumbsViewerModel->item(thumb)->data(thumbsViewer->FileNameRole).toString());
+        imageViewer->loadImage(thumbsViewer->fullPathOf(thumb));
     }
 
     thumbsViewer->setCurrentRow(thumb);
@@ -2779,7 +2772,7 @@ void Phototonic::setViewerKeyEventsEnabled(bool enabled) {
 }
 
 void Phototonic::updateIndexByViewerImage() {
-    if (thumbsViewer->thumbsViewerModel->rowCount() > 0 &&
+    if (thumbsViewer->model()->rowCount() > 0 &&
         thumbsViewer->setCurrentIndexByName(imageViewer->fullImagePath)) {
         thumbsViewer->selectCurrentIndex();
     }
@@ -2817,7 +2810,7 @@ void Phototonic::hideViewer() {
         needThumbsRefresh = false;
         refreshThumbs(true);
     } else {
-        if (thumbsViewer->thumbsViewerModel->rowCount() > 0) {
+        if (thumbsViewer->model()->rowCount() > 0) {
             if (thumbsViewer->setCurrentIndexByName(imageViewer->fullImagePath)) {
                 thumbsViewer->selectCurrentIndex();
             }
@@ -2900,9 +2893,9 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
 
         if (!Settings::isCopyOperation) {
             int row = copyMoveDialog->latestRow;
-            if (thumbsViewer->thumbsViewerModel->rowCount()) {
-                if (row >= thumbsViewer->thumbsViewerModel->rowCount()) {
-                    row = thumbsViewer->thumbsViewerModel->rowCount() - 1;
+            if (thumbsViewer->model()->rowCount()) {
+                if (row >= thumbsViewer->model()->rowCount()) {
+                    row = thumbsViewer->model()->rowCount() - 1;
                 }
 
                 thumbsViewer->setCurrentRow(row);
@@ -3068,7 +3061,7 @@ void Phototonic::rename() {
             return;
         }
 
-        if (thumbsViewer->thumbsViewerModel->rowCount() > 0) {
+        if (thumbsViewer->model()->rowCount() > 0) {
             if (thumbsViewer->setCurrentIndexByName(imageViewer->fullImagePath))
                 thumbsViewer->selectCurrentIndex();
         }
@@ -3106,10 +3099,10 @@ void Phototonic::rename() {
     if (renameConfirmed) {
         QString newFileNameFullPath = currentFileInfo.absolutePath() + QDir::separator() + newFileName;
         if (currentFileFullPath.rename(newFileNameFullPath)) {
+            QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
             QModelIndexList indexesList = thumbsViewer->selectionModel()->selectedIndexes();
-            thumbsViewer->thumbsViewerModel->item(indexesList.first().row())->setData(newFileNameFullPath,
-                                                                                      thumbsViewer->FileNameRole);
-            thumbsViewer->thumbsViewerModel->item(indexesList.first().row())->setData(newFileName, Qt::DisplayRole);
+            thumbModel->item(indexesList.first().row())->setData(newFileNameFullPath, thumbsViewer->FileNameRole);
+            thumbModel->item(indexesList.first().row())->setData(newFileName, Qt::DisplayRole);
 
             imageViewer->setInfo(newFileName);
             imageViewer->fullImagePath = newFileNameFullPath;
@@ -3140,8 +3133,7 @@ void Phototonic::removeMetadata() {
     copyCutThumbsCount = indexList.size();
 
     for (int thumb = 0; thumb < copyCutThumbsCount; ++thumb) {
-        fileList.append(thumbsViewer->thumbsViewerModel->item(indexList[thumb].
-                row())->data(thumbsViewer->FileNameRole).toString());
+        fileList.append(thumbsViewer->fullPathOf(indexList[thumb].row()));
     }
 
     if (fileList.isEmpty()) {

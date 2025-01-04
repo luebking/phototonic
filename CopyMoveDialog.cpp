@@ -23,7 +23,6 @@
 #include <QFileInfo>
 #include <QLabel>
 #include <QPushButton>
-#include <QStandardItemModel>
 
 #include "CopyMoveDialog.h"
 #include "Settings.h"
@@ -121,8 +120,7 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
     } else {
         QList<int> rowList;
         for (tn = Settings::copyCutIndexList.size() - 1; tn >= 0; --tn) {
-            sourceFile = thumbView->thumbsViewerModel->item(Settings::copyCutIndexList[tn].row())->
-                    data(thumbView->FileNameRole).toString();
+            sourceFile = thumbView->fullPathOf(Settings::copyCutIndexList[tn].row());
             fileInfo = QFileInfo(sourceFile);
             currFile = fileInfo.fileName();
             destFile = destDir + QDir::separator() + currFile;
@@ -143,7 +141,7 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
         if (!Settings::isCopyOperation) {
             std::sort(rowList.begin(), rowList.end());
             for (int t = rowList.size() - 1; t >= 0; --t)
-                thumbView->thumbsViewerModel->removeRow(rowList.at(t));
+                thumbView->model()->removeRow(rowList.at(t));
         }
         latestRow = rowList.at(0);
     }

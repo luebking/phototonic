@@ -148,6 +148,7 @@ public:
     QStringList getSelectedThumbsList();
 
     QString getSingleSelectionFilename();
+    QString fullPathOf(int idx);
 
     void setImageViewer(ImageViewer *imageViewer);
     bool setFilter(const QString &filter, QString *error = nullptr);
@@ -157,7 +158,6 @@ public:
     ImagePreview *imagePreview;
     ImageTags *imageTags;
     QDir thumbsDir;
-    QStandardItemModel *thumbsViewerModel;
     QDir::SortFlags thumbsSortFlags;
     int thumbSize;
 
@@ -213,6 +213,7 @@ private:
     QString m_filter;
     QList<Constraint> m_constraints;
     bool m_busy;
+    QStandardItemModel *m_model;
 
 public slots:
 

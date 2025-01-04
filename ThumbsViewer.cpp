@@ -71,9 +71,9 @@ ThumbsViewer::ThumbsViewer(QWidget *parent, const std::shared_ptr<MetadataCache>
     // QAbstractItemView::ScrollPerPixel instead.
     setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
 
-    thumbsViewerModel = new QStandardItemModel(this);
-    thumbsViewerModel->setSortRole(SortRole);
-    setModel(thumbsViewerModel);
+    m_model = new QStandardItemModel(this);
+    m_model->setSortRole(SortRole);
+    setModel(m_model);
 
     m_selectionChangedTimer.setInterval(10);
     m_selectionChangedTimer.setSingleShot(true);
@@ -111,7 +111,7 @@ void ThumbsViewer::setThumbColors() {
 }
 
 void ThumbsViewer::selectCurrentIndex() {
-    if (currentIndex.isValid() && thumbsViewerModel->rowCount() > 0) {
+    if (currentIndex.isValid() && m_model->rowCount() > 0) {
         scrollTo(currentIndex);
         setCurrentIndex(currentIndex);
     }
@@ -119,14 +119,18 @@ void ThumbsViewer::selectCurrentIndex() {
 
 QString ThumbsViewer::getSingleSelectionFilename() {
     if (selectionModel()->selectedIndexes().size() == 1)
-        return thumbsViewerModel->item(selectionModel()->selectedIndexes().first().row())->data(
-                FileNameRole).toString();
+        return m_model->item(selectionModel()->selectedIndexes().first().row())->data(FileNameRole).toString();
 
     return ("");
 }
 
+QString ThumbsViewer::fullPathOf(int idx)
+{
+    return m_model->item(idx)->data(FileNameRole).toString();
+}
+
 int ThumbsViewer::getNextRow() {
-    if (currentRow == thumbsViewerModel->rowCount() - 1) {
+    if (currentRow == m_model->rowCount() - 1) {
         return -1;
     }
 
@@ -154,18 +158,18 @@ void ThumbsViewer::setCurrentRow(int row) {
 }
 
 void ThumbsViewer::setImageViewerWindowTitle() {
-    QString title = thumbsViewerModel->item(currentRow)->data(Qt::DisplayRole).toString()
+    QString title = m_model->item(currentRow)->data(Qt::DisplayRole).toString()
                     + " - ["
                     + QString::number(currentRow + 1)
                     + "/"
-                    + QString::number(thumbsViewerModel->rowCount())
+                    + QString::number(m_model->rowCount())
                     + "] - Phototonic";
 
     window()->setWindowTitle(title);
 }
 
 bool ThumbsViewer::setCurrentIndexByName(QString &fileName) {
-    QModelIndexList indexList = thumbsViewerModel->match(thumbsViewerModel->index(0, 0), FileNameRole, fileName);
+    QModelIndexList indexList = m_model->match(m_model->index(0, 0), FileNameRole, fileName);
     if (indexList.size()) {
         currentIndex = indexList[0];
         setCurrentRow(currentIndex.row());
@@ -176,7 +180,7 @@ bool ThumbsViewer::setCurrentIndexByName(QString &fileName) {
 }
 
 bool ThumbsViewer::setCurrentIndexByRow(int row) {
-    QModelIndex idx = thumbsViewerModel->indexFromItem(thumbsViewerModel->item(row));
+    QModelIndex idx = m_model->indexFromItem(m_model->item(row));
     if (idx.isValid()) {
         currentIndex = idx;
         setCurrentRow(idx.row());
@@ -187,7 +191,7 @@ bool ThumbsViewer::setCurrentIndexByRow(int row) {
 }
 
 void ThumbsViewer::updateImageInfoViewer(int row) {
-    QString imageFullPath = thumbsViewerModel->item(row)->data(FileNameRole).toString();
+    QString imageFullPath = m_model->item(row)->data(FileNameRole).toString();
     QImageReader imageInfoReader(imageFullPath);
     QString key;
     QString val;
@@ -228,7 +232,7 @@ void ThumbsViewer::updateImageInfoViewer(int row) {
         infoView->addEntry(key, val);
 
         key = tr("Average brightness");
-        val = QString::number(thumbsViewerModel->item(row)->data(BrightnessRole).toReal(), 'f', 2);
+        val = QString::number(m_model->item(row)->data(BrightnessRole).toReal(), 'f', 2);
         infoView->addEntry(key, val);
     } else {
         imageInfoReader.read();
@@ -300,7 +304,7 @@ void ThumbsViewer::onSelectionChanged() {
     int selectedThumbs = indexesList.size();
     if (selectedThumbs > 0) {
         int currentRow = indexesList.first().row();
-        QString thumbFullPath = thumbsViewerModel->item(currentRow)->data(FileNameRole).toString();
+        QString thumbFullPath = m_model->item(currentRow)->data(FileNameRole).toString();
         setCurrentRow(currentRow);
 
         if (infoView->isVisible()) {
@@ -320,7 +324,7 @@ void ThumbsViewer::onSelectionChanged() {
 
     if (selectedThumbs >= 1) {
         emit status(tr("Selected %1 of %2").arg(QString::number(selectedThumbs))
-                                           .arg(tr(" %n image(s)", "", thumbsViewerModel->rowCount())));
+                                           .arg(tr(" %n image(s)", "", m_model->rowCount())));
     } else if (!selectedThumbs) {
         updateThumbsCount();
     }
@@ -331,7 +335,7 @@ QStringList ThumbsViewer::getSelectedThumbsList() {
     QStringList SelectedThumbsPaths;
 
     for (int tn = indexesList.size() - 1; tn >= 0; --tn) {
-        SelectedThumbsPaths << thumbsViewerModel->item(indexesList[tn].row())->data(FileNameRole).toString();
+        SelectedThumbsPaths << m_model->item(indexesList[tn].row())->data(FileNameRole).toString();
     }
 
     return SelectedThumbsPaths;
@@ -348,7 +352,7 @@ void ThumbsViewer::startDrag(Qt::DropActions) {
     QList<QUrl> urls;
     for (QModelIndexList::const_iterator it = indexesList.constBegin(),
                  end = indexesList.constEnd(); it != end; ++it) {
-        urls << QUrl::fromLocalFile(thumbsViewerModel->item(it->row())->data(FileNameRole).toString());
+        urls << QUrl::fromLocalFile(m_model->item(it->row())->data(FileNameRole).toString());
     }
     mimeData->setUrls(urls);
     drag->setMimeData(mimeData);
@@ -361,7 +365,7 @@ void ThumbsViewer::startDrag(Qt::DropActions) {
         painter.setPen(QPen(Qt::white, 2));
         int x = 0, y = 0, xMax = 0, yMax = 0;
         for (int i = 0; i < qMin(5, indexesList.count()); ++i) {
-            QPixmap pix = thumbsViewerModel->item(indexesList.at(i).row())->icon().pixmap(72);
+            QPixmap pix = m_model->item(indexesList.at(i).row())->icon().pixmap(72);
             if (i == 4) {
                 x = (xMax - pix.width()) / 2;
                 y = (yMax - pix.height()) / 2;
@@ -377,7 +381,7 @@ void ThumbsViewer::startDrag(Qt::DropActions) {
         pix = pix.copy(0, 0, xMax, yMax);
         drag->setPixmap(pix);
     } else {
-        pix = thumbsViewerModel->item(indexesList.at(0).row())->icon().pixmap(128);
+        pix = m_model->item(indexesList.at(0).row())->icon().pixmap(128);
         drag->setPixmap(pix);
     }
     drag->setHotSpot(QPoint(pix.width() / 2, pix.height() / 2));
@@ -429,8 +433,8 @@ void ThumbsViewer::loadVisibleThumbs(int scrollBarValue) {
 
         if (scrolledForward) {
             lastVisible += ((lastVisible - firstVisible) * (Settings::thumbsPagesReadCount + 1));
-            if (lastVisible >= thumbsViewerModel->rowCount()) {
-                lastVisible = thumbsViewerModel->rowCount() - 1;
+            if (lastVisible >= m_model->rowCount()) {
+                lastVisible = m_model->rowCount() - 1;
             }
         } else {
             firstVisible -= (lastVisible - firstVisible) * (Settings::thumbsPagesReadCount + 1);
@@ -439,8 +443,8 @@ void ThumbsViewer::loadVisibleThumbs(int scrollBarValue) {
             }
 
             lastVisible += 10;
-            if (lastVisible >= thumbsViewerModel->rowCount()) {
-                lastVisible = thumbsViewerModel->rowCount() - 1;
+            if (lastVisible >= m_model->rowCount()) {
+                lastVisible = m_model->rowCount() - 1;
             }
         }
 
@@ -464,8 +468,8 @@ void ThumbsViewer::loadVisibleThumbs(int scrollBarValue) {
 int ThumbsViewer::getFirstVisibleThumb() {
     QModelIndex idx;
 
-    for (int currThumb = 0; currThumb < thumbsViewerModel->rowCount(); ++currThumb) {
-        idx = thumbsViewerModel->indexFromItem(thumbsViewerModel->item(currThumb));
+    for (int currThumb = 0; currThumb < m_model->rowCount(); ++currThumb) {
+        idx = m_model->indexFromItem(m_model->item(currThumb));
         if (viewport()->rect().contains(QPoint(0, visualRect(idx).y() + visualRect(idx).height() + 1))) {
             return idx.row();
         }
@@ -477,8 +481,8 @@ int ThumbsViewer::getFirstVisibleThumb() {
 int ThumbsViewer::getLastVisibleThumb() {
     QModelIndex idx;
 
-    for (int currThumb = thumbsViewerModel->rowCount() - 1; currThumb >= 0; --currThumb) {
-        idx = thumbsViewerModel->indexFromItem(thumbsViewerModel->item(currThumb));
+    for (int currThumb = m_model->rowCount() - 1; currThumb >= 0; --currThumb) {
+        idx = m_model->indexFromItem(m_model->item(currThumb));
         if (viewport()->rect().contains(QPoint(0, visualRect(idx).y() + visualRect(idx).height() + 1))) {
             return idx.row();
         }
@@ -701,7 +705,7 @@ QSize ThumbsViewer::itemSizeHint() const
 
 void ThumbsViewer::loadPrepare() {
 
-    thumbsViewerModel->clear();
+    m_model->clear();
     setIconSize(QSize(thumbSize, thumbSize));
 
     if (Settings::thumbsLayout == Squares) {
@@ -741,7 +745,7 @@ void ThumbsViewer::loadDuplicates()
 
     dupImageHashes.clear();
     findDupes(true);
-    thumbsViewerModel->setSortRole(SortRole);
+    m_model->setSortRole(SortRole);
 
     if (Settings::includeSubDirectories) {
         int processed = 0;
@@ -764,7 +768,7 @@ void ThumbsViewer::loadDuplicates()
     }
 
 finish:
-    thumbsViewerModel->sort(0);
+    m_model->sort(0);
     m_busy = false;
     return;
 }
@@ -835,7 +839,7 @@ void ThumbsViewer::initThumbs() {
             thumbItem->setText(thumbFileInfo.fileName());
         }
 
-        thumbsViewerModel->appendRow(thumbItem);
+        m_model->appendRow(thumbItem);
 
         if (++processed > BATCH_SIZE) {
             QApplication::processEvents();
@@ -851,8 +855,7 @@ void ThumbsViewer::initThumbs() {
 }
 
 void ThumbsViewer::updateThumbsCount() {
-    emit status(thumbsViewerModel->rowCount() > 0 ? tr("%n image(s)", "", thumbsViewerModel->rowCount()) :
-                                                    tr("No images"));
+    emit status(m_model->rowCount() > 0 ? tr("%n image(s)", "", m_model->rowCount()) : tr("No images"));
     thumbsDir.setPath(Settings::currentDirectory);
 }
 
@@ -883,7 +886,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
     int processed = 0;
     for (int currThumb = 0; currThumb < thumbFileInfoList.size(); ++currThumb) {
         if (++processed > BATCH_SIZE) {
-            thumbsViewerModel->sort(0);
+            m_model->sort(0);
             QApplication::processEvents();
             processed = 0;
         }
@@ -948,9 +951,9 @@ void ThumbsViewer::findDupes(bool resetCounters)
 void ThumbsViewer::selectByBrightness(qreal min, qreal max) {
     loadAllThumbs();
     QItemSelection sel;
-    for (int row = 0; row < thumbsViewerModel->rowCount(); ++row) {
-        QModelIndex idx = thumbsViewerModel->index(row, 0);
-        QVariant brightness = thumbsViewerModel->data(idx, BrightnessRole);
+    for (int row = 0; row < m_model->rowCount(); ++row) {
+        QModelIndex idx = m_model->index(row, 0);
+        QVariant brightness = m_model->data(idx, BrightnessRole);
         if (brightness.isValid()) {
             qreal val = brightness.toReal();
             if (val >= min && val <= max)
@@ -967,7 +970,7 @@ void ThumbsViewer::loadAllThumbs() {
         progress.setValue(i);
         if (progress.wasCanceled())
             break;
-        if (thumbsViewerModel->item(i)->data(LoadedRole).toBool())
+        if (m_model->item(i)->data(LoadedRole).toBool())
             continue;
         loadThumb(i);
 
@@ -1022,7 +1025,7 @@ void ThumbsViewer::sortBySimilarity() {
 
     int processed = 0;
     for (int i = 0; i < thumbFileInfoList.count(); ++i) {
-        QStandardItem *item = thumbsViewerModel->item(i);
+        QStandardItem *item = m_model->item(i);
 
         Q_ASSERT(item);
         if (!item) {
@@ -1084,7 +1087,7 @@ void ThumbsViewer::sortBySimilarity() {
         indices[histFiles[i]] = i;
     }
     for (int i = 0; i < thumbFileInfoList.count(); ++i) {
-        QStandardItem *item = thumbsViewerModel->item(i);
+        QStandardItem *item = m_model->item(i);
         Q_ASSERT(item);
         if (!item) {
             qWarning() << "Invalid item" << i;
@@ -1109,8 +1112,8 @@ void ThumbsViewer::sortBySimilarity() {
     }
     QApplication::processEvents();
 
-    thumbsViewerModel->setSortRole(SortRole);
-    thumbsViewerModel->sort(0);
+    m_model->setSortRole(SortRole);
+    m_model->sort(0);
 }
 
 void ThumbsViewer::loadThumbsRange() {
@@ -1125,7 +1128,7 @@ void ThumbsViewer::loadThumbsRange() {
     }
 
     isInProgress = true;
-    currentRowCount = thumbsViewerModel->rowCount();
+    currentRowCount = m_model->rowCount();
 
     QElapsedTimer timer;
     timer.start();
@@ -1134,10 +1137,10 @@ void ThumbsViewer::loadThumbsRange() {
          (scrolledForward ? currThumb <= thumbsRangeLast : currThumb >= thumbsRangeFirst);
          scrolledForward ? ++currThumb : --currThumb) {
 
-        if (isAbortThumbsLoading || thumbsViewerModel->rowCount() != currentRowCount || currThumb < 0)
+        if (isAbortThumbsLoading || m_model->rowCount() != currentRowCount || currThumb < 0)
             break;
 
-        if (thumbsViewerModel->item(currThumb)->data(LoadedRole).toBool())
+        if (m_model->item(currThumb)->data(LoadedRole).toBool())
             continue;
 
         loadThumb(currThumb);
@@ -1267,7 +1270,7 @@ void ThumbsViewer::storeThumbnail(const QString &originalPath, QImage thumbnail,
 
 bool ThumbsViewer::loadThumb(int currThumb) {
     QImageReader thumbReader;
-    QString imageFileName = thumbsViewerModel->item(currThumb)->data(FileNameRole).toString();
+    QString imageFileName = m_model->item(currThumb)->data(FileNameRole).toString();
     QImage thumb;
     bool imageReadOk = false;
     bool shouldStoreThumbnail = false;
@@ -1320,19 +1323,19 @@ bool ThumbsViewer::loadThumb(int currThumb) {
             currentThumbSize.scale(QSize(thumbSize, thumbSize), Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
         }
 
-        thumbsViewerModel->item(currThumb)->setData(qGray(thumb.scaled(1, 1).pixel(0, 0)) / 255.0, BrightnessRole);
+        m_model->item(currThumb)->setData(qGray(thumb.scaled(1, 1).pixel(0, 0)) / 255.0, BrightnessRole);
 
         if (Settings::thumbsLayout != Classic) {
             thumb = SmartCrop::crop(thumb, QSize(thumbSize, thumbSize));
         }
 
-        thumbsViewerModel->item(currThumb)->setIcon(QPixmap::fromImage(thumb));
-        thumbsViewerModel->item(currThumb)->setData(true, LoadedRole);
+        m_model->item(currThumb)->setIcon(QPixmap::fromImage(thumb));
+        m_model->item(currThumb)->setData(true, LoadedRole);
         histograms.append(calcHist(thumb));
         histFiles.append(imageFileName);
-        thumbsViewerModel->item(currThumb)->setSizeHint(itemSizeHint());
+        m_model->item(currThumb)->setSizeHint(itemSizeHint());
     } else {
-        thumbsViewerModel->item(currThumb)->setIcon(QIcon::fromTheme("image-missing",
+        m_model->item(currThumb)->setIcon(QIcon::fromTheme("image-missing",
                                                                      QIcon(":/images/error_image.png")).pixmap(
                 BAD_IMAGE_SIZE, BAD_IMAGE_SIZE));
         currentThumbSize.setHeight(BAD_IMAGE_SIZE);
@@ -1393,7 +1396,7 @@ QStandardItem * ThumbsViewer::addThumb(QString &imageFullPath) {
         currThumbSize.setWidth(BAD_IMAGE_SIZE);
     }
 
-    thumbsViewerModel->appendRow(thumbItem);
+    m_model->appendRow(thumbItem);
     return thumbItem;
 }
 
@@ -1408,8 +1411,8 @@ void ThumbsViewer::mousePressEvent(QMouseEvent *event) {
 
 void ThumbsViewer::invertSelection() {
     QItemSelection toggleSelection;
-    QModelIndex firstIndex = thumbsViewerModel->index(0, 0);
-    QModelIndex lastIndex = thumbsViewerModel->index(thumbsViewerModel->rowCount() - 1, 0);
+    QModelIndex firstIndex = m_model->index(0, 0);
+    QModelIndex lastIndex = m_model->index(m_model->rowCount() - 1, 0);
     toggleSelection.select(firstIndex, lastIndex);
     selectionModel()->select(toggleSelection, QItemSelectionModel::Toggle);
 }
