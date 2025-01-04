@@ -19,6 +19,7 @@
 #include <QApplication>
 #include <QCollator>
 #include <QColorSpace>
+#include <QtConcurrent>
 #include <QDirIterator>
 #include <QCryptographicHash>
 #include <QDrag>
@@ -33,6 +34,7 @@
 #include <QScrollBar>
 #include <QStandardItemModel>
 #include <QStandardPaths>
+#include <QTimer>
 #include <QTreeWidget>
 
 #include "ImagePreview.h"
@@ -515,7 +517,15 @@ void ThumbsViewer::loadFileList() {
 }
 
 void ThumbsViewer::reLoad() {
-    disconnect(verticalScrollBar(), &QScrollBar::valueChanged, this, &ThumbsViewer::loadVisibleThumbs);
+    static QTimer *scrollDelay = nullptr;
+    if (!scrollDelay) {
+        scrollDelay = new QTimer(this);
+        scrollDelay->setInterval(150);
+        scrollDelay->setSingleShot(true);
+        connect(scrollDelay, &QTimer::timeout, [=]() { loadVisibleThumbs(verticalScrollBar()->value()); });
+    }
+    scrollDelay->stop();
+    disconnect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
     m_busy = true;
 
     loadPrepare();
@@ -535,7 +545,7 @@ void ThumbsViewer::reLoad() {
     }
 
     m_busy = false;
-    connect(verticalScrollBar(), &QScrollBar::valueChanged, this, &ThumbsViewer::loadVisibleThumbs);
+    connect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
 }
 
 void ThumbsViewer::loadSubDirectories() {
@@ -1158,7 +1168,10 @@ void ThumbsViewer::loadThumbsRange() {
         if (m_model->item(currThumb)->data(LoadedRole).toBool())
             continue;
 
-        loadThumb(currThumb);
+        if (!loadThumb(currThumb, true)) {
+            QThreadPool::globalInstance()->start([=](){loadThumb(currThumb);});
+//            qDebug() << "slow image read"; loadThumb(currThumb);
+        }
 
         if (timer.elapsed() > 10) {
             QApplication::processEvents();

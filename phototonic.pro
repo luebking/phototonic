@@ -31,7 +31,7 @@ DEPENDPATH += $$MINGWEXIVPATH/include
 PRE_TARGETDEPS += $$MINGWEXIVPATH/lib/libexiv2.a $$MINGWEXIVPATH/lib/libexpat.a $$MINGWEXIVPATH/lib/libz.a
 }
 else: LIBS += -L/usr/local/lib -lexiv2
-QT += widgets openglwidgets
+QT += widgets openglwidgets concurrent
 QMAKE_CXXFLAGS += $$(CXXFLAGS)
 QMAKE_CFLAGS += $$(CFLAGS)
 QMAKE_LFLAGS += $$(LDFLAGS)
