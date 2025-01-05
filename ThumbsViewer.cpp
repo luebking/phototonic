@@ -86,9 +86,9 @@ ThumbsViewer::ThumbsViewer(QWidget *parent, const std::shared_ptr<MetadataCache>
         }
     });
 
-    m_loadThumbTimer.setInterval(10);
+    m_loadThumbTimer.setInterval(250);
     m_loadThumbTimer.setSingleShot(true);
-    connect(&m_loadThumbTimer, &QTimer::timeout, this, &ThumbsViewer::loadThumbsRange);
+    connect(&m_loadThumbTimer, &QTimer::timeout, [=](){ loadVisibleThumbs(verticalScrollBar()->value()); });
     connect(this, SIGNAL(doubleClicked(
                                  const QModelIndex &)), parent, SLOT(loadSelectedThumbImage(
                                                                              const QModelIndex &)));
@@ -1439,6 +1439,11 @@ void ThumbsViewer::mousePressEvent(QMouseEvent *event) {
         if (selectionModel()->selectedIndexes().size() == 1)
                 emit(doubleClicked(selectionModel()->selectedIndexes().first()));
     }
+}
+
+void ThumbsViewer::resizeEvent(QResizeEvent *event) {
+    QListView::resizeEvent(event);
+    m_loadThumbTimer.start();
 }
 
 void ThumbsViewer::invertSelection() {

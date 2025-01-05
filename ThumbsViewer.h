@@ -168,6 +168,7 @@ signals:
 protected:
     void startDrag(Qt::DropActions) override;
     void mousePressEvent(QMouseEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
 
 private:
     void initThumbs();
