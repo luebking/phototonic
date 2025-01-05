@@ -63,10 +63,10 @@ protected:
     bool event(QEvent *event) override;
 
 public slots:
-    void loadSelectedThumbImage(const QModelIndex &idx);
     void setSaveDirectory(QString path = QString());
 
 private slots:
+    void loadSelectedThumbImage(const QModelIndex &idx);
     void showViewer();
     void hideViewer();
     void dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyMoveDirPath);

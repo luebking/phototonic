@@ -89,9 +89,6 @@ ThumbsViewer::ThumbsViewer(QWidget *parent, const std::shared_ptr<MetadataCache>
     m_loadThumbTimer.setInterval(250);
     m_loadThumbTimer.setSingleShot(true);
     connect(&m_loadThumbTimer, &QTimer::timeout, [=](){ loadVisibleThumbs(verticalScrollBar()->value()); });
-    connect(this, SIGNAL(doubleClicked(
-                                 const QModelIndex &)), parent, SLOT(loadSelectedThumbImage(
-                                                                             const QModelIndex &)));
 
     emptyImg.load(":/images/no_image.png");
 
