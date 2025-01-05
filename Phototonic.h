@@ -348,7 +348,6 @@ private:
     bool needHistoryRecord;
     bool initComplete;
     bool needThumbsRefresh;
-    bool shouldMaximize;
 
     bool imageToolBarVisible;
     bool m_deleteInProgress;

@@ -40,7 +40,6 @@ namespace Settings {
     const char optionDeleteConfirm[] = "deleteConfirm";
     const char optionShowHiddenFiles[] = "showHiddenFiles";
     const char optionImageZoomFactor[] = "imageZoomFactor";
-    const char optionShouldMaximize[] = "shouldMaximize";
     const char optionDefaultSaveQuality[] = "defaultSaveQuality";
     const char optionSlideShowDelay[] = "slideShowDelay";
     const char optionSlideShowRandom[] = "slideShowRandom";

@@ -1296,19 +1296,12 @@ void Phototonic::showSettings() {
 }
 
 void Phototonic::toggleFullScreen() {
-    if (fullScreenAction->isChecked()) {
-        shouldMaximize = isMaximized();
-        showFullScreen();
-        Settings::isFullScreen = true;
-        imageViewer->setCursorHiding(true);
-    } else {
-        showNormal();
-        if (shouldMaximize) {
-            showMaximized();
-        }
-        imageViewer->setCursorHiding(false);
-        Settings::isFullScreen = false;
-    }
+    Settings::isFullScreen = fullScreenAction->isChecked();
+    imageViewer->setCursorHiding(Settings::isFullScreen);
+    if (fullScreenAction->isChecked())
+        setWindowState(windowState() | Qt::WindowFullScreen);
+    else
+        setWindowState(windowState() & ~Qt::WindowFullScreen);
 }
 
 void Phototonic::selectAllThumbs() {
@@ -2055,7 +2048,6 @@ void Phototonic::writeSettings() {
     Settings::setValue(Settings::optionShowHiddenFiles, (bool) Settings::showHiddenFiles);
     Settings::setValue(Settings::optionWrapImageList, (bool) Settings::wrapImageList);
     Settings::setValue(Settings::optionImageZoomFactor, Settings::imageZoomFactor);
-    Settings::setValue(Settings::optionShouldMaximize, (bool) isMaximized());
     Settings::setValue(Settings::optionDefaultSaveQuality, Settings::defaultSaveQuality);
     Settings::setValue(Settings::optionSlideShowDelay, Settings::slideShowDelay);
     Settings::setValue(Settings::optionSlideShowRandom, (bool) Settings::slideShowRandom);
@@ -2183,7 +2175,6 @@ void Phototonic::readSettings() {
     Settings::zoomInFlags = Settings::value(Settings::optionViewerZoomInFlags).toUInt();
     Settings::rotation = 0;
     Settings::keepTransform = false;
-    shouldMaximize = Settings::value(Settings::optionShouldMaximize).toBool();
     Settings::flipH = false;
     Settings::flipV = false;
     Settings::defaultSaveQuality = Settings::value(Settings::optionDefaultSaveQuality).toInt();
@@ -2633,15 +2624,14 @@ void Phototonic::setImageInfoDockVisibility() {
 void Phototonic::showViewer() {
     if (Settings::layoutMode == ThumbViewWidget) {
         Settings::layoutMode = ImageViewWidget;
-        Settings::setValue("Geometry", saveGeometry());
-        Settings::setValue("WindowState", saveState());
+//        Settings::setValue("Geometry", saveGeometry());
+//        Settings::setValue("WindowState", saveState());
 
         stackedLayout->setCurrentWidget(imageViewer);
         setDocksVisibility(false);
 
         if (Settings::isFullScreen) {
-            shouldMaximize = isMaximized();
-            showFullScreen();
+            setWindowState(windowState() | Qt::WindowFullScreen);
             imageViewer->setCursorHiding(true);
             QApplication::processEvents();
         }
@@ -2779,16 +2769,11 @@ void Phototonic::updateIndexByViewerImage() {
 }
 
 void Phototonic::hideViewer() {
-    if (isFullScreen()) {
-        showNormal();
-        if (shouldMaximize) {
-            showMaximized();
-        }
-        imageViewer->setCursorHiding(false);
-    }
+    setWindowState(windowState() & ~Qt::WindowFullScreen);
+    imageViewer->setCursorHiding(false);
 
-    restoreGeometry(Settings::value(Settings::optionGeometry).toByteArray());
-    restoreState(Settings::value(Settings::optionWindowState).toByteArray());
+//    restoreGeometry(Settings::value(Settings::optionGeometry).toByteArray());
+//    restoreState(Settings::value(Settings::optionWindowState).toByteArray());
 
     Settings::layoutMode = ThumbViewWidget;
     stackedLayout->setCurrentWidget(thumbsViewer);
