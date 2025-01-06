@@ -1399,7 +1399,7 @@ void Phototonic::copyOrMoveImages(bool isMoveOperation) {
                 msgBox.critical(tr("Error"), tr("Failed to copy or move image."));
             } else {
                 if (!copyMoveToDialog->copyOp) {
-                    int currentRow = thumbsViewer->getCurrentRow();
+                    int currentRow = thumbsViewer->currentIndex().row();
                     thumbsViewer->model()->removeRow(currentRow);
                     loadCurrentImage(currentRow);
                 }
@@ -1693,8 +1693,7 @@ void Phototonic::pasteThumbs() {
                 row = thumbsViewer->model()->rowCount() - 1;
             }
 
-            thumbsViewer->setCurrentRow(row);
-            thumbsViewer->selectThumbByRow(row);
+            thumbsViewer->setCurrentIndex(row);
         }
     }
 
@@ -1717,7 +1716,7 @@ void Phototonic::loadCurrentImage(int currentRow) {
     Settings::wrapImageList = false;
 
     if (currentRow == thumbsViewer->model()->rowCount()) {
-        thumbsViewer->setCurrentRow(currentRow - 1);
+        thumbsViewer->setCurrentIndex(currentRow - 1);
     }
 
     if (thumbsViewer->getNextRow() < 0 && currentRow > 0) {
@@ -1826,8 +1825,7 @@ void Phototonic::deleteImages(bool trash) {
             row = thumbsViewer->model()->rowCount() - 1;
         }
 
-        thumbsViewer->setCurrentRow(row);
-        thumbsViewer->selectThumbByRow(row);
+        thumbsViewer->setCurrentIndex(row);
     }
 
     progressDialog->close();
@@ -1869,7 +1867,7 @@ void Phototonic::deleteFromViewer(bool trash) {
     }
 
     if (deleteConfirmed) {
-        int currentRow = thumbsViewer->getCurrentRow();
+        int currentRow = thumbsViewer->currentIndex().row();
 
         QString trashError;
         ok = trash ? (Trash::moveToTrash(imageViewer->fullImagePath, trashError) == Trash::Success)
@@ -2566,7 +2564,7 @@ void Phototonic::viewImage() {
             QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
             selectedImageIndex = thumbModel->indexFromItem(thumbModel->item(0));
             thumbsViewer->selectionModel()->select(selectedImageIndex, QItemSelectionModel::Toggle);
-            thumbsViewer->setCurrentRow(0);
+            thumbsViewer->setCurrentIndex(0);
         }
 
         loadSelectedThumbImage(selectedImageIndex);
@@ -2641,7 +2639,7 @@ void Phototonic::showViewer() {
 }
 
 void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
-    thumbsViewer->setCurrentRow(idx.row());
+    thumbsViewer->setCurrentIndex(idx);
     showViewer();
     imageViewer->loadImage(thumbsViewer->fullPathOf(idx.row()), thumbsViewer->icon(idx.row()).pixmap(THUMB_SIZE_MAX).toImage());
     thumbsViewer->setImageViewerWindowTitle();
@@ -2664,9 +2662,9 @@ void Phototonic::toggleSlideShow() {
         if (Settings::layoutMode == ThumbViewWidget) {
             QModelIndexList indexesList = thumbsViewer->selectionModel()->selectedIndexes();
             if (indexesList.size() != 1) {
-                thumbsViewer->setCurrentRow(0);
+                thumbsViewer->setCurrentIndex(0);
             } else {
-                thumbsViewer->setCurrentRow(indexesList.first().row());
+                thumbsViewer->setCurrentIndex(indexesList.first());
             }
 
             showViewer();
@@ -2691,15 +2689,15 @@ void Phototonic::slideShowHandler() {
         if (Settings::slideShowRandom) {
             loadImage(Phototonic::Random);
         } else {
-            int currentRow = thumbsViewer->getCurrentRow();
+            int currentRow = thumbsViewer->currentIndex().row();
             imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow));
             thumbsViewer->setImageViewerWindowTitle();
 
             if (thumbsViewer->getNextRow() > 0) {
-                thumbsViewer->setCurrentRow(thumbsViewer->getNextRow());
+                thumbsViewer->setCurrentIndex(thumbsViewer->getNextRow());
             } else {
                 if (Settings::wrapImageList) {
-                    thumbsViewer->setCurrentRow(0);
+                    thumbsViewer->setCurrentIndex(0);
                 } else {
                     toggleSlideShow();
                 }
@@ -2745,12 +2743,8 @@ void Phototonic::loadImage(SpecialImageIndex idx) {
         imageViewer->loadImage(thumbsViewer->fullPathOf(thumb), thumbsViewer->icon(thumb).pixmap(THUMB_SIZE_MAX).toImage());
     }
 
-    thumbsViewer->setCurrentRow(thumb);
+    thumbsViewer->setCurrentIndex(thumb);
     thumbsViewer->setImageViewerWindowTitle();
-
-    if (Settings::layoutMode == ThumbViewWidget) {
-        thumbsViewer->selectThumbByRow(thumb);
-    }
 }
 
 void Phototonic::setViewerKeyEventsEnabled(bool enabled) {
@@ -2764,8 +2758,7 @@ void Phototonic::setViewerKeyEventsEnabled(bool enabled) {
 
 void Phototonic::updateIndexByViewerImage() {
     if (thumbsViewer->model()->rowCount() > 0 &&
-        thumbsViewer->setCurrentIndexByName(imageViewer->fullImagePath)) {
-        thumbsViewer->selectCurrentIndex();
+        thumbsViewer->setCurrentIndex(imageViewer->fullImagePath)) {
     }
 }
 
@@ -2797,11 +2790,8 @@ void Phototonic::hideViewer() {
         refreshThumbs(true);
     } else {
         if (thumbsViewer->model()->rowCount() > 0) {
-            if (thumbsViewer->setCurrentIndexByName(imageViewer->fullImagePath)) {
-                thumbsViewer->selectCurrentIndex();
-            }
+            thumbsViewer->setCurrentIndex(imageViewer->fullImagePath);
         }
-
         thumbsViewer->loadVisibleThumbs();
     }
 
@@ -2884,8 +2874,7 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
                     row = thumbsViewer->model()->rowCount() - 1;
                 }
 
-                thumbsViewer->setCurrentRow(row);
-                thumbsViewer->selectThumbByRow(row);
+                thumbsViewer->setCurrentIndex(row);
             }
         }
 
@@ -3048,8 +3037,7 @@ void Phototonic::rename() {
         }
 
         if (thumbsViewer->model()->rowCount() > 0) {
-            if (thumbsViewer->setCurrentIndexByName(imageViewer->fullImagePath))
-                thumbsViewer->selectCurrentIndex();
+            thumbsViewer->setCurrentIndex(imageViewer->fullImagePath);
         }
     }
 

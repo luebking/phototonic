@@ -58,7 +58,6 @@ ThumbsViewer::ThumbsViewer(QWidget *parent, const std::shared_ptr<MetadataCache>
     setThumbColors();
     Settings::thumbsPagesReadCount = Settings::value(Settings::optionThumbsPagesReadCount).toUInt();
     thumbSize = Settings::value(Settings::optionThumbsZoomLevel).toInt();
-    currentRow = 0;
 
     setViewMode(QListView::IconMode);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -109,13 +108,6 @@ void ThumbsViewer::setThumbColors() {
     setPalette(pal);
 }
 
-void ThumbsViewer::selectCurrentIndex() {
-    if (currentIndex.isValid() && m_model->rowCount() > 0) {
-        scrollTo(currentIndex);
-        setCurrentIndex(currentIndex);
-    }
-}
-
 QString ThumbsViewer::getSingleSelectionFilename() {
     if (selectionModel()->selectedIndexes().size() == 1)
         return m_model->item(selectionModel()->selectedIndexes().first().row())->data(FileNameRole).toString();
@@ -137,37 +129,25 @@ QIcon ThumbsViewer::icon(int idx)
 }
 
 int ThumbsViewer::getNextRow() {
-    if (currentRow == m_model->rowCount() - 1) {
+    if (currentIndex().row() == m_model->rowCount() - 1) {
         return -1;
     }
 
-    return currentRow + 1;
+    return currentIndex().row() + 1;
 }
 
 int ThumbsViewer::getPrevRow() {
-    if (currentRow == 0) {
+    if (currentIndex().row() == 0) {
         return -1;
     }
 
-    return currentRow - 1;
-}
-
-int ThumbsViewer::getCurrentRow() {
-    return currentRow;
-}
-
-void ThumbsViewer::setCurrentRow(int row) {
-    if (row >= 0) {
-        currentRow = row;
-    } else {
-        currentRow = 0;
-    }
+    return currentIndex().row() - 1;
 }
 
 void ThumbsViewer::setImageViewerWindowTitle() {
-    QString title = m_model->item(currentRow)->data(Qt::DisplayRole).toString()
+    QString title = m_model->item(currentIndex().row())->data(Qt::DisplayRole).toString()
                     + " - ["
-                    + QString::number(currentRow + 1)
+                    + QString::number(currentIndex().row() + 1)
                     + "/"
                     + QString::number(m_model->rowCount())
                     + "] - Phototonic";
@@ -175,25 +155,21 @@ void ThumbsViewer::setImageViewerWindowTitle() {
     window()->setWindowTitle(title);
 }
 
-bool ThumbsViewer::setCurrentIndexByName(QString &fileName) {
+bool ThumbsViewer::setCurrentIndex(QString &fileName) {
     QModelIndexList indexList = m_model->match(m_model->index(0, 0), FileNameRole, fileName);
     if (indexList.size()) {
-        currentIndex = indexList[0];
-        setCurrentRow(currentIndex.row());
+        setCurrentIndex(indexList.at(0));
         return true;
     }
-
     return false;
 }
 
-bool ThumbsViewer::setCurrentIndexByRow(int row) {
+bool ThumbsViewer::setCurrentIndex(int row) {
     QModelIndex idx = m_model->indexFromItem(m_model->item(row));
     if (idx.isValid()) {
-        currentIndex = idx;
-        setCurrentRow(idx.row());
+        setCurrentIndex(idx);
         return true;
     }
-
     return false;
 }
 
@@ -312,7 +288,6 @@ void ThumbsViewer::onSelectionChanged() {
     if (selectedThumbs > 0) {
         int currentRow = indexesList.first().row();
         QString thumbFullPath = m_model->item(currentRow)->data(FileNameRole).toString();
-        setCurrentRow(currentRow);
 
         if (infoView->isVisible()) {
             updateImageInfoViewer(currentRow);
@@ -507,7 +482,7 @@ void ThumbsViewer::loadFileList() {
     imageTags->populateTagsTree();
 
     if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
-        selectThumbByRow(0);
+        setCurrentIndex(0);
     }
 
     m_busy = false;
@@ -872,7 +847,7 @@ void ThumbsViewer::initThumbs() {
     imageTags->populateTagsTree();
 
     if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
-        selectThumbByRow(0);
+        setCurrentIndex(0);
     }
 }
 
@@ -882,8 +857,7 @@ void ThumbsViewer::updateThumbsCount() {
 }
 
 void ThumbsViewer::selectThumbByRow(int row) {
-    setCurrentIndexByRow(row);
-    selectCurrentIndex();
+    setCurrentIndex(row);
 }
 
 void ThumbsViewer::updateFoundDupesState(int duplicates, int filesScanned, int originalImages)

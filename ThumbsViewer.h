@@ -119,11 +119,9 @@ public:
 
     void setThumbColors();
 
-    bool setCurrentIndexByName(QString &fileName);
-
-    bool setCurrentIndexByRow(int row);
-
-    void setCurrentRow(int row);
+    using QListView::setCurrentIndex;
+    bool setCurrentIndex(QString &fileName);
+    bool setCurrentIndex(int row);
 
     void setImageViewerWindowTitle();
 
@@ -142,8 +140,6 @@ public:
     int getNextRow();
 
     int getPrevRow();
-
-    int getCurrentRow();
 
     QStringList getSelectedThumbsList();
 
@@ -198,14 +194,12 @@ private:
     QList<Histogram> histograms;
     QList<QString> histFiles;
     QPixmap emptyImg;
-    QModelIndex currentIndex;
     std::shared_ptr<MetadataCache> metadataCache;
     ImageViewer *imageViewer;
     QHash<QBitArray, DuplicateImage> dupImageHashes;
     bool isAbortThumbsLoading = false;
     bool isClosing = false;
     bool isNeedToScroll = false;
-    int currentRow = 0;
     bool scrolledForward = false;
     int thumbsRangeFirst;
     int thumbsRangeLast;
