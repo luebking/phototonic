@@ -293,10 +293,11 @@ void ThumbsViewer::onSelectionChanged() {
             updateImageInfoViewer(currentRow);
         }
 
-        QPixmap imagePreviewPixmap = imagePreview->loadImage(thumbFullPath);
+        if (imagePreview->isVisible()) {
+            imagePreview->loadImage(thumbFullPath);
+        }
         if (Settings::setWindowIcon) {
-            window()->setWindowIcon(imagePreviewPixmap.scaled(WINDOW_ICON_SIZE, WINDOW_ICON_SIZE,
-                                                                Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            window()->setWindowIcon(m_model->item(currentRow)->icon().pixmap(WINDOW_ICON_SIZE));
         }
     }
 
