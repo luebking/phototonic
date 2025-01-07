@@ -2628,7 +2628,7 @@ void Phototonic::showViewer() {
 void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
     showViewer();
     thumbsViewer->setCurrentIndex(idx);
-//    imageViewer->loadImage(thumbsViewer->fullPathOf(idx.row()), thumbsViewer->icon(idx.row()).pixmap(THUMB_SIZE_MAX).toImage());
+    imageViewer->loadImage(thumbsViewer->fullPathOf(idx.row()), thumbsViewer->icon(idx.row()).pixmap(THUMB_SIZE_MAX).toImage());
     thumbsViewer->setImageViewerWindowTitle();
 }
 
