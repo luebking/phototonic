@@ -116,8 +116,6 @@ private slots:
 
     void slideShowHandler();
 
-    void updateIndexByViewerImage();
-
     void selectAllThumbs();
 
     void selectByBrightness();

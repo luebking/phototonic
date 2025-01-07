@@ -143,11 +143,11 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
             if (QFile::exists(cliFileName)) {
                 showViewer();
                 imageViewer->loadImage(cliFileName);
+                thumbsViewer->setCurrentIndex(cliFileName);
                 setWindowTitle(cliFileName + " - Phototonic");
             } else {
                 MessageBox(this).critical(tr("Error"), tr("Failed to open file %1, file not found.").arg(cliFileName));
             }
-            QTimer::singleShot(1000, this, SLOT(updateIndexByViewerImage()));
         }
     } else {
         if (Settings::startupDir == Settings::SpecifiedDir) {
@@ -2758,12 +2758,6 @@ void Phototonic::setViewerKeyEventsEnabled(bool enabled) {
     moveDownAction->setEnabled(enabled);
 }
 
-void Phototonic::updateIndexByViewerImage() {
-    if (thumbsViewer->model()->rowCount() > 0 &&
-        thumbsViewer->setCurrentIndex(imageViewer->fullImagePath)) {
-    }
-}
-
 void Phototonic::hideViewer() {
     setWindowState(windowState() & ~Qt::WindowFullScreen);
     imageViewer->setCursorHiding(false);
@@ -2794,6 +2788,7 @@ void Phototonic::hideViewer() {
         if (thumbsViewer->model()->rowCount() > 0) {
             thumbsViewer->setCurrentIndex(imageViewer->fullImagePath);
         }
+        thumbsViewer->scrollTo(thumbsViewer->currentIndex());
         thumbsViewer->loadVisibleThumbs();
     }
 

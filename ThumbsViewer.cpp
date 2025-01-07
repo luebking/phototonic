@@ -152,7 +152,11 @@ void ThumbsViewer::setImageViewerWindowTitle() {
     window()->setWindowTitle(title);
 }
 
-bool ThumbsViewer::setCurrentIndex(QString &fileName) {
+bool ThumbsViewer::setCurrentIndex(const QString &fileName) {
+    if (!m_model->rowCount()) {
+        m_desiredThumbPath = fileName;
+        return true;
+    }
     QModelIndexList indexList = m_model->match(m_model->index(0, 0), FileNameRole, fileName);
     if (indexList.size()) {
         setCurrentIndex(indexList.at(0));
@@ -480,7 +484,11 @@ void ThumbsViewer::loadFileList() {
 
     imageTags->populateTagsTree();
 
-    if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
+    if (!m_desiredThumbPath.isEmpty()) {
+        setCurrentIndex(m_desiredThumbPath);
+        m_desiredThumbPath.clear();
+        scrollTo(currentIndex());
+    } else if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
         setCurrentIndex(0);
     }
 
@@ -845,7 +853,11 @@ void ThumbsViewer::initThumbs() {
 
     imageTags->populateTagsTree();
 
-    if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
+    if (!m_desiredThumbPath.isEmpty()) {
+        setCurrentIndex(m_desiredThumbPath);
+        m_desiredThumbPath.clear();
+        scrollTo(currentIndex());
+    } else if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
         setCurrentIndex(0);
     }
 }

@@ -119,7 +119,7 @@ public:
     void setThumbColors();
 
     using QListView::setCurrentIndex;
-    bool setCurrentIndex(QString &fileName);
+    bool setCurrentIndex(const QString &fileName);
     bool setCurrentIndex(int row);
 
     void setImageViewerWindowTitle();
@@ -209,6 +209,7 @@ private:
     QList<Constraint> m_constraints;
     bool m_busy;
     QStandardItemModel *m_model;
+    QString m_desiredThumbPath;
 
 public slots:
     void loadVisibleThumbs(int scrollBarValue = 0);
