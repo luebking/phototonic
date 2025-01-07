@@ -26,6 +26,7 @@ class CropDialog;
 class FileListWidget;
 class FileSystemTree;
 class ImageViewer;
+class InfoView;
 class MetadataCache;
 class ResizeDialog;
 class SettingsDialog;
@@ -338,6 +339,7 @@ private:
 
     bool imageToolBarVisible;
     bool m_deleteInProgress;
+    InfoView *m_infoViewer;
 
     QPointer<ResizeDialog> resizeDialog;
     QPointer<ColorsDialog> colorsDialog;

@@ -38,14 +38,11 @@
 #include <QTreeWidget>
 
 #include "ImageViewer.h"
-#include "InfoViewer.h"
 #include "MetadataCache.h"
 #include "Settings.h"
 #include "SmartCrop.h"
 #include "Tags.h"
 #include "ThumbsViewer.h"
-
-#include <exiv2/exiv2.hpp>
 
 #define BATCH_SIZE 10
 
@@ -89,8 +86,6 @@ ThumbsViewer::ThumbsViewer(QWidget *parent, const std::shared_ptr<MetadataCache>
     connect(&m_loadThumbTimer, &QTimer::timeout, [=](){ loadVisibleThumbs(verticalScrollBar()->value()); });
 
     emptyImg.load(":/images/no_image.png");
-
-    infoView = new InfoView(this);
 }
 
 void ThumbsViewer::setThumbColors() {
@@ -179,111 +174,7 @@ void ThumbsViewer::currentChanged(const QModelIndex &current, const QModelIndex 
     emit currentIndexChanged(current);
 }
 
-void ThumbsViewer::updateImageInfoViewer(int row) {
-    QString imageFullPath = m_model->item(row)->data(FileNameRole).toString();
-    QImageReader imageInfoReader(imageFullPath);
-    QString key;
-    QString val;
-
-    QFileInfo imageInfo = QFileInfo(imageFullPath);
-    infoView->addTitleEntry(tr("Image"));
-
-    key = tr("File name");
-    val = imageInfo.fileName();
-    infoView->addEntry(key, val);
-
-    key = tr("Location");
-    val = imageInfo.path();
-    infoView->addEntry(key, val);
-
-    key = tr("Size");
-    val = QString::number(imageInfo.size() / 1024.0, 'f', 2) + "K";
-    infoView->addEntry(key, val);
-
-    key = tr("Modified");
-    val = imageInfo.lastModified().toString(QLocale::system().dateTimeFormat(QLocale::ShortFormat));
-    infoView->addEntry(key, val);
-
-    if (imageInfoReader.size().isValid()) {
-        key = tr("Format");
-        val = imageInfoReader.format().toUpper();
-        infoView->addEntry(key, val);
-
-        key = tr("Resolution");
-        val = QString::number(imageInfoReader.size().width())
-              + "x"
-              + QString::number(imageInfoReader.size().height());
-        infoView->addEntry(key, val);
-
-        key = tr("Megapixel");
-        val = QString::number((imageInfoReader.size().width() * imageInfoReader.size().height()) / 1000000.0, 'f',
-                              2);
-        infoView->addEntry(key, val);
-
-        key = tr("Average brightness");
-        val = QString::number(m_model->item(row)->data(BrightnessRole).toReal(), 'f', 2);
-        infoView->addEntry(key, val);
-    } else {
-        imageInfoReader.read();
-        key = tr("Error");
-        val = imageInfoReader.errorString();
-        infoView->addEntry(key, val);
-    }
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-    Exiv2::Image::UniquePtr exifImage;
-#else
-    Exiv2::Image::AutoPtr exifImage;
-#endif
-#pragma clang diagnostic pop
-
-    try {
-        exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
-        exifImage->readMetadata();
-    }
-    catch (const Exiv2::Error &error) {
-        qWarning() << "EXIV2:" << error.what();
-        return;
-    }
-
-    Exiv2::ExifData &exifData = exifImage->exifData();
-    if (!exifData.empty()) {
-        Exiv2::ExifData::const_iterator end = exifData.end();
-        infoView->addTitleEntry("Exif");
-        for (Exiv2::ExifData::const_iterator md = exifData.begin(); md != end; ++md) {
-            key = QString::fromUtf8(md->tagName().c_str());
-            val = QString::fromUtf8(md->print().c_str());
-            infoView->addEntry(key, val);
-        }
-    }
-
-    Exiv2::IptcData &iptcData = exifImage->iptcData();
-    if (!iptcData.empty()) {
-        Exiv2::IptcData::iterator end = iptcData.end();
-        infoView->addTitleEntry("IPTC");
-        for (Exiv2::IptcData::iterator md = iptcData.begin(); md != end; ++md) {
-            key = QString::fromUtf8(md->tagName().c_str());
-            val = QString::fromUtf8(md->print().c_str());
-            infoView->addEntry(key, val);
-        }
-    }
-
-    Exiv2::XmpData &xmpData = exifImage->xmpData();
-    if (!xmpData.empty()) {
-        Exiv2::XmpData::iterator end = xmpData.end();
-        infoView->addTitleEntry("XMP");
-        for (Exiv2::XmpData::iterator md = xmpData.begin(); md != end; ++md) {
-            key = QString::fromUtf8(md->tagName().c_str());
-            val = QString::fromUtf8(md->print().c_str());
-            infoView->addEntry(key, val);
-        }
-    }
-}
-
 void ThumbsViewer::onSelectionChanged() {
-    infoView->clear();
     if (Settings::setWindowIcon) {
         window()->setWindowIcon(QApplication::windowIcon());
     }
@@ -293,10 +184,6 @@ void ThumbsViewer::onSelectionChanged() {
     if (selectedThumbs > 0) {
         int currentRow = indexesList.first().row();
         QString thumbFullPath = m_model->item(currentRow)->data(FileNameRole).toString();
-
-        if (infoView->isVisible()) {
-            updateImageInfoViewer(currentRow);
-        }
 
         if (Settings::setWindowIcon) {
             window()->setWindowIcon(m_model->item(currentRow)->icon().pixmap(WINDOW_ICON_SIZE));

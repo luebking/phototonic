@@ -98,7 +98,14 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, [=](const QModelIndex &current) {
         if (imageViewer->isVisible()) {
             imageViewer->loadImage(thumbsViewer->fullPathOf(current.row()), thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
-        } });
+        }
+        if (m_infoViewer->isVisible()) {
+            QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
+            m_infoViewer->hint(tr("Average brightness"),
+                               QString::number(thumbModel->item(current.row())->data(ThumbsViewer::BrightnessRole).toReal(), 'f', 2));
+            m_infoViewer->read(thumbsViewer->fullPathOf(current.row()));
+        }
+        });
     connect(qApp, SIGNAL(focusChanged(QWidget * , QWidget * )), this, SLOT(updateActions()));
 
     restoreGeometry(Settings::value(Settings::optionGeometry).toByteArray());
@@ -198,7 +205,8 @@ void Phototonic::createThumbsViewer() {
 
     imageInfoDock = new QDockWidget(tr("Image Info"), this);
     imageInfoDock->setObjectName("Image Info");
-    imageInfoDock->setWidget(thumbsViewer->infoView);
+    m_infoViewer = new InfoView(this);
+    imageInfoDock->setWidget(m_infoViewer);
     connect(imageInfoDock->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setImageInfoDockVisibility()));
     connect(imageInfoDock, SIGNAL(visibilityChanged(bool)), this, SLOT(setImageInfoDockVisibility()));
 }
@@ -2925,7 +2933,7 @@ void Phototonic::reloadThumbs() {
             return;
         }
 
-        thumbsViewer->infoView->clear();
+        m_infoViewer->clear();
         if (Settings::setWindowIcon && Settings::layoutMode == Phototonic::ThumbViewWidget) {
             setWindowIcon(QApplication::windowIcon());
         }

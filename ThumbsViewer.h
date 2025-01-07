@@ -21,7 +21,6 @@
 
 class ImageViewer;
 class ImageTags;
-class InfoView;
 class MetadataCache;
 
 class QStandardItem;
@@ -150,7 +149,6 @@ public:
     bool setFilter(const QString &filter, QString *error = nullptr);
     void sortBySimilarity();
 
-    InfoView *infoView;
     ImageTags *imageTags;
     QDir thumbsDir;
     QDir::SortFlags thumbsSortFlags;

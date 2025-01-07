@@ -24,6 +24,7 @@ class QMenu;
 class QStandardItemModel;
 class QTableView;
 
+#include <QMap>
 #include <QModelIndex>
 #include <QWidget>
 
@@ -34,35 +35,26 @@ public:
     InfoView(QWidget *parent);
 
     void clear();
-
-    void addEntry(QString &key, QString &value);
-
-    void addTitleEntry(QString title);
-
-
-signals:
-
-    void updateInfo();
+    void hint(QString key, QString value);
+    void read(QString imageFullPath);
 
 public slots:
-
+    void copyEntry();
     void showInfoViewMenu(QPoint pt);
 
-    void copyEntry();
-
-protected:
-    void showEvent(QShowEvent *event) override;
-
 private slots:
-
     void filterItems();
 
 private:
+    void addEntry(QString key, QString value);
+    void addTitleEntry(QString title);
+
     QTableView *infoViewerTable;
     QStandardItemModel *imageInfoModel;
     QModelIndex selectedEntry;
     QMenu *infoMenu;
     QLineEdit *filterLineEdit;
+    QMap<QString, QString> m_hints;
 
 };
 
