@@ -805,6 +805,7 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
 }
 
 void ImageViewer::clearImage() {
+    fullImagePath.clear();
     origImage.load(":/images/no_image.png");
     viewerImage = origImage;
     setImage(viewerImage);
