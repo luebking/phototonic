@@ -124,10 +124,6 @@ private slots:
 
     void deletePermanentlyOperation();
 
-    void cutThumbs();
-
-    void copyThumbs();
-
     void pasteThumbs();
 
     void thumbsZoomIn();
@@ -164,10 +160,6 @@ private slots:
 
     void setDocksVisibility(bool visible);
 
-    void goTop();
-
-    void goBottom();
-
     void showHiddenFiles();
 
     void toggleImageViewerToolbar();
@@ -198,9 +190,6 @@ private slots:
 
     void setPathFocus();
 
-    void copyImagesTo();
-
-    void moveImagesTo();
 
 
 private:
@@ -414,7 +403,7 @@ private:
 
     void addBookmark(QString path);
 
-    void copyOrMoveImages(bool move);
+    void copyOrMoveImages(bool isCopyOperation);
 
     void setViewerKeyEventsEnabled(bool enabled);
     void zoom(double multiplier = 1., QPoint focus = QPoint(-1, -1));

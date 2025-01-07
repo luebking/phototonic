@@ -359,12 +359,12 @@ void Phototonic::createActions() {
     thumbsGoToTopAction = new QAction(tr("Top"), this);
     thumbsGoToTopAction->setObjectName("thumbsGoTop");
     thumbsGoToTopAction->setIcon(QIcon::fromTheme("go-top", QIcon(":/images/top.png")));
-    connect(thumbsGoToTopAction, SIGNAL(triggered()), this, SLOT(goTop()));
+    connect(thumbsGoToTopAction, &QAction::triggered, thumbsViewer, &ThumbsViewer::scrollToTop);
 
     thumbsGoToBottomAction = new QAction(tr("Bottom"), this);
     thumbsGoToBottomAction->setObjectName("thumbsGoBottom");
     thumbsGoToBottomAction->setIcon(QIcon::fromTheme("go-bottom", QIcon(":/images/bottom.png")));
-    connect(thumbsGoToBottomAction, SIGNAL(triggered()), this, SLOT(goBottom()));
+    connect(thumbsGoToBottomAction, &QAction::triggered, thumbsViewer, &ThumbsViewer::scrollToBottom);
 
     CloseImageAction = new QAction(tr("Close Viewer"), this);
     CloseImageAction->setObjectName("closeImage");
@@ -403,13 +403,13 @@ void Phototonic::createActions() {
     cutAction = new QAction(tr("Cut"), this);
     cutAction->setObjectName("cut");
     cutAction->setIcon(QIcon::fromTheme("edit-cut", QIcon(":/images/cut.png")));
-    connect(cutAction, SIGNAL(triggered()), this, SLOT(cutThumbs()));
+    connect(cutAction, &QAction::triggered, [=]() { copyOrCutThumbs(false); });
     cutAction->setEnabled(false);
 
     copyAction = new QAction(tr("Copy"), this);
     copyAction->setObjectName("copy");
     copyAction->setIcon(QIcon::fromTheme("edit-copy", QIcon(":/images/copy.png")));
-    connect(copyAction, SIGNAL(triggered()), this, SLOT(copyThumbs()));
+    connect(copyAction, &QAction::triggered, [=]() { copyOrCutThumbs(true); });
     copyAction->setEnabled(false);
 
     setClassicThumbsAction = new QAction(tr("Show classic thumbnails"), this);
@@ -432,11 +432,11 @@ void Phototonic::createActions() {
 
     copyToAction = new QAction(tr("Copy to..."), this);
     copyToAction->setObjectName("copyTo");
-    connect(copyToAction, SIGNAL(triggered()), this, SLOT(copyImagesTo()));
+    connect(copyToAction, &QAction::triggered, [=]() { copyOrMoveImages(true); });
 
     moveToAction = new QAction(tr("Move to..."), this);
     moveToAction->setObjectName("moveTo");
-    connect(moveToAction, SIGNAL(triggered()), this, SLOT(moveImagesTo()));
+    connect(moveToAction, &QAction::triggered, [=]() { copyOrMoveImages(false); });
 
     deleteAction = new QAction(tr("Move to Trash"), this);
     deleteAction->setObjectName("moveToTrash");
@@ -1344,35 +1344,19 @@ void Phototonic::copyOrCutThumbs(bool isCopyOperation) {
     setStatus(state);
 }
 
-void Phototonic::cutThumbs() {
-    copyOrCutThumbs(false);
-}
-
-void Phototonic::copyThumbs() {
-    copyOrCutThumbs(true);
-}
-
-void Phototonic::copyImagesTo() {
-    copyOrMoveImages(false);
-}
-
-void Phototonic::moveImagesTo() {
-    copyOrMoveImages(true);
-}
-
-void Phototonic::copyOrMoveImages(bool isMoveOperation) {
+void Phototonic::copyOrMoveImages(bool isCopyOperation) {
     if (Settings::slideShowActive) {
         toggleSlideShow();
     }
     imageViewer->setCursorHiding(false);
 
-    copyMoveToDialog = new CopyMoveToDialog(this, getSelectedPath(), isMoveOperation);
+    copyMoveToDialog = new CopyMoveToDialog(this, getSelectedPath(), !isCopyOperation);
     if (copyMoveToDialog->exec()) {
         if (Settings::layoutMode == ThumbViewWidget) {
             if (copyMoveToDialog->copyOp) {
-                copyThumbs();
+                copyOrCutThumbs(true);
             } else {
-                cutThumbs();
+                copyOrCutThumbs(false);
             }
 
             pasteThumbs();
@@ -2796,14 +2780,6 @@ void Phototonic::hideViewer() {
         imageViewer->clearImage();
     thumbsViewer->setFocus(Qt::OtherFocusReason);
     setContextMenuPolicy(Qt::DefaultContextMenu);
-}
-
-void Phototonic::goBottom() {
-    thumbsViewer->scrollToBottom();
-}
-
-void Phototonic::goTop() {
-    thumbsViewer->scrollToTop();
 }
 
 void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyMoveDirPath) {
