@@ -19,7 +19,6 @@
 #ifndef THUMBS_VIEWER_H
 #define THUMBS_VIEWER_H
 
-class ImagePreview;
 class ImageViewer;
 class ImageTags;
 class InfoView;
@@ -152,7 +151,6 @@ public:
     void sortBySimilarity();
 
     InfoView *infoView;
-    ImagePreview *imagePreview;
     ImageTags *imageTags;
     QDir thumbsDir;
     QDir::SortFlags thumbsSortFlags;
@@ -160,6 +158,7 @@ public:
 
 signals:
     void status(QString s);
+    void currentIndexChanged(const QModelIndex &current);
 
 protected:
     void startDrag(Qt::DropActions) override;
@@ -212,17 +211,15 @@ private:
     QStandardItemModel *m_model;
 
 public slots:
-
     void loadVisibleThumbs(int scrollBarValue = 0);
-
     void onSelectionChanged();
-
     void invertSelection();
 
+protected slots:
+    void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;
+
 private slots:
-
     void loadThumbsRange();
-
     void loadAllThumbs();
 };
 

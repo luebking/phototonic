@@ -37,7 +37,6 @@
 #include <QTimer>
 #include <QTreeWidget>
 
-#include "ImagePreview.h"
 #include "ImageViewer.h"
 #include "InfoViewer.h"
 #include "MetadataCache.h"
@@ -92,8 +91,6 @@ ThumbsViewer::ThumbsViewer(QWidget *parent, const std::shared_ptr<MetadataCache>
     emptyImg.load(":/images/no_image.png");
 
     infoView = new InfoView(this);
-
-    imagePreview = new ImagePreview(this);
 }
 
 void ThumbsViewer::setThumbColors() {
@@ -171,6 +168,11 @@ bool ThumbsViewer::setCurrentIndex(int row) {
         return true;
     }
     return false;
+}
+
+void ThumbsViewer::currentChanged(const QModelIndex &current, const QModelIndex &previous) {
+    QListView::currentChanged(current, previous);
+    emit currentIndexChanged(current);
 }
 
 void ThumbsViewer::updateImageInfoViewer(int row) {
@@ -278,7 +280,6 @@ void ThumbsViewer::updateImageInfoViewer(int row) {
 
 void ThumbsViewer::onSelectionChanged() {
     infoView->clear();
-    imagePreview->clear();
     if (Settings::setWindowIcon) {
         window()->setWindowIcon(QApplication::windowIcon());
     }
@@ -293,9 +294,6 @@ void ThumbsViewer::onSelectionChanged() {
             updateImageInfoViewer(currentRow);
         }
 
-        if (imagePreview->isVisible()) {
-            imagePreview->loadImage(thumbFullPath);
-        }
         if (Settings::setWindowIcon) {
             window()->setWindowIcon(m_model->item(currentRow)->icon().pixmap(WINDOW_ICON_SIZE));
         }

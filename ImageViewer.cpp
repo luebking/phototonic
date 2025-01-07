@@ -783,6 +783,8 @@ void ImageViewer::setFeedback(QString feedbackString, bool timeLimited) {
 }
 
 void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
+    if (fullImagePath == imageFileName)
+        return;
     newImage = false;
     tempDisableResize = false;
     fullImagePath = imageFileName;

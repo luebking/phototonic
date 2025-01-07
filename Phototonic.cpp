@@ -55,7 +55,6 @@
 #include "FileSystemTree.h"
 #include "GuideWidget.h"
 #include "IconProvider.h"
-#include "ImagePreview.h"
 #include "ImageViewer.h"
 #include "InfoViewer.h"
 #include "MessageBox.h"
@@ -89,13 +88,17 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     createStatusBar();
     createFileSystemDock();
     createBookmarksDock();
+    createImageViewer();
     createImagePreviewDock();
     createImageTagsDock();
-    createImageViewer();
     updateExternalApps();
     loadShortcuts();
     setupDocks();
 
+    connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, [=](const QModelIndex &current) {
+        if (imageViewer->isVisible()) {
+            imageViewer->loadImage(thumbsViewer->fullPathOf(current.row()), thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
+        } });
     connect(qApp, SIGNAL(focusChanged(QWidget * , QWidget * )), this, SLOT(updateActions()));
 
     restoreGeometry(Settings::value(Settings::optionGeometry).toByteArray());
@@ -350,7 +353,6 @@ void Phototonic::createImageViewer() {
     Settings::isFullScreen = Settings::value(Settings::optionFullScreenMode).toBool();
     fullScreenAction->setChecked(Settings::isFullScreen);
     thumbsViewer->setImageViewer(imageViewer);
-    thumbsViewer->imagePreview->setImageViewer(imageViewer);
 }
 
 void Phototonic::createActions() {
@@ -1081,7 +1083,6 @@ void Phototonic::createBookmarksDock() {
 void Phototonic::createImagePreviewDock() {
     imagePreviewDock = new QDockWidget(tr("Preview"), this);
     imagePreviewDock->setObjectName("ImagePreview");
-    imagePreviewDock->setWidget(thumbsViewer->imagePreview);
     connect(imagePreviewDock->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setImagePreviewDockVisibility()));
     connect(imagePreviewDock, SIGNAL(visibilityChanged(bool)), this, SLOT(setImagePreviewDockVisibility()));
     addDockWidget(Qt::RightDockWidgetArea, imagePreviewDock);
@@ -1272,7 +1273,6 @@ void Phototonic::showSettings() {
     if (settingsDialog->exec()) {
         imageViewer->setBackgroundColor();
         thumbsViewer->setThumbColors();
-        thumbsViewer->imagePreview->setBackgroundColor();
         Settings::imageZoomFactor = 1.0;
         imageViewer->showFileName(Settings::showImageName);
 
@@ -2463,7 +2463,7 @@ void Phototonic::mouseDoubleClickEvent(QMouseEvent *event) {
                 event->accept();
             }
         } else {
-            if (QApplication::focusWidget() == thumbsViewer->imagePreview) {
+            if (QApplication::focusWidget() == imageViewer) {
                 viewImage();
             }
         }
@@ -2498,7 +2498,7 @@ void Phototonic::mousePressEvent(QMouseEvent *event) {
                 event->accept();
             }
         }
-    } else if (QApplication::focusWidget() == thumbsViewer->imagePreview) {
+    } else if (QApplication::focusWidget() == imageViewer) {
         if (event->button() == Qt::MiddleButton) {
             viewImage();
         }
@@ -2549,9 +2549,7 @@ void Phototonic::viewImage() {
     if (QApplication::focusWidget() == fileSystemTree) {
         goSelectedDir(fileSystemTree->getCurrentIndex());
         return;
-    } else if (QApplication::focusWidget() == thumbsViewer
-               || QApplication::focusWidget() == thumbsViewer->imagePreview
-               || QApplication::focusWidget() == imageViewer) {
+    } else if (QApplication::focusWidget() == thumbsViewer || QApplication::focusWidget() == imageViewer) {
         QModelIndex selectedImageIndex;
         QModelIndexList selectedIndexes = thumbsViewer->selectionModel()->selectedIndexes();
         if (selectedIndexes.size() > 0) {
@@ -2605,6 +2603,10 @@ void Phototonic::setBookmarksDockVisibility() {
 void Phototonic::setImagePreviewDockVisibility() {
     if (Settings::layoutMode != ImageViewWidget) {
         Settings::imagePreviewDockVisible = imagePreviewDock->isVisible();
+        if (imagePreviewDock->isVisible()) {
+            stackedLayout->takeAt(1);
+            imagePreviewDock->setWidget(imageViewer);
+        }
     }
 }
 
@@ -2626,6 +2628,7 @@ void Phototonic::showViewer() {
 //        Settings::setValue("Geometry", saveGeometry());
 //        Settings::setValue("WindowState", saveState());
 
+        stackedLayout->addWidget(imageViewer);
         stackedLayout->setCurrentWidget(imageViewer);
         setDocksVisibility(false);
 
@@ -2639,9 +2642,9 @@ void Phototonic::showViewer() {
 }
 
 void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
-    thumbsViewer->setCurrentIndex(idx);
     showViewer();
-    imageViewer->loadImage(thumbsViewer->fullPathOf(idx.row()), thumbsViewer->icon(idx.row()).pixmap(THUMB_SIZE_MAX).toImage());
+    thumbsViewer->setCurrentIndex(idx);
+//    imageViewer->loadImage(thumbsViewer->fullPathOf(idx.row()), thumbsViewer->icon(idx.row()).pixmap(THUMB_SIZE_MAX).toImage());
     thumbsViewer->setImageViewerWindowTitle();
 }
 
@@ -2739,9 +2742,8 @@ void Phototonic::loadImage(SpecialImageIndex idx) {
     if (thumb < 0)
         return;
 
-    if (Settings::layoutMode == ImageViewWidget) {
-        imageViewer->loadImage(thumbsViewer->fullPathOf(thumb), thumbsViewer->icon(thumb).pixmap(THUMB_SIZE_MAX).toImage());
-    }
+//    if (imageViewer->isVisible())
+//        imageViewer->loadImage(thumbsViewer->fullPathOf(thumb), thumbsViewer->icon(thumb).pixmap(THUMB_SIZE_MAX).toImage());
 
     thumbsViewer->setCurrentIndex(thumb);
     thumbsViewer->setImageViewerWindowTitle();
@@ -2795,7 +2797,8 @@ void Phototonic::hideViewer() {
         thumbsViewer->loadVisibleThumbs();
     }
 
-    imageViewer->clearImage();
+    if (!imageViewer->isVisible())
+        imageViewer->clearImage();
     thumbsViewer->setFocus(Qt::OtherFocusReason);
     setContextMenuPolicy(Qt::DefaultContextMenu);
 }
@@ -2952,7 +2955,6 @@ void Phototonic::reloadThumbs() {
         }
 
         thumbsViewer->infoView->clear();
-        thumbsViewer->imagePreview->clear();
         if (Settings::setWindowIcon && Settings::layoutMode == Phototonic::ThumbViewWidget) {
             setWindowIcon(QApplication::windowIcon());
         }
