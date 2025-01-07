@@ -1166,6 +1166,9 @@ void ThumbsViewer::storeThumbnail(const QString &originalPath, QImage thumbnail,
 }
 
 bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
+    if (m_model->item(currThumb)->data(LoadedRole).toBool())
+        return true;
+
     QImageReader thumbReader;
     QString imageFileName = m_model->item(currThumb)->data(FileNameRole).toString();
     QImage thumb;
