@@ -2627,9 +2627,9 @@ void Phototonic::showViewer() {
         if (Settings::isFullScreen) {
             setWindowState(windowState() | Qt::WindowFullScreen);
             imageViewer->setCursorHiding(true);
-            QApplication::processEvents();
         }
         imageViewer->setFocus(Qt::OtherFocusReason);
+        QApplication::processEvents();
     }
 }
 
