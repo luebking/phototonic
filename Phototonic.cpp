@@ -207,8 +207,20 @@ void Phototonic::createThumbsViewer() {
     imageInfoDock->setObjectName("Image Info");
     m_infoViewer = new InfoView(this);
     imageInfoDock->setWidget(m_infoViewer);
-    connect(imageInfoDock->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setImageInfoDockVisibility()));
-    connect(imageInfoDock, SIGNAL(visibilityChanged(bool)), this, SLOT(setImageInfoDockVisibility()));
+    connect(imageInfoDock, &QDockWidget::visibilityChanged, [=](bool visible) {
+        if (Settings::layoutMode != ImageViewWidget) {
+            Settings::imageInfoDockVisible = visible;
+        }
+        if (visible) {
+            QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
+            int currentRow = thumbsViewer->currentIndex().row();
+            if (currentRow > -1) {
+                m_infoViewer->hint(tr("Average brightness"),
+                                    QString::number(thumbModel->item(currentRow)->data(ThumbsViewer::BrightnessRole).toReal(), 'f', 2));
+                m_infoViewer->read(thumbsViewer->fullPathOf(currentRow));
+            }
+        }
+    } );
 }
 
 void Phototonic::createImageViewer() {
@@ -548,7 +560,11 @@ void Phototonic::createActions() {
     showViewerToolbarAction->setObjectName("showViewerToolbars");
     showViewerToolbarAction->setCheckable(true);
     showViewerToolbarAction->setChecked(Settings::showViewerToolbar);
-    connect(showViewerToolbarAction, SIGNAL(triggered()), this, SLOT(toggleImageViewerToolbar()));
+    connect(showViewerToolbarAction, &QAction::triggered, [=]() {
+        Settings::showViewerToolbar = showViewerToolbarAction->isChecked();
+        imageToolBar->setVisible(Settings::showViewerToolbar);
+        addToolBar(imageToolBar);
+    });
 
     refreshAction = new QAction(tr("Reload"), this);
     refreshAction->setObjectName("refresh");
@@ -997,7 +1013,6 @@ void Phototonic::createToolBars() {
     imageToolBar->addAction(cropAction);
     imageToolBar->addAction(colorsAction);
     imageToolBar->setVisible(false);
-    connect(imageToolBar->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setImageToolBarVisibility()));
 
     setToolbarIconSize();
 }
@@ -1063,8 +1078,14 @@ void Phototonic::createFileSystemDock() {
     fileSystemTreeMainWidget->setLayout(mainLayout);
 
     fileSystemDock->setWidget(fileSystemTreeMainWidget);
-    connect(fileSystemDock->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setFileSystemDockVisibility()));
-    connect(fileSystemDock, SIGNAL(visibilityChanged(bool)), this, SLOT(setFileSystemDockVisibility()));
+    connect(fileSystemDock, &QDockWidget::visibilityChanged, [=](bool visible) {
+        if (visible) {
+            QTimer::singleShot(50, [=](){fileSystemModel->setRootPath("/");});
+        }
+        if (Settings::layoutMode != ImageViewWidget) {
+            Settings::fileSystemDockVisible = visible;
+        }
+    });
     addDockWidget(Qt::LeftDockWidgetArea, fileSystemDock);
 }
 
@@ -1074,8 +1095,11 @@ void Phototonic::createBookmarksDock() {
     bookmarks = new BookMarks(bookmarksDock);
     bookmarksDock->setWidget(bookmarks);
 
-    connect(bookmarksDock->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setBookmarksDockVisibility()));
-    connect(bookmarksDock, SIGNAL(visibilityChanged(bool)), this, SLOT(setBookmarksDockVisibility()));
+    connect(bookmarksDock, &QDockWidget::visibilityChanged, [=](bool visible) {
+        if (Settings::layoutMode != ImageViewWidget) {
+            Settings::bookmarksDockVisible = visible;
+        }
+    });
     connect(bookmarks, &BookMarks::itemClicked, [=](QTreeWidgetItem *item, int col) { goTo(item->toolTip(col)); });
     connect(removeBookmarkAction, SIGNAL(triggered()), bookmarks, SLOT(removeBookmark()));
     connect(bookmarks, SIGNAL(dropOp(Qt::KeyboardModifiers, bool, QString)),
@@ -1091,8 +1115,18 @@ void Phototonic::createBookmarksDock() {
 void Phototonic::createImagePreviewDock() {
     imagePreviewDock = new QDockWidget(tr("Preview"), this);
     imagePreviewDock->setObjectName("ImagePreview");
-    connect(imagePreviewDock->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setImagePreviewDockVisibility()));
-    connect(imagePreviewDock, SIGNAL(visibilityChanged(bool)), this, SLOT(setImagePreviewDockVisibility()));
+    connect(imagePreviewDock, &QDockWidget::visibilityChanged, [=](bool visible) {
+        if (Settings::layoutMode != ImageViewWidget) {
+            Settings::imagePreviewDockVisible = visible;
+            if (visible) {
+                stackedLayout->takeAt(1);
+                imagePreviewDock->setWidget(imageViewer);
+                int currentRow = thumbsViewer->currentIndex().row();
+                if (currentRow > -1)
+                    imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow), thumbsViewer->icon(currentRow).pixmap(THUMB_SIZE_MAX).toImage());
+            }
+        }
+    });
     addDockWidget(Qt::RightDockWidgetArea, imagePreviewDock);
 }
 
@@ -1102,8 +1136,11 @@ void Phototonic::createImageTagsDock() {
     thumbsViewer->imageTags = new ImageTags(tagsDock, thumbsViewer, metadataCache);
     tagsDock->setWidget(thumbsViewer->imageTags);
 
-    connect(tagsDock->toggleViewAction(), SIGNAL(triggered()), this, SLOT(setTagsDockVisibility()));
-    connect(tagsDock, SIGNAL(visibilityChanged(bool)), this, SLOT(setTagsDockVisibility()));
+    connect(tagsDock, &QDockWidget::visibilityChanged, [=](bool visible) {
+        if (Settings::layoutMode != ImageViewWidget) {
+            Settings::tagsDockVisible = visible;
+        }
+    });
     connect(thumbsViewer->imageTags, SIGNAL(reloadThumbs()), this, SLOT(reloadThumbs()));
     connect(thumbsViewer->imageTags->removeTagAction, SIGNAL(triggered()), this, SLOT(deleteOperation()));
 }
@@ -1154,12 +1191,6 @@ void Phototonic::showHiddenFiles() {
     else
         fileSystemModel->setFilter(fileSystemModel->filter() & ~QDir::Hidden);
     refreshThumbs(false);
-}
-
-void Phototonic::toggleImageViewerToolbar() {
-    imageToolBar->setVisible(showViewerToolbarAction->isChecked());
-    addToolBar(imageToolBar);
-    Settings::showViewerToolbar = showViewerToolbarAction->isChecked();
 }
 
 void Phototonic::filterImagesFocus() {
@@ -2042,7 +2073,6 @@ void Phototonic::writeSettings() {
     Settings::setValue(Settings::optionDefaultSaveQuality, Settings::defaultSaveQuality);
     Settings::setValue(Settings::optionSlideShowDelay, Settings::slideShowDelay);
     Settings::setValue(Settings::optionSlideShowRandom, (bool) Settings::slideShowRandom);
-    Settings::setValue(Settings::optionImageToolBarVisible, (bool) imageToolBarVisible);
     Settings::setValue(Settings::optionFileSystemDockVisible, (bool) Settings::fileSystemDockVisible);
     Settings::setValue(Settings::optionImageInfoDockVisible, (bool) Settings::imageInfoDockVisible);
     Settings::setValue(Settings::optionBookmarksDockVisible, (bool) Settings::bookmarksDockVisible);
@@ -2129,7 +2159,6 @@ void Phototonic::readSettings() {
         Settings::setValue(Settings::optionShowHiddenFiles, (bool) false);
         Settings::setValue(Settings::optionSlideShowDelay, (int) 5);
         Settings::setValue(Settings::optionSlideShowRandom, (bool) false);
-        Settings::setValue(Settings::optionImageToolBarVisible, (bool) false);
         Settings::setValue(Settings::optionFileSystemDockVisible, (bool) true);
         Settings::setValue(Settings::optionBookmarksDockVisible, (bool) true);
         Settings::setValue(Settings::optionTagsDockVisible, (bool) true);
@@ -2172,7 +2201,6 @@ void Phototonic::readSettings() {
     Settings::slideShowDelay = Settings::value(Settings::optionSlideShowDelay).toInt();
     Settings::slideShowRandom = Settings::value(Settings::optionSlideShowRandom).toBool();
     Settings::slideShowActive = false;
-    imageToolBarVisible = Settings::value(Settings::optionImageToolBarVisible).toBool();
     Settings::fileSystemDockVisible = Settings::value(Settings::optionFileSystemDockVisible).toBool();
     Settings::bookmarksDockVisible = Settings::value(Settings::optionBookmarksDockVisible).toBool();
     Settings::tagsDockVisible = Settings::value(Settings::optionTagsDockVisible).toBool();
@@ -2516,16 +2544,16 @@ void Phototonic::newImage() {
 
 void Phototonic::setDocksVisibility(bool visible) {
     layout()->setEnabled(false);
-    fileSystemDock->setVisible(visible ? Settings::fileSystemDockVisible : false);
-    bookmarksDock->setVisible(visible ? Settings::bookmarksDockVisible : false);
-    imagePreviewDock->setVisible(visible ? Settings::imagePreviewDockVisible : false);
-    tagsDock->setVisible(visible ? Settings::tagsDockVisible : false);
-    imageInfoDock->setVisible(visible ? Settings::imageInfoDockVisible : false);
+    fileSystemDock->setVisible(visible && Settings::fileSystemDockVisible);
+    bookmarksDock->setVisible(visible && Settings::bookmarksDockVisible);
+    imagePreviewDock->setVisible(visible && Settings::imagePreviewDockVisible);
+    tagsDock->setVisible(visible && Settings::tagsDockVisible);
+    imageInfoDock->setVisible(visible && Settings::imageInfoDockVisible);
 
     statusBar()->setVisible(visible);
 
     myMainToolBar->setVisible(visible);
-    imageToolBar->setVisible(visible ? imageToolBarVisible : Settings::showViewerToolbar);
+    imageToolBar->setVisible(!visible && Settings::showViewerToolbar);
     addToolBar(imageToolBar);
 
     setContextMenuPolicy(Qt::PreventContextMenu);
@@ -2570,47 +2598,6 @@ void Phototonic::viewImage() {
     } else if (QApplication::focusWidget() == pathLineEdit) {
         goPathBarDir();
         return;
-    }
-}
-
-void Phototonic::setImageToolBarVisibility() {
-    imageToolBarVisible = imageToolBar->isVisible();
-}
-
-void Phototonic::setFileSystemDockVisibility() {
-    if (fileSystemDock->isVisible()) {
-        QTimer::singleShot(50, [=](){fileSystemModel->setRootPath("/");});
-    }
-    if (Settings::layoutMode != ImageViewWidget) {
-        Settings::fileSystemDockVisible = fileSystemDock->isVisible();
-    }
-}
-
-void Phototonic::setBookmarksDockVisibility() {
-    if (Settings::layoutMode != ImageViewWidget) {
-        Settings::bookmarksDockVisible = bookmarksDock->isVisible();
-    }
-}
-
-void Phototonic::setImagePreviewDockVisibility() {
-    if (Settings::layoutMode != ImageViewWidget) {
-        Settings::imagePreviewDockVisible = imagePreviewDock->isVisible();
-        if (imagePreviewDock->isVisible()) {
-            stackedLayout->takeAt(1);
-            imagePreviewDock->setWidget(imageViewer);
-        }
-    }
-}
-
-void Phototonic::setTagsDockVisibility() {
-    if (Settings::layoutMode != ImageViewWidget) {
-        Settings::tagsDockVisible = tagsDock->isVisible();
-    }
-}
-
-void Phototonic::setImageInfoDockVisibility() {
-    if (Settings::layoutMode != ImageViewWidget) {
-        Settings::imageInfoDockVisible = imageInfoDock->isVisible();
     }
 }
 

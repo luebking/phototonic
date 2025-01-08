@@ -163,8 +163,6 @@ private slots:
 
     void showHiddenFiles();
 
-    void toggleImageViewerToolbar();
-
     void setToolbarIconSize();
 
     void chooseExternalApp();
@@ -172,18 +170,6 @@ private slots:
     void updateExternalApps();
 
     void runExternalApp();
-
-    void setImageToolBarVisibility();
-
-    void setFileSystemDockVisibility();
-
-    void setBookmarksDockVisibility();
-
-    void setImagePreviewDockVisibility();
-
-    void setTagsDockVisibility();
-
-    void setImageInfoDockVisibility();
 
     void lockDocks();
 
@@ -337,7 +323,6 @@ private:
     bool initComplete;
     bool needThumbsRefresh;
 
-    bool imageToolBarVisible;
     bool m_deleteInProgress;
     InfoView *m_infoViewer;
 

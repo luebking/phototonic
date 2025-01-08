@@ -46,7 +46,6 @@ namespace Settings {
     const char optionEditToolBarVisible[] = "editToolBarVisible";
     const char optionGoToolBarVisible[] = "goToolBarVisible";
     const char optionViewToolBarVisible[] = "viewToolBarVisible";
-    const char optionImageToolBarVisible[] = "imageToolBarVisible";
     const char optionFileSystemDockVisible[] = "fileSystemDockVisible";
     const char optionBookmarksDockVisible[] = "bookmarksDockVisible";
     const char optionImagePreviewDockVisible[] = "imagePreviewDockVisible";
