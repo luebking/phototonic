@@ -19,7 +19,6 @@
 #ifndef THUMBS_VIEWER_H
 #define THUMBS_VIEWER_H
 
-class ImageViewer;
 class ImageTags;
 
 class QStandardItem;
@@ -120,8 +119,6 @@ public:
     bool setCurrentIndex(const QString &fileName);
     bool setCurrentIndex(int row);
 
-    void setImageViewerWindowTitle();
-
     void setNeedToScroll(bool needToScroll);
 
     void selectCurrentIndex();
@@ -144,7 +141,6 @@ public:
     QString fullPathOf(int idx);
     QIcon icon(int idx);
 
-    void setImageViewer(ImageViewer *imageViewer);
     bool setFilter(const QString &filter, QString *error = nullptr);
     void sortBySimilarity();
 
@@ -190,7 +186,6 @@ private:
     QList<Histogram> histograms;
     QList<QString> histFiles;
     QPixmap emptyImg;
-    ImageViewer *imageViewer;
     QHash<QBitArray, DuplicateImage> dupImageHashes;
     bool isAbortThumbsLoading = false;
     bool isClosing = false;

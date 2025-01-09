@@ -35,11 +35,12 @@ const QImage &ImageWidget::image()
     return m_image;
 }
 
-void ImageWidget::setImage(const QImage &i)
+void ImageWidget::setImage(const QImage &i, QTransform matrix)
 {
     m_image = i;
     m_imageSize = i.size();
     m_rotation = 0;
+    m_exifTransformation = matrix;
     update();
 }
 
@@ -85,6 +86,11 @@ void ImageWidget::paintEvent(QPaintEvent *ev)
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::SmoothPixmapTransform);
+
+    // exif
+    /// @todo  this doesn't work, because the width/height are swapped and the translation is off/inverted
+    // I don't want to copy the Image into a pre-translation, but for now that's what we'll do
+//    painter.setWorldTransform(m_exifTransformation);
 
     // rotate
     QPoint center(width() / 2, height() / 2);

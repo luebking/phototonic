@@ -20,6 +20,7 @@
 #define IMAGEWIDGET_H
 
 #include <QOpenGLWidget>
+#include <QTransform>
 
 class ImageWidget : public QOpenGLWidget
 {
@@ -30,7 +31,7 @@ public:
     const QImage &image();
     const QPoint &imagePosition() const { return m_imagePos; }
     const QSize &imageSize() const { return m_imageSize; }
-    void setImage(const QImage &i);
+    void setImage(const QImage &i, QTransform matrix);
     void setImagePosition(const QPoint &p);
     void setImageSize(const QSize &s);
     qreal rotation() const { return m_rotation; }
@@ -48,6 +49,7 @@ private:
     qreal m_rotation = 0;
     QSize m_imageSize;
     QPoint m_imagePos;
+    QTransform m_exifTransformation;
 };
 
 #endif // IMAGEWIDGET_H

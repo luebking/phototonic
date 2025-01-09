@@ -19,12 +19,13 @@
 #ifndef META_DATA_CACHE_H
 #define META_DATA_CACHE_H
 
-
+#include <QTransform>
 
 namespace Metadata {
     bool addTag(QString &imageFileName, QString &tagName);
     void cache(const QString &imageFullPath);
     void dropCache();
+    QTransform transformation(QString &imageFullPath);
     void forget(QString &imageFileName);
     long orientation(QString &imageFileName);
     bool removeTag(QString &imageFileName, const QString &tagName);

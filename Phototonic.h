@@ -86,6 +86,7 @@ private slots:
 
     void renameDir();
 
+    void setImageViewerWindowTitle();
     void setThumbsViewerWindowTitle();
 
     void rename();

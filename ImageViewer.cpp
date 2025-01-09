@@ -287,46 +287,6 @@ void ImageViewer::centerImage(QSize &imgSize) {
     }
 }
 
-void ImageViewer::rotateByExifRotation(QImage &image, QString &imageFullPath) {
-    QTransform trans;
-    long orientation = Metadata::orientation(imageFullPath);
-
-    switch (orientation) {
-        case 1:
-            break;
-        case 2:
-            image = image.mirrored(true, false);
-            break;
-        case 3:
-            trans.rotate(180);
-            image = image.transformed(trans, Qt::SmoothTransformation);
-            break;
-        case 4:
-            image = image.mirrored(false, true);
-            break;
-        case 5:
-            trans.rotate(90);
-            image = image.transformed(trans, Qt::SmoothTransformation);
-            image = image.mirrored(true, false);
-            break;
-        case 6:
-            trans.rotate(90);
-            image = image.transformed(trans, Qt::SmoothTransformation);
-            break;
-        case 7:
-            trans.rotate(90);
-            image = image.transformed(trans, Qt::SmoothTransformation);
-            image = image.mirrored(false, true);
-            break;
-        case 8:
-            trans.rotate(270);
-            image = image.transformed(trans, Qt::SmoothTransformation);
-            break;
-        default:
-            break;
-    }
-}
-
 void ImageViewer::transform() {
     qDebug() << "meeek";
     if (!qFuzzyCompare(Settings::rotation, 0)) {
@@ -626,7 +586,7 @@ void ImageViewer::refresh() {
         mirror();
     }
 
-    imageWidget->setImage(viewerImage);
+    imageWidget->setImage(viewerImage, m_exifTransformation);
     resizeImage();
 }
 
@@ -638,7 +598,7 @@ void ImageViewer::setImage(const QImage &image) {
         setWidget(imageWidget);
     }
 
-    imageWidget->setImage(image);
+    imageWidget->setImage(image, m_exifTransformation);
 }
 
 QImage createImageWithOverlay(const QImage &baseImage, const QImage &overlayImage, int x, int y) {
@@ -728,7 +688,8 @@ void ImageViewer::reload() {
 
     if (imageReader.size().isValid() && imageReader.read(&origImage)) {
         if (Settings::exifRotationEnabled) {
-            rotateByExifRotation(origImage, fullImagePath);
+            m_exifTransformation = Metadata::transformation(fullImagePath);
+            origImage = origImage.transformed(Metadata::transformation(fullImagePath), Qt::SmoothTransformation);
         }
         viewerImage = origImage;
 

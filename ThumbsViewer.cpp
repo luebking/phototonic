@@ -37,7 +37,6 @@
 #include <QTimer>
 #include <QTreeWidget>
 
-#include "ImageViewer.h"
 #include "MetadataCache.h"
 #include "Settings.h"
 #include "SmartCrop.h"
@@ -133,17 +132,6 @@ int ThumbsViewer::getPrevRow() {
     }
 
     return currentIndex().row() - 1;
-}
-
-void ThumbsViewer::setImageViewerWindowTitle() {
-    QString title = m_model->item(currentIndex().row())->data(Qt::DisplayRole).toString()
-                    + " - ["
-                    + QString::number(currentIndex().row() + 1)
-                    + "/"
-                    + QString::number(m_model->rowCount())
-                    + "] - Phototonic";
-
-    window()->setWindowTitle(title);
 }
 
 bool ThumbsViewer::setCurrentIndex(const QString &fileName) {
@@ -1221,7 +1209,7 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
             storeThumbnail(imageFileName, thumb, origThumbSize);
         }
         if (Settings::exifThumbRotationEnabled) {
-            imageViewer->rotateByExifRotation(thumb, imageFileName);
+            thumb = thumb.transformed(Metadata::transformation(imageFileName), Qt::SmoothTransformation);
             currentThumbSize = thumb.size();
             currentThumbSize.scale(QSize(thumbSize, thumbSize), Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
         }
@@ -1284,7 +1272,7 @@ QStandardItem * ThumbsViewer::addThumb(QString &imageFullPath) {
         QImage thumb = thumbReader.read();
 
         if (Settings::exifThumbRotationEnabled) {
-            imageViewer->rotateByExifRotation(thumb, imageFullPath);
+            thumb = thumb.transformed(Metadata::transformation(imageFullPath), Qt::SmoothTransformation);
             currThumbSize = thumb.size();
             currThumbSize.scale(QSize(thumbSize, thumbSize), Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
         }
@@ -1328,8 +1316,3 @@ void ThumbsViewer::invertSelection() {
 void ThumbsViewer::setNeedToScroll(bool needToScroll) {
     this->isNeedToScroll = needToScroll;
 }
-
-void ThumbsViewer::setImageViewer(ImageViewer *imageViewer) {
-    this->imageViewer = imageViewer;
-}
-

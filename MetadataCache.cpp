@@ -16,6 +16,7 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QImage>
 #include <QMap>
 #include <QSet>
 #include <exiv2/exiv2.hpp>
@@ -94,6 +95,51 @@ bool addTag(QString &imageFileName, QString &tagName) {
 // clear
 void dropCache() {
     gs_cache.clear();
+}
+
+QTransform transformation(QString &imageFullPath) {
+    QTransform trans;
+    switch (orientation(imageFullPath)) {
+        case 1:
+            break;
+        case 2:
+            trans.scale(-1, 1);
+//            image = image.transformed(trans, Qt::SmoothTransformation);
+///            image = image.mirrored(true, false);
+            break;
+        case 3:
+            trans.rotate(180);
+//            image = image.transformed(trans, Qt::SmoothTransformation);
+            break;
+        case 4:
+            trans.scale(1, -1);
+//            image.mirror(false, true);
+            break;
+        case 5:
+            trans.scale(-1, 1);
+            trans.rotate(90);
+//            image = image.transformed(trans, Qt::SmoothTransformation);
+///            image.mirror(true, false);
+            break;
+        case 6:
+            trans.rotate(90);
+//            image = image.transformed(trans, Qt::SmoothTransformation);
+            break;
+        case 7:
+            trans.scale(1, -1);
+            trans.rotate(90);
+//            image = image.transformed(trans, Qt::SmoothTransformation);
+///            image.mirror(false, true);
+            break;
+        case 8:
+            trans.rotate(270);
+//            image = image.transformed(trans, Qt::SmoothTransformation);
+///            image.mirror(true, false);
+            break;
+        default:
+            break;
+    }
+    return trans;
 }
 
 // loadImageMetadata

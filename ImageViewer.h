@@ -25,6 +25,7 @@ class QMovie;
 #include <QLabel>
 #include <QPointer>
 #include <QScrollArea>
+#include <QTransform>
 #include <exiv2/exiv2.hpp>
 
 class ImageViewer : public QScrollArea {
@@ -59,7 +60,6 @@ public:
     void refresh();
     void reload();
     void resizeImage(QPoint focus = QPoint(-1, -1));
-    void rotateByExifRotation(QImage &image, QString &imageFullPath);
     void setBackgroundColor();
     void setContextMenu(QMenu *);
     void setCursorHiding(bool hide);
@@ -121,6 +121,7 @@ private:
     QLabel *feedbackLabel;
     QPoint cropOrigin;
     QPoint m_contextSpot;
+    QTransform m_exifTransformation;
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 

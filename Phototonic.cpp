@@ -371,7 +371,6 @@ void Phototonic::createImageViewer() {
     imageViewer->setContextMenu(contextMenu);
     Settings::isFullScreen = Settings::value(Settings::optionFullScreenMode).toBool();
     fullScreenAction->setChecked(Settings::isFullScreen);
-    thumbsViewer->setImageViewer(imageViewer);
 }
 
 void Phototonic::createActions() {
@@ -1757,7 +1756,7 @@ void Phototonic::loadCurrentImage(int currentRow) {
     }
 
     Settings::wrapImageList = wrapImageListTmp;
-    thumbsViewer->setImageViewerWindowTitle();
+    setImageViewerWindowTitle();
 }
 
 void Phototonic::deleteImages(bool trash) {
@@ -2623,7 +2622,7 @@ void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
     showViewer();
     thumbsViewer->setCurrentIndex(idx);
     imageViewer->loadImage(thumbsViewer->fullPathOf(idx.row()), thumbsViewer->icon(idx.row()).pixmap(THUMB_SIZE_MAX).toImage());
-    thumbsViewer->setImageViewerWindowTitle();
+    setImageViewerWindowTitle();
 }
 
 void Phototonic::toggleSlideShow() {
@@ -2672,7 +2671,7 @@ void Phototonic::slideShowHandler() {
         } else {
             int currentRow = thumbsViewer->currentIndex().row();
             imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow));
-            thumbsViewer->setImageViewerWindowTitle();
+            setImageViewerWindowTitle();
 
             if (thumbsViewer->getNextRow() > 0) {
                 thumbsViewer->setCurrentIndex(thumbsViewer->getNextRow());
@@ -2724,7 +2723,7 @@ void Phototonic::loadImage(SpecialImageIndex idx) {
 //        imageViewer->loadImage(thumbsViewer->fullPathOf(thumb), thumbsViewer->icon(thumb).pixmap(THUMB_SIZE_MAX).toImage());
 
     thumbsViewer->setCurrentIndex(thumb);
-    thumbsViewer->setImageViewerWindowTitle();
+    setImageViewerWindowTitle();
 }
 
 void Phototonic::setViewerKeyEventsEnabled(bool enabled) {
@@ -2941,6 +2940,19 @@ void Phototonic::reloadThumbs() {
     }
 }
 
+void Phototonic::setImageViewerWindowTitle() {
+    QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
+    const int currentRow = thumbsViewer->currentIndex().row();
+    QString title = thumbModel->item(currentRow)->data(Qt::DisplayRole).toString()
+                    + " - ["
+                    + QString::number(currentRow + 1)
+                    + "/"
+                    + QString::number(thumbModel->rowCount())
+                    + "] - Phototonic";
+
+    setWindowTitle(title);
+}
+
 void Phototonic::setThumbsViewerWindowTitle() {
 
     if (findDupesAction->isChecked()) {
@@ -3054,7 +3066,7 @@ void Phototonic::rename() {
             }
 
             if (Settings::layoutMode == ImageViewWidget) {
-                thumbsViewer->setImageViewerWindowTitle();
+                setImageViewerWindowTitle();
             }
         } else {
             MessageBox msgBox(this);
@@ -3324,4 +3336,3 @@ void Phototonic::addBookmark(QString path) {
     Settings::bookmarkPaths.insert(path);
     bookmarks->reloadBookmarks();
 }
-
