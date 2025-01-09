@@ -21,7 +21,6 @@
 
 class ImageViewer;
 class ImageTags;
-class MetadataCache;
 
 class QStandardItem;
 class QStandardItemModel;
@@ -101,7 +100,7 @@ public:
         Compact
     };
 
-    ThumbsViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &metadataCache);
+    ThumbsViewer(QWidget *parent);
 
     void loadPrepare();
 
@@ -191,7 +190,6 @@ private:
     QList<Histogram> histograms;
     QList<QString> histFiles;
     QPixmap emptyImg;
-    std::shared_ptr<MetadataCache> metadataCache;
     ImageViewer *imageViewer;
     QHash<QBitArray, DuplicateImage> dupImageHashes;
     bool isAbortThumbsLoading = false;

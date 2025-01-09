@@ -16,54 +16,90 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QMap>
+#include <QSet>
 #include <exiv2/exiv2.hpp>
 #include "Settings.h"
 #include "MetadataCache.h"
 
-void MetadataCache::updateImageTags(QString &imageFileName, QSet<QString> tags) {
-    cache[imageFileName].tags = tags;
+namespace Metadata {
+
+class ImageMetadata {
+public:
+    QSet<QString> tags;
+    long orientation;
+};
+
+static QMap<QString, ImageMetadata> gs_cache;
+
+// updateImageTags
+bool updateTags(QString &imageFileName, QSet<QString> tags) {
+    QMap<QString, ImageMetadata>::iterator it = gs_cache.find(imageFileName);
+    if (it == gs_cache.end())
+        return false;
+    it->tags = tags;
+    return true;
 }
 
-bool MetadataCache::removeTagFromImage(QString &imageFileName, const QString &tagName) {
-    return cache[imageFileName].tags.remove(tagName);
+// removeTagFromImage
+bool removeTag(QString &imageFileName, const QString &tagName) {
+    QMap<QString, ImageMetadata>::iterator it = gs_cache.find(imageFileName);
+    if (it == gs_cache.end())
+        return false;
+    return it->tags.remove(tagName);
 }
 
-void MetadataCache::removeImage(QString &imageFileName) {
-    cache.remove(imageFileName);
+// removeImage
+void forget(QString &imageFileName) {
+    gs_cache.remove(imageFileName);
 }
 
-QSet<QString> &MetadataCache::getImageTags(QString &imageFileName) {
-    return cache[imageFileName].tags;
+// getImageTags
+const QSet<QString> &tags(QString &imageFileName) {
+    static QSet<QString> dummy;
+    QMap<QString, ImageMetadata>::iterator it = gs_cache.find(imageFileName);
+    if (it == gs_cache.end())
+        return dummy;
+    return it->tags;
 }
 
-long MetadataCache::getImageOrientation(QString &imageFileName) {
-    if (cache.contains(imageFileName) || loadImageMetadata(imageFileName)) {
-        return cache[imageFileName].orientation;
-    }
-
-    return 0;
+// getImageOrientation
+long orientation(QString &imageFileName) {
+    QMap<QString, ImageMetadata>::iterator it = gs_cache.find(imageFileName);
+    if (it == gs_cache.end())
+        cache(imageFileName);
+    it = gs_cache.find(imageFileName);
+    if (it == gs_cache.end())
+        return 0;
+    return it->orientation;
 }
 
-void MetadataCache::setImageTags(const QString &imageFileName, QSet<QString> tags) {
-    ImageMetadata imageMetadata;
-
-    imageMetadata.tags = tags;
-    cache.insert(imageFileName, imageMetadata);
+// setImageTags
+void setTags(const QString &imageFileName, QSet<QString> tags) {
+    gs_cache[imageFileName].tags = tags;
 }
 
-void MetadataCache::addTagToImage(QString &imageFileName, QString &tagName) {
-    if (cache[imageFileName].tags.contains(tagName)) {
+// addTagToImage
+bool addTag(QString &imageFileName, QString &tagName) {
+    QMap<QString, ImageMetadata>::iterator it = gs_cache.find(imageFileName);
+    if (it == gs_cache.end())
+        return false; // no such image
+    if (it->tags.contains(tagName))
+        return false; // no overwrite
+
+    it->tags.insert(tagName);
+    return true;
+}
+
+// clear
+void dropCache() {
+    gs_cache.clear();
+}
+
+// loadImageMetadata
+void cache(const QString &imageFullPath) {
+    if (gs_cache.contains(imageFullPath))
         return;
-    }
-
-    cache[imageFileName].tags.insert(tagName);
-}
-
-void MetadataCache::clear() {
-    cache.clear();
-}
-
-bool MetadataCache::loadImageMetadata(const QString &imageFullPath) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #if EXIV2_TEST_VERSION(0,28,0)
@@ -73,28 +109,30 @@ bool MetadataCache::loadImageMetadata(const QString &imageFullPath) {
 #endif
 #pragma clang diagnostic pop
 
-    QSet<QString> tags;
-    long orientation = 0;
+    ImageMetadata imageMetadata;
+    imageMetadata.orientation = 0;
 
     try {
         exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
         exifImage->readMetadata();
     } catch (Exiv2::Error &error) {
         qWarning() << "Error loading image for reading metadata" << error.what();
-        return false;
+        gs_cache.insert(imageFullPath, imageMetadata);
+        return;
     }
 
     if (!exifImage->good()) {
-        return false;
+        gs_cache.insert(imageFullPath, imageMetadata);
+        return;
     }
 
     if (exifImage->supportsMetadata(Exiv2::mdExif)) try {
         Exiv2::ExifData::const_iterator it = Exiv2::orientation(exifImage->exifData());
         if (it != exifImage->exifData().end()) {
 #if EXIV2_TEST_VERSION(0,28,0)
-            orientation = it->toUint32();
+            imageMetadata.orientation = it->toUint32();
 #else
-            orientation = it->toLong();
+            imageMetadata.orientation = it->toLong();
 #endif
         }
     } catch (Exiv2::Error &error) {
@@ -115,7 +153,7 @@ bool MetadataCache::loadImageMetadata(const QString &imageFullPath) {
                 }
 
                 QString tagName = QString::fromUtf8(iptcIt->toString().c_str());
-                tags.insert(tagName);
+                imageMetadata.tags.insert(tagName);
                 Settings::knownTags.insert(tagName);
             }
         }
@@ -123,19 +161,7 @@ bool MetadataCache::loadImageMetadata(const QString &imageFullPath) {
         qWarning() << "Failed to read Iptc metadata";
     }
 
-    ImageMetadata imageMetadata;
-    if (tags.size()) {
-        imageMetadata.tags = tags;
-    }
-
-    if (orientation) {
-        imageMetadata.orientation = orientation;
-    }
-
-    if (tags.size() || orientation) {
-        cache.insert(imageFullPath, imageMetadata);
-    }
-
-    return true;
+    gs_cache.insert(imageFullPath, imageMetadata);
 }
 
+} // namespace Metadata

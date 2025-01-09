@@ -37,7 +37,7 @@
 
 #include <exiv2/exiv2.hpp>
 
-ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer, const std::shared_ptr<MetadataCache> &metadataCache) : QWidget(parent) {
+ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer) : QWidget(parent) {
     tagsTree = new QTreeWidget;
     tagsTree->setColumnCount(2);
     tagsTree->setDragEnabled(false);
@@ -45,7 +45,6 @@ ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer, const std::sha
     tagsTree->header()->close();
     tagsTree->setSelectionMode(QAbstractItemView::ExtendedSelection);
     this->thumbView = thumbsViewer;
-    this->metadataCache = metadataCache;
     negateFilterEnabled = false;
 
     tabs = new QTabBar(this);
@@ -150,7 +149,7 @@ void ImageTags::addTag(QString tagName, bool tagChecked) {
     tagsTree->addTopLevelItem(tagItem);
 }
 
-bool ImageTags::writeTagsToImage(QString &imageFileName, QSet<QString> &newTags) {
+bool ImageTags::writeTagsToImage(QString &imageFileName, const QSet<QString> &newTags) {
     QSet<QString> imageTags;
 
 #pragma clang diagnostic push
@@ -223,7 +222,7 @@ void ImageTags::showSelectedImagesTags() {
     int selectedThumbsNum = selectedThumbs.size();
     QMap<QString, int> tagsCount;
     for (int i = 0; i < selectedThumbsNum; ++i) {
-        QSetIterator<QString> imageTagsIter(metadataCache->getImageTags(selectedThumbs[i]));
+        QSetIterator<QString> imageTagsIter(Metadata::tags(selectedThumbs[i]));
         while (imageTagsIter.hasNext()) {
             QString imageTag = imageTagsIter.next();
             tagsCount[imageTag]++;
@@ -333,7 +332,7 @@ void ImageTags::setActiveViewMode(TagsDisplayMode mode) {
 }
 
 bool ImageTags::isImageFilteredOut(QString imageFileName) {
-    QSet<QString> imageTags = metadataCache->getImageTags(imageFileName);
+    QSet<QString> imageTags = Metadata::tags(imageFileName);
 
     QSetIterator<QString> filteredTagsIt(imageFilteringTags);
     while (filteredTagsIt.hasNext()) {
@@ -347,7 +346,7 @@ bool ImageTags::isImageFilteredOut(QString imageFileName) {
 
 void ImageTags::resetTagsState() {
     tagsTree->clear();
-    metadataCache->clear();
+    Metadata::dropCache();
 }
 
 QSet<QString> ImageTags::getCheckedTags(Qt::CheckState tagState) {
@@ -402,15 +401,15 @@ void ImageTags::applyUserAction(QList<QTreeWidgetItem *> tagsList) {
 
             if (tagState == Qt::Checked) {
                 progressDialog->opLabel->setText(tr("Tagging ") + imageName);
-                metadataCache->addTagToImage(imageName, tagName);
+                Metadata::addTag(imageName, tagName);
             } else {
                 progressDialog->opLabel->setText(tr("Untagging ") + imageName);
-                metadataCache->removeTagFromImage(imageName, tagName);
+                Metadata::removeTag(imageName, tagName);
             }
         }
 
-        if (!writeTagsToImage(imageName, metadataCache->getImageTags(imageName))) {
-            metadataCache->removeImage(imageName);
+        if (!writeTagsToImage(imageName, Metadata::tags(imageName))) {
+            Metadata::forget(imageName);
         }
 
         QApplication::processEvents();

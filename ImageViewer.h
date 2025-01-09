@@ -21,7 +21,6 @@
 
 class CropRubberBand;
 class ImageWidget;
-class MetadataCache;
 class QMovie;
 #include <QLabel>
 #include <QPointer>
@@ -32,7 +31,7 @@ class ImageViewer : public QScrollArea {
 Q_OBJECT
 
 public:
-    ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &metadataCache);
+    ImageViewer(QWidget *parent);
     bool tempDisableResize;
     bool batchMode = false;
     QString fullImagePath;
@@ -122,7 +121,6 @@ private:
     QLabel *feedbackLabel;
     QPoint cropOrigin;
     QPoint m_contextSpot;
-    std::shared_ptr<MetadataCache> metadataCache;
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 

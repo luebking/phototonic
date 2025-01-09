@@ -191,8 +191,7 @@ bool Phototonic::event(QEvent *event) {
 }
 
 void Phototonic::createThumbsViewer() {
-    metadataCache = std::make_shared<MetadataCache>();
-    thumbsViewer = new ThumbsViewer(this, metadataCache);
+    thumbsViewer = new ThumbsViewer(this);
     thumbsViewer->viewport()->installEventFilter(this);
     thumbsViewer->thumbsSortFlags = (QDir::SortFlags) Settings::value(
             Settings::optionThumbsSortFlags).toInt();
@@ -224,7 +223,7 @@ void Phototonic::createThumbsViewer() {
 }
 
 void Phototonic::createImageViewer() {
-    imageViewer = new ImageViewer(this, metadataCache);
+    imageViewer = new ImageViewer(this);
     imageViewer->viewport()->installEventFilter(this);
     connect(saveAction, SIGNAL(triggered()), imageViewer, SLOT(saveImage()));
     connect(saveAsAction, SIGNAL(triggered()), imageViewer, SLOT(saveImageAs()));
@@ -1133,7 +1132,7 @@ void Phototonic::createImagePreviewDock() {
 void Phototonic::createImageTagsDock() {
     tagsDock = new QDockWidget(tr("Tags"), this);
     tagsDock->setObjectName("Tags");
-    thumbsViewer->imageTags = new ImageTags(tagsDock, thumbsViewer, metadataCache);
+    thumbsViewer->imageTags = new ImageTags(tagsDock, thumbsViewer);
     tagsDock->setWidget(thumbsViewer->imageTags);
 
     connect(tagsDock, &QDockWidget::visibilityChanged, [=](bool visible) {
@@ -3112,7 +3111,7 @@ void Phototonic::removeMetadata() {
                 image = Exiv2::ImageFactory::open(fileList[file].toStdString());
                 image->clearMetadata();
                 image->writeMetadata();
-                metadataCache->removeImage(fileList[file]);
+                Metadata::forget(fileList[file]);
             }
             catch (Exiv2::Error &error) {
                 msgBox.critical(tr("Error"), tr("Failed to remove Exif metadata."));

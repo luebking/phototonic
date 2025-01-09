@@ -80,12 +80,11 @@ struct Exiv2LogHandler {
 } // anonymous namespace
 
 
-ImageViewer::ImageViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &mdataCache) : QScrollArea(parent) {
+ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     // This is a threadsafe way to ensure that we only register it once
     static Exiv2LogHandler handler;
 
     myContextMenu = nullptr;
-    metadataCache = mdataCache;
     cursorIsHidden = false;
     moveImageLocked = false;
     myMirrorLayout = MirrorNone;
@@ -290,7 +289,7 @@ void ImageViewer::centerImage(QSize &imgSize) {
 
 void ImageViewer::rotateByExifRotation(QImage &image, QString &imageFullPath) {
     QTransform trans;
-    long orientation = metadataCache->getImageOrientation(imageFullPath);
+    long orientation = Metadata::orientation(imageFullPath);
 
     switch (orientation) {
         case 1:

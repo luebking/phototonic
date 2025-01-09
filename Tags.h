@@ -19,7 +19,6 @@
 #ifndef TAGS_H
 #define TAGS_H
 
-class MetadataCache;
 class QTabBar;
 class ThumbsViewer;
 class QTreeWidget;
@@ -46,7 +45,7 @@ class ImageTags : public QWidget {
 Q_OBJECT
 
 public:
-    ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer, const std::shared_ptr<MetadataCache> &metadataCache);
+    ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer);
 
     void addTag(QString tagName, bool tagChecked);
 
@@ -69,7 +68,7 @@ public:
     TagsDisplayMode currentDisplayMode;
 
 private:
-    bool writeTagsToImage(QString &imageFileName, QSet<QString> &tags);
+    bool writeTagsToImage(QString &imageFileName, const QSet<QString> &tags);
 
     QSet<QString> getCheckedTags(Qt::CheckState tagState);
 
@@ -92,7 +91,6 @@ private:
     QTreeWidgetItem *lastChangedTagItem;
     ThumbsViewer *thumbView;
     QTabBar *tabs;
-    std::shared_ptr<MetadataCache> metadataCache;
     bool negateFilterEnabled;
 
 private slots:

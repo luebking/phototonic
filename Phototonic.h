@@ -27,7 +27,6 @@ class FileListWidget;
 class FileSystemTree;
 class ImageViewer;
 class InfoView;
-class MetadataCache;
 class ResizeDialog;
 class SettingsDialog;
 class ThumbsViewer;
@@ -313,7 +312,6 @@ private:
     QWidget *tagsDockEmptyWidget;
     QWidget *imageInfoDockEmptyWidget;
     bool interfaceDisabled;
-    std::shared_ptr<MetadataCache> metadataCache;
     FileListWidget *fileListWidget;
     QFileSystemModel *fileSystemModel;
     QStackedLayout *stackedLayout;

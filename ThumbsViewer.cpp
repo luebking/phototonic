@@ -46,9 +46,8 @@
 
 #define BATCH_SIZE 10
 
-ThumbsViewer::ThumbsViewer(QWidget *parent, const std::shared_ptr<MetadataCache> &metadataCache) : QListView(parent) {
+ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
     m_busy = false;
-    this->metadataCache = metadataCache;
     Settings::thumbsBackgroundColor = Settings::value(Settings::optionThumbsBackgroundColor).value<QColor>();
     Settings::thumbsTextColor = Settings::value(Settings::optionThumbsTextColor).value<QColor>();
     setThumbColors();
@@ -698,7 +697,7 @@ void ThumbsViewer::initThumbs() {
     for (fileIndex = 0; fileIndex < thumbFileInfoList.size(); ++fileIndex) {
         thumbFileInfo = thumbFileInfoList.at(fileIndex);
 
-        metadataCache->loadImageMetadata(thumbFileInfo.filePath());
+        Metadata::cache(thumbFileInfo.filePath());
         if (imageTags->dirFilteringActive && imageTags->isImageFilteredOut(thumbFileInfo.filePath())) {
             continue;
         }
@@ -1251,7 +1250,7 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
 
 QStandardItem * ThumbsViewer::addThumb(QString &imageFullPath) {
 
-    metadataCache->loadImageMetadata(imageFullPath);
+    Metadata::cache(imageFullPath);
     if (imageTags->dirFilteringActive && imageTags->isImageFilteredOut(imageFullPath)) {
         return nullptr;
     }

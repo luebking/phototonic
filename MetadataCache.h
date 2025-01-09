@@ -19,39 +19,18 @@
 #ifndef META_DATA_CACHE_H
 #define META_DATA_CACHE_H
 
-#include <QMap>
-#include <QSet>
 
-class ImageMetadata {
-public:
-    QSet<QString> tags;
-    long orientation;
-};
 
-class MetadataCache {
-
-private:
-    QMap<QString, ImageMetadata> cache;
-
-public:
-    void updateImageTags(QString &imageFileName, QSet<QString> tags);
-
-    void addTagToImage(QString &imageFileName, QString &tagName);
-
-    bool removeTagFromImage(QString &imageFileName, const QString &tagName);
-
-    void removeImage(QString &imageFileName);
-
-    QSet<QString> &getImageTags(QString &imageFileName);
-
-    void setImageTags(const QString &imageFileName, QSet<QString> tags);
-
-    void clear();
-
-    bool loadImageMetadata(const QString &imageFullPath);
-
-    long getImageOrientation(QString &imageFileName);
-
+namespace Metadata {
+    bool addTag(QString &imageFileName, QString &tagName);
+    void cache(const QString &imageFullPath);
+    void dropCache();
+    void forget(QString &imageFileName);
+    long orientation(QString &imageFileName);
+    bool removeTag(QString &imageFileName, const QString &tagName);
+    void setTags(const QString &imageFileName, QSet<QString> tags);
+    const QSet<QString> &tags(QString &imageFileName);
+    bool updateTags(QString &imageFileName, QSet<QString> tags);
 };
 
 #endif // META_DATA_CACHE_H
