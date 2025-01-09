@@ -34,14 +34,13 @@
 
 InfoView::InfoView(QWidget *parent) : QWidget(parent) {
 
-    infoViewerTable = new QTableView();
-    infoViewerTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    infoViewerTable = new QTableView(this);
+    infoViewerTable->setSelectionMode(QAbstractItemView::SingleSelection/* ExtendedSelection makes no sense wrt the copy feature*/);
+    infoViewerTable->setSelectionBehavior(QAbstractItemView::SelectRows/* SelectItems dto*/);
     infoViewerTable->verticalHeader()->setVisible(false);
     infoViewerTable->verticalHeader()->setDefaultSectionSize(infoViewerTable->verticalHeader()->minimumSectionSize());
     infoViewerTable->horizontalHeader()->setVisible(false);
-    infoViewerTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     infoViewerTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    infoViewerTable->setSelectionBehavior(QAbstractItemView::SelectItems);
     infoViewerTable->setTabKeyNavigation(false);
     infoViewerTable->setShowGrid(false);
 
@@ -56,27 +55,25 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
     infoViewerTable->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(infoViewerTable, SIGNAL(customContextMenuRequested(QPoint)), SLOT(showInfoViewMenu(QPoint)));
 
-    QVBoxLayout *infoViewerLayout = new QVBoxLayout;
-
     // Filter items
-    filterLineEdit = new QLineEdit;
+    filterLineEdit = new QLineEdit(this);
     connect(filterLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(filterItems()));
     filterLineEdit->setClearButtonEnabled(true);
     filterLineEdit->setPlaceholderText(tr("Filter Items"));
-    infoViewerLayout->addWidget(filterLineEdit);
 
+    QVBoxLayout *infoViewerLayout = new QVBoxLayout(this);
     infoViewerLayout->addWidget(infoViewerTable);
-    infoViewerLayout->setContentsMargins(2, 2, 2, 2);
-    infoViewerLayout->setSpacing(2);
+    infoViewerLayout->addWidget(filterLineEdit);
 
     setLayout(infoViewerLayout);
 }
 
 void InfoView::showInfoViewMenu(QPoint pt) {
     selectedEntry = infoViewerTable->indexAt(pt);
-    if (selectedEntry.isValid()) {
+    if (selectedEntry.column() == 0)
+        selectedEntry = selectedEntry.siblingAtColumn(1);
+    if (selectedEntry.isValid() && infoViewerTable->columnSpan(selectedEntry.row(), 0) == 1)
         infoMenu->popup(infoViewerTable->viewport()->mapToGlobal(pt));
-    }
 }
 
 void InfoView::clear() {
@@ -84,10 +81,6 @@ void InfoView::clear() {
 }
 
 void InfoView::addEntry(QString key, QString value) {
-    if (!filterLineEdit->text().isEmpty() && !key.toLower().contains(filterLineEdit->text().toLower())) {
-        return;
-    }
-
     int atRow = imageInfoModel->rowCount();
     QStandardItem *itemKey = new QStandardItem(key);
     imageInfoModel->insertRow(atRow, itemKey);
@@ -106,6 +99,7 @@ void InfoView::addTitleEntry(QString title) {
     QFont boldFont;
     boldFont.setBold(true);
     itemKey->setData(boldFont, Qt::FontRole);
+    infoViewerTable->setSpan(atRow, 0, 1, 2);
 }
 
 void InfoView::copyEntry() {
@@ -115,6 +109,13 @@ void InfoView::copyEntry() {
 }
 
 void InfoView::filterItems() {
+    const QString filter = filterLineEdit->text().toLower();
+    for (int i = 0; i < imageInfoModel->rowCount(); ++i) {
+        if (infoViewerTable->columnSpan(i, 0) > 1) { // title
+            continue;
+        }
+        infoViewerTable->setRowHidden(i, !filter.isEmpty() && !imageInfoModel->item(i)->text().toLower().contains(filter));
+    }
 }
 
 void InfoView::hint(QString key, QString value) {
@@ -198,4 +199,7 @@ void InfoView::read(QString imageFullPath) {
             addEntry(EXIV2_ENTRY);
         }
     }
+    infoViewerTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+    infoViewerTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+    filterItems();
 }
