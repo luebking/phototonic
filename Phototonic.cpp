@@ -1953,7 +1953,6 @@ void Phototonic::goTo(QString path) {
     findDupesAction->setChecked(false);
     Settings::isFileListLoaded = false;
     fileListWidget->clearSelection();
-    thumbsViewer->setNeedToScroll(true);
     fileSystemTree->setCurrentIndex(fileSystemModel->index(path));
     Settings::currentDirectory = path;
     refreshThumbs(true);
@@ -1963,7 +1962,6 @@ void Phototonic::goSelectedDir(const QModelIndex &idx) {
     findDupesAction->setChecked(false);
     Settings::isFileListLoaded = false;
     fileListWidget->clearSelection();
-    thumbsViewer->setNeedToScroll(true);
     Settings::currentDirectory = getSelectedPath();
     refreshThumbs(true);
     fileSystemTree->expand(idx);
@@ -1971,7 +1969,6 @@ void Phototonic::goSelectedDir(const QModelIndex &idx) {
 
 void Phototonic::goPathBarDir() {
     findDupesAction->setChecked(false);
-    thumbsViewer->setNeedToScroll(true);
 
     QDir checkPath(pathLineEdit->text());
     if (!checkPath.exists() || !checkPath.isReadable()) {
