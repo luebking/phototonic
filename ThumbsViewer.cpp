@@ -64,7 +64,7 @@ ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
 
     // This is the default but set for clarity. Could make it configurable to use
     // QAbstractItemView::ScrollPerPixel instead.
-    setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
+    setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 
     m_model = new QStandardItemModel(this);
     m_model->setSortRole(SortRole);
@@ -564,15 +564,17 @@ void ThumbsViewer::applyFilter() {
     }
 }
 
+static int gs_fontHeight = 0;
+
 QSize ThumbsViewer::itemSizeHint() const
 {
     switch(Settings::thumbsLayout) {
     case Squares:
         return QSize(thumbSize, thumbSize);
     case Compact:
-        return QSize(thumbSize, thumbSize + ((int) (QFontMetrics(font()).height() * 2.5)));
+        return QSize(thumbSize, thumbSize + int(2.5*gs_fontHeight));
     case Classic:
-        return QSize(thumbSize, thumbSize + ((int) (QFontMetrics(font()).height() * 1.5)));
+        return QSize(thumbSize, thumbSize + int(1.5*gs_fontHeight));
     default:
         qWarning() << "Invalid thumbs layout" << Settings::thumbsLayout;
         return QSize(thumbSize, thumbSize);
@@ -584,7 +586,9 @@ QSize ThumbsViewer::itemSizeHint() const
 void ThumbsViewer::loadPrepare() {
 
     m_model->clear();
+    gs_fontHeight = QFontMetrics(font()).height();
     setIconSize(QSize(thumbSize, thumbSize));
+    setViewportMargins(0, gs_fontHeight, 0, 0);
 
     if (Settings::thumbsLayout == Squares) {
         setSpacing(0);
@@ -595,9 +599,8 @@ void ThumbsViewer::loadPrepare() {
         setUniformItemSizes(false);
         setGridSize(itemSizeHint());
     } else {
-        setSpacing(QFontMetrics(font()).height());
         setUniformItemSizes(false);
-        setGridSize(QSize());
+        setGridSize(itemSizeHint() + QSize(gs_fontHeight,gs_fontHeight));
     }
 
     if (isNeedToScroll) {

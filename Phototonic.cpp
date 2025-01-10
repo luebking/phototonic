@@ -32,6 +32,7 @@
 #include <QMouseEvent>
 #include <QMovie>
 #include <QProcess>
+#include <QPropertyAnimation>
 #include <QRandomGenerator>
 #include <QScrollBar>
 #include <QSettings>
@@ -3256,11 +3257,29 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
             }
             return true;
         }
-    } else if (we->modifiers() == Qt::ControlModifier && o == thumbsViewer->viewport()) {
-        if (scrollDelta < 0) {
-            thumbsZoomOut();
+    } else if (o == thumbsViewer->viewport()) {
+        if (we->modifiers() == Qt::ControlModifier) {
+            if (scrollDelta < 0) {
+                thumbsZoomOut();
+            } else {
+                thumbsZoomIn();
+            }
         } else {
-            thumbsZoomIn();
+            static QPropertyAnimation *animator = nullptr;
+            if (!animator) {
+                animator = new QPropertyAnimation(thumbsViewer->verticalScrollBar(), "value");
+                animator->setDuration(150); // default is 250
+                animator->setEasingCurve(QEasingCurve::InOutQuad);
+            }
+            const int grid = thumbsViewer->gridSize().height();
+            int v = animator->state() == QAbstractAnimation::Running ? animator->endValue().toInt() : thumbsViewer->verticalScrollBar()->value();
+            animator->setStartValue(v);
+            v += grid*qRound(scrollDelta / -120.0);
+            v = scrollDelta > 0 ? qCeil(v/float(grid)) : v/grid;
+            v *= grid;
+            animator->setEndValue(v);
+//            thumbsViewer->verticalScrollBar()->setValue(v);
+            animator->start();
         }
         return true;
     }
