@@ -84,17 +84,18 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     readSettings();
     createThumbsViewer();
     createActions();
-    createMenus();
+    myMainMenu = new QMenu(this);
     createToolBars();
     statusBar()->setVisible(false);
     createFileSystemDock();
     createBookmarksDock();
-    createImageViewer();
     createImagePreviewDock();
     createImageTagsDock();
+    setupDocks();
+    createMenus();
+    createImageViewer();
     updateExternalApps();
     loadShortcuts();
-    setupDocks();
 
     connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, [=](const QModelIndex &current) {
         if (imageViewer->isVisible()) {
@@ -818,14 +819,15 @@ void Phototonic::createActions() {
 }
 
 void Phototonic::createMenus() {
-    myMainMenu = new QMenu(this);
     QMenu *menu;
     menu = myMainMenu->addMenu(tr("&File"));
-    menu->addAction(includeSubDirectoriesAction);
     menu->addAction(createDirectoryAction);
     menu->addAction(setSaveDirectoryAction);
+    menu->addSeparator();
     menu->addAction(showClipboardAction);
     menu->addAction(addBookmarkAction);
+    menu->addSeparator();
+    menu->addAction(findDupesAction);
     menu->addSeparator();
     menu->addAction(exitAction);
 
@@ -862,9 +864,11 @@ void Phototonic::createMenus() {
     menu->addSeparator();
     menu->addAction(thumbsGoToTopAction);
     menu->addAction(thumbsGoToBottomAction);
+    menu->addSeparator();
+    menu->addAction(slideShowAction);
 
     menu = myMainMenu->addMenu(tr("&View"));
-    menu->addAction(slideShowAction);
+    menu->addMenu(createPopupMenu())->setText(tr("Window"));
     menu->addSeparator();
 
     QActionGroup *thumbLayoutsGroup = new QActionGroup(this);
@@ -888,12 +892,13 @@ void Phototonic::createMenus() {
     sortMenu->addAction(sortReverseAction);
     menu->addSeparator();
 
+    menu->addAction(includeSubDirectoriesAction);
     menu->addAction(showHiddenFilesAction);
     menu->addSeparator();
     menu->addAction(refreshAction);
     menu->addSeparator();
 
-    menu->addAction(findDupesAction);
+    myMainMenu->addAction(aboutAction);
 
     // thumbs viewer context menu
     thumbsViewer->addAction(viewImageAction);
@@ -2241,11 +2246,6 @@ void Phototonic::setupDocks() {
 
     addDockWidget(Qt::RightDockWidgetArea, imageInfoDock);
     addDockWidget(Qt::RightDockWidgetArea, tagsDock);
-
-    myMainMenu->addMenu(createPopupMenu())->setText(tr("Window"));
-    myMainMenu->addSeparator();
-    QMenu *helpMenu = myMainMenu->addMenu(tr("&Help"));
-    helpMenu->addAction(aboutAction);
 
     fileSystemDockOrigWidget = fileSystemDock->titleBarWidget();
     bookmarksDockOrigWidget = bookmarksDock->titleBarWidget();
