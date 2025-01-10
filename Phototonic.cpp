@@ -85,7 +85,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     createActions();
     createMenus();
     createToolBars();
-    createStatusBar();
+    statusBar()->setVisible(false);
     createFileSystemDock();
     createBookmarksDock();
     createImageViewer();
@@ -911,11 +911,7 @@ void Phototonic::createToolBars() {
 
     myMainToolBar = addToolBar("Toolbar");
     myMainToolBar->setObjectName("MainBar");
-    QAction *mainMenu = new QAction(tr("Menu"), this);
-    mainMenu->setIcon(QIcon::fromTheme("preferences-system", QIcon(":/images/settings.png")));
-    mainMenu->setMenu(myMainMenu);
-    myMainToolBar->addAction(mainMenu);
-    static_cast<QToolButton*>(myMainToolBar->widgetForAction(mainMenu))->setPopupMode(QToolButton::InstantPopup);
+
     // edit
 //    myMainToolBar->addAction(cutAction);
 //    myMainToolBar->addAction(copyAction);
@@ -983,6 +979,13 @@ void Phototonic::createToolBars() {
     myMainToolBar->addSeparator();
     myMainToolBar->addWidget(filterLineEdit);
 
+    QAction *mainMenu = new QAction(tr("Menu"), this);
+    mainMenu->setIcon(QIcon::fromTheme("preferences-system", QIcon(":/images/settings.png")));
+    mainMenu->setMenu(myMainMenu);
+    myMainToolBar->addAction(mainMenu);
+    m_menuButton = static_cast<QToolButton*>(myMainToolBar->widgetForAction(mainMenu));
+    m_menuButton->setPopupMode(QToolButton::InstantPopup);
+
     /* image */
     imageToolBar = new QToolBar(tr("Image Toolbar"));
     imageToolBar->setObjectName("Image");
@@ -1024,11 +1027,6 @@ void Phototonic::setToolbarIconSize() {
 
     myMainToolBar->setIconSize(iconQSize);
     imageToolBar->setIconSize(iconQSize);
-}
-
-void Phototonic::createStatusBar() {
-    statusLabel = new QLabel(tr("Initializing..."));
-    statusBar()->addWidget(statusLabel);
 }
 
 void Phototonic::createFileSystemDock() {
@@ -2462,7 +2460,12 @@ void Phototonic::closeEvent(QCloseEvent *event) {
 }
 
 void Phototonic::setStatus(QString state) {
-    statusLabel->setText("    " + state + "    ");
+    m_menuButton->setToolTip(state);
+    if (Settings::layoutMode != ImageViewWidget) {
+        QTimer::singleShot(125, this, [=](){
+            QToolTip::showText(m_menuButton->mapToGlobal(QPoint(0, 0)), state, m_menuButton, QRect(), 1000);
+        });
+    }
 }
 
 void Phototonic::mouseDoubleClickEvent(QMouseEvent *event) {
@@ -2548,8 +2551,6 @@ void Phototonic::setDocksVisibility(bool visible) {
     tagsDock->setVisible(visible && Settings::tagsDockVisible);
     imageInfoDock->setVisible(visible && Settings::imageInfoDockVisible);
 
-    statusBar()->setVisible(visible);
-
     myMainToolBar->setVisible(visible);
     imageToolBar->setVisible(!visible && Settings::showViewerToolbar);
     addToolBar(imageToolBar);
@@ -2590,7 +2591,7 @@ void Phototonic::viewImage() {
         if (thumbsViewer->setFilter(filterLineEdit->text(), &error))
             refreshThumbs(true);
         else
-            QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
+            QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height())),
                                 error, filterLineEdit);
         return;
     } else if (QApplication::focusWidget() == pathLineEdit) {

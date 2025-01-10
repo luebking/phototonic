@@ -34,6 +34,7 @@ class QFileSystemModel;
 class QLabel;
 class QLineEdit;
 class QStackedLayout;
+class QToolButton;
 
 #include <QMainWindow>
 #include <QPointer>
@@ -289,7 +290,6 @@ private:
 
     QLineEdit *pathLineEdit;
     QLineEdit *filterLineEdit;
-    QLabel *statusLabel;
     QDockWidget *fileSystemDock;
     QDockWidget *bookmarksDock;
     QDockWidget *imagePreviewDock;
@@ -324,6 +324,7 @@ private:
 
     bool m_deleteInProgress;
     InfoView *m_infoViewer;
+    QToolButton *m_menuButton;
 
     QPointer<ResizeDialog> resizeDialog;
     QPointer<ColorsDialog> colorsDialog;
@@ -356,8 +357,6 @@ private:
     void createMenus();
 
     void createToolBars();
-
-    void createStatusBar();
 
     void createFileSystemDock();
 
