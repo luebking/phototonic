@@ -21,6 +21,8 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
 #include <QPushButton>
 #include <QStandardItem>
 #include <QStandardItemModel>
@@ -32,7 +34,7 @@
 ExternalAppsDialog::ExternalAppsDialog(QWidget *parent) : QDialog(parent) {
     setWindowTitle(tr("Manage External Applications"));
     setWindowIcon(QIcon::fromTheme("preferences-other", QIcon(":/images/phototonic.png")));
-    resize(350, 250);
+    resize(512, 256);
 
     appsTable = new QTableView(this);
     appsTable->setSelectionBehavior(QAbstractItemView::SelectItems);
@@ -49,30 +51,40 @@ ExternalAppsDialog::ExternalAppsDialog(QWidget *parent) : QDialog(parent) {
     appsTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     appsTable->setShowGrid(false);
 
-    QHBoxLayout *externalAppsLayout = new QHBoxLayout;
+    QVBoxLayout *externalAppsLayout = new QVBoxLayout;
     QPushButton *addButton = new QPushButton(tr("Choose"));
     connect(addButton, SIGNAL(clicked()), this, SLOT(add()));
-    externalAppsLayout->addWidget(addButton, 0, Qt::AlignRight);
+    externalAppsLayout->addWidget(addButton, 0, Qt::AlignTop);
     QPushButton *entryButton = new QPushButton(tr("Add manually"));
     connect(entryButton, SIGNAL(clicked()), this, SLOT(entry()));
-    externalAppsLayout->addWidget(entryButton, 0, Qt::AlignRight);
+    externalAppsLayout->addWidget(entryButton, 0, Qt::AlignTop);
     QPushButton *removeButton = new QPushButton(tr("Delete"));
     connect(removeButton, SIGNAL(clicked()), this, SLOT(remove()));
-    externalAppsLayout->addWidget(removeButton, 0, Qt::AlignRight);
+    externalAppsLayout->addWidget(removeButton, 0, Qt::AlignTop);
     externalAppsLayout->addStretch(1);
+
+    QHBoxLayout *wrapperLayout = new QHBoxLayout;
+    wrapperLayout->addWidget(appsTable);
+    wrapperLayout->addLayout(externalAppsLayout);
+
+    QHBoxLayout *wallpaperLayout = new QHBoxLayout;
+    wallpaperLayout->addWidget(new QLabel(tr("Wallpaper command")));
+    wallpaperLayout->addWidget(m_wallpaperCommand = new QLineEdit);
 
     QHBoxLayout *buttonsLayout = new QHBoxLayout;
     QPushButton *okButton = new QPushButton(tr("OK"));
     okButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     connect(okButton, SIGNAL(clicked()), this, SLOT(ok()));
     buttonsLayout->addWidget(okButton, 0, Qt::AlignRight);
+
     QVBoxLayout *externalAppsMainLayout = new QVBoxLayout;
-    externalAppsMainLayout->addWidget(appsTable);
-    externalAppsMainLayout->addLayout(externalAppsLayout);
+    externalAppsMainLayout->addLayout(wrapperLayout);
+    externalAppsMainLayout->addLayout(wallpaperLayout);
     externalAppsMainLayout->addLayout(buttonsLayout);
     setLayout(externalAppsMainLayout);
 
     // Load external apps list
+    m_wallpaperCommand->setText(Settings::wallpaperCommand);
     QString key, val;
     QMapIterator<QString, QString> it(Settings::externalApps);
     while (it.hasNext()) {
@@ -84,6 +96,7 @@ ExternalAppsDialog::ExternalAppsDialog(QWidget *parent) : QDialog(parent) {
 }
 
 void ExternalAppsDialog::ok() {
+    Settings::wallpaperCommand = m_wallpaperCommand->text();
     int row = appsTableModel->rowCount();
     Settings::externalApps.clear();
     for (int i = 0; i < row; ++i) {

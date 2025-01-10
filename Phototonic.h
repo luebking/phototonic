@@ -285,6 +285,7 @@ private:
 
     QAction *openWithMenuAction;
     QAction *externalAppsAction;
+    QAction *m_wallpaperAction;
     QAction *invertSelectionAction;
     QAction *batchTransformAction;
 

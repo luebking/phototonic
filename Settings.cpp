@@ -62,6 +62,7 @@ namespace Settings {
     const char optionWindowState[] = "WindowState";
     const char optionShortcuts[] = "Shortcuts";
     const char optionExternalApps[] = "ExternalApps";
+    const char optionWallpaperCommand[] = "WallpaperCommand";
     const char optionCopyMoveToPaths[] = "CopyMoveToPaths";
     const char optionKnownTags[] = "KnownTags";
     const char optionSetWindowIcon[] = "setWindowIcon";
@@ -126,6 +127,7 @@ namespace Settings {
     bool showHiddenFiles;
     bool showViewerToolbar;
     QMap<QString, QString> externalApps;
+    QString wallpaperCommand;
     QSet<QString> bookmarkPaths;
     QSet<QString> knownTags;
     bool reverseMouseBehavior;

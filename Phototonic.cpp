@@ -288,6 +288,7 @@ void Phototonic::createImageViewer() {
     imageViewer->addAction(externalAppsAction);
 
     // Actions
+    contextMenu->addAction(m_wallpaperAction);
     contextMenu->addAction(openWithMenuAction);
     contextMenu->addSeparator();
 
@@ -654,6 +655,10 @@ void Phototonic::createActions() {
     showClipboardAction->setIcon(QIcon::fromTheme("insert-image", QIcon(":/images/new.png")));
     connect(showClipboardAction, SIGNAL(triggered()), this, SLOT(newImage()));
 
+    m_wallpaperAction = new QAction(tr("Set Wallpaper"));
+    m_wallpaperAction->setObjectName("setwallpaper");
+    connect(m_wallpaperAction, &QAction::triggered, this, &Phototonic::runExternalApp);
+
     openWithSubMenu = new QMenu(tr("Open With..."));
     openWithMenuAction = new QAction(tr("Open With..."), this);
     openWithMenuAction->setObjectName("openWithMenu");
@@ -902,6 +907,7 @@ void Phototonic::createMenus() {
 
     // thumbs viewer context menu
     thumbsViewer->addAction(viewImageAction);
+    thumbsViewer->addAction(m_wallpaperAction);
     thumbsViewer->addAction(openWithMenuAction);
     thumbsViewer->addAction(cutAction);
     thumbsViewer->addAction(copyAction);
@@ -1053,6 +1059,7 @@ void Phototonic::createFileSystemDock() {
     fileSystemTree->addAction(renameAction);
     fileSystemTree->addAction(deleteAction);
     fileSystemTree->addAction(deletePermanentlyAction);
+    fileSystemTree->addAction(m_wallpaperAction);
     fileSystemTree->addAction(openWithMenuAction);
     fileSystemTree->addAction(addBookmarkAction);
     fileSystemTree->setContextMenuPolicy(Qt::ActionsContextMenu);
@@ -1212,7 +1219,8 @@ void Phototonic::setPathFocus() {
 }
 
 void Phototonic::runExternalApp() {
-    QString execCommand = Settings::externalApps[((QAction *) sender())->text()];
+    QString execCommand = sender() == m_wallpaperAction ? Settings::wallpaperCommand :
+                        Settings::externalApps[static_cast<QAction*>(sender())->text()];
 
     if (Settings::layoutMode == ImageViewWidget) {
         if (imageViewer->isNewImage()) {
@@ -1249,6 +1257,7 @@ void Phototonic::runExternalApp() {
 }
 
 void Phototonic::updateExternalApps() {
+    m_wallpaperAction->setVisible(!Settings::wallpaperCommand.isEmpty());
     int actionNumber = 0;
     QMapIterator<QString, QString> externalAppsIterator(Settings::externalApps);
 
@@ -2099,6 +2108,7 @@ void Phototonic::writeSettings() {
     }
     Settings::appSettings->endGroup();
 
+    Settings::setValue(Settings::optionWallpaperCommand, Settings::wallpaperCommand);
     /* External apps */
     Settings::beginGroup(Settings::optionExternalApps);
     Settings::appSettings->remove("");
@@ -2215,6 +2225,7 @@ void Phototonic::readSettings() {
     Settings::setWindowIcon = Settings::value(Settings::optionSetWindowIcon).toBool();
     Settings::upscalePreview = Settings::value(Settings::optionUpscalePreview).toBool();
 
+    Settings::wallpaperCommand = Settings::value(Settings::optionWallpaperCommand).toString();
     /* read external apps */
     Settings::beginGroup(Settings::optionExternalApps);
     QStringList extApps = Settings::appSettings->childKeys();

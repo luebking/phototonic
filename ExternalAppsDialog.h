@@ -19,6 +19,7 @@
 #ifndef EXTERNAL_APPS_DIALOG_H
 #define EXTERNAL_APPS_DIALOG_H
 
+class QLineEdit;
 class QTableView;
 class QStandardItemModel;
 #include <QDialog>
@@ -29,23 +30,19 @@ class ExternalAppsDialog : public QDialog {
 public:
     ExternalAppsDialog(QWidget *parent);
 
-public slots:
-
-    void ok();
-
 private slots:
-
     void add();
-
+    void entry();
+    void ok();
     void remove();
 
-    void entry();
+private:
+    void addTableModelItem(QStandardItemModel *model, QString &key, QString &val);
 
 private:
     QTableView *appsTable;
     QStandardItemModel *appsTableModel;
-
-    void addTableModelItem(QStandardItemModel *model, QString &key, QString &val);
+    QLineEdit *m_wallpaperCommand;
 };
 
 #endif // EXTERNAL_APPS_DIALOG_H
