@@ -1073,18 +1073,9 @@ void Phototonic::createFileSystemDock() {
     fileSystemTree->addAction(addBookmarkAction);
     fileSystemTree->setContextMenuPolicy(Qt::ActionsContextMenu);
 
-    fileSystemTree->setModel(fileSystemModel);
-    for (int i = 1; i < fileSystemModel->columnCount(); ++i) {
-        fileSystemTree->hideColumn(i);
-    }
     connect(fileSystemTree, &FileSystemTree::clicked, this, &Phototonic::goSelectedDir);
     connect(fileSystemModel, &QFileSystemModel::rowsRemoved, this, &Phototonic::checkDirState);
     connect(fileSystemTree, &FileSystemTree::dropOp, this, &Phototonic::dropOp);
-
-//    fileSystemTree->setCurrentIndex(fileSystemModel->index(QDir::currentPath()));
-//    fileSystemTree->scrollTo(fileSystemModel->index(QDir::currentPath()));
-
-    connect(fileSystemTree->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(updateActions()) );
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -1097,8 +1088,17 @@ void Phototonic::createFileSystemDock() {
 
     fileSystemDock->setWidget(fileSystemTreeMainWidget);
     connect(fileSystemDock, &QDockWidget::visibilityChanged, [=](bool visible) {
-        if (visible) {
-            QTimer::singleShot(50, [=](){fileSystemModel->setRootPath("/");});
+        if (visible && !fileSystemTree->model()) {
+            QTimer::singleShot(50, [=](){
+                fileSystemTree->setModel(fileSystemModel);
+                for (int i = 1; i < fileSystemModel->columnCount(); ++i) {
+                    fileSystemTree->hideColumn(i);
+                }
+                fileSystemModel->setRootPath("/");
+                fileSystemTree->setCurrentIndex(fileSystemModel->index(Settings::currentDirectory));
+                fileSystemTree->scrollTo(fileSystemModel->index(Settings::currentDirectory));
+                connect(fileSystemTree->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(updateActions()) );
+            });
         }
         if (Settings::layoutMode != ImageViewWidget) {
             Settings::fileSystemDockVisible = visible;
