@@ -948,7 +948,9 @@ void Phototonic::createToolBars() {
     m_progressBarAction = myMainToolBar->addWidget(m_progressBar = new QProgressBar);
     m_progressBarAction->setVisible(false);
     pathLineEdit = new QLineEdit;
-    pathLineEdit->setCompleter(new DirCompleter(pathLineEdit, fileSystemModel));
+    DirCompleter *dirCompleter = new DirCompleter(pathLineEdit, fileSystemModel);
+    pathLineEdit->setCompleter(dirCompleter);
+    connect(dirCompleter, SIGNAL(activated(QString)), this, SLOT(goPathBarDir()));
     std::unique_ptr<QMetaObject::Connection> pconn{new QMetaObject::Connection};
     QMetaObject::Connection &conn = *pconn;
     conn = connect(pathLineEdit, &QLineEdit::textEdited, [=](){fileSystemModel->setRootPath("/"); QObject::disconnect(conn);});
@@ -1992,6 +1994,8 @@ void Phototonic::goSelectedDir(const QModelIndex &idx) {
 void Phototonic::goPathBarDir() {
     findDupesAction->setChecked(false);
 
+    if (pathLineEdit->completer()->popup())
+        pathLineEdit->completer()->popup()->hide();
     QDir checkPath(pathLineEdit->text());
     if (!checkPath.exists() || !checkPath.isReadable()) {
         MessageBox msgBox(this);
