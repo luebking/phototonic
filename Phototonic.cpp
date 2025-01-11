@@ -2067,6 +2067,10 @@ void Phototonic::updateActions() {
 
 void Phototonic::writeSettings() {
     if (Settings::layoutMode == ThumbViewWidget) {
+        // withdraw the max/fullscreen states - Qt sucks at tracking them
+        // the (then to be restored size) more or less encodes the state and we rely on the WM
+        // to make the best out of what will look like a clumsy maximization attempt *shrug*
+        setWindowState(windowState() & ~(Qt::WindowMaximized|Qt::WindowFullScreen));
         Settings::setValue(Settings::optionGeometry, saveGeometry());
         Settings::setValue(Settings::optionWindowState, saveState());
     }

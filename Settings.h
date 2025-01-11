@@ -57,7 +57,6 @@ namespace Settings {
     extern const char optionDeleteConfirm[];
     extern const char optionShowHiddenFiles[];
     extern const char optionImageZoomFactor[];
-    extern const char optionShouldMaximize[];
     extern const char optionDefaultSaveQuality[];
     extern const char optionSlideShowDelay[];
     extern const char optionSlideShowRandom[];
