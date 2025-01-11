@@ -32,6 +32,7 @@
 #include <QMouseEvent>
 #include <QMovie>
 #include <QProcess>
+#include <QProgressBar>
 #include <QPropertyAnimation>
 #include <QRandomGenerator>
 #include <QScrollBar>
@@ -202,6 +203,10 @@ void Phototonic::createThumbsViewer() {
     connect(thumbsViewer->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
             this, SLOT(updateActions()));
     connect (thumbsViewer, &ThumbsViewer::status, this, &Phototonic::setStatus);
+    connect (thumbsViewer, &ThumbsViewer::progress, [=](unsigned int v, unsigned int t) {
+                m_progressBar->setMaximum(t);
+                m_progressBar->setValue(v);
+            });
     connect (thumbsViewer, &ThumbsViewer::doubleClicked, this, &Phototonic::loadSelectedThumbImage);
 
     imageInfoDock = new QDockWidget(tr("Image Info"), this);
@@ -940,6 +945,8 @@ void Phototonic::createToolBars() {
     myMainToolBar->addAction(refreshAction);
 
     /* path bar */
+    m_progressBarAction = myMainToolBar->addWidget(m_progressBar = new QProgressBar);
+    m_progressBarAction->setVisible(false);
     pathLineEdit = new QLineEdit;
     pathLineEdit->setCompleter(new DirCompleter(pathLineEdit, fileSystemModel));
     std::unique_ptr<QMetaObject::Connection> pconn{new QMetaObject::Connection};
@@ -947,7 +954,7 @@ void Phototonic::createToolBars() {
     conn = connect(pathLineEdit, &QLineEdit::textEdited, [=](){fileSystemModel->setRootPath("/"); QObject::disconnect(conn);});
     pathLineEdit->setMinimumWidth(200);
     connect(pathLineEdit, SIGNAL(returnPressed()), this, SLOT(goPathBarDir()));
-    myMainToolBar->addWidget(pathLineEdit);
+    m_pathLineEditAction = myMainToolBar->addWidget(pathLineEdit);
     myMainToolBar->addAction(includeSubDirectoriesAction);
     myMainToolBar->addAction(findDupesAction);
 
@@ -2944,8 +2951,20 @@ void Phototonic::reloadThumbs() {
     }
 
     if (findDupesAction->isChecked()) {
+        fileSystemTree->setEnabled(false);
+        m_pathLineEditAction->setVisible(false);
+        m_progressBar->setFormat(tr("Searching duplicates: %v / %m"));
+        if (!m_progressBarAction->isVisible())
+            m_progressBar->reset();
+        m_progressBarAction->setVisible(true);
         thumbsViewer->loadDuplicates();
+        m_progressBarAction->setVisible(false);
+        m_pathLineEditAction->setVisible(true);
+        fileSystemTree->setEnabled(true);
     } else {
+        m_progressBarAction->setVisible(false);
+        m_pathLineEditAction->setVisible(true);
+        m_progressBar->reset();
         thumbsViewer->reLoad();
     }
 }

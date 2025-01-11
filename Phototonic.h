@@ -33,6 +33,7 @@ class ThumbsViewer;
 class QFileSystemModel;
 class QLabel;
 class QLineEdit;
+class QProgressBar;
 class QStackedLayout;
 class QToolButton;
 
@@ -289,7 +290,10 @@ private:
     QAction *invertSelectionAction;
     QAction *batchTransformAction;
 
+    QProgressBar *m_progressBar;
+    QAction *m_progressBarAction;
     QLineEdit *pathLineEdit;
+    QAction *m_pathLineEditAction;
     QLineEdit *filterLineEdit;
     QDockWidget *fileSystemDock;
     QDockWidget *bookmarksDock;

@@ -624,12 +624,10 @@ void ThumbsViewer::loadDuplicates()
 
     emit status(tr("Searching duplicate images..."));
 
-    dupImageHashes.clear();
     findDupes(true);
     m_model->setSortRole(SortRole);
 
     if (Settings::includeSubDirectories) {
-        int processed = 0;
         QDirIterator iterator(Settings::currentDirectory, QDirIterator::Subdirectories);
         while (iterator.hasNext()) {
             iterator.next();
@@ -640,10 +638,6 @@ void ThumbsViewer::loadDuplicates()
                 if (isAbortThumbsLoading) {
                     goto finish;
                 }
-            }
-            if (++processed > BATCH_SIZE) {
-                QApplication::processEvents();
-                processed = 0;
             }
         }
     }
@@ -748,35 +742,58 @@ void ThumbsViewer::selectThumbByRow(int row) {
     setCurrentIndex(row);
 }
 
-void ThumbsViewer::updateFoundDupesState(int duplicates, int filesScanned, int originalImages)
+struct DuplicateImage
 {
-    emit status(tr("Scanned %1, displaying %2 (%3 and %4)")
-                    .arg(tr("%n image(s)", "", filesScanned))
-                    .arg(tr("%n image(s)", "", originalImages + duplicates))
-                    .arg(tr("%n original(s)", "", originalImages))
-                    .arg(tr("%n duplicate(s)", "", duplicates)));
-}
+    QString filePath;
+    unsigned int duplicates;
+    unsigned int id = 0;
+};
 
 void ThumbsViewer::findDupes(bool resetCounters)
 {
     thumbFileInfoList = thumbsDir.entryInfoList();
-    static int originalImages;
-    static int foundDups;
-    static int totalFiles;
+    static unsigned int duplicateFiles, scannedFiles, totalFiles;
+    static QHash<QBitArray, DuplicateImage> imageHashes;
     if (resetCounters) {
-        originalImages = totalFiles = foundDups = 0;
+        imageHashes.clear();
+        duplicateFiles = scannedFiles = totalFiles = 0;
     }
+    totalFiles += thumbsDir.entryInfoList().size();
 
-    int processed = 0;
+    QElapsedTimer timer;
+    timer.start();
+
     for (int currThumb = 0; currThumb < thumbFileInfoList.size(); ++currThumb) {
-        if (++processed > BATCH_SIZE) {
+        if (timer.elapsed() > 30) {
+            emit progress(scannedFiles, totalFiles);
+            emit status(tr("Found %1 duplicates among %2 files").arg(duplicateFiles).arg(totalFiles));
             m_model->sort(0);
             QApplication::processEvents();
-            processed = 0;
+            timer.restart();
         }
 
         thumbFileInfo = thumbFileInfoList.at(currThumb);
-        QImage image = QImage(thumbFileInfo.absoluteFilePath());
+
+        QImageReader imageReader;
+        QString imageFileName = thumbFileInfo.absoluteFilePath();
+        QImage image;
+        imageReader.setFileName(imageFileName);
+        imageReader.setQuality(50); // 50 is the threshold where Qt does fast decoding, but still good scaling
+        const QSize targetSize = imageReader.size();
+        QSize realSize;
+        QString thumbnailPath = locateThumbnail(imageFileName);
+        if (!thumbnailPath.isEmpty() && QImageReader(thumbnailPath).canRead()) {
+            imageReader.setFileName(thumbnailPath);
+            imageReader.read(&image);
+            realSize = QSize(image.text("Thumb::Image::Width").toInt(), image.text("Thumb::Image::Height").toInt());
+        }
+        if (targetSize != realSize) {
+            imageReader.setFileName(imageFileName);
+            imageReader.read(&image);
+        }
+
+        ++scannedFiles;
+
         if (image.isNull()) {
             qWarning() << "invalid image" << thumbFileInfo.fileName();
             continue;
@@ -784,10 +801,10 @@ void ThumbsViewer::findDupes(bool resetCounters)
 
         QBitArray imageHash(64);
         image = image.convertToFormat(QImage::Format_Grayscale8).scaled(9, 9, Qt::KeepAspectRatioByExpanding);
-        for (int y=0; y<8; y++) {
+        for (int y=0; y<8; ++y) {
             const uchar *line = image.scanLine(y);
             //const uchar *nextLine = image.scanLine(y+1);
-            for (int x=0; x<8; x++) {
+            for (int x=0; x<8; ++x) {
                 imageHash.setBit(y * 8 + x, line[x] > line[x+1]);
                 //imageHash.setBit(y * 8 + x + 64, line[x] > nextLine[x]);
             }
@@ -795,41 +812,33 @@ void ThumbsViewer::findDupes(bool resetCounters)
 
         QString currentFilePath = thumbFileInfo.filePath();
 
-        totalFiles++;
-
-        if (dupImageHashes.contains(imageHash)) {
-            QStandardItem *item = nullptr;
-            if (dupImageHashes[imageHash].duplicates < 1) {
-                item = addThumb(dupImageHashes[imageHash].filePath);
-                if (item) {
-                    item->setData(dupImageHashes[imageHash].id, SortRole);
-                }
-                originalImages++;
-            }
-
-            foundDups++;
-            dupImageHashes[imageHash].duplicates++;
-            item = addThumb(currentFilePath);
-            if (item) {
-                item->setData(dupImageHashes[imageHash].id, SortRole);
-            }
+        QHash<QBitArray, DuplicateImage>::iterator match = imageHashes.find(imageHash);
+        if (match == imageHashes.end()) {
+            imageHashes.insert(imageHash, {currentFilePath, 0, (unsigned int)imageHashes.count()});
         } else {
-            DuplicateImage dupImage;
-            dupImage.filePath = currentFilePath;
-            dupImage.duplicates = 0;
-            dupImage.id = dupImageHashes.count();
-            dupImageHashes.insert(imageHash, dupImage);
+            ++duplicateFiles;
+            // display sibling
+            if (match.value().duplicates < 1) {
+                if (QStandardItem *item = addThumb(match.value().filePath)) {
+                    item->setData(match.value().id, SortRole);
+                }
+            }
+            // ... and this one
+            match.value().duplicates++;
+            if (QStandardItem *item = addThumb(currentFilePath)) {
+                item->setData(match.value().id, SortRole);
+            }
         }
-
-
-        updateFoundDupesState(foundDups, totalFiles, originalImages);
 
         if (isAbortThumbsLoading) {
             break;
         }
     }
 
-    updateFoundDupesState(foundDups, totalFiles, originalImages);
+    emit progress(scannedFiles, totalFiles);
+    emit status(tr("Found %1 duplicates among %2 files").arg(duplicateFiles).arg(totalFiles));
+    m_model->sort(0);
+    QApplication::processEvents();
 }
 
 void ThumbsViewer::selectByBrightness(qreal min, qreal max) {

@@ -34,13 +34,6 @@ class QStandardItemModel;
 #define WINDOW_ICON_SIZE 48
 
 
-struct DuplicateImage
-{
-    QString filePath;
-    int duplicates;
-    int id = 0;
-};
-
 struct Histogram
 {
     float red[256]{};
@@ -151,6 +144,7 @@ public:
 
 signals:
     void status(QString s);
+    void progress(unsigned int current, unsigned int total);
     void currentIndexChanged(const QModelIndex &current);
 
 protected:
@@ -171,8 +165,6 @@ private:
 
     void updateThumbsCount();
 
-    void updateFoundDupesState(int duplicates, int filesScanned, int originalImages);
-
     void updateImageInfoViewer(int row);
 
     QSize itemSizeHint() const;
@@ -186,7 +178,7 @@ private:
     QList<Histogram> histograms;
     QList<QString> histFiles;
     QPixmap emptyImg;
-    QHash<QBitArray, DuplicateImage> dupImageHashes;
+
     bool isAbortThumbsLoading = false;
     bool isClosing = false;
     bool isNeedToScroll = false;
