@@ -1208,11 +1208,13 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
                 if (fastOnly)
                     return false;
                 qWarning() << "Invalid size in stored thumbnail" << w << h << "vs" << origThumbSize;
-                shouldStoreThumbnail = true;
-                thumbReader.setFileName(imageFileName);
-                imageReadOk = thumbReader.read(&thumb);
+                imageReadOk = false;
             }
-
+        }
+        if (!imageReadOk && !shouldStoreThumbnail) { // tried thumbnail but somehow failed, sanitize it
+            shouldStoreThumbnail = true;
+            thumbReader.setFileName(imageFileName);
+            imageReadOk = thumbReader.read(&thumb);
         }
     }
 
