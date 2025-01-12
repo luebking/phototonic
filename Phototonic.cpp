@@ -2959,16 +2959,30 @@ void Phototonic::reloadThumbs() {
     }
 
     if (findDupesAction->isChecked()) {
+        const bool actionEnabled[5] = { goBackAction->isEnabled(), goFrwdAction->isEnabled(), 
+                                        goUpAction->isEnabled(), goHomeAction->isEnabled(), refreshAction->isEnabled() };
+        goBackAction->setEnabled(false);
+        goFrwdAction->setEnabled(false);
+        goUpAction->setEnabled(false);
+        goHomeAction->setEnabled(false);
+        refreshAction->setEnabled(false);
         fileSystemTree->setEnabled(false);
         m_pathLineEditAction->setVisible(false);
         m_progressBar->setFormat(tr("Searching duplicates: %v / %m"));
         if (!m_progressBarAction->isVisible())
             m_progressBar->reset();
         m_progressBarAction->setVisible(true);
+
         thumbsViewer->loadDuplicates();
+
         m_progressBarAction->setVisible(false);
         m_pathLineEditAction->setVisible(true);
         fileSystemTree->setEnabled(true);
+        goBackAction->setEnabled(actionEnabled[0]);
+        goFrwdAction->setEnabled(actionEnabled[1]);
+        goUpAction->setEnabled(actionEnabled[2]);
+        goHomeAction->setEnabled(actionEnabled[3]);
+        refreshAction->setEnabled(actionEnabled[4]);
     } else {
         m_progressBarAction->setVisible(false);
         m_pathLineEditAction->setVisible(true);
