@@ -41,6 +41,7 @@
 #include <QStandardPaths>
 #include <QStandardItemModel>
 #include <QStatusBar>
+#include <QThreadPool>
 #include <QToolBar>
 #include <QToolButton>
 #include <QToolTip>
@@ -99,6 +100,8 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     loadShortcuts();
 
     connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, [=](const QModelIndex &current) {
+        if (!current.isValid())
+            return;
         if (imageViewer->isVisible()) {
             imageViewer->loadImage(thumbsViewer->fullPathOf(current.row()), thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
         }
@@ -914,13 +917,18 @@ void Phototonic::createMenus() {
     thumbsViewer->addAction(viewImageAction);
     thumbsViewer->addAction(m_wallpaperAction);
     thumbsViewer->addAction(openWithMenuAction);
+    thumbsViewer->addAction("")->setSeparator(true);
     thumbsViewer->addAction(cutAction);
     thumbsViewer->addAction(copyAction);
     thumbsViewer->addAction(pasteAction);
+    thumbsViewer->addAction("")->setSeparator(true);
     thumbsViewer->addAction(selectAllAction);
     thumbsViewer->addAction(selectByBrightnesAction);
     thumbsViewer->addAction(invertSelectionAction);
     thumbsViewer->addAction(batchSubMenuAction);
+    thumbsViewer->addAction("")->setSeparator(true);
+    thumbsViewer->addAction(deleteAction);
+    thumbsViewer->addAction(deletePermanentlyAction);
     thumbsViewer->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
@@ -1755,27 +1763,19 @@ void Phototonic::pasteThumbs() {
 }
 
 void Phototonic::loadCurrentImage(int currentRow) {
+    if (thumbsViewer->model()->rowCount() == 0) {
+        hideViewer();
+        refreshThumbs(true);
+        return;
+    }
+
     bool wrapImageListTmp = Settings::wrapImageList;
     Settings::wrapImageList = false;
 
-    if (currentRow == thumbsViewer->model()->rowCount()) {
-        thumbsViewer->setCurrentIndex(currentRow - 1);
+    if (currentRow > thumbsViewer->model()->rowCount() - 1) {
+        currentRow = thumbsViewer->model()->rowCount() - 1;
     }
-
-    if (thumbsViewer->getNextRow() < 0 && currentRow > 0) {
-        imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow - 1), thumbsViewer->icon(currentRow - 1).pixmap(THUMB_SIZE_MAX).toImage());
-    } else {
-        if (thumbsViewer->model()->rowCount() == 0) {
-            hideViewer();
-            refreshThumbs(true);
-            return;
-        }
-
-        if (currentRow > (thumbsViewer->model()->rowCount() - 1))
-            currentRow = thumbsViewer->model()->rowCount() - 1;
-
-        imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow), thumbsViewer->icon(currentRow).pixmap(THUMB_SIZE_MAX).toImage());
-    }
+    thumbsViewer->setCurrentIndex(currentRow);
 
     Settings::wrapImageList = wrapImageListTmp;
     setImageViewerWindowTitle();
@@ -1788,9 +1788,16 @@ void Phototonic::deleteImages(bool trash) {
         return;
     }
 
+    QStringList deathRow;
+    for (QModelIndex idx : thumbsViewer->selectionModel()->selectedIndexes())
+            deathRow << thumbsViewer->fullPathOf(idx.row());
+
     if (Settings::deleteConfirm) {
-        MessageBox msgBox(this);
-        msgBox.setText(trash ? tr("Move selected images to the trash?") : tr("Permanently delete selected images?"));
+        QMessageBox msgBox(this);
+        msgBox.setText(trash ? tr("Move %1 selected images to the trash?").arg(deathRow.size()) :
+                               tr("Permanently delete %1 selected images?").arg(deathRow.size()) );
+        QString fileList;
+        msgBox.setDetailedText(deathRow.join("\n"));
         msgBox.setWindowTitle(trash ? tr("Move to Trash") : tr("Delete images"));
         msgBox.setIcon(MessageBox::Warning);
         msgBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
@@ -1800,6 +1807,9 @@ void Phototonic::deleteImages(bool trash) {
             return;
         }
     }
+
+    // wait until thumbnail loading is done
+    QThreadPool::globalInstance()->waitForDone(-1);
 
     // To only show progress dialog if deleting actually takes time
     QElapsedTimer timer;
@@ -1812,24 +1822,23 @@ void Phototonic::deleteImages(bool trash) {
     // Avoid reloading thumbnails all the time
     m_deleteInProgress = true;
 
-    ProgressDialog *progressDialog = new ProgressDialog(this);
-
+    ProgressDialog *progressDialog = nullptr;
     int deleteFilesCount = 0;
-    bool deleteOk;
     QList<int> rows;
-    int row;
-    QModelIndexList indexesList;
-    while ((indexesList = thumbsViewer->selectionModel()->selectedIndexes()).size()) {
-        QString fileNameFullPath = thumbsViewer->fullPathOf(indexesList.first().row());
+
+    for (QString fileNameFullPath : deathRow) {
 
         // Only show if it takes a lot of time, since popping this up for just
         // deleting a single image is annoying
         if (timer.elapsed() > 100) {
+            if (!progressDialog)
+               progressDialog = new ProgressDialog(this);
             progressDialog->opLabel->setText("Deleting " + fileNameFullPath);
             progressDialog->show();
         }
 
         QString deleteError;
+        bool deleteOk;
         if (trash) {
             deleteOk = Trash::moveToTrash(fileNameFullPath, deleteError) == Trash::Success;
         } else {
@@ -1842,9 +1851,11 @@ void Phototonic::deleteImages(bool trash) {
 
         ++deleteFilesCount;
         if (deleteOk) {
-            row = indexesList.first().row();
-            rows << row;
-            thumbsViewer->model()->removeRow(row);
+            QModelIndexList indexList = thumbsViewer->model()->match(thumbsViewer->model()->index(0, 0), ThumbsViewer::FileNameRole, fileNameFullPath);
+            if (indexList.size()) {
+                rows << indexList.at(0).row();
+                thumbsViewer->model()->removeRow(rows.last());
+            }
         } else {
             MessageBox msgBox(this);
             msgBox.critical(tr("Error"),
@@ -1855,27 +1866,22 @@ void Phototonic::deleteImages(bool trash) {
 
         Settings::filesList.removeOne(fileNameFullPath);
 
-        if (progressDialog->abortOp) {
+        if (progressDialog && progressDialog->abortOp) {
             break;
         }
     }
 
     if (thumbsViewer->model()->rowCount() && rows.count()) {
         std::sort(rows.begin(), rows.end());
-        row = rows.at(0);
-
-        if (row >= thumbsViewer->model()->rowCount()) {
-            row = thumbsViewer->model()->rowCount() - 1;
-        }
-
-        thumbsViewer->setCurrentIndex(row);
+        thumbsViewer->setCurrentIndex(qMax(rows.at(0), thumbsViewer->model()->rowCount() - 1));
     }
 
-    progressDialog->close();
-    progressDialog->deleteLater();
+    if (progressDialog) {
+        progressDialog->close();
+        progressDialog->deleteLater();
+    }
 
-    QString state = QString(tr("Deleted") + " " + tr("%n image(s)", "", deleteFilesCount));
-    setStatus(state);
+    setStatus(tr("Deleted") + " " + tr("%n image(s)", "", deleteFilesCount));
 
     m_deleteInProgress = false;
 }
@@ -1891,11 +1897,9 @@ void Phototonic::deleteFromViewer(bool trash) {
     }
     imageViewer->setCursorHiding(false);
 
-    bool ok;
-    QFileInfo fileInfo = QFileInfo(imageViewer->fullImagePath);
-    QString fileName = fileInfo.fileName();
+    const QString fullPath = imageViewer->fullImagePath;
+    const QString fileName = QFileInfo(fullPath).fileName();
 
-    bool deleteConfirmed = true;
     if (Settings::deleteConfirm) {
         MessageBox msgBox(this);
         msgBox.setText(trash ? tr("Move %1 to the trash").arg(fileName) : tr("Permanently delete %1").arg(fileName));
@@ -1905,33 +1909,28 @@ void Phototonic::deleteFromViewer(bool trash) {
         msgBox.setDefaultButton(MessageBox::Yes);
 
         if (msgBox.exec() != MessageBox::Yes) {
-            deleteConfirmed = false;
-        }
-    }
-
-    if (deleteConfirmed) {
-        int currentRow = thumbsViewer->currentIndex().row();
-
-        QString trashError;
-        ok = trash ? (Trash::moveToTrash(imageViewer->fullImagePath, trashError) == Trash::Success)
-                   : QFile::remove(imageViewer->fullImagePath);
-        if (ok) {
-            thumbsViewer->model()->removeRow(currentRow);
-            imageViewer->setFeedback(tr("Deleted ") + fileName);
-        } else {
-            MessageBox msgBox(this);
-            msgBox.critical(tr("Error"), trash ? trashError : tr("Failed to delete image"));
-            if (isFullScreen()) {
+            if (isFullScreen())
                 imageViewer->setCursorHiding(true);
-            }
             return;
         }
+    }
 
+    QThreadPool::globalInstance()->waitForDone(-1);
+
+    QString trashError;
+    if (trash ? (Trash::moveToTrash(fullPath, trashError) == Trash::Success) :
+                QFile::remove(fullPath)) {
+        int currentRow = thumbsViewer->currentIndex().row();
+        thumbsViewer->model()->removeRow(currentRow);
+        imageViewer->setFeedback(tr("Deleted ") + fileName);
         loadCurrentImage(currentRow);
+    } else {
+        MessageBox msgBox(this);
+        msgBox.critical(tr("Error"), trash ? trashError : tr("Failed to delete image"));
     }
-    if (isFullScreen()) {
+
+    if (isFullScreen())
         imageViewer->setCursorHiding(true);
-    }
 }
 
 // Main delete operation

@@ -19,7 +19,6 @@
 #include <QApplication>
 #include <QCollator>
 #include <QColorSpace>
-#include <QtConcurrent>
 #include <QDirIterator>
 #include <QCryptographicHash>
 #include <QDrag>
@@ -34,6 +33,7 @@
 #include <QScrollBar>
 #include <QStandardItemModel>
 #include <QStandardPaths>
+#include <QThreadPool>
 #include <QTimer>
 #include <QTreeWidget>
 
@@ -1165,6 +1165,10 @@ void ThumbsViewer::storeThumbnail(const QString &originalPath, QImage thumbnail,
 }
 
 bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
+    if (!m_model->item(currThumb)) {
+        qDebug() << "meeek: loadThumb for invalid row" << currThumb;
+        return false;
+    }
     if (m_model->item(currThumb)->data(LoadedRole).toBool())
         return true;
 
