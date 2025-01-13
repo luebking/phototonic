@@ -125,6 +125,8 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     stackedLayoutWidget->setLayout(stackedLayout);
     setCentralWidget(stackedLayoutWidget);
     processStartupArguments(argumentsList, filesStartAt);
+    if (Settings::currentDirectory.isEmpty())
+        Settings::currentDirectory = QDir::currentPath();
 
     copyMoveToDialog = nullptr;
     colorsDialog = nullptr;
@@ -3279,6 +3281,8 @@ void Phototonic::setSaveDirectory(QString path) {
 }
 
 QString Phototonic::getSelectedPath() {
+    if (!fileSystemTree->selectionModel())
+        return "";
     QModelIndexList selectedDirs = fileSystemTree->selectionModel()->selectedRows();
     if (selectedDirs.size() && selectedDirs[0].isValid()) {
         QFileInfo dirInfo = QFileInfo(fileSystemModel->filePath(selectedDirs[0]));
