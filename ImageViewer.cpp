@@ -165,70 +165,76 @@ void ImageViewer::resizeImage(QPoint focus) {
 
     busy = true;
 
-    if (tempDisableResize) {
-        imageSize.scale(imageSize.width(), imageSize.height(), Qt::KeepAspectRatio);
-    } else {
-        switch (Settings::zoomInFlags) {
-            case Disable:
-                if (imageSize.width() <= width() && imageSize.height() <= height()) {
-                    imageSize.scale(calcZoom(imageSize.width()), calcZoom(imageSize.height()), Qt::KeepAspectRatio);
-                }
-                break;
+    QSize originalImageSize = imageSize;
+    if (tempDisableResize) { // calcZoom to identity
+        Settings::imageZoomFactor = 1.0;
+    }
+    switch (Settings::zoomInFlags) {
+        case Disable:
+            if (imageSize.width() <= width() && imageSize.height() <= height()) {
+                imageSize.scale(calcZoom(imageSize.width()), calcZoom(imageSize.height()), Qt::KeepAspectRatio);
+            }
+            break;
 
-            case WidthAndHeight:
-                if (imageSize.width() <= width() && imageSize.height() <= height()) {
-                    imageSize.scale(calcZoom(width()), calcZoom(height()), Qt::KeepAspectRatio);
-                }
-                break;
+        case WidthAndHeight:
+            if (imageSize.width() <= width() && imageSize.height() <= height()) {
+                imageSize.scale(calcZoom(width()), calcZoom(height()), Qt::KeepAspectRatio);
+            }
+            break;
 
-            case Width:
-                if (imageSize.width() <= width()) {
-                    imageSize.scale(calcZoom(width()), calcZoom(getHeightByWidth(imageSize.width(), imageSize.height(), width())), Qt::KeepAspectRatio);
-                }
-                break;
+        case Width:
+            if (imageSize.width() <= width()) {
+                imageSize.scale(calcZoom(width()), calcZoom(getHeightByWidth(imageSize.width(), imageSize.height(), width())), Qt::KeepAspectRatio);
+            }
+            break;
 
-            case Height:
-                if (imageSize.height() <= height()) {
-                    imageSize.scale(calcZoom(getWidthByHeight(imageSize.height(), imageSize.width(), height())), calcZoom(height()), Qt::KeepAspectRatio);
-                }
-                break;
+        case Height:
+            if (imageSize.height() <= height()) {
+                imageSize.scale(calcZoom(getWidthByHeight(imageSize.height(), imageSize.width(), height())), calcZoom(height()), Qt::KeepAspectRatio);
+            }
+            break;
 
-            case Disprop:
-                imageSize.scale(calcZoom(qMax(imageSize.width(), width())), calcZoom(qMax(imageSize.height(), height())), Qt::IgnoreAspectRatio);
-                break;
-        }
-
-        switch (Settings::zoomOutFlags) {
-            case Disable:
-                if (imageSize.width() >= width() || imageSize.height() >= height()) {
-                    imageSize.scale(calcZoom(imageSize.width()), calcZoom(imageSize.height()), Qt::KeepAspectRatio);
-                }
-                break;
-
-            case WidthAndHeight:
-                if (imageSize.width() >= width() || imageSize.height() >= height()) {
-                    imageSize.scale(calcZoom(width()), calcZoom(height()), Qt::KeepAspectRatio);
-                }
-                break;
-
-            case Width:
-                if (imageSize.width() >= width()) {
-                    imageSize.scale(calcZoom(width()), calcZoom(getHeightByWidth(imageSize.width(), imageSize.height(), width())), Qt::KeepAspectRatio);
-                }
-                break;
-
-            case Height:
-                if (imageSize.height() >= height()) {
-                    imageSize.scale(calcZoom(getWidthByHeight(imageSize.height(), imageSize.width(), height())), calcZoom(height()), Qt::KeepAspectRatio);
-                }
-                break;
-
-            case Disprop:
-                imageSize.scale(calcZoom(qMin(imageSize.width(), width())), calcZoom(qMin(imageSize.height(), height())), Qt::IgnoreAspectRatio);
-                break;
-        }
+        case Disprop:
+            imageSize.scale(calcZoom(qMax(imageSize.width(), width())), calcZoom(qMax(imageSize.height(), height())), Qt::IgnoreAspectRatio);
+            break;
     }
 
+    switch (Settings::zoomOutFlags) {
+        case Disable:
+            if (imageSize.width() >= width() || imageSize.height() >= height()) {
+                imageSize.scale(calcZoom(imageSize.width()), calcZoom(imageSize.height()), Qt::KeepAspectRatio);
+            }
+            break;
+
+        case WidthAndHeight:
+            if (imageSize.width() >= width() || imageSize.height() >= height()) {
+                imageSize.scale(calcZoom(width()), calcZoom(height()), Qt::KeepAspectRatio);
+            }
+            break;
+
+        case Width:
+            if (imageSize.width() >= width()) {
+                imageSize.scale(calcZoom(width()), calcZoom(getHeightByWidth(imageSize.width(), imageSize.height(), width())), Qt::KeepAspectRatio);
+            }
+            break;
+
+        case Height:
+            if (imageSize.height() >= height()) {
+                imageSize.scale(calcZoom(getWidthByHeight(imageSize.height(), imageSize.width(), height())), calcZoom(height()), Qt::KeepAspectRatio);
+            }
+            break;
+
+        case Disprop:
+            imageSize.scale(calcZoom(qMin(imageSize.width(), width())), calcZoom(qMin(imageSize.height(), height())), Qt::IgnoreAspectRatio);
+            break;
+    }
+
+    if (tempDisableResize) {
+        Settings::imageZoomFactor = (float(originalImageSize.width())/imageSize.width() +
+                                     float(originalImageSize.height())/imageSize.height())/2.0;
+        imageSize = originalImageSize;
+        imageSize.scale(imageSize.width(), imageSize.height(), Qt::KeepAspectRatio);
+    }
 
     if (imageWidget) {
         imageWidget->setRotation(Settings::rotation);
@@ -746,18 +752,21 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
     if (fullImagePath == imageFileName)
         return;
     newImage = false;
-    tempDisableResize = false;
     fullImagePath = imageFileName;
 
     if (!Settings::keepZoomFactor) {
+        tempDisableResize = false;
         Settings::imageZoomFactor = 1.0;
     }
     if (!preview.isNull()) {
         setImage(preview);
         const int zif = Settings::zoomInFlags;
+        const bool disRes = tempDisableResize;
+        tempDisableResize = false;
         Settings::zoomInFlags = WidthAndHeight;
         resizeImage();
         Settings::zoomInFlags = zif;
+        tempDisableResize = disRes;
     }
 
     QApplication::processEvents();

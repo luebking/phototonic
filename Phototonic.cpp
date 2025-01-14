@@ -1490,6 +1490,12 @@ void Phototonic::thumbsZoomOut() {
 }
 
 void Phototonic::zoom(double multiplier, QPoint focus) {
+    if (imageViewer->tempDisableResize) {
+        // coming from unscaled image "zoom", sanitize to 10% step
+        Settings::imageZoomFactor = qRound(Settings::imageZoomFactor*10)*0.1;
+        imageViewer->tempDisableResize = false; // … and unlock
+    }
+
     if (multiplier > 0.0 && Settings::imageZoomFactor == 16.0) {
         imageViewer->setFeedback(tr("Maximum zoom"));
         return;
@@ -1515,7 +1521,6 @@ void Phototonic::zoom(double multiplier, QPoint focus) {
     // round and limit to 10%
     multiplier = multiplier > 0.0 ? qMax(0.1, qRound(multiplier*10)*0.1) : qMin(-0.1, qRound(multiplier*10)*0.1);
 
-    imageViewer->tempDisableResize = false;
     Settings::imageZoomFactor = qMin(16.0, qMax(0.1, Settings::imageZoomFactor + multiplier));
     imageViewer->resizeImage(focus);
     imageViewer->setFeedback(tr("Zoom %1%").arg(QString::number(Settings::imageZoomFactor * 100)));
@@ -1529,7 +1534,7 @@ void Phototonic::resetZoom() {
 }
 
 void Phototonic::origZoom() {
-    Settings::imageZoomFactor = 1.0;
+    // Settings::imageZoomFactor gets fixed by imageViewer->resizeImage()
     imageViewer->tempDisableResize = true;
     imageViewer->resizeImage();
     imageViewer->setFeedback(tr("Original Size"));
