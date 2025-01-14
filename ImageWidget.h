@@ -28,6 +28,7 @@ class ImageWidget : public QOpenGLWidget
 public:
     explicit ImageWidget(QWidget *parent = nullptr);
     bool empty();
+    void setFlip(Qt::Orientations o);
     const QImage &image();
     const QPoint &imagePosition() const { return m_imagePos; }
     const QSize &imageSize() const { return m_imageSize; }
@@ -50,6 +51,7 @@ private:
     QSize m_imageSize;
     QPoint m_imagePos;
     QTransform m_exifTransformation;
+    Qt::Orientations m_flip;
 };
 
 #endif // IMAGEWIDGET_H

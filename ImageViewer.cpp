@@ -237,6 +237,10 @@ void ImageViewer::resizeImage(QPoint focus) {
     }
 
     if (imageWidget) {
+        Qt::Orientations orient;
+        if (Settings::flipH) orient |= Qt::Horizontal;
+        if (Settings::flipV) orient |= Qt::Vertical;
+        imageWidget->setFlip(orient);
         imageWidget->setRotation(Settings::rotation);
         imageWidget->setFixedSize(size());
         if (imageWidget->imagePosition().isNull() || imageSize.width() < width() || imageSize.height() < height()) {

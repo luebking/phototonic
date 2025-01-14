@@ -73,6 +73,12 @@ void ImageWidget::setImagePosition(const QPoint &p)
     update();
 }
 
+void ImageWidget::setFlip(Qt::Orientations o)
+{
+    m_flip = o;
+    update();
+}
+
 QSize ImageWidget::sizeHint() const
 {
     return m_image.size();
@@ -96,10 +102,18 @@ void ImageWidget::paintEvent(QPaintEvent *ev)
     QPoint center(width() / 2, height() / 2);
     painter.translate(center);
     painter.rotate(m_rotation);
-    painter.translate(center * -1);
+    painter.translate(-center);
+
+    // translate
+    QPoint origin;
+    if (m_flip & Qt::Horizontal)
+        origin.setX(m_imageSize.width());
+    if (m_flip & Qt::Vertical)
+        origin.setY(m_imageSize.height());
+    painter.translate(origin + m_imagePos);
 
     // scale
-    painter.scale(scale, scale);
+    painter.scale((m_flip & Qt::Horizontal) ? -scale : scale, (m_flip & Qt::Vertical) ? -scale : scale);
 
-    painter.drawImage(m_imagePos / scale, m_image);
+    painter.drawImage(0,0, m_image);
 }
