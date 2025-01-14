@@ -36,6 +36,7 @@ public:
 
     void clear();
     void hint(QString key, QString value);
+    QString html() const;
     void read(QString imageFullPath);
 
 public slots:
@@ -54,6 +55,7 @@ private:
     QModelIndex selectedEntry;
     QMenu *infoMenu;
     QLineEdit *filterLineEdit;
+    QString m_currentFile;
     QMap<QString, QString> m_hints;
 
 };

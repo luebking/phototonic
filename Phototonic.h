@@ -289,6 +289,7 @@ private:
     QAction *m_wallpaperAction;
     QAction *invertSelectionAction;
     QAction *batchTransformAction;
+    QAction *feedbackImageInfoAction;
 
     QProgressBar *m_progressBar;
     QAction *m_progressBarAction;

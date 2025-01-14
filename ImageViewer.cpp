@@ -77,12 +77,28 @@ struct Exiv2LogHandler {
     }
 };
 
+class ClickToClose : public QObject {
+    public:
+        ClickToClose() : QObject() {}
+    protected:
+        bool eventFilter(QObject *o, QEvent *e) {
+            if (e->type() == QEvent::MouseButtonRelease)
+                static_cast<QWidget*>(o)->hide();
+            return false;
+        }
+};
+
 } // anonymous namespace
+
+ClickToClose *gs_clickToClose = nullptr;
 
 
 ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     // This is a threadsafe way to ensure that we only register it once
     static Exiv2LogHandler handler;
+
+    if (!gs_clickToClose)
+        gs_clickToClose = new ClickToClose;
 
     myContextMenu = nullptr;
     cursorIsHidden = false;
@@ -117,6 +133,7 @@ ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     feedbackLabel->setFrameStyle(QFrame::Plain|QFrame::NoFrame);
     feedbackLabel->setAutoFillBackground(true);
     feedbackLabel->setPalette(pal);
+    feedbackLabel->installEventFilter(gs_clickToClose);
 
     mouseMovementTimer = new QTimer(this);
     connect(mouseMovementTimer, SIGNAL(timeout()), this, SLOT(monitorCursorState()));
@@ -734,13 +751,21 @@ void ImageViewer::setInfo(QString infoString) {
 }
 
 void ImageViewer::unsetFeedback() {
-    feedbackLabel->clear();
-    feedbackLabel->setVisible(false);
+    if (m_permanentFeedback.isEmpty()) {
+        feedbackLabel->clear();
+        feedbackLabel->setVisible(false);
+    } else {
+        setFeedback(m_permanentFeedback, false);
+    }
 }
 
 void ImageViewer::setFeedback(QString feedbackString, bool timeLimited) {
-    if (feedbackString.isEmpty())
+    if (!timeLimited)
+        m_permanentFeedback = feedbackString;
+    if (feedbackString.isEmpty()) {
+        unsetFeedback();
         return;
+    }
     feedbackLabel->setText(feedbackString);
     feedbackLabel->setVisible(true);
 
@@ -755,6 +780,8 @@ void ImageViewer::setFeedback(QString feedbackString, bool timeLimited) {
 void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
     if (fullImagePath == imageFileName)
         return;
+
+    unsetFeedback();
     newImage = false;
     fullImagePath = imageFileName;
 

@@ -104,6 +104,11 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
             return;
         if (imageViewer->isVisible()) {
             imageViewer->loadImage(thumbsViewer->fullPathOf(current.row()), thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
+            if (feedbackImageInfoAction->isChecked()) {
+                QApplication::processEvents();
+                m_infoViewer->read(imageViewer->fullImagePath);
+                imageViewer->setFeedback(m_infoViewer->html(), false);
+            }
         }
         if (m_infoViewer->isVisible()) {
             QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
@@ -296,10 +301,12 @@ void Phototonic::createImageViewer() {
     imageViewer->addAction(exitAction);
     imageViewer->addAction(showViewerToolbarAction);
     imageViewer->addAction(externalAppsAction);
+    imageViewer->addAction(feedbackImageInfoAction);
 
     // Actions
     contextMenu->addAction(m_wallpaperAction);
     contextMenu->addAction(openWithMenuAction);
+    contextMenu->addAction(feedbackImageInfoAction);
     contextMenu->addSeparator();
 
     QMenu *menu = contextMenu->addMenu(tr("Navigate"));
@@ -831,6 +838,18 @@ void Phototonic::createActions() {
     setPathFocusAction = new QAction(tr("Edit Current Path"), this);
     setPathFocusAction->setObjectName("setPathFocus");
     connect(setPathFocusAction, SIGNAL(triggered()), this, SLOT(setPathFocus()));
+
+    feedbackImageInfoAction = new QAction(tr("Image Info"));
+    feedbackImageInfoAction->setCheckable(true);
+    connect(feedbackImageInfoAction, &QAction::triggered, [=]() {
+        if (feedbackImageInfoAction->isChecked()) {
+            m_infoViewer->read(imageViewer->fullImagePath);
+            imageViewer->setFeedback(m_infoViewer->html(), false);
+        } else {
+            imageViewer->setFeedback("", false);
+        }
+    });
+
 }
 
 void Phototonic::createMenus() {

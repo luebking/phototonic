@@ -122,6 +122,7 @@ private:
     QPoint cropOrigin;
     QPoint m_contextSpot;
     QTransform m_exifTransformation;
+    QString m_permanentFeedback;
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 

@@ -77,6 +77,7 @@ void InfoView::showInfoViewMenu(QPoint pt) {
 }
 
 void InfoView::clear() {
+    m_currentFile.clear();
     imageInfoModel->clear();
 }
 
@@ -122,12 +123,32 @@ void InfoView::hint(QString key, QString value) {
     m_hints[key] = value;
 }
 
+QString InfoView::html() const {
+    QString text = "<html><table>";
+    for (int i = 0; i < imageInfoModel->rowCount(); ++i) {
+        text += "<tr>";
+        if (infoViewerTable->columnSpan(i, 0) > 1)
+            text += "<th>" + imageInfoModel->item(i)->text() + "</th>";
+        else if (imageInfoModel->item(i, 1) &&  // empty field
+                imageInfoModel->item(i, 1)->text().length() < 65) { // some fields contain binaries, useless for human perception
+            text += "<td>" + imageInfoModel->item(i)->text() + "</td><td>" + imageInfoModel->item(i, 1)->text() + "</td>";
+        }
+        text += "</tr>";
+    }
+    text += "</table></html>";
+    return text;
+}
+
 void InfoView::read(QString imageFullPath) {
+    if (m_currentFile == imageFullPath)
+        return;
+
     clear();
     QFileInfo imageInfo = QFileInfo(imageFullPath);
     if (!imageInfo.exists())
         return;
 
+    m_currentFile = imageFullPath;
     QString key;
     QString val;
 
