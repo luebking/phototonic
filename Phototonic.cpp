@@ -105,6 +105,8 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
         if (imageViewer->isVisible()) {
             imageViewer->loadImage(thumbsViewer->fullPathOf(current.row()),
                                    Settings::slideShowActive ? QImage() : thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
+            if (Settings::layoutMode == ImageViewWidget)
+                setImageViewerWindowTitle();
             if (feedbackImageInfoAction->isChecked()) {
                 QApplication::processEvents();
                 m_infoViewer->read(imageViewer->fullImagePath);
@@ -1805,7 +1807,6 @@ void Phototonic::loadCurrentImage(int currentRow) {
     thumbsViewer->setCurrentIndex(currentRow);
 
     Settings::wrapImageList = wrapImageListTmp;
-    setImageViewerWindowTitle();
 }
 
 void Phototonic::deleteImages(bool trash) {
@@ -2665,10 +2666,11 @@ void Phototonic::showViewer() {
             imageViewer->setCursorHiding(true);
         }
         imageViewer->setFocus(Qt::OtherFocusReason);
+        setImageViewerWindowTitle();
         QApplication::processEvents();
     }
 }
-
+/// @todo looks like redundant calls?
 void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
     showViewer();
     thumbsViewer->setCurrentIndex(idx);
@@ -2722,8 +2724,6 @@ void Phototonic::slideShowHandler() {
         if (Settings::slideShowRandom) {
             loadImage(Phototonic::Random);
         } else {
-            setImageViewerWindowTitle();
-
             if (thumbsViewer->getNextRow() > 0) {
                 thumbsViewer->setCurrentIndex(thumbsViewer->getNextRow());
             } else {
@@ -2774,7 +2774,6 @@ void Phototonic::loadImage(SpecialImageIndex idx) {
 //        imageViewer->loadImage(thumbsViewer->fullPathOf(thumb), thumbsViewer->icon(thumb).pixmap(THUMB_SIZE_MAX).toImage());
 
     thumbsViewer->setCurrentIndex(thumb);
-    setImageViewerWindowTitle();
 }
 
 void Phototonic::setViewerKeyEventsEnabled(bool enabled) {
