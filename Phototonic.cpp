@@ -103,7 +103,8 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
         if (!current.isValid())
             return;
         if (imageViewer->isVisible()) {
-            imageViewer->loadImage(thumbsViewer->fullPathOf(current.row()), thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
+            imageViewer->loadImage(thumbsViewer->fullPathOf(current.row()),
+                                   Settings::slideShowActive ? QImage() : thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
             if (feedbackImageInfoAction->isChecked()) {
                 QApplication::processEvents();
                 m_infoViewer->read(imageViewer->fullImagePath);
@@ -2710,7 +2711,9 @@ void Phototonic::toggleSlideShow() {
         imageViewer->setFeedback(tr("Slide show started"));
         slideShowAction->setIcon(QIcon::fromTheme("media-playback-stop", QIcon(":/images/stop.png")));
 
-        slideShowHandler();
+        const int currentRow = thumbsViewer->currentIndex().row();
+        imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow),
+                               thumbsViewer->icon(currentRow).pixmap(THUMB_SIZE_MAX).toImage());
     }
 }
 
@@ -2719,8 +2722,6 @@ void Phototonic::slideShowHandler() {
         if (Settings::slideShowRandom) {
             loadImage(Phototonic::Random);
         } else {
-            int currentRow = thumbsViewer->currentIndex().row();
-            imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow));
             setImageViewerWindowTitle();
 
             if (thumbsViewer->getNextRow() > 0) {

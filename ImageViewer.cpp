@@ -767,7 +767,7 @@ void ImageViewer::setFeedback(QString feedbackString, bool timeLimited) {
         return;
     }
     feedbackLabel->setText(feedbackString);
-    feedbackLabel->setVisible(true);
+    feedbackLabel->setVisible(true/* Settings::layoutMode == Phototonic::ImageViewWidget */);
 
     int margin = myFilenameLabel->isVisible() ? (myFilenameLabel->height() + 15) : 10;
     feedbackLabel->move(10, margin);
@@ -1199,6 +1199,9 @@ void ImageViewer::saveImageAs() {
 }
 
 void ImageViewer::contextMenuEvent(QContextMenuEvent *) {
+//    if (Settings::layoutMode != Phototonic::ImageViewWidget)
+//        return;
+
     while (QApplication::overrideCursor()) {
         QApplication::restoreOverrideCursor();
     }
