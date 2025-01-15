@@ -218,6 +218,7 @@ bool Phototonic::event(QEvent *event) {
 
 void Phototonic::createThumbsViewer() {
     thumbsViewer = new ThumbsViewer(this);
+    thumbsViewer->installEventFilter(this);
     thumbsViewer->viewport()->installEventFilter(this);
     thumbsViewer->thumbsSortFlags = (QDir::SortFlags) Settings::value(
             Settings::optionThumbsSortFlags).toInt();
@@ -3349,6 +3350,39 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
         }
         return QMainWindow::eventFilter(o, e);
     }
+
+    static QPropertyAnimation *animator = nullptr;
+    auto scrollThumbs = [=](int steps) {
+        if (!animator) {
+                animator = new QPropertyAnimation(thumbsViewer->verticalScrollBar(), "value");
+                animator->setDuration(150); // default is 250
+                animator->setEasingCurve(QEasingCurve::InOutQuad);
+            }
+            const int grid = thumbsViewer->gridSize().height();
+            int v = (animator->state() == QAbstractAnimation::Running) ? animator->endValue().toInt() : 
+                                                                         thumbsViewer->verticalScrollBar()->value();
+            animator->setStartValue(v);
+            if (qAbs(steps) == 100)
+                v += grid*qMax(1,int(thumbsViewer->height()/grid))*(steps/qAbs(steps));
+            else
+                v += grid*steps;
+            v = grid*int(steps < 0 ? qCeil(v/float(grid)) : v/grid);
+            animator->setEndValue(v);
+            animator->start();
+    };
+
+    if (o == thumbsViewer && e->type() == QEvent::KeyPress) {
+        QKeyEvent *ke = static_cast<QKeyEvent*>(e);
+        if (ke->key() == Qt::Key_PageUp) {
+            scrollThumbs(-100);
+            return true;
+        } else if (ke->key() == Qt::Key_PageDown) {
+            scrollThumbs(100);
+            return true;
+        }
+        return QMainWindow::eventFilter(o, e);
+    }
+
     if (e->type() != QEvent::Wheel)
         return QMainWindow::eventFilter(o, e);
     QWheelEvent *we = static_cast<QWheelEvent*>(e);
@@ -3376,21 +3410,10 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
                 thumbsZoomIn();
             }
         } else {
-            static QPropertyAnimation *animator = nullptr;
-            if (!animator) {
-                animator = new QPropertyAnimation(thumbsViewer->verticalScrollBar(), "value");
-                animator->setDuration(150); // default is 250
-                animator->setEasingCurve(QEasingCurve::InOutQuad);
-            }
-            const int grid = thumbsViewer->gridSize().height();
-            int v = animator->state() == QAbstractAnimation::Running ? animator->endValue().toInt() : thumbsViewer->verticalScrollBar()->value();
-            animator->setStartValue(v);
-            v += grid*qRound(scrollDelta / -120.0);
-            v = scrollDelta > 0 ? qCeil(v/float(grid)) : v/grid;
-            v *= grid;
-            animator->setEndValue(v);
-//            thumbsViewer->verticalScrollBar()->setValue(v);
-            animator->start();
+            if (we->modifiers() == Qt::ShiftModifier)
+                scrollThumbs(100*(scrollDelta/-qAbs(scrollDelta)));
+            else
+                scrollThumbs(qRound(scrollDelta / -120.0));
         }
         return true;
     }
