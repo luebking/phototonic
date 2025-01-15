@@ -331,6 +331,7 @@ private:
     bool m_deleteInProgress;
     InfoView *m_infoViewer;
     QToolButton *m_menuButton;
+    QLabel *m_statusLabel;
 
     QPointer<ResizeDialog> resizeDialog;
     QPointer<ColorsDialog> colorsDialog;

@@ -99,6 +99,16 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     updateExternalApps();
     loadShortcuts();
 
+    m_statusLabel = new QLabel(this);
+    m_statusLabel->hide();
+    m_statusLabel->setMargin(3);
+    m_statusLabel->setAutoFillBackground(true);
+    m_statusLabel->setFrameStyle(QFrame::Plain|QFrame::NoFrame);
+    QPalette pal = m_statusLabel->palette();
+    pal.setColor(m_statusLabel->backgroundRole(), QColor(0,0,0,192));
+    pal.setColor(m_statusLabel->foregroundRole(), QColor(255,255,255,192));
+    m_statusLabel->setPalette(pal);
+
     connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, [=](const QModelIndex &current) {
         if (!current.isValid())
             return;
@@ -1038,6 +1048,7 @@ void Phototonic::createToolBars() {
     myMainToolBar->addAction(mainMenu);
     m_menuButton = static_cast<QToolButton*>(myMainToolBar->widgetForAction(mainMenu));
     m_menuButton->setPopupMode(QToolButton::InstantPopup);
+    m_menuButton->installEventFilter(this);
 
     /* image */
     imageToolBar = new QToolBar(tr("Image Toolbar"));
@@ -2511,12 +2522,22 @@ void Phototonic::closeEvent(QCloseEvent *event) {
 }
 
 void Phototonic::setStatus(QString state) {
-    m_menuButton->setToolTip(state);
-    if (Settings::layoutMode != ImageViewWidget) {
-        QTimer::singleShot(125, this, [=](){
-            QToolTip::showText(m_menuButton->mapToGlobal(QPoint(0, 0)), state, m_menuButton, QRect(), 1000);
-        });
+    if (Settings::layoutMode == ImageViewWidget) {
+        return; // use feedback still?
     }
+    m_statusLabel->setText(state);
+    m_statusLabel->adjustSize();
+    m_statusLabel->move(16, height() - (m_statusLabel->height() + 10));
+    m_statusLabel->raise();
+    m_statusLabel->show();
+    static QTimer *statusTimer = nullptr;
+    if (!statusTimer) {
+        statusTimer = new QTimer(this);
+        statusTimer->setSingleShot(true);
+        statusTimer->setInterval(3000);
+        connect(statusTimer, &QTimer::timeout, m_statusLabel, &QWidget::hide);
+    }
+    statusTimer->start();
 }
 
 void Phototonic::mouseDoubleClickEvent(QMouseEvent *event) {
@@ -3317,6 +3338,17 @@ QString Phototonic::getSelectedPath() {
 
 bool Phototonic::eventFilter(QObject *o, QEvent *e)
 {
+    if (o == m_menuButton) {
+        if (e->type() == QEvent::Enter) {
+            m_statusLabel->move(16, height() - (m_statusLabel->height() + 10));
+            m_statusLabel->raise();
+            m_statusLabel->show();
+        }
+        else if (e->type() == QEvent::Leave) {
+            m_statusLabel->hide();
+        }
+        return QMainWindow::eventFilter(o, e);
+    }
     if (e->type() != QEvent::Wheel)
         return QMainWindow::eventFilter(o, e);
     QWheelEvent *we = static_cast<QWheelEvent*>(e);
