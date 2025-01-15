@@ -260,7 +260,7 @@ void ImageViewer::resizeImage(QPoint focus) {
         imageWidget->setFlip(orient);
         imageWidget->setRotation(Settings::rotation);
         imageWidget->setFixedSize(size());
-        if (imageWidget->imagePosition().isNull() || imageSize.width() < width() || imageSize.height() < height()) {
+        if (imageSize.width() < width() || imageSize.height() < height()) {
             centerImage(imageSize);
         } else {
             const double fx = double(imageSize.width())/imageWidget->imageSize().width(),
@@ -284,7 +284,7 @@ void ImageViewer::resizeImage(QPoint focus) {
     } else {
         widget()->setFixedSize(imageSize);
 //        widget()->adjustSize();
-        if (widget()->pos().isNull() || imageSize.width() < width() + 100 || imageSize.height() < height() + 100) {
+        if (imageSize.width() < width() + 100 || imageSize.height() < height() + 100) {
             centerImage(imageSize);
         } else {
             float positionY = verticalScrollBar()->value() > 0 ? verticalScrollBar()->value() / float(verticalScrollBar()->maximum()) : 0;
@@ -306,7 +306,7 @@ void ImageViewer::showEvent(QShowEvent *event) {
     resizeImage();
 }
 
-void ImageViewer::centerImage(QSize &imgSize) {
+void ImageViewer::centerImage(QSize imgSize) {
     if (imageWidget) {
         imageWidget->setImagePosition(QPoint((imageWidget->width() - imgSize.width())/2, (imageWidget->height() - imgSize.height())/2));
     } else {
@@ -734,6 +734,7 @@ void ImageViewer::reload() {
 
     setImage(viewerImage);
     resizeImage();
+    centerImage(imageWidget->imageSize());
     if (Settings::keepTransform) {
         if (Settings::cropLeft || Settings::cropTop || Settings::cropWidth || Settings::cropHeight)
             cropRubberBand->show();

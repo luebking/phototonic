@@ -126,7 +126,7 @@ private:
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 
-    void centerImage(QSize &imgSize);
+    void centerImage(QSize imgSize);
 
     void transform();
 
