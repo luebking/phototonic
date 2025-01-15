@@ -2682,6 +2682,7 @@ void Phototonic::showViewer() {
         stackedLayout->addWidget(imageViewer);
         stackedLayout->setCurrentWidget(imageViewer);
         setDocksVisibility(false);
+        m_statusLabel->hide();
 
         if (Settings::isFullScreen) {
             setWindowState(windowState() | Qt::WindowFullScreen);
