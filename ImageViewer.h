@@ -55,6 +55,7 @@ public:
     };
 
     void clearImage();
+    void configureLetterbox();
     bool isNewImage();
     void loadImage(QString imageFileName, const QImage &preview = QImage());
     void refresh();
@@ -123,6 +124,7 @@ private:
     QPoint m_contextSpot;
     QTransform m_exifTransformation;
     QString m_permanentFeedback;
+    QRect m_letterbox;
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 

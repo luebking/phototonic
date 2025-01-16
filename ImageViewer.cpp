@@ -33,7 +33,7 @@
 #include <QTimer>
 #include <QWheelEvent>
 
-
+#include "CropDialog.h"
 #include "CropRubberband.h"
 #include "ImageWidget.h"
 #include "ImageViewer.h"
@@ -100,11 +100,13 @@ ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     if (!gs_clickToClose)
         gs_clickToClose = new ClickToClose;
 
+    m_letterbox = QRect(QPoint(0,0), QPoint(100,100));
     myContextMenu = nullptr;
     cursorIsHidden = false;
     moveImageLocked = false;
     myMirrorLayout = MirrorNone;
     imageWidget = new ImageWidget;
+    imageWidget->setLetterbox(m_letterbox);
     animation = nullptr;
 
     setContentsMargins(0, 0, 0, 0);
@@ -139,7 +141,6 @@ ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     connect(mouseMovementTimer, SIGNAL(timeout()), this, SLOT(monitorCursorState()));
 
     Settings::cropLeft = Settings::cropTop = Settings::cropWidth = Settings::cropHeight = 0;
-    Settings::cropLeftPercent = Settings::cropTopPercent = Settings::cropWidthPercent = Settings::cropHeightPercent = 0;
 
     Settings::hueVal = 0;
     Settings::saturationVal = 100;
@@ -315,6 +316,7 @@ void ImageViewer::centerImage(QSize imgSize) {
 }
 
 void ImageViewer::transform() {
+
     qDebug() << "meeek";
     if (!qFuzzyCompare(Settings::rotation, 0)) {
         QTransform trans;
@@ -325,18 +327,8 @@ void ImageViewer::transform() {
     if (Settings::flipH || Settings::flipV) {
         viewerImage = viewerImage.mirrored(Settings::flipH, Settings::flipV);
     }
-
-    int cropLeftPercentPixels = 0, cropTopPercentPixels = 0, cropWidthPercentPixels = 0, cropHeightPercentPixels = 0;
+/*
     bool croppingOn = false;
-    if (Settings::cropLeftPercent || Settings::cropTopPercent
-        || Settings::cropWidthPercent || Settings::cropHeightPercent) {
-        croppingOn = true;
-        cropLeftPercentPixels = (viewerImage.width() * Settings::cropLeftPercent) / 100;
-        cropTopPercentPixels = (viewerImage.height() * Settings::cropTopPercent) / 100;
-        cropWidthPercentPixels = (viewerImage.width() * Settings::cropWidthPercent) / 100;
-        cropHeightPercentPixels = (viewerImage.height() * Settings::cropHeightPercent) / 100;
-    }
-
     if (Settings::cropLeft || Settings::cropTop || Settings::cropWidth || Settings::cropHeight) {
         viewerImage = viewerImage.copy(
                 Settings::cropLeft + cropLeftPercentPixels,
@@ -354,6 +346,7 @@ void ImageViewer::transform() {
                     viewerImage.height() - cropTopPercentPixels - cropHeightPercentPixels);
         }
     }
+*/
 }
 
 void ImageViewer::mirror() {
@@ -622,6 +615,7 @@ void ImageViewer::setImage(const QImage &image) {
         delete movieWidget;
         movieWidget = nullptr;
         imageWidget = new ImageWidget;
+        imageWidget->setLetterbox(m_letterbox);
         setWidget(imageWidget);
     }
 
@@ -661,7 +655,6 @@ void ImageViewer::reload() {
     }
 
     if (!Settings::keepTransform) {
-        Settings::cropLeftPercent = Settings::cropTopPercent = Settings::cropWidthPercent = Settings::cropHeightPercent = 0;
         Settings::rotation = 0;
         Settings::flipH = Settings::flipV = false;
     }
@@ -953,6 +946,18 @@ void ImageViewer::applyCropAndRotation() {
     }
     imageWidget->setRotation(0);
     cropRubberBand->hide();
+}
+
+void ImageViewer::configureLetterbox() {
+    static CropDialog *dlg = nullptr;
+    if (!dlg) {
+        dlg = new CropDialog(this);
+        connect(dlg, &CropDialog::valuesChanged, [=](int left, int top, int right, int bottom) {
+            m_letterbox = QRect(QPoint(left, top), QPoint(100-right, 100-bottom));
+            imageWidget->setLetterbox(m_letterbox);
+        });
+    }
+    dlg->exec();
 }
 
 void ImageViewer::setMouseMoveData(bool lockMove, int lMouseX, int lMouseY) {

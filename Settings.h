@@ -111,10 +111,6 @@ namespace Settings {
     extern int cropTop;
     extern int cropWidth;
     extern int cropHeight;
-    extern int cropLeftPercent;
-    extern int cropTopPercent;
-    extern int cropWidthPercent;
-    extern int cropHeightPercent;
     extern int slideShowDelay;
     extern bool slideShowRandom;
     extern bool slideShowActive;

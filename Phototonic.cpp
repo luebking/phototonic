@@ -51,7 +51,6 @@
 #include "CopyMoveDialog.h"
 #include "CopyMoveToDialog.h"
 #include "ColorsDialog.h"
-#include "CropDialog.h"
 #include "DirCompleter.h"
 #include "ExternalAppsDialog.h"
 #include "FileListWidget.h"
@@ -148,7 +147,6 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
 
     copyMoveToDialog = nullptr;
     colorsDialog = nullptr;
-    cropDialog = nullptr;
     initComplete = true;
     m_deleteInProgress = false;
     currentHistoryIdx = -1;
@@ -331,6 +329,8 @@ void Phototonic::createImageViewer() {
     menu->addAction(randomImageAction);
     menu->addAction(slideShowAction);
 
+    contextMenu->addAction(cropAction);
+
     menu = contextMenu->addMenu(tr("Guides"));
     QAction *act = new QAction(tr("Add vertical guide"), menu);
     connect(act, &QAction::triggered, [=]() { new GuideWidget(imageViewer, Qt::Vertical, imageViewer->contextSpot().x()); });
@@ -349,7 +349,13 @@ void Phototonic::createImageViewer() {
     submenu->addSeparator();
     submenu->addAction(keepZoomAction);
 
-    submenu = contextMenu->addMenu(tr("Mirroring"));
+    submenu = menu->addMenu(tr("Rotate"));
+    submenu->addAction(rotateRightAction);
+    submenu->addAction(rotateLeftAction);
+    submenu->addAction(freeRotateRightAction);
+    submenu->addAction(freeRotateLeftAction);
+
+    submenu = menu->addMenu(tr("Mirroring"));
     QActionGroup *group = new QActionGroup(submenu);
     submenu->addAction(flipHorizontalAction);
     submenu->addAction(flipVerticalAction);
@@ -361,21 +367,14 @@ void Phototonic::createImageViewer() {
     group->addAction(mirrorQuadAction);
     submenu->addActions(group->actions());
 
-    submenu = menu->addMenu(tr("Rotate"));
-    submenu->addAction(rotateRightAction);
-    submenu->addAction(rotateLeftAction);
-    submenu->addAction(freeRotateRightAction);
-    submenu->addAction(freeRotateLeftAction);
-
-    menu->addAction(cropAction);
-    menu->addAction(colorsAction);
-    menu->addSeparator();
-    menu->addAction(keepTransformAction);
+//    menu->addSeparator();
+//    menu->addAction(keepTransformAction);
 
 
     menu = contextMenu->addMenu(tr("Edit"));
     menu->addAction(resizeAction);
-    menu->addAction(applyCropAndRotationAction);
+    menu->addAction(colorsAction);
+//    menu->addAction(applyCropAndRotationAction);
 
     menu = contextMenu->addMenu(tr("File"));
     menu->addAction(copyToAction);
@@ -390,8 +389,10 @@ void Phototonic::createImageViewer() {
 
     menu = contextMenu->addMenu(tr("View"));
     menu->addAction(fullScreenAction);
+    menu->addSeparator();
     menu->addAction(showViewerToolbarAction);
     menu->addAction(showClipboardAction);
+    menu->addSeparator();
     menu->addAction(refreshAction);
 
     contextMenu->addSeparator();
@@ -759,8 +760,8 @@ void Phototonic::createActions() {
     flipVerticalAction->setIcon(QIcon::fromTheme("object-flip-vertical", QIcon(":/images/flipV.png")));
     connect(flipVerticalAction, SIGNAL(triggered()), this, SLOT(flipVertical()));
 
-    cropAction = new QAction(tr("Cropping"), this);
-    cropAction->setObjectName("crop");
+    cropAction = new QAction(tr("Letterbox"), this);
+    cropAction->setObjectName("letterbox");
     cropAction->setIcon(QIcon(":/images/crop.png"));
     connect(cropAction, SIGNAL(triggered()), this, SLOT(cropImage()));
 
@@ -1588,11 +1589,11 @@ void Phototonic::keepTransformClicked() {
 
     if (Settings::keepTransform) {
         imageViewer->setFeedback(tr("Transformations Locked"));
-        if (cropDialog) {
-            cropDialog->applyCrop(0);
-        }
+//        if (cropDialog) {
+//            cropDialog->applyCrop(0);
+//        }
     } else {
-        Settings::cropLeftPercent = Settings::cropTopPercent = Settings::cropWidthPercent = Settings::cropHeightPercent = 0;
+//        Settings::cropLeftPercent = Settings::cropTopPercent = Settings::cropWidthPercent = Settings::cropHeightPercent = 0;
         imageViewer->setFeedback(tr("Transformations Unlocked"));
     }
 
@@ -1632,14 +1633,9 @@ void Phototonic::cropImage() {
         toggleSlideShow();
     }
 
-    if (!cropDialog) {
-        cropDialog = new CropDialog(this, imageViewer);
-        connect(cropDialog, &QDialog::finished, [=](){ setInterfaceEnabled(true); });
-    }
-
-    cropDialog->show();
     setInterfaceEnabled(false);
-    cropDialog->applyCrop(0);
+    imageViewer->configureLetterbox();
+    setInterfaceEnabled(true);
 }
 
 void Phototonic::scaleImage() {

@@ -22,7 +22,6 @@
 class BookMarks;
 class ColorsDialog;
 class CopyMoveToDialog;
-class CropDialog;
 class FileListWidget;
 class FileSystemTree;
 class ImageViewer;
@@ -335,7 +334,6 @@ private:
 
     QPointer<ResizeDialog> resizeDialog;
     QPointer<ColorsDialog> colorsDialog;
-    QPointer<CropDialog> cropDialog;
 
     void refreshThumbs(bool noScroll);
     void loadImage(SpecialImageIndex idx);

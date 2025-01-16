@@ -18,21 +18,20 @@
 
 #include <QBoxLayout>
 #include <QGridLayout>
+#include <QLabel>
 #include <QPushButton>
 #include <QSlider>
 #include <QSpinBox>
 
 #include "CropDialog.h"
-#include "ImageViewer.h"
 #include "Settings.h"
 
-CropDialog::CropDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(parent) {
-    setWindowTitle(tr("Cropping"));
+CropDialog::CropDialog(QWidget *parent) : QDialog(parent) {
+    setWindowTitle(tr("Letterbox"));
     setWindowIcon(QIcon(":/images/crop.png"));
     resize(350, 100);
     if (Settings::dialogLastX)
         move(Settings::dialogLastX, Settings::dialogLastY);
-    this->imageViewer = imageViewer;
 
     QHBoxLayout *buttonsHbox = new QHBoxLayout;
     QPushButton *resetButton = new QPushButton(tr("Reset"));
@@ -43,54 +42,42 @@ CropDialog::CropDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(pare
     buttonsHbox->addWidget(resetButton, 0, Qt::AlignLeft);
     buttonsHbox->addWidget(okButton, 0, Qt::AlignRight);
 
-    QSlider *topSlide = new QSlider(Qt::Horizontal);
-    topSlide->setTickPosition(QSlider::TicksAbove);
-    topSlide->setTickInterval(10);
-    topSlide->setTracking(false);
+    QSlider *topSlide = nullptr, *bottomSlide = nullptr,  *leftSlide = nullptr, *rightSlide = nullptr;
+    auto setupSliders = [=](QSlider **sliderp, QSpinBox **spinboxp) {
+        QSlider *slider = new QSlider(Qt::Horizontal, this);
+        slider->setTickPosition(QSlider::TicksAbove);
+        slider->setTickInterval(10);
+        slider->setTracking(true);
+        slider->setRange(0, 100);
+        QSpinBox *spinbox = new QSpinBox(this);
+        spinbox->setPrefix("% ");
+        spinbox->setRange(0, 100);
+        connect(slider, &QSlider::valueChanged, spinbox, &QSpinBox::setValue);
+        connect(spinbox, &QSpinBox::valueChanged, slider, &QSlider::setValue);
+        connect(spinbox, &QSpinBox::valueChanged, this, &CropDialog::emitValues);
+        *sliderp = slider;
+        *spinboxp = spinbox;
+    };
 
-    QSlider *bottomSlide = new QSlider(Qt::Horizontal);
-    bottomSlide->setTickPosition(QSlider::TicksAbove);
-    bottomSlide->setTickInterval(10);
-    bottomSlide->setTracking(false);
-
-    QSlider *leftSlide = new QSlider(Qt::Horizontal);
-    leftSlide->setTickPosition(QSlider::TicksAbove);
-    leftSlide->setTickInterval(10);
-    leftSlide->setTracking(false);
-
-    QSlider *rightSlide = new QSlider(Qt::Horizontal);
-    rightSlide->setTickPosition(QSlider::TicksAbove);
-    rightSlide->setTickInterval(10);
-    rightSlide->setTracking(false);
-
-    topSpinBox = new QSpinBox;
-    topSpinBox->setPrefix("% ");
-    bottomSpinBox = new QSpinBox;
-    bottomSpinBox->setPrefix("% ");
-    leftSpinBox = new QSpinBox;
-    leftSpinBox->setPrefix("% ");
-    rightSpinBox = new QSpinBox;
-    rightSpinBox->setPrefix("% ");
-
-    QLabel *leftLab = new QLabel(tr("Left"));
-    QLabel *rightLab = new QLabel(tr("Right"));
-    QLabel *topLab = new QLabel(tr("Top"));
-    QLabel *bottomLab = new QLabel(tr("Bottom"));
+    setupSliders(&leftSlide, &leftSpinBox);
+    setupSliders(&topSlide, &topSpinBox);
+    setupSliders(&rightSlide, &rightSpinBox);
+    setupSliders(&bottomSlide, &bottomSpinBox);
 
     QGridLayout *mainGbox = new QGridLayout;
-    mainGbox->addWidget(leftLab, 0, 0, 1, 1);
+    mainGbox->addWidget(new QLabel(tr("Left"), this), 0, 0, 1, 1);
     mainGbox->addWidget(leftSlide, 0, 1, 1, 1);
     mainGbox->addWidget(leftSpinBox, 0, 2, 1, 1);
 
-    mainGbox->addWidget(rightLab, 1, 0, 1, 1);
+    mainGbox->addWidget(new QLabel(tr("Right"), this), 1, 0, 1, 1);
     mainGbox->addWidget(rightSlide, 1, 1, 1, 1);
     mainGbox->addWidget(rightSpinBox, 1, 2, 1, 1);
 
-    mainGbox->addWidget(topLab, 2, 0, 1, 1);
+    mainGbox->addWidget(new QLabel(tr("Top"), this), 2, 0, 1, 1);
     mainGbox->addWidget(topSlide, 2, 1, 1, 1);
     mainGbox->addWidget(topSpinBox, 2, 2, 1, 1);
 
-    mainGbox->addWidget(bottomLab, 3, 0, 1, 1);
+    mainGbox->addWidget(new QLabel(tr("Bottom"), this), 3, 0, 1, 1);
     mainGbox->addWidget(bottomSlide, 3, 1, 1, 1);
     mainGbox->addWidget(bottomSpinBox, 3, 2, 1, 1);
 
@@ -99,37 +86,19 @@ CropDialog::CropDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(pare
     mainVbox->addLayout(mainGbox);
     mainVbox->addLayout(buttonsHbox);
     setLayout(mainVbox);
-
-    topSpinBox->setRange(0, 100);
-    bottomSpinBox->setRange(0, 100);
-    leftSpinBox->setRange(0, 100);
-    rightSpinBox->setRange(0, 100);
-    topSlide->setRange(0, 100);
-    bottomSlide->setRange(0, 100);
-    leftSlide->setRange(0, 100);
-    rightSlide->setRange(0, 100);
-
-    connect(topSlide, SIGNAL(valueChanged(int)), topSpinBox, SLOT(setValue(int)));
-    connect(bottomSlide, SIGNAL(valueChanged(int)), bottomSpinBox, SLOT(setValue(int)));
-    connect(leftSlide, SIGNAL(valueChanged(int)), leftSpinBox, SLOT(setValue(int)));
-    connect(rightSlide, SIGNAL(valueChanged(int)), rightSpinBox, SLOT(setValue(int)));
-    connect(topSpinBox, SIGNAL(valueChanged(int)), topSlide, SLOT(setValue(int)));
-    connect(bottomSpinBox, SIGNAL(valueChanged(int)), bottomSlide, SLOT(setValue(int)));
-    connect(leftSpinBox, SIGNAL(valueChanged(int)), leftSlide, SLOT(setValue(int)));
-    connect(rightSpinBox, SIGNAL(valueChanged(int)), rightSlide, SLOT(setValue(int)));
-
-    connect(topSpinBox, SIGNAL(valueChanged(int)), this, SLOT(applyCrop(int)));
-    connect(bottomSpinBox, SIGNAL(valueChanged(int)), this, SLOT(applyCrop(int)));
-    connect(leftSpinBox, SIGNAL(valueChanged(int)), this, SLOT(applyCrop(int)));
-    connect(rightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(applyCrop(int)));
 }
 
-void CropDialog::applyCrop(int) {
-    Settings::cropLeftPercent = leftSpinBox->value();
-    Settings::cropTopPercent = topSpinBox->value();
-    Settings::cropWidthPercent = rightSpinBox->value();
-    Settings::cropHeightPercent = bottomSpinBox->value();
-    imageViewer->refresh();
+void CropDialog::emitValues()
+{
+    if (sender() == leftSpinBox && leftSpinBox->value() + rightSpinBox->value() > 100)
+        rightSpinBox->setValue(100-leftSpinBox->value());
+    if (sender() == rightSpinBox && leftSpinBox->value() + rightSpinBox->value() > 100)
+        leftSpinBox->setValue(100-rightSpinBox->value());
+    if (sender() == topSpinBox && topSpinBox->value() + bottomSpinBox->value() > 100)
+        bottomSpinBox->setValue(100-topSpinBox->value());
+    if (sender() == bottomSpinBox && topSpinBox->value() + bottomSpinBox->value() > 100)
+        topSpinBox->setValue(100-bottomSpinBox->value());
+    emit valuesChanged(leftSpinBox->value(), topSpinBox->value(), rightSpinBox->value(), bottomSpinBox->value());
 }
 
 void CropDialog::ok() {

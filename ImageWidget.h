@@ -35,6 +35,7 @@ public:
     void setImage(const QImage &i, QTransform matrix);
     void setImagePosition(const QPoint &p);
     void setImageSize(const QSize &s);
+    void setLetterbox(const QRect &letterbox);
     qreal rotation() const { return m_rotation; }
     void setRotation(qreal r);
     QPoint mapToImage(QPoint p);
@@ -52,6 +53,7 @@ private:
     QPoint m_imagePos;
     QTransform m_exifTransformation;
     Qt::Orientations m_flip;
+    QRect m_letterBox;
 };
 
 #endif // IMAGEWIDGET_H

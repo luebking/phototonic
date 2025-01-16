@@ -27,22 +27,21 @@ class CropDialog : public QDialog {
     Q_OBJECT
 
 public:
-    CropDialog(QWidget *parent, ImageViewer *imageViewer);
+    CropDialog(QWidget *parent);
 
-public slots:
+signals:
+    void valuesChanged(int left, int top, int right, int bottom);
 
+private slots:
     void ok();
-
     void reset();
-
-    void applyCrop(int);
+    void emitValues();
 
 private:
     QSpinBox *topSpinBox;
     QSpinBox *bottomSpinBox;
     QSpinBox *leftSpinBox;
     QSpinBox *rightSpinBox;
-    ImageViewer *imageViewer;
 };
 
 #endif // CROP_DIALOG_H

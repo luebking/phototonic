@@ -79,6 +79,12 @@ void ImageWidget::setFlip(Qt::Orientations o)
     update();
 }
 
+void ImageWidget::setLetterbox(const QRect &letterbox)
+{
+    m_letterBox = letterbox;
+    update();
+}
+
 QSize ImageWidget::sizeHint() const
 {
     return m_image.size();
@@ -92,6 +98,12 @@ void ImageWidget::paintEvent(QPaintEvent *ev)
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::SmoothPixmapTransform);
+    QRect clip = rect();
+    clip.adjust(qRound(width()*m_letterBox.x()/100.0),
+                qRound(height()*m_letterBox.y()/100.0),
+               -qRound(width()*(100-m_letterBox.right())/100.0),
+               -qRound(height()*(100-m_letterBox.bottom())/100.0));
+    painter.setClipRect(clip);
 
     // exif
     /// @todo  this doesn't work, because the width/height are swapped and the translation is off/inverted
