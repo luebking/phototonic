@@ -622,27 +622,6 @@ void ImageViewer::setImage(const QImage &image) {
     imageWidget->setImage(image, m_exifTransformation);
 }
 
-QImage createImageWithOverlay(const QImage &baseImage, const QImage &overlayImage, int x, int y) {
-    QImage imageWithOverlay = QImage(overlayImage.size(), QImage::Format_ARGB32_Premultiplied);
-    QPainter painter(&imageWithOverlay);
-
-    QImage scaledImage = baseImage.scaled(overlayImage.width(), overlayImage.height(),
-                                          Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-    painter.setCompositionMode(QPainter::CompositionMode_Source);
-    painter.fillRect(imageWithOverlay.rect(), Qt::transparent);
-
-    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
-    painter.drawImage(x, y, scaledImage);
-
-    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
-    painter.drawImage(0, 0, overlayImage);
-
-    painter.end();
-
-    return imageWithOverlay;
-}
-
 void ImageViewer::reload() {
     if (Settings::showImageName) {
         if (fullImagePath.left(1) == ":") {
