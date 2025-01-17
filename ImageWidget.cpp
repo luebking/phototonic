@@ -50,6 +50,28 @@ void ImageWidget::setRotation(qreal r)
     update();
 }
 
+QTransform ImageWidget::transformation() const {
+    float scale = qMax(float(m_imageSize.width()) / m_image.width(), float(m_imageSize.height()) / m_image.height());
+    QTransform matrix;
+    QPoint center(width() / 2, height() / 2);
+    matrix.translate(center.x(), center.y());
+    matrix.rotate(m_rotation);
+    matrix.translate(-center.x(), -center.y());
+
+    // translate
+    QPoint origin;
+    if (m_flip & Qt::Horizontal)
+        origin.setX(m_imageSize.width());
+    if (m_flip & Qt::Vertical)
+        origin.setY(m_imageSize.height());
+    origin += m_imagePos;
+    matrix.translate(origin.x(), origin.y());
+
+    // scale
+    matrix.scale((m_flip & Qt::Horizontal) ? -scale : scale, (m_flip & Qt::Vertical) ? -scale : scale);
+    return matrix;
+}
+
 QPoint ImageWidget::mapToImage(QPoint p)
 {
     QPoint upperLeft;
@@ -92,7 +114,7 @@ QSize ImageWidget::sizeHint() const
 
 void ImageWidget::paintEvent(QPaintEvent *ev)
 {
-    float scale = qMax(float(m_imageSize.width()) / m_image.width(), float(m_imageSize.height()) / m_image.height());
+    const float scale = qMax(float(m_imageSize.width()) / m_image.width(), float(m_imageSize.height()) / m_image.height());
     if (scale == 0.0f)
         return;
 
@@ -110,22 +132,7 @@ void ImageWidget::paintEvent(QPaintEvent *ev)
     // I don't want to copy the Image into a pre-translation, but for now that's what we'll do
 //    painter.setWorldTransform(m_exifTransformation);
 
-    // rotate
-    QPoint center(width() / 2, height() / 2);
-    painter.translate(center);
-    painter.rotate(m_rotation);
-    painter.translate(-center);
-
-    // translate
-    QPoint origin;
-    if (m_flip & Qt::Horizontal)
-        origin.setX(m_imageSize.width());
-    if (m_flip & Qt::Vertical)
-        origin.setY(m_imageSize.height());
-    painter.translate(origin + m_imagePos);
-
-    // scale
-    painter.scale((m_flip & Qt::Horizontal) ? -scale : scale, (m_flip & Qt::Vertical) ? -scale : scale);
+    painter.setTransform(transformation());
 
     painter.drawImage(0,0, m_image);
 }
