@@ -72,17 +72,6 @@ QTransform ImageWidget::transformation() const {
     return matrix;
 }
 
-QPoint ImageWidget::mapToImage(QPoint p)
-{
-    QPoint upperLeft;
-    QPoint center(width() / 2, height() / 2);
-    if (width() > m_image.width())
-        upperLeft.setX(center.x() - m_image.width() / 2);
-    if (height() > m_image.height())
-        upperLeft.setY(center.y() - m_image.height() / 2);
-    return QPoint(p.x() - upperLeft.x(), p.y() - upperLeft.y());
-}
-
 void ImageWidget::setImageSize(const QSize &s)
 {
     m_imageSize = s;

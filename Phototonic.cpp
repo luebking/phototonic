@@ -258,7 +258,6 @@ void Phototonic::createImageViewer() {
     connect(saveAsAction, SIGNAL(triggered()), imageViewer, SLOT(saveImageAs()));
     connect(copyImageAction, SIGNAL(triggered()), imageViewer, SLOT(copyImage()));
     connect(pasteImageAction, SIGNAL(triggered()), imageViewer, SLOT(pasteImage()));
-    connect(applyCropAndRotationAction, SIGNAL(triggered()), imageViewer, SLOT(applyCropAndRotation()));
     connect(imageViewer, &ImageViewer::toolsUpdated, [=](){ rotateToolAction->setChecked(Settings::mouseRotateEnabled); });
     QMenu *contextMenu = new QMenu(imageViewer);
 
@@ -280,7 +279,6 @@ void Phototonic::createImageViewer() {
     imageViewer->addAction(flipHorizontalAction);
     imageViewer->addAction(flipVerticalAction);
     imageViewer->addAction(cropAction);
-    imageViewer->addAction(applyCropAndRotationAction);
     imageViewer->addAction(resizeAction);
     imageViewer->addAction(saveAction);
     imageViewer->addAction(saveAsAction);
@@ -374,7 +372,6 @@ void Phototonic::createImageViewer() {
     menu = contextMenu->addMenu(tr("Edit"));
     menu->addAction(resizeAction);
     menu->addAction(colorsAction);
-//    menu->addAction(applyCropAndRotationAction);
 
     menu = contextMenu->addMenu(tr("File"));
     menu->addAction(copyToAction);
@@ -764,10 +761,6 @@ void Phototonic::createActions() {
     cropAction->setObjectName("letterbox");
     cropAction->setIcon(QIcon(":/images/crop.png"));
     connect(cropAction, SIGNAL(triggered()), this, SLOT(cropImage()));
-
-    applyCropAndRotationAction = new QAction(tr("Apply Crop and Rotation"), this);
-    applyCropAndRotationAction->setObjectName("applyCropAndRotation");
-    applyCropAndRotationAction->setIcon(QIcon(":/images/crop.png"));
 
     resizeAction = new QAction(tr("Scale Image"), this);
     resizeAction->setObjectName("resize");
@@ -1684,12 +1677,12 @@ void Phototonic::batchTransform() {
     QString saveMessage = tr("overwiting the original files");
     if (!Settings::saveDirectory.isEmpty())
         saveMessage = tr("saving the transformed images to %1").arg(Settings::saveDirectory);
-    QString message(tr("Rotate %1 images by %2 degrees, then crop them to %3, %4 %5 x %6, %7?")
-                    .arg(idxs.count()).arg(Settings::rotation, 0, 'f', 2)
-                    .arg(Settings::cropLeft).arg(Settings::cropTop).arg(Settings::cropWidth).arg(Settings::cropHeight)
-                    .arg(saveMessage));
+//    QString message(tr("Rotate %1 images by %2 degrees, then crop them to %3, %4 %5 x %6, %7?")
+//                    .arg(idxs.count()).arg(Settings::rotation, 0, 'f', 2)
+//                    .arg(Settings::cropLeft).arg(Settings::cropTop).arg(Settings::cropWidth).arg(Settings::cropHeight)
+//                    .arg(saveMessage));
     msgBox.setText(tr("Perform batch transformation?"));
-    msgBox.setInformativeText(message);
+//    msgBox.setInformativeText(message);
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Ok);
     if (msgBox.exec() == QMessageBox::Ok) {
@@ -1698,7 +1691,7 @@ void Phototonic::batchTransform() {
         Settings::keepTransform = true;
         for (QModelIndex i : idxs) {
             loadSelectedThumbImage(i);
-            imageViewer->applyCropAndRotation();
+//            imageViewer->applyCropAndRotation();
             imageViewer->saveImage();
         }
         Settings::keepTransform = keepTransformWas;
@@ -2392,7 +2385,6 @@ void Phototonic::loadShortcuts() {
     Settings::actionKeys[flipHorizontalAction->objectName()] = flipHorizontalAction;
     Settings::actionKeys[flipVerticalAction->objectName()] = flipVerticalAction;
     Settings::actionKeys[cropAction->objectName()] = cropAction;
-    Settings::actionKeys[applyCropAndRotationAction->objectName()] = applyCropAndRotationAction;
     Settings::actionKeys[colorsAction->objectName()] = colorsAction;
     Settings::actionKeys[mirrorDisabledAction->objectName()] = mirrorDisabledAction;
     Settings::actionKeys[mirrorDualAction->objectName()] = mirrorDualAction;
@@ -2484,7 +2476,6 @@ void Phototonic::loadShortcuts() {
         flipHorizontalAction->setShortcut(QKeySequence("Ctrl+Down"));
         flipVerticalAction->setShortcut(QKeySequence("Ctrl+Up"));
         cropAction->setShortcut(QKeySequence("Ctrl+G"));
-        applyCropAndRotationAction->setShortcut(QKeySequence("Ctrl+R"));
         colorsAction->setShortcut(QKeySequence("Ctrl+O"));
         mirrorDisabledAction->setShortcut(QKeySequence("Ctrl+1"));
         mirrorDualAction->setShortcut(QKeySequence("Ctrl+2"));

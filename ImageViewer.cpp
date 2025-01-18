@@ -140,8 +140,6 @@ ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     mouseMovementTimer = new QTimer(this);
     connect(mouseMovementTimer, SIGNAL(timeout()), this, SLOT(monitorCursorState()));
 
-    Settings::cropLeft = Settings::cropTop = Settings::cropWidth = Settings::cropHeight = 0;
-
     Settings::hueVal = 0;
     Settings::saturationVal = 100;
     Settings::lightnessVal = 100;
@@ -315,39 +313,6 @@ void ImageViewer::centerImage(QSize imgSize) {
     }
 }
 
-void ImageViewer::transform() {
-
-    qDebug() << "meeek";
-    if (!qFuzzyCompare(Settings::rotation, 0)) {
-        QTransform trans;
-        trans.rotate(Settings::rotation);
-        viewerImage = viewerImage.transformed(trans, Qt::SmoothTransformation);
-    }
-
-    if (Settings::flipH || Settings::flipV) {
-        viewerImage = viewerImage.mirrored(Settings::flipH, Settings::flipV);
-    }
-/*
-    bool croppingOn = false;
-    if (Settings::cropLeft || Settings::cropTop || Settings::cropWidth || Settings::cropHeight) {
-        viewerImage = viewerImage.copy(
-                Settings::cropLeft + cropLeftPercentPixels,
-                Settings::cropTop + cropTopPercentPixels,
-                viewerImage.width() - Settings::cropLeft - Settings::cropWidth - cropLeftPercentPixels -
-                cropWidthPercentPixels,
-                viewerImage.height() - Settings::cropTop - Settings::cropHeight - cropTopPercentPixels -
-                cropHeightPercentPixels);
-    } else {
-        if (croppingOn) {
-            viewerImage = viewerImage.copy(
-                    cropLeftPercentPixels,
-                    cropTopPercentPixels,
-                    viewerImage.width() - cropLeftPercentPixels - cropWidthPercentPixels,
-                    viewerImage.height() - cropTopPercentPixels - cropHeightPercentPixels);
-        }
-    }
-*/
-}
 
 void ImageViewer::mirror() {
     switch (myMirrorLayout) {
@@ -596,8 +561,6 @@ void ImageViewer::refresh() {
         viewerImage = origImage;
     }
 
-    transform();
-
     if (Settings::colorsActive || Settings::keepTransform) {
         colorize();
     }
@@ -642,8 +605,8 @@ void ImageViewer::reload() {
         Settings::mouseRotateEnabled = false;
         emit toolsUpdated();
 
-        if (!Settings::keepTransform)
-            Settings::cropLeft = Settings::cropTop = Settings::cropWidth = Settings::cropHeight = 0;
+//        if (!Settings::keepTransform)
+//            Settings::cropLeft = Settings::cropTop = Settings::cropWidth = Settings::cropHeight = 0;
         if (newImage || fullImagePath.isEmpty()) {
 
             newImage = true;
@@ -708,8 +671,8 @@ void ImageViewer::reload() {
     resizeImage();
     centerImage(imageWidget->imageSize());
     if (Settings::keepTransform) {
-        if (Settings::cropLeft || Settings::cropTop || Settings::cropWidth || Settings::cropHeight)
-            cropRubberBand->show();
+//        if (Settings::cropLeft || Settings::cropTop || Settings::cropWidth || Settings::cropHeight)
+//            cropRubberBand->show();
         imageWidget->setRotation(Settings::rotation);
     }
     if (Settings::setWindowIcon) {
@@ -837,12 +800,15 @@ void ImageViewer::mousePressEvent(QMouseEvent *event) {
                 cropRubberBand = new CropRubberBand(this);
                 connect(cropRubberBand, &CropRubberBand::selectionChanged,
                         this, &ImageViewer::updateRubberBandFeedback);
+                connect(cropRubberBand, &CropRubberBand::cropConfirmed,
+                        this, &ImageViewer::applyCropAndRotation);
             }
             cropRubberBand->show();
             cropRubberBand->setGeometry(QRect(cropOrigin, event->pos()).normalized());
         } else {
-            if (cropRubberBand) {
+            if (cropRubberBand && cropRubberBand->isVisible()) {
                 cropRubberBand->hide();
+                unsetFeedback();
             }
         }
         initialRotation = imageWidget->rotation();
@@ -868,63 +834,90 @@ void ImageViewer::updateRubberBandFeedback(QRect geom) {
     if (!imageWidget) {
         return;
     }
-
-    QPoint bandTopLeft = imageWidget->mapToImage(imageWidget->mapFromGlobal(mapToGlobal(cropRubberBand->geometry().topLeft())));
-
-    setFeedback(tr("Selection: ")
-                + QString::number(geom.width())
-                + "x"
-                + QString::number(geom.height())
-                + (bandTopLeft.x() < 0 ? "" : "+")
-                + QString::number(bandTopLeft.x())
-                + (bandTopLeft.y() < 0 ? "" : "+")
-                + QString::number(bandTopLeft.y()), false);
+    bool ok;
+    QTransform matrix = imageWidget->transformation().inverted(&ok);
+    if (!ok)
+        qDebug() << "something's fucked up about the transformation matrix!";
+    geom = matrix.mapRect(geom);
+    setFeedback(tr("Selection: ") + QString("%1x%2").arg(geom.width()).arg(geom.height())
+                                  + QString(geom.x() < 0 ? "%1" : "+%1").arg(geom.x())
+                                  + QString(geom.y() < 0 ? "%1" : "+%1").arg(geom.y()), false);
 }
 
 void ImageViewer::applyCropAndRotation() {
-    if (!imageWidget) {
+    if (!imageWidget || ! cropRubberBand)
+        return;
+
+    cropRubberBand->hide();
+
+    QTransform matrix = imageWidget->transformation();
+    bool ok;
+    // the inverted mapping of the crop area matches the coordinates of the original image
+    QRect isoCropRect = matrix.inverted(&ok).mapRect(cropRubberBand->geometry());
+    if (!ok) {
+        qDebug() << "something's fucked up about the transformation matrix! Not cropping";
         return;
     }
 
-    bool didSomething = false;
-    if (cropRubberBand && cropRubberBand->isVisible()) {
-
-        QPoint bandTopLeft = mapToGlobal(cropRubberBand->geometry().topLeft());
-        QPoint bandBottomRight = mapToGlobal(cropRubberBand->geometry().bottomRight());
-
-        bandTopLeft = imageWidget->mapToImage(imageWidget->mapFromGlobal(bandTopLeft));
-        bandBottomRight = imageWidget->mapToImage(imageWidget->mapFromGlobal(bandBottomRight));
-        double scaledX = imageWidget->image().width();
-        double scaledY = imageWidget->image().height();
-        scaledX = viewerImage.width() / scaledX;
-        scaledY = viewerImage.height() / scaledY;
-
-        bandTopLeft.setX(int(bandTopLeft.x() * scaledX));
-        bandTopLeft.setY(int(bandTopLeft.y() * scaledY));
-        bandBottomRight.setX(int(bandBottomRight.x() * scaledX));
-        bandBottomRight.setY(int(bandBottomRight.y() * scaledY));
-
-        Settings::cropLeft = bandTopLeft.x();
-        Settings::cropTop = bandTopLeft.y();
-        Settings::cropWidth = viewerImage.width() - bandBottomRight.x();
-        Settings::cropHeight = viewerImage.height() - bandBottomRight.y();
-        Settings::rotation = imageWidget->rotation();
-
-        didSomething = true;
-    }
-    if (!qFuzzyCompare(imageWidget->rotation(), 0)) {
-        didSomething = true;
-    }
-    if (didSomething) {
-        refresh();
+    if (!matrix.isRotating()) {
+        // … we can just copy the area, later apply flips and be done
+        origImage = origImage.copy(isoCropRect);
     } else {
-        MessageBox messageBox(this);
-        messageBox.warning(tr("No selection for cropping, and no rotation"),
-                           tr("To make a selection, hold down the Ctrl key and select a region using the mouse. "
-                              "To rotate, hold down the Ctrl and Shift keys and drag the mouse near the right edge."));
+        // The rotated case is more involved. The inverted matrix still maps image coordinates
+        // but that's not what the user sees or expects.
+        //
+        // This is inherently lossy because of the pixel transpositon, so special-case it
+
+        const QSize visualSize = imageWidget->imageSize();
+        float scale = qMax(float(visualSize.width()) / viewerImage.width(), float(visualSize.height()) / viewerImage.height());
+        if (scale <= 0.0) {
+            qDebug() << "something is seriously wrong with the scale, not cropping" << scale;
+            return;
+        }
+
+        // The new image size must be the size of the visible crop area, compensated for the current scale factor
+        QImage target(cropRubberBand->geometry().size()/scale, origImage.format());
+        // but still be at the same position
+        QRect sourceRect = target.rect();
+        sourceRect.moveCenter(isoCropRect.center());
+
+        target.fill(Qt::black /* Qt::green */);
+        QPainter painter(&target);
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
+
+        // rotate in relation to the paint device
+        QPoint center(target.width() / 2, target.height() / 2);
+        painter.translate(center);
+        // onedirectional flipping inverts the rotation
+        if (Settings::flipH xor Settings::flipV)
+            painter.rotate(360.0 - imageWidget->rotation());
+        else
+            painter.rotate(imageWidget->rotation());
+        painter.translate(-center);
+
+        // offset by crop rect
+        painter.translate(-sourceRect.topLeft());
+
+        // crop
+        painter.drawImage(0,0, origImage);
+        painter.end();
+        origImage = target;
     }
+
+    // apply flip-flop
+    origImage.mirror(Settings::flipH, Settings::flipV);
+
+    // reset transformations for the new image
+    Settings::flipH = Settings::flipV = false;
     imageWidget->setRotation(0);
-    cropRubberBand->hide();
+    if (!Settings::keepZoomFactor) {
+        tempDisableResize = false;
+        Settings::imageZoomFactor = 1.0;
+    }
+
+    refresh();
+    setFeedback("", false);
+    setFeedback(tr("New image size: %1x%2").arg(origImage.width()).arg(origImage.height()));
 }
 
 void ImageViewer::configureLetterbox() {

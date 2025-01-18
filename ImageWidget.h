@@ -38,7 +38,6 @@ public:
     void setLetterbox(const QRect &letterbox);
     qreal rotation() const { return m_rotation; }
     void setRotation(qreal r);
-    QPoint mapToImage(QPoint p);
     QTransform transformation() const;
 
 protected:

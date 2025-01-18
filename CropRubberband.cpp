@@ -133,21 +133,28 @@ void CropRubberBand::keyPressEvent(QKeyEvent *event) {
 
 void CropRubberBand::resizeEvent(QResizeEvent *) {
     rubberband->resize(size());
-    emit selectionChanged(rubberband->geometry());
+    emit selectionChanged(geometry());
 }
 
-
+void CropRubberBand::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        emit cropConfirmed();
+        hide();
+    }
+}
 
 void CropRubberBand::mousePressEvent(QMouseEvent *event)
 {
-    prevPos = event->globalPosition().toPoint();
+    if (event->button() == Qt::LeftButton)
+        prevPos = event->globalPosition().toPoint();
 }
 
 void CropRubberBand::mouseMoveEvent(QMouseEvent *event)
 {
-    if (!event->buttons()) {
-        return;
+    if (event->buttons() & Qt::LeftButton) {
+        move(pos() + (event->globalPosition().toPoint() - prevPos));
+        prevPos = event->globalPosition().toPoint();
+        emit selectionChanged(geometry());
     }
-    move(pos() + (event->globalPosition().toPoint() - prevPos));
-    prevPos = event->globalPosition().toPoint();
 }

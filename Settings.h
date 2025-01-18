@@ -107,10 +107,6 @@ namespace Settings {
     extern int scaledWidth;
     extern int scaledHeight;
     extern int defaultSaveQuality;
-    extern int cropLeft;
-    extern int cropTop;
-    extern int cropWidth;
-    extern int cropHeight;
     extern int slideShowDelay;
     extern bool slideShowRandom;
     extern bool slideShowActive;

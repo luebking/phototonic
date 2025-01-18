@@ -28,20 +28,20 @@ public:
     CropRubberBand(QWidget *parent = nullptr);
 
 signals:
+    void cropConfirmed();
     void selectionChanged(QRect sel);
 
 protected:
     void showEvent(QShowEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
-
+    void resizeEvent(QResizeEvent *) override;
 
 private:
     QRubberBand *rubberband;
     QPoint prevPos;
-
-    void resizeEvent(QResizeEvent *) override;
 };
 
 #endif // CROPRUBBERBAND_H

@@ -93,10 +93,6 @@ namespace Settings {
     int scaledWidth;
     int scaledHeight;
     int defaultSaveQuality;
-    int cropLeft;
-    int cropTop;
-    int cropWidth;
-    int cropHeight;
     int slideShowDelay;
     bool slideShowRandom;
     bool slideShowActive;

@@ -130,8 +130,6 @@ private:
 
     void centerImage(QSize imgSize);
 
-    void transform();
-
     void mirror();
 
     void colorize();
