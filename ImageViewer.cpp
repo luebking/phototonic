@@ -844,6 +844,17 @@ void ImageViewer::updateRubberBandFeedback(QRect geom) {
     setFeedback(tr("Selection: ") + QString("%1x%2").arg(geom.width()).arg(geom.height())
                                   + QString(geom.x() < 0 ? "%1" : "+%1").arg(geom.x())
                                   + QString(geom.y() < 0 ? "%1" : "+%1").arg(geom.y()), false);
+    static QTimer *doubleclickhint = nullptr;
+    if (!doubleclickhint) {
+        doubleclickhint = new QTimer(this);
+        doubleclickhint->setInterval(5000);
+        doubleclickhint->setSingleShot(true);
+        connect(doubleclickhint, &QTimer::timeout, [=]() {
+                                        if (cropRubberBand && cropRubberBand->isVisible())
+                                            setFeedback(tr("Doubleclick to crop"));
+                                        });
+    }
+    doubleclickhint->start();
 }
 
 void ImageViewer::applyCropAndRotation() {
