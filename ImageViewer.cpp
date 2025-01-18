@@ -182,6 +182,7 @@ void ImageViewer::resizeImage(QPoint focus) {
     busy = true;
 
     QSize originalImageSize = imageSize;
+    imageSize *= Settings::imageZoomFactor;
     if (tempDisableResize) { // calcZoom to identity
         Settings::imageZoomFactor = 1.0;
     }
