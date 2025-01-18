@@ -807,10 +807,10 @@ void ImageViewer::mousePressEvent(QMouseEvent *event) {
             }
             cropRubberBand->show();
             cropRubberBand->setGeometry(QRect(cropOrigin, event->pos()).normalized());
-        } else {
+        } else if (event->modifiers() != Qt::ShiftModifier) {
             if (cropRubberBand && cropRubberBand->isVisible()) {
                 cropRubberBand->hide();
-                unsetFeedback();
+                setFeedback("", false);
             }
         }
         initialRotation = imageWidget->rotation();
