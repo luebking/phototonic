@@ -671,8 +671,10 @@ void ImageViewer::reload() {
     resizeImage();
     centerImage(imageWidget->imageSize());
     if (Settings::keepTransform) {
-//        if (Settings::cropLeft || Settings::cropTop || Settings::cropWidth || Settings::cropHeight)
-//            cropRubberBand->show();
+        Qt::Orientations orient;
+        if (Settings::flipH) orient |= Qt::Horizontal;
+        if (Settings::flipV) orient |= Qt::Vertical;
+        imageWidget->setFlip(orient);
         imageWidget->setRotation(Settings::rotation);
     }
     if (Settings::setWindowIcon) {
