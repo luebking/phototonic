@@ -327,16 +327,6 @@ void Phototonic::createImageViewer() {
     menu->addAction(randomImageAction);
     menu->addAction(slideShowAction);
 
-    contextMenu->addAction(cropAction);
-
-    menu = contextMenu->addMenu(tr("Guides"));
-    QAction *act = new QAction(tr("Add vertical guide"), menu);
-    connect(act, &QAction::triggered, [=]() { new GuideWidget(imageViewer, Qt::Vertical, imageViewer->contextSpot().x()); });
-    menu->addAction(act);
-    act = new QAction(tr("Add horizontal guide"), menu);
-    connect(act, &QAction::triggered, [=]() { new GuideWidget(imageViewer, Qt::Horizontal, imageViewer->contextSpot().y()); });
-    menu->addAction(act);
-
     menu = contextMenu->addMenu(tr("Transform"));
 
     QMenu *submenu = menu->addMenu(QIcon::fromTheme("edit-find", QIcon(":/images/zoom.png")), tr("Zoom"));
@@ -344,34 +334,32 @@ void Phototonic::createImageViewer() {
     submenu->addAction(zoomOutAction);
     submenu->addAction(origZoomAction);
     submenu->addAction(resetZoomAction);
-    submenu->addSeparator();
+
     submenu->addAction(keepZoomAction);
 
-    submenu = menu->addMenu(tr("Rotate"));
+    submenu = menu->addMenu(tr("Mirroring") + " && " + tr("Rotate"));
+    submenu->addAction(flipHorizontalAction);
+    submenu->addAction(flipVerticalAction);
+    submenu->addSeparator();
     submenu->addAction(rotateRightAction);
     submenu->addAction(rotateLeftAction);
     submenu->addAction(freeRotateRightAction);
     submenu->addAction(freeRotateLeftAction);
+    submenu->addSeparator();
+    submenu->addAction(keepTransformAction);
 
+
+    menu = contextMenu->addMenu(tr("Edit"));
+    menu->addAction(resizeAction);
+    menu->addAction(colorsAction);
     submenu = menu->addMenu(tr("Mirroring"));
     QActionGroup *group = new QActionGroup(submenu);
-    submenu->addAction(flipHorizontalAction);
-    submenu->addAction(flipVerticalAction);
-    submenu->addSeparator();
     group->addAction(mirrorDisabledAction);
     group->addAction(mirrorDualAction);
     group->addAction(mirrorTripleAction);
     group->addAction(mirrorDualVerticalAction);
     group->addAction(mirrorQuadAction);
     submenu->addActions(group->actions());
-
-//    menu->addSeparator();
-//    menu->addAction(keepTransformAction);
-
-
-    menu = contextMenu->addMenu(tr("Edit"));
-    menu->addAction(resizeAction);
-    menu->addAction(colorsAction);
 
     menu = contextMenu->addMenu(tr("File"));
     menu->addAction(copyToAction);
@@ -386,6 +374,17 @@ void Phototonic::createImageViewer() {
 
     menu = contextMenu->addMenu(tr("View"));
     menu->addAction(fullScreenAction);
+    menu->addSeparator();
+    menu->addAction(cropAction);
+
+    submenu = menu->addMenu(tr("Guides"));
+    QAction *act = new QAction(tr("Add vertical guide"), submenu);
+    connect(act, &QAction::triggered, [=]() { new GuideWidget(imageViewer, Qt::Vertical, imageViewer->contextSpot().x()); });
+    submenu->addAction(act);
+    act = new QAction(tr("Add horizontal guide"), submenu);
+    connect(act, &QAction::triggered, [=]() { new GuideWidget(imageViewer, Qt::Horizontal, imageViewer->contextSpot().y()); });
+    submenu->addAction(act);
+
     menu->addSeparator();
     menu->addAction(showViewerToolbarAction);
     menu->addAction(showClipboardAction);
