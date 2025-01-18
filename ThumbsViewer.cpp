@@ -1224,7 +1224,10 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
 
     if (imageReadOk) {
         if (shouldStoreThumbnail) {
-            storeThumbnail(imageFileName, thumb, origThumbSize);
+            if (!origThumbSize.isValid() || qMax(origThumbSize.width(), origThumbSize.height()) > 1024)
+                storeThumbnail(imageFileName, thumb, origThumbSize);
+//            else
+//                qDebug() << "not storing thumb for pathetically small image" << origThumbSize;
         }
         if (Settings::exifThumbRotationEnabled) {
             thumb = thumb.transformed(Metadata::transformation(imageFileName), Qt::SmoothTransformation);
