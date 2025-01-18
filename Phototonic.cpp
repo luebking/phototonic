@@ -744,7 +744,10 @@ void Phototonic::createActions() {
     rotateToolAction->setObjectName("rotateRight");
     rotateToolAction->setIcon(QIcon::fromTheme("rotation-allowed", QIcon(":/images/rotate.png")));
     rotateToolAction->setCheckable(true);
-    connect(rotateToolAction, &QAction::triggered, [=](){ Settings::mouseRotateEnabled = rotateToolAction->isChecked(); });
+    connect(rotateToolAction, &QAction::triggered, [=](){
+        Settings::mouseRotateEnabled = rotateToolAction->isChecked();
+        imageViewer->setFeedback(tr("Or try holding Shift"));
+    });
 
     flipHorizontalAction = new QAction(tr("Flip Horizontally"), this);
     flipHorizontalAction->setObjectName("flipH");
