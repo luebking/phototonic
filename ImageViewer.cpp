@@ -924,7 +924,8 @@ void ImageViewer::applyCropAndRotation() {
 
     // reset transformations for the new image
     Settings::flipH = Settings::flipV = false;
-    imageWidget->setRotation(0);
+    Settings::rotation = 0;
+    imageWidget->setRotation(Settings::rotation);
     if (!Settings::keepZoomFactor) {
         tempDisableResize = false;
         Settings::imageZoomFactor = 1.0;
