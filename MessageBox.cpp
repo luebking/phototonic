@@ -16,6 +16,9 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QGraphicsOpacityEffect>
+#include <QPropertyAnimation>
+#include <QTimer>
 #include "MessageBox.h"
 #include "Phototonic.h"
 
@@ -38,35 +41,73 @@ void MessageBox::warning(const QString &title, const QString &message) {
 }
 
 void MessageBox::about() {
-    QString aboutString = "<h2>" + QString(VERSION) + "</h2>"
-                          + tr("<h4>Image Viewer and Organizer</h4>")
-                          + "Qt v" + QT_VERSION_STR
-                          + "<p><a href=\"https://github.com/oferkv/phototonic\">" + tr("Home page")
-                          + "</a></p></a></p><p></p>"
-                                  "<table><tr><td>Code:</td><td>Ofer Kashayov</td><td>(oferkv@gmail.com)</td></tr>"
-                                  "<tr><td></td><td>Christopher Roy Bratusek</td><td>(nano@jpberlin.de)</td></tr>"
-                                  "<tr><td></td><td>Krzysztof Pyrkosz</td><td>(pyrkosz@o2.pl)</td></tr>"
-                                  "<tr><td></td><td>Roman Chistokhodov</td><td>(freeslave93@gmail.com)</td></tr>"
-                                  "<tr><td></td><td>Thomas Lübking</td><td>(thomas.luebking@gmail.com)</td></tr>"
-                                  "<tr><td></td><td>Tung Le</td><td>(https://github.com/everbot)</td></tr>"
-                                  "<tr><td></td><td>Peter Mattern</td><td>(https://github.com/pmattern)</td></tr>"
-                                  "<tr><td>Bosnian:</td><td>Dino Duratović</td><td>(dinomol@mail.com)</td></tr>"
-                                  "<tr><td>Croatian:</td><td>Dino Duratović</td><td>(dinomol@mail.com)</td></tr>"
-                                  "<tr><td>Czech:</td><td>Pavel Fric</td><td>(pavelfric@seznam.cz)</td></tr>"
-                                  "<tr><td>French:</td><td>Adrien Daugabel</td><td>(adrien.d@mageialinux-online.org)</td></tr>"
-                                  "<tr><td></td><td>David Geiger</td><td>(david.david@mageialinux-online.org)</td></tr>"
-                                  "<tr><td></td><td>Rémi Verschelde</td><td>(akien@mageia.org)</td></tr>"
-                                  "<tr><td>German:</td><td>Jonathan Hooverman</td><td>(jonathan.hooverman@gmail.com)</td></tr>"
-                                  "<tr><td>Polish:</td><td>Robert Wojewódzki</td><td>(robwoj44@poczta.onet.pl)</td></tr>"
-                                  "<tr><td></td><td>Krzysztof Pyrkosz</td><td>(pyrkosz@o2.pl)</td></tr>"
-                                  "<tr><td>Portuguese:</td><td>Marcos M. Nascimento</td><td>(wstlmn@uol.com.br)</td></tr>"
-                                  "<tr><td>Russian:</td><td>Ilya Alexandrovich</td><td>(yast4ik@gmail.com)</td></tr>"
-                                  "<tr><td>Serbian:</td><td>Dino Duratović</td><td>(dinomol@mail.com)</td></tr></table>"
-                                  "<p>Phototonic is licensed under the GNU General Public License version 3</p>"
-                                  "<p>Copyright &copy; 2013-2018 Ofer Kashayov</p>";
+    QStringList contributers;
+    contributers    // << "Code: Ofer Kashayov" // oferkv@gmail.com
+                    << "Code: Christopher Roy Bratusek" // nano@jpberlin.de
+                    << "Code: Krzysztof Pyrkosz" // pyrkosz@o2.pl
+                    << "Code: Roman Chistokhodov" // freeslave93@gmail.com
+                    << "Code: Tung Le (https://github.com/everbot)" //
+                    << "Code: Peter Mattern (https://github.com/pmattern)" //
+                    << "Code: Thomas Lübking - some patches in 2015 ;)" // thomas.luebking@gmail.com
+                    << "Bosnian: Dino Duratović" // dinomol@mail.com
+                    << "Croatian: Dino Duratović" // dinomol@mail.com
+                    << "Czech: Pavel Fric" // pavelfric@seznam.cz
+                    << "French: Adrien Daugabel" // adrien.d@mageialinux-online.org
+                    << "French: David Geiger" // david.david@mageialinux-online.org
+                    << "French: Rémi Verschelde" // akien@mageia.org
+                    << "German: Jonathan Hooverman" // jonathan.hooverman@gmail.com
+                    << "Polish: Robert Wojewódzki" // robwoj44@poczta.onet.pl
+                    << "Polish: Krzysztof Pyrkosz" // pyrkosz@o2.pl
+                    << "Portuguese: Marcos M. Nascimento" // wstlmn@uol.com.br
+                    << "Russian: Ilya Alexandrovich" // yast4ik@gmail.com
+                    << "Serbian: Dino Duratović" // dinomol@mail.com
+                    ;
+    QString aboutString = "<h1>Phototonic 3.0 α¹</h1>" // + QString(VERSION)
+                          "<h4>" + tr("Image Viewer and Organizer") + "</h4>"
+                          "<a href=\"https://github.com/luebking/phototonic\">" + tr("Home page and bug reports") + "</a>"
+                          "<dl><dt>Copyright</dt><dd>"
+                          "&copy;2013-2018 Ofer Kashayov<br>"
+                          "&copy;2024-2025 Thomas Lübking</dd></dl>"
+                        + "<br><p>Using Qt v" + QT_VERSION_STR
+                        + "<hr>Phototonic is licensed under the GNU General Public License v3&nbsp;</p>"
+                        + tr("Special thanks to our contributers.");
+
 
     setWindowTitle(tr("About"));
+    setIconPixmap(QIcon(":/images/phototonic.png").pixmap(128, 128));
     setText(aboutString);
-    setIconPixmap(QIcon(":/images/phototonic.png").pixmap(64, 64));
+    setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::LinksAccessibleByKeyboard);
+    setInformativeText(contributers.at(0));
+    QWidget *magicLabel = findChild<QWidget*>("qt_msgbox_informativelabel");
+    QPropertyAnimation *magicAnimation = nullptr;
+    if (magicLabel) {
+        QGraphicsOpacityEffect *magic = new QGraphicsOpacityEffect(magicLabel);
+        magicLabel->setGraphicsEffect(magic);
+        magic->setOpacity(1);
+        magicAnimation = new QPropertyAnimation(magic, "opacity", magic);
+        magicAnimation->setDuration(125);
+    }
+    int idx = 0;
+    QTimer *t = new QTimer(this);
+    t->setInterval(3000);
+    connect (t, &QTimer::timeout, [=,&idx]() {
+        idx = (idx + 1) % contributers.size();
+        if (magicAnimation) {
+            magicAnimation->setStartValue(1);
+            magicAnimation->setEndValue(0);
+            magicAnimation->setEasingCurve(QEasingCurve::OutQuad);
+            magicAnimation->start();
+        }
+        QTimer::singleShot(125, this, [=]() {
+            setInformativeText(contributers.at(idx));
+            if (magicAnimation) {
+                magicAnimation->setStartValue(0);
+                magicAnimation->setEndValue(1);
+                magicAnimation->setEasingCurve(QEasingCurve::InQuad);
+                magicAnimation->start();
+            }
+        });
+        });
+    t->start();
     exec();
 }
