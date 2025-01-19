@@ -36,7 +36,6 @@ public:
     bool tempDisableResize;
     bool batchMode = false;
     QString fullImagePath;
-    CropRubberBand *cropRubberBand;
 
     enum ZoomMethods {
         Disable = 0,
@@ -125,6 +124,7 @@ private:
     QTransform m_exifTransformation;
     QString m_permanentFeedback;
     QRect m_letterbox;
+    CropRubberBand *cropRubberBand;
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 
