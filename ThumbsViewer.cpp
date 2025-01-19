@@ -1073,6 +1073,11 @@ QString ThumbsViewer::locateThumbnail(const QString &originalPath) const
 #if defined(Q_OS_MAC) || defined(Q_OS_WIN)
     return "";
 #endif
+    const QString basePath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) +
+                                                                        QLatin1String("/thumbnails/");
+    if (originalPath.startsWith(basePath))
+        return QString(); // we're in the thumbnail cache, no point in checking stuff
+
     QStringList folders = {
         QStringLiteral("xx-large/"), // max 1024px
         QStringLiteral("x-large/"), // max 512px
@@ -1082,10 +1087,7 @@ QString ThumbsViewer::locateThumbnail(const QString &originalPath) const
     if (thumbSize <= 200) {
         folders.append(QStringLiteral("normal/")); // 128px max
     }
-
     const QString filename = thumbnailFileName(originalPath);
-    const QString basePath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) +
-        QLatin1String("/thumbnails/");
     const QFileInfo originalInfo(originalPath);
     for (const QString &folder : folders) {
         QFileInfo info(basePath + folder + filename);
