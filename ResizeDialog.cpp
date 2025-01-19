@@ -16,48 +16,40 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtWidgets/QWidget>
-#include <QtWidgets/qboxlayout.h>
-#include <QtWidgets/qpushbutton.h>
-#include <QtWidgets/QtWidgets>
-#include "ImageViewer.h"
+#include <QCheckBox>
+#include <QBoxLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QRadioButton>
+#include <QSpinBox>
 #include "ResizeDialog.h"
-#include "Settings.h"
 
-ResizeDialog::ResizeDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(parent) {
+
+ResizeDialog::ResizeDialog(QSize originalSize, QWidget *parent) : QDialog(parent) {
     setWindowTitle(tr("Scale Image"));
     setWindowIcon(QIcon::fromTheme("transform-scale", QIcon(":/images/phototonic.png")));
-    newWidth = newHeight = 0;
-
-    if (Settings::dialogLastX) {
-        move(Settings::dialogLastX, Settings::dialogLastY);
-    }
-    this->imageViewer = imageViewer;
-
-    width = lastWidth = imageViewer->getImageWidthPreCropped();
-    height = lastHeight = imageViewer->getImageHeightPreCropped();
 
     QHBoxLayout *buttonsHbox = new QHBoxLayout;
     QPushButton *okButton = new QPushButton(tr("Scale"));
-    connect(okButton, SIGNAL(clicked()), this, SLOT(ok()));
+    connect(okButton, &QPushButton::clicked, [=]() { accept(); });
     okButton->setDefault(true);
     QPushButton *cancelButton = new QPushButton(tr("Cancel"));
-    connect(cancelButton, SIGNAL(clicked()), this, SLOT(abort()));
+    connect(cancelButton, &QPushButton::clicked, [=]() { reject(); });
     buttonsHbox->addWidget(cancelButton, 1, Qt::AlignRight);
     buttonsHbox->addWidget(okButton, 0, Qt::AlignRight);
 
     widthSpinBox = new QSpinBox;
-    widthSpinBox->setRange(0, width * 10);
-    widthSpinBox->setValue(width);
+    widthSpinBox->setRange(0, originalSize.width() * 10);
+    widthSpinBox->setValue(originalSize.width());
     connect(widthSpinBox, SIGNAL(valueChanged(int)), this, SLOT(adjustSizes()));
     heightSpinBox = new QSpinBox;
-    heightSpinBox->setRange(0, height * 10);
-    heightSpinBox->setValue(height);
+    heightSpinBox->setRange(0, originalSize.height() * 10);
+    heightSpinBox->setValue(originalSize.height());
     connect(heightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(adjustSizes()));
 
     QGridLayout *mainGbox = new QGridLayout;
     QLabel *origSizeLab = new QLabel(tr("Current size:"));
-    QString imageSizeStr = QString::number(width) + " x " + QString::number(height);
+    QString imageSizeStr = QString("%1 x %2").arg(originalSize.width()).arg(originalSize.height());
     QLabel *origSizePixelsLab = new QLabel(imageSizeStr);
     QLabel *widthLab = new QLabel(tr("New Width:"));
     QLabel *heightLab = new QLabel(tr("New Height:"));
@@ -67,21 +59,17 @@ ResizeDialog::ResizeDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     newSizePixelsLabel = new QLabel(imageSizeStr);
 
     pixelsRadioButton = new QRadioButton(tr("Pixels"));
-    connect(pixelsRadioButton, SIGNAL(clicked()), this, SLOT(setUnits()));
-    percentRadioButton = new QRadioButton(tr("Percent"));
-    connect(percentRadioButton, SIGNAL(clicked()), this, SLOT(setUnits()));
     pixelsRadioButton->setChecked(true);
-    pixelUnits = true;
+    connect(pixelsRadioButton, SIGNAL(toggled(bool)), this, SLOT(setUnits()));
 
-    QCheckBox *lockAspectCb = new QCheckBox(tr("Keep aspect ratio"), this);
-    lockAspectCb->setChecked(true);
-    connect(lockAspectCb, SIGNAL(clicked()), this, SLOT(setAspectLock()));
-    keepAspect = true;
+    keepAspect = new QCheckBox(tr("Keep aspect ratio"), this);
+    keepAspect->setChecked(true);
+    connect(keepAspect, SIGNAL(toggled(bool)), this, SLOT(adjustSizes()));
 
     QHBoxLayout *radiosHbox = new QHBoxLayout;
     radiosHbox->addStretch(1);
     radiosHbox->addWidget(pixelsRadioButton);
-    radiosHbox->addWidget(percentRadioButton);
+    radiosHbox->addWidget(new QRadioButton(tr("Percent")));
 
     mainGbox->addWidget(origSizeLab, 2, 2, 1, 1);
     mainGbox->addWidget(origSizePixelsLab, 2, 4, 1, 1);
@@ -91,7 +79,7 @@ ResizeDialog::ResizeDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     mainGbox->addWidget(widthSpinBox, 6, 4, 1, 2);
     mainGbox->addWidget(heightSpinBox, 7, 4, 1, 2);
     mainGbox->addLayout(radiosHbox, 3, 4, 1, 3);
-    mainGbox->addWidget(lockAspectCb, 5, 2, 1, 3);
+    mainGbox->addWidget(keepAspect, 5, 2, 1, 3);
     mainGbox->addWidget(newSizeLab, 8, 2, 1, 1);
     mainGbox->addWidget(newSizePixelsLabel, 8, 4, 1, 1);
     mainGbox->setRowStretch(9, 1);
@@ -102,96 +90,69 @@ ResizeDialog::ResizeDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     mainVbox->addLayout(buttonsHbox);
     setLayout(mainVbox);
     widthSpinBox->setFocus(Qt::OtherFocusReason);
+
+    m_last = m_originalSize = originalSize;
 }
 
-void ResizeDialog::setAspectLock() {
-    keepAspect = ((QCheckBox *) QObject::sender())->isChecked();
-    adjustSizes();
+QSize ResizeDialog::newSize() {
+    return m_last;
 }
+
 
 void ResizeDialog::setUnits() {
-    int newWidth;
-    int newHeight;
-
-    if (pixelsRadioButton->isChecked() && !pixelUnits) {
-        newWidth = (width * widthSpinBox->value()) / 100;
-        newHeight = (height * heightSpinBox->value()) / 100;
-        widthSpinBox->setRange(0, width * 10);
-        heightSpinBox->setRange(0, height * 10);
-        pixelUnits = true;
-    } else {
-        newWidth = (100 * widthSpinBox->value()) / width;
-        newHeight = (100 * heightSpinBox->value()) / height;
+    int w = widthSpinBox->value(), h = heightSpinBox->value(); // preserve against range changes
+    widthSpinBox->blockSignals(true);
+    heightSpinBox->blockSignals(true);
+    if (pixelsRadioButton->isChecked()) { // percent -> pixels
+        widthSpinBox->setRange(0, m_originalSize.width() * 10);
+        heightSpinBox->setRange(0, m_originalSize.height() * 10);
+        widthSpinBox->setValue(qRound((m_originalSize.width() * w) / 100.));
+        heightSpinBox->setValue(qRound((m_originalSize.height() * h) / 100.0));
+        m_last = QSize(widthSpinBox->value(), heightSpinBox->value());
+    } else { // pixels -> percent
         widthSpinBox->setRange(0, 100 * 10);
         heightSpinBox->setRange(0, 100 * 10);
-        pixelUnits = false;
+        widthSpinBox->setValue(qRound((100.0 * w) / m_originalSize.width()));
+        heightSpinBox->setValue(qRound((100.0 * h) / m_originalSize.height()));
+        m_last = QSize(qRound((widthSpinBox->value() * m_originalSize.width()) / 100.0),
+                       qRound((heightSpinBox->value() * m_originalSize.height()) / 100.0));
     }
-
-    widthSpinBox->setValue(newWidth);
-    if (!keepAspect) {
-        heightSpinBox->setValue(newHeight);
-    }
+    widthSpinBox->blockSignals(false);
+    heightSpinBox->blockSignals(false);
 }
 
 void ResizeDialog::adjustSizes() {
-    static bool busy = false;
-    if (busy) {
-        return;
-    }
-    busy = true;
+    widthSpinBox->blockSignals(true);
+    heightSpinBox->blockSignals(true);
 
-    if (keepAspect) {
-        if (pixelUnits) {
-            QSize imageSize(width, height);
-            if (widthSpinBox->value() > lastWidth || heightSpinBox->value() > lastHeight) {
-                imageSize.scale(widthSpinBox->value(), heightSpinBox->value(), Qt::KeepAspectRatioByExpanding);
-            } else {
-                imageSize.scale(widthSpinBox->value(), heightSpinBox->value(), Qt::KeepAspectRatio);
-            }
+    if (keepAspect->isChecked()) {
+        if (pixelsRadioButton->isChecked()) {
+            QSize imageSize = m_originalSize;
 
+            Qt::AspectRatioMode aspect = Qt::KeepAspectRatio;
+            if (widthSpinBox->value() > m_last.width() || heightSpinBox->value() > m_last.height())
+                aspect = Qt::KeepAspectRatioByExpanding;
+
+            imageSize.scale(widthSpinBox->value(), heightSpinBox->value(), aspect);
             widthSpinBox->setValue(imageSize.width());
             heightSpinBox->setValue(imageSize.height());
-            lastWidth = widthSpinBox->value();
-            lastHeight = heightSpinBox->value();
-            newWidth = imageSize.width();
-            newHeight = imageSize.height();
         } else {
-            if (widthSpinBox->value() != lastWidth) {
-                heightSpinBox->setValue(widthSpinBox->value());
-            } else {
+            if (sender() == heightSpinBox) {
                 widthSpinBox->setValue(heightSpinBox->value());
+            } else {
+                heightSpinBox->setValue(widthSpinBox->value());
             }
-
-
-            lastWidth = widthSpinBox->value();
-            lastHeight = heightSpinBox->value();
-
-            newWidth = (width * widthSpinBox->value()) / 100;
-            newHeight = (height * heightSpinBox->value()) / 100;
-        }
-    } else {
-        if (pixelUnits) {
-            newWidth = widthSpinBox->value();
-            newHeight = heightSpinBox->value();
-        } else {
-            newWidth = (width * widthSpinBox->value()) / 100;
-            newHeight = (height * heightSpinBox->value()) / 100;
         }
     }
 
-    newSizePixelsLabel->setText(QString::number(newWidth) + " x " + QString::number(newHeight));
-    busy = false;
-}
-
-void ResizeDialog::ok() {
-    if (newWidth || newHeight) {
-        Settings::scaledWidth = newWidth;
-        Settings::scaledHeight = newHeight;
-        imageViewer->refresh();
+    int width = widthSpinBox->value(), height = heightSpinBox->value();
+    if (!pixelsRadioButton->isChecked()) {
+        width = qRound((width * m_originalSize.width()) / 100.0);
+        height = qRound((height * m_originalSize.height()) / 100.0);
     }
-    accept();
-}
+    m_last = QSize(width, height);
+    newSizePixelsLabel->setText(QString("%1 x %2").arg(width).arg(height));
 
-void ResizeDialog::abort() {
-    reject();
+    widthSpinBox->blockSignals(false);
+    heightSpinBox->blockSignals(false);
 }

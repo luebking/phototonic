@@ -56,11 +56,13 @@ public:
 
     void clearImage();
     void configureLetterbox();
+    QSize currentImageSize() const;
     bool isNewImage();
     void loadImage(QString imageFileName, const QImage &preview = QImage());
     void refresh();
     void reload();
     void resizeImage(QPoint focus = QPoint(-1, -1));
+    void scaleImage(QSize newSize);
     void setBackgroundColor();
     void setContextMenu(QMenu *);
     void setCursorHiding(bool hide);
@@ -70,8 +72,6 @@ public:
     void showFileName(bool yesno) { myFilenameLabel->setVisible(yesno); }
     void slideImage(QPoint delta);
 
-    int getImageWidthPreCropped();
-    int getImageHeightPreCropped();
     QPoint contextSpot();
 
 signals:

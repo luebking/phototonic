@@ -26,7 +26,6 @@ class FileListWidget;
 class FileSystemTree;
 class ImageViewer;
 class InfoView;
-class ResizeDialog;
 class SettingsDialog;
 class ThumbsViewer;
 class QFileSystemModel;
@@ -330,7 +329,6 @@ private:
     QToolButton *m_menuButton;
     QLabel *m_statusLabel;
 
-    QPointer<ResizeDialog> resizeDialog;
     QPointer<ColorsDialog> colorsDialog;
 
     void refreshThumbs(bool noScroll);

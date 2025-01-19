@@ -19,7 +19,7 @@
 #ifndef RESIZE_DIALOG_H
 #define RESIZE_DIALOG_H
 
-class ImageViewer;
+class QCheckBox;
 class QLabel;
 class QRadioButton;
 class QSpinBox;
@@ -29,36 +29,22 @@ class ResizeDialog : public QDialog {
 Q_OBJECT
 
 public:
-    ResizeDialog(QWidget *parent, ImageViewer *imageViewer);
+    ResizeDialog(QSize originalSize, QWidget *parent = nullptr);
+    QSize newSize();
 
-public slots:
-
-    void ok();
-
-    void abort();
-
-    void setAspectLock();
-
+private slots:
     void setUnits();
-
     void adjustSizes();
 
 private:
-    int width;
-    int height;
-    int lastWidth;
-    int lastHeight;
-    bool keepAspect;
-    bool pixelUnits;
-    int newWidth;
-    int newHeight;
+    QSize m_originalSize;
+    QSize m_last;
 
+    QCheckBox *keepAspect;
     QSpinBox *widthSpinBox;
     QSpinBox *heightSpinBox;
     QRadioButton *pixelsRadioButton;
-    QRadioButton *percentRadioButton;
     QLabel *newSizePixelsLabel;
-    ImageViewer *imageViewer;
 };
 
 #endif // RESIZE_DIALOG_H

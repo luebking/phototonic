@@ -296,6 +296,12 @@ void ImageViewer::resizeImage(QPoint focus) {
     busy = false;
 }
 
+void ImageViewer::scaleImage(QSize newSize) {
+    origImage = origImage.scaled(newSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+    refresh();
+    setFeedback(tr("New image size: %1x%2").arg(origImage.width()).arg(origImage.height()));
+}
+
 void ImageViewer::resizeEvent(QResizeEvent *event) {
     QWidget::resizeEvent(event);
     resizeImage();
@@ -555,12 +561,7 @@ void ImageViewer::refresh() {
         return;
     }
 
-    if (Settings::scaledWidth) {
-        viewerImage = origImage.scaled(Settings::scaledWidth, Settings::scaledHeight,
-                                       Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-    } else {
-        viewerImage = origImage;
-    }
+    viewerImage = origImage;
 
     if (Settings::colorsActive || Settings::keepTransform) {
         colorize();
@@ -601,7 +602,7 @@ void ImageViewer::reload() {
         Settings::rotation = 0;
         Settings::flipH = Settings::flipV = false;
     }
-    Settings::scaledWidth = Settings::scaledHeight = 0;
+
     if (!batchMode) {
         Settings::mouseRotateEnabled = false;
         emit toolsUpdated();
@@ -946,6 +947,10 @@ void ImageViewer::configureLetterbox() {
     dlg->exec();
 }
 
+QSize ImageViewer::currentImageSize() const {
+    return origImage.size();
+}
+
 void ImageViewer::setMouseMoveData(bool lockMove, int lMouseX, int lMouseY) {
     if (!imageWidget) {
         return;
@@ -1199,14 +1204,6 @@ void ImageViewer::contextMenuEvent(QContextMenuEvent *) {
     }
     m_contextSpot = QCursor::pos();
     myContextMenu->exec(m_contextSpot);
-}
-
-int ImageViewer::getImageWidthPreCropped() {
-    return origImage.width();
-}
-
-int ImageViewer::getImageHeightPreCropped() {
-    return origImage.height();
 }
 
 bool ImageViewer::isNewImage() {

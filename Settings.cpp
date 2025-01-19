@@ -90,8 +90,6 @@ namespace Settings {
     bool keepTransform;
     bool flipH;
     bool flipV;
-    int scaledWidth;
-    int scaledHeight;
     int defaultSaveQuality;
     int slideShowDelay;
     bool slideShowRandom;

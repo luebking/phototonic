@@ -104,8 +104,6 @@ namespace Settings {
     extern bool keepTransform;
     extern bool flipH;
     extern bool flipV;
-    extern int scaledWidth;
-    extern int scaledHeight;
     extern int defaultSaveQuality;
     extern int slideShowDelay;
     extern bool slideShowRandom;

@@ -1626,19 +1626,18 @@ void Phototonic::scaleImage() {
         toggleSlideShow();
     }
 
-    if (Settings::layoutMode == ThumbViewWidget && thumbsViewer->selectionModel()->selectedIndexes().size() < 1) {
-        setStatus(tr("No selection"));
-        return;
+    if (Settings::layoutMode == ImageViewWidget) {
+        ResizeDialog dlg(imageViewer->currentImageSize(), imageViewer);
+        if (dlg.exec() == QDialog::Accepted) {
+            imageViewer->scaleImage(dlg.newSize());
+        }
+    } else {
+        if (thumbsViewer->selectionModel()->selectedIndexes().size() < 1) {
+            setStatus(tr("No selection"));
+            return;
+        }
+        /// @todo: looks like there were plans to allow mass-resizing from the thumbnail browser
     }
-
-    resizeDialog = new ResizeDialog(this, imageViewer);
-    connect(resizeDialog, &QDialog::finished, [=](){ if (resizeDialog) {
-                                                        resizeDialog->deleteLater();
-                                                        resizeDialog = nullptr;
-                                                     } setInterfaceEnabled(true); });
-
-    resizeDialog->show();
-    setInterfaceEnabled(false);
 }
 
 void Phototonic::freeRotateLeft() {
