@@ -814,7 +814,11 @@ void Phototonic::createActions() {
     keepTransformAction = new QAction(tr("Keep Transformations"), this);
     keepTransformAction->setObjectName("keepTransform");
     keepTransformAction->setCheckable(true);
-    connect(keepTransformAction, SIGNAL(triggered()), this, SLOT(keepTransformClicked()));
+    connect(keepTransformAction, &QAction::triggered, [=](){
+        Settings::keepTransform = keepTransformAction->isChecked();
+        imageViewer->setFeedback(Settings::keepTransform ? tr("Transformations Locked") : tr("Transformations Unlocked"));
+//        imageViewer->refresh();
+        });
 
     moveLeftAction = new QAction(tr("Move Image Left"), this);
     moveLeftAction->setObjectName("moveLeft");
@@ -1577,22 +1581,6 @@ void Phototonic::keepZoom() {
     } else {
         imageViewer->setFeedback(tr("Zoom Unlocked"));
     }
-}
-
-void Phototonic::keepTransformClicked() {
-    Settings::keepTransform = keepTransformAction->isChecked();
-
-    if (Settings::keepTransform) {
-        imageViewer->setFeedback(tr("Transformations Locked"));
-//        if (cropDialog) {
-//            cropDialog->applyCrop(0);
-//        }
-    } else {
-//        Settings::cropLeftPercent = Settings::cropTopPercent = Settings::cropWidthPercent = Settings::cropHeightPercent = 0;
-        imageViewer->setFeedback(tr("Transformations Unlocked"));
-    }
-
-    imageViewer->refresh();
 }
 
 void Phototonic::rotateLeft() {

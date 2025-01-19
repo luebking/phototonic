@@ -138,8 +138,6 @@ private slots:
 
     void keepZoom();
 
-    void keepTransformClicked();
-
     void rotateLeft();
 
     void rotateRight();
