@@ -939,13 +939,13 @@ void Phototonic::createMenus() {
     sortMenu->addSeparator();
     sortMenu->addAction(sortReverseAction);
     menu->addSeparator();
-
     menu->addAction(includeSubDirectoriesAction);
     menu->addAction(showHiddenFilesAction);
     menu->addSeparator();
     menu->addAction(refreshAction);
     menu->addSeparator();
 
+    myMainMenu->addAction(settingsAction);
     myMainMenu->addAction(aboutAction);
 
     // thumbs viewer context menu
