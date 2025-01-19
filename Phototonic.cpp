@@ -3339,11 +3339,18 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
             int v = (animator->state() == QAbstractAnimation::Running) ? animator->endValue().toInt() : 
                                                                          thumbsViewer->verticalScrollBar()->value();
             animator->setStartValue(v);
-            if (qAbs(steps) == 100)
-                v += grid*qMax(1,int(thumbsViewer->height()/grid))*(steps/qAbs(steps));
-            else
-                v += grid*steps;
-            v = grid*int(steps < 0 ? qCeil(v/float(grid)) : v/grid);
+            if (qAbs(steps) == 1000) {
+                if (steps > 0)
+                    v = thumbsViewer->verticalScrollBar()->maximum();
+                else
+                    v = thumbsViewer->verticalScrollBar()->minimum();
+            } else {
+                if (qAbs(steps) == 100)
+                    v += grid*qMax(1,int(thumbsViewer->height()/grid))*(steps/qAbs(steps));
+                else
+                    v += grid*steps;
+                v = grid*int(steps < 0 ? qCeil(v/float(grid)) : v/grid);
+            }
             animator->setEndValue(v);
             animator->start();
     };
@@ -3356,6 +3363,22 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
         } else if (ke->key() == Qt::Key_PageDown) {
             scrollThumbs(100);
             return true;
+        } else if (ke->key() == Qt::Key_Home) {
+            scrollThumbs(-1000);
+            return true;
+        } else if (ke->key() == Qt::Key_End) {
+            scrollThumbs(1000);
+            return true;
+        } else if (ke->key() == Qt::Key_Up) {
+            if (!ke->modifiers() && !thumbsViewer->rect().intersects(thumbsViewer->visualRect(thumbsViewer->currentIndex()))) {
+                thumbsViewer->setCurrentIndex(thumbsViewer->indexAt(thumbsViewer->rect().bottomLeft() + QPoint(32, -64)));
+                return true;
+            }
+        } else if (ke->key() == Qt::Key_Down) {
+            if (!ke->modifiers() && !thumbsViewer->rect().intersects(thumbsViewer->visualRect(thumbsViewer->currentIndex()))) {
+                thumbsViewer->setCurrentIndex(thumbsViewer->indexAt(thumbsViewer->rect().topLeft() + QPoint(32, 32)));
+                return true;
+            }
         }
         return QMainWindow::eventFilter(o, e);
     }
