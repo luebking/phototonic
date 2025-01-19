@@ -2024,6 +2024,7 @@ void Phototonic::goPathBarDir() {
     Settings::currentDirectory = pathLineEdit->text();
     refreshThumbs(true);
     selectCurrentViewDir();
+    thumbsViewer->setFocus(Qt::OtherFocusReason);
 }
 
 void Phototonic::goBack() {
