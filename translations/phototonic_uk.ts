@@ -462,7 +462,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="627"/>
+        <location filename="../ImageViewer.cpp" line="625"/>
         <source>skipping animation in batch mode:</source>
         <extracomment>this is a warning on the console</extracomment>
         <translation type="unfinished"></translation>
@@ -478,57 +478,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1083"/>
+        <location filename="../ImageViewer.cpp" line="982"/>
+        <source>Rotation %1°</source>
+        <translation type="unfinished">Обертання %1°</translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="1088"/>
         <source>Saving...</source>
         <translation>Збереження...</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1102"/>
-        <location filename="../ImageViewer.cpp" line="1132"/>
-        <location filename="../ImageViewer.cpp" line="1180"/>
+        <location filename="../ImageViewer.cpp" line="1107"/>
+        <location filename="../ImageViewer.cpp" line="1137"/>
+        <location filename="../ImageViewer.cpp" line="1185"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1102"/>
-        <location filename="../ImageViewer.cpp" line="1180"/>
+        <location filename="../ImageViewer.cpp" line="1107"/>
+        <location filename="../ImageViewer.cpp" line="1185"/>
         <source>Failed to save image.</source>
         <translation>Неможливо зберегти зображення.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1130"/>
+        <location filename="../ImageViewer.cpp" line="1135"/>
         <source>Don&apos;t show this message again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1132"/>
+        <location filename="../ImageViewer.cpp" line="1137"/>
         <source>Failed to save Exif metadata.</source>
         <translation>Неможливо зберегти метадані Exif.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1136"/>
+        <location filename="../ImageViewer.cpp" line="1141"/>
         <source>Failed to safe Exif metadata:</source>
         <extracomment>this is a warning on the console</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1142"/>
-        <location filename="../ImageViewer.cpp" line="1193"/>
+        <location filename="../ImageViewer.cpp" line="1147"/>
+        <location filename="../ImageViewer.cpp" line="1198"/>
         <source>Image saved.</source>
         <translation>Зображення збережене.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1162"/>
+        <location filename="../ImageViewer.cpp" line="1167"/>
         <source>Save image as</source>
         <translation>Зберегти зображення як</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1164"/>
+        <location filename="../ImageViewer.cpp" line="1169"/>
         <source>Images</source>
         <translation>Зображення</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1229"/>
+        <location filename="../ImageViewer.cpp" line="1234"/>
         <source>Clipboard</source>
         <translation>Буфер обміну</translation>
     </message>
@@ -757,8 +762,8 @@
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="492"/>
-        <location filename="../Phototonic.cpp" line="1831"/>
-        <location filename="../Phototonic.cpp" line="1936"/>
+        <location filename="../Phototonic.cpp" line="1839"/>
+        <location filename="../Phototonic.cpp" line="1944"/>
         <source>Move to Trash</source>
         <translation>Перемістити до кошика</translation>
     </message>
@@ -859,7 +864,7 @@
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="649"/>
-        <location filename="../Phototonic.cpp" line="2696"/>
+        <location filename="../Phototonic.cpp" line="2704"/>
         <source>Slide Show</source>
         <translation>Слайд-шоу</translation>
     </message>
@@ -1018,23 +1023,23 @@
         <location filename="../Phototonic.cpp" line="180"/>
         <location filename="../Phototonic.cpp" line="1316"/>
         <location filename="../Phototonic.cpp" line="1495"/>
-        <location filename="../Phototonic.cpp" line="1748"/>
-        <location filename="../Phototonic.cpp" line="1760"/>
-        <location filename="../Phototonic.cpp" line="1891"/>
-        <location filename="../Phototonic.cpp" line="1959"/>
-        <location filename="../Phototonic.cpp" line="2031"/>
-        <location filename="../Phototonic.cpp" line="2861"/>
-        <location filename="../Phototonic.cpp" line="2867"/>
-        <location filename="../Phototonic.cpp" line="2890"/>
-        <location filename="../Phototonic.cpp" line="2977"/>
-        <location filename="../Phototonic.cpp" line="3072"/>
-        <location filename="../Phototonic.cpp" line="3082"/>
-        <location filename="../Phototonic.cpp" line="3136"/>
-        <location filename="../Phototonic.cpp" line="3161"/>
-        <location filename="../Phototonic.cpp" line="3217"/>
-        <location filename="../Phototonic.cpp" line="3260"/>
-        <location filename="../Phototonic.cpp" line="3293"/>
-        <location filename="../Phototonic.cpp" line="3303"/>
+        <location filename="../Phototonic.cpp" line="1756"/>
+        <location filename="../Phototonic.cpp" line="1768"/>
+        <location filename="../Phototonic.cpp" line="1899"/>
+        <location filename="../Phototonic.cpp" line="1967"/>
+        <location filename="../Phototonic.cpp" line="2039"/>
+        <location filename="../Phototonic.cpp" line="2869"/>
+        <location filename="../Phototonic.cpp" line="2875"/>
+        <location filename="../Phototonic.cpp" line="2898"/>
+        <location filename="../Phototonic.cpp" line="2985"/>
+        <location filename="../Phototonic.cpp" line="3080"/>
+        <location filename="../Phototonic.cpp" line="3090"/>
+        <location filename="../Phototonic.cpp" line="3144"/>
+        <location filename="../Phototonic.cpp" line="3169"/>
+        <location filename="../Phototonic.cpp" line="3225"/>
+        <location filename="../Phototonic.cpp" line="3268"/>
+        <location filename="../Phototonic.cpp" line="3301"/>
+        <location filename="../Phototonic.cpp" line="3311"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
@@ -1093,10 +1098,10 @@
         <translation>Перетворення розблоковані</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1601"/>
-        <location filename="../Phototonic.cpp" line="1609"/>
-        <location filename="../Phototonic.cpp" line="1658"/>
-        <location filename="../Phototonic.cpp" line="1666"/>
+        <location filename="../Phototonic.cpp" line="1604"/>
+        <location filename="../Phototonic.cpp" line="1615"/>
+        <location filename="../Phototonic.cpp" line="1664"/>
+        <location filename="../Phototonic.cpp" line="1672"/>
         <source>Rotation %1°</source>
         <translation>Обертання %1°</translation>
     </message>
@@ -1105,28 +1110,28 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1615"/>
+        <location filename="../Phototonic.cpp" line="1621"/>
         <source>Flipped Vertically</source>
         <translation>Відбите по вертикалі</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1615"/>
+        <location filename="../Phototonic.cpp" line="1621"/>
         <source>Unflipped Vertically</source>
         <translation>Повернене у вихідне положення по вертикалі</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1621"/>
+        <location filename="../Phototonic.cpp" line="1627"/>
         <source>Flipped Horizontally</source>
         <translation>Відбите по горизонталі</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1621"/>
+        <location filename="../Phototonic.cpp" line="1627"/>
         <source>Unflipped Horizontally</source>
         <translation>Повернене у вихідне положення по горизонталі</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1646"/>
-        <location filename="../Phototonic.cpp" line="1817"/>
+        <location filename="../Phototonic.cpp" line="1652"/>
+        <location filename="../Phototonic.cpp" line="1825"/>
         <source>No selection</source>
         <translation>Немає виділення</translation>
     </message>
@@ -1183,7 +1188,7 @@
         <translation type="vanished">Видалене </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1959"/>
+        <location filename="../Phototonic.cpp" line="1967"/>
         <source>Failed to delete image</source>
         <translation>Неможливо видалити зображення</translation>
     </message>
@@ -1208,8 +1213,8 @@
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="519"/>
-        <location filename="../Phototonic.cpp" line="3191"/>
-        <location filename="../Phototonic.cpp" line="3194"/>
+        <location filename="../Phototonic.cpp" line="3199"/>
+        <location filename="../Phototonic.cpp" line="3202"/>
         <source>Remove Metadata</source>
         <translation>Видалити метадані</translation>
     </message>
@@ -1418,7 +1423,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1760"/>
+        <location filename="../Phototonic.cpp" line="1768"/>
         <source>Can not move to the same directory</source>
         <translation>Неможливо перемістити до того ж каталогу</translation>
     </message>
@@ -1427,18 +1432,18 @@
         <translation type="vanished">Перемістити зображення до кошика?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1831"/>
-        <location filename="../Phototonic.cpp" line="1936"/>
+        <location filename="../Phototonic.cpp" line="1839"/>
+        <location filename="../Phototonic.cpp" line="1944"/>
         <source>Delete images</source>
         <translation>Видалити зображення</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1892"/>
+        <location filename="../Phototonic.cpp" line="1900"/>
         <source>Failed to delete image.</source>
         <translation>Неможливо видалити зображення.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1892"/>
+        <location filename="../Phototonic.cpp" line="1900"/>
         <source>Failed to move image to the trash.</source>
         <translation>Неможливо перемістити зображення до кошика.</translation>
     </message>
@@ -1447,12 +1452,12 @@
         <translation type="vanished">Видалене</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1935"/>
+        <location filename="../Phototonic.cpp" line="1943"/>
         <source>Move %1 to the trash</source>
         <translation>Перемістити %1 до кошика</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1935"/>
+        <location filename="../Phototonic.cpp" line="1943"/>
         <source>Permanently delete %1</source>
         <translation>Видалити назавжди %1</translation>
     </message>
@@ -1471,37 +1476,43 @@
         <translation>Неможливо відкрити %1, файл не знайдено.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2861"/>
+        <location filename="../Phototonic.cpp" line="1028"/>
+        <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.</source>
+        <extracomment>This is a tooltip explaining extended filter features</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="2869"/>
         <source>Can not move or copy images to this directory.</source>
         <translation>Неможливо перемістити або копіювати зображення до цього каталогу.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2867"/>
+        <location filename="../Phototonic.cpp" line="2875"/>
         <source>Destination directory is the same as the source directory.</source>
         <translation>Каталог призначення той же, жо й початковий каталог.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2875"/>
+        <location filename="../Phototonic.cpp" line="2883"/>
         <source>Move directory %1 to %2?</source>
         <translation>Перемістити каталог %1 до %2?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2879"/>
+        <location filename="../Phototonic.cpp" line="2887"/>
         <source>Move directory</source>
         <translation>Перемістити каталог</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2882"/>
+        <location filename="../Phototonic.cpp" line="2890"/>
         <source>Move Directory</source>
         <translation>Перемістити каталог</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2890"/>
+        <location filename="../Phototonic.cpp" line="2898"/>
         <source>Failed to move directory.</source>
         <translation>Неможливо перемістити каталог.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2892"/>
+        <location filename="../Phototonic.cpp" line="2900"/>
         <source>Directory moved</source>
         <translation>Каталог переміщено</translation>
     </message>
@@ -1510,42 +1521,42 @@
         <translation type="vanished">Неможливо відкрити каталог </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2978"/>
+        <location filename="../Phototonic.cpp" line="2986"/>
         <source>No directory selected</source>
         <translation>Не вибрано каталог</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3049"/>
+        <location filename="../Phototonic.cpp" line="3057"/>
         <source>Files List</source>
         <translation>Список файлів</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3082"/>
+        <location filename="../Phototonic.cpp" line="3090"/>
         <source>Failed to rename directory.</source>
         <translation>Неможливо перейменувати каталог.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3190"/>
+        <location filename="../Phototonic.cpp" line="3198"/>
         <source>Permanently remove all Exif metadata from selected images?</source>
         <translation>Видалити назавжди усі метадані Exif з вибраного зображення?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3217"/>
+        <location filename="../Phototonic.cpp" line="3225"/>
         <source>Failed to remove Exif metadata.</source>
         <translation>Неможливо видалити метадані Exif.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3223"/>
+        <location filename="../Phototonic.cpp" line="3231"/>
         <source>Metadata removed from selected images</source>
         <translation>Метадані видалені з вибраних зображень</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3234"/>
+        <location filename="../Phototonic.cpp" line="3242"/>
         <source>Move directory %1 to the trash?</source>
         <translation>Перемістити каталог %1 до кошика?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3235"/>
+        <location filename="../Phototonic.cpp" line="3243"/>
         <source>Permanently delete the directory %1 and all of its contents?</source>
         <translation>Видалити назавжди каталог %1 і увесь його вміст?</translation>
     </message>
@@ -1554,13 +1565,13 @@
         <translation type="vanished">Видалити каталог</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3243"/>
+        <location filename="../Phototonic.cpp" line="3251"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3240"/>
-        <location filename="../Phototonic.cpp" line="3243"/>
+        <location filename="../Phototonic.cpp" line="3248"/>
+        <location filename="../Phototonic.cpp" line="3251"/>
         <source>Delete Directory</source>
         <translation>Видалити каталог</translation>
     </message>
@@ -1569,32 +1580,32 @@
         <translation type="vanished">Неможливо перемістити каталог до кошика:%1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3261"/>
+        <location filename="../Phototonic.cpp" line="3269"/>
         <source>Failed to delete directory.</source>
         <translation>Неможливо видалити каталог.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3283"/>
+        <location filename="../Phototonic.cpp" line="3291"/>
         <source>New Sub directory</source>
         <translation>Новий підкаталог</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3284"/>
+        <location filename="../Phototonic.cpp" line="3292"/>
         <source>New directory name:</source>
         <translation>Ім’я нового каталогу:</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3303"/>
+        <location filename="../Phototonic.cpp" line="3311"/>
         <source>Failed to create new directory.</source>
         <translation>Неможливо створити новий каталог.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3308"/>
+        <location filename="../Phototonic.cpp" line="3316"/>
         <source>Created %1</source>
         <translation>Створено %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2640"/>
+        <location filename="../Phototonic.cpp" line="2648"/>
         <source>No images</source>
         <translation>Немає зображень</translation>
     </message>
@@ -1647,12 +1658,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1028"/>
-        <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.</source>
-        <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Phototonic.cpp" line="1053"/>
         <source>Menu</source>
         <translation type="unfinished"></translation>
@@ -1691,38 +1696,38 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1673"/>
+        <location filename="../Phototonic.cpp" line="1679"/>
         <source>No images selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1673"/>
+        <location filename="../Phototonic.cpp" line="1679"/>
         <source>Please select the images to transform.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1678"/>
+        <location filename="../Phototonic.cpp" line="1685"/>
         <source>Rotate %1 images by %2 degrees, then crop them to %3, %4 %5 x %6, overwiting the original files?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1682"/>
+        <location filename="../Phototonic.cpp" line="1689"/>
         <source>Rotate %1 images by %2 degrees, then crop them to %3, %4 %5 x %6, saving the transformed images to %7?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1686"/>
+        <location filename="../Phototonic.cpp" line="1694"/>
         <source>Perform batch transformation?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1748"/>
+        <location filename="../Phototonic.cpp" line="1756"/>
         <source>Can not copy or move to %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1782"/>
-        <location filename="../Phototonic.cpp" line="2909"/>
+        <location filename="../Phototonic.cpp" line="1790"/>
+        <location filename="../Phototonic.cpp" line="2917"/>
         <source>Copied %n image(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1731,8 +1736,8 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1783"/>
-        <location filename="../Phototonic.cpp" line="2910"/>
+        <location filename="../Phototonic.cpp" line="1791"/>
+        <location filename="../Phototonic.cpp" line="2918"/>
         <source>Moved %n image(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1741,7 +1746,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1827"/>
+        <location filename="../Phototonic.cpp" line="1835"/>
         <source>Move %n selected image(s) to the trash?</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1750,7 +1755,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1828"/>
+        <location filename="../Phototonic.cpp" line="1836"/>
         <source>Permanently delete %n selected image(s)?</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1759,12 +1764,12 @@
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1866"/>
+        <location filename="../Phototonic.cpp" line="1874"/>
         <source>Deleting %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1914"/>
+        <location filename="../Phototonic.cpp" line="1922"/>
         <source>Deleted %n image(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1773,100 +1778,100 @@
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1955"/>
+        <location filename="../Phototonic.cpp" line="1963"/>
         <source>Deleted %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2031"/>
+        <location filename="../Phototonic.cpp" line="2039"/>
         <source>Invalid Path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2697"/>
+        <location filename="../Phototonic.cpp" line="2705"/>
         <source>Slide show stopped</source>
         <translation>Слайд-шоу зупинене</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2724"/>
+        <location filename="../Phototonic.cpp" line="2732"/>
         <source>Stop Slide Show</source>
         <translation>Зупинити слайд-шоу</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2725"/>
+        <location filename="../Phototonic.cpp" line="2733"/>
         <source>Slide show started</source>
         <translation>Розпочалося слайд-шоу</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2977"/>
+        <location filename="../Phototonic.cpp" line="2985"/>
         <source>Failed to open directory %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3008"/>
+        <location filename="../Phototonic.cpp" line="3016"/>
         <source>Searching duplicates: %v / %m</source>
         <extracomment>%v and %m are literal pattterns for QProgressBar (value and maximum)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3047"/>
+        <location filename="../Phototonic.cpp" line="3055"/>
         <source>Duplicate images in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3060"/>
+        <location filename="../Phototonic.cpp" line="3068"/>
         <source>Rename %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3062"/>
+        <location filename="../Phototonic.cpp" line="3070"/>
         <source>New name:</source>
         <translation>Нове ім&apos;я:</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3072"/>
-        <location filename="../Phototonic.cpp" line="3293"/>
+        <location filename="../Phototonic.cpp" line="3080"/>
+        <location filename="../Phototonic.cpp" line="3301"/>
         <source>Invalid name entered.</source>
         <translation>Введено неправильне ім&apos;я.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3113"/>
-        <location filename="../Phototonic.cpp" line="3181"/>
+        <location filename="../Phototonic.cpp" line="3121"/>
+        <location filename="../Phototonic.cpp" line="3189"/>
         <source>Invalid selection</source>
         <translation>Неправильне виділення</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3136"/>
+        <location filename="../Phototonic.cpp" line="3144"/>
         <source>No name entered.</source>
         <translation>Ім&apos;я не було введене.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3161"/>
+        <location filename="../Phototonic.cpp" line="3169"/>
         <source>Failed to rename image.</source>
         <translation>Неможливо перейменувати зображення.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3260"/>
+        <location filename="../Phototonic.cpp" line="3268"/>
         <source>Failed to move directory to the trash:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3266"/>
+        <location filename="../Phototonic.cpp" line="3274"/>
         <source>Removed &quot;%1&quot;</source>
         <translation>Видалено &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3314"/>
+        <location filename="../Phototonic.cpp" line="3322"/>
         <source>Directory to save images into:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3438"/>
+        <location filename="../Phototonic.cpp" line="3446"/>
         <source>Warning</source>
         <translation>Увага</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3438"/>
+        <location filename="../Phototonic.cpp" line="3446"/>
         <source>Cannot perform action with temporary image.</source>
         <translation>Неможливо виконати дію з тимчасовим зображенням.</translation>
     </message>
@@ -2321,12 +2326,12 @@
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="624"/>
+        <location filename="../ThumbsViewer.cpp" line="652"/>
         <source>Searching duplicate images...</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="736"/>
+        <location filename="../ThumbsViewer.cpp" line="778"/>
         <source>%n image(s)</source>
         <translation>
             <numerusform>%n зображення</numerusform>
@@ -2335,13 +2340,13 @@
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="736"/>
+        <location filename="../ThumbsViewer.cpp" line="778"/>
         <source>No images</source>
         <translation>Немає зображень</translation>
     </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="768"/>
-        <location filename="../ThumbsViewer.cpp" line="838"/>
+        <location filename="../ThumbsViewer.cpp" line="810"/>
+        <location filename="../ThumbsViewer.cpp" line="880"/>
         <source>Found %n duplicate(s) among %1 files</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2350,28 +2355,28 @@
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="859"/>
+        <location filename="../ThumbsViewer.cpp" line="901"/>
         <source>Loading thumbnails...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="859"/>
-        <location filename="../ThumbsViewer.cpp" line="914"/>
+        <location filename="../ThumbsViewer.cpp" line="901"/>
+        <location filename="../ThumbsViewer.cpp" line="956"/>
         <source>Abort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="914"/>
+        <location filename="../ThumbsViewer.cpp" line="956"/>
         <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="943"/>
+        <location filename="../ThumbsViewer.cpp" line="985"/>
         <source>Comparing...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="974"/>
+        <location filename="../ThumbsViewer.cpp" line="1016"/>
         <source>Sorting...</source>
         <translation type="unfinished"></translation>
     </message>
