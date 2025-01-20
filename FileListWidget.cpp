@@ -35,7 +35,8 @@ FileListWidget::FileListWidget(QWidget *parent) : QTreeWidget(parent) {
 
 void FileListWidget::addFileListEntry() {
     QTreeWidgetItem *item = new QTreeWidgetItem(this);
-    item->setText(0, "File List");
+    //: The file list is the optional list of files in the execution parameters, some virtual directory
+    item->setText(0, tr("File List"));
     item->setIcon(0, style()->standardIcon(QStyle::SP_FileDialogDetailedView));
     insertTopLevelItem(0, item);
 }

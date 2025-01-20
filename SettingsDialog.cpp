@@ -40,7 +40,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
 
     // Zoom large images
     QGroupBox *fitLargeGroupBox = new QGroupBox(tr("Fit Large Images"));
-    fitLargeRadios[0] = new QRadioButton(tr("Disable"));
+    fitLargeRadios[0] = new QRadioButton(tr("No"));
     fitLargeRadios[1] = new QRadioButton(tr("By width or height"));
     fitLargeRadios[2] = new QRadioButton(tr("By width"));
     fitLargeRadios[3] = new QRadioButton(tr("By height"));
@@ -56,7 +56,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
 
     // Zoom small images
     QGroupBox *fitSmallGroupBox = new QGroupBox(tr("Fit Small Images"));
-    fitSmallRadios[0] = new QRadioButton(tr("Disable"));
+    fitSmallRadios[0] = new QRadioButton(tr("No"));
     fitSmallRadios[1] = new QRadioButton(tr("By width or height"));
     fitSmallRadios[2] = new QRadioButton(tr("By width"));
     fitSmallRadios[3] = new QRadioButton(tr("By height"));
@@ -214,6 +214,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     QGroupBox *startupDirGroupBox = new QGroupBox(tr("Startup directory if not specified by command line"));
     startupDirectoryRadioButtons[Settings::RememberLastDir] = new QRadioButton(tr("Remember last"));
     startupDirectoryRadioButtons[Settings::DefaultDir] = new QRadioButton(tr("Default"));
+    //: specificy a startup directory
     startupDirectoryRadioButtons[Settings::SpecifiedDir] = new QRadioButton(tr("Specify:"));
 
     startupDirLineEdit = new QLineEdit;
@@ -254,7 +255,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     // Keyboard shortcuts
     ShortcutsTable *shortcutsTable = new ShortcutsTable();
     shortcutsTable->refreshShortcuts();
-    QGroupBox *keyboardGroupBox = new QGroupBox(tr("Keyboard"));
+    QGroupBox *keyboardGroupBox = new QGroupBox(tr("Shortcuts"));
     QVBoxLayout *keyboardSettingsLayout = new QVBoxLayout;
 
     QHBoxLayout *filterShortcutsLayout = new QHBoxLayout;
@@ -300,7 +301,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     slideshowLayout->addWidget(slideRandomCheckBox);
     slideshowLayout->addStretch(1);
 
-    QGroupBox *slideshowGroupBox = new QGroupBox(tr("Slide Show"));
+    QGroupBox *slideshowGroupBox = new QGroupBox(tr("Slideshow"));
     slideshowGroupBox->setLayout(slideshowLayout);
     generalSettingsLayout->addWidget(slideshowGroupBox);
     generalSettingsLayout->addWidget(setWindowIconCheckBox);
@@ -335,7 +336,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
 
     QWidget *keyboardSettings = new QWidget;
     keyboardSettings->setLayout(keyboardSettingsLayout);
-    settingsTabs->addTab(keyboardSettings, tr("Keyboard"));
+    settingsTabs->addTab(keyboardSettings, tr("Shortcuts"));
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addWidget(settingsTabs);

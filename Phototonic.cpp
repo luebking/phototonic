@@ -338,7 +338,7 @@ void Phototonic::createImageViewer() {
 
     submenu->addAction(keepZoomAction);
 
-    submenu = menu->addMenu(tr("Mirroring") + " && " + tr("Rotate"));
+    submenu = menu->addMenu(tr("Flip and Flop and Rotate"));
     submenu->addAction(flipHorizontalAction);
     submenu->addAction(flipVerticalAction);
     submenu->addSeparator();
@@ -353,7 +353,7 @@ void Phototonic::createImageViewer() {
     menu = contextMenu->addMenu(tr("Edit"));
     menu->addAction(resizeAction);
     menu->addAction(colorsAction);
-    submenu = menu->addMenu(tr("Mirroring"));
+    submenu = menu->addMenu(tr("Mirror"));
     QActionGroup *group = new QActionGroup(submenu);
     group->addAction(mirrorDisabledAction);
     group->addAction(mirrorDualAction);
@@ -378,6 +378,7 @@ void Phototonic::createImageViewer() {
     menu->addSeparator();
     menu->addAction(cropAction);
 
+    //: The guides a lines across the image for orientation
     submenu = menu->addMenu(tr("Guides"));
     QAction *act = new QAction(tr("Add vertical guide"), submenu);
     connect(act, &QAction::triggered, [=]() { new GuideWidget(imageViewer, Qt::Vertical, imageViewer->contextSpot().x()); });
@@ -542,7 +543,7 @@ void Phototonic::createActions() {
     sortByTypeAction->setObjectName("type");
     sortBySimilarityAction = new QAction(tr("Sort by Similarity"), this);
     sortBySimilarityAction->setObjectName("similarity");
-    sortReverseAction = new QAction(tr("Reverse Order"), this);
+    sortReverseAction = new QAction(tr("Reverse Sort Order"), this);
     sortReverseAction->setObjectName("reverse");
     sortByNameAction->setCheckable(true);
     sortByTimeAction->setCheckable(true);
@@ -731,12 +732,12 @@ void Phototonic::createActions() {
     keepZoomAction->setCheckable(true);
     connect(keepZoomAction, SIGNAL(triggered()), this, SLOT(keepZoom()));
 
-    rotateLeftAction = new QAction(tr("Rotate 90 degree CCW"), this);
+    rotateLeftAction = new QAction(tr("Rotate 90° CCW"), this);
     rotateLeftAction->setObjectName("rotateLeft");
     rotateLeftAction->setIcon(QIcon::fromTheme("object-rotate-left", QIcon(":/images/rotate_left.png")));
     connect(rotateLeftAction, SIGNAL(triggered()), this, SLOT(rotateLeft()));
 
-    rotateRightAction = new QAction(tr("Rotate 90 degree CW"), this);
+    rotateRightAction = new QAction(tr("Rotate 90° CW"), this);
     rotateRightAction->setObjectName("rotateRight");
     rotateRightAction->setIcon(QIcon::fromTheme("object-rotate-right", QIcon(":/images/rotate_right.png")));
     connect(rotateRightAction, SIGNAL(triggered()), this, SLOT(rotateRight()));
@@ -770,11 +771,11 @@ void Phototonic::createActions() {
     resizeAction->setIcon(QIcon::fromTheme("transform-scale", QIcon(":/images/scale.png")));
     connect(resizeAction, SIGNAL(triggered()), this, SLOT(scaleImage()));
 
-    freeRotateLeftAction = new QAction(tr("Rotate 1 degree CCW"), this);
+    freeRotateLeftAction = new QAction(tr("Rotate 1° CCW"), this);
     freeRotateLeftAction->setObjectName("freeRotateLeft");
     connect(freeRotateLeftAction, SIGNAL(triggered()), this, SLOT(freeRotateLeft()));
 
-    freeRotateRightAction = new QAction(tr("Rotate 1 degree CW"), this);
+    freeRotateRightAction = new QAction(tr("Rotate 1° CW"), this);
     freeRotateRightAction->setObjectName("freeRotateRight");
     connect(freeRotateRightAction, SIGNAL(triggered()), this, SLOT(freeRotateRight()));
 
@@ -821,16 +822,16 @@ void Phototonic::createActions() {
 //        imageViewer->refresh();
         });
 
-    moveLeftAction = new QAction(tr("Move Image Left"), this);
+    moveLeftAction = new QAction(tr("Slide Image Left"), this);
     moveLeftAction->setObjectName("moveLeft");
     connect(moveLeftAction, &QAction::triggered, [=](){ imageViewer->slideImage(QPoint(50, 0)); });
-    moveRightAction = new QAction(tr("Move Image Right"), this);
+    moveRightAction = new QAction(tr("Slide Image Right"), this);
     moveRightAction->setObjectName("moveRight");
     connect(moveRightAction, &QAction::triggered, [=](){ imageViewer->slideImage(QPoint(-50, 0)); });
-    moveUpAction = new QAction(tr("Move Image Up"), this);
+    moveUpAction = new QAction(tr("Slide Image Up"), this);
     moveUpAction->setObjectName("moveUp");
     connect(moveUpAction, &QAction::triggered, [=](){ imageViewer->slideImage(QPoint(0, 50)); });
-    moveDownAction = new QAction(tr("Move Image Down"), this);
+    moveDownAction = new QAction(tr("Slide Image Down"), this);
     moveDownAction->setObjectName("moveDown");
     connect(moveDownAction, &QAction::triggered, [=](){ imageViewer->slideImage(QPoint(0, -50)); });
 
@@ -902,6 +903,7 @@ void Phototonic::createMenus() {
     menu->addAction(externalAppsAction);
     menu->addAction(settingsAction);
 
+    //: "go" like in go forward, backward, etc
     menu = myMainMenu->addMenu(tr("&Go"));
     menu->addAction(goBackAction);
     menu->addAction(goFrwdAction);
@@ -916,6 +918,7 @@ void Phototonic::createMenus() {
     menu->addSeparator();
     menu->addAction(slideShowAction);
 
+    //: configure visual features of the app
     menu = myMainMenu->addMenu(tr("&View"));
     menu->addMenu(createPopupMenu())->setText(tr("Window"));
     menu->addSeparator();
@@ -1010,7 +1013,8 @@ void Phototonic::createToolBars() {
     filterLineEdit = new QLineEdit;
     filterLineEdit->setMinimumWidth(100);
     filterLineEdit->setMaximumWidth(200);
-    filterLineEdit->setPlaceholderText(tr("Filter - try \"/\"…"));
+    //: hint for the filter lineedit, "/" triggers more hints at extended features
+    filterLineEdit->setPlaceholderText(tr("Filter - try \"/\"..."));
     connect(filterLineEdit, &QLineEdit::returnPressed, [=](){
         QString error;
         if (thumbsViewer->setFilter(filterLineEdit->text(), &error))
@@ -1020,14 +1024,16 @@ void Phototonic::createToolBars() {
                                 error, filterLineEdit);
     });
     static const QString rtfm =
+    //: This is a tooltip explaining extended filter features
     tr( "<h2>[substring] [/ constraint [/ more constraints]]</h2>"
         "<tt>foo / &gt; 5d &lt; 1M / &lt; 10kb</tt><br>"
         "<i>matches foo, older than 5 days but younger than a month - or below 10kB</i>"
         "<ul><li>Bigger than/After: &gt;</li>"
         "<li>Smaller than/Before: &lt;</li>"
         "<li>The exact age or (rounded) size is otherwise implied or explicit with: =</li></ul><hr>"
-        "<ul><li>Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)<li>"
-        "<li>Sizes are suffixed 4kB:MB:GB</li></ul>"
+        "<ul><li>Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)</li>"
+        "<li>Sizes are suffixed 4kB:MB:GB</li>"
+        "<li>Dimensions are pre/in/suffixed \"x\" ([width]x[height])</li></ul>"
         "<i>All suffixes are case-insensitive but m|inute and M|onth</i><br>"
         "Subsequent \"/\" start a new sufficient condition group, the substring match is optional."
     );
@@ -1053,7 +1059,7 @@ void Phototonic::createToolBars() {
     m_menuButton->installEventFilter(this);
 
     /* image */
-    imageToolBar = new QToolBar(tr("Image Toolbar"));
+    imageToolBar = new QToolBar(tr("Viewer Toolbar"));
     imageToolBar->setObjectName("Image");
     imageToolBar->addAction(prevImageAction);
     imageToolBar->addAction(nextImageAction);
@@ -1195,6 +1201,7 @@ void Phototonic::createImagePreviewDock() {
 }
 
 void Phototonic::createImageTagsDock() {
+    //: tags are image metadata
     tagsDock = new QDockWidget(tr("Tags"), this);
     tagsDock->setObjectName("Tags");
     thumbsViewer->imageTags = new ImageTags(tagsDock, thumbsViewer);
@@ -1444,8 +1451,8 @@ void Phototonic::copyOrCutThumbs(bool isCopyOperation) {
     Settings::isCopyOperation = isCopyOperation;
     pasteAction->setEnabled(true);
 
-    QString state = QString((Settings::isCopyOperation ? tr("Copied") : tr("Cut")) + " " +
-                            tr("%n image(s) to clipboard", "", copyCutThumbsCount));
+    QString state = Settings::isCopyOperation ? tr("Copied %n image(s) to clipboard", "", copyCutThumbsCount)
+                                              : tr("Cut %n image(s) to clipboard", "", copyCutThumbsCount);
     setStatus(state);
 }
 
@@ -1533,11 +1540,11 @@ void Phototonic::zoom(double multiplier, QPoint focus) {
     }
 
     if (multiplier > 0.0 && Settings::imageZoomFactor == 16.0) {
-        imageViewer->setFeedback(tr("Maximum zoom"));
+        imageViewer->setFeedback(tr("Maximum Zoom"));
         return;
     }
     if (multiplier < 0.0 && Settings::imageZoomFactor == 0.1) {
-        imageViewer->setFeedback(tr("Minimum zoom"));
+        imageViewer->setFeedback(tr("Minimum Zoom"));
         return;
     }
 
@@ -1559,6 +1566,7 @@ void Phototonic::zoom(double multiplier, QPoint focus) {
 
     Settings::imageZoomFactor = qMin(16.0, qMax(0.1, Settings::imageZoomFactor + multiplier));
     imageViewer->resizeImage(focus);
+    //: nb the trailing "%" for eg. 80%
     imageViewer->setFeedback(tr("Zoom %1%").arg(QString::number(Settings::imageZoomFactor * 100)));
 }
 
@@ -1665,15 +1673,18 @@ void Phototonic::batchTransform() {
         msgBox.critical(tr("No images selected"), tr("Please select the images to transform."));
         return;
     }
-    QString saveMessage = tr("overwiting the original files");
-    if (!Settings::saveDirectory.isEmpty())
-        saveMessage = tr("saving the transformed images to %1").arg(Settings::saveDirectory);
-//    QString message(tr("Rotate %1 images by %2 degrees, then crop them to %3, %4 %5 x %6, %7?")
-//                    .arg(idxs.count()).arg(Settings::rotation, 0, 'f', 2)
-//                    .arg(Settings::cropLeft).arg(Settings::cropTop).arg(Settings::cropWidth).arg(Settings::cropHeight)
-//                    .arg(saveMessage));
-    msgBox.setText(tr("Perform batch transformation?"));
-//    msgBox.setInformativeText(message);
+    QString message;
+    if (Settings::saveDirectory.isEmpty())
+        message = tr("Rotate %1 images by %2 degrees, then crop them to %3, %4 %5 x %6, overwiting the original files?")
+                                                .arg(idxs.count()).arg(Settings::rotation, 0, 'f', 2)
+                                                .arg(-1).arg(-1).arg(-1).arg(-1);
+    else
+        message = tr("Rotate %1 images by %2 degrees, then crop them to %3, %4 %5 x %6, saving the transformed images to %7?")
+                                                .arg(idxs.count()).arg(Settings::rotation, 0, 'f', 2)
+                                                .arg(-1).arg(-1).arg(-1).arg(-1).arg(Settings::saveDirectory);
+
+    msgBox.setInformativeText(tr("Perform batch transformation?"));
+    msgBox.setText(message);
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Ok);
     if (msgBox.exec() == QMessageBox::Ok) {
@@ -1682,7 +1693,7 @@ void Phototonic::batchTransform() {
         Settings::keepTransform = true;
         for (QModelIndex i : idxs) {
             loadSelectedThumbImage(i);
-//            imageViewer->applyCropAndRotation();
+            imageViewer->applyCropAndRotation();
             imageViewer->saveImage();
         }
         Settings::keepTransform = keepTransformWas;
@@ -1734,7 +1745,7 @@ void Phototonic::pasteThumbs() {
 
     if (!isValidPath(destDir)) {
         MessageBox msgBox(this);
-        msgBox.critical(tr("Error"), tr("Can not copy or move to ") + destDir);
+        msgBox.critical(tr("Error"), tr("Can not copy or move to %1").arg(destDir));
         selectCurrentViewDir();
         return;
     }
@@ -1768,9 +1779,8 @@ void Phototonic::pasteThumbs() {
             thumbsViewer->setCurrentIndex(row);
         }
     }
-
-    QString state = QString((Settings::isCopyOperation ? tr("Copied") : tr("Moved")) + " " +
-                            tr("%n image(s)", "", copyMoveDialog->nFiles));
+    QString state = Settings::isCopyOperation ? tr("Copied %n image(s)", "", copyMoveDialog->nFiles)
+                                              : tr("Moved %n image(s)", "", copyMoveDialog->nFiles);
     setStatus(state);
     copyMoveDialog->deleteLater();
     selectCurrentViewDir();
@@ -1814,8 +1824,8 @@ void Phototonic::deleteImages(bool trash) {
 
     if (Settings::deleteConfirm) {
         QMessageBox msgBox(this);
-        msgBox.setText(trash ? tr("Move %1 selected images to the trash?").arg(deathRow.size()) :
-                               tr("Permanently delete %1 selected images?").arg(deathRow.size()) );
+        msgBox.setText(trash ? tr("Move %n selected image(s) to the trash?", "", deathRow.size())
+                             : tr("Permanently delete %n selected image(s)?", "", deathRow.size()));
         QString fileList;
         msgBox.setDetailedText(deathRow.join("\n"));
         msgBox.setWindowTitle(trash ? tr("Move to Trash") : tr("Delete images"));
@@ -1853,7 +1863,7 @@ void Phototonic::deleteImages(bool trash) {
         if (timer.elapsed() > 100) {
             if (!progressDialog)
                progressDialog = new ProgressDialog(this);
-            progressDialog->opLabel->setText("Deleting " + fileNameFullPath);
+            progressDialog->opLabel->setText(tr("Deleting %1").arg(fileNameFullPath));
             progressDialog->show();
         }
 
@@ -1901,7 +1911,7 @@ void Phototonic::deleteImages(bool trash) {
         progressDialog->deleteLater();
     }
 
-    setStatus(tr("Deleted") + " " + tr("%n image(s)", "", deleteFilesCount));
+    setStatus(tr("Deleted %n image(s)", "", deleteFilesCount));
 
     m_deleteInProgress = false;
 }
@@ -1942,7 +1952,7 @@ void Phototonic::deleteFromViewer(bool trash) {
                 QFile::remove(fullPath)) {
         int currentRow = thumbsViewer->currentIndex().row();
         thumbsViewer->model()->removeRow(currentRow);
-        imageViewer->setFeedback(tr("Deleted ") + fileName);
+        imageViewer->setFeedback(tr("Deleted %1").arg(fileName));
         loadCurrentImage(currentRow);
     } else {
         MessageBox msgBox(this);
@@ -2018,7 +2028,7 @@ void Phototonic::goPathBarDir() {
     QDir checkPath(pathLineEdit->text());
     if (!checkPath.exists() || !checkPath.isReadable()) {
         MessageBox msgBox(this);
-        msgBox.critical(tr("Error"), tr("Invalid Path:") + " " + pathLineEdit->text());
+        msgBox.critical(tr("Error"), tr("Invalid Path: %1").arg(pathLineEdit->text()));
         pathLineEdit->setText(Settings::currentDirectory);
         return;
     }
@@ -2896,10 +2906,9 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
                 thumbsViewer->setCurrentIndex(row);
             }
         }
-
-        QString stateString = QString((Settings::isCopyOperation ? tr("Copied") : tr("Moved")) + " " +
-                                      tr("%n image(s)", "", copyMoveDialog->nFiles));
-        setStatus(stateString);
+        QString state = Settings::isCopyOperation ? tr("Copied %n image(s)", "", copyMoveDialog->nFiles)
+                                                  : tr("Moved %n image(s)", "", copyMoveDialog->nFiles);
+        setStatus(state);
         copyMoveDialog->deleteLater();
     }
 
@@ -2965,7 +2974,7 @@ void Phototonic::reloadThumbs() {
         QDir checkPath(Settings::currentDirectory);
         if (!checkPath.exists() || !checkPath.isReadable()) {
             MessageBox msgBox(this);
-            msgBox.critical(tr("Error"), tr("Failed to open directory ") + Settings::currentDirectory);
+            msgBox.critical(tr("Error"), tr("Failed to open directory %1").arg(Settings::currentDirectory));
             setStatus(tr("No directory selected"));
             return;
         }
@@ -2995,6 +3004,7 @@ void Phototonic::reloadThumbs() {
         refreshAction->setEnabled(false);
         fileSystemTree->setEnabled(false);
         m_pathLineEditAction->setVisible(false);
+        //: %v and %m are literal pattterns for QProgressBar (value and maximum)
         m_progressBar->setFormat(tr("Searching duplicates: %v / %m"));
         if (!m_progressBarAction->isVisible())
             m_progressBar->reset();
@@ -3047,7 +3057,7 @@ void Phototonic::renameDir() {
     QFileInfo dirInfo = QFileInfo(fileSystemModel->filePath(selectedDirs[0]));
 
     bool renameOk;
-    QString title = tr("Rename") + " " + dirInfo.completeBaseName();
+    QString title = tr("Rename %1").arg(dirInfo.completeBaseName());
     QString newDirName = QInputDialog::getText(this, title,
                                                tr("New name:"), QLineEdit::Normal, dirInfo.completeBaseName(),
                                                &renameOk);
@@ -3221,13 +3231,13 @@ void Phototonic::deleteDirectory(bool trash) {
     QString deletePath = fileSystemModel->filePath(selectedDirs[0]);
     QModelIndex idxAbove = fileSystemTree->indexAbove(selectedDirs[0]);
     QFileInfo dirInfo = QFileInfo(deletePath);
-    QString question = (trash ? tr("Move directory %1 to the trash?") : tr(
-            "Permanently delete the directory %1 and all of its contents?")).arg(
-            dirInfo.completeBaseName());
+    QString question = (trash ? tr("Move directory %1 to the trash?")
+                              : tr("Permanently delete the directory %1 and all of its contents?")
+                        ).arg(dirInfo.completeBaseName());
 
     MessageBox msgBox(this);
     msgBox.setText(question);
-    msgBox.setWindowTitle(tr("Delete directory"));
+    msgBox.setWindowTitle(tr("Delete Directory"));
     msgBox.setIcon(MessageBox::Warning);
     msgBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
     msgBox.addButton(trash ? tr("OK") : tr("Delete Directory"), MessageBox::YesRole);
@@ -3247,7 +3257,7 @@ void Phototonic::deleteDirectory(bool trash) {
     }
 
     if (!removeDirectoryOk) {
-        msgBox.critical(tr("Error"), trash ? tr("Failed to move directory to the trash: %1").arg(trashError)
+        msgBox.critical(tr("Error"), trash ? tr("Failed to move directory to the trash:") + "\n" + trashError
                                            : tr("Failed to delete directory."));
         selectCurrentViewDir();
         return;

@@ -52,7 +52,8 @@ ExternalAppsDialog::ExternalAppsDialog(QWidget *parent) : QDialog(parent) {
     appsTable->setShowGrid(false);
 
     QVBoxLayout *externalAppsLayout = new QVBoxLayout;
-    QPushButton *addButton = new QPushButton(tr("Choose"));
+    //: open an existing executable
+    QPushButton *addButton = new QPushButton(tr("Pick Executable..."));
     connect(addButton, SIGNAL(clicked()), this, SLOT(add()));
     externalAppsLayout->addWidget(addButton, 0, Qt::AlignTop);
     QPushButton *entryButton = new QPushButton(tr("Add manually"));

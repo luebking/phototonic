@@ -182,8 +182,7 @@ void ThumbsViewer::onSelectionChanged() {
     }
 
     if (selectedThumbs >= 1) {
-        emit status(tr("Selected %1 of %2").arg(QString::number(selectedThumbs))
-                                           .arg(tr(" %n image(s)", "", m_model->rowCount())));
+        emit status(tr("Selected %1 of %n image(s)", "", m_model->rowCount()).arg(QString::number(selectedThumbs)));
     } else if (!selectedThumbs) {
         updateThumbsCount();
     }
@@ -766,7 +765,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
     for (int currThumb = 0; currThumb < thumbFileInfoList.size(); ++currThumb) {
         if (timer.elapsed() > 30) {
             emit progress(scannedFiles, totalFiles);
-            emit status(tr("Found %1 duplicates among %2 files").arg(duplicateFiles).arg(totalFiles));
+            emit status(tr("Found %n duplicate(s) among %1 files", "", duplicateFiles).arg(totalFiles));
             m_model->sort(0);
             QApplication::processEvents();
             timer.restart();
@@ -836,7 +835,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
     }
 
     emit progress(scannedFiles, totalFiles);
-    emit status(tr("Found %1 duplicates among %2 files").arg(duplicateFiles).arg(totalFiles));
+    emit status(tr("Found %n duplicate(s) among %1 files", "", duplicateFiles).arg(totalFiles));
     m_model->sort(0);
     QApplication::processEvents();
 }

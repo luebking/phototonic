@@ -203,7 +203,7 @@ bool ImageTags::writeTagsToImage(QString &imageFileName, const QSet<QString> &ne
     }
     catch (Exiv2::Error &error) {
         MessageBox msgBox(this);
-        msgBox.critical(tr("Error"), tr("Failed to save tags to ") + imageFileName);
+        msgBox.critical(tr("Error"), tr("Failed to save tags to %1").arg(imageFileName));
         return false;
     }
 
@@ -400,10 +400,10 @@ void ImageTags::applyUserAction(QList<QTreeWidgetItem *> tagsList) {
             QString tagName = tagsList.at(i)->text(0);
 
             if (tagState == Qt::Checked) {
-                progressDialog->opLabel->setText(tr("Tagging ") + imageName);
+                progressDialog->opLabel->setText(tr("Tagging %1").arg(imageName));
                 Metadata::addTag(imageName, tagName);
             } else {
-                progressDialog->opLabel->setText(tr("Untagging ") + imageName);
+                progressDialog->opLabel->setText(tr("Untagging %1").arg(imageName));
                 Metadata::removeTag(imageName, tagName);
             }
         }
@@ -498,7 +498,7 @@ void ImageTags::addNewTag() {
         QString tag = knownTagsIt.next();
         if (newTagName == tag) {
             MessageBox msgBox(this);
-            msgBox.critical(tr("Error"), tr("Tag ") + newTagName + tr(" already exists"));
+            msgBox.critical(tr("Error"), tr("Tag %1 already exists").arg(newTagName));
             return;
         }
     }
@@ -514,7 +514,7 @@ void ImageTags::removeTag() {
     }
 
     MessageBox msgBox(this);
-    msgBox.setText(tr("Delete selected tags(s)?"));
+    msgBox.setText(tr("Delete %n selected tags(s)?", "", tagsTree->selectedItems().size()));
     msgBox.setWindowTitle(tr("Delete tag"));
     msgBox.setIcon(MessageBox::Warning);
     msgBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);

@@ -372,11 +372,11 @@ void ImageViewer::setMirror(MirrorLayout layout) {
     myMirrorLayout = layout;
     refresh();
     switch (myMirrorLayout) {
-        case MirrorNone: setFeedback(tr("Mirroring Disabled")); break;
-        case MirrorDual: setFeedback(tr("Mirroring: Dual")); break;
-        case MirrorTriple: setFeedback(tr("Mirroring: Triple")); break;
-        case MirrorQuad: setFeedback(tr("Mirroring: Quad")); break;
-        case MirrorVDual: setFeedback(tr("Mirroring: Dual Vertical")); break;
+        case MirrorNone: setFeedback(tr("Mirror Disabled")); break;
+        case MirrorDual: setFeedback(tr("Mirror: Dual")); break;
+        case MirrorTriple: setFeedback(tr("Mirror: Triple")); break;
+        case MirrorQuad: setFeedback(tr("Mirror: Quad")); break;
+        case MirrorVDual: setFeedback(tr("Mirror: Dual Vertical")); break;
         default: qDebug() << "invalid mirror layout" << layout;
     }
 }
@@ -623,6 +623,7 @@ void ImageViewer::reload() {
 
     QImageReader imageReader(fullImagePath);
     if (batchMode && imageReader.supportsAnimation()) {
+        //: this is a warning on the console
         qWarning() << tr("skipping animation in batch mode:") << fullImagePath;
         return;
     }
@@ -1131,6 +1132,7 @@ void ImageViewer::saveImage() {
                 msgBox.critical(tr("Error"), tr("Failed to save Exif metadata."));
                 showExifError = !(cb.isChecked());
             } else {
+                //: this is a warning on the console
                 qWarning() << tr("Failed to safe Exif metadata:") << error.what();
             }
         }

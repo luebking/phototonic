@@ -38,8 +38,8 @@ GuideWidget::GuideWidget(QWidget *parent, Qt::Orientation o, int offset) : QWidg
         offset -= RuleWidgetWidth / 2;
     setCursor(m_vertical ? Qt::SplitHCursor : Qt::SplitVCursor);
     move(m_vertical ? offset : 0, m_vertical ? 0 : offset);
-    if (!m_deleteAction)
-        m_deleteAction = new QAction(GuideWidget::tr("Remove guide"));
+    if (!m_deleteAction) //: The guide is a visible line for orientation
+        m_deleteAction = new QAction(tr("Remove Guide"));
     addAction(m_deleteAction);
     setContextMenuPolicy(Qt::ActionsContextMenu);
     connect(m_deleteAction, &QAction::triggered, this, &QObject::deleteLater);

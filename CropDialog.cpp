@@ -27,6 +27,7 @@
 #include "Settings.h"
 
 CropDialog::CropDialog(QWidget *parent) : QDialog(parent) {
+    //: Like a bad dvd where you get a black frame around the image
     setWindowTitle(tr("Letterbox"));
     setWindowIcon(QIcon(":/images/crop.png"));
     resize(350, 100);
