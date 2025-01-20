@@ -471,12 +471,13 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; return false; }
                 if (side & 1) m_constraints.last().younger = v;
                 if (side & 2) m_constraints.last().older = v;
-                    if ((side & 3) == 3) {
+                if ((side & 3) == 3) {
                     m_constraints.last().younger =  v * 101 / 100;
                     m_constraints.last().older   =  v *  99 / 100;
                 }
                 return true;
             };
+
             if (t.endsWith("kb", Qt::CaseInsensitive)) {
                 if (!setSizeConstraint(1024)) { sane = false; break; }
             } else if (t.endsWith("mb", Qt::CaseInsensitive)) {
@@ -495,6 +496,33 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 if (!setAgeConstraint(30*24*60*60)) { sane = false; break; }
             } else if (t.endsWith("y", Qt::CaseInsensitive)) {
                 if (!setAgeConstraint(365*24*60*60)) { sane = false; break; }
+            } else if (t.endsWith("mp", Qt::CaseInsensitive)) {
+                bool ok;
+                qint64 v = t.chopped(2).toFloat(&ok) * 1000*1000;
+                if (!ok) {
+                    if (error) { *error += "Invalid value: " + t + "\n"; } sane = false;  break;
+                }
+                if (side & 1) m_constraints.last().maxPix = v;
+                if (side & 2) m_constraints.last().minPix = v;
+                if ((side & 3) == 3) {
+                    m_constraints.last().maxPix =  v * 101 / 100;
+                    m_constraints.last().minPix =  v *  99 / 100;
+                }
+            } else if (t.contains("x", Qt::CaseInsensitive)) {
+                QStringList st = t.split('x', Qt::KeepEmptyParts, Qt::CaseInsensitive);
+                if (st.size() != 2) {
+                    if (error) { *error += "Invalid value: " + t + "\n"; } sane = false;  break;
+                }
+                QSize sz(0,0); bool ok; int v;
+                v = st.at(0).toInt(&ok);
+                if (ok) sz.setWidth(v);
+                v = st.at(1).toInt(&ok);
+                if (ok) sz.setHeight(v);
+                if (sz.isNull()) {
+                    if (error) { *error += "Invalid value: " + t + "\n"; } sane = false;  break;
+                }
+                if (side & 1) m_constraints.last().maxRes = sz;
+                if (side & 2) m_constraints.last().minRes = sz;
             } else {
                 QDateTime date = QDateTime::fromString(t, "yyyy-MM-dd");
                 if (!date.isValid()) {
@@ -694,6 +722,20 @@ void ThumbsViewer::initThumbs() {
             qint64 age = thumbFileInfo.lastModified().secsTo(QDateTime::currentDateTime());
             if ((constrained = (c.older   && age < c.older  ))) continue;
             if ((constrained = (c.younger && age > c.younger))) continue;
+
+            if (!(c.minPix || c.maxPix || c.minRes.isValid() || c.maxRes.isValid()))
+                break;
+            // we gotta inspect the image for this
+            QSize res = QImageReader(thumbFileInfo.filePath()).size();
+            if (!res.isValid())
+                break; // if we can't check the image we give it a pass
+            if ((constrained = (c.minPix && res.width()*res.height() < c.minPix))) continue;
+            if ((constrained = (c.maxPix && res.width()*res.height() > c.maxPix))) continue;
+            if ((constrained = (c.minRes.width() > 0 && res.width() < c.minRes.width()))) continue;
+            if ((constrained = (c.minRes.height() > 0 && res.height() < c.minRes.height()))) continue;
+            if ((constrained = (c.maxRes.width() > 0 && res.width() > c.maxRes.width()))) continue;
+            if ((constrained = (c.maxRes.height() > 0 && res.height() > c.maxRes.height()))) continue;
+
             break; // this constraint is sufficient
         }
         if (constrained)

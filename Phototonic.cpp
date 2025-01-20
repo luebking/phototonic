@@ -1032,7 +1032,7 @@ void Phototonic::createToolBars() {
         "<li>Smaller than/Before: &lt;</li>"
         "<li>The exact age or (rounded) size is otherwise implied or explicit with: =</li></ul><hr>"
         "<ul><li>Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)</li>"
-        "<li>Sizes are suffixed 4kB:MB:GB</li>"
+        "<li>Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)</li>"
         "<li>Dimensions are pre/in/suffixed \"x\" ([width]x[height])</li></ul>"
         "<i>All suffixes are case-insensitive but m|inute and M|onth</i><br>"
         "Subsequent \"/\" start a new sufficient condition group, the substring match is optional."

@@ -70,6 +70,10 @@ struct Constraint
     qint64 older = 0;
     qint64 bigger = 0;
     qint64 smaller = 0;
+    QSize minRes;
+    QSize maxRes;
+    qint64 minPix = 0;
+    qint64 maxPix = 0;
 };
 
 class ThumbsViewer : public QListView {
