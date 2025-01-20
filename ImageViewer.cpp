@@ -814,7 +814,9 @@ void ImageViewer::mousePressEvent(QMouseEvent *event) {
                 setFeedback("", false);
             }
         }
-        initialRotation = imageWidget->rotation();
+        QPointF fulcrum(QPointF(imageWidget->width() / 2.0, imageWidget->height() / 2.0));
+        QLineF vector(fulcrum, event->position());
+        initialRotation = imageWidget->rotation() + vector.angle();
         setMouseMoveData(true, event->position().x(), event->position().y());
         QApplication::setOverrideCursor(Qt::ClosedHandCursor);
         event->accept();
@@ -969,12 +971,9 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
     }
 
     if (Settings::mouseRotateEnabled || event->modifiers() == Qt::ShiftModifier) {
-        QPointF fulcrum(QPointF(imageWidget->pos()) + QPointF(imageWidget->width() / 2.0, imageWidget->height() / 2.0));
-        if (event->pos().x() > (width() * 3) / 4)
-            fulcrum.setY(mouseY); // if the user pressed near the right edge, start with initial rotation of 0
+        QPointF fulcrum(QPointF(imageWidget->width() / 2.0, imageWidget->height() / 2.0));
         QLineF vector(fulcrum, event->position());
         Settings::rotation = initialRotation - vector.angle();
-        qDebug() << Settings::rotation;
         if (qAbs(Settings::rotation) > 360.0)
             Settings::rotation -= int(360*Settings::rotation)/360;
         if (Settings::rotation < 0)
