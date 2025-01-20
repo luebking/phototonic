@@ -201,6 +201,7 @@ void Phototonic::loadStartupFileList(QStringList argumentsList, int filesStartAt
         }
     }
     fileSystemTree->clearSelection();
+    fileListWidget->show();
     fileListWidget->itemAt(0, 0)->setSelected(true);
     Settings::isFileListLoaded = true;
 }
@@ -1106,6 +1107,7 @@ void Phototonic::createFileSystemDock() {
             refreshThumbs(true);
         }
     });
+    fileListWidget->hide();
 
     fileSystemTree = new FileSystemTree(fileSystemDock);
     fileSystemTree->addAction(createDirectoryAction);
