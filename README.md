@@ -1,13 +1,14 @@
-# Phototonic Image Viewer: batch-processing fork
-
+# Phototonic Image Viewer
+<img src="images/phototonic.png" align="left" width="128">
 
 ### About
-
 Phototonic is an image viewer and organizer built with Qt and Exiv2, released under GNU General Public License v3.
 The ec1oud fork is for work on batch-processing features: specifically to take a directory full of crooked
 webcam shots and align them well enough to make a time-lapse video.
 
 ### Features
+<img src="images/screenshot.jpg" align="right"  width="300">
+
 + Support for [common image formats](https://doc.qt.io/qt-6/qimage.html#reading-and-writing-image-files) and GIF animation
 + Supports tagging images, and filtering images by tags (IPTC)
 + Browse thumbnails recursively down a folder tree
@@ -16,9 +17,7 @@ webcam shots and align them well enough to make a time-lapse video.
 + Display image information and metadata
 + Does not depend on any desktop environment
 
-### Screenshot
-
-<img src="images/screenshot.jpg" width="300">
+---
 
 ### Updates:
 
