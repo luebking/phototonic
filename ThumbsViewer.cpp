@@ -1199,9 +1199,13 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
     if (fastOnly && shouldStoreThumbnail)
         return false;
 
+    QSize thumbSizeQ(thumbSize,thumbSize);
     if (currentThumbSize.isValid()) {
-        if (currentThumbSize.width() != thumbSize || currentThumbSize.height() != thumbSize) {
-            currentThumbSize.scale(QSize(thumbSize, thumbSize), Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
+        bool scaleMe =  Settings::upscalePreview ||
+                        currentThumbSize.width() > thumbSize ||
+                        currentThumbSize.height() > thumbSize;
+        if (scaleMe && currentThumbSize != thumbSizeQ) {
+            currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
         }
 
         thumbReader.setScaledSize(currentThumbSize);
@@ -1234,13 +1238,13 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
         if (Settings::exifThumbRotationEnabled) {
             thumb = thumb.transformed(Metadata::transformation(imageFileName), Qt::SmoothTransformation);
             currentThumbSize = thumb.size();
-            currentThumbSize.scale(QSize(thumbSize, thumbSize), Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
+            currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
         }
 
         m_model->item(currThumb)->setData(qGray(thumb.scaled(1, 1).pixel(0, 0)) / 255.0, BrightnessRole);
 
         if (Settings::thumbsLayout != Classic) {
-            thumb = SmartCrop::crop(thumb, QSize(thumbSize, thumbSize));
+            thumb = SmartCrop::crop(thumb, thumbSizeQ);
         }
 
         m_model->item(currThumb)->setIcon(QPixmap::fromImage(thumb));
@@ -1287,7 +1291,7 @@ QStandardItem * ThumbsViewer::addThumb(QString &imageFullPath) {
     thumbReader.setFileName(imageFullPath);
     currThumbSize = thumbReader.size();
     if (currThumbSize.isValid()) {
-        if (currThumbSize.width() > thumbSize || currThumbSize.height() > thumbSize) {
+        if (Settings::upscalePreview || currThumbSize.width() > thumbSize || currThumbSize.height() > thumbSize) {
             currThumbSize.scale(QSize(thumbSize, thumbSize), Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
         }
 
