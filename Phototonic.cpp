@@ -1595,16 +1595,22 @@ void Phototonic::keepZoom() {
 
 void Phototonic::rotateLeft() {
     Settings::rotation -= 90;
+    if (qAbs(Settings::rotation) > 360.0)
+        Settings::rotation -= int(360*Settings::rotation)/360;
+    Settings::rotation = 90*qCeil(Settings::rotation/90);
     if (Settings::rotation < 0)
-        Settings::rotation = 270;
+        Settings::rotation += 360;
     imageViewer->resizeImage();
     imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(Settings::rotation)));
 }
 
 void Phototonic::rotateRight() {
     Settings::rotation += 90;
+    if (qAbs(Settings::rotation) > 360.0)
+        Settings::rotation -= int(360*Settings::rotation)/360;
+    Settings::rotation = 90*int(Settings::rotation/90);
     if (Settings::rotation > 270)
-        Settings::rotation = 0;
+        Settings::rotation -= 360;
     imageViewer->resizeImage();
     imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(Settings::rotation)));
 }
@@ -1673,15 +1679,17 @@ void Phototonic::batchTransform() {
         msgBox.critical(tr("No images selected"), tr("Please select the images to transform."));
         return;
     }
+    QRect cropRect = imageViewer->lastCropGeometry();
     QString message;
     if (Settings::saveDirectory.isEmpty())
         message = tr("Rotate %1 images by %2 degrees, then crop them to %3, %4 %5 x %6, overwiting the original files?")
-                                                .arg(idxs.count()).arg(Settings::rotation, 0, 'f', 2)
-                                                .arg(-1).arg(-1).arg(-1).arg(-1);
+                        .arg(idxs.count()).arg(Settings::rotation, 0, 'f', 2)
+                        .arg(cropRect.x()).arg(cropRect.y()).arg(cropRect.width()).arg(cropRect.height());
     else
         message = tr("Rotate %1 images by %2 degrees, then crop them to %3, %4 %5 x %6, saving the transformed images to %7?")
-                                                .arg(idxs.count()).arg(Settings::rotation, 0, 'f', 2)
-                                                .arg(-1).arg(-1).arg(-1).arg(-1).arg(Settings::saveDirectory);
+                        .arg(idxs.count()).arg(Settings::rotation, 0, 'f', 2)
+                        .arg(cropRect.x()).arg(cropRect.y()).arg(cropRect.width()).arg(cropRect.height())
+                        .arg(Settings::saveDirectory);
 
     msgBox.setInformativeText(tr("Perform batch transformation?"));
     msgBox.setText(message);

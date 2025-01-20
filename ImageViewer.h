@@ -57,6 +57,7 @@ public:
     void configureLetterbox();
     QSize currentImageSize() const;
     bool isNewImage();
+    QRect lastCropGeometry() const { return m_isoCropRect; }
     void loadImage(QString imageFileName, const QImage &preview = QImage());
     void refresh();
     void reload();
@@ -125,6 +126,7 @@ private:
     QString m_permanentFeedback;
     QRect m_letterbox;
     CropRubberBand *cropRubberBand;
+    QRect m_isoCropRect;
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 

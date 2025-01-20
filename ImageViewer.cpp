@@ -607,8 +607,6 @@ void ImageViewer::reload() {
         Settings::mouseRotateEnabled = false;
         emit toolsUpdated();
 
-//        if (!Settings::keepTransform)
-//            Settings::cropLeft = Settings::cropTop = Settings::cropWidth = Settings::cropHeight = 0;
         if (newImage || fullImagePath.isEmpty()) {
 
             newImage = true;
@@ -843,7 +841,7 @@ void ImageViewer::updateRubberBandFeedback(QRect geom) {
     QTransform matrix = imageWidget->transformation().inverted(&ok);
     if (!ok)
         qDebug() << "something's fucked up about the transformation matrix!";
-    geom = matrix.mapRect(geom);
+    m_isoCropRect = geom = matrix.mapRect(geom);
     setFeedback(tr("Selection: ") + QString("%1x%2").arg(geom.width()).arg(geom.height())
                                   + QString(geom.x() < 0 ? "%1" : "+%1").arg(geom.x())
                                   + QString(geom.y() < 0 ? "%1" : "+%1").arg(geom.y()), false);
@@ -869,7 +867,7 @@ void ImageViewer::applyCropAndRotation() {
     QTransform matrix = imageWidget->transformation();
     bool ok;
     // the inverted mapping of the crop area matches the coordinates of the original image
-    QRect isoCropRect = matrix.inverted(&ok).mapRect(cropRubberBand->geometry());
+    m_isoCropRect = matrix.inverted(&ok).mapRect(cropRubberBand->geometry());
     if (!ok) {
         qDebug() << "something's fucked up about the transformation matrix! Not cropping";
         return;
@@ -877,7 +875,7 @@ void ImageViewer::applyCropAndRotation() {
 
     if (!matrix.isRotating()) {
         // … we can just copy the area, later apply flips and be done
-        origImage = origImage.copy(isoCropRect);
+        origImage = origImage.copy(m_isoCropRect);
     } else {
         // The rotated case is more involved. The inverted matrix still maps image coordinates
         // but that's not what the user sees or expects.
@@ -895,7 +893,7 @@ void ImageViewer::applyCropAndRotation() {
         QImage target(cropRubberBand->geometry().size()/scale, origImage.format());
         // but still be at the same position
         QRect sourceRect = target.rect();
-        sourceRect.moveCenter(isoCropRect.center());
+        sourceRect.moveCenter(m_isoCropRect.center());
 
         target.fill(Qt::black /* Qt::green */);
         QPainter painter(&target);
@@ -924,17 +922,18 @@ void ImageViewer::applyCropAndRotation() {
     origImage.mirror(Settings::flipH, Settings::flipV);
 
     // reset transformations for the new image
-    Settings::flipH = Settings::flipV = false;
-    Settings::rotation = 0;
-    imageWidget->setRotation(Settings::rotation);
-    if (!Settings::keepZoomFactor) {
-        tempDisableResize = false;
-        Settings::imageZoomFactor = 1.0;
+    if (!batchMode) {
+        Settings::flipH = Settings::flipV = false;
+        Settings::rotation = 0;
+        imageWidget->setRotation(Settings::rotation);
+        if (!Settings::keepZoomFactor) {
+            tempDisableResize = false;
+            Settings::imageZoomFactor = 1.0;
+        }
+        refresh();
+        setFeedback("", false);
+        setFeedback(tr("New image size: %1x%2").arg(origImage.width()).arg(origImage.height()));
     }
-
-    refresh();
-    setFeedback("", false);
-    setFeedback(tr("New image size: %1x%2").arg(origImage.width()).arg(origImage.height()));
 }
 
 void ImageViewer::configureLetterbox() {
@@ -974,7 +973,14 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
         if (event->pos().x() > (width() * 3) / 4)
             fulcrum.setY(mouseY); // if the user pressed near the right edge, start with initial rotation of 0
         QLineF vector(fulcrum, event->position());
-        imageWidget->setRotation(initialRotation - vector.angle());
+        Settings::rotation = initialRotation - vector.angle();
+        qDebug() << Settings::rotation;
+        if (qAbs(Settings::rotation) > 360.0)
+            Settings::rotation -= int(360*Settings::rotation)/360;
+        if (Settings::rotation < 0)
+            Settings::rotation += 360.0;
+        imageWidget->setRotation(Settings::rotation);
+        setFeedback(tr("Rotation %1°").arg(Settings::rotation));
         // qDebug() << "image center" << fulcrum << "line" << vector << "angle" << vector.angle() << "geom" << imageWidget->geometry();
 
     } else if (event->modifiers() == Qt::ControlModifier) {
