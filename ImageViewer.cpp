@@ -366,6 +366,18 @@ void ImageViewer::mirror() {
     }
 
     viewerImage = mirrorImage;
+    static int nag_counter = 0;
+    if (myMirrorLayout != MirrorNone && ++nag_counter < 9)
+        setFeedback("<h1>Hello there.</h1><h4>Yes you behind the monitor.</h4>"
+                    "<h2>I'm talking to you!</h2>"
+                    "<p>Since you're using this you probably have an idea<br>"
+                    "what this is supposed to be good for?</p>"
+                    "<p>Do you mind filing a bug that explains the feature?<br>"
+                    "Otherwise it might easily hit the curb for the final release.</p>"
+                    "<p>Thanks<br>"
+                    "You can hide this message by clicking on it.</p>", false);
+    else
+        setFeedback("", false);
 }
 
 void ImageViewer::setMirror(MirrorLayout layout) {
