@@ -969,7 +969,21 @@ void ThumbsViewer::sortBySimilarity() {
         if (histFiles.contains(filename)) {
             continue;
         }
-        histograms.append(calcHist(filename));
+
+        // try to use thumbnail (they're used when storing the histogram in ::loadThumb as well)
+        bool haveThumbogram = false;
+        QString thumbname = locateThumbnail(filename);
+        if (!thumbname.isEmpty()) {
+            QImageReader thumbReader(thumbname);
+            QImage image;
+            thumbReader.read(&image);
+            haveThumbogram = QImageReader(filename).size() == QSize(image.text("Thumb::Image::Width").toInt(), 
+                                                                    image.text("Thumb::Image::Height").toInt());
+            if (haveThumbogram)
+                histograms.append(calcHist(image));
+        }
+        if (!haveThumbogram)
+            histograms.append(calcHist(filename));
         histFiles.append(filename);
 
         if (++processed > BATCH_SIZE) {
