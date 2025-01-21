@@ -894,7 +894,6 @@ void Phototonic::createMenus() {
     menu->addSeparator();
     menu->addAction(selectAllAction);
     menu->addAction(selectByBrightnesAction);
-    menu->addAction(sortBySimilarityAction);
     menu->addAction(invertSelectionAction);
     menu->addAction(batchSubMenuAction);
     addAction(filterImagesFocusAction);
@@ -957,13 +956,19 @@ void Phototonic::createMenus() {
     thumbsViewer->addAction(m_wallpaperAction);
     thumbsViewer->addAction(openWithMenuAction);
     thumbsViewer->addAction("")->setSeparator(true);
+    thumbsViewer->addAction(sortMenu->menuAction());
+    thumbsViewer->addAction("")->setSeparator(true);
     thumbsViewer->addAction(cutAction);
     thumbsViewer->addAction(copyAction);
     thumbsViewer->addAction(pasteAction);
     thumbsViewer->addAction("")->setSeparator(true);
+    thumbsViewer->addAction(copyToAction);
+    thumbsViewer->addAction(moveToAction);
+    thumbsViewer->addAction("")->setSeparator(true);
     thumbsViewer->addAction(selectAllAction);
     thumbsViewer->addAction(selectByBrightnesAction);
     thumbsViewer->addAction(invertSelectionAction);
+    thumbsViewer->addAction("")->setSeparator(true);
     thumbsViewer->addAction(batchSubMenuAction);
     thumbsViewer->addAction("")->setSeparator(true);
     thumbsViewer->addAction(deleteAction);
@@ -2071,22 +2076,34 @@ void Phototonic::goForward() {
     }
 }
 
-void Phototonic::setCopyCutActions(bool setEnabled) {
-    cutAction->setEnabled(setEnabled);
-    copyAction->setEnabled(setEnabled);
-}
-
 void Phototonic::updateActions() {
+
+    auto toggleFileSpecificActions = [&](bool on) {
+        // this is bad UX, but the disabled action prevents the shortcut,
+        // what means the status cannot warn the user :(
+        cutAction->setEnabled(true);
+        copyAction->setEnabled(true);
+        // These have a visual response, no problem
+        copyToAction->setEnabled(on);
+        moveToAction->setEnabled(on);
+        viewImageAction->setEnabled(on);
+        m_wallpaperAction->setEnabled(on);
+        openWithMenuAction->setEnabled(on);
+        batchSubMenuAction->setEnabled(on);
+        deleteAction->setEnabled(on);
+        deletePermanentlyAction->setEnabled(on);
+    };
+
     if (QApplication::focusWidget() == thumbsViewer) {
-        setCopyCutActions(true);
+        toggleFileSpecificActions(thumbsViewer->selectionModel()->selectedIndexes().size() > 0);
     } else if (QApplication::focusWidget() == bookmarks) {
-        setCopyCutActions(false);
+        toggleFileSpecificActions(false);
     } else if (QApplication::focusWidget() == fileSystemTree) {
-        setCopyCutActions(false);
+        toggleFileSpecificActions(false);
     } else if (Settings::layoutMode == ImageViewWidget || QApplication::focusWidget() == imageViewer) {
-        setCopyCutActions(false);
+        toggleFileSpecificActions(true);
     } else {
-        setCopyCutActions(false);
+        toggleFileSpecificActions(false);
     }
 
     if (Settings::layoutMode == ImageViewWidget && !interfaceDisabled) {

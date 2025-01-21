@@ -375,8 +375,6 @@ private:
 
     QString getSelectedPath();
 
-    void setCopyCutActions(bool setEnabled);
-
     void copyOrCutThumbs(bool copy);
 
     void showNewImageWarning();
