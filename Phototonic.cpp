@@ -1050,6 +1050,15 @@ void Phototonic::createToolBars() {
     myMainToolBar->addSeparator();
     myMainToolBar->addWidget(filterLineEdit);
 
+    QAction *act = new QAction;;
+    act->setShortcut(Qt::Key_Escape);
+    act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
+    connect(act, &QAction::triggered, [=]() {
+        thumbsViewer->setFocus(Qt::OtherFocusReason);
+    });
+    pathLineEdit->addAction(act);
+    filterLineEdit->addAction(act);
+
     QAction *mainMenu = new QAction(tr("Menu"), this);
     mainMenu->setIcon(QIcon::fromTheme("preferences-system", QIcon(":/images/settings.png")));
     mainMenu->setMenu(myMainMenu);
