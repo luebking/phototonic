@@ -957,7 +957,9 @@ void ThumbsViewer::sortBySimilarity() {
     progress.show();
     QApplication::processEvents();
 
-    int processed = 0;
+    QElapsedTimer timer;
+    timer.start();
+
     for (int i = 0; i < thumbFileInfoList.count(); ++i) {
         QStandardItem *item = m_model->item(i);
 
@@ -986,18 +988,19 @@ void ThumbsViewer::sortBySimilarity() {
             histograms.append(calcHist(filename));
         histFiles.append(filename);
 
-        if (++processed > BATCH_SIZE) {
-            processed = 0;
+        if (timer.elapsed() > 30) {
             progress.setValue(i);
             QApplication::processEvents();
-            if (progress.wasCanceled()) {
+            if (progress.wasCanceled())
                 return;
-            }
+            timer.restart();
         }
     }
 
     progress.setLabelText(tr("Comparing..."));
     progress.setValue(0);
+    progress.show();
+    timer.restart();
 
     for (int i=0; i<histFiles.size() - 1; i++) {
         float minScore = std::numeric_limits<float>::max();
@@ -1010,26 +1013,25 @@ void ThumbsViewer::sortBySimilarity() {
             }
             minIndex = j;
             minScore = score;
-
-            processed++;
         }
         std::swap(histFiles[i+1], histFiles[minIndex]);
         std::swap(histograms[i+1], histograms[minIndex]);
 
-        if (processed > BATCH_SIZE * 10) {
-            processed = 0;
-            progress.show();
+        if (timer.elapsed() > 30) {
             progress.setValue(i);
             QApplication::processEvents();
-            if (progress.wasCanceled()) {
+            if (progress.wasCanceled())
                 return;
-            }
+            timer.restart();
         }
     }
 
     progress.setLabelText(tr("Sorting..."));
     progress.setMaximum(thumbFileInfoList.count() + 1); // + 1 for the call to sort() at the bottom
     progress.setValue(0);
+    progress.show();
+    timer.restart();
+
     QHash<QString, int> indices;
     for (int i=0; i<histFiles.size(); i++) {
         indices[histFiles[i]] = i;
@@ -1048,14 +1050,12 @@ void ThumbsViewer::sortBySimilarity() {
         }
         item->setData(indices.size() - indices[filename], SortRole);
 
-        if (++processed > BATCH_SIZE) {
-            processed = 0;
-            progress.show();
+        if (timer.elapsed() > 30) {
             progress.setValue(i);
             QApplication::processEvents();
-            if (progress.wasCanceled()) {
+            if (progress.wasCanceled())
                 return;
-            }
+            timer.restart();
         }
     }
     QApplication::processEvents();
