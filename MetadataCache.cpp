@@ -34,7 +34,7 @@ public:
 static QMap<QString, ImageMetadata> gs_cache;
 
 // updateImageTags
-bool updateTags(QString &imageFileName, QSet<QString> tags) {
+bool updateTags(const QString &imageFileName, QSet<QString> tags) {
     QMap<QString, ImageMetadata>::iterator it = gs_cache.find(imageFileName);
     if (it == gs_cache.end())
         return false;
@@ -43,7 +43,7 @@ bool updateTags(QString &imageFileName, QSet<QString> tags) {
 }
 
 // removeTagFromImage
-bool removeTag(QString &imageFileName, const QString &tagName) {
+bool removeTag(const QString &imageFileName, const QString &tagName) {
     QMap<QString, ImageMetadata>::iterator it = gs_cache.find(imageFileName);
     if (it == gs_cache.end())
         return false;
@@ -51,12 +51,12 @@ bool removeTag(QString &imageFileName, const QString &tagName) {
 }
 
 // removeImage
-void forget(QString &imageFileName) {
+void forget(const QString &imageFileName) {
     gs_cache.remove(imageFileName);
 }
 
 // getImageTags
-const QSet<QString> &tags(QString &imageFileName) {
+const QSet<QString> &tags(const QString &imageFileName) {
     static QSet<QString> dummy;
     QMap<QString, ImageMetadata>::iterator it = gs_cache.find(imageFileName);
     if (it == gs_cache.end())
@@ -65,7 +65,7 @@ const QSet<QString> &tags(QString &imageFileName) {
 }
 
 // getImageOrientation
-long orientation(QString &imageFileName) {
+long orientation(const QString &imageFileName) {
     QMap<QString, ImageMetadata>::iterator it = gs_cache.find(imageFileName);
     if (it == gs_cache.end())
         cache(imageFileName);
@@ -81,7 +81,7 @@ void setTags(const QString &imageFileName, QSet<QString> tags) {
 }
 
 // addTagToImage
-bool addTag(QString &imageFileName, QString &tagName) {
+bool addTag(const QString &imageFileName, const QString &tagName) {
     QMap<QString, ImageMetadata>::iterator it = gs_cache.find(imageFileName);
     if (it == gs_cache.end())
         return false; // no such image
@@ -97,7 +97,7 @@ void dropCache() {
     gs_cache.clear();
 }
 
-QTransform transformation(QString &imageFullPath) {
+QTransform transformation(const QString &imageFullPath) {
     QTransform trans;
     switch (orientation(imageFullPath)) {
         case 1:

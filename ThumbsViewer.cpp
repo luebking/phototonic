@@ -351,7 +351,7 @@ int ThumbsViewer::getLastVisibleThumb() {
 
 void ThumbsViewer::loadFileList() {
     for (int i = 0; i < Settings::filesList.size(); i++) {
-        addThumb(Settings::filesList[i]);
+        addThumb(Settings::filesList.at(i));
     }
     updateThumbsCount();
 
@@ -1304,7 +1304,7 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
     return true;
 }
 
-QStandardItem * ThumbsViewer::addThumb(QString &imageFullPath) {
+QStandardItem * ThumbsViewer::addThumb(const QString &imageFullPath) {
 
     Metadata::cache(imageFullPath);
     if (imageTags->dirFilteringActive && imageTags->isImageFilteredOut(imageFullPath)) {

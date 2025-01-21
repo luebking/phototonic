@@ -22,16 +22,16 @@
 #include <QTransform>
 
 namespace Metadata {
-    bool addTag(QString &imageFileName, QString &tagName);
+    bool addTag(const QString &imageFileName, const QString &tagName);
     void cache(const QString &imageFullPath);
     void dropCache();
-    QTransform transformation(QString &imageFullPath);
-    void forget(QString &imageFileName);
-    long orientation(QString &imageFileName);
-    bool removeTag(QString &imageFileName, const QString &tagName);
+    QTransform transformation(const QString &imageFullPath);
+    void forget(const QString &imageFileName);
+    long orientation(const QString &imageFileName);
+    bool removeTag(const QString &imageFileName, const QString &tagName);
     void setTags(const QString &imageFileName, QSet<QString> tags);
-    const QSet<QString> &tags(QString &imageFileName);
-    bool updateTags(QString &imageFileName, QSet<QString> tags);
+    const QSet<QString> &tags(const QString &imageFileName);
+    bool updateTags(const QString &imageFileName, QSet<QString> tags);
 };
 
 #endif // META_DATA_CACHE_H

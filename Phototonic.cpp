@@ -1488,12 +1488,7 @@ void Phototonic::copyOrMoveImages(bool isCopyOperation) {
     copyMoveToDialog = new CopyMoveToDialog(this, getSelectedPath(), !isCopyOperation);
     if (copyMoveToDialog->exec()) {
         if (Settings::layoutMode == ThumbViewWidget) {
-            if (copyMoveToDialog->copyOp) {
-                copyOrCutThumbs(true);
-            } else {
-                copyOrCutThumbs(false);
-            }
-
+            copyOrCutThumbs(copyMoveToDialog->copyOp);
             pasteThumbs();
         } else {
             if (imageViewer->isNewImage()) {
@@ -1501,7 +1496,6 @@ void Phototonic::copyOrMoveImages(bool isCopyOperation) {
                 if (isFullScreen()) {
                     imageViewer->setCursorHiding(true);
                 }
-
                 return;
             }
 
@@ -1765,14 +1759,10 @@ void Phototonic::pasteThumbs() {
     QString destDir;
     if (copyMoveToDialog) {
         destDir = copyMoveToDialog->selectedPath;
-    } else {
-        if (QApplication::focusWidget() == bookmarks) {
-            if (bookmarks->currentItem()) {
-                destDir = bookmarks->currentItem()->toolTip(0);
-            }
-        } else {
-            destDir = getSelectedPath();
-        }
+    } else if (QApplication::focusWidget() != bookmarks) {
+        destDir = getSelectedPath();
+    } else if (bookmarks->currentItem()) {
+        destDir = bookmarks->currentItem()->toolTip(0);
     }
 
     if (!isWritableDir(destDir)) {
@@ -1788,7 +1778,7 @@ void Phototonic::pasteThumbs() {
     QFileInfo fileInfo;
     if (!Settings::isCopyOperation && pasteInCurrDir) {
         for (int thumb = 0; thumb < Settings::copyCutFileList.size(); ++thumb) {
-            fileInfo = QFileInfo(Settings::copyCutFileList[thumb]);
+            fileInfo = QFileInfo(Settings::copyCutFileList.at(thumb));
             if (fileInfo.absolutePath() == destDir) {
                 MessageBox msgBox(this);
                 msgBox.critical(tr("Error"), tr("Can not move to the same directory"));
@@ -1801,17 +1791,10 @@ void Phototonic::pasteThumbs() {
     copyMoveDialog->execute(thumbsViewer, destDir, pasteInCurrDir);
     if (pasteInCurrDir) {
         for (int thumb = 0; thumb < Settings::copyCutFileList.size(); ++thumb) {
-            thumbsViewer->addThumb(Settings::copyCutFileList[thumb]);
+            thumbsViewer->addThumb(Settings::copyCutFileList.at(thumb));
         }
-    } else {
-        int row = copyMoveDialog->latestRow;
-        if (thumbsViewer->model()->rowCount()) {
-            if (row >= thumbsViewer->model()->rowCount()) {
-                row = thumbsViewer->model()->rowCount() - 1;
-            }
-
-            thumbsViewer->setCurrentIndex(row);
-        }
+    } else if (thumbsViewer->model()->rowCount()) {
+        thumbsViewer->setCurrentIndex(qMin(copyMoveDialog->latestRow, thumbsViewer->model()->rowCount() - 1));
     }
     QString state = Settings::isCopyOperation ? tr("Copied %n image(s)", "", copyMoveDialog->nFiles)
                                               : tr("Moved %n image(s)", "", copyMoveDialog->nFiles);
@@ -2902,24 +2885,19 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
     }
 
     if (dirOp) {
-        QString dirOnly = copyMoveDirPath.right(
-                copyMoveDirPath.size() - copyMoveDirPath.lastIndexOf(QDir::separator()) - 1);
-
-        QString question = tr("Move directory %1 to %2?").arg(dirOnly).arg(destDir);
+        QString baseName = copyMoveDirPath.section(QDir::separator(), -1);
 
         MessageBox moveDirMessageBox(this);
-        moveDirMessageBox.setText(question);
+        moveDirMessageBox.setText(tr("Move directory %1 to %2?").arg(baseName).arg(destDir));
         moveDirMessageBox.setWindowTitle(tr("Move directory"));
         moveDirMessageBox.setIcon(MessageBox::Warning);
         moveDirMessageBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
         moveDirMessageBox.addButton(tr("Move Directory"), MessageBox::YesRole);
         moveDirMessageBox.setDefaultButton(MessageBox::Cancel);
-        int ret = moveDirMessageBox.exec();
 
-        if (ret == MessageBox::Yes) {
+        if (moveDirMessageBox.exec() == MessageBox::Yes) {
             QFile dir(copyMoveDirPath);
-            bool moveOk = dir.rename(destDir + QDir::separator() + dirOnly);
-            if (!moveOk) {
+            if (!dir.rename(destDir + QDir::separator() + baseName)) {
                 moveDirMessageBox.critical(tr("Error"), tr("Failed to move directory."));
             }
             setStatus(tr("Directory moved"));
@@ -2930,13 +2908,8 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
         copyMoveDialog->execute(thumbsViewer, destDir, false);
 
         if (!Settings::isCopyOperation) {
-            int row = copyMoveDialog->latestRow;
             if (thumbsViewer->model()->rowCount()) {
-                if (row >= thumbsViewer->model()->rowCount()) {
-                    row = thumbsViewer->model()->rowCount() - 1;
-                }
-
-                thumbsViewer->setCurrentIndex(row);
+                thumbsViewer->setCurrentIndex(qMin(copyMoveDialog->latestRow, thumbsViewer->model()->rowCount() - 1));
             }
         }
         QString state = Settings::isCopyOperation ? tr("Copied %n image(s)", "", copyMoveDialog->nFiles)
