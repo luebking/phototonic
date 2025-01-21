@@ -1776,6 +1776,8 @@ void Phototonic::pasteThumbs() {
     }
 
     if (!isWritableDir(destDir)) {
+        if (destDir.isEmpty())
+            destDir = "0x0000";
         MessageBox msgBox(this);
         msgBox.critical(tr("Error"), tr("Can not copy or move to %1").arg(destDir));
         selectCurrentViewDir();
@@ -3348,7 +3350,7 @@ void Phototonic::setSaveDirectory(QString path) {
 
 QString Phototonic::getSelectedPath() {
     if (!fileSystemTree->selectionModel())
-        return "";
+        return Settings::currentDirectory; // if there's no filesystem tree, this means the open directory
     QModelIndexList selectedDirs = fileSystemTree->selectionModel()->selectedRows();
     if (selectedDirs.size() && selectedDirs[0].isValid()) {
         QFileInfo dirInfo = QFileInfo(fileSystemModel->filePath(selectedDirs[0]));
