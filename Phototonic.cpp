@@ -1284,16 +1284,23 @@ void Phototonic::runExternalApp() {
     QString execCommand = sender() == m_wallpaperAction ? Settings::wallpaperCommand :
                         Settings::externalApps[static_cast<QAction*>(sender())->text()];
 
+    auto substituteCommand = [=,&execCommand](QString path) {
+        if (execCommand.contains("%f", Qt::CaseInsensitive))
+            execCommand.replace("%f", path, Qt::CaseInsensitive);
+        else if (execCommand.contains("%u", Qt::CaseInsensitive))
+            execCommand.replace("%u", QUrl::fromLocalFile(path).url(), Qt::CaseInsensitive);
+        else
+            execCommand += " \"" + path + "\"";
+    };
     if (Settings::layoutMode == ImageViewWidget) {
         if (imageViewer->isNewImage()) {
             showNewImageWarning();
             return;
         }
-
-        execCommand += " " + imageViewer->fullImagePath;
+        substituteCommand(imageViewer->fullImagePath);
     } else {
         if (QApplication::focusWidget() == fileSystemTree) {
-            execCommand += " \"" + getSelectedPath() + "\"";
+            substituteCommand(getSelectedPath());
         } else {
 
             QModelIndexList selectedIdxList = thumbsViewer->selectionModel()->selectedIndexes();
@@ -1301,9 +1308,16 @@ void Phototonic::runExternalApp() {
                 setStatus(tr("Invalid selection."));
                 return;
             }
-
-            for (int tn = selectedIdxList.size() - 1; tn >= 0; --tn) {
-                execCommand += " \"" + thumbsViewer->fullPathOf(selectedIdxList[tn].row()) + "\"";
+            if (selectedIdxList.size() == 1) {
+                substituteCommand(thumbsViewer->fullPathOf(selectedIdxList.at(0).row()));
+            } else {
+                if (execCommand.contains("%f", Qt::CaseInsensitive) || execCommand.contains("%u", Qt::CaseInsensitive)) {
+                    setStatus(tr("Commands using %f or %u cannot be used with multiple files."));
+                    return;
+                }
+                for (int tn = selectedIdxList.size() - 1; tn >= 0; --tn) {
+                    execCommand += " \"" + thumbsViewer->fullPathOf(selectedIdxList.at(tn).row()) + "\"";
+                }
             }
         }
     }

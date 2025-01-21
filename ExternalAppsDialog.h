@@ -19,7 +19,7 @@
 #ifndef EXTERNAL_APPS_DIALOG_H
 #define EXTERNAL_APPS_DIALOG_H
 
-class QLineEdit;
+class QComboBox;
 class QTableView;
 class QStandardItemModel;
 #include <QDialog>
@@ -42,7 +42,7 @@ private:
 private:
     QTableView *appsTable;
     QStandardItemModel *appsTableModel;
-    QLineEdit *m_wallpaperCommand;
+    QComboBox *m_wallpaperCommand;
 };
 
 #endif // EXTERNAL_APPS_DIALOG_H

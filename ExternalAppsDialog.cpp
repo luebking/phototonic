@@ -17,12 +17,12 @@
  */
 
 #include <QBoxLayout>
+#include <QComboBox>
 #include <QDialog>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QHeaderView>
 #include <QLabel>
-#include <QLineEdit>
 #include <QPushButton>
 #include <QStandardItem>
 #include <QStandardItemModel>
@@ -70,7 +70,7 @@ ExternalAppsDialog::ExternalAppsDialog(QWidget *parent) : QDialog(parent) {
 
     QHBoxLayout *wallpaperLayout = new QHBoxLayout;
     wallpaperLayout->addWidget(new QLabel(tr("Wallpaper command")));
-    wallpaperLayout->addWidget(m_wallpaperCommand = new QLineEdit);
+    wallpaperLayout->addWidget(m_wallpaperCommand = new QComboBox);
 
     QHBoxLayout *buttonsLayout = new QHBoxLayout;
     QPushButton *okButton = new QPushButton(tr("OK"));
@@ -85,7 +85,18 @@ ExternalAppsDialog::ExternalAppsDialog(QWidget *parent) : QDialog(parent) {
     setLayout(externalAppsMainLayout);
 
     // Load external apps list
-    m_wallpaperCommand->setText(Settings::wallpaperCommand);
+    m_wallpaperCommand->setEditable(true);
+    QStringList wpcomm;
+    wpcomm  << "feh --bg-fill"
+            << "pcmanfm-qt --set-wallpaper"
+            << "pcmanfm --set-wallpaper"
+            << "gsettings set org.gnome.desktop.background picture-uri \'%u\'"
+            << "gsettings set org.gnome.desktop.background picture-uri-dark \'%u\'";
+    if (Settings::wallpaperCommand.isEmpty() && !wpcomm.contains(Settings::wallpaperCommand))
+        m_wallpaperCommand->addItem(Settings::wallpaperCommand);
+    m_wallpaperCommand->addItems(wpcomm);
+    m_wallpaperCommand->setCurrentText(Settings::wallpaperCommand);
+
     QString key, val;
     QMapIterator<QString, QString> it(Settings::externalApps);
     while (it.hasNext()) {
@@ -97,7 +108,7 @@ ExternalAppsDialog::ExternalAppsDialog(QWidget *parent) : QDialog(parent) {
 }
 
 void ExternalAppsDialog::ok() {
-    Settings::wallpaperCommand = m_wallpaperCommand->text();
+    Settings::wallpaperCommand = m_wallpaperCommand->currentText();
     int row = appsTableModel->rowCount();
     Settings::externalApps.clear();
     for (int i = 0; i < row; ++i) {
