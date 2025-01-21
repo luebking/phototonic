@@ -954,11 +954,10 @@ static Histogram calcHist(const QString &filePath) {
 
 void ThumbsViewer::sortBySimilarity() {
     QProgressDialog progress(tr("Loading..."), tr("Abort"), 0, thumbFileInfoList.count(), this);
-    progress.show();
-    QApplication::processEvents();
 
     QElapsedTimer timer;
     timer.start();
+    qint64 totalTime = 0;
 
     for (int i = 0; i < thumbFileInfoList.count(); ++i) {
         QStandardItem *item = m_model->item(i);
@@ -989,6 +988,9 @@ void ThumbsViewer::sortBySimilarity() {
         histFiles.append(filename);
 
         if (timer.elapsed() > 30) {
+            if ((totalTime += timer.elapsed()) > 500) {
+                progress.show();
+            }
             progress.setValue(i);
             QApplication::processEvents();
             if (progress.wasCanceled())
@@ -999,7 +1001,8 @@ void ThumbsViewer::sortBySimilarity() {
 
     progress.setLabelText(tr("Comparing..."));
     progress.setValue(0);
-    progress.show();
+    if ((totalTime += timer.elapsed()) > 600)
+        progress.show();
     timer.restart();
 
     for (int i=0; i<histFiles.size() - 1; i++) {
@@ -1007,7 +1010,7 @@ void ThumbsViewer::sortBySimilarity() {
         int minIndex = i+1;
 
         for (int j=i+1; j<histFiles.size(); j++) {
-            const float score = histograms[i].compare(histograms[j]);
+            const float score = histograms.at(i).compare(histograms.at(j));
             if (score > minScore) {
                 continue;
             }
@@ -1018,6 +1021,8 @@ void ThumbsViewer::sortBySimilarity() {
         std::swap(histograms[i+1], histograms[minIndex]);
 
         if (timer.elapsed() > 30) {
+            if ((totalTime += timer.elapsed()) > 700)
+                progress.show();
             progress.setValue(i);
             QApplication::processEvents();
             if (progress.wasCanceled())
@@ -1029,12 +1034,13 @@ void ThumbsViewer::sortBySimilarity() {
     progress.setLabelText(tr("Sorting..."));
     progress.setMaximum(thumbFileInfoList.count() + 1); // + 1 for the call to sort() at the bottom
     progress.setValue(0);
-    progress.show();
+    if ((totalTime += timer.elapsed()) > 800)
+        progress.show();
     timer.restart();
 
     QHash<QString, int> indices;
     for (int i=0; i<histFiles.size(); i++) {
-        indices[histFiles[i]] = i;
+        indices[histFiles.at(i)] = i;
     }
     for (int i = 0; i < thumbFileInfoList.count(); ++i) {
         QStandardItem *item = m_model->item(i);
@@ -1048,9 +1054,11 @@ void ThumbsViewer::sortBySimilarity() {
             qWarning() << "Invalid file" << filename;
             continue;
         }
-        item->setData(indices.size() - indices[filename], SortRole);
+        item->setData(indices.size() - indices.value(filename), HistogramRole);
 
         if (timer.elapsed() > 30) {
+            if ((totalTime += timer.elapsed()) > 900)
+                progress.show();
             progress.setValue(i);
             QApplication::processEvents();
             if (progress.wasCanceled())
@@ -1060,7 +1068,7 @@ void ThumbsViewer::sortBySimilarity() {
     }
     QApplication::processEvents();
 
-    m_model->setSortRole(SortRole);
+    m_model->setSortRole(HistogramRole);
     m_model->sort(0);
 }
 

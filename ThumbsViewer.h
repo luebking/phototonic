@@ -40,7 +40,7 @@ struct Histogram
     float green[256]{};
     float blue[256]{};
 
-    inline float compareChannel(const float hist1[256], const float hist2[256])
+    inline float compareChannel(const float hist1[256], const float hist2[256]) const
     {
         float len1 = 0.f, len2 = 0.f, corr = 0.f;
 
@@ -55,7 +55,7 @@ struct Histogram
         return std::sqrt(1.f - part1 * corr);
     }
 
-    inline float compare(const Histogram &other)
+    inline float compare(const Histogram &other) const
     {
         return compareChannel(red, other.red) +
             compareChannel(green, other.green) +
