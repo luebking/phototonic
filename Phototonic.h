@@ -373,8 +373,6 @@ private:
 
     void addPathHistoryRecord(QString dir);
 
-    bool isValidPath(QString &path);
-
     QString getSelectedPath();
 
     void setCopyCutActions(bool setEnabled);

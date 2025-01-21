@@ -1748,12 +1748,13 @@ void Phototonic::showColorsDialog() {
     setInterfaceEnabled(false);
 }
 
-bool Phototonic::isValidPath(QString &path) {
+static bool isWritableDir(const QString &path) {
+    QFileInfo info(path);
+    return info.exists() && info.isDir() && info.isWritable();
+}
+static bool isReadableDir(const QString &path) {
     QDir checkPath(path);
-    if (!checkPath.exists() || !checkPath.isReadable()) {
-        return false;
-    }
-    return true;
+    return checkPath.exists() && checkPath.isReadable();
 }
 
 void Phototonic::pasteThumbs() {
@@ -1774,7 +1775,7 @@ void Phototonic::pasteThumbs() {
         }
     }
 
-    if (!isValidPath(destDir)) {
+    if (!isWritableDir(destDir)) {
         MessageBox msgBox(this);
         msgBox.critical(tr("Error"), tr("Can not copy or move to %1").arg(destDir));
         selectCurrentViewDir();
@@ -2056,8 +2057,7 @@ void Phototonic::goPathBarDir() {
 
     if (pathLineEdit->completer()->popup())
         pathLineEdit->completer()->popup()->hide();
-    QDir checkPath(pathLineEdit->text());
-    if (!checkPath.exists() || !checkPath.isReadable()) {
+    if (!isReadableDir(pathLineEdit->text())) {
         MessageBox msgBox(this);
         msgBox.critical(tr("Error"), tr("Invalid Path: %1").arg(pathLineEdit->text()));
         pathLineEdit->setText(Settings::currentDirectory);
@@ -2888,7 +2888,7 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
     }
 
     MessageBox msgBox(this);
-    if (!isValidPath(destDir)) {
+    if (!isWritableDir(destDir)) {
         msgBox.critical(tr("Error"), tr("Can not move or copy images to this directory."));
         selectCurrentViewDir();
         return;
@@ -3002,8 +3002,7 @@ void Phototonic::reloadThumbs() {
             }
         }
 
-        QDir checkPath(Settings::currentDirectory);
-        if (!checkPath.exists() || !checkPath.isReadable()) {
+        if (!isReadableDir(Settings::currentDirectory)) {
             MessageBox msgBox(this);
             msgBox.critical(tr("Error"), tr("Failed to open directory %1").arg(Settings::currentDirectory));
             setStatus(tr("No directory selected"));

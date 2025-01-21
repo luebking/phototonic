@@ -100,7 +100,7 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
 
     if (pasteInCurrDir) {
         for (tn = 0; tn < Settings::copyCutFileList.size(); ++tn) {
-            sourceFile = Settings::copyCutFileList[tn];
+            sourceFile = Settings::copyCutFileList.at(tn);
             fileInfo = QFileInfo(sourceFile);
             currFile = fileInfo.fileName();
             destFile = destDir + QDir::separator() + currFile;
@@ -120,7 +120,7 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
     } else {
         QList<int> rowList;
         for (tn = Settings::copyCutIndexList.size() - 1; tn >= 0; --tn) {
-            sourceFile = thumbView->fullPathOf(Settings::copyCutIndexList[tn].row());
+            sourceFile = thumbView->fullPathOf(Settings::copyCutIndexList.at(tn).row());
             fileInfo = QFileInfo(sourceFile);
             currFile = fileInfo.fileName();
             destFile = destDir + QDir::separator() + currFile;
@@ -135,7 +135,7 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
                 break;
             }
 
-            rowList.append(Settings::copyCutIndexList[tn].row());
+            rowList.append(Settings::copyCutIndexList.at(tn).row());
         }
 
         if (!Settings::isCopyOperation) {
@@ -143,7 +143,7 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
             for (int t = rowList.size() - 1; t >= 0; --t)
                 thumbView->model()->removeRow(rowList.at(t));
         }
-        latestRow = rowList.at(0);
+        latestRow = rowList.size() ? rowList.at(0) : -1;
     }
 
     nFiles = Settings::copyCutIndexList.size();
