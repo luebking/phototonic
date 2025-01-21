@@ -1453,7 +1453,11 @@ void Phototonic::selectByBrightness() {
     }
 }
 
+#define ASSERT_IMAGES_SELECTED if(thumbsViewer->selectionModel()->selectedIndexes().size()<1){setStatus(tr("No images selected"));return;}
+
 void Phototonic::copyOrCutThumbs(bool isCopyOperation) {
+    ASSERT_IMAGES_SELECTED
+
     Settings::copyCutIndexList = thumbsViewer->selectionModel()->selectedIndexes();
     copyCutThumbsCount = Settings::copyCutIndexList.size();
 
@@ -1461,9 +1465,8 @@ void Phototonic::copyOrCutThumbs(bool isCopyOperation) {
 
     QList<QUrl> urlList;
     for (int thumb = 0; thumb < copyCutThumbsCount; ++thumb) {
-        const QString filePath = thumbsViewer->fullPathOf(Settings::copyCutIndexList[thumb].row());
+        const QString filePath = thumbsViewer->fullPathOf(Settings::copyCutIndexList.at(thumb).row());
         Settings::copyCutFileList.append(filePath);
-
         urlList.append(QUrl::fromLocalFile(filePath)); // The standard apparently is URLs even for local files...
     }
 
@@ -1665,10 +1668,7 @@ void Phototonic::scaleImage() {
             imageViewer->scaleImage(dlg.newSize());
         }
     } else {
-        if (thumbsViewer->selectionModel()->selectedIndexes().size() < 1) {
-            setStatus(tr("No selection"));
-            return;
-        }
+        ASSERT_IMAGES_SELECTED
         /// @todo: looks like there were plans to allow mass-resizing from the thumbnail browser
     }
 }
@@ -1828,12 +1828,8 @@ void Phototonic::loadCurrentImage(int currentRow) {
     Settings::wrapImageList = wrapImageListTmp;
 }
 
-void Phototonic::deleteImages(bool trash) {
-    // Deleting selected thumbnails
-    if (thumbsViewer->selectionModel()->selectedIndexes().size() < 1) {
-        setStatus(tr("No selection"));
-        return;
-    }
+void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
+    ASSERT_IMAGES_SELECTED
 
     QStringList deathRow;
     for (QModelIndex idx : thumbsViewer->selectionModel()->selectedIndexes())
@@ -2082,8 +2078,7 @@ void Phototonic::setCopyCutActions(bool setEnabled) {
 
 void Phototonic::updateActions() {
     if (QApplication::focusWidget() == thumbsViewer) {
-        bool hasSelectedItems = thumbsViewer->selectionModel()->selectedIndexes().size() > 0;
-        setCopyCutActions(hasSelectedItems);
+        setCopyCutActions(true);
     } else if (QApplication::focusWidget() == bookmarks) {
         setCopyCutActions(false);
     } else if (QApplication::focusWidget() == fileSystemTree) {
