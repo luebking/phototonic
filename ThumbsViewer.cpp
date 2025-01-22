@@ -841,7 +841,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
         }
 
         QBitArray imageHash(64);
-        image = image.convertToFormat(QImage::Format_Grayscale8).scaled(9, 9, Qt::KeepAspectRatioByExpanding);
+        image = image.convertToFormat(QImage::Format_Grayscale8).scaled(9, 9, Qt::KeepAspectRatioByExpanding /*, Qt::SmoothTransformation*/);
         for (int y=0; y<8; ++y) {
             const uchar *line = image.scanLine(y);
             //const uchar *nextLine = image.scanLine(y+1);
@@ -1304,7 +1304,7 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
             currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
         }
 
-        m_model->item(currThumb)->setData(qGray(thumb.scaled(1, 1).pixel(0, 0)) / 255.0, BrightnessRole);
+        m_model->item(currThumb)->setData(qGray(thumb.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)) / 255.0, BrightnessRole);
 
         if (Settings::thumbsLayout != Classic) {
             thumb = SmartCrop::crop(thumb, thumbSizeQ);
@@ -1366,7 +1366,7 @@ QStandardItem * ThumbsViewer::addThumb(const QString &imageFullPath) {
             currThumbSize = thumb.size();
             currThumbSize.scale(QSize(thumbSize, thumbSize), Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
         }
-        thumbItem->setData(qGray(thumb.scaled(1, 1).pixel(0, 0)) / 255.0, BrightnessRole);
+        thumbItem->setData(qGray(thumb.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)) / 255.0, BrightnessRole);
 
         thumbItem->setIcon(QPixmap::fromImage(thumb));
     } else {
