@@ -103,7 +103,7 @@ public:
     void applyFilter();
 
     void reLoad();
-
+    void loadAllThumbs();
     void loadDuplicates();
 
     void loadFileList();
@@ -208,7 +208,6 @@ protected slots:
 
 private slots:
     void loadThumbsRange();
-    void loadAllThumbs();
 };
 
 #endif // THUMBS_VIEWER_H

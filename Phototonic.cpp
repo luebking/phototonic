@@ -543,6 +543,8 @@ void Phototonic::createActions() {
     sortByTypeAction->setObjectName("type");
     sortBySimilarityAction = new QAction(tr("Sort by Similarity"), this);
     sortBySimilarityAction->setObjectName("similarity");
+    sortByBrightnessAction = new QAction(tr("Sort by Brightness"), this);
+    sortByBrightnessAction->setObjectName("similarity");
     sortReverseAction = new QAction(tr("Reverse Sort Order"), this);
     sortReverseAction->setObjectName("reverse");
     sortByNameAction->setCheckable(true);
@@ -550,12 +552,14 @@ void Phototonic::createActions() {
     sortBySizeAction->setCheckable(true);
     sortByTypeAction->setCheckable(true);
     sortBySimilarityAction->setCheckable(true);
+    sortByBrightnessAction->setCheckable(true);
     sortReverseAction->setCheckable(true);
     connect(sortByNameAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortByTimeAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortBySizeAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortByTypeAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortBySimilarityAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
+    connect(sortByBrightnessAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortReverseAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
 
     if (thumbsViewer->thumbsSortFlags & QDir::Time) {
@@ -938,6 +942,7 @@ void Phototonic::createMenus() {
     sortTypesGroup->addAction(sortBySizeAction);
     sortTypesGroup->addAction(sortByTypeAction);
     sortTypesGroup->addAction(sortBySimilarityAction);
+    sortTypesGroup->addAction(sortByBrightnessAction);
     sortMenu->addActions(sortTypesGroup->actions());
     sortMenu->addSeparator();
     sortMenu->addAction(sortReverseAction);
@@ -1244,6 +1249,9 @@ void Phototonic::sortThumbnails() {
         thumbModel->setSortRole(ThumbsViewer::TypeRole);
     } else if (sortBySimilarityAction->isChecked()) {
         thumbsViewer->sortBySimilarity();
+    } else if (sortByBrightnessAction->isChecked()) {
+        thumbsViewer->loadAllThumbs();
+        thumbModel->setSortRole(ThumbsViewer::BrightnessRole);
     }
     thumbModel->sort(0, sortReverseAction->isChecked() ? Qt::AscendingOrder : Qt::DescendingOrder);
     thumbsViewer->loadVisibleThumbs(-1);

@@ -215,6 +215,7 @@ private:
     QAction *sortBySizeAction;
     QAction *sortByTypeAction;
     QAction *sortBySimilarityAction;
+    QAction *sortByBrightnessAction;
     QAction *sortReverseAction;
     QAction *refreshAction;
     QAction *includeSubDirectoriesAction;
