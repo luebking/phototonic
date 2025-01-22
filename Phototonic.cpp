@@ -3398,12 +3398,16 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
             return true;
         } else if (ke->key() == Qt::Key_Up) {
             if (!ke->modifiers() && !thumbsViewer->rect().intersects(thumbsViewer->visualRect(thumbsViewer->currentIndex()))) {
-                thumbsViewer->setCurrentIndex(thumbsViewer->indexAt(thumbsViewer->rect().bottomLeft() + QPoint(32, -64)));
+                QPoint pt = layoutDirection() == Qt::RightToLeft ? thumbsViewer->rect().bottomRight() + QPoint(-32, -64) :
+                                                                   thumbsViewer->rect().bottomLeft() + QPoint(32, -64);
+                thumbsViewer->setCurrentIndex(thumbsViewer->indexAt(pt));
                 return true;
             }
         } else if (ke->key() == Qt::Key_Down) {
             if (!ke->modifiers() && !thumbsViewer->rect().intersects(thumbsViewer->visualRect(thumbsViewer->currentIndex()))) {
-                thumbsViewer->setCurrentIndex(thumbsViewer->indexAt(thumbsViewer->rect().topLeft() + QPoint(32, 32)));
+                QPoint pt = layoutDirection() == Qt::RightToLeft ? thumbsViewer->rect().topRight() + QPoint(-32, 32) :
+                                                                   thumbsViewer->rect().topLeft() + QPoint(32, 32);
+                thumbsViewer->setCurrentIndex(thumbsViewer->indexAt(pt));
                 return true;
             }
         } else if (copyAction->shortcut()[0] == ke->keyCombination() || // these are sucked away by an enabled action
