@@ -2079,11 +2079,8 @@ void Phototonic::goForward() {
 void Phototonic::updateActions() {
 
     auto toggleFileSpecificActions = [&](bool on) {
-        // this is bad UX, but the disabled action prevents the shortcut,
-        // what means the status cannot warn the user :(
-        cutAction->setEnabled(true);
-        copyAction->setEnabled(true);
-        // These have a visual response, no problem
+        cutAction->setEnabled(on);
+        copyAction->setEnabled(on);
         copyToAction->setEnabled(on);
         moveToAction->setEnabled(on);
         viewImageAction->setEnabled(on);
@@ -3409,6 +3406,9 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
                 thumbsViewer->setCurrentIndex(thumbsViewer->indexAt(thumbsViewer->rect().topLeft() + QPoint(32, 32)));
                 return true;
             }
+        } else if (copyAction->shortcut()[0] == ke->keyCombination() || // these are sucked away by an enabled action
+                   cutAction->shortcut()[0] == ke->keyCombination()) { // issue a warning for the disabled one
+            setStatus(tr("No images selected"));
         }
         return QMainWindow::eventFilter(o, e);
     }
