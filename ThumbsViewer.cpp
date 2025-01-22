@@ -1392,6 +1392,15 @@ void ThumbsViewer::mousePressEvent(QMouseEvent *event) {
 
 void ThumbsViewer::resizeEvent(QResizeEvent *event) {
     QListView::resizeEvent(event);
+    if (Settings::thumbsLayout == Classic) {
+        const int w = viewport()->width() - verticalScrollBar()->width();
+        if (int hcount = w/thumbSize) {
+            int pad = (w % thumbSize) / hcount;
+            if (pad < 5 && --hcount > 0)
+                pad = ((w % thumbSize) + thumbSize) / hcount;
+            setGridSize(QSize(thumbSize + pad, gridSize().height()));
+        }
+    }
     m_loadThumbTimer.start();
 }
 
