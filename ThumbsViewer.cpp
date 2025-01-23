@@ -380,6 +380,10 @@ void ThumbsViewer::reLoad() {
     disconnect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
     m_busy = true;
 
+    histFiles.clear(); // these can grow out of control and currently sort O(n^2)
+    histograms.clear();
+    m_histSorted = false;
+
     loadPrepare();
 
     if (Settings::isFileListLoaded) {
@@ -980,6 +984,7 @@ void ThumbsViewer::scanForSort(UserRoles role) {
             item->setData(qGray(image.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)) / 255.0, BrightnessRole);
         }
         histFiles.append(filename);
+        m_histSorted = false;
 
         if (timer.elapsed() > 30) {
             if ((totalTime += timer.elapsed()) > 500) {
@@ -995,6 +1000,9 @@ void ThumbsViewer::scanForSort(UserRoles role) {
 
     if (role == BrightnessRole)
         return; // we're done, brightness is an absolute measure
+
+    if (m_histSorted)
+        return; // this should be sorted already, less files doesn't change the similarity of the remaining - we've some holes in the list
 
     progress.setLabelText(tr("Comparing..."));
     progress.setValue(0);
@@ -1014,8 +1022,8 @@ void ThumbsViewer::scanForSort(UserRoles role) {
             minIndex = j;
             minScore = score;
         }
-        std::swap(histFiles[i+1], histFiles[minIndex]);
-        std::swap(histograms[i+1], histograms[minIndex]);
+        histFiles.swapItemsAt(i+1, minIndex);
+        histograms.swapItemsAt(i+1, minIndex);
 
         if (timer.elapsed() > 30) {
             if ((totalTime += timer.elapsed()) > 700)
@@ -1041,17 +1049,17 @@ void ThumbsViewer::scanForSort(UserRoles role) {
     }
     for (int i = 0; i < thumbFileInfoList.count(); ++i) {
         QStandardItem *item = m_model->item(i);
-        Q_ASSERT(item);
         if (!item) {
             qWarning() << "Invalid item" << i;
             continue;
         }
         const QString filename = item->data(FileNameRole).toString();
-        if (!indices.contains(filename)) {
+        QHash<QString, int>::const_iterator cit = indices.find(filename);
+        if (cit == indices.end()) {
             qWarning() << "Invalid file" << filename;
             continue;
         }
-        item->setData(indices.size() - indices.value(filename), HistogramRole);
+        item->setData(indices.size() - *cit, HistogramRole);
 
         if (timer.elapsed() > 30) {
             if ((totalTime += timer.elapsed()) > 900)
@@ -1063,6 +1071,7 @@ void ThumbsViewer::scanForSort(UserRoles role) {
             timer.restart();
         }
     }
+    m_histSorted = true;
 }
 
 void ThumbsViewer::loadThumbsRange() {

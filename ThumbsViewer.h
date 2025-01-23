@@ -180,6 +180,7 @@ private:
     QFileInfoList thumbFileInfoList;
     QList<Histogram> histograms;
     QList<QString> histFiles;
+    bool m_histSorted;
     QPixmap emptyImg;
 
     bool isAbortThumbsLoading = false;
