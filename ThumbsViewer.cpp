@@ -1063,10 +1063,6 @@ void ThumbsViewer::scanForSort(UserRoles role) {
             timer.restart();
         }
     }
-    QApplication::processEvents();
-
-    m_model->setSortRole(HistogramRole);
-    m_model->sort(0);
 }
 
 void ThumbsViewer::loadThumbsRange() {
