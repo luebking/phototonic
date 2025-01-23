@@ -28,7 +28,7 @@
 #include "Settings.h"
 #include "ThumbsViewer.h"
 
-static QString autoRename(QString &destDir, QString &currFile) {
+static QString autoRename(const QString &destDir, const QString &currFile) {
     int extSep = currFile.lastIndexOf(".");
     QString nameOnly = currFile.left(extSep);
     QString extOnly = currFile.right(currFile.size() - extSep - 1);
@@ -43,20 +43,21 @@ static QString autoRename(QString &destDir, QString &currFile) {
     return newFile;
 }
 
-int CopyMoveDialog::copyOrMoveFile(bool isCopy, QString &srcFile, QString &srcPath, QString &dstPath, QString &dstDir) {
+int CopyMoveDialog::copyOrMoveFile(const QString &srcPath, QString &dstPath, bool copy) {
     int res;
 
-    if (isCopy) {
+    if (copy) {
         res = QFile::copy(srcPath, dstPath);
     } else {
         res = QFile::rename(srcPath, dstPath);
     }
 
     if (!res && QFile::exists(dstPath)) {
-        QString newName = autoRename(dstDir, srcFile);
-        QString newDestPath = dstDir + QDir::separator() + newName;
+        QFileInfo info(dstPath);
+        QString newName = autoRename(info.absolutePath(), info.fileName());
+        QString newDestPath = info.absolutePath() + QDir::separator() + newName;
 
-        if (isCopy) {
+        if (copy) {
             res = QFile::copy(srcPath, newDestPath);
         } else {
             res = QFile::rename(srcPath, newDestPath);
@@ -89,27 +90,18 @@ CopyMoveDialog::CopyMoveDialog(QWidget *parent) : QDialog(parent) {
 }
 
 void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurrDir) {
-    int res = 0;
-    QString sourceFile;
-    QFileInfo fileInfo;
-    QString currFile;
-    QString destFile;
-    int tn;
-
     show();
 
     if (pasteInCurrDir) {
-        for (tn = 0; tn < Settings::copyCutFileList.size(); ++tn) {
-            sourceFile = Settings::copyCutFileList.at(tn);
-            fileInfo = QFileInfo(sourceFile);
-            currFile = fileInfo.fileName();
-            destFile = destDir + QDir::separator() + currFile;
+        for (int tn = 0; tn < Settings::copyCutFileList.size(); ++tn) {
+            QString sourceFile = Settings::copyCutFileList.at(tn);
+            QString destFile = destDir + QDir::separator() + QFileInfo(sourceFile).fileName();
 
             opLabel->setText((Settings::isCopyOperation ? tr("Copying \"%1\" to \"%2\".") : tr("Moving \"%1\" to \"%2\"."))
                                      .arg(sourceFile).arg(destFile));
             QApplication::processEvents();
 
-            res = copyOrMoveFile(Settings::isCopyOperation, currFile, sourceFile, destFile, destDir);
+            int res = copyOrMoveFile(sourceFile, destFile, Settings::isCopyOperation);
 
             if (!res || abortOp) {
                 break;
@@ -119,17 +111,15 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
         }
     } else {
         QList<int> rowList;
-        for (tn = Settings::copyCutIndexList.size() - 1; tn >= 0; --tn) {
-            sourceFile = thumbView->fullPathOf(Settings::copyCutIndexList.at(tn).row());
-            fileInfo = QFileInfo(sourceFile);
-            currFile = fileInfo.fileName();
-            destFile = destDir + QDir::separator() + currFile;
+        for (int tn = Settings::copyCutIndexList.size() - 1; tn >= 0; --tn) {
+            QString sourceFile = thumbView->fullPathOf(Settings::copyCutIndexList.at(tn).row());
+            QString destFile = destDir + QDir::separator() + QFileInfo(sourceFile).fileName();
 
             opLabel->setText((Settings::isCopyOperation ? tr("Copying \"%1\" to \"%2\".") : tr("Moving \"%1\" to \"%2\"."))
                                      .arg(sourceFile).arg(destFile));
             QApplication::processEvents();
 
-            res = copyOrMoveFile(Settings::isCopyOperation, currFile, sourceFile, destFile, destDir);
+            int res = copyOrMoveFile(sourceFile, destFile, Settings::isCopyOperation);
 
             if (!res || abortOp) {
                 break;

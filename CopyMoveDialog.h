@@ -33,7 +33,14 @@ public slots:
 public:
     CopyMoveDialog(QWidget *parent);
 
-    static int copyOrMoveFile(bool isCopy, QString &srcFile, QString &srcPath, QString &dstPath, QString &dstDir);
+    static int copyFile(const QString &srcPath, QString &dstPath) {
+        return copyOrMoveFile(srcPath, dstPath, true);
+    }
+    static int moveFile(const QString &srcPath, QString &dstPath) {
+        return copyOrMoveFile(srcPath, dstPath, false);
+    }
+
+    static int copyOrMoveFile(const QString &srcPath, QString &dstPath, bool copy);
 
     void execute(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurrDir);
 

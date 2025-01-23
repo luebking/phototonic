@@ -943,10 +943,10 @@ void ImageViewer::applyCropAndRotation() {
             tempDisableResize = false;
             Settings::imageZoomFactor = 1.0;
         }
-        refresh();
-        setFeedback("", false);
-        setFeedback(tr("New image size: %1x%2").arg(origImage.width()).arg(origImage.height()));
     }
+    refresh();
+    setFeedback("", false);
+    setFeedback(tr("New image size: %1x%2").arg(origImage.width()).arg(origImage.height()));
 }
 
 void ImageViewer::configureLetterbox() {

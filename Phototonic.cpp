@@ -844,13 +844,13 @@ void Phototonic::createActions() {
     connect(invertSelectionAction, SIGNAL(triggered()), thumbsViewer, SLOT(invertSelection()));
 
     // There could be a Batch submenu if we had any more items to put there
-    QMenu *batchSubMenu = new QMenu(tr("Batch"));
-    batchSubMenuAction = new QAction(tr("Batch"), this);
-    batchSubMenuAction->setMenu(batchSubMenu);
-    batchTransformAction = new QAction(tr("Repeat Rotate and Crop"), this);
+//    QMenu *batchSubMenu = new QMenu(tr("Batch"));
+//    batchSubMenuAction = new QAction(tr("Batch"), this);
+//    batchSubMenuAction->setMenu(batchSubMenu);
+    batchTransformAction = new QAction(tr("Rotate and Crop images"), this);
     batchTransformAction->setObjectName("batchTransform");
     connect(batchTransformAction, SIGNAL(triggered()), this, SLOT(batchTransform()));
-    batchSubMenu->addAction(batchTransformAction);
+//    batchSubMenu->addAction(batchTransformAction);
 
     filterImagesFocusAction = new QAction(tr("Filter by Name"), this);
     filterImagesFocusAction->setObjectName("filterImagesFocus");
@@ -899,7 +899,8 @@ void Phototonic::createMenus() {
     menu->addAction(selectAllAction);
     menu->addAction(selectByBrightnesAction);
     menu->addAction(invertSelectionAction);
-    menu->addAction(batchSubMenuAction);
+    menu->addAction(batchTransformAction);
+//    menu->addAction(batchSubMenuAction);
     addAction(filterImagesFocusAction);
     addAction(setPathFocusAction);
     menu->addSeparator();
@@ -974,7 +975,8 @@ void Phototonic::createMenus() {
     thumbsViewer->addAction(selectByBrightnesAction);
     thumbsViewer->addAction(invertSelectionAction);
     thumbsViewer->addAction("")->setSeparator(true);
-    thumbsViewer->addAction(batchSubMenuAction);
+    thumbsViewer->addAction(batchTransformAction);
+//    thumbsViewer->addAction(batchSubMenuAction);
     thumbsViewer->addAction("")->setSeparator(true);
     thumbsViewer->addAction(deleteAction);
     thumbsViewer->addAction(deletePermanentlyAction);
@@ -1516,13 +1518,8 @@ void Phototonic::copyOrMoveImages(bool isCopyOperation) {
                 return;
             }
 
-            QFileInfo fileInfo = QFileInfo(imageViewer->fullImagePath);
-            QString fileName = fileInfo.fileName();
-            QString destFile = copyMoveToDialog->selectedPath + QDir::separator() + fileInfo.fileName();
-
-            int result = CopyMoveDialog::copyOrMoveFile(copyMoveToDialog->copyOp, fileName,
-                                                        imageViewer->fullImagePath,
-                                                        destFile, copyMoveToDialog->selectedPath);
+            QString destFile = copyMoveToDialog->selectedPath + QDir::separator() + QFileInfo(imageViewer->fullImagePath).fileName();
+            int result = CopyMoveDialog::copyOrMoveFile(imageViewer->fullImagePath, destFile, copyMoveToDialog->copyOp);
 
             if (!result) {
                 MessageBox msgBox(this);
@@ -1706,38 +1703,72 @@ void Phototonic::freeRotateRight() {
 void Phototonic::batchTransform() {
     QModelIndexList idxs = thumbsViewer->selectionModel()->selectedIndexes();
     MessageBox msgBox(this);
-    if (idxs.count() < 1) {
+    if (idxs.count() < 2) {
         msgBox.critical(tr("No images selected"), tr("Please select the images to transform."));
         return;
     }
     QRect cropRect = imageViewer->lastCropGeometry();
+    if (!cropRect.isValid()) {
+        msgBox.warning( tr("No crop area defined"),
+                        tr( "<h3>Define a crop area</h3>"
+                            "<p>Open an image, maybe rotate it.<br>"
+                            "Then press and hold ctrl to select a crop rect.<br>"
+                            "Do <b>not</b> apply the crop by double clicking the selection!<br>"
+                            "Exit the Viewer.</p>"
+                            "You can now replay the action on multiple images."));
+        return;
+    }
     QString message;
-    if (Settings::saveDirectory.isEmpty())
-        message = tr("Rotate %1 images by %2 degrees, then crop them to %3, %4 %5 x %6, overwiting the original files?")
-                        .arg(idxs.count()).arg(Settings::rotation, 0, 'f', 2)
-                        .arg(cropRect.x()).arg(cropRect.y()).arg(cropRect.width()).arg(cropRect.height());
-    else
-        message = tr("Rotate %1 images by %2 degrees, then crop them to %3, %4 %5 x %6, saving the transformed images to %7?")
-                        .arg(idxs.count()).arg(Settings::rotation, 0, 'f', 2)
-                        .arg(cropRect.x()).arg(cropRect.y()).arg(cropRect.width()).arg(cropRect.height())
-                        .arg(Settings::saveDirectory);
+    bool createBackups = true;
+    if (Settings::saveDirectory.isEmpty()) {
+        if (MessageBox::question(this,  tr("Create backups?"),
+                                        tr("No global save directory is defined, the images will be overwritten."
+                                           "<h3>Do you want to create backups?</h3>"),
+                                        QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::No) {
+            createBackups = false;
+        }
+        message = createBackups ? tr("Create backups and overwrite the original files") : tr("Overwrite the original files");
+    }
+    else {
+        message = tr("Save the transformed images to %1").arg(Settings::saveDirectory);
+    }
 
-    msgBox.setInformativeText(tr("Perform batch transformation?"));
-    msgBox.setText(message);
+    msgBox.setText(tr("<h3>Perform batch transformation?</h3>"));
+    msgBox.setInformativeText(tr("<ul><li>Rotate %1 images by %2°</li>"
+                                     "<li>Crop them to %3+%4+%5x%6</li>"
+                                     "<li>%7</li></ul>").arg(idxs.count()).arg(Settings::rotation, 0, 'f', 1)
+                                                        .arg(cropRect.x()).arg(cropRect.y())
+                                                        .arg(cropRect.width()).arg(cropRect.height())
+                                                        .arg(message));
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Ok);
-    if (msgBox.exec() == QMessageBox::Ok) {
-        bool keepTransformWas = Settings::keepTransform;
-        imageViewer->batchMode = true;
-        Settings::keepTransform = true;
+    if (msgBox.exec() != QMessageBox::Ok)
+        return;
+
+    if (createBackups) {
         for (QModelIndex i : idxs) {
-            loadSelectedThumbImage(i);
-            imageViewer->applyCropAndRotation();
-            imageViewer->saveImage();
+            QString path = thumbsViewer->fullPathOf(i.row()); // copyFile rewrites the destination
+            int result = CopyMoveDialog::copyFile(path, path);
+            if (!result) {
+                MessageBox msgBox(this);
+                msgBox.critical(tr("Error"), tr("Failed to copy or move image."));
+                return;
+            } 
         }
-        Settings::keepTransform = keepTransformWas;
-        imageViewer->batchMode = false;
     }
+
+    bool keepTransformWas = Settings::keepTransform;
+    Settings::keepTransform = imageViewer->batchMode = true;
+    setUpdatesEnabled(false);
+    for (QModelIndex i : idxs) {
+        loadSelectedThumbImage(i);
+        imageViewer->applyCropAndRotation();
+        imageViewer->saveImage();
+    }
+    Settings::keepTransform = keepTransformWas;
+    imageViewer->batchMode = false;
+    setUpdatesEnabled(true);
+    reloadThumbs();
 }
 
 void Phototonic::showColorsDialog() {
@@ -2095,13 +2126,15 @@ void Phototonic::updateActions() {
         viewImageAction->setEnabled(on);
         m_wallpaperAction->setEnabled(on);
         openWithMenuAction->setEnabled(on);
-        batchSubMenuAction->setEnabled(on);
+//        batchSubMenuAction->setEnabled(on);
+        batchTransformAction->setEnabled(on);
         deleteAction->setEnabled(on);
         deletePermanentlyAction->setEnabled(on);
     };
 
     if (QApplication::focusWidget() == thumbsViewer) {
         toggleFileSpecificActions(thumbsViewer->selectionModel()->selectedIndexes().size() > 0);
+        batchTransformAction->setEnabled(thumbsViewer->selectionModel()->selectedIndexes().size() > 1);
     } else if (QApplication::focusWidget() == bookmarks) {
         toggleFileSpecificActions(false);
     } else if (QApplication::focusWidget() == fileSystemTree) {
@@ -2718,7 +2751,8 @@ void Phototonic::showViewer() {
 }
 /// @todo looks like redundant calls?
 void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
-    showViewer();
+    if (!imageViewer->batchMode)
+        showViewer();
     thumbsViewer->setCurrentIndex(idx);
     imageViewer->loadImage(thumbsViewer->fullPathOf(idx.row()), thumbsViewer->icon(idx.row()).pixmap(THUMB_SIZE_MAX).toImage());
     setImageViewerWindowTitle();
