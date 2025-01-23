@@ -19,8 +19,10 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
+#define BAD_IMAGE_SIZE 64
 #define THUMB_SIZE_MIN 25
 #define THUMB_SIZE_MAX 512
+#define WINDOW_ICON_SIZE 48
 
 class QAction;
 class QSettings;

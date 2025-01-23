@@ -30,10 +30,6 @@ class QStandardItemModel;
 #include <QListView>
 #include <QTimer>
 
-#define BAD_IMAGE_SIZE 64
-#define WINDOW_ICON_SIZE 48
-
-
 struct Histogram
 {
     float red[256]{};

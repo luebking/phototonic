@@ -40,7 +40,6 @@
 #include "MessageBox.h"
 #include "MetadataCache.h"
 #include "Settings.h"
-#include "ThumbsViewer.h"
 
 
 #define CLIPBOARD_IMAGE_NAME "clipboard.png"

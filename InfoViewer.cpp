@@ -19,6 +19,7 @@
 #include <QApplication>
 #include <QBoxLayout>
 #include <QClipboard>
+#include <QFileInfo>
 #include <QHeaderView>
 #include <QImageReader>
 #include <QLineEdit>
@@ -28,7 +29,6 @@
 #include <QTableView>
 
 #include "InfoViewer.h"
-#include "ThumbsViewer.h"
 
 #include <exiv2/exiv2.hpp>
 
