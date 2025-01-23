@@ -427,7 +427,7 @@
         <translation>在批处理模式下跳过动画：</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="858"/>
+        <location filename="../ImageViewer.cpp" line="863"/>
         <source>Selection: </source>
         <translation>选区： </translation>
     </message>
@@ -441,7 +441,7 @@
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="301"/>
-        <location filename="../ImageViewer.cpp" line="950"/>
+        <location filename="../ImageViewer.cpp" line="955"/>
         <source>New image size: %1x%2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -471,67 +471,67 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="868"/>
+        <location filename="../ImageViewer.cpp" line="873"/>
         <source>Doubleclick to crop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="994"/>
+        <location filename="../ImageViewer.cpp" line="999"/>
         <source>Rotation %1°</source>
         <translation type="unfinished">旋转 %1°</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1100"/>
+        <location filename="../ImageViewer.cpp" line="1105"/>
         <source>Saving...</source>
         <translation>保存...</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1119"/>
-        <location filename="../ImageViewer.cpp" line="1149"/>
-        <location filename="../ImageViewer.cpp" line="1197"/>
+        <location filename="../ImageViewer.cpp" line="1124"/>
+        <location filename="../ImageViewer.cpp" line="1154"/>
+        <location filename="../ImageViewer.cpp" line="1202"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1119"/>
-        <location filename="../ImageViewer.cpp" line="1197"/>
+        <location filename="../ImageViewer.cpp" line="1124"/>
+        <location filename="../ImageViewer.cpp" line="1202"/>
         <source>Failed to save image.</source>
         <translation>保存图片失败。</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1147"/>
+        <location filename="../ImageViewer.cpp" line="1152"/>
         <source>Don&apos;t show this message again</source>
         <translation>不再显示此信息</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1149"/>
+        <location filename="../ImageViewer.cpp" line="1154"/>
         <source>Failed to save Exif metadata.</source>
         <translation>保存 Exif 元数据失败。</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1153"/>
+        <location filename="../ImageViewer.cpp" line="1158"/>
         <source>Failed to safe Exif metadata:</source>
         <extracomment>this is a warning on the console</extracomment>
         <translation>保存 Exif 元数据失败：</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1159"/>
-        <location filename="../ImageViewer.cpp" line="1210"/>
+        <location filename="../ImageViewer.cpp" line="1164"/>
+        <location filename="../ImageViewer.cpp" line="1215"/>
         <source>Image saved.</source>
         <translation>图像已保存。</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1179"/>
+        <location filename="../ImageViewer.cpp" line="1184"/>
         <source>Save image as</source>
         <translation>另存图像为</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1181"/>
+        <location filename="../ImageViewer.cpp" line="1186"/>
         <source>Images</source>
         <translation>图像</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1246"/>
+        <location filename="../ImageViewer.cpp" line="1251"/>
         <source>Clipboard</source>
         <translation>剪切板</translation>
     </message>

@@ -443,7 +443,7 @@
         <translation>De animatie wordt overgeslagen in reeksmodus:</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="858"/>
+        <location filename="../ImageViewer.cpp" line="863"/>
         <source>Selection: </source>
         <translation>Selectie: </translation>
     </message>
@@ -457,7 +457,7 @@
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="301"/>
-        <location filename="../ImageViewer.cpp" line="950"/>
+        <location filename="../ImageViewer.cpp" line="955"/>
         <source>New image size: %1x%2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -487,67 +487,67 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="868"/>
+        <location filename="../ImageViewer.cpp" line="873"/>
         <source>Doubleclick to crop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="994"/>
+        <location filename="../ImageViewer.cpp" line="999"/>
         <source>Rotation %1°</source>
         <translation type="unfinished">%1° gedraaid</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1100"/>
+        <location filename="../ImageViewer.cpp" line="1105"/>
         <source>Saving...</source>
         <translation>Bezig met opslaan…</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1119"/>
-        <location filename="../ImageViewer.cpp" line="1149"/>
-        <location filename="../ImageViewer.cpp" line="1197"/>
+        <location filename="../ImageViewer.cpp" line="1124"/>
+        <location filename="../ImageViewer.cpp" line="1154"/>
+        <location filename="../ImageViewer.cpp" line="1202"/>
         <source>Error</source>
         <translation>Foutmelding</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1119"/>
-        <location filename="../ImageViewer.cpp" line="1197"/>
+        <location filename="../ImageViewer.cpp" line="1124"/>
+        <location filename="../ImageViewer.cpp" line="1202"/>
         <source>Failed to save image.</source>
         <translation>De afbeelding kan niet worden opgeslagen.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1147"/>
+        <location filename="../ImageViewer.cpp" line="1152"/>
         <source>Don&apos;t show this message again</source>
         <translation>Niet meer tonen</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1149"/>
+        <location filename="../ImageViewer.cpp" line="1154"/>
         <source>Failed to save Exif metadata.</source>
         <translation>De Exif-metagegevens kunnen niet worden opgeslagen.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1153"/>
+        <location filename="../ImageViewer.cpp" line="1158"/>
         <source>Failed to safe Exif metadata:</source>
         <extracomment>this is a warning on the console</extracomment>
         <translation>De Exif-metagegevens kunnen niet worden opgeslagen:</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1159"/>
-        <location filename="../ImageViewer.cpp" line="1210"/>
+        <location filename="../ImageViewer.cpp" line="1164"/>
+        <location filename="../ImageViewer.cpp" line="1215"/>
         <source>Image saved.</source>
         <translation>De afbeelding is opgeslagen.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1179"/>
+        <location filename="../ImageViewer.cpp" line="1184"/>
         <source>Save image as</source>
         <translation>Afbeelding opslaan als</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1181"/>
+        <location filename="../ImageViewer.cpp" line="1186"/>
         <source>Images</source>
         <translation>Afbeeldingen</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1246"/>
+        <location filename="../ImageViewer.cpp" line="1251"/>
         <source>Clipboard</source>
         <translation>Klembord</translation>
     </message>
