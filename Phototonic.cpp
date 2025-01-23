@@ -1254,7 +1254,7 @@ void Phototonic::sortThumbnails() {
         thumbsViewer->scanForSort(ThumbsViewer::BrightnessRole);
         thumbModel->setSortRole(ThumbsViewer::BrightnessRole);
     }
-    thumbModel->sort(0, sortReverseAction->isChecked() ? Qt::AscendingOrder : Qt::DescendingOrder);
+    thumbModel->sort(0, sortReverseAction->isChecked() ? Qt::DescendingOrder : Qt::AscendingOrder);
     thumbsViewer->loadVisibleThumbs(-1);
 }
 
@@ -3049,6 +3049,7 @@ void Phototonic::reloadThumbs() {
         m_progressBar->reset();
         thumbsViewer->reLoad();
     }
+    sortThumbnails();
 }
 
 void Phototonic::setImageViewerWindowTitle() {
