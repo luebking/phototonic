@@ -883,7 +883,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
 }
 
 void ThumbsViewer::selectByBrightness(qreal min, qreal max) {
-    loadAllThumbs();
+    scanForSort(BrightnessRole);
     QItemSelection sel;
     for (int row = 0; row < m_model->rowCount(); ++row) {
         QModelIndex idx = m_model->index(row, 0);
@@ -895,28 +895,6 @@ void ThumbsViewer::selectByBrightness(qreal min, qreal max) {
         }
     }
     selectionModel()->select(sel, QItemSelectionModel::ClearAndSelect);
-}
-
-void ThumbsViewer::loadAllThumbs() {
-    QProgressDialog progress(tr("Loading thumbnails..."), tr("Abort"), 0, thumbFileInfoList.count(), this);
-    int processed = 0;
-    for (int i = 0; i < thumbFileInfoList.count(); ++i) {
-        progress.setValue(i);
-        if (progress.wasCanceled())
-            break;
-        if (m_model->item(i)->data(LoadedRole).toBool())
-            continue;
-        loadThumb(i);
-
-        if (isAbortThumbsLoading) {
-            break;
-        }
-
-        if (++processed > BATCH_SIZE) {
-            QApplication::processEvents();
-            processed = 0;
-        }
-    }
 }
 
 static Histogram calcHist(const QImage &img)
@@ -938,7 +916,7 @@ static Histogram calcHist(const QImage &img)
     }
     return hist;
 }
-
+/*
 static Histogram calcHist(const QString &filePath) {
     QImageReader reader(filePath);
     reader.setScaledSize(QSize(256, 256));
@@ -950,9 +928,12 @@ static Histogram calcHist(const QString &filePath) {
     }
     return calcHist(image);
 }
+*/
 
+void ThumbsViewer::scanForSort(UserRoles role) {
+    if (role != HistogramRole && role != BrightnessRole)
+        return;
 
-void ThumbsViewer::sortBySimilarity() {
     QProgressDialog progress(tr("Loading..."), tr("Abort"), 0, thumbFileInfoList.count(), this);
 
     QElapsedTimer timer;
@@ -966,8 +947,9 @@ void ThumbsViewer::sortBySimilarity() {
         if (!item) {
             continue;
         }
+
         const QString filename = item->data(FileNameRole).toString();
-        if (histFiles.contains(filename)) {
+        if (item->data(BrightnessRole).isValid() && histFiles.contains(filename)) {
             continue;
         }
 
@@ -980,11 +962,23 @@ void ThumbsViewer::sortBySimilarity() {
             thumbReader.read(&image);
             haveThumbogram = QImageReader(filename).size() == QSize(image.text("Thumb::Image::Width").toInt(), 
                                                                     image.text("Thumb::Image::Height").toInt());
-            if (haveThumbogram)
+            if (haveThumbogram) {
                 histograms.append(calcHist(image));
+                item->setData(qGray(image.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)) / 255.0, BrightnessRole);
+            }
         }
-        if (!haveThumbogram)
-            histograms.append(calcHist(filename));
+        if (!haveThumbogram) {
+            QImageReader reader(filename);
+            reader.setScaledSize(QSize(256, 256));
+            reader.setAutoTransform(false);
+            QImage image = reader.read();
+            if (image.isNull()) {
+                qWarning() << "Invalid file" << filename << reader.errorString();
+                continue;
+            }
+            histograms.append(calcHist(image));
+            item->setData(qGray(image.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)) / 255.0, BrightnessRole);
+        }
         histFiles.append(filename);
 
         if (timer.elapsed() > 30) {
@@ -998,6 +992,9 @@ void ThumbsViewer::sortBySimilarity() {
             timer.restart();
         }
     }
+
+    if (role == BrightnessRole)
+        return; // we're done, brightness is an absolute measure
 
     progress.setLabelText(tr("Comparing..."));
     progress.setValue(0);

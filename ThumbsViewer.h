@@ -103,7 +103,6 @@ public:
     void applyFilter();
 
     void reLoad();
-    void loadAllThumbs();
     void loadDuplicates();
 
     void loadFileList();
@@ -139,7 +138,7 @@ public:
     QIcon icon(int idx);
 
     bool setFilter(const QString &filter, QString *error = nullptr);
-    void sortBySimilarity();
+    void scanForSort(UserRoles role);
 
     ImageTags *imageTags;
     QDir thumbsDir;

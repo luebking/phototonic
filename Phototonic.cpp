@@ -1248,9 +1248,10 @@ void Phototonic::sortThumbnails() {
     } else if (sortByTypeAction->isChecked()) {
         thumbModel->setSortRole(ThumbsViewer::TypeRole);
     } else if (sortBySimilarityAction->isChecked()) {
-        thumbsViewer->sortBySimilarity();
+        thumbsViewer->scanForSort(ThumbsViewer::HistogramRole);
+        thumbModel->setSortRole(ThumbsViewer::HistogramRole);
     } else if (sortByBrightnessAction->isChecked()) {
-        thumbsViewer->loadAllThumbs();
+        thumbsViewer->scanForSort(ThumbsViewer::BrightnessRole);
         thumbModel->setSortRole(ThumbsViewer::BrightnessRole);
     }
     thumbModel->sort(0, sortReverseAction->isChecked() ? Qt::AscendingOrder : Qt::DescendingOrder);
