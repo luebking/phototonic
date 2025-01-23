@@ -740,14 +740,19 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
         Settings::imageZoomFactor = 1.0;
     }
     if (!preview.isNull()) {
-        setImage(preview);
-        const int zif = Settings::zoomInFlags;
-        const bool disRes = tempDisableResize;
-        tempDisableResize = false;
-        Settings::zoomInFlags = WidthAndHeight;
-        resizeImage();
-        Settings::zoomInFlags = zif;
-        tempDisableResize = disRes;
+        QSize fullSize = QImageReader(fullImagePath).size();
+        // don't preview small images w/ a huge thumbnail upscale
+        // it's pointless and causes ugly flicker
+        if (!fullSize.isValid() || (fullSize.width() > 4*width()/5 && fullSize.height() > 4*height()/5)) {
+            setImage(preview);
+            const int zif = Settings::zoomInFlags;
+            const bool disRes = tempDisableResize;
+            tempDisableResize = false;
+            Settings::zoomInFlags = WidthAndHeight;
+            resizeImage();
+            Settings::zoomInFlags = zif;
+            tempDisableResize = disRes;
+        }
     }
 
     QApplication::processEvents();
