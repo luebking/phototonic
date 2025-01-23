@@ -943,6 +943,7 @@ void ImageViewer::applyCropAndRotation() {
             tempDisableResize = false;
             Settings::imageZoomFactor = 1.0;
         }
+        m_isoCropRect = QRect(); // invalidate
     }
     refresh();
     setFeedback("", false);
