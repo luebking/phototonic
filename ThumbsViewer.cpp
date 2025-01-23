@@ -1395,7 +1395,10 @@ void ThumbsViewer::mousePressEvent(QMouseEvent *event) {
 void ThumbsViewer::resizeEvent(QResizeEvent *event) {
     QListView::resizeEvent(event);
     if (Settings::thumbsLayout == Classic) {
-        const int w = viewport()->width() - verticalScrollBar()->width();
+        int sbd = verticalScrollBar()->width();
+        if (!verticalScrollBar()->isVisible())
+            sbd += verticalScrollBar()->width() + 1;
+        const int w = viewport()->width() - sbd;
         if (int hcount = w/thumbSize) {
             int pad = (w % thumbSize) / hcount;
             if (pad < 5 && --hcount > 0)
