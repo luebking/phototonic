@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS version="2.1" language="fi">
 <context>
     <name>ColorsDialog</name>
     <message>
@@ -2083,8 +2083,8 @@
         <location filename="../ThumbsViewer.cpp" line="782"/>
         <source>%n image(s)</source>
         <translation type="unfinished">
-            <numerusform>%n image</numerusform>
-            <numerusform>%n images</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>

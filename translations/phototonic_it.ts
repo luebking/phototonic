@@ -6,17 +6,17 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="34"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Colori</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="40"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripristina</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="44"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="51"/>
@@ -26,12 +26,12 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="52"/>
         <source>Saturation</source>
-        <translation type="unfinished"></translation>
+        <translation>Saturazione</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="53"/>
         <source>Lightness</source>
-        <translation type="unfinished"></translation>
+        <translation>Luminosità</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="62"/>
