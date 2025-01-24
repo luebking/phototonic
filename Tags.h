@@ -66,6 +66,7 @@ public:
     bool dirFilteringActive;
     QAction *removeTagAction;
     TagsDisplayMode currentDisplayMode;
+    bool m_populated;
 
 private:
     bool writeTagsToImage(QString &imageFileName, const QSet<QString> &tags);

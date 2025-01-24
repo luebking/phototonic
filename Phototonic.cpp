@@ -1233,6 +1233,8 @@ void Phototonic::createImageTagsDock() {
         if (Settings::layoutMode != ImageViewWidget) {
             Settings::tagsDockVisible = visible;
         }
+        if (visible)
+            thumbsViewer->imageTags->populateTagsTree();
     });
     connect(thumbsViewer->imageTags, SIGNAL(reloadThumbs()), this, SLOT(reloadThumbs()));
     connect(thumbsViewer->imageTags->removeTagAction, SIGNAL(triggered()), this, SLOT(deleteOperation()));

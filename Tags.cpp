@@ -38,6 +38,7 @@
 #include <exiv2/exiv2.hpp>
 
 ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer) : QWidget(parent) {
+    m_populated = false;
     tagsTree = new QTreeWidget;
     tagsTree->setColumnCount(2);
     tagsTree->setDragEnabled(false);
@@ -305,20 +306,28 @@ void ImageTags::showTagsFilter() {
 }
 
 void ImageTags::populateTagsTree() {
+    if (m_populated)
+        return;
+
     tagsTree->clear();
+
+    /// @todo: this is slow
     QSetIterator<QString> knownTagsIt(Settings::knownTags);
     while (knownTagsIt.hasNext()) {
         QString tag = knownTagsIt.next();
         addTag(tag, false);
     }
 
+    /// @todo: this is *PAINFULLY* slow
     redrawTagTree();
 
+    /// @todo: this is *PAINFULLY* slow, too
     if (currentDisplayMode == SelectionTagsDisplay) {
         showSelectedImagesTags();
     } else {
         showTagsFilter();
     }
+    m_populated = true;
 }
 
 void ImageTags::setActiveViewMode(TagsDisplayMode mode) {

@@ -355,7 +355,8 @@ void ThumbsViewer::loadFileList() {
     }
     updateThumbsCount();
 
-    imageTags->populateTagsTree();
+    if (imageTags->isVisible())
+        imageTags->populateTagsTree();
 
     if (!m_desiredThumbPath.isEmpty()) {
         setCurrentIndex(m_desiredThumbPath);
@@ -648,8 +649,8 @@ void ThumbsViewer::loadPrepare() {
 
     thumbsRangeFirst = -1;
     thumbsRangeLast = -1;
-
-    imageTags->resetTagsState();
+    /// @todo why does this get reset whenever the thumbview updates?
+//    imageTags->resetTagsState();
 }
 
 void ThumbsViewer::refreshThumbs() {
@@ -791,7 +792,8 @@ void ThumbsViewer::initThumbs() {
         }
     }
 
-    imageTags->populateTagsTree();
+    if (imageTags->isVisible())
+        imageTags->populateTagsTree();
 
     if (!m_desiredThumbPath.isEmpty()) {
         setCurrentIndex(m_desiredThumbPath);
