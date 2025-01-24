@@ -6,37 +6,37 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="34"/>
         <source>Colors</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="40"/>
         <source>Reset</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="44"/>
         <source>OK</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="51"/>
         <source>Hue</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="52"/>
         <source>Saturation</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="53"/>
         <source>Lightness</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="62"/>
         <source>Colorize</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="66"/>
@@ -49,49 +49,49 @@
         <location filename="../ColorsDialog.cpp" line="93"/>
         <location filename="../ColorsDialog.cpp" line="159"/>
         <source>Red</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="98"/>
         <location filename="../ColorsDialog.cpp" line="167"/>
         <source>Green</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="103"/>
         <location filename="../ColorsDialog.cpp" line="175"/>
         <source>Blue</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="120"/>
         <source>Hue and Saturation</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="126"/>
         <source>Affected Channels</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="130"/>
         <source>Brightness</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="131"/>
         <source>Contrast</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="155"/>
         <source>Brightness and Contrast</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="195"/>
         <source>Color Balance</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -124,17 +124,17 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="93"/>
         <source>Move to...</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="96"/>
         <source>Copy to...</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="126"/>
         <source>Browse...</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="128"/>
@@ -144,18 +144,18 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="135"/>
         <source>Cancel</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="139"/>
         <source>OK</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="33"/>
         <location filename="../CopyMoveToDialog.cpp" line="149"/>
         <source>Destination:</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -169,32 +169,32 @@
     <message>
         <location filename="../CropDialog.cpp" line="38"/>
         <source>Reset</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="40"/>
         <source>OK</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="69"/>
         <source>Left</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="73"/>
         <source>Right</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="77"/>
         <source>Top</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="81"/>
         <source>Bottom</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -482,7 +482,7 @@
     <message>
         <location filename="../InfoViewer.cpp" line="51"/>
         <source>Copy</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="62"/>
@@ -564,112 +564,112 @@
         <location filename="../Phototonic.cpp" line="235"/>
         <location filename="../Phototonic.cpp" line="862"/>
         <source>Image Info</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="333"/>
         <source>Zoom</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="331"/>
         <source>Transform</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="376"/>
         <source>View</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="410"/>
         <source>Top</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="415"/>
         <source>Bottom</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="424"/>
         <source>Full Screen</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="429"/>
         <source>Preferences</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="434"/>
         <source>Exit</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="438"/>
         <source>Enlarge Thumbnails</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="446"/>
         <source>Shrink Thumbnails</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="454"/>
         <source>Cut</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="460"/>
         <source>Copy</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="484"/>
         <source>Copy to...</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="488"/>
         <source>Move to...</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="497"/>
         <source>Delete</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="502"/>
         <source>Save</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="506"/>
         <source>Save As</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="515"/>
         <source>Rename</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="523"/>
         <source>Select All</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="531"/>
         <source>About</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="576"/>
         <source>Show Hidden Files</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="588"/>
@@ -679,115 +679,115 @@
     <message>
         <location filename="../Phototonic.cpp" line="594"/>
         <source>Show Toolbar</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="604"/>
         <source>Reload</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="615"/>
         <source>Paste Here</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="631"/>
         <source>Back</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="637"/>
         <source>Forward</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="643"/>
         <source>Go Up</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="648"/>
         <source>Home</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="653"/>
         <location filename="../Phototonic.cpp" line="2764"/>
         <source>Slide Show</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="687"/>
         <source>Load Clipboard</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="696"/>
         <location filename="../Phototonic.cpp" line="697"/>
         <source>Open With...</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="705"/>
         <source>Add Bookmark</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="714"/>
         <source>Zoom Out</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="719"/>
         <source>Zoom In</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="724"/>
         <source>Reset Zoom</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="729"/>
         <location filename="../Phototonic.cpp" line="1615"/>
         <source>Original Size</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="734"/>
         <source>Keep Zoom</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="758"/>
         <source>Flip Horizontally</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="763"/>
         <source>Flip Vertically</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="773"/>
         <source>Scale Image</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="786"/>
         <source>Colors</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="791"/>
         <source>Find Duplicate Images</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="842"/>
         <source>Invert Selection</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="850"/>
@@ -797,44 +797,44 @@
     <message>
         <location filename="../Phototonic.cpp" line="855"/>
         <source>Filter by Name</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="877"/>
         <source>&amp;File</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="888"/>
         <source>&amp;Edit</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="911"/>
         <source>&amp;Go</source>
         <extracomment>&quot;go&quot; like in go forward, backward, etc</extracomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="926"/>
         <source>&amp;View</source>
         <extracomment>configure visual features of the app</extracomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="353"/>
         <source>Edit</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
         <source>File System</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1184"/>
         <source>Bookmarks</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1226"/>
@@ -865,49 +865,49 @@
         <location filename="../Phototonic.cpp" line="3351"/>
         <location filename="../Phototonic.cpp" line="3361"/>
         <source>Error</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1355"/>
         <source>Failed to start external application.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1333"/>
         <source>Invalid selection.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1526"/>
         <location filename="../Phototonic.cpp" line="1754"/>
         <source>Failed to copy or move image.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1601"/>
         <source>Zoom %1%</source>
         <extracomment>nb the trailing &quot;%&quot; for eg. 80%</extracomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1608"/>
         <source>Zoom Reset</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1621"/>
         <source>Zoom Locked</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1623"/>
         <source>Zoom Unlocked</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="825"/>
         <source>Transformations Locked</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="127"/>
@@ -1173,7 +1173,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="825"/>
         <source>Transformations Unlocked</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="829"/>
@@ -1268,27 +1268,27 @@
         <location filename="../Phototonic.cpp" line="1692"/>
         <location filename="../Phototonic.cpp" line="1700"/>
         <source>Rotation %1°</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1652"/>
         <source>Flipped Vertically</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1652"/>
         <source>Unflipped Vertically</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1658"/>
         <source>Flipped Horizontally</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1658"/>
         <source>Unflipped Horizontally</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1707"/>
@@ -1515,13 +1515,13 @@
     <message>
         <location filename="../Phototonic.cpp" line="2017"/>
         <source>Failed to delete image</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1889"/>
         <location filename="../Phototonic.cpp" line="1994"/>
         <source>Delete images</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1040"/>
@@ -1582,32 +1582,32 @@
     <message>
         <location filename="../Phototonic.cpp" line="1950"/>
         <source>Failed to delete image.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2707"/>
         <source>No images</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2765"/>
         <source>Slide show stopped</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2792"/>
         <source>Stop Slide Show</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2793"/>
         <source>Slide show started</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3105"/>
         <source>Duplicate images in %1</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3107"/>
@@ -1622,44 +1622,44 @@
     <message>
         <location filename="../Phototonic.cpp" line="3120"/>
         <source>New name:</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3130"/>
         <location filename="../Phototonic.cpp" line="3351"/>
         <source>Invalid name entered.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3171"/>
         <location filename="../Phototonic.cpp" line="3239"/>
         <source>Invalid selection</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3194"/>
         <source>No name entered.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3219"/>
         <source>Failed to rename image.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3324"/>
         <source>Removed &quot;%1&quot;</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3503"/>
         <source>Warning</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3503"/>
         <source>Cannot perform action with temporary image.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1716,17 +1716,17 @@
     <message>
         <location filename="../ResizeDialog.cpp" line="29"/>
         <source>Scale Image</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="33"/>
         <source>Scale</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="36"/>
         <source>Cancel</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="51"/>
@@ -1746,17 +1746,17 @@
     <message>
         <location filename="../ResizeDialog.cpp" line="56"/>
         <source>Units:</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="58"/>
         <source>New size:</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="61"/>
         <source>Pixels</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="65"/>
@@ -1766,7 +1766,7 @@
     <message>
         <location filename="../ResizeDialog.cpp" line="72"/>
         <source>Percent</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1774,50 +1774,50 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="38"/>
         <source>Preferences</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="42"/>
         <source>Fit Large Images</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="45"/>
         <location filename="../SettingsDialog.cpp" line="61"/>
         <source>By width</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="46"/>
         <location filename="../SettingsDialog.cpp" line="62"/>
         <source>By height</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="47"/>
         <location filename="../SettingsDialog.cpp" line="63"/>
         <source>Stretch disproportionately</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="58"/>
         <source>Fit Small Images</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="86"/>
         <source>Wrap image list when reaching last or first image</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="100"/>
         <source>Enable GIF animation</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="74"/>
         <source>Background color:</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="44"/>
@@ -1854,12 +1854,12 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="141"/>
         <source>Label color:</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="153"/>
         <source>Background image:</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="183"/>
@@ -1925,22 +1925,22 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="174"/>
         <source>Number of thumbnail pages to read ahead:</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="285"/>
         <source>Delay between slides in seconds:</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="295"/>
         <source>Show random images</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="215"/>
         <source>Remember last</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="216"/>
@@ -1951,47 +1951,47 @@
         <location filename="../SettingsDialog.cpp" line="218"/>
         <source>Specify:</source>
         <extracomment>specificy a startup directory</extracomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="210"/>
         <source>Delete confirmation</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="312"/>
         <source>OK</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="316"/>
         <source>Cancel</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="327"/>
         <source>Viewer</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="331"/>
         <source>Thumbnails</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="335"/>
         <source>General</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="445"/>
         <source>Open File</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="446"/>
         <source>Images</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2014,22 +2014,22 @@
     <message>
         <location filename="../ShortcutsTable.cpp" line="147"/>
         <source>Action</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="148"/>
         <source>Shortcut</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="44"/>
         <source>Delete shortcut</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="86"/>
         <source>Set shortcut</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
