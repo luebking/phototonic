@@ -1420,9 +1420,9 @@ void ThumbsViewer::mousePressEvent(QMouseEvent *event) {
 }
 
 int ThumbsViewer::dynamicGridWidth() {
-    int sbd = verticalScrollBar()->width();
+    int sbd = verticalScrollBar()->sizeHint().width();
     if (!verticalScrollBar()->isVisible())
-        sbd += verticalScrollBar()->width() + 1;
+        sbd += sbd + 1;
     const int w = viewport()->width() - sbd;
     int pad = 0;
     if (int hcount = w/thumbSize) {
