@@ -282,8 +282,8 @@ void ThumbsViewer::loadVisibleThumbs(int scrollBarValue) {
     }
 
     for (;;) {
-        int firstVisible = getFirstVisibleThumb();
-        int lastVisible = getLastVisibleThumb();
+        int firstVisible = firstVisibleThumb();
+        int lastVisible = lastVisibleThumb();
         if (isAbortThumbsLoading || firstVisible < 0 || lastVisible < 0) {
             processing = false;
             return;
@@ -323,29 +323,23 @@ void ThumbsViewer::loadVisibleThumbs(int scrollBarValue) {
     processing = false;
 }
 
-int ThumbsViewer::getFirstVisibleThumb() {
-    QModelIndex idx;
-
+int ThumbsViewer::firstVisibleThumb() {
     for (int currThumb = 0; currThumb < m_model->rowCount(); ++currThumb) {
-        idx = m_model->indexFromItem(m_model->item(currThumb));
-        if (viewport()->rect().contains(QPoint(0, visualRect(idx).y() + visualRect(idx).height() + 1))) {
+        const QModelIndex idx = m_model->indexFromItem(m_model->item(currThumb));
+        if (viewport()->rect().contains(QPoint(0, visualRect(idx).bottom() + 1))) {
             return idx.row();
         }
     }
-
     return -1;
 }
 
-int ThumbsViewer::getLastVisibleThumb() {
-    QModelIndex idx;
-
+int ThumbsViewer::lastVisibleThumb() {
     for (int currThumb = m_model->rowCount() - 1; currThumb >= 0; --currThumb) {
-        idx = m_model->indexFromItem(m_model->item(currThumb));
-        if (viewport()->rect().contains(QPoint(0, visualRect(idx).y() + visualRect(idx).height() + 1))) {
+        const QModelIndex idx = m_model->indexFromItem(m_model->item(currThumb));
+        if (viewport()->rect().contains(QPoint(0, visualRect(idx).y() + 1))) {
             return idx.row();
         }
     }
-
     return -1;
 }
 

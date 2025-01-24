@@ -137,6 +137,8 @@ public:
     void refreshThumbs();
     bool setFilter(const QString &filter, QString *error = nullptr);
     void scanForSort(UserRoles role);
+    int firstVisibleThumb();
+    int lastVisibleThumb();
 
     ImageTags *imageTags;
     QDir thumbsDir;
@@ -159,10 +161,6 @@ private:
     bool loadThumb(int row, bool fastOnly = false);
 
     void findDupes(bool resetCounters);
-
-    int getFirstVisibleThumb();
-
-    int getLastVisibleThumb();
 
     void updateThumbsCount();
 
