@@ -364,11 +364,13 @@ void ThumbsViewer::loadFileList() {
     } else if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
         setCurrentIndex(0);
     }
-
-    m_busy = false;
 }
 
 void ThumbsViewer::reLoad() {
+    if (m_busy) {
+        QTimer::singleShot(50, this, [=]() { reLoad(); });
+        return;
+    }
     static QTimer *scrollDelay = nullptr;
     if (!scrollDelay) {
         scrollDelay = new QTimer(this);
@@ -379,6 +381,7 @@ void ThumbsViewer::reLoad() {
     scrollDelay->stop();
     disconnect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
     m_busy = true;
+    QThreadPool::globalInstance()->waitForDone(-1);
 
     histFiles.clear(); // these can grow out of control and currently sort O(n^2)
     histograms.clear();
@@ -388,6 +391,7 @@ void ThumbsViewer::reLoad() {
 
     if (Settings::isFileListLoaded) {
         loadFileList();
+        m_busy = false;
         return;
     }
 
@@ -650,6 +654,10 @@ void ThumbsViewer::loadPrepare() {
 
 void ThumbsViewer::loadDuplicates()
 {
+    if (m_busy) {
+        QTimer::singleShot(50, this, [=]() { loadDuplicates(); });
+        return;
+    }
     m_busy = true;
     loadPrepare();
 
@@ -1106,7 +1114,7 @@ void ThumbsViewer::loadThumbsRange() {
 //            qDebug() << "slow image read"; loadThumb(currThumb);
         }
 
-        if (timer.elapsed() > 10) {
+        if (timer.elapsed() > 30) {
             QApplication::processEvents();
             timer.restart();
         }

@@ -145,6 +145,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     if (Settings::currentDirectory.isEmpty())
         Settings::currentDirectory = QDir::currentPath();
 
+    m_thumbSizeDelta = 0;
     copyMoveToDialog = nullptr;
     colorsDialog = nullptr;
     initComplete = true;
@@ -437,7 +438,7 @@ void Phototonic::createActions() {
 
     thumbsZoomInAction = new QAction(tr("Enlarge Thumbnails"), this);
     thumbsZoomInAction->setObjectName("thumbsZoomIn");
-    connect(thumbsZoomInAction, SIGNAL(triggered()), this, SLOT(thumbsZoomIn()));
+    connect(thumbsZoomInAction, &QAction::triggered, [=]() {m_thumbSizeDelta = 1; resizeThumbs();});
     thumbsZoomInAction->setIcon(QIcon::fromTheme("zoom-in", QIcon(":/images/zoom_in.png")));
     if (thumbsViewer->thumbSize == THUMB_SIZE_MAX) {
         thumbsZoomInAction->setEnabled(false);
@@ -445,7 +446,7 @@ void Phototonic::createActions() {
 
     thumbsZoomOutAction = new QAction(tr("Shrink Thumbnails"), this);
     thumbsZoomOutAction->setObjectName("thumbsZoomOut");
-    connect(thumbsZoomOutAction, SIGNAL(triggered()), this, SLOT(thumbsZoomOut()));
+    connect(thumbsZoomOutAction, &QAction::triggered, [=]() {m_thumbSizeDelta = -1; resizeThumbs();});
     thumbsZoomOutAction->setIcon(QIcon::fromTheme("zoom-out", QIcon(":/images/zoom_out.png")));
     if (thumbsViewer->thumbSize == THUMB_SIZE_MIN) {
         thumbsZoomOutAction->setEnabled(false);
@@ -1543,25 +1544,22 @@ void Phototonic::copyOrMoveImages(bool isCopyOperation) {
     }
 }
 
-void Phototonic::thumbsZoomIn() {
-    if (thumbsViewer->thumbSize < THUMB_SIZE_MAX) {
-        thumbsViewer->thumbSize += THUMB_SIZE_MIN;
-        thumbsZoomOutAction->setEnabled(true);
-        if (thumbsViewer->thumbSize == THUMB_SIZE_MAX)
-            thumbsZoomInAction->setEnabled(false);
+void Phototonic::resizeThumbs() {
+    if (!m_thumbSizeDelta)
+        return;
+    const int previous = thumbsViewer->thumbSize;
+    thumbsViewer->thumbSize += m_thumbSizeDelta*THUMB_SIZE_MIN;
+    if (m_thumbSizeDelta > 0)
+        thumbsViewer->thumbSize = qMin(thumbsViewer->thumbSize,THUMB_SIZE_MAX);
+    else
+       thumbsViewer->thumbSize = qMax(thumbsViewer->thumbSize,THUMB_SIZE_MIN);
+    m_thumbSizeDelta = 0;
+    thumbsZoomOutAction->setEnabled(thumbsViewer->thumbSize > THUMB_SIZE_MIN);
+    thumbsZoomInAction->setEnabled(thumbsViewer->thumbSize < THUMB_SIZE_MAX);
+    if (thumbsViewer->thumbSize != previous)
         refreshThumbs(false);
-    }
 }
 
-void Phototonic::thumbsZoomOut() {
-    if (thumbsViewer->thumbSize > THUMB_SIZE_MIN) {
-        thumbsViewer->thumbSize -= THUMB_SIZE_MIN;
-        thumbsZoomInAction->setEnabled(true);
-        if (thumbsViewer->thumbSize == THUMB_SIZE_MIN)
-            thumbsZoomOutAction->setEnabled(false);
-        refreshThumbs(false);
-    }
-}
 
 void Phototonic::zoom(double multiplier, QPoint focus) {
     if (imageViewer->tempDisableResize) {
@@ -3482,11 +3480,15 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
         }
     } else if (o == thumbsViewer->viewport()) {
         if (we->modifiers() == Qt::ControlModifier) {
-            if (scrollDelta < 0) {
-                thumbsZoomOut();
-            } else {
-                thumbsZoomIn();
+            m_thumbSizeDelta += qRound(scrollDelta / 120.0);
+            static QTimer *thumbResizer = nullptr;
+            if (!thumbResizer) {
+                thumbResizer = new QTimer(this);
+                thumbResizer->setInterval(125);
+                thumbResizer->setSingleShot(true);
+                connect(thumbResizer, &QTimer::timeout, [=](){resizeThumbs();});
             }
+            thumbResizer->start();
         } else {
             if (we->modifiers() == Qt::ShiftModifier)
                 scrollThumbs(100*(scrollDelta/-qAbs(scrollDelta)));

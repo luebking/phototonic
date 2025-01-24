@@ -127,9 +127,7 @@ private slots:
 
     void pasteThumbs();
 
-    void thumbsZoomIn();
-
-    void thumbsZoomOut();
+    void resizeThumbs();
 
     void resetZoom();
 
@@ -329,6 +327,7 @@ private:
     InfoView *m_infoViewer;
     QToolButton *m_menuButton;
     QLabel *m_statusLabel;
+    int m_thumbSizeDelta;
 
     QPointer<ColorsDialog> colorsDialog;
 
