@@ -1897,7 +1897,8 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
     }
 
     // wait until thumbnail loading is done
-    QThreadPool::globalInstance()->waitForDone(-1);
+    while (QThreadPool::globalInstance()->activeThreadCount())
+        QThreadPool::globalInstance()->waitForDone(-1);
 
     // To only show progress dialog if deleting actually takes time
     QElapsedTimer timer;
@@ -2002,8 +2003,8 @@ void Phototonic::deleteFromViewer(bool trash) {
             return;
         }
     }
-
-    QThreadPool::globalInstance()->waitForDone(-1);
+    while (QThreadPool::globalInstance()->activeThreadCount())
+        QThreadPool::globalInstance()->waitForDone(-1);
 
     QString trashError;
     if (trash ? (Trash::moveToTrash(fullPath, trashError) == Trash::Success) :

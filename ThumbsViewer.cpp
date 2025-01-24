@@ -368,7 +368,9 @@ void ThumbsViewer::loadFileList() {
 }
 
 void ThumbsViewer::reLoad() {
-    if (m_busy) {
+    if (m_busy || QThreadPool::globalInstance()->activeThreadCount()) {
+        QThreadPool::globalInstance()->clear();
+        abort();
         QTimer::singleShot(50, this, [=]() { reLoad(); });
         return;
     }
@@ -382,6 +384,7 @@ void ThumbsViewer::reLoad() {
     scrollDelay->stop();
     disconnect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
     m_busy = true;
+
     QThreadPool::globalInstance()->waitForDone(-1);
 
     histFiles.clear(); // these can grow out of control and currently sort O(n^2)
@@ -671,7 +674,9 @@ void ThumbsViewer::refreshThumbs() {
 
 void ThumbsViewer::loadDuplicates()
 {
-    if (m_busy) {
+    if (m_busy || QThreadPool::globalInstance()->activeThreadCount()) {
+        QThreadPool::globalInstance()->clear();
+        abort();
         QTimer::singleShot(50, this, [=]() { loadDuplicates(); });
         return;
     }
@@ -726,16 +731,12 @@ void ThumbsViewer::initThumbs() {
         }
     }
 
-    static QStandardItem *thumbItem;
-    static int fileIndex;
-    static QPixmap emptyPixMap;
-    static QSize hintSize;
-    int processed = 0;
+    QSize hintSize = itemSizeHint();
 
-    emptyPixMap = emptyImg.scaled(thumbSize, thumbSize);
-    hintSize = itemSizeHint();
+    QElapsedTimer timer;
+    timer.start();
 
-    for (fileIndex = 0; fileIndex < thumbFileInfoList.size(); ++fileIndex) {
+    for (int fileIndex = 0; fileIndex < thumbFileInfoList.size(); ++fileIndex) {
         thumbFileInfo = thumbFileInfoList.at(fileIndex);
 
         Metadata::cache(thumbFileInfo.filePath());
@@ -770,7 +771,7 @@ void ThumbsViewer::initThumbs() {
         if (constrained)
             continue;
 
-        thumbItem = new QStandardItem();
+        QStandardItem *thumbItem = new QStandardItem();
         thumbItem->setData(false, LoadedRole);
         thumbItem->setData(fileIndex, SortRole);
         thumbItem->setData(thumbFileInfo.size(), SizeRole);
@@ -786,9 +787,9 @@ void ThumbsViewer::initThumbs() {
 
         m_model->appendRow(thumbItem);
 
-        if (++processed > BATCH_SIZE) {
+        if (timer.elapsed() > 30) {
             QApplication::processEvents();
-            processed = 0;
+            timer.restart();
         }
     }
 
