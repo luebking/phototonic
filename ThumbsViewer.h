@@ -133,6 +133,8 @@ public:
     QString fullPathOf(int idx);
     QIcon icon(int idx);
 
+    int dynamicGridWidth();
+    void refreshThumbs();
     bool setFilter(const QString &filter, QString *error = nullptr);
     void scanForSort(UserRoles role);
 

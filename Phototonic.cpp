@@ -1557,7 +1557,7 @@ void Phototonic::resizeThumbs() {
     thumbsZoomOutAction->setEnabled(thumbsViewer->thumbSize > THUMB_SIZE_MIN);
     thumbsZoomInAction->setEnabled(thumbsViewer->thumbSize < THUMB_SIZE_MAX);
     if (thumbsViewer->thumbSize != previous)
-        refreshThumbs(false);
+        thumbsViewer->refreshThumbs();
 }
 
 

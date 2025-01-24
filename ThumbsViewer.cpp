@@ -635,7 +635,7 @@ void ThumbsViewer::loadPrepare() {
         setGridSize(itemSizeHint());
     } else {
         setUniformItemSizes(false);
-        setGridSize(itemSizeHint() + QSize(gs_fontHeight,gs_fontHeight));
+        setGridSize(QSize(dynamicGridWidth(), itemSizeHint().height() + gs_fontHeight));
     }
 
     if (isNeedToScroll) {
@@ -650,6 +650,22 @@ void ThumbsViewer::loadPrepare() {
     thumbsRangeLast = -1;
 
     imageTags->resetTagsState();
+}
+
+void ThumbsViewer::refreshThumbs() {
+    for (int row = 0; row < m_model->rowCount(); ++row)
+        m_model->setData(m_model->index(row, 0), false, LoadedRole);
+    setIconSize(QSize(thumbSize, thumbSize));
+    if (Settings::thumbsLayout == Squares) {
+        setGridSize(itemSizeHint());
+    } else if (Settings::thumbsLayout == Compact) {
+        setGridSize(itemSizeHint());
+    } else {
+        setGridSize(QSize(dynamicGridWidth(), itemSizeHint().height() + gs_fontHeight));
+    }
+    thumbsRangeFirst = -1;
+    thumbsRangeLast = -1;
+    loadVisibleThumbs();
 }
 
 void ThumbsViewer::loadDuplicates()
@@ -1400,20 +1416,24 @@ void ThumbsViewer::mousePressEvent(QMouseEvent *event) {
     }
 }
 
+int ThumbsViewer::dynamicGridWidth() {
+    int sbd = verticalScrollBar()->width();
+    if (!verticalScrollBar()->isVisible())
+        sbd += verticalScrollBar()->width() + 1;
+    const int w = viewport()->width() - sbd;
+    int pad = 0;
+    if (int hcount = w/thumbSize) {
+        pad = (w % thumbSize) / hcount;
+        if (pad < 5 && --hcount > 0)
+            pad = ((w % thumbSize) + thumbSize) / hcount;
+    }
+    return thumbSize + pad;
+}
+
 void ThumbsViewer::resizeEvent(QResizeEvent *event) {
     QListView::resizeEvent(event);
-    if (Settings::thumbsLayout == Classic) {
-        int sbd = verticalScrollBar()->width();
-        if (!verticalScrollBar()->isVisible())
-            sbd += verticalScrollBar()->width() + 1;
-        const int w = viewport()->width() - sbd;
-        if (int hcount = w/thumbSize) {
-            int pad = (w % thumbSize) / hcount;
-            if (pad < 5 && --hcount > 0)
-                pad = ((w % thumbSize) + thumbSize) / hcount;
-            setGridSize(QSize(thumbSize + pad, gridSize().height()));
-        }
-    }
+    if (Settings::thumbsLayout == Classic)
+        setGridSize(QSize(dynamicGridWidth(), gridSize().height()));
     m_loadThumbTimer.start();
 }
 
