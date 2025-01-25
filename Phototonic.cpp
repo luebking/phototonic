@@ -2011,7 +2011,7 @@ void Phototonic::deleteFromViewer(bool trash) {
         int currentRow = thumbsViewer->currentIndex().row();
         thumbsViewer->model()->removeRow(currentRow);
         imageViewer->setFeedback(tr("Deleted %1").arg(fileName));
-        loadCurrentImage(currentRow);
+//        loadCurrentImage(currentRow);
     } else {
         MessageBox msgBox(this);
         msgBox.critical(tr("Error"), trash ? trashError : tr("Failed to delete image"));
