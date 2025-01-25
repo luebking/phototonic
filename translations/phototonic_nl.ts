@@ -176,7 +176,7 @@
         <location filename="../CropDialog.cpp" line="31"/>
         <source>Letterbox</source>
         <extracomment>Like a bad dvd where you get a black frame around the image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Letterbox</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="38"/>
@@ -224,7 +224,7 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="49"/>
         <source>Application path and arguments</source>
-        <translation>Programmalocatie en opties</translation>
+        <translation>Programmalocatie en -opties</translation>
     </message>
     <message>
         <source>Choose</source>
@@ -234,7 +234,7 @@
         <location filename="../ExternalAppsDialog.cpp" line="56"/>
         <source>Pick Executable...</source>
         <extracomment>open an existing executable</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Kies een uitvoerbaar bestand…</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="59"/>
@@ -249,7 +249,7 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="72"/>
         <source>Wallpaper command</source>
-        <translation type="unfinished"></translation>
+        <translation>Achtergrondopdracht</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="76"/>
@@ -273,7 +273,7 @@
         <location filename="../FileListWidget.cpp" line="39"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Bestandslijst</translation>
     </message>
 </context>
 <context>
@@ -286,7 +286,7 @@
         <location filename="../GuideWidget.cpp" line="42"/>
         <source>Remove Guide</source>
         <extracomment>The guide is a visible line for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Hulplijn verbergen</translation>
     </message>
 </context>
 <context>
@@ -356,29 +356,29 @@
     <message>
         <location filename="../Tags.cpp" line="206"/>
         <source>Failed to save tags to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>De labels kunnen niet worden bewaard in ‘%1’</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="403"/>
         <source>Tagging %1</source>
-        <translation type="unfinished"></translation>
+        <translation>‘%1’ wordt gelabeld</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="406"/>
         <source>Untagging %1</source>
-        <translation type="unfinished"></translation>
+        <translation>‘%1’ wordt ontlabeld</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="501"/>
         <source>Tag %1 already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>‘%1’ bestaat al</translation>
     </message>
     <message numerus="yes">
         <location filename="../Tags.cpp" line="517"/>
         <source>Delete %n selected tags(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Wilt u %n label verwijderen?</numerusform>
+            <numerusform>Wilt u %n labels verwijderen?</numerusform>
         </translation>
     </message>
     <message>
@@ -401,7 +401,7 @@
     <message>
         <location filename="../Tags.cpp" line="484"/>
         <source>Enter new tag name</source>
-        <translation>Voer een labelnaam in</translation>
+        <translation>Geef het label een naam</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="492"/>
@@ -459,42 +459,42 @@
         <location filename="../ImageViewer.cpp" line="301"/>
         <location filename="../ImageViewer.cpp" line="955"/>
         <source>New image size: %1x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieuwe afmetingen: %1x%2</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="386"/>
         <source>Mirror Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiegelen: uitgeschakeld</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="387"/>
         <source>Mirror: Dual</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiegelen: dubbel</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="388"/>
         <source>Mirror: Triple</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiegelen: driemaal</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="389"/>
         <source>Mirror: Quad</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiegelen: viermaal</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="390"/>
         <source>Mirror: Dual Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiegelen: dubbel (verticaal)</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="873"/>
         <source>Doubleclick to crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Dubbelklik om bij te snijden</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="999"/>
         <source>Rotation %1°</source>
-        <translation type="unfinished">%1° gedraaid</translation>
+        <translation>%1° gedraaid</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1105"/>
@@ -607,7 +607,7 @@
     <message>
         <location filename="../InfoViewer.cpp" line="173"/>
         <source>Error</source>
-        <translation type="unfinished">Foutmelding</translation>
+        <translation>Foutmelding</translation>
     </message>
 </context>
 <context>
@@ -623,17 +623,17 @@
     <message>
         <location filename="../MessageBox.cpp" line="66"/>
         <source>Image Viewer and Organizer</source>
-        <translation type="unfinished"></translation>
+        <translation>Afbeeldingen bekijken en ordenen</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="67"/>
         <source>Home page and bug reports</source>
-        <translation type="unfinished"></translation>
+        <translation>Website en bugmeldingen</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="73"/>
         <source>Special thanks to our contributers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veel dank aan onze bijdragers.</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="76"/>
@@ -688,27 +688,27 @@
     <message>
         <location filename="../Phototonic.cpp" line="323"/>
         <source>Navigate</source>
-        <translation type="unfinished"></translation>
+        <translation>Navigatie</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="341"/>
         <source>Flip and Flop and Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiegelen en draaien</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="353"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewerken</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="356"/>
         <source>Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiegelen</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="365"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestand</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="376"/>
@@ -733,7 +733,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="424"/>
         <source>Full Screen</source>
-        <translation>Beeldvullende modus</translation>
+        <translation>Schermvullende weergave</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="429"/>
@@ -872,7 +872,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1712"/>
         <source>No crop area defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Geen bijsnijdgebied gekozen</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1713"/>
