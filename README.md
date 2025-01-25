@@ -21,6 +21,21 @@ webcam shots and align them well enough to make a time-lapse video.
 
 ### Updates:
 
+<a href="https://translate.lxqt-project.org/engage/luebking/?utm_source=widget">
+<img src="https://translate.lxqt-project.org/widgets/luebking/-/phototonic/multi-blue.svg" align="right" alt="Translation status" />
+</a>
+
+##### January 2025
++ OpenGL for the the image viewer
++ Load images outside the GUI thread
++ Cleaned up the GUI / restructured features
++ Improved performance by
+  + avoiding and deferring expensive actions and
+  +  utilizing the thumbnails for heuristics
++ Loads of code refactoring
++ Fixed many, many bugs…
++ Added many, many bugs (probably)
+
 ##### December 2024
 + revive and Qt6 port
 
