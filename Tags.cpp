@@ -309,24 +309,24 @@ void ImageTags::populateTagsTree() {
     if (m_populated)
         return;
 
+    // technically unnecessary now
     tagsTree->clear();
 
-    /// @todo: this is slow
-    QSetIterator<QString> knownTagsIt(Settings::knownTags);
-    while (knownTagsIt.hasNext()) {
-        QString tag = knownTagsIt.next();
+    // tagsTree->sortItems() on many unsorted items is slow AF, so we set the order ahead
+    tagsTree->sortItems(0, Qt::AscendingOrder);
+    // and pre-sort a list to speed that up *A LOT*
+    QList<QString> list(Settings::knownTags.cbegin(), Settings::knownTags.cend());
+    std::sort(list.begin(), list.end());
+    for (const QString &tag : list)
         addTag(tag, false);
-    }
 
-    /// @todo: this is *PAINFULLY* slow
-    redrawTagTree();
-
-    /// @todo: this is *PAINFULLY* slow, too
+    /// this calls redrawTagTree and that resizes the column what's first gonna be slow stil :(
     if (currentDisplayMode == SelectionTagsDisplay) {
         showSelectedImagesTags();
     } else {
         showTagsFilter();
     }
+
     m_populated = true;
 }
 

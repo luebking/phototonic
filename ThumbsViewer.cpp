@@ -350,7 +350,7 @@ void ThumbsViewer::loadFileList() {
     updateThumbsCount();
 
     if (imageTags->isVisible())
-        imageTags->populateTagsTree();
+        QTimer::singleShot(500, this, [=]() { if (imageTags->isVisible()) imageTags->populateTagsTree(); });
 
     if (!m_desiredThumbPath.isEmpty()) {
         setCurrentIndex(m_desiredThumbPath);
@@ -788,7 +788,7 @@ void ThumbsViewer::initThumbs() {
     }
 
     if (imageTags->isVisible())
-        imageTags->populateTagsTree();
+        QTimer::singleShot(500, this, [=]() { if (imageTags->isVisible()) imageTags->populateTagsTree(); });
 
     if (!m_desiredThumbPath.isEmpty()) {
         setCurrentIndex(m_desiredThumbPath);
