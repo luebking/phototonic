@@ -56,11 +56,13 @@ void MessageBox::about() {
                     << "French: David Geiger" // david.david@mageialinux-online.org
                     << "French: Rémi Verschelde" // akien@mageia.org
                     << "German: Jonathan Hooverman" // jonathan.hooverman@gmail.com
+                    << "Italian: Standreas (stefonarch)" // github.com/stefonarch
                     << "Polish: Robert Wojewódzki" // robwoj44@poczta.onet.pl
                     << "Polish: Krzysztof Pyrkosz" // pyrkosz@o2.pl
                     << "Portuguese: Marcos M. Nascimento" // wstlmn@uol.com.br
                     << "Russian: Ilya Alexandrovich" // yast4ik@gmail.com
                     << "Serbian: Dino Duratović" // dinomol@mail.com
+                    << "Standreas and the entire LXQt weblate team"
                     ;
     QString aboutString = "<h1>Phototonic 3.0 α¹</h1>" // + QString(VERSION)
                           "<h4>" + tr("Image Viewer and Organizer") + "</h4>"
