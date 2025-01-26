@@ -1359,15 +1359,11 @@ void Phototonic::runExternalApp() {
             }
         }
     }
-
-    QProcess *externalProcess = new QProcess();
-    externalProcess->setProcessChannelMode(QProcess::ForwardedChannels);
-    connect(externalProcess, &QProcess::finished, externalProcess, &QObject::deleteLater);
-    connect(externalProcess, &QProcess::errorOccurred, [=](){
-                        MessageBox msgBox(this);
-                        msgBox.critical(tr("Error"), tr("Failed to start external application."));
-    });
-    externalProcess->startCommand(execCommand);
+    QStringList command = QProcess::splitCommand(execCommand);
+    if (!QProcess::startDetached(command.takeFirst(), command)) {
+        MessageBox msgBox(this);
+        msgBox.critical(tr("Error"), tr("Failed to start external application."));
+    }
 }
 
 void Phototonic::updateExternalApps() {
