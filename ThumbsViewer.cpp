@@ -730,6 +730,7 @@ void ThumbsViewer::initThumbs() {
 
     QElapsedTimer timer;
     timer.start();
+//    int totalTime = 0;
 
     for (int fileIndex = 0; fileIndex < thumbFileInfoList.size(); ++fileIndex) {
         thumbFileInfo = thumbFileInfoList.at(fileIndex);
@@ -784,6 +785,13 @@ void ThumbsViewer::initThumbs() {
 
         if (timer.elapsed() > 30) {
             QApplication::processEvents();
+            /** @todo: nice idea, but doesn't work
+            totalTime += timer.elapsed();
+            if (totalTime > 500) { // if this takes too long
+                loadVisibleThumbs(); // make it look fast
+                totalTime = INT_MIN; // so don't time out again.
+            }
+            */
             timer.restart();
         }
     }
