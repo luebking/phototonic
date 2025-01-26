@@ -19,6 +19,7 @@
 #ifndef INFO_VIEWER_H
 #define INFO_VIEWER_H
 
+class QLabel;
 class QLineEdit;
 class QMenu;
 class QStandardItemModel;
@@ -37,11 +38,17 @@ public:
     void clear();
     void hint(QString key, QString value);
     QString html() const;
-    void read(QString imageFullPath);
+    void read(QString imageFullPath, const QImage &histogram = QImage());
 
 public slots:
     void copyEntry();
     void showInfoViewMenu(QPoint pt);
+
+signals:
+    void histogramClicked();
+
+protected:
+    bool eventFilter(QObject *o, QEvent *e) override;
 
 private slots:
     void filterItems();
@@ -57,7 +64,7 @@ private:
     QLineEdit *filterLineEdit;
     QString m_currentFile;
     QMap<QString, QString> m_hints;
-
+    QLabel *m_histogram;
 };
 
 #endif // INFO_VIEWER_H

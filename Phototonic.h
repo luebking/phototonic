@@ -328,6 +328,7 @@ private:
     QToolButton *m_menuButton;
     QLabel *m_statusLabel;
     int m_thumbSizeDelta;
+    bool m_logHistogram;
 
     QPointer<ColorsDialog> colorsDialog;
 

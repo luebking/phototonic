@@ -22,6 +22,7 @@
 #include <QFileInfo>
 #include <QHeaderView>
 #include <QImageReader>
+#include <QLabel>
 #include <QLineEdit>
 #include <QMenu>
 #include <QStandardItem>
@@ -62,10 +63,22 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
     filterLineEdit->setPlaceholderText(tr("Filter Items"));
 
     QVBoxLayout *infoViewerLayout = new QVBoxLayout(this);
+    QHBoxLayout *histLayout = new QHBoxLayout;
+    histLayout->addStretch();
+    histLayout->addWidget(m_histogram = new QLabel(this));
+    histLayout->addStretch();
+    infoViewerLayout->addLayout(histLayout);
     infoViewerLayout->addWidget(infoViewerTable);
     infoViewerLayout->addWidget(filterLineEdit);
 
     setLayout(infoViewerLayout);
+    m_histogram->installEventFilter(this);
+}
+
+bool InfoView::eventFilter(QObject *o, QEvent *e) {
+    if (o == m_histogram && e->type() == QEvent::MouseButtonPress)
+        emit histogramClicked();
+    return QWidget::eventFilter(o, e);
 }
 
 void InfoView::showInfoViewMenu(QPoint pt) {
@@ -139,7 +152,9 @@ QString InfoView::html() const {
     return text;
 }
 
-void InfoView::read(QString imageFullPath) {
+void InfoView::read(QString imageFullPath, const QImage &histogram) {
+    m_histogram->setPixmap(QPixmap::fromImage(histogram));
+
     if (m_currentFile == imageFullPath)
         return;
 

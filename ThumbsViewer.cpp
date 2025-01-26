@@ -36,6 +36,7 @@
 #include <QThreadPool>
 #include <QTimer>
 #include <QTreeWidget>
+#include <cmath>
 
 #include "MetadataCache.h"
 #include "Settings.h"
@@ -1444,4 +1445,63 @@ void ThumbsViewer::invertSelection() {
 
 void ThumbsViewer::setNeedToScroll(bool needToScroll) {
     this->isNeedToScroll = needToScroll;
+}
+
+QImage ThumbsViewer::renderHistogram(const QString &filename, bool logarithmic) {
+    QImage image(256,160,QImage::Format_ARGB32);
+    image.fill(Qt::transparent);
+    Histogram histogram;
+    int idx = histFiles.indexOf(filename);
+    if (idx > -1) {
+        histogram = histograms.at(idx);
+    } else {
+        QImage thumb;
+        // try to use thumbnail (they're used when storing the histogram in ::loadThumb as well)
+        QString thumbname = locateThumbnail(filename);
+        if (!thumbname.isEmpty()) {
+            QImageReader reader(thumbname);
+            reader.read(&thumb);
+            if (QImageReader(filename).size() != QSize(thumb.text("Thumb::Image::Width").toInt(), 
+                                                       thumb.text("Thumb::Image::Height").toInt())) {
+                reader.setFileName(filename);
+                reader.setScaledSize(QSize(256, 256));
+                reader.setAutoTransform(false);
+                reader.read(&thumb);
+                if (thumb.isNull()) {
+                    qWarning() << "Invalid file" << filename << reader.errorString();
+                    return image;
+                }
+            }
+        }
+        histogram = calcHist(thumb);
+    }
+    QRgb red = 0xffa06464/* d01717 */, green = 0xff8ca064/* 8cc716 */, blue = 0xff648ca0/* 1793d0 */;
+    float factor = 0.0;
+    float average = 0.0;
+    for (uint16_t i=0; i<256; ++i) {
+        if (logarithmic) {
+            histogram.red[i] = log(histogram.red[i]);
+            histogram.green[i] = log(histogram.green[i]);
+            histogram.blue[i] = log(histogram.blue[i]);
+        }
+        factor = qMax(factor, qMax(histogram.red[i], qMax(histogram.green[i], histogram.blue[i])));
+        average += histogram.red[i] + histogram.green[i] + histogram.blue[i];
+    }
+    if (!logarithmic)
+        factor = 160.0f/qMin(factor, average / 128.0f); // cap at 200% of mean value
+
+    for (int y = 0; y < image.height(); ++y) {
+        QRgb *line = reinterpret_cast<QRgb*>(image.scanLine(y));
+        for (int x = 0; x < image.width(); ++x) {
+            float minValue = 65536.0f;
+            float value;
+            value = qRound(factor*histogram.red[x]);
+            if (value >= 160-y /* && value < minValue */) {  line[x] = red; minValue = value;  }
+            value = qRound(factor*histogram.green[x]);
+            if (value >= 160-y    && value < minValue   ) {  line[x] = green; minValue = value;  }
+            value = qRound(factor*histogram.blue[x]);
+            if (value >= 160-y    && value < minValue   ) {  line[x] = blue; /* minValue = value; */  }
+        }
+    }
+    return image;
 }

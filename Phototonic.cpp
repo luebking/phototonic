@@ -126,7 +126,8 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
             QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
             m_infoViewer->hint(tr("Average brightness"),
                                QString::number(thumbModel->item(current.row())->data(ThumbsViewer::BrightnessRole).toReal(), 'f', 2));
-            m_infoViewer->read(thumbsViewer->fullPathOf(current.row()));
+            const QString filePath = thumbsViewer->fullPathOf(current.row());
+            m_infoViewer->read(filePath, thumbsViewer->renderHistogram(filePath, m_logHistogram));
         }
         });
     connect(qApp, SIGNAL(focusChanged(QWidget * , QWidget * )), this, SLOT(updateActions()));
@@ -237,6 +238,7 @@ void Phototonic::createThumbsViewer() {
     imageInfoDock->setObjectName("Image Info");
     m_infoViewer = new InfoView(this);
     imageInfoDock->setWidget(m_infoViewer);
+    m_logHistogram = false;
     connect(imageInfoDock, &QDockWidget::visibilityChanged, [=](bool visible) {
         if (Settings::layoutMode != ImageViewWidget) {
             Settings::imageInfoDockVisible = visible;
@@ -247,10 +249,19 @@ void Phototonic::createThumbsViewer() {
             if (currentRow > -1) {
                 m_infoViewer->hint(tr("Average brightness"),
                                     QString::number(thumbModel->item(currentRow)->data(ThumbsViewer::BrightnessRole).toReal(), 'f', 2));
-                m_infoViewer->read(thumbsViewer->fullPathOf(currentRow));
+                const QString filePath = thumbsViewer->fullPathOf(currentRow);
+                m_infoViewer->read(filePath, thumbsViewer->renderHistogram(filePath, m_logHistogram));
             }
         }
     } );
+    connect(m_infoViewer, &InfoView::histogramClicked, [=](){
+        m_logHistogram = !m_logHistogram;
+        int currentRow = thumbsViewer->currentIndex().row();
+        if (currentRow > -1) {
+            const QString filePath = thumbsViewer->fullPathOf(currentRow);
+            m_infoViewer->read(filePath, thumbsViewer->renderHistogram(filePath, m_logHistogram));
+        }
+    });
 }
 
 void Phototonic::createImageViewer() {

@@ -139,6 +139,7 @@ public:
     void scanForSort(UserRoles role);
     int firstVisibleThumb();
     int lastVisibleThumb();
+    QImage renderHistogram(const QString &imagePath, bool logarithmic = false);
 
     ImageTags *imageTags;
     QDir thumbsDir;
