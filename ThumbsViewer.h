@@ -140,6 +140,7 @@ public:
     int firstVisibleThumb();
     int lastVisibleThumb();
     QImage renderHistogram(const QString &imagePath, bool logarithmic = false);
+    QString locateThumbnail(const QString &path) const;
 
     ImageTags *imageTags;
     QDir thumbsDir;
@@ -170,7 +171,6 @@ private:
     QSize itemSizeHint() const;
 
     QString thumbnailFileName(const QString &path) const;
-    QString locateThumbnail(const QString &path) const;
     void storeThumbnail(const QString &originalPath, QImage thumbnail, const QSize &originalSize) const;
 
     QFileInfo thumbFileInfo;

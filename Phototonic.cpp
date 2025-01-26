@@ -1327,6 +1327,10 @@ void Phototonic::runExternalApp() {
             execCommand.replace("%f", path, Qt::CaseInsensitive);
         else if (execCommand.contains("%u", Qt::CaseInsensitive))
             execCommand.replace("%u", QUrl::fromLocalFile(path).url(), Qt::CaseInsensitive);
+        else if (execCommand.contains("%tf", Qt::CaseInsensitive))
+            execCommand.replace("%tf", thumbsViewer->locateThumbnail(path), Qt::CaseInsensitive);
+        else if (execCommand.contains("%tu", Qt::CaseInsensitive))
+            execCommand.replace("%tu", QUrl::fromLocalFile(thumbsViewer->locateThumbnail(path)).url(), Qt::CaseInsensitive);
         else
             execCommand += " \"" + path + "\"";
     };
@@ -1349,7 +1353,8 @@ void Phototonic::runExternalApp() {
             if (selectedIdxList.size() == 1) {
                 substituteCommand(thumbsViewer->fullPathOf(selectedIdxList.at(0).row()));
             } else {
-                if (execCommand.contains("%f", Qt::CaseInsensitive) || execCommand.contains("%u", Qt::CaseInsensitive)) {
+                if (execCommand.contains("%f", Qt::CaseInsensitive) || execCommand.contains("%u", Qt::CaseInsensitive) ||
+                    execCommand.contains("%tf", Qt::CaseInsensitive) || execCommand.contains("%tu", Qt::CaseInsensitive)) {
                     setStatus(tr("Commands using %f or %u cannot be used with multiple files."));
                     return;
                 }
