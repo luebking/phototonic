@@ -580,7 +580,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="341"/>
         <source>Flip and Flop and Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruotare e specchiare</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="353"/>
@@ -1675,17 +1675,17 @@
     <message>
         <location filename="../RangeInputDialog.ui" line="20"/>
         <source>Select brightness range</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona intervallo della luminosità</translation>
     </message>
     <message>
         <location filename="../RangeInputDialog.ui" line="32"/>
         <source>From</source>
-        <translation type="unfinished"></translation>
+        <translation>Da</translation>
     </message>
     <message>
         <location filename="../RangeInputDialog.ui" line="49"/>
         <source>to</source>
-        <translation type="unfinished"></translation>
+        <translation>a</translation>
     </message>
 </context>
 <context>
@@ -1887,7 +1887,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="210"/>
         <source>Delete confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Conferma cancellazione</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="43"/>
@@ -1918,22 +1918,22 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="90"/>
         <source>Default quality when saving:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qualità predefinito per salvare:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="104"/>
         <source>Rotate image according to Exif orientation value</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruota immagine in base al valore di orientazione Exif</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="129"/>
         <source>Thumbnails and Preview Background Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Colore di sfondo per anteprima e miniature:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="183"/>
         <source>Rotate thumbnail according to Exif orientation value</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruota miniatura in base al valore di orientazione Exif</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="203"/>
@@ -1948,12 +1948,12 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="216"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Predefinito</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="264"/>
         <source>Filter Items</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtra elementi</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="268"/>
@@ -1968,27 +1968,27 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="304"/>
         <source>Slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation>Presentazione</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="335"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Generale</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="423"/>
         <source>Select background color</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona colore di sfondo</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="439"/>
         <source>Choose Startup Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Selezione cartella iniziale</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="445"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri file</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="446"/>
@@ -2001,12 +2001,12 @@
     <message>
         <location filename="../ShortcutsTable.cpp" line="86"/>
         <source>%1 is reserved for launching external applications.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 è riservato per lanciare applicazioni esterne.</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="116"/>
         <source>%1 is already assigned to %2, reassign shortcut?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 è già assegnato a %2, reimpostare scorciatoia?</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="117"/>
