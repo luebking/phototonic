@@ -1227,8 +1227,8 @@ void ImageViewer::contextMenuEvent(QContextMenuEvent *) {
     while (QApplication::overrideCursor()) {
         QApplication::restoreOverrideCursor();
     }
-    m_contextSpot = QCursor::pos();
-    myContextMenu->exec(m_contextSpot);
+    m_contextSpot = mapFromGlobal(QCursor::pos());
+    myContextMenu->exec(QCursor::pos());
 }
 
 void ImageViewer::focusInEvent(QFocusEvent *event) {

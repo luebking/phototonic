@@ -23,8 +23,6 @@
 
 static const int RuleWidgetWidth = 5; // determines the active area for dragging
 
-QAction *GuideWidget::m_deleteAction = nullptr;
-
 GuideWidget::GuideWidget(QWidget *parent, Qt::Orientation o, int offset) : QWidget(parent), m_vertical(o == Qt::Vertical)
 {
     if (!parent) {
@@ -38,8 +36,8 @@ GuideWidget::GuideWidget(QWidget *parent, Qt::Orientation o, int offset) : QWidg
         offset -= RuleWidgetWidth / 2;
     setCursor(m_vertical ? Qt::SplitHCursor : Qt::SplitVCursor);
     move(m_vertical ? offset : 0, m_vertical ? 0 : offset);
-    if (!m_deleteAction) //: The guide is a visible line for orientation
-        m_deleteAction = new QAction(tr("Remove Guide"));
+    //: The guide is a visible line for orientation
+    m_deleteAction = new QAction(tr("Remove Guide"), this);
     addAction(m_deleteAction);
     setContextMenuPolicy(Qt::ActionsContextMenu);
     connect(m_deleteAction, &QAction::triggered, this, &QObject::deleteLater);

@@ -36,7 +36,7 @@ protected:
 private:
     void resizeToParent();
     bool m_vertical;
-    static QAction *m_deleteAction;
+    QAction *m_deleteAction;
 };
 
 #endif // GUIDEWIDGET_H
