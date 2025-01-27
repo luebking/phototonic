@@ -267,7 +267,7 @@
         <location filename="../GuideWidget.cpp" line="42"/>
         <source>Remove Guide</source>
         <extracomment>The guide is a visible line for orientation</extracomment>
-        <translation>Rimuovi guide</translation>
+        <translation>Rimuovi guida</translation>
     </message>
 </context>
 <context>
@@ -773,7 +773,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="626"/>
         <source>Set Save Directory</source>
-        <translation>Imponi cartella di salvataggio</translation>
+        <translation>Imposta cartella di salvataggio</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="631"/>
@@ -903,7 +903,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
         <source>File System</source>
-        <translation type="unfinished"></translation>
+        <translation>Albero delle cartelle</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1184"/>
@@ -1072,7 +1072,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="582"/>
         <source>Small Toolbar Icons</source>
-        <translation>Icone della barra degli strumenti piccoli</translation>
+        <translation>Icone della barra degli strumenti piccole</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="609"/>
@@ -1427,49 +1427,49 @@
     <message>
         <location filename="../Phototonic.cpp" line="1340"/>
         <source>Commands using %f or %u cannot be used with multiple files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Comandi che usano %f o %u non possono essere usati con file mulitpli.</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1496"/>
         <source>Copied %n image(s) to clipboard</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Copiato %n immagine negli appunti</numerusform>
+            <numerusform>Copiati %n immagini negli appunti</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1497"/>
         <source>Cut %n image(s) to clipboard</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Tagliato %n immagine negli appunti</numerusform>
+            <numerusform>Tagliati %n immagini negli appunti</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1574"/>
         <source>Maximum Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingrandimento massimo</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1578"/>
         <source>Minimum Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingrandimento minimo</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1707"/>
         <location filename="../Phototonic.cpp" line="3459"/>
         <source>No images selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun&apos;immagine selezionata</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1707"/>
         <source>Please select the images to transform.</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore selezionare le immagini per modificare.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1712"/>
         <source>No crop area defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun area di ritaglio definita</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1713"/>
@@ -1479,22 +1479,22 @@
     <message>
         <location filename="../Phototonic.cpp" line="1724"/>
         <source>Create backups?</source>
-        <translation type="unfinished"></translation>
+        <translation>Creare dei backup?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1725"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessuna cartella per salvare globale è stata scelta, le immagini saranno sovrascritte. &lt;h3&gt;Vuoi creare dei backup?&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1730"/>
         <source>Create backups and overwrite the original files</source>
-        <translation type="unfinished"></translation>
+        <translation>Crea backup e sovrascrivi l&apos;immagine originale</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1730"/>
         <source>Overwrite the original files</source>
-        <translation type="unfinished"></translation>
+        <translation>Sovrascrivi file originali</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1733"/>
@@ -1537,61 +1537,61 @@
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1885"/>
         <source>Move %n selected image(s) to the trash?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Spostare %n immagine selezionata nel cestino?</numerusform>
+            <numerusform>Spostare %n immagini selezionate nel cestino?</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1886"/>
         <source>Permanently delete %n selected image(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Cancellare in modo permanente %n immagine selezionata?</numerusform>
+            <numerusform>Cancellare in modo permanente %n immagini selezionate?</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1924"/>
         <source>Deleting %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancellando %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1972"/>
         <source>Deleted %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Cancellata %n immagine</numerusform>
+            <numerusform>Cancellate %n immagini</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2013"/>
         <source>Deleted %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancellato %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2088"/>
         <source>Invalid Path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso non valido: %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2765"/>
         <source>Slide show stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Presentazione fermata</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2792"/>
         <source>Stop Slide Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferma presentazione</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2793"/>
         <source>Slide show started</source>
-        <translation type="unfinished"></translation>
+        <translation>Presentazione avviata</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3034"/>
         <source>Failed to open directory %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile aprire la cartella %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3065"/>
@@ -1607,59 +1607,59 @@
     <message>
         <location filename="../Phototonic.cpp" line="3118"/>
         <source>Rename %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rinomina %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3120"/>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome nuovo:</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3130"/>
         <location filename="../Phototonic.cpp" line="3351"/>
         <source>Invalid name entered.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserito nome non valido</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3171"/>
         <location filename="../Phototonic.cpp" line="3239"/>
         <source>Invalid selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Selezione non valida</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3194"/>
         <source>No name entered.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun nome inserito.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3219"/>
         <source>Failed to rename image.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile rinominare l&apos;immagine.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3318"/>
         <source>Failed to move directory to the trash:</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile spostare la cartella nel cestino:</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3324"/>
         <source>Removed &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimosso &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3372"/>
         <source>Directory to save images into:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella nella quale salvare le immagini:</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3503"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Avviso</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3503"/>
         <source>Cannot perform action with temporary image.</source>
-        <translation type="unfinished"></translation>
+        <translation>Azione impossibile con un&apos;immagine temporaneaa</translation>
     </message>
 </context>
 <context>
@@ -1747,7 +1747,7 @@
     <message>
         <location filename="../ResizeDialog.cpp" line="56"/>
         <source>Units:</source>
-        <translation type="unfinished"></translation>
+        <translation>Unità:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="58"/>
@@ -1780,109 +1780,109 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="42"/>
         <source>Fit Large Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Adatta immagini grandi</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="44"/>
         <location filename="../SettingsDialog.cpp" line="60"/>
         <source>By width or height</source>
-        <translation type="unfinished"></translation>
+        <translation>Per altezza o larghezza</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="45"/>
         <location filename="../SettingsDialog.cpp" line="61"/>
         <source>By width</source>
-        <translation type="unfinished"></translation>
+        <translation>Per larghezza</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="46"/>
         <location filename="../SettingsDialog.cpp" line="62"/>
         <source>By height</source>
-        <translation type="unfinished"></translation>
+        <translation>Per altezza</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="47"/>
         <location filename="../SettingsDialog.cpp" line="63"/>
         <source>Stretch disproportionately</source>
-        <translation type="unfinished"></translation>
+        <translation>Allarga in modo sproporzionato</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="58"/>
         <source>Fit Small Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Adatta immagini piccole</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="74"/>
         <source>Background color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Colore sfondo:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="86"/>
         <source>Wrap image list when reaching last or first image</source>
         <translatorcomment>Ovo definitivno popraviti</translatorcomment>
-        <translation type="unfinished"></translation>
+        <translation>Riparti da capo quando raggiungi l&apos;ultima o la prima immagine</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="100"/>
         <source>Enable GIF animation</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita animazione GIF</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="108"/>
         <source>Show image file name in viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra nome del file nel visualizzatore</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="141"/>
         <source>Label color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Colore etichetta:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="153"/>
         <source>Background image:</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine di sfondo</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="174"/>
         <source>Number of thumbnail pages to read ahead:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numero di pagine di miniature da calcolare in anticipo</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="187"/>
         <source>Scale up small images in preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingrandisci immagini piccole nell&apos;anteprima</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="206"/>
         <source>Use scroll wheel for zooming in image viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa rotellina per ingrandire nel visualizzatore</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="258"/>
         <location filename="../SettingsDialog.cpp" line="339"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Scorciatoie</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="285"/>
         <source>Delay between slides in seconds:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ritardo tra presentazioni in secondi:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="295"/>
         <source>Show random images</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra immagini casuali</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="215"/>
         <source>Remember last</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricorda ultima</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="218"/>
         <source>Specify:</source>
         <extracomment>specificy a startup directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Specifica:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="210"/>
@@ -1908,7 +1908,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="327"/>
         <source>Viewer</source>
-        <translation>Visualizzatere</translation>
+        <translation>Visualizzatore</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="331"/>
@@ -1918,7 +1918,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="90"/>
         <source>Default quality when saving:</source>
-        <translation>Qualità predefinito per salvare:</translation>
+        <translation>Qualità predefinita per salvare:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="104"/>
@@ -1938,17 +1938,17 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="203"/>
         <source>Swap mouse double-click and middle-click actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Scambia azioni di doppio click e click centrale</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="214"/>
         <source>Startup directory if not specified by command line</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella iniziale se non specificata nella riga di comando</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="216"/>
         <source>Default</source>
-        <translation>Predefinito</translation>
+        <translation>Predefinita</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="264"/>
@@ -1958,12 +1958,12 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="268"/>
         <source>Select an entry and press a key to set a new shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona una voce e premi qualsiasi tasto per impostare una scorciatoia</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="275"/>
         <source>Set the application icon according to the current image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imposta l&apos;immagine attuale come icona della applicazione</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="304"/>
@@ -2040,8 +2040,8 @@
         <location filename="../ThumbsViewer.cpp" line="185"/>
         <source>Selected %1 of %n image(s)</source>
         <translation>
-            <numerusform>Selezionato %1 di %n immagini</numerusform>
-            <numerusform>Selezionati %1 di %n immagini</numerusform>
+            <numerusform>Selezionata %1 di %n immagini</numerusform>
+            <numerusform>Selezionate %1 di %n immagini</numerusform>
         </translation>
     </message>
     <message>
