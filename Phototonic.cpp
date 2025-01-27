@@ -272,6 +272,7 @@ void Phototonic::createImageViewer() {
     connect(copyImageAction, SIGNAL(triggered()), imageViewer, SLOT(copyImage()));
     connect(pasteImageAction, SIGNAL(triggered()), imageViewer, SLOT(pasteImage()));
     connect(imageViewer, &ImageViewer::toolsUpdated, [=](){ rotateToolAction->setChecked(Settings::mouseRotateEnabled); });
+    connect(imageViewer, &ImageViewer::gotFocus, [=](){ thumbsViewer->setCurrentIndex(imageViewer->fullImagePath); });
     QMenu *contextMenu = new QMenu(imageViewer);
 
     // Widget actions

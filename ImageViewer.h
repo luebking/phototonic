@@ -75,6 +75,7 @@ public:
     QPoint contextSpot();
 
 signals:
+    void gotFocus();
     void toolsUpdated();
 
 public slots:
@@ -93,6 +94,7 @@ private slots:
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
+    void focusInEvent(QFocusEvent *event);
     void mouseDoubleClickEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);

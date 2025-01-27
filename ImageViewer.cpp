@@ -1231,6 +1231,11 @@ void ImageViewer::contextMenuEvent(QContextMenuEvent *) {
     myContextMenu->exec(m_contextSpot);
 }
 
+void ImageViewer::focusInEvent(QFocusEvent *event) {
+    QScrollArea::focusInEvent(event);
+    emit gotFocus();
+}
+
 bool ImageViewer::isNewImage() {
     return newImage;
 }
