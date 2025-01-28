@@ -208,6 +208,7 @@ private:
     QAction *setSquareThumbsAction;
     QAction *setCompactThumbsAction;
 
+    QAction *sortMenuAction;
     QAction *sortByNameAction;
     QAction *sortByTimeAction;
     QAction *sortBySizeAction;

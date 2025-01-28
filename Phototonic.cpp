@@ -87,7 +87,6 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     createThumbsViewer();
     createActions();
     myMainMenu = new QMenu(this);
-    createToolBars();
     statusBar()->setVisible(false);
     createFileSystemDock();
     createBookmarksDock();
@@ -95,6 +94,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     createImageTagsDock();
     setupDocks();
     createMenus();
+    createToolBars();
     createImageViewer();
     updateExternalApps();
     loadShortcuts();
@@ -951,6 +951,7 @@ void Phototonic::createMenus() {
     menu->addAction(thumbsZoomInAction);
     menu->addAction(thumbsZoomOutAction);
     QMenu *sortMenu = menu->addMenu(tr("Thumbnails Sorting"));
+    sortMenu->setIcon(style()->standardIcon(QStyle::SP_FileDialogDetailedView));
     QActionGroup *sortTypesGroup = new QActionGroup(this);
     sortTypesGroup->addAction(sortByNameAction);
     sortTypesGroup->addAction(sortByTimeAction);
@@ -961,6 +962,7 @@ void Phototonic::createMenus() {
     sortMenu->addActions(sortTypesGroup->actions());
     sortMenu->addSeparator();
     sortMenu->addAction(sortReverseAction);
+    sortMenuAction = sortMenu->menuAction();
     menu->addSeparator();
     menu->addAction(includeSubDirectoriesAction);
     menu->addAction(showHiddenFilesAction);
@@ -976,7 +978,7 @@ void Phototonic::createMenus() {
     thumbsViewer->addAction(m_wallpaperAction);
     thumbsViewer->addAction(openWithMenuAction);
     thumbsViewer->addAction("")->setSeparator(true);
-    thumbsViewer->addAction(sortMenu->menuAction());
+    thumbsViewer->addAction(sortMenuAction);
     thumbsViewer->addAction("")->setSeparator(true);
     thumbsViewer->addAction(cutAction);
     thumbsViewer->addAction(copyAction);
@@ -1031,6 +1033,9 @@ void Phototonic::createToolBars() {
     connect(pathLineEdit, SIGNAL(returnPressed()), this, SLOT(goPathBarDir()));
     m_pathLineEditAction = myMainToolBar->addWidget(pathLineEdit);
     myMainToolBar->addAction(includeSubDirectoriesAction);
+    myMainToolBar->addAction(sortMenuAction);
+    static_cast<QToolButton*>(myMainToolBar->widgetForAction(sortMenuAction))->setPopupMode(QToolButton::InstantPopup);
+
     myMainToolBar->addAction(findDupesAction);
 
     myMainToolBar->addAction(slideShowAction);
