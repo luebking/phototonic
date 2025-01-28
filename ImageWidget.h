@@ -47,13 +47,18 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
+    QTransform transformation(const QImage &img, const QSize &sz, const QPoint &pos) const;
     QImage m_image;
+    QImage m_prevImage;
     qreal m_rotation = 0;
     QSize m_imageSize;
     QPoint m_imagePos;
+    QSize m_prevImageSize;
+    QPoint m_prevImagePos;
     QTransform m_exifTransformation;
     Qt::Orientations m_flip;
     QRect m_letterBox;
+    float m_fadeout;
 };
 
 #endif // IMAGEWIDGET_H

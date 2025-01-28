@@ -20,9 +20,11 @@
 #include <QDebug>
 #include <QPainter>
 #include <QPaintEvent>
+#include <QVariantAnimation>
 
 ImageWidget::ImageWidget(QWidget *parent) : QOpenGLWidget(parent)
 {
+    m_fadeout = 0.0;
 }
 
 bool ImageWidget::empty()
@@ -37,10 +39,25 @@ const QImage &ImageWidget::image()
 
 void ImageWidget::setImage(const QImage &i, QTransform matrix)
 {
+/*    m_prevImage = m_image;
+    m_prevImagePos = m_imagePos;
+    m_prevImageSize = m_imageSize;*/
     m_image = i;
     m_imageSize = i.size();
     m_rotation = 0;
     m_exifTransformation = matrix;
+/*    m_fadeout = 1.0;
+    static QVariantAnimation *fadeAnimator = nullptr;
+    if (!fadeAnimator) {
+        fadeAnimator = new QVariantAnimation(this);
+        fadeAnimator->setStartValue(1.0);
+        fadeAnimator->setEndValue(0.0);
+        fadeAnimator->setDuration(250);
+        connect(fadeAnimator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {m_fadeout = value.toFloat(); update();});
+        connect(fadeAnimator, &QVariantAnimation::finished, [=]() {m_prevImage = QImage();});
+        connect(fadeAnimator, &QObject::destroyed, [=]() {fadeAnimator = nullptr;});
+    }
+    fadeAnimator->start();*/
     update();
 }
 
@@ -51,7 +68,11 @@ void ImageWidget::setRotation(qreal r)
 }
 
 QTransform ImageWidget::transformation() const {
-    float scale = qMax(float(m_imageSize.width()) / m_image.width(), float(m_imageSize.height()) / m_image.height());
+    return transformation(m_image, m_imageSize, m_imagePos);
+}
+
+QTransform ImageWidget::transformation(const QImage &img, const QSize &sz, const QPoint &pos) const {
+    float scale = qMax(float(sz.width()) / img.width(), float(sz.height()) / img.height());
     QTransform matrix;
     QPoint center(width() / 2, height() / 2);
     matrix.translate(center.x(), center.y());
@@ -61,10 +82,10 @@ QTransform ImageWidget::transformation() const {
     // translate
     QPoint origin;
     if (m_flip & Qt::Horizontal)
-        origin.setX(m_imageSize.width());
+        origin.setX(sz.width());
     if (m_flip & Qt::Vertical)
-        origin.setY(m_imageSize.height());
-    origin += m_imagePos;
+        origin.setY(sz.height());
+    origin += pos;
     matrix.translate(origin.x(), origin.y());
 
     // scale
@@ -103,7 +124,7 @@ QSize ImageWidget::sizeHint() const
 
 void ImageWidget::paintEvent(QPaintEvent *ev)
 {
-    const float scale = qMax(float(m_imageSize.width()) / m_image.width(), float(m_imageSize.height()) / m_image.height());
+    float scale = qMax(float(m_imageSize.width()) / m_image.width(), float(m_imageSize.height()) / m_image.height());
     if (scale == 0.0f)
         return;
 
@@ -122,6 +143,16 @@ void ImageWidget::paintEvent(QPaintEvent *ev)
 //    painter.setWorldTransform(m_exifTransformation);
 
     painter.setTransform(transformation());
-
+    painter.setOpacity(1.0 - m_fadeout);
     painter.drawImage(0,0, m_image);
+
+    if (m_prevImage.size().isNull())
+        return;
+    qDebug() << "wtf";
+    scale = qMax(float(m_imageSize.width()) / m_prevImage.width(), float(m_imageSize.height()) / m_prevImage.height());
+    if (scale == 0.0f)
+        return;
+    painter.setTransform(transformation(m_prevImage, m_prevImageSize, m_prevImagePos));
+    painter.setOpacity(m_fadeout);
+    painter.drawImage(0,0, m_prevImage);
 }
