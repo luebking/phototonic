@@ -1685,15 +1685,15 @@ void Phototonic::scaleImage() {
         toggleSlideShow();
     }
 
-    if (Settings::layoutMode == ImageViewWidget) {
+//    if (Settings::layoutMode == ImageViewWidget) {
         ResizeDialog dlg(imageViewer->currentImageSize(), imageViewer);
         if (dlg.exec() == QDialog::Accepted) {
             imageViewer->scaleImage(dlg.newSize());
         }
-    } else {
-        ASSERT_IMAGES_SELECTED
+//    } else {
+//        ASSERT_IMAGES_SELECTED
         /// @todo: looks like there were plans to allow mass-resizing from the thumbnail browser
-    }
+//    }
 }
 
 void Phototonic::freeRotateLeft() {
