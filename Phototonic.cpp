@@ -2959,11 +2959,11 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
         moveDirMessageBox.setText(tr("Move directory %1 to %2?").arg(baseName).arg(destDir));
         moveDirMessageBox.setWindowTitle(tr("Move directory"));
         moveDirMessageBox.setIcon(MessageBox::Warning);
-        moveDirMessageBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
-        moveDirMessageBox.addButton(tr("Move Directory"), MessageBox::YesRole);
+        moveDirMessageBox.setStandardButtons(MessageBox::Cancel);
+        QAbstractButton *yesButton =  moveDirMessageBox.addButton(tr("Move Directory"), MessageBox::YesRole);
         moveDirMessageBox.setDefaultButton(MessageBox::Cancel);
-
-        if (moveDirMessageBox.exec() == MessageBox::Yes) {
+        moveDirMessageBox.exec();
+        if (moveDirMessageBox.clickedButton() == yesButton) {
             QFile dir(copyMoveDirPath);
             if (!dir.rename(destDir + QDir::separator() + baseName)) {
                 moveDirMessageBox.critical(tr("Error"), tr("Failed to move directory."));
@@ -3264,12 +3264,12 @@ void Phototonic::removeMetadata() {
     msgBox.setText(tr("Permanently remove all Exif metadata from selected images?"));
     msgBox.setWindowTitle(tr("Remove Metadata"));
     msgBox.setIcon(MessageBox::Warning);
-    msgBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
-    msgBox.addButton(tr("Remove Metadata"), MessageBox::YesRole);
+    msgBox.setStandardButtons(MessageBox::Cancel);
+    QAbstractButton *yesButton = msgBox.addButton(tr("Remove Metadata"), MessageBox::YesRole);
     msgBox.setDefaultButton(MessageBox::Cancel);
-    int ret = msgBox.exec();
+    msgBox.exec();
 
-    if (ret == MessageBox::Yes) {
+    if (msgBox.clickedButton() == yesButton) {
         for (int file = 0; file < fileList.size(); ++file) {
 
 #pragma clang diagnostic push
