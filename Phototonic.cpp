@@ -34,6 +34,7 @@
 #include <QProcess>
 #include <QProgressBar>
 #include <QPropertyAnimation>
+#include <QPushButton>
 #include <QRandomGenerator>
 #include <QScrollBar>
 #include <QSettings>
@@ -2152,6 +2153,8 @@ void Phototonic::updateActions() {
         toggleFileSpecificActions(false);
     } else if (QApplication::focusWidget() == fileSystemTree) {
         toggleFileSpecificActions(false);
+        deleteAction->setEnabled(true); // also used for the filesystem tree
+        deletePermanentlyAction->setEnabled(true);
     } else if (Settings::layoutMode == ImageViewWidget || QApplication::focusWidget() == imageViewer) {
         toggleFileSpecificActions(true);
     } else {
@@ -3310,13 +3313,13 @@ void Phototonic::deleteDirectory(bool trash) {
     msgBox.setText(question);
     msgBox.setWindowTitle(tr("Delete Directory"));
     msgBox.setIcon(MessageBox::Warning);
-    msgBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
-    msgBox.addButton(trash ? tr("OK") : tr("Delete Directory"), MessageBox::YesRole);
+    msgBox.setStandardButtons(MessageBox::Cancel);
+    QAbstractButton *yesButton = msgBox.addButton(trash ? tr("OK") : tr("Delete Directory"), MessageBox::YesRole);
     msgBox.setDefaultButton(MessageBox::Cancel);
-    int ret = msgBox.exec();
+    msgBox.exec();
 
     QString trashError;
-    if (ret == MessageBox::Yes) {
+    if (msgBox.clickedButton() == yesButton) {
         if (trash) {
             removeDirectoryOk = Trash::moveToTrash(deletePath, trashError) == Trash::Success;
         } else {
