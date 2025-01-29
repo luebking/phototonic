@@ -30,14 +30,10 @@ BookMarks::BookMarks(QWidget *parent) : QTreeWidget(parent) {
     setDragEnabled(false);
     setDragDropMode(QAbstractItemView::DropOnly);
 
-    connect(this, SIGNAL(expanded(
-                                 const QModelIndex &)),
-            this, SLOT(resizeTreeColumn(
-                               const QModelIndex &)));
-    connect(this, SIGNAL(collapsed(
-                                 const QModelIndex &)),
-            this, SLOT(resizeTreeColumn(
-                               const QModelIndex &)));
+    connect(this, SIGNAL(expanded(const QModelIndex &)),
+            this, SLOT(resizeTreeColumn(const QModelIndex &)));
+    connect(this, SIGNAL(collapsed(const QModelIndex &)),
+            this, SLOT(resizeTreeColumn(const QModelIndex &)));
 
     setColumnCount(1);
     setHeaderHidden(true);
@@ -72,7 +68,7 @@ void BookMarks::dragEnterEvent(QDragEnterEvent *event) {
     QModelIndexList selectedDirs = selectionModel()->selectedRows();
 
     if (selectedDirs.size() > 0) {
-        dndOrigSelection = selectedDirs[0];
+        dndOrigSelection = selectedDirs.at(0);
     }
     event->acceptProposedAction();
 }
@@ -85,7 +81,10 @@ void BookMarks::dropEvent(QDropEvent *event) {
     if (event->source()) {
         QString fileSystemTreeStr("FileSystemTree");
         bool dirOp = (event->source()->metaObject()->className() == fileSystemTreeStr);
-        emit dropOp(event->modifiers(), dirOp, event->mimeData()->urls().at(0).toLocalFile());
+        QString path;
+        if (event->mimeData()->hasUrls())
+            path = event->mimeData()->urls().at(0).toLocalFile();
+        emit dropOp(event->modifiers(), dirOp, path);
     }
 }
 
