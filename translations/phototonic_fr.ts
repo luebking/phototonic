@@ -1528,7 +1528,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="582"/>
         <source>Small Toolbar Icons</source>
-        <translation>Barre d&apos;outils avec petits icônes</translation>
+        <translation>Réduire les icônes dans la barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="609"/>

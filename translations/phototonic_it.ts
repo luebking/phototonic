@@ -100,7 +100,7 @@
     <message>
         <location filename="../CopyMoveDialog.cpp" line="76"/>
         <source>Cancel</source>
-        <translation>Cancella</translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="100"/>
@@ -145,7 +145,7 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="135"/>
         <source>Cancel</source>
-        <translation>Cancella</translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="139"/>
@@ -343,7 +343,7 @@
         <location filename="../Tags.cpp" line="517"/>
         <source>Delete %n selected tags(s)?</source>
         <translation>
-            <numerusform>Rimuovere %n tag selezionato?</numerusform>
+            <numerusform>Rimuovere il tag selezionato?</numerusform>
             <numerusform>Rimuovere %n tag selezionati?</numerusform>
         </translation>
     </message>
@@ -379,33 +379,33 @@
     <message>
         <location filename="../ImageViewer.cpp" line="386"/>
         <source>Mirror Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Specchio disabilitato</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="387"/>
         <source>Mirror: Dual</source>
-        <translation type="unfinished"></translation>
+        <translation>Specchio: doppio</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="388"/>
         <source>Mirror: Triple</source>
-        <translation type="unfinished"></translation>
+        <translation>Specchio: Triplo</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="389"/>
         <source>Mirror: Quad</source>
-        <translation type="unfinished"></translation>
+        <translation>Specchio: Quadruplo</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="390"/>
         <source>Mirror: Dual Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Specchio: Doppio verticale</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="636"/>
         <source>skipping animation in batch mode:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">saltando l&apos;animazione in modalità modifica multipla:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="863"/>
@@ -616,7 +616,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="386"/>
         <source>Add horizontal guide</source>
-        <translation>Aggiungi guida orizontale</translation>
+        <translation>Aggiungi guida orizzontale</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="410"/>
@@ -809,7 +809,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="692"/>
         <source>Set Wallpaper</source>
-        <translation>Usa per sfondo desktop</translation>
+        <translation>Usa come sfondo desktop</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="696"/>
@@ -835,7 +835,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="724"/>
         <source>Reset Zoom</source>
-        <translation>Ripristina zoom</translation>
+        <translation>Adatta</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="729"/>
@@ -1009,7 +1009,7 @@
         <location filename="../Phototonic.cpp" line="1652"/>
         <source>Unflipped Vertically</source>
         <translatorcomment>Ovo treba provjeriti</translatorcomment>
-        <translation type="unfinished"></translation>
+        <translation>Non ribaltato verticalmente</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1658"/>
@@ -1020,7 +1020,7 @@
         <location filename="../Phototonic.cpp" line="1658"/>
         <source>Unflipped Horizontally</source>
         <translatorcomment>Ovo treba provjeriti</translatorcomment>
-        <translation type="unfinished"></translation>
+        <translation>Non ribaltato orizzontalmente</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2017"/>
@@ -1147,7 +1147,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="768"/>
         <source>Letterbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Telaio</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="778"/>
@@ -1167,27 +1167,27 @@
     <message>
         <location filename="../Phototonic.cpp" line="797"/>
         <source>Disable Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>Disabilita specchio</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="799"/>
         <source>Dual Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>Specchio doppio</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="801"/>
         <source>Triple Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>Specchio triplo</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="803"/>
         <source>Dual Vertical Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>Specchio verticale doppio</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="805"/>
         <source>Quad Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>Specchio quadruplo</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="820"/>
@@ -1380,27 +1380,28 @@
     <message>
         <location filename="../Phototonic.cpp" line="829"/>
         <source>Slide Image Left</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>All abbout navigate thumbnails</translatorcomment>
+        <translation>Mostra l&apos;immagine a sinistra</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="832"/>
         <source>Slide Image Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra l&apos;immagine a destra</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="835"/>
         <source>Slide Image Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra l&apos;immagine sopra</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="838"/>
         <source>Slide Image Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra l&apos;immagine sotto</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="850"/>
         <source>Rotate and Crop images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruota e ritaglia immagini</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1029"/>
@@ -1412,7 +1413,7 @@
         <location filename="../Phototonic.cpp" line="1040"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[sottostringa] [/ vincolo [/ più vincoli]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5g &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;corrisponde a foo, più vecchio di 5 giorni ma più giovane di un mese - o inferiore a 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Maggiore di/Dopo: &amp;gt;&lt;/li&gt;&lt;li&gt;Minore di/Prima: &amp;lt;&lt;/li&gt;&lt;li&gt;Età o dimensione (arrotondata) esatta altrimenti implicita o esplicita con: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Le date sono assolute (AAAA-MM-GG) o relative (5m:h:d:s:M:a)&lt;/li&gt;&lt;li&gt;Le dimensioni sono suffissate con kB:MB:GB o 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Le dimensioni sono pre/in/suffissate con &quot;x&quot; ([larghezza]x[altezza])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Tutti i suffissi non distinguono tra maiuscole e minuscole, ad eccezione di m|minuto e M|mese&lt;/i&gt;&lt;br&gt;Ogni &quot;/&quot; successiva avvia un nuovo gruppo di condizioni sufficienti, il match della sottostringa è facoltativo.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1074"/>
@@ -1427,22 +1428,22 @@
     <message>
         <location filename="../Phototonic.cpp" line="1340"/>
         <source>Commands using %f or %u cannot be used with multiple files.</source>
-        <translation>Comandi che usano %f o %u non possono essere usati con file mulitpli.</translation>
+        <translation>Comandi che usano %f o %u non possono essere usati con file multipli.</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1496"/>
         <source>Copied %n image(s) to clipboard</source>
         <translation>
-            <numerusform>Copiato %n immagine negli appunti</numerusform>
-            <numerusform>Copiati %n immagini negli appunti</numerusform>
+            <numerusform>Copiata %n immagine negli appunti</numerusform>
+            <numerusform>Copiate %n immagini negli appunti</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1497"/>
         <source>Cut %n image(s) to clipboard</source>
         <translation>
-            <numerusform>Tagliato %n immagine negli appunti</numerusform>
-            <numerusform>Tagliati %n immagini negli appunti</numerusform>
+            <numerusform>Tagliata %n immagine negli appunti</numerusform>
+            <numerusform>Tagliate %n immagini negli appunti</numerusform>
         </translation>
     </message>
     <message>
@@ -1464,7 +1465,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1707"/>
         <source>Please select the images to transform.</source>
-        <translation>Per favore selezionare le immagini per modificare.</translation>
+        <translation>Per favore selezionare le immagini da modificare.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1712"/>
@@ -1474,7 +1475,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1713"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;Exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Definisci un&apos;area di ritaglio&lt;/h3&gt;&lt;p&gt;Apri un&apos;immagine, eventualmente ruotala.&lt;br&gt;Quindi premi e tieni premuto Ctrl per selezionare un rettangolo di ritaglio.&lt;br&gt;&lt;b&gt;Non&lt;/b&gt; applicare il ritaglio facendo doppio clic sulla selezione!&lt;br&gt;Esci dal Visualizzatore.&lt;/p&gt;Ora puoi ripetere l&apos;azione su più immagini.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1724"/>
@@ -1484,7 +1485,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1725"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
-        <translation>Nessuna cartella per salvare globale è stata scelta, le immagini saranno sovrascritte. &lt;h3&gt;Vuoi creare dei backup?&lt;/h3&gt;</translation>
+        <translation>Nessuna cartella di salvataggio globale è stata scelta, le immagini saranno sovrascritti. &lt;h3&gt;Vuoi creare dei backup?&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1730"/>
@@ -1499,55 +1500,55 @@
     <message>
         <location filename="../Phototonic.cpp" line="1733"/>
         <source>Save the transformed images to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva le immagini modificate in %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1736"/>
         <source>&lt;h3&gt;Perform batch transformation?&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Eseguire modifica multipla? &lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1737"/>
         <source>&lt;ul&gt;&lt;li&gt;Rotate %1 images by %2°&lt;/li&gt;&lt;li&gt;Crop them to %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;ul&gt;&lt;li&gt;Ruota %1 immagini di %2°&lt;/li&gt;&lt;li&gt;Ritagliale a %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1817"/>
         <source>Can not copy or move to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile copiare o spostare in %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1844"/>
         <location filename="../Phototonic.cpp" line="2967"/>
         <source>Copied %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Copiata un immagine</numerusform>
+            <numerusform>Copiate %n immagini</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1845"/>
         <location filename="../Phototonic.cpp" line="2968"/>
         <source>Moved %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Spostata un immagine</numerusform>
+            <numerusform>Spostate %n immagini</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1885"/>
         <source>Move %n selected image(s) to the trash?</source>
         <translation>
-            <numerusform>Spostare %n immagine selezionata nel cestino?</numerusform>
-            <numerusform>Spostare %n immagini selezionate nel cestino?</numerusform>
+            <numerusform>Spostare l&apos; immagine selezionata nel cestino?</numerusform>
+            <numerusform>Spostare le %n immagini selezionate nel cestino?</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1886"/>
         <source>Permanently delete %n selected image(s)?</source>
         <translation>
-            <numerusform>Cancellare in modo permanente %n immagine selezionata?</numerusform>
-            <numerusform>Cancellare in modo permanente %n immagini selezionate?</numerusform>
+            <numerusform>Cancellare in modo permanente l&apos; immagine selezionata?</numerusform>
+            <numerusform>Cancellare in modo permanente le %n immagini selezionate?</numerusform>
         </translation>
     </message>
     <message>
@@ -1597,12 +1598,12 @@
         <location filename="../Phototonic.cpp" line="3065"/>
         <source>Searching duplicates: %v / %m</source>
         <extracomment>%v and %m are literal pattterns for QProgressBar (value and maximum)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Cercando duplicati: %v / %m</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3105"/>
         <source>Duplicate images in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagini duplicate in %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3118"/>
@@ -1667,7 +1668,7 @@
     <message>
         <location filename="../ProgressDialog.cpp" line="29"/>
         <source>Cancel</source>
-        <translation>Cancella</translation>
+        <translation>Annulla</translation>
     </message>
 </context>
 <context>
@@ -1703,7 +1704,7 @@
     <message>
         <location filename="../RenameDialog.cpp" line="35"/>
         <source>Cancel</source>
-        <translation>Cancella</translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="41"/>
@@ -1727,12 +1728,12 @@
     <message>
         <location filename="../ResizeDialog.cpp" line="36"/>
         <source>Cancel</source>
-        <translation>Cancella</translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="51"/>
         <source>Current size:</source>
-        <translation>Dimensione corrente:</translation>
+        <translation>Dimensione attuale:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="54"/>
@@ -1767,7 +1768,7 @@
     <message>
         <location filename="../ResizeDialog.cpp" line="65"/>
         <source>Keep aspect ratio</source>
-        <translation>Mantieni proporzione</translation>
+        <translation>Mantieni le proporzioni</translation>
     </message>
 </context>
 <context>
@@ -1903,7 +1904,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="316"/>
         <source>Cancel</source>
-        <translation>Cancella</translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="327"/>
@@ -2047,7 +2048,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="656"/>
         <source>Searching duplicate images...</source>
-        <translation>Cercando immagini duplicati</translation>
+        <translation>Cercando immagini duplicate...</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="782"/>
@@ -2067,8 +2068,8 @@
         <location filename="../ThumbsViewer.cpp" line="884"/>
         <source>Found %n duplicate(s) among %1 files</source>
         <translation>
-            <numerusform>Trovato %n duplicato tra %1 files</numerusform>
-            <numerusform>Trovati%n duplicati tra %1 files</numerusform>
+            <numerusform>Trovato un duplicato tra %1 files</numerusform>
+            <numerusform>Trovati %n duplicati tra %1 files</numerusform>
         </translation>
     </message>
     <message>

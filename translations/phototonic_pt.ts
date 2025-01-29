@@ -75,7 +75,7 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="62"/>
         <source>Colorize</source>
-        <translation>Colorizar</translation>
+        <translation>Colorir</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="66"/>
@@ -110,7 +110,7 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="126"/>
         <source>Affected Channels</source>
-        <translation>Afetar canais</translation>
+        <translation>Canais afetados</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="130"/>
@@ -130,7 +130,7 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="195"/>
         <source>Color Balance</source>
-        <translation>Balanceamento de cores</translation>
+        <translation>Equilíbrio de cores</translation>
     </message>
 </context>
 <context>
@@ -138,13 +138,13 @@
     <message>
         <location filename="../CopyMoveDialog.cpp" line="76"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="100"/>
         <location filename="../CopyMoveDialog.cpp" line="118"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Copiando &quot;%1&quot; to &quot;%2&quot;.</translation>
+        <translation>A copiar &quot;%1&quot; para &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="100"/>
