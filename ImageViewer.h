@@ -59,12 +59,14 @@ public:
     bool isNewImage();
     QRect lastCropGeometry() const { return m_isoCropRect; }
     void loadImage(QString imageFileName, const QImage &preview = QImage());
+    void preload(QString imageFileName);
     void refresh();
     void reload();
     void resizeImage(QPoint focus = QPoint(-1, -1));
     void scaleImage(QSize newSize);
     void setBackgroundColor();
     void setContextMenu(QMenu *);
+    void setCrossfade(bool yesno);
     void setCursorHiding(bool hide);
     void setFeedback(QString feedbackString, bool timeLimited = true);
     void setInfo(QString infoString);
@@ -111,6 +113,9 @@ private:
     QImage origImage;
     QImage viewerImage;
     QImage mirrorImage;
+    QImage m_preloadedImage;
+    QString m_preloadedPath;
+    bool m_crossfade;
     QTimer *mouseMovementTimer;
     QPointer<QMovie> animation;
     bool newImage;

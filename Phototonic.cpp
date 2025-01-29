@@ -2782,6 +2782,8 @@ void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
 void Phototonic::toggleSlideShow() {
     if (Settings::slideShowActive) {
         Settings::slideShowActive = false;
+        imageViewer->setCrossfade(false);
+        slideShowHandler(); // reset
         slideShowAction->setText(tr("Slide Show"));
         imageViewer->setFeedback(tr("Slide show stopped"));
 
@@ -2805,6 +2807,7 @@ void Phototonic::toggleSlideShow() {
         }
 
         Settings::slideShowActive = true;
+        slideShowHandler(); // init/preload
 
         SlideShowTimer = new QTimer(this);
         connect(SlideShowTimer, SIGNAL(timeout()), this, SLOT(slideShowHandler()));
@@ -2817,25 +2820,41 @@ void Phototonic::toggleSlideShow() {
         const int currentRow = thumbsViewer->currentIndex().row();
         imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow),
                                thumbsViewer->icon(currentRow).pixmap(THUMB_SIZE_MAX).toImage());
+        imageViewer->setCrossfade(true);
     }
 }
 
 void Phototonic::slideShowHandler() {
-    if (Settings::slideShowActive) {
-        if (Settings::slideShowRandom) {
-            loadImage(Phototonic::Random);
-        } else {
-            if (thumbsViewer->getNextRow() > 0) {
-                thumbsViewer->setCurrentIndex(thumbsViewer->getNextRow());
-            } else {
-                if (Settings::wrapImageList) {
-                    thumbsViewer->setCurrentIndex(0);
-                } else {
-                    toggleSlideShow();
-                }
-            }
-        }
+    static int next = -1;
+    static int last = -1;
+    if (!Settings::slideShowActive) {
+        next = -1;
+        last = -1;
+        imageViewer->preload("");
+        return;
     }
+
+    if (next < -1) {
+        toggleSlideShow();
+        return;
+    }
+
+    if (next > -1 && next < thumbsViewer->model()->rowCount() && last == thumbsViewer->currentIndex().row())
+        thumbsViewer->setCurrentIndex(next);
+    last = thumbsViewer->currentIndex().row();
+
+    if (Settings::slideShowRandom) {
+        next = QRandomGenerator::global()->bounded(thumbsViewer->model()->rowCount());
+    } else if (thumbsViewer->getNextRow() > 0) {
+        next = thumbsViewer->getNextRow();
+    } else if (Settings::wrapImageList) {
+        next = 0;
+    } else {
+        next = -2;
+    }
+
+    if (next > -1 && next < thumbsViewer->model()->rowCount())
+        QTimer::singleShot(500, this, [=]() {imageViewer->preload(thumbsViewer->fullPathOf(next));});
 }
 
 void Phototonic::loadImage(SpecialImageIndex idx) {

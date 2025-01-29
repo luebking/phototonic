@@ -106,6 +106,8 @@ ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     myMirrorLayout = MirrorNone;
     imageWidget = new ImageWidget;
     imageWidget->setLetterbox(m_letterbox);
+    m_crossfade = false;
+    imageWidget->setCrossfade(m_crossfade);
     animation = nullptr;
 
     setContentsMargins(0, 0, 0, 0);
@@ -592,6 +594,7 @@ void ImageViewer::setImage(const QImage &image) {
         movieWidget = nullptr;
         imageWidget = new ImageWidget;
         imageWidget->setLetterbox(m_letterbox);
+        imageWidget->setCrossfade(m_crossfade);
         setWidget(imageWidget);
     }
 
@@ -659,8 +662,11 @@ void ImageViewer::reload() {
     }
 
     // It's not a movie
-
-    if (imageReader.size().isValid() && imageReader.read(&origImage)) {
+    if (fullImagePath == m_preloadedPath) {
+        viewerImage = origImage = m_preloadedImage;
+        m_preloadedImage = QImage();
+        m_preloadedPath.clear();
+    } else if (imageReader.size().isValid() && imageReader.read(&origImage)) {
         if (Settings::exifRotationEnabled) {
             m_exifTransformation = Metadata::transformation(fullImagePath);
             origImage = origImage.transformed(Metadata::transformation(fullImagePath), Qt::SmoothTransformation);
@@ -759,6 +765,33 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
     reload();
 }
 
+void ImageViewer::preload(QString imageFileName) {
+    if (m_preloadedPath == imageFileName)
+        return;
+
+    m_preloadedPath = imageFileName;
+    // reload current one - maybe the file has changed on disk?
+    /*if (m_preloadedPath == fullImagePath) {
+        m_preloadedImage = origImage;
+        return;
+    }*/
+
+    QImageReader imageReader(m_preloadedPath);
+    if (imageReader.supportsAnimation()) {
+        m_preloadedImage = QImage();
+        m_preloadedPath.clear();
+        return; // no preloading animations
+    }
+    if (imageReader.size().isValid() && imageReader.read(&m_preloadedImage)) {
+        if (Settings::exifRotationEnabled) {
+            m_preloadedImage = m_preloadedImage.transformed(Metadata::transformation(fullImagePath), Qt::SmoothTransformation);
+        }
+    } else {
+        m_preloadedImage = QImage();
+        m_preloadedPath.clear();
+    }
+}
+
 void ImageViewer::clearImage() {
     fullImagePath.clear();
     origImage.load(":/images/no_image.png");
@@ -770,6 +803,12 @@ void ImageViewer::setContextMenu(QMenu *menu) {
     delete myContextMenu;
     myContextMenu = menu;
     myContextMenu->setParent(this);
+}
+
+void ImageViewer::setCrossfade(bool yesno) {
+    m_crossfade = yesno;
+    if (imageWidget)
+        imageWidget->setCrossfade(m_crossfade);
 }
 
 void ImageViewer::monitorCursorState() {

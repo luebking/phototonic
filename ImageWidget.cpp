@@ -25,6 +25,7 @@
 ImageWidget::ImageWidget(QWidget *parent) : QOpenGLWidget(parent)
 {
     m_fadeout = 0.0;
+    m_crossfade = false;
 }
 
 bool ImageWidget::empty()
@@ -37,28 +38,40 @@ const QImage &ImageWidget::image()
     return m_image;
 }
 
+void ImageWidget::setCrossfade(bool yesno)
+{
+    m_crossfade = yesno;
+    if (!m_crossfade)
+        m_prevImage = QImage();
+}
+
 void ImageWidget::setImage(const QImage &i, QTransform matrix)
 {
-/*    m_prevImage = m_image;
-    m_prevImagePos = m_imagePos;
-    m_prevImageSize = m_imageSize;*/
+    if (m_crossfade) {
+        m_prevImage = m_image;
+        m_prevImagePos = m_imagePos;
+        m_prevImageSize = m_imageSize;
+    }
     m_image = i;
     m_imageSize = i.size();
     m_rotation = 0;
     m_exifTransformation = matrix;
-/*    m_fadeout = 1.0;
-    static QVariantAnimation *fadeAnimator = nullptr;
-    if (!fadeAnimator) {
-        fadeAnimator = new QVariantAnimation(this);
-        fadeAnimator->setStartValue(1.0);
-        fadeAnimator->setEndValue(0.0);
-        fadeAnimator->setDuration(250);
-        connect(fadeAnimator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {m_fadeout = value.toFloat(); update();});
-        connect(fadeAnimator, &QVariantAnimation::finished, [=]() {m_prevImage = QImage();});
-        connect(fadeAnimator, &QObject::destroyed, [=]() {fadeAnimator = nullptr;});
+    if (m_crossfade) {
+        m_fadeout = 1.0;
+        static QVariantAnimation *fadeAnimator = nullptr;
+        if (!fadeAnimator) {
+            fadeAnimator = new QVariantAnimation(this);
+            fadeAnimator->setStartValue(1.0);
+            fadeAnimator->setEndValue(0.0);
+            fadeAnimator->setDuration(250);
+            connect(fadeAnimator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {m_fadeout = value.toFloat(); update();});
+            connect(fadeAnimator, &QVariantAnimation::finished, [=]() {m_prevImage = QImage();});
+            connect(fadeAnimator, &QObject::destroyed, [=]() {fadeAnimator = nullptr;});
+        }
+        fadeAnimator->start();
+    } else {
+        update();
     }
-    fadeAnimator->start();*/
-    update();
 }
 
 void ImageWidget::setRotation(qreal r)
@@ -143,16 +156,19 @@ void ImageWidget::paintEvent(QPaintEvent *ev)
 //    painter.setWorldTransform(m_exifTransformation);
 
     painter.setTransform(transformation());
-    painter.setOpacity(1.0 - m_fadeout);
+    if (m_crossfade)
+        painter.setOpacity(1.0 - m_fadeout);
     painter.drawImage(0,0, m_image);
 
-    if (m_prevImage.size().isNull())
-        return;
-    qDebug() << "wtf";
-    scale = qMax(float(m_imageSize.width()) / m_prevImage.width(), float(m_imageSize.height()) / m_prevImage.height());
-    if (scale == 0.0f)
-        return;
-    painter.setTransform(transformation(m_prevImage, m_prevImageSize, m_prevImagePos));
-    painter.setOpacity(m_fadeout);
-    painter.drawImage(0,0, m_prevImage);
+    if (m_crossfade) {
+        if (m_prevImage.size().isNull())
+            return;
+
+        scale = qMax(float(m_imageSize.width()) / m_prevImage.width(), float(m_imageSize.height()) / m_prevImage.height());
+        if (scale == 0.0f)
+            return;
+        painter.setTransform(transformation(m_prevImage, m_prevImageSize, m_prevImagePos));
+        painter.setOpacity(m_fadeout);
+        painter.drawImage(0,0, m_prevImage);
+    }
 }

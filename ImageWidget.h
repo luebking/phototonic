@@ -32,6 +32,7 @@ public:
     const QImage &image();
     const QPoint &imagePosition() const { return m_imagePos; }
     const QSize &imageSize() const { return m_imageSize; }
+    void setCrossfade(bool yesno);
     void setImage(const QImage &i, QTransform matrix);
     void setImagePosition(const QPoint &p);
     void setImageSize(const QSize &s);
@@ -59,6 +60,7 @@ private:
     Qt::Orientations m_flip;
     QRect m_letterBox;
     float m_fadeout;
+    bool m_crossfade;
 };
 
 #endif // IMAGEWIDGET_H
