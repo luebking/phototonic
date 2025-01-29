@@ -26,6 +26,7 @@ ImageWidget::ImageWidget(QWidget *parent) : QOpenGLWidget(parent)
 {
     m_fadeout = 0.0;
     m_crossfade = false;
+    setAutoFillBackground(true);
 }
 
 bool ImageWidget::empty()
