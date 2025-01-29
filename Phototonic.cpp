@@ -112,6 +112,13 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, [=](const QModelIndex &current) {
         if (!current.isValid())
             return;
+        if (m_infoViewer->isVisible()) {
+            QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
+            m_infoViewer->hint(tr("Average brightness"),
+                               QString::number(thumbModel->item(current.row())->data(ThumbsViewer::BrightnessRole).toReal(), 'f', 2));
+            const QString filePath = thumbsViewer->fullPathOf(current.row());
+            m_infoViewer->read(filePath, thumbsViewer->renderHistogram(filePath, m_logHistogram));
+        }
         if (imageViewer->isVisible()) {
             imageViewer->loadImage(thumbsViewer->fullPathOf(current.row()),
                                    Settings::slideShowActive ? QImage() : thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
@@ -122,13 +129,6 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
                 m_infoViewer->read(imageViewer->fullImagePath);
                 imageViewer->setFeedback(m_infoViewer->html(), false);
             }
-        }
-        if (m_infoViewer->isVisible()) {
-            QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
-            m_infoViewer->hint(tr("Average brightness"),
-                               QString::number(thumbModel->item(current.row())->data(ThumbsViewer::BrightnessRole).toReal(), 'f', 2));
-            const QString filePath = thumbsViewer->fullPathOf(current.row());
-            m_infoViewer->read(filePath, thumbsViewer->renderHistogram(filePath, m_logHistogram));
         }
         });
     connect(qApp, SIGNAL(focusChanged(QWidget * , QWidget * )), this, SLOT(updateActions()));
