@@ -67,7 +67,7 @@ public:
     void setContextMenu(QMenu *);
     void setCrossfade(bool yesno);
     void setCursorHiding(bool hide);
-    void setFeedback(QString feedbackString, bool timeLimited = true);
+    void setFeedback(QString feedbackString, int timeLimited = 3000);
     void setInfo(QString infoString);
     void setMirror(MirrorLayout layout);
     void showFileName(bool yesno) { myFilenameLabel->setVisible(yesno); }

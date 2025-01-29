@@ -109,7 +109,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     pal.setColor(m_statusLabel->foregroundRole(), QColor(255,255,255,192));
     m_statusLabel->setPalette(pal);
 
-    connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, [=](const QModelIndex &current) {
+    connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, this, [=](const QModelIndex &current) {
         if (!current.isValid())
             return;
         if (m_infoViewer->isVisible()) {
@@ -120,17 +120,17 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
             m_infoViewer->read(filePath, thumbsViewer->renderHistogram(filePath, m_logHistogram));
         }
         if (imageViewer->isVisible()) {
-            imageViewer->loadImage(thumbsViewer->fullPathOf(current.row()),
-                                   Settings::slideShowActive ? QImage() : thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
-            if (Settings::layoutMode == ImageViewWidget)
-                setImageViewerWindowTitle();
+            const QString &imagePath = thumbsViewer->fullPathOf(current.row());
             if (feedbackImageInfoAction->isChecked()) {
                 QApplication::processEvents();
-                m_infoViewer->read(imageViewer->fullImagePath);
+                m_infoViewer->read(imagePath);
                 imageViewer->setFeedback(m_infoViewer->html(), false);
             }
+            if (Settings::layoutMode == ImageViewWidget)
+                setImageViewerWindowTitle();
+            imageViewer->loadImage(imagePath, Settings::slideShowActive ? QImage() : thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
         }
-        });
+        }, Qt::QueuedConnection);
     connect(qApp, SIGNAL(focusChanged(QWidget * , QWidget * )), this, SLOT(updateActions()));
 
     restoreGeometry(Settings::value(Settings::optionGeometry).toByteArray());

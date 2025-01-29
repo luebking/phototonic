@@ -610,7 +610,7 @@ void ImageViewer::reload() {
         QMetaObject::invokeMethod(this, "reload", Qt::QueuedConnection);
         return;
     }
-    setFeedback("",false);
+//    setFeedback("",false);
     if (Settings::showImageName) {
         if (fullImagePath.left(1) == ":") {
             setInfo("No Image");
@@ -690,7 +690,7 @@ void ImageViewer::reload() {
             setFeedback(tr( "<h1>Warning</h1>Original image size %1x%2 exceeds limits<br>"
                             "Downscaled to %3x%4<br><h3>Saving edits will save the smaller image!</h3>")
                             .arg(imageReader.size().width()).arg(imageReader.size().height())
-                            .arg(sz.width()).arg(sz.height()), false);
+                            .arg(sz.width()).arg(sz.height()), 10000);
         }
         bool imageOk = false;
         if (batchMode || Settings::slideShowActive) {
@@ -765,7 +765,7 @@ void ImageViewer::unsetFeedback() {
     }
 }
 
-void ImageViewer::setFeedback(QString feedbackString, bool timeLimited) {
+void ImageViewer::setFeedback(QString feedbackString, int timeLimited) {
     if (!timeLimited)
         m_permanentFeedback = feedbackString;
     if (feedbackString.isEmpty()) {
@@ -780,7 +780,7 @@ void ImageViewer::setFeedback(QString feedbackString, bool timeLimited) {
 
     feedbackLabel->adjustSize();
     if (timeLimited)
-        QTimer::singleShot(3000, this, SLOT(unsetFeedback()));
+        QTimer::singleShot(timeLimited, this, SLOT(unsetFeedback()));
 }
 
 void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
