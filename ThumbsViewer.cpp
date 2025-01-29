@@ -809,10 +809,6 @@ void ThumbsViewer::updateThumbsCount() {
     thumbsDir.setPath(Settings::currentDirectory);
 }
 
-void ThumbsViewer::selectThumbByRow(int row) {
-    setCurrentIndex(row);
-}
-
 struct DuplicateImage
 {
     QString filePath;
