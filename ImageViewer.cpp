@@ -610,6 +610,7 @@ void ImageViewer::reload() {
         QMetaObject::invokeMethod(this, "reload", Qt::QueuedConnection);
         return;
     }
+    setFeedback("",false);
     if (Settings::showImageName) {
         if (fullImagePath.left(1) == ":") {
             setInfo("No Image");
@@ -675,6 +676,22 @@ void ImageViewer::reload() {
         m_preloadedImage = QImage();
         m_preloadedPath.clear();
     } else if (imageReader.size().isValid()) {
+        QSize sz = imageReader.size();
+        if (sz.width() * sz.height() > 8192*8192) { // allocation limit
+            /// @todo this and the correct sqrt(double…) of the below still runs into the size limts?
+            // perhaps because qimagereader overreads and needs some extra memory
+            // sz.scale(8192,8192, Qt::KeepAspectRatio);
+            double factor = double(8192*8192)/(sz.width() * sz.height());
+            // the sqrt is correct, but too large - the square of the true factor will over"punish" large images
+            // so we draw an average - this is by "shows the most annoying supersize image I have"
+            factor = (2*factor + sqrt(factor))/3.0;
+            sz *= factor;
+            imageReader.setScaledSize(sz);
+            setFeedback(tr( "<h1>Warning</h1>Original image size %1x%2 exceeds limits<br>"
+                            "Downscaled to %3x%4<br><h3>Saving edits will save the smaller image!</h3>")
+                            .arg(imageReader.size().width()).arg(imageReader.size().height())
+                            .arg(sz.width()).arg(sz.height()), false);
+        }
         bool imageOk = false;
         if (batchMode || Settings::slideShowActive) {
             imageReader.read(&origImage);
