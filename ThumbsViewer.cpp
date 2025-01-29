@@ -1113,6 +1113,7 @@ void ThumbsViewer::loadThumbsRange() {
     QElapsedTimer timer;
     timer.start();
 
+    for (bool fastOnly : { true, false }) {
     for (scrolledForward ? currThumb = thumbsRangeFirst : currThumb = thumbsRangeLast;
          (scrolledForward ? currThumb <= thumbsRangeLast : currThumb >= thumbsRangeFirst);
          scrolledForward ? ++currThumb : --currThumb) {
@@ -1123,14 +1124,13 @@ void ThumbsViewer::loadThumbsRange() {
         if (m_model->item(currThumb)->data(LoadedRole).toBool())
             continue;
 
-        if (!loadThumb(currThumb, true)) {
-            loadThumb(currThumb);
-        }
+        loadThumb(currThumb, fastOnly);
 
         if (timer.elapsed() > 30) {
             QApplication::processEvents();
             timer.restart();
         }
+    }
     }
 
     isInProgress = false;
