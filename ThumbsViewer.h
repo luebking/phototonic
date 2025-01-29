@@ -141,6 +141,7 @@ public:
     int lastVisibleThumb();
     QImage renderHistogram(const QString &imagePath, bool logarithmic = false);
     QString locateThumbnail(const QString &path) const;
+    bool isBusy() { return m_busy; }
 
     ImageTags *imageTags;
     QDir thumbsDir;

@@ -61,7 +61,6 @@ public:
     void loadImage(QString imageFileName, const QImage &preview = QImage());
     void preload(QString imageFileName);
     void refresh();
-    void reload();
     void resizeImage(QPoint focus = QPoint(-1, -1));
     void scaleImage(QSize newSize);
     void setBackgroundColor();
@@ -81,13 +80,13 @@ signals:
     void toolsUpdated();
 
 public slots:
-
+    void applyCropAndRotation();
     void monitorCursorState();
     void saveImage();
     void saveImageAs();
     void copyImage();
     void pasteImage();
-    void applyCropAndRotation();
+    void reload();
 
 private slots:
 

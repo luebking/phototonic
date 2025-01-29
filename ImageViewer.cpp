@@ -30,6 +30,7 @@
 #include <QMovie>
 #include <QPainter>
 #include <QScrollBar>
+#include <QThread>
 #include <QTimer>
 #include <QWheelEvent>
 
@@ -602,6 +603,13 @@ void ImageViewer::setImage(const QImage &image) {
 }
 
 void ImageViewer::reload() {
+    static bool s_busy = false;
+    static bool s_abort = false;
+    if (s_busy) {
+        s_abort = true;
+        QMetaObject::invokeMethod(this, "reload", Qt::QueuedConnection);
+        return;
+    }
     if (Settings::showImageName) {
         if (fullImagePath.left(1) == ":") {
             setInfo("No Image");
@@ -666,23 +674,48 @@ void ImageViewer::reload() {
         viewerImage = origImage = m_preloadedImage;
         m_preloadedImage = QImage();
         m_preloadedPath.clear();
-    } else if (imageReader.size().isValid() && imageReader.read(&origImage)) {
-        if (Settings::exifRotationEnabled) {
-            m_exifTransformation = Metadata::transformation(fullImagePath);
-            origImage = origImage.transformed(Metadata::transformation(fullImagePath), Qt::SmoothTransformation);
+    } else if (imageReader.size().isValid()) {
+        bool imageOk = false;
+        if (batchMode || Settings::slideShowActive) {
+            imageReader.read(&origImage);
+        } else {
+            QThread *thread = QThread::create([&](){imageOk = imageReader.read(&origImage);});
+            thread->start();
+            s_busy = true;
+            while (!thread->wait(30)) {
+                QApplication::processEvents();
+                if (s_abort) {
+                    thread->terminate();
+                    thread->wait();
+                    break;
+                }
+            }
+            s_busy = false;
+            thread->deleteLater();
+            if (s_abort) {
+                s_abort = false;
+                return;
+            }
         }
-        viewerImage = origImage;
 
-        if (Settings::colorsActive || Settings::keepTransform) {
-            colorize();
-        }
-        if (myMirrorLayout) {
-            mirror();
-        }
-    } else {
-        viewerImage = QIcon::fromTheme("image-missing",
+        if (imageOk) {
+            if (Settings::exifRotationEnabled) {
+                m_exifTransformation = Metadata::transformation(fullImagePath);
+                origImage = origImage.transformed(Metadata::transformation(fullImagePath), Qt::SmoothTransformation);
+            }
+            viewerImage = origImage;
+
+            if (Settings::colorsActive || Settings::keepTransform) {
+                colorize();
+            }
+            if (myMirrorLayout) {
+                mirror();
+            }
+        } else {
+            viewerImage = QIcon::fromTheme("image-missing",
                                         QIcon(":/images/error_image.png")).pixmap(BAD_IMAGE_SIZE, BAD_IMAGE_SIZE).toImage();
-        setInfo(QFileInfo(imageReader.fileName()).fileName() + ": " + imageReader.errorString());
+            setInfo(QFileInfo(imageReader.fileName()).fileName() + ": " + imageReader.errorString());
+        }
     }
 
     setImage(viewerImage);

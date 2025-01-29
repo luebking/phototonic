@@ -42,7 +42,7 @@
 #include <QStandardPaths>
 #include <QStandardItemModel>
 #include <QStatusBar>
-#include <QThreadPool>
+#include <QThread>
 #include <QToolBar>
 #include <QToolButton>
 #include <QToolTip>
@@ -273,7 +273,10 @@ void Phototonic::createImageViewer() {
     connect(copyImageAction, SIGNAL(triggered()), imageViewer, SLOT(copyImage()));
     connect(pasteImageAction, SIGNAL(triggered()), imageViewer, SLOT(pasteImage()));
     connect(imageViewer, &ImageViewer::toolsUpdated, [=](){ rotateToolAction->setChecked(Settings::mouseRotateEnabled); });
-    connect(imageViewer, &ImageViewer::gotFocus, [=](){ thumbsViewer->setCurrentIndex(imageViewer->fullImagePath); });
+    connect(imageViewer, &ImageViewer::gotFocus, [=](){
+        if (thumbsViewer->selectionModel()->selectedIndexes().size() < 1)
+            thumbsViewer->setCurrentIndex(imageViewer->fullImagePath);
+    });
     QMenu *contextMenu = new QMenu(imageViewer);
 
     // Widget actions
@@ -1892,6 +1895,10 @@ void Phototonic::loadCurrentImage(int currentRow) {
 }
 
 void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
+    if (thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
+        QTimer::singleShot(100, this, [=](){deleteImages(trash);});
+        return;
+    }
     ASSERT_IMAGES_SELECTED
 
     QStringList deathRow;
@@ -1913,10 +1920,6 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
             return;
         }
     }
-
-    // wait until thumbnail loading is done
-    while (QThreadPool::globalInstance()->activeThreadCount())
-        QThreadPool::globalInstance()->waitForDone(-1);
 
     // To only show progress dialog if deleting actually takes time
     QElapsedTimer timer;
@@ -1999,10 +2002,15 @@ void Phototonic::deleteFromViewer(bool trash) {
         return;
     }
 
-    if (Settings::slideShowActive) {
+    if (Settings::slideShowActive) { // needs to happen now
         toggleSlideShow();
     }
-    imageViewer->setCursorHiding(false);
+    imageViewer->setCursorHiding(false); // tells that sth. is happening
+
+    if (thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
+        QTimer::singleShot(100, this, [=](){deleteFromViewer(trash);});
+        return;
+    }
 
     const QString fullPath = imageViewer->fullImagePath;
     const QString fileName = QFileInfo(fullPath).fileName();
@@ -2021,8 +2029,8 @@ void Phototonic::deleteFromViewer(bool trash) {
             return;
         }
     }
-    while (QThreadPool::globalInstance()->activeThreadCount())
-        QThreadPool::globalInstance()->waitForDone(-1);
+    while (thumbsViewer->isBusy())
+        QThread::sleep(30);
 
     QString trashError;
     if (trash ? (Trash::moveToTrash(fullPath, trashError) == Trash::Success) :

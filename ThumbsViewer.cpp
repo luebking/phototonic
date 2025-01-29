@@ -33,7 +33,7 @@
 #include <QScrollBar>
 #include <QStandardItemModel>
 #include <QStandardPaths>
-#include <QThreadPool>
+#include <QThread>
 #include <QTimer>
 #include <QTreeWidget>
 #include <cmath>
@@ -363,8 +363,7 @@ void ThumbsViewer::loadFileList() {
 }
 
 void ThumbsViewer::reLoad() {
-    if (m_busy || QThreadPool::globalInstance()->activeThreadCount()) {
-        QThreadPool::globalInstance()->clear();
+    if (m_busy) {
         abort();
         QTimer::singleShot(50, this, [=]() { reLoad(); });
         return;
@@ -379,8 +378,6 @@ void ThumbsViewer::reLoad() {
     scrollDelay->stop();
     disconnect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
     m_busy = true;
-
-    QThreadPool::globalInstance()->waitForDone(-1);
 
     histFiles.clear(); // these can grow out of control and currently sort O(n^2)
     histograms.clear();
@@ -669,8 +666,7 @@ void ThumbsViewer::refreshThumbs() {
 
 void ThumbsViewer::loadDuplicates()
 {
-    if (m_busy || QThreadPool::globalInstance()->activeThreadCount()) {
-        QThreadPool::globalInstance()->clear();
+    if (m_busy) {
         abort();
         QTimer::singleShot(50, this, [=]() { loadDuplicates(); });
         return;
@@ -1132,8 +1128,7 @@ void ThumbsViewer::loadThumbsRange() {
             continue;
 
         if (!loadThumb(currThumb, true)) {
-            QThreadPool::globalInstance()->start([=](){loadThumb(currThumb);});
-//            qDebug() << "slow image read"; loadThumb(currThumb);
+            loadThumb(currThumb);
         }
 
         if (timer.elapsed() > 30) {
@@ -1294,6 +1289,17 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
     if (fastOnly && shouldStoreThumbnail)
         return false;
 
+    auto readThreaded = [&]() {
+        bool wentOk = false;
+        QThread *thread = QThread::create([&](){wentOk = thumbReader.read(&thumb);});
+        thread->start();
+        while (!thread->wait(30)) {
+            QApplication::processEvents();
+        }
+        thread->deleteLater();
+        return wentOk;
+    };
+
     QSize thumbSizeQ(thumbSize,thumbSize);
     if (currentThumbSize.isValid()) {
         bool scaleMe =  Settings::upscalePreview ||
@@ -1304,7 +1310,7 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
         }
 
         thumbReader.setScaledSize(currentThumbSize);
-        imageReadOk = thumbReader.read(&thumb);
+        imageReadOk = readThreaded();
 
         if (imageReadOk && !shouldStoreThumbnail) {
             int w = thumb.text("Thumb::Image::Width").toInt();
@@ -1319,7 +1325,7 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
         if (!imageReadOk && !shouldStoreThumbnail) { // tried thumbnail but somehow failed, sanitize it
             shouldStoreThumbnail = true;
             thumbReader.setFileName(imageFileName);
-            imageReadOk = thumbReader.read(&thumb);
+            imageReadOk = readThreaded();
         }
     }
 
@@ -1391,7 +1397,13 @@ QStandardItem * ThumbsViewer::addThumb(const QString &imageFullPath) {
         }
 
         thumbReader.setScaledSize(currThumbSize);
-        QImage thumb = thumbReader.read();
+        QImage thumb;
+        QThread *thread = QThread::create([&](){thumbReader.read(&thumb);});
+        thread->start();
+        while (!thread->wait(30)) {
+            QApplication::processEvents();
+        }
+        thread->deleteLater();
 
         if (Settings::exifThumbRotationEnabled) {
             thumb = thumb.transformed(Metadata::transformation(imageFullPath), Qt::SmoothTransformation);
