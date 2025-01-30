@@ -176,7 +176,7 @@
         <location filename="../CropDialog.cpp" line="31"/>
         <source>Letterbox</source>
         <extracomment>Like a bad dvd where you get a black frame around the image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Letterbox</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="38"/>
