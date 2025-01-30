@@ -1306,7 +1306,7 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
         }
 
         thumbReader.setScaledSize(currentThumbSize);
-        imageReadOk = readThreaded();
+        imageReadOk = shouldStoreThumbnail ? readThreaded() : thumbReader.read(&thumb);
 
         if (imageReadOk && !shouldStoreThumbnail) {
             int w = thumb.text("Thumb::Image::Width").toInt();
