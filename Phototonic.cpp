@@ -1530,6 +1530,11 @@ void Phototonic::copyOrMoveImages(bool isCopyOperation) {
     }
     imageViewer->setCursorHiding(false);
 
+    if (!isCopyOperation && thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
+        QTimer::singleShot(100, this, [=](){copyOrMoveImages(isCopyOperation);});
+        return;
+    }
+
     copyMoveToDialog = new CopyMoveToDialog(this, getSelectedPath(), !isCopyOperation);
     if (copyMoveToDialog->exec()) {
         if (Settings::layoutMode == ThumbViewWidget) {
@@ -1853,6 +1858,11 @@ void Phototonic::pasteThumbs() {
                 return;
             }
         }
+    }
+
+    if (thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
+        QTimer::singleShot(100, this, [=](){pasteThumbs();});
+        return;
     }
 
     CopyMoveDialog *copyMoveDialog = new CopyMoveDialog(this);

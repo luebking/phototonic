@@ -90,10 +90,13 @@ CopyMoveDialog::CopyMoveDialog(QWidget *parent) : QDialog(parent) {
 }
 
 void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurrDir) {
-    show();
 
+    QElapsedTimer duration;
+    duration.start();
     if (pasteInCurrDir) {
         for (int tn = 0; tn < Settings::copyCutFileList.size(); ++tn) {
+            if (duration.elapsed() > 500)
+                show();
             QString sourceFile = Settings::copyCutFileList.at(tn);
             QString destFile = destDir + QDir::separator() + QFileInfo(sourceFile).fileName();
 
@@ -112,6 +115,8 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
     } else {
         QList<int> rowList;
         for (int tn = Settings::copyCutIndexList.size() - 1; tn >= 0; --tn) {
+            if (duration.elapsed() > 500)
+                show();
             QString sourceFile = thumbView->fullPathOf(Settings::copyCutIndexList.at(tn).row());
             QString destFile = destDir + QDir::separator() + QFileInfo(sourceFile).fileName();
 
