@@ -630,7 +630,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="690"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h1&gt;Achtung&lt;/h1&gt;Die originalen %1x%2 überschreiten Größengrenzen&lt;br&gt;Das Bild wurde auf %3x%4 runterskaliert&lt;br&gt;&lt;h3&gt;Das Speichern von Bearbeitungen würde die geringere Auflösung speichern!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="952"/>
@@ -695,7 +695,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="1275"/>
         <source>Images</source>
-        <translation type="unfinished">Bilder</translation>
+        <translation>Bilder</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1345"/>
@@ -795,7 +795,7 @@
     <message>
         <location filename="../MessageBox.cpp" line="75"/>
         <source>Special thanks to our contributers.</source>
-        <translation>Besonderen Dank für die Mitarbeit</translation>
+        <translation>Besonderen Dank für die Mitarbeit an</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="78"/>
@@ -1751,7 +1751,7 @@
         <location filename="../Phototonic.cpp" line="1062"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[Namensteil] [/ Einschränkung [/ Mehr Einschränkungen]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;Trifft foo, älter als 5 Tage aber jünger als ein Monat - oder kleiner 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Größer/Neuer als: &amp;gt;&lt;/li&gt;&lt;li&gt;Kleiner/Älter als: &amp;lt;&lt;/li&gt;&lt;li&gt;Genaues Alter oder (gerundete) Größe sind sonst impliziert oder können explizit mit &quot;=&quot; gefordert werden&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Daten sind absolut (JJJJ-MM-TT) oder relativ (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Größen werden mit 4kB:MB:GB or 4MP (Megapixel) angegeben&lt;/li&gt;&lt;li&gt;Dimensionen sind durch &quot;x&quot; vor-, nach- oder zwischengestelltes &quot;x&quot; gekennzeichnet ([Weite]x[Höhe])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Groß-/Kleinschreibung wird außer bei m|inute und M|onat ignoriert&lt;/i&gt;&lt;br&gt;Jedes &quot;/&quot; startet eine neue, hinreichende Einschränkungsgruppe, der Namensteilfilter am Anfang ist optional.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1728"/>
@@ -2540,7 +2540,7 @@
     <message>
         <location filename="../RenameDialog.cpp" line="41"/>
         <source>New name: </source>
-        <translation>Neuer Name:</translation>
+        <translation>Neuer Name: </translation>
     </message>
 </context>
 <context>
