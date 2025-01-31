@@ -43,6 +43,7 @@ void MessageBox::warning(const QString &title, const QString &message) {
 void MessageBox::about() {
     QStringList contributers;
     contributers    // << "Code: Ofer Kashayov" // oferkv@gmail.com
+                    << "Alphatests: Standreas (stefonarch)" // github.com/stefonarch
                     << "Code: Christopher Roy Bratusek" // nano@jpberlin.de
                     << "Code: Krzysztof Pyrkosz" // pyrkosz@o2.pl
                     << "Code: Roman Chistokhodov" // freeslave93@gmail.com
@@ -52,19 +53,25 @@ void MessageBox::about() {
                     << "Bosnian: Dino Duratović" // dinomol@mail.com
                     << "Croatian: Dino Duratović" // dinomol@mail.com
                     << "Czech: Pavel Fric" // pavelfric@seznam.cz
+                    << "Dutch: Heimen Stoffels" // <vistausss@fastmail.com>
                     << "French: Adrien Daugabel" // adrien.d@mageialinux-online.org
                     << "French: David Geiger" // david.david@mageialinux-online.org
+                    << "French: Nicolas PARLANT" // <nicolas.parlant@parhuet.fr>
                     << "French: Rémi Verschelde" // akien@mageia.org
                     << "German: Jonathan Hooverman" // jonathan.hooverman@gmail.com
+                    << "German: Some wordstumbling fool" // thomas.luebking@gmail.com
                     << "Italian: Standreas (stefonarch)" // github.com/stefonarch
-                    << "Polish: Robert Wojewódzki" // robwoj44@poczta.onet.pl
+                    << "Polish: Jan Rolski" // <wbcwknvstb@proton.me>
                     << "Polish: Krzysztof Pyrkosz" // pyrkosz@o2.pl
+                    << "Polish: Robert Wojewódzki" // robwoj44@poczta.onet.pl
+                    << "Portuguese: Hugo Carvalho" // <hugokarvalho@hotmail.com>
                     << "Portuguese: Marcos M. Nascimento" // wstlmn@uol.com.br
                     << "Russian: Ilya Alexandrovich" // yast4ik@gmail.com
                     << "Serbian: Dino Duratović" // dinomol@mail.com
+                    << "Ukrainian: Ihor Hordiichuk" // <igor_ck@outlook.com>
                     << "Standreas and the entire LXQt weblate team"
                     ;
-    QString aboutString = "<h1>Phototonic 3.0 α¹</h1>" // + QString(VERSION)
+    QString aboutString = "<h1>Phototonic 3.0 α²</h1>" // + QString(VERSION)
                           "<h4>" + tr("Image Viewer and Organizer") + "</h4>"
                           "<a href=\"https://github.com/luebking/phototonic\">" + tr("Home page and bug reports") + "</a>"
                           "<dl><dt>Copyright</dt><dd>"
