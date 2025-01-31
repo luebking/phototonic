@@ -876,7 +876,7 @@ void Phototonic::createActions() {
     setPathFocusAction->setObjectName("setPathFocus");
     connect(setPathFocusAction, SIGNAL(triggered()), this, SLOT(setPathFocus()));
 
-    feedbackImageInfoAction = new QAction(tr("Image Info"), imageViewer);
+    feedbackImageInfoAction = new QAction(tr("Image Info"));
     feedbackImageInfoAction->setCheckable(true);
     feedbackImageInfoAction->setShortcut(Qt::Key_I);
     feedbackImageInfoAction->setShortcutContext(Qt::WidgetShortcut);
