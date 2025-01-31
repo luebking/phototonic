@@ -2029,8 +2029,6 @@ void Phototonic::deleteFromViewer(bool trash) {
             return;
         }
     }
-    while (thumbsViewer->isBusy())
-        QThread::sleep(30);
 
     QString trashError;
     if (trash ? (Trash::moveToTrash(fullPath, trashError) == Trash::Success) :
@@ -2979,8 +2977,13 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
         return;
     }
 
-    if (destDir == Settings::currentDirectory) {
+    if (destDir == (dirOp ? QFileInfo(copyMoveDirPath).absolutePath() : Settings::currentDirectory)) {
         msgBox.critical(tr("Error"), tr("Destination directory is the same as the source directory."));
+        return;
+    }
+
+    if (!Settings::isCopyOperation && thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
+        QTimer::singleShot(100, this, [=](){dropOp(keyMods, dirOp, copyMoveDirPath);});
         return;
     }
 
