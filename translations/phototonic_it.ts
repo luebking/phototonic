@@ -280,7 +280,7 @@
     <message>
         <location filename="../Tags.cpp" line="75"/>
         <source>Tag</source>
-        <translation>Tag</translation>
+        <translation>Etichetta</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="79"/>
@@ -337,14 +337,14 @@
     <message>
         <location filename="../Tags.cpp" line="501"/>
         <source>Tag %1 already exists</source>
-        <translation>Tag %1 esiste già</translation>
+        <translation>Etichetta %1 esiste già</translation>
     </message>
     <message numerus="yes">
         <location filename="../Tags.cpp" line="517"/>
         <source>Delete %n selected tags(s)?</source>
         <translation>
-            <numerusform>Rimuovere il tag selezionato?</numerusform>
-            <numerusform>Rimuovere %n tag selezionati?</numerusform>
+            <numerusform>Cancellare il tag selezionato?</numerusform>
+            <numerusform>Cancellare i %n tag selezionati?</numerusform>
         </translation>
     </message>
     <message>
@@ -914,7 +914,7 @@
         <location filename="../Phototonic.cpp" line="1226"/>
         <source>Tags</source>
         <extracomment>tags are image metadata</extracomment>
-        <translation>Tags</translation>
+        <translation>Etichette</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="180"/>
@@ -1122,7 +1122,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="710"/>
         <source>Delete Bookmark</source>
-        <translation>Cancella segnalibro</translation>
+        <translation>Rimuovi segnalibro</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="739"/>
