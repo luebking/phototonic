@@ -78,6 +78,7 @@ public:
 signals:
     void gotFocus();
     void toolsUpdated();
+    void imageEdited(bool);
 
 public slots:
     void applyCropAndRotation();

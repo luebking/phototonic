@@ -269,7 +269,9 @@ void Phototonic::createImageViewer() {
     imageViewer = new ImageViewer(this);
     imageViewer->viewport()->installEventFilter(this);
     connect(saveAction, SIGNAL(triggered()), imageViewer, SLOT(saveImage()));
+    connect(imageViewer, &ImageViewer::imageEdited, saveAction, &QAction::setEnabled);
     connect(saveAsAction, SIGNAL(triggered()), imageViewer, SLOT(saveImageAs()));
+    connect(imageViewer, &ImageViewer::imageEdited, saveAsAction, &QAction::setEnabled);
     connect(copyImageAction, SIGNAL(triggered()), imageViewer, SLOT(copyImage()));
     connect(pasteImageAction, SIGNAL(triggered()), imageViewer, SLOT(pasteImage()));
     connect(imageViewer, &ImageViewer::toolsUpdated, [=](){ rotateToolAction->setChecked(Settings::mouseRotateEnabled); });
@@ -519,10 +521,12 @@ void Phototonic::createActions() {
     saveAction = new QAction(tr("Save"), this);
     saveAction->setObjectName("save");
     saveAction->setIcon(QIcon::fromTheme("document-save", QIcon(":/images/save.png")));
+    saveAction->setEnabled(false);
 
     saveAsAction = new QAction(tr("Save As"), this);
     saveAsAction->setObjectName("saveAs");
     saveAsAction->setIcon(QIcon::fromTheme("document-save-as", QIcon(":/images/save_as.png")));
+    saveAsAction->setEnabled(false);
 
     copyImageAction = new QAction(tr("Copy Image"), this);
     copyImageAction->setObjectName("copyImage");

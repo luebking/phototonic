@@ -302,6 +302,7 @@ void ImageViewer::scaleImage(QSize newSize) {
     origImage = origImage.scaled(newSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     refresh();
     setFeedback(tr("New image size: %1x%2").arg(origImage.width()).arg(origImage.height()));
+    emit imageEdited(true);
 }
 
 void ImageViewer::resizeEvent(QResizeEvent *event) {
@@ -568,6 +569,7 @@ void ImageViewer::colorize() {
             }
         }
     }
+    emit imageEdited(true);
 }
 
 void ImageViewer::refresh() {
@@ -603,6 +605,7 @@ void ImageViewer::setImage(const QImage &image) {
 }
 
 void ImageViewer::reload() {
+    emit imageEdited(false);
     static bool s_busy = false;
     static bool s_abort = false;
     if (s_busy) {
@@ -1042,6 +1045,7 @@ void ImageViewer::applyCropAndRotation() {
     refresh();
     setFeedback("", false);
     setFeedback(tr("New image size: %1x%2").arg(origImage.width()).arg(origImage.height()));
+    emit imageEdited(true);
 }
 
 void ImageViewer::configureLetterbox() {
