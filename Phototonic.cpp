@@ -1082,6 +1082,8 @@ void Phototonic::createToolBars() {
                                 rtfm, filterLineEdit);
         }
     });
+    filterLineEdit->setMouseTracking(true);
+    filterLineEdit->installEventFilter(this);
 
     myMainToolBar->addSeparator();
     myMainToolBar->addWidget(filterLineEdit);
@@ -3458,6 +3460,15 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
         }
         else if (e->type() == QEvent::Leave) {
             m_statusLabel->hide();
+        }
+        return QMainWindow::eventFilter(o, e);
+    }
+
+    if (o == filterLineEdit) {
+        if (e->type() == QEvent::Enter) {
+            filterLineEdit->setClearButtonEnabled(!filterLineEdit->text().isEmpty());
+        } else if (e->type() == QEvent::Leave) {
+            filterLineEdit->setClearButtonEnabled(false);
         }
         return QMainWindow::eventFilter(o, e);
     }
