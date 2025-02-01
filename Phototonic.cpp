@@ -3514,18 +3514,18 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
         } else if (ke->key() == Qt::Key_End) {
             scrollThumbs(1000);
             return true;
-        } else if (ke->key() == Qt::Key_Up) {
+        } else if (ke->key() == Qt::Key_Up || ke->key() == Qt::Key_Left) {
             if (!ke->modifiers() && !thumbsViewer->rect().intersects(thumbsViewer->visualRect(thumbsViewer->currentIndex()))) {
                 thumbsViewer->setCurrentIndex(thumbsViewer->lastVisibleThumb());
                 return true;
             }
-        } else if (ke->key() == Qt::Key_Down) {
+        } else if (ke->key() == Qt::Key_Down || ke->key() == Qt::Key_Right) {
             if (!ke->modifiers() && !thumbsViewer->rect().intersects(thumbsViewer->visualRect(thumbsViewer->currentIndex()))) {
                 thumbsViewer->setCurrentIndex(thumbsViewer->firstVisibleThumb());
                 return true;
             }
-        } else if (copyAction->shortcut()[0] == ke->keyCombination() || // these are sucked away by an enabled action
-                   cutAction->shortcut()[0] == ke->keyCombination()) { // issue a warning for the disabled one
+        } else if (copyAction->shortcut() == ke->keyCombination() || // these are sucked away by an enabled action
+                   cutAction->shortcut() == ke->keyCombination()) { // issue a warning for the disabled one
             setStatus(tr("No images selected"));
         }
         return QMainWindow::eventFilter(o, e);
