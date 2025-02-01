@@ -1212,6 +1212,14 @@ void ImageViewer::saveImage() {
         QDir saveDir(Settings::saveDirectory);
         savePath = saveDir.filePath(QFileInfo(fullImagePath).fileName());
     }
+    int rotation = qRound(Settings::rotation);
+    if (!batchMode && (Settings::flipH || Settings::flipV || !(rotation % 90))) {
+        QTransform matrix;
+        matrix.scale(Settings::flipH ? -1 : 1, Settings::flipV ? -1 : 1);
+        if (!(rotation % 90))
+            matrix.rotate((Settings::flipH xor Settings::flipV) ? 360-rotation : rotation);
+        viewerImage = viewerImage.transformed(matrix);
+    }
     if (!viewerImage.save(savePath, imageReader.format().toUpper(), Settings::defaultSaveQuality)) {
         MessageBox msgBox(this);
         msgBox.critical(tr("Error"), tr("Failed to save image."));
@@ -1289,7 +1297,14 @@ void ImageViewer::saveImageAs() {
             exifError = true;
         }
 
-
+        int rotation = qRound(Settings::rotation);
+        if (!batchMode && (Settings::flipH || Settings::flipV || !(rotation % 90))) {
+            QTransform matrix;
+            matrix.scale(Settings::flipH ? -1 : 1, Settings::flipV ? -1 : 1);
+            if (!(rotation % 90))
+                matrix.rotate((Settings::flipH xor Settings::flipV) ? 360-rotation : rotation);
+            viewerImage = viewerImage.transformed(matrix);
+        }
         if (!viewerImage.save(fileName, 0, Settings::defaultSaveQuality)) {
             MessageBox msgBox(this);
             msgBox.critical(tr("Error"), tr("Failed to save image."));

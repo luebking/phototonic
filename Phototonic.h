@@ -330,6 +330,7 @@ private:
     QLabel *m_statusLabel;
     int m_thumbSizeDelta;
     bool m_logHistogram;
+    int m_editSteps;
 
     QPointer<ColorsDialog> colorsDialog;
 
