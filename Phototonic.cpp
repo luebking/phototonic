@@ -1995,11 +1995,6 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
         }
     }
 
-    if (thumbsViewer->model()->rowCount() && rows.count()) {
-        std::sort(rows.begin(), rows.end());
-        thumbsViewer->setCurrentIndex(qMax(rows.at(0), thumbsViewer->model()->rowCount() - 1));
-    }
-
     if (progressDialog) {
         progressDialog->close();
         progressDialog->deleteLater();
@@ -2050,7 +2045,6 @@ void Phototonic::deleteFromViewer(bool trash) {
         int currentRow = thumbsViewer->currentIndex().row();
         thumbsViewer->model()->removeRow(currentRow);
         imageViewer->setFeedback(tr("Deleted %1").arg(fileName));
-//        loadCurrentImage(currentRow);
     } else {
         MessageBox msgBox(this);
         msgBox.critical(tr("Error"), trash ? trashError : tr("Failed to delete image"));
