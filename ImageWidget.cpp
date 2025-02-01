@@ -143,6 +143,7 @@ void ImageWidget::paintEvent(QPaintEvent *ev)
         return;
 
     QPainter painter(this);
+    painter.fillRect(rect(), palette().color(backgroundRole()));
     painter.setRenderHint(QPainter::SmoothPixmapTransform);
     QRect clip = rect();
     clip.adjust(qRound(width()*m_letterBox.x()/100.0),
