@@ -611,7 +611,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="690"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h1&gt;Warning&lt;/h1&gt;Pierwotny rozmiar obrazu %1x%2 przekracza limity&lt;br&gt;Zmniejszono do %3x%4&lt;br&gt;&lt;h3&gt;Zapisanie zmian spowoduje zapisanie mniejszego obrazu!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="952"/>
