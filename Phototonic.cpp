@@ -543,7 +543,7 @@ void Phototonic::createActions() {
 
     selectByBrightnesAction = new QAction(tr("Select by Brightness"), this);
     selectByBrightnesAction->setObjectName("selectByBrightness");
-    connect(selectByBrightnesAction, SIGNAL(triggered()), this, SLOT(selectByBrightness()));
+//    connect(selectByBrightnesAction, SIGNAL(triggered()), this, SLOT(selectByBrightness()));
 
     aboutAction = new QAction(tr("About"), this);
     aboutAction->setObjectName("about");
@@ -827,11 +827,11 @@ void Phototonic::createActions() {
     mirrorTripleAction->setCheckable(true);
     mirrorDualVerticalAction->setCheckable(true);
     mirrorQuadAction->setCheckable(true);
-    connect(mirrorDisabledAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorNone); });
-    connect(mirrorDualAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorDual); });
-    connect(mirrorTripleAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorTriple); });
-    connect(mirrorDualVerticalAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorVDual); });
-    connect(mirrorQuadAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorQuad); });
+//    connect(mirrorDisabledAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorNone); });
+//    connect(mirrorDualAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorDual); });
+//    connect(mirrorTripleAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorTriple); });
+//    connect(mirrorDualVerticalAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorVDual); });
+//    connect(mirrorQuadAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorQuad); });
     mirrorDisabledAction->setChecked(true);
 
     keepTransformAction = new QAction(tr("Keep Transformations"), this);
