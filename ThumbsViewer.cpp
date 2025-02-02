@@ -108,12 +108,22 @@ QString ThumbsViewer::getSingleSelectionFilename() {
 
 QString ThumbsViewer::fullPathOf(int idx)
 {
-    return m_model->item(idx)->data(FileNameRole).toString();
+    QStandardItem *item = m_model->item(idx);
+    if (!item) {
+        qDebug() << "meek!" << idx << m_model->rowCount();
+        return QString();
+    }
+    return item->data(FileNameRole).toString();
 }
 
 QIcon ThumbsViewer::icon(int idx)
 {
-    QIcon icon = m_model->item(idx)->icon();
+    QStandardItem *item = m_model->item(idx);
+    if (!item) {
+        qDebug() << "meek!" << idx << m_model->rowCount();
+        return QIcon();
+    }
+    QIcon icon = item->icon();
     if (icon.isNull() && loadThumb(idx, true))
         icon = m_model->item(idx)->icon();
     return icon;
