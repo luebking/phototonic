@@ -1672,7 +1672,7 @@ void Phototonic::rotateLeft() {
         Settings::rotation += 360;
     imageViewer->resizeImage();
     imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(Settings::rotation)));
-    m_editSteps = qMax(0,Settings::rotation ? ++m_editSteps : --m_editSteps);
+    m_editSteps = qMax(0, m_editSteps + (Settings::rotation ? 1 : -1));
     saveAction->setEnabled(m_editSteps);
     saveAsAction->setEnabled(m_editSteps);
 }
@@ -1686,7 +1686,7 @@ void Phototonic::rotateRight() {
         Settings::rotation -= 360;
     imageViewer->resizeImage();
     imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(Settings::rotation)));
-    m_editSteps = qMax(0,Settings::rotation ? ++m_editSteps : --m_editSteps);
+    m_editSteps = qMax(0, m_editSteps + (Settings::rotation ? 1 : -1));
     saveAction->setEnabled(m_editSteps);
     saveAsAction->setEnabled(m_editSteps);
 }
@@ -1695,7 +1695,7 @@ void Phototonic::flipVertical() {
     Settings::flipV = !Settings::flipV;
     imageViewer->resizeImage();
     imageViewer->setFeedback(Settings::flipV ? tr("Flipped Vertically") : tr("Unflipped Vertically"));
-    m_editSteps = qMax(0,Settings::flipV ? ++m_editSteps : --m_editSteps);
+    m_editSteps = qMax(0, m_editSteps + (Settings::flipV ? 1 : -1));
     saveAction->setEnabled(m_editSteps);
     saveAsAction->setEnabled(m_editSteps);
 }
@@ -1704,7 +1704,7 @@ void Phototonic::flipHorizontal() {
     Settings::flipH = !Settings::flipH;
     imageViewer->resizeImage();
     imageViewer->setFeedback(Settings::flipH ? tr("Flipped Horizontally") : tr("Unflipped Horizontally"));
-    m_editSteps = qMax(0,Settings::flipH ? ++m_editSteps : --m_editSteps);
+    m_editSteps = qMax(0, m_editSteps + (Settings::flipH ? 1 : -1));
     saveAction->setEnabled(m_editSteps);
     saveAsAction->setEnabled(m_editSteps);
 }
