@@ -821,7 +821,16 @@ void Phototonic::createActions() {
     findDupesAction->setObjectName("findDupes");
     findDupesAction->setIcon(QIcon(":/images/duplicates.png"));
     findDupesAction->setCheckable(true);
-    connect(findDupesAction, &QAction::triggered, [=](){ refreshThumbs(true); });
+    connect(findDupesAction, &QAction::triggered, [=]() {
+        if (findDupesAction->isChecked()) {
+            // scenario: user enters a filter and clicks the duplicate button
+            QString error;
+            if (!thumbsViewer->setFilter(filterLineEdit->text(), &error))
+                QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
+                                error, filterLineEdit);
+        }
+        refreshThumbs(true);
+    });
 
     mirrorDisabledAction = new QAction(tr("Disable Mirror"), this);
     mirrorDisabledAction->setObjectName("mirrorDisabled");
