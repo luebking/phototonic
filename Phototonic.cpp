@@ -3100,7 +3100,7 @@ void Phototonic::addPathHistoryRecord(QString dir) {
 }
 
 void Phototonic::reloadThumbs() {
-    if (m_deleteInProgress || !initComplete) {
+    if (m_deleteInProgress || !initComplete || thumbsViewer->isBusy()) {
         thumbsViewer->abort();
         QTimer::singleShot(32, this, SLOT(reloadThumbs())); // rate control @30Hz
         return;

@@ -847,6 +847,8 @@ void ThumbsViewer::findDupes(bool resetCounters)
             m_model->sort(0);
             QApplication::processEvents();
             timer.restart();
+            if (isAbortThumbsLoading)
+                break;
         }
 
         thumbFileInfo = thumbFileInfoList.at(currThumb);
