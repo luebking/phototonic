@@ -1768,7 +1768,7 @@ void Phototonic::batchTransform() {
                             "<p>Open an image, maybe rotate it.<br>"
                             "Then press and hold ctrl to select a crop rect.<br>"
                             "Do <b>not</b> apply the crop by double clicking the selection!<br>"
-                            "Exit the Viewer.</p>"
+                            "If not using the preview, exit the Viewer.</p>"
                             "You can now replay the action on multiple images."));
         return;
     }
