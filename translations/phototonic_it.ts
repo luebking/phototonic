@@ -285,12 +285,12 @@
     <message>
         <location filename="../Tags.cpp" line="80"/>
         <source>Untag</source>
-        <translation>Rimuovi tag</translation>
+        <translation>Rimuovi etichetta</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="83"/>
         <source>New Tag</source>
-        <translation>Nuovo tag</translation>
+        <translation>Etichetta nuova</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="52"/>
@@ -300,7 +300,7 @@
     <message>
         <location filename="../Tags.cpp" line="87"/>
         <source>Delete Tag</source>
-        <translation>Cancella tag</translation>
+        <translation>Cancella etichetta</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="90"/>
@@ -327,7 +327,7 @@
     <message>
         <location filename="../Tags.cpp" line="412"/>
         <source>Tagging %1</source>
-        <translation>Taggando %1</translation>
+        <translation>Etichettando %1</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="415"/>
@@ -405,12 +405,12 @@
         <location filename="../ImageViewer.cpp" line="648"/>
         <source>skipping animation in batch mode:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished">saltando l&apos;animazione in modalità modifica multipla:</translation>
+        <translation>saltando l&apos;animazione in modalità modifica multipla:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="690"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h1&gt;Attenzione&lt;/h1&gt;La dimensione originale dell&apos;immagine %1x%2 supera i limiti&lt;br&gt;Ridimensionata a %3x%4&lt;br&gt;&lt;h3&gt;Salvando le modifiche verrà salvata l&apos;immagine più piccola!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="952"/>
@@ -1418,7 +1418,7 @@
         <location filename="../Phototonic.cpp" line="1062"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation>&lt;h2&gt;[sottostringa] [/ vincolo [/ più vincoli]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5g &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;corrisponde a foo, più vecchio di 5 giorni ma più giovane di un mese - o inferiore a 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Maggiore di/Dopo: &amp;gt;&lt;/li&gt;&lt;li&gt;Minore di/Prima: &amp;lt;&lt;/li&gt;&lt;li&gt;Età o dimensione (arrotondata) esatta altrimenti implicita o esplicita con: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Le date sono assolute (AAAA-MM-GG) o relative (5m:h:d:s:M:a)&lt;/li&gt;&lt;li&gt;Le dimensioni sono suffissate con kB:MB:GB o 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Le dimensioni sono pre/in/suffissate con &quot;x&quot; ([larghezza]x[altezza])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Tutti i suffissi non distinguono tra maiuscole e minuscole, ad eccezione di m|minuto e M|mese&lt;/i&gt;&lt;br&gt;Ogni &quot;/&quot; successiva avvia un nuovo gruppo di condizioni sufficienti, il match della sottostringa è facoltativo.</translation>
+        <translation>&lt;h2&gt;[sottostringa] [/ vincolo [/ più vincoli]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;corrisponde a foo, più vecchio di 5 giorni ma più giovane di un mese - o inferiore a 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Maggiore di/Dopo: &amp;gt;&lt;/li&gt;&lt;li&gt;Minore di/Prima: &amp;lt;&lt;/li&gt;&lt;li&gt;Età o dimensione (arrotondata) esatta altrimenti implicita o esplicita con: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Le date sono assolute (AAAA-MM-GG) o relative (5m:h:d:s:M:a)&lt;/li&gt;&lt;li&gt;Le dimensioni sono suffissate con kB:MB:GB o 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Le dimensioni sono pre/in/suffissate con &quot;x&quot; ([larghezza]x[altezza])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Tutti i suffissi non distinguono tra maiuscole e minuscole, ad eccezione di m|minuto e M|mese&lt;/i&gt;&lt;br&gt;Ogni &quot;/&quot; successiva avvia un nuovo gruppo di condizioni sufficienti, il match della sottostringa è facoltativo.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1096"/>
