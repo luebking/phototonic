@@ -710,6 +710,34 @@ finish:
     return;
 }
 
+bool ThumbsViewer::isConstrained(const QFileInfo &fileInfo) const {
+    bool constrained = false;
+    for (const Constraint &c : m_constraints) {
+        constrained = false;
+        if ((constrained = (c.smaller && fileInfo.size() > c.smaller))) continue;
+        if ((constrained = (c.bigger  && fileInfo.size() < c.bigger ))) continue;
+        qint64 age = fileInfo.lastModified().secsTo(QDateTime::currentDateTime());
+        if ((constrained = (c.older   && age < c.older  ))) continue;
+        if ((constrained = (c.younger && age > c.younger))) continue;
+
+        if (!(c.minPix || c.maxPix || c.minRes.isValid() || c.maxRes.isValid()))
+            break;
+        // we gotta inspect the image for this
+        QSize res = QImageReader(fileInfo.filePath()).size();
+        if (!res.isValid())
+            break; // if we can't check the image we give it a pass
+        if ((constrained = (c.minPix && res.width()*res.height() < c.minPix))) continue;
+        if ((constrained = (c.maxPix && res.width()*res.height() > c.maxPix))) continue;
+        if ((constrained = (c.minRes.width() > 0 && res.width() < c.minRes.width()))) continue;
+        if ((constrained = (c.minRes.height() > 0 && res.height() < c.minRes.height()))) continue;
+        if ((constrained = (c.maxRes.width() > 0 && res.width() > c.maxRes.width()))) continue;
+        if ((constrained = (c.maxRes.height() > 0 && res.height() > c.maxRes.height()))) continue;
+
+        break; // this constraint is sufficient
+    }
+    return constrained;
+}
+
 void ThumbsViewer::initThumbs() {
     thumbFileInfoList = thumbsDir.entryInfoList();
 
@@ -746,31 +774,7 @@ void ThumbsViewer::initThumbs() {
             continue;
         }
 
-        bool constrained = false;
-        for (const Constraint &c : m_constraints) {
-            constrained = false;
-            if ((constrained = (c.smaller && thumbFileInfo.size() > c.smaller))) continue;
-            if ((constrained = (c.bigger  && thumbFileInfo.size() < c.bigger ))) continue;
-            qint64 age = thumbFileInfo.lastModified().secsTo(QDateTime::currentDateTime());
-            if ((constrained = (c.older   && age < c.older  ))) continue;
-            if ((constrained = (c.younger && age > c.younger))) continue;
-
-            if (!(c.minPix || c.maxPix || c.minRes.isValid() || c.maxRes.isValid()))
-                break;
-            // we gotta inspect the image for this
-            QSize res = QImageReader(thumbFileInfo.filePath()).size();
-            if (!res.isValid())
-                break; // if we can't check the image we give it a pass
-            if ((constrained = (c.minPix && res.width()*res.height() < c.minPix))) continue;
-            if ((constrained = (c.maxPix && res.width()*res.height() > c.maxPix))) continue;
-            if ((constrained = (c.minRes.width() > 0 && res.width() < c.minRes.width()))) continue;
-            if ((constrained = (c.minRes.height() > 0 && res.height() < c.minRes.height()))) continue;
-            if ((constrained = (c.maxRes.width() > 0 && res.width() > c.maxRes.width()))) continue;
-            if ((constrained = (c.maxRes.height() > 0 && res.height() > c.maxRes.height()))) continue;
-
-            break; // this constraint is sufficient
-        }
-        if (constrained)
+        if (isConstrained(thumbFileInfo))
             continue;
 
         QStandardItem *thumbItem = new QStandardItem();
@@ -837,6 +841,8 @@ void ThumbsViewer::findDupes(bool resetCounters)
     }
     totalFiles += thumbsDir.entryInfoList().size();
 
+    QStringList filterTokens = m_filter.split(" ", Qt::SkipEmptyParts);
+
     QElapsedTimer timer;
     timer.start();
 
@@ -852,6 +858,19 @@ void ThumbsViewer::findDupes(bool resetCounters)
         }
 
         thumbFileInfo = thumbFileInfoList.at(currThumb);
+
+        bool nameMatch = filterTokens.isEmpty();
+        const QString &fn = thumbFileInfo.fileName();
+        if (!nameMatch) {
+            for (const QString &t : filterTokens) {
+                if (fn.contains(t, Qt::CaseInsensitive)) {
+                    nameMatch = true;
+                    break;
+                }
+            }
+        }
+        if (!nameMatch || isConstrained(thumbFileInfo))
+            continue;
 
         QImageReader imageReader;
         QString imageFileName = thumbFileInfo.absoluteFilePath();

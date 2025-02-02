@@ -157,6 +157,7 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
+    bool isConstrained(const QFileInfo &fileInfo) const;
     void initThumbs();
 
     bool loadThumb(int row, bool fastOnly = false);
