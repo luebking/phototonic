@@ -3169,12 +3169,12 @@ void Phototonic::reloadThumbs() {
 void Phototonic::setImageViewerWindowTitle() {
     QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
     const int currentRow = thumbsViewer->currentIndex().row();
+    if (currentRow < 0) { // model is still loading, yay threads
+        setWindowTitle(QFileInfo(imageViewer->fullImagePath).fileName());
+        return;
+    }
     QString title = thumbModel->item(currentRow)->data(Qt::DisplayRole).toString()
-                    + " - ["
-                    + QString::number(currentRow + 1)
-                    + "/"
-                    + QString::number(thumbModel->rowCount())
-                    + "] - Phototonic";
+                  + QString::fromLatin1(" - [ %1 / %2 ] - Phototonic").arg(currentRow + 1).arg(thumbModel->rowCount());
 
     setWindowTitle(title);
 }
