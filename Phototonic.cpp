@@ -2067,6 +2067,8 @@ void Phototonic::deleteFromViewer(bool trash) {
     if (trash ? (Trash::moveToTrash(fullPath, trashError) == Trash::Success) :
                 QFile::remove(fullPath)) {
         int currentRow = thumbsViewer->currentIndex().row();
+        loadImage(Phototonic::Next);
+        QApplication::processEvents(); // process index changed, it's a queued connection
         thumbsViewer->model()->removeRow(currentRow);
         imageViewer->setFeedback(tr("Deleted %1").arg(fileName));
     } else {
