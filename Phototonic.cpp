@@ -377,6 +377,9 @@ void Phototonic::createImageViewer() {
     menu = contextMenu->addMenu(tr("Edit"));
     menu->addAction(resizeAction);
     menu->addAction(colorsAction);
+    connect (menu->addAction(tr("Crop")), &QAction::triggered, [=](){
+        imageViewer->setFeedback(tr("Select the crop area with Ctrl + left mouse button"), 5000);
+        });
     submenu = menu->addMenu(tr("Mirror"));
     QActionGroup *group = new QActionGroup(submenu);
     group->addAction(mirrorDisabledAction);

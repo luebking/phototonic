@@ -782,8 +782,16 @@ void ImageViewer::setFeedback(QString feedbackString, int timeLimited) {
     feedbackLabel->move(10, margin);
 
     feedbackLabel->adjustSize();
-    if (timeLimited)
-        QTimer::singleShot(timeLimited, this, SLOT(unsetFeedback()));
+    if (timeLimited) {
+        static QTimer *unsetFeedbackTimer = nullptr;
+        if (!unsetFeedbackTimer) {
+            unsetFeedbackTimer = new QTimer(this);
+            unsetFeedbackTimer->setSingleShot(true);
+            connect (unsetFeedbackTimer, &QTimer::timeout, this, &ImageViewer::unsetFeedback);
+        }
+        unsetFeedbackTimer->setInterval(timeLimited);
+        unsetFeedbackTimer->start();
+    }
 }
 
 void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
@@ -916,7 +924,7 @@ void ImageViewer::mousePressEvent(QMouseEvent *event) {
             }
             cropRubberBand->show();
             cropRubberBand->setGeometry(QRect(cropOrigin, event->pos()).normalized());
-        } else if (event->modifiers() != Qt::ShiftModifier) {
+        } else if (!(Settings::mouseRotateEnabled || event->modifiers() == Qt::ShiftModifier)) {
             if (cropRubberBand && cropRubberBand->isVisible()) {
                 cropRubberBand->hide();
                 setFeedback("", false);
@@ -958,11 +966,11 @@ void ImageViewer::updateRubberBandFeedback(QRect geom) {
     static QTimer *doubleclickhint = nullptr;
     if (!doubleclickhint) {
         doubleclickhint = new QTimer(this);
-        doubleclickhint->setInterval(5000);
+        doubleclickhint->setInterval(2000);
         doubleclickhint->setSingleShot(true);
         connect(doubleclickhint, &QTimer::timeout, [=]() {
                                         if (cropRubberBand && cropRubberBand->isVisible())
-                                            setFeedback(tr("Doubleclick to crop"));
+                                            setFeedback(tr("Doubleclick to crop, right click to abort"), 10000);
                                         });
     }
     doubleclickhint->start();
@@ -1080,7 +1088,24 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
         return;
     }
 
-    if (Settings::mouseRotateEnabled || event->modifiers() == Qt::ShiftModifier) {
+    if (event->modifiers() == Qt::ControlModifier) {
+        if (!cropRubberBand || !cropRubberBand->isVisible()) {
+            return;
+        }
+        QRect newRect;
+        newRect = QRect(cropOrigin, event->pos());
+/*** @todo this doesn't work at all and also the resize typically happens unconstrained using the qsizegrip
+        figure whether to keep this at all
+        // Force square
+        if (event->modifiers() & Qt::ShiftModifier) {
+            const int deltaX = cropOrigin.x() - event->pos().x();
+            const int deltaY = cropOrigin.y() - event->pos().y();
+            newRect.setSize(QSize(-deltaX, deltaY < 0 ? qAbs(deltaX) : -qAbs(deltaX)));
+        }
+        **/
+        cropRubberBand->setGeometry(newRect.normalized());
+
+    } else if (Settings::mouseRotateEnabled || event->modifiers() == Qt::ShiftModifier) {
         QPointF fulcrum(QPointF(imageWidget->width() / 2.0, imageWidget->height() / 2.0));
         QLineF vector(fulcrum, event->position());
         Settings::rotation = initialRotation - vector.angle();
@@ -1092,21 +1117,6 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
         setFeedback(tr("Rotation %1°").arg(Settings::rotation));
         // qDebug() << "image center" << fulcrum << "line" << vector << "angle" << vector.angle() << "geom" << imageWidget->geometry();
 
-    } else if (event->modifiers() == Qt::ControlModifier) {
-        if (!cropRubberBand || !cropRubberBand->isVisible()) {
-            return;
-        }
-        QRect newRect;
-        newRect = QRect(cropOrigin, event->pos());
-
-        // Force square
-        if (event->modifiers() & Qt::ShiftModifier) {
-            const int deltaX = cropOrigin.x() - event->pos().x();
-            const int deltaY = cropOrigin.y() - event->pos().y();
-            newRect.setSize(QSize(-deltaX, deltaY < 0 ? qAbs(deltaX) : -qAbs(deltaX)));
-        }
-
-        cropRubberBand->setGeometry(newRect.normalized());
     } else if (moveImageLocked) {
         int newX = layoutX + (event->pos().x() - mouseX);
         int newY = layoutY + (event->pos().y() - mouseY);

@@ -148,6 +148,8 @@ void CropRubberBand::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
         prevPos = event->globalPosition().toPoint();
+    else if (event->button() == Qt::RightButton)
+        hide();
 }
 
 void CropRubberBand::mouseMoveEvent(QMouseEvent *event)
