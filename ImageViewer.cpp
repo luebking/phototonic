@@ -307,7 +307,17 @@ void ImageViewer::scaleImage(QSize newSize) {
 
 void ImageViewer::resizeEvent(QResizeEvent *event) {
     QWidget::resizeEvent(event);
+    const bool mapCrop = imageWidget && cropRubberBand && cropRubberBand->isVisibleTo(this);
+    QRect isoCropRect;
+    if (mapCrop) {
+        QTransform matrix = imageWidget->transformation().inverted();
+        isoCropRect = matrix.mapRect(cropRubberBand->geometry());
+    }
     resizeImage();
+    if (mapCrop) {
+        QTransform matrix = imageWidget->transformation();
+        cropRubberBand->setGeometry(matrix.mapRect(isoCropRect));
+    }
 }
 
 void ImageViewer::showEvent(QShowEvent *event) {
