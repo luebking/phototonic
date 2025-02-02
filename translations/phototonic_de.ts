@@ -644,7 +644,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="983"/>
         <source>Doubleclick to crop, right click to abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Doppelclick zum Zuschneiden, Rechtsclick um abzubrechen</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1127"/>
@@ -1771,7 +1771,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1767"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Ausschnitt wählen&lt;/h3&gt;&lt;p&gt;Ein Bild öffnen und nach Bedarf rotieren&lt;br&gt;Dann strg halten und mit der Maus einen Ausschnitt bestimmen.&lt;br&gt;&lt;b&gt;Nicht&lt;/b&gt; per Doppelclick zuschneiden!&lt;br&gt;Sofern nicht die Vorschau genutzt wird, den Betrachter schließen.&lt;/p&gt;Sie könen jetzt die Aktion auf mehrere Bilder replizieren.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1871"/>
@@ -1852,12 +1852,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="380"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Zuschneiden</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="381"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle den Zuschnitt mit Strg + linker Maustaste aus</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="447"/>
