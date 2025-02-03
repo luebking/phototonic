@@ -122,7 +122,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
         if (imageViewer->isVisible()) {
             const QString &imagePath = thumbsViewer->fullPathOf(current.row());
             if (feedbackImageInfoAction->isChecked()) {
-                QApplication::processEvents();
+                QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
                 m_infoViewer->read(imagePath);
                 imageViewer->setFeedback(m_infoViewer->html(), false);
             }
@@ -1841,13 +1841,12 @@ void Phototonic::showColorsDialog() {
 
     if (!colorsDialog) {
         colorsDialog = new ColorsDialog(this, imageViewer);
-        connect(colorsDialog, &QDialog::finished, [=](){ Settings::colorsActive = false; setInterfaceEnabled(true); });
+        connect(colorsDialog, &QDialog::finished, [=](){ Settings::colorsActive = false; });
+        connect(imageViewer, &ImageViewer::imageEdited, [=](bool dirty){ if (!dirty)colorsDialog->reset(); });
     }
 
     Settings::colorsActive = true;
-    colorsDialog->show();
-    colorsDialog->applyColors(0);
-    setInterfaceEnabled(false);
+    colorsDialog->exec();
 }
 
 static bool isWritableDir(const QString &path) {
@@ -1989,7 +1988,7 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
 
         // Only show if it takes a lot of time, since popping this up for just
         // deleting a single image is annoying
-        if (timer.elapsed() > 100) {
+        if (timer.elapsed() > 250) {
             if (!progressDialog)
                progressDialog = new ProgressDialog(this);
             progressDialog->opLabel->setText(tr("Deleting %1").arg(fileNameFullPath));
@@ -2083,7 +2082,7 @@ void Phototonic::deleteFromViewer(bool trash) {
         m_deleteInProgress = true;
         int currentRow = thumbsViewer->currentIndex().row();
         loadImage(Phototonic::Next);
-        QApplication::processEvents(); // process index changed, it's a queued connection
+        QApplication::processEvents(QEventLoop::ExcludeUserInputEvents); // process index changed, it's a queued connection
         thumbsViewer->model()->removeRow(currentRow);
         imageViewer->setFeedback(tr("Deleted %1").arg(fileName));
         m_deleteInProgress = false;
@@ -2826,7 +2825,7 @@ void Phototonic::showViewer() {
         }
         imageViewer->setFocus(Qt::OtherFocusReason);
         setImageViewerWindowTitle();
-        QApplication::processEvents();
+        QApplication::processEvents(); /// @todo why?
     }
 }
 /// @todo looks like redundant calls?

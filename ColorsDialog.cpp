@@ -203,8 +203,6 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     mainVbox->addStretch(1);
     mainVbox->addLayout(buttonsHbox);
     setLayout(mainVbox);
-
-    applyColors(0);
 }
 
 void ColorsDialog::applyColors(int) {
@@ -268,8 +266,8 @@ void ColorsDialog::reset() {
     redSlider->setValue(0);
     greenSlider->setValue(0);
     blueSlider->setValue(0);
-
-    imageViewer->refresh();
+    if (isVisible())
+        imageViewer->refresh();
 }
 
 void ColorsDialog::enableColorize(int state) {
