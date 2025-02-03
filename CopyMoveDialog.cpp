@@ -21,6 +21,7 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QFontMetrics>
 #include <QLabel>
 #include <QPushButton>
 
@@ -72,6 +73,8 @@ CopyMoveDialog::CopyMoveDialog(QWidget *parent) : QDialog(parent) {
     abortOp = false;
 
     opLabel = new QLabel("");
+    opLabel->setWordWrap(true);
+    opLabel->setFixedWidth(QFontMetrics(opLabel->font()).averageCharWidth()*80);
 
     cancelButton = new QPushButton(tr("Cancel"));
     cancelButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -92,18 +95,25 @@ CopyMoveDialog::CopyMoveDialog(QWidget *parent) : QDialog(parent) {
 void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurrDir) {
 
     QElapsedTimer duration;
+    int totaltime = 0;
     duration.start();
+    QFontMetrics fm(opLabel->font());
     if (pasteInCurrDir) {
         for (int tn = 0; tn < Settings::copyCutFileList.size(); ++tn) {
-            if (duration.elapsed() > 500)
+            if (totaltime > 500)
                 show();
             QString sourceFile = Settings::copyCutFileList.at(tn);
             QString destFile = destDir + QDir::separator() + QFileInfo(sourceFile).fileName();
 
-            opLabel->setText((Settings::isCopyOperation ? tr("Copying \"%1\" to \"%2\".") : tr("Moving \"%1\" to \"%2\"."))
-                                     .arg(sourceFile).arg(destFile));
-            QApplication::processEvents();
-
+            QString text = (Settings::isCopyOperation ? tr("Copying \"%1\" to \"%2\".") :
+                                                        tr("Moving \"%1\" to \"%2\".")).arg(sourceFile).arg(destFile);
+//            text = fm.elidedText(text, Qt::ElideMiddle, opLabel->width(), Qt::TextWordWrap);
+            opLabel->setText(text);
+            if (duration.elapsed() > 30) {
+                QApplication::processEvents();
+                totaltime += duration.elapsed();
+                duration.restart();
+            }
             int res = copyOrMoveFile(sourceFile, destFile, Settings::isCopyOperation);
 
             if (!res || abortOp) {
@@ -115,14 +125,21 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
     } else {
         QList<int> rowList;
         for (int tn = Settings::copyCutIndexList.size() - 1; tn >= 0; --tn) {
-            if (duration.elapsed() > 500)
+            if (totaltime > 500)
                 show();
             QString sourceFile = thumbView->fullPathOf(Settings::copyCutIndexList.at(tn).row());
             QString destFile = destDir + QDir::separator() + QFileInfo(sourceFile).fileName();
 
-            opLabel->setText((Settings::isCopyOperation ? tr("Copying \"%1\" to \"%2\".") : tr("Moving \"%1\" to \"%2\"."))
-                                     .arg(sourceFile).arg(destFile));
-            QApplication::processEvents();
+            QString text = (Settings::isCopyOperation ? tr("Copying \"%1\" to \"%2\".") :
+                                                        tr("Moving \"%1\" to \"%2\".")).arg(sourceFile).arg(destFile);
+//            text = fm.elidedText(text, Qt::ElideMiddle, opLabel->width(), Qt::TextWordWrap);
+            opLabel->setText(text);
+
+            if (duration.elapsed() > 30) {
+                QApplication::processEvents();
+                totaltime += duration.elapsed();
+                duration.restart();
+            }
 
             int res = copyOrMoveFile(sourceFile, destFile, Settings::isCopyOperation);
 
