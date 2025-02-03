@@ -1942,6 +1942,8 @@ void Phototonic::loadCurrentImage(int currentRow) {
 }
 
 void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
+    if (m_deleteInProgress)
+        return; // no.
     if (thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
         QTimer::singleShot(100, this, [=](){deleteImages(trash);});
         return;
@@ -2039,6 +2041,9 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
 }
 
 void Phototonic::deleteFromViewer(bool trash) {
+    if (m_deleteInProgress)
+        return; // no.
+
     if (imageViewer->isNewImage()) {
         showNewImageWarning();
         return;
@@ -2075,11 +2080,13 @@ void Phototonic::deleteFromViewer(bool trash) {
     QString trashError;
     if (trash ? (Trash::moveToTrash(fullPath, trashError) == Trash::Success) :
                 QFile::remove(fullPath)) {
+        m_deleteInProgress = true;
         int currentRow = thumbsViewer->currentIndex().row();
         loadImage(Phototonic::Next);
         QApplication::processEvents(); // process index changed, it's a queued connection
         thumbsViewer->model()->removeRow(currentRow);
         imageViewer->setFeedback(tr("Deleted %1").arg(fileName));
+        m_deleteInProgress = false;
     } else {
         MessageBox msgBox(this);
         msgBox.critical(tr("Error"), trash ? trashError : tr("Failed to delete image"));
