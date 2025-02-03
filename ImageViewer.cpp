@@ -521,7 +521,6 @@ void ImageViewer::colorize() {
         break;
     default:
         viewerImage = viewerImage.convertToFormat(QImage::Format_RGB32);
-
     }
 
     int i;
@@ -530,7 +529,7 @@ void ImageViewer::colorize() {
 
     for (i = 0; i < 256; ++i) {
         if (i < (int) (128.0f + 128.0f * tan(contrast)) && i > (int) (128.0f - 128.0f * tan(contrast))) {
-            contrastTransform[i] = (i - 128) / tan(contrast) + 128;
+            contrastTransform[i] = bound0To255((i - 128) / tan(contrast) + 128);
         } else if (i >= (int) (128.0f + 128.0f * tan(contrast))) {
             contrastTransform[i] = 255;
         } else {
@@ -539,38 +538,53 @@ void ImageViewer::colorize() {
     }
 
     for (i = 0; i < 256; ++i) {
-        brightTransform[i] = MIN(255, (int) ((255.0 * pow(i / 255.0, 1.0 / brightness)) + 0.5));
+        brightTransform[i] = bound0To255(int((255.0 * pow(i / 255.0, 1.0 / brightness)) + 0.5));
     }
 
     for (y = 0; y < viewerImage.height(); ++y) {
 
         line = (QRgb *) viewerImage.scanLine(y);
         for (x = 0; x < viewerImage.width(); ++x) {
-            r = Settings::rNegateEnabled ? bound0To255(255 - qRed(line[x])) : qRed(line[x]);
-            g = Settings::gNegateEnabled ? bound0To255(255 - qGreen(line[x])) : qGreen(line[x]);
-            b = Settings::bNegateEnabled ? bound0To255(255 - qBlue(line[x])) : qBlue(line[x]);
+            r = qRed(line[x]);
+            if (Settings::hueRedChannel) {
+                if (Settings::rNegateEnabled)
+                    r = 255 - r;
+                r = bound0To255((r * (Settings::redVal + 100)) / 100);
+                r = brightTransform[r];
+                r = contrastTransform[r];
+            }
 
-            r = bound0To255((r * (Settings::redVal + 100)) / 100);
-            g = bound0To255((g * (Settings::greenVal + 100)) / 100);
-            b = bound0To255((b * (Settings::blueVal + 100)) / 100);
+            g = qGreen(line[x]);
+            if (Settings::hueGreenChannel) {
+                if (Settings::gNegateEnabled)
+                    g = 255 - g;
+                g = bound0To255((g * (Settings::greenVal + 100)) / 100);
+                g = brightTransform[g];
+                g = contrastTransform[g];
+            }
 
-            r = bound0To255(brightTransform[r]);
-            g = bound0To255(brightTransform[g]);
-            b = bound0To255(brightTransform[b]);
+            b = qBlue(line[x]);
+            if (Settings::hueBlueChannel) {
+                if (Settings::bNegateEnabled)
+                    b = 255 - b;
+                b = bound0To255((b * (Settings::blueVal + 100)) / 100);
+                b = brightTransform[b];
+                b = contrastTransform[b];
+            }
 
-            r = bound0To255(contrastTransform[r]);
-            g = bound0To255(contrastTransform[g]);
-            b = bound0To255(contrastTransform[b]);
-
-            rgbToHsl(r, g, b, &h, &s, &l);
-            h = Settings::colorizeEnabled ? Settings::hueVal : h + Settings::hueVal;
-            s = bound0To255(((s * Settings::saturationVal) / 100));
-            l = bound0To255(((l * Settings::lightnessVal) / 100));
-            hslToRgb(h, s, l, &hr, &hg, &hb);
-
-            r = Settings::hueRedChannel ? hr : qRed(line[x]);
-            g = Settings::hueGreenChannel ? hg : qGreen(line[x]);
-            b = Settings::hueBlueChannel ? hb : qBlue(line[x]);
+            if (Settings::hueVal != 0 || Settings::saturationVal != 100 || Settings::lightnessVal != 100) {
+                rgbToHsl(r, g, b, &h, &s, &l);
+                h = Settings::colorizeEnabled ? Settings::hueVal : h + Settings::hueVal;
+                s = bound0To255(((s * Settings::saturationVal) / 100));
+                l = bound0To255(((l * Settings::lightnessVal) / 100));
+                hslToRgb(h, s, l, &hr, &hg, &hb);
+                if (Settings::hueRedChannel)
+                    r = hr;
+                if (Settings::hueGreenChannel)
+                    g = hg;
+                if (Settings::hueBlueChannel)
+                    b = hb;
+            }
 
             if (hasAlpha) {
                 line[x] = qRgba(r, g, b, qAlpha(line[x]));
