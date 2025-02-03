@@ -2129,6 +2129,7 @@ void Phototonic::deletePermanentlyOperation() {
 }
 
 void Phototonic::goTo(QString path) {
+    includeSubDirectoriesAction->setChecked(false);
     findDupesAction->setChecked(false);
     Settings::isFileListLoaded = false;
     fileListWidget->clearSelection();
@@ -2138,6 +2139,7 @@ void Phototonic::goTo(QString path) {
 }
 
 void Phototonic::goSelectedDir(const QModelIndex &idx) {
+    includeSubDirectoriesAction->setChecked(false);
     findDupesAction->setChecked(false);
     Settings::isFileListLoaded = false;
     fileListWidget->clearSelection();
@@ -2147,6 +2149,7 @@ void Phototonic::goSelectedDir(const QModelIndex &idx) {
 }
 
 void Phototonic::goPathBarDir() {
+    includeSubDirectoriesAction->setChecked(false);
     findDupesAction->setChecked(false);
 
     if (pathLineEdit->completer()->popup())
