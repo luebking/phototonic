@@ -32,26 +32,11 @@ public:
     ColorsDialog(QWidget *parent, ImageViewer *imageViewer);
 
 public slots:
-
-    void ok();
-
     void reset();
 
-    void enableColorize(int state);
-
-    void redNegative(int state);
-
-    void greenNegative(int state);
-
-    void blueNegative(int state);
-
-    void setRedChannel();
-
-    void setGreenChannel();
-
-    void setBlueChannel();
-
-    void applyColors(int value);
+private slots:
+    void applyColors();
+    void ok();
 
 private:
     ImageViewer *imageViewer;
@@ -70,6 +55,7 @@ private:
     QCheckBox *rNegateCheckBox;
     QCheckBox *gNegateCheckBox;
     QCheckBox *bNegateCheckBox;
+    bool dontApply;
 };
 
 #endif // COLORS_DIALOG_H

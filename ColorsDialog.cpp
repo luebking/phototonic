@@ -30,7 +30,7 @@
 #include "ColorsDialog.h"
 #include "Settings.h"
 
-ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(parent) {
+ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(parent), dontApply(false) {
     setWindowTitle(tr("Colors"));
     setWindowIcon(QIcon(":/images/colors.png"));
     resize(350, 300);
@@ -57,53 +57,53 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     hueSlider->setTickInterval(25);
     hueSlider->setRange(-100, 100);
     hueSlider->setTracking(false);
-    connect(hueSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors(int)));
+    connect(hueSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
 
     colorizeCheckBox = new QCheckBox(tr("Colorize"), this);
     colorizeCheckBox->setCheckState(Settings::colorizeEnabled ? Qt::Checked : Qt::Unchecked);
-    connect(colorizeCheckBox, SIGNAL(stateChanged(int)), this, SLOT(enableColorize(int)));
+    connect(colorizeCheckBox, SIGNAL(stateChanged(int)), this, SLOT(applyColors()));
 
     rNegateCheckBox = new QCheckBox(tr("Negative"), this);
     rNegateCheckBox->setCheckState(Settings::rNegateEnabled ? Qt::Checked : Qt::Unchecked);
-    connect(rNegateCheckBox, SIGNAL(stateChanged(int)), this, SLOT(redNegative(int)));
+    connect(rNegateCheckBox, SIGNAL(stateChanged(int)), this, SLOT(applyColors()));
 
     gNegateCheckBox = new QCheckBox(tr("Negative"), this);
     gNegateCheckBox->setCheckState(Settings::gNegateEnabled ? Qt::Checked : Qt::Unchecked);
-    connect(gNegateCheckBox, SIGNAL(stateChanged(int)), this, SLOT(greenNegative(int)));
+    connect(gNegateCheckBox, SIGNAL(stateChanged(int)), this, SLOT(applyColors()));
 
     bNegateCheckBox = new QCheckBox(tr("Negative"), this);
     bNegateCheckBox->setCheckState(Settings::bNegateEnabled ? Qt::Checked : Qt::Unchecked);
-    connect(bNegateCheckBox, SIGNAL(stateChanged(int)), this, SLOT(blueNegative(int)));
+    connect(bNegateCheckBox, SIGNAL(stateChanged(int)), this, SLOT(applyColors()));
 
     saturationSlider = new QSlider(Qt::Horizontal);
     saturationSlider->setTickPosition(QSlider::TicksAbove);
     saturationSlider->setTickInterval(25);
     saturationSlider->setRange(-100, 100);
     saturationSlider->setTracking(false);
-    connect(saturationSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors(int)));
+    connect(saturationSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
 
     lightnessSlider = new QSlider(Qt::Horizontal);
     lightnessSlider->setTickPosition(QSlider::TicksAbove);
     lightnessSlider->setTickInterval(25);
     lightnessSlider->setRange(-100, 100);
     lightnessSlider->setTracking(false);
-    connect(lightnessSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors(int)));
+    connect(lightnessSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
 
     QHBoxLayout *channelsHbox = new QHBoxLayout;
     redCheckBox = new QCheckBox(tr("Red"));
     redCheckBox->setCheckable(true);
     redCheckBox->setChecked(Settings::hueRedChannel);
-    connect(redCheckBox, SIGNAL(clicked()), this, SLOT(setRedChannel()));
+    connect(redCheckBox, SIGNAL(clicked()), this, SLOT(applyColors()));
     channelsHbox->addWidget(redCheckBox, 0, Qt::AlignLeft);
     greenCheckBox = new QCheckBox(tr("Green"));
     greenCheckBox->setCheckable(true);
     greenCheckBox->setChecked(Settings::hueGreenChannel);
-    connect(greenCheckBox, SIGNAL(clicked()), this, SLOT(setGreenChannel()));
+    connect(greenCheckBox, SIGNAL(clicked()), this, SLOT(applyColors()));
     channelsHbox->addWidget(greenCheckBox, 0, Qt::AlignLeft);
     blueCheckBox = new QCheckBox(tr("Blue"));
     blueCheckBox->setCheckable(true);
     blueCheckBox->setChecked(Settings::hueBlueChannel);
-    connect(blueCheckBox, SIGNAL(clicked()), this, SLOT(setBlueChannel()));
+    connect(blueCheckBox, SIGNAL(clicked()), this, SLOT(applyColors()));
     channelsHbox->addWidget(blueCheckBox, 0, Qt::AlignLeft);
     channelsHbox->addStretch(1);
 
@@ -135,7 +135,7 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     brightSlider->setTickInterval(25);
     brightSlider->setRange(-100, 100);
     brightSlider->setTracking(false);
-    connect(brightSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors(int)));
+    connect(brightSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
 
     contrastSlider = new QSlider(Qt::Horizontal);
     contrastSlider->setTickPosition(QSlider::TicksAbove);
@@ -143,7 +143,7 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     contrastSlider->setRange(-100, 100);
     contrastSlider->setTracking(false);
     contrastSlider->setInvertedAppearance(true);
-    connect(contrastSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors(int)));
+    connect(contrastSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
 
     QGridLayout *brightContrastbox = new QGridLayout;
     brightContrastbox->addWidget(brightLab, 1, 0, 1, 1);
@@ -162,7 +162,7 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     redSlider->setTickInterval(25);
     redSlider->setRange(-100, 100);
     redSlider->setTracking(false);
-    connect(redSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors(int)));
+    connect(redSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
 
     QLabel *greenLab = new QLabel(tr("Green"));
     greenSlider = new QSlider(Qt::Horizontal);
@@ -170,7 +170,7 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     greenSlider->setTickInterval(25);
     greenSlider->setRange(-100, 100);
     greenSlider->setTracking(false);
-    connect(greenSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors(int)));
+    connect(greenSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
 
     QLabel *blueLab = new QLabel(tr("Blue"));
     blueSlider = new QSlider(Qt::Horizontal);
@@ -178,7 +178,7 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     blueSlider->setTickInterval(25);
     blueSlider->setRange(-100, 100);
     blueSlider->setTracking(false);
-    connect(blueSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors(int)));
+    connect(blueSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
 
     QGridLayout *channelMixbox = new QGridLayout;
     channelMixbox->addWidget(redLab, 1, 0, 1, 1);
@@ -205,7 +205,10 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     setLayout(mainVbox);
 }
 
-void ColorsDialog::applyColors(int) {
+void ColorsDialog::applyColors() {
+    if (dontApply)
+        return;
+
     if (brightSlider->value() >= 0) {
         Settings::brightVal = (brightSlider->value() * 500 / 100) + 100;
     } else {
@@ -236,6 +239,14 @@ void ColorsDialog::applyColors(int) {
     Settings::greenVal = greenSlider->value();
     Settings::blueVal = blueSlider->value();
 
+    Settings::colorizeEnabled = colorizeCheckBox->isChecked();
+    Settings::rNegateEnabled = rNegateCheckBox->isChecked();
+    Settings::gNegateEnabled = gNegateCheckBox->isChecked();
+    Settings::bNegateEnabled = bNegateCheckBox->isChecked();
+    Settings::hueRedChannel = redCheckBox->isChecked();
+    Settings::hueGreenChannel = greenCheckBox->isChecked();
+    Settings::hueBlueChannel = blueCheckBox->isChecked();
+
     imageViewer->refresh();
 }
 
@@ -246,6 +257,7 @@ void ColorsDialog::ok() {
 }
 
 void ColorsDialog::reset() {
+    dontApply = true;
     hueSlider->setValue(0);
     colorizeCheckBox->setChecked(false);
     rNegateCheckBox->setChecked(false);
@@ -266,41 +278,7 @@ void ColorsDialog::reset() {
     redSlider->setValue(0);
     greenSlider->setValue(0);
     blueSlider->setValue(0);
+    dontApply = false;
     if (isVisible())
-        imageViewer->refresh();
-}
-
-void ColorsDialog::enableColorize(int state) {
-    Settings::colorizeEnabled = state;
-    imageViewer->refresh();
-}
-
-void ColorsDialog::redNegative(int state) {
-    Settings::rNegateEnabled = state;
-    imageViewer->refresh();
-}
-
-void ColorsDialog::greenNegative(int state) {
-    Settings::gNegateEnabled = state;
-    imageViewer->refresh();
-}
-
-void ColorsDialog::blueNegative(int state) {
-    Settings::bNegateEnabled = state;
-    imageViewer->refresh();
-}
-
-void ColorsDialog::setRedChannel() {
-    Settings::hueRedChannel = redCheckBox->isChecked();
-    imageViewer->refresh();
-}
-
-void ColorsDialog::setGreenChannel() {
-    Settings::hueGreenChannel = greenCheckBox->isChecked();
-    imageViewer->refresh();
-}
-
-void ColorsDialog::setBlueChannel() {
-    Settings::hueBlueChannel = blueCheckBox->isChecked();
-    imageViewer->refresh();
+        applyColors();
 }
