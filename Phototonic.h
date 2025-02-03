@@ -211,6 +211,7 @@ private:
     QAction *sortMenuAction;
     QAction *sortByNameAction;
     QAction *sortByTimeAction;
+    QAction *sortByExifTimeAction;
     QAction *sortBySizeAction;
     QAction *sortByTypeAction;
     QAction *sortBySimilarityAction;

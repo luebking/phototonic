@@ -16,6 +16,7 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QDateTime>
 #include <QImage>
 #include <QMap>
 #include <QSet>
@@ -29,6 +30,7 @@ class ImageMetadata {
 public:
     QSet<QString> tags;
     long orientation;
+    qint64 date;
 };
 
 static QMap<QString, ImageMetadata> gs_cache;
@@ -73,6 +75,16 @@ long orientation(const QString &imageFileName) {
     if (it == gs_cache.end())
         return 0;
     return it->orientation;
+}
+
+qint64 dateTimeOriginal(const QString &imageFileName) {
+    QMap<QString, ImageMetadata>::iterator it = gs_cache.find(imageFileName);
+    if (it == gs_cache.end())
+        cache(imageFileName);
+    it = gs_cache.find(imageFileName);
+    if (it == gs_cache.end())
+        return 0;
+    return it->date;
 }
 
 // setImageTags
@@ -157,6 +169,7 @@ void cache(const QString &imageFullPath) {
 
     ImageMetadata imageMetadata;
     imageMetadata.orientation = 0;
+    imageMetadata.date = 0;
 
     try {
         exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
@@ -180,6 +193,15 @@ void cache(const QString &imageFullPath) {
 #else
             imageMetadata.orientation = it->toLong();
 #endif
+        }
+        Exiv2::ExifData &exifData = exifImage->exifData();
+        Exiv2::ExifData::const_iterator end = exifData.end();
+        for (Exiv2::ExifData::const_iterator md = exifData.begin(); md != end; ++md) {
+            if (!strncmp(md->tagName().c_str(), "DateTime", 8)) {
+                imageMetadata.date = QDateTime::fromString(QLatin1String(md->print().c_str()),
+                                                           QLatin1String("yyyy:MM:dd hh:mm:ss")).toSecsSinceEpoch(); // "2009:06:28 17:06:56"
+                break;
+            }
         }
     } catch (Exiv2::Error &error) {
         qWarning() << "Failed to read Exif metadata" << error.what();

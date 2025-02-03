@@ -784,6 +784,10 @@ void ThumbsViewer::initThumbs() {
         thumbItem->setData(thumbFileInfo.suffix(), TypeRole);
         thumbItem->setData(thumbFileInfo.lastModified(), TimeRole);
         thumbItem->setData(thumbFileInfo.filePath(), FileNameRole);
+        qint64 exifTime = Metadata::dateTimeOriginal(thumbFileInfo.filePath());
+        if (!exifTime)
+            exifTime = thumbFileInfo.birthTime().toSecsSinceEpoch();
+        thumbItem->setData(exifTime, DateTimeOriginal);
         thumbItem->setSizeHint(hintSize);
 
         if (Settings::thumbsLayout != Squares) {
@@ -1414,6 +1418,10 @@ QStandardItem * ThumbsViewer::addThumb(const QString &imageFullPath) {
         thumbItem->setTextAlignment(Qt::AlignTop | Qt::AlignHCenter);
         thumbItem->setData(thumbFileInfo.fileName(), Qt::DisplayRole);
     }
+    qint64 exifTime = Metadata::dateTimeOriginal(thumbFileInfo.filePath());
+    if (!exifTime)
+        exifTime = thumbFileInfo.birthTime().toSecsSinceEpoch();
+    thumbItem->setData(exifTime, DateTimeOriginal);
     thumbItem->setSizeHint(hintSize);
 
     thumbReader.setFileName(imageFullPath);

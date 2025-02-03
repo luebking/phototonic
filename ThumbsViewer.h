@@ -84,7 +84,8 @@ public:
         TypeRole,
         SizeRole,
         TimeRole,
-        HistogramRole
+        HistogramRole,
+        DateTimeOriginal
     };
     enum ThumbnailLayouts {
         Classic,

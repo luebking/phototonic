@@ -566,6 +566,8 @@ void Phototonic::createActions() {
     sortByNameAction->setObjectName("name");
     sortByTimeAction = new QAction(tr("Sort by Time"), this);
     sortByTimeAction->setObjectName("time");
+    sortByExifTimeAction = new QAction(tr("Sort by Time") + " (Exif)", this);
+    sortByExifTimeAction->setObjectName("exiftime");
     sortBySizeAction = new QAction(tr("Sort by Size"), this);
     sortBySizeAction->setObjectName("size");
     sortByTypeAction = new QAction(tr("Sort by Type"), this);
@@ -578,6 +580,7 @@ void Phototonic::createActions() {
     sortReverseAction->setObjectName("reverse");
     sortByNameAction->setCheckable(true);
     sortByTimeAction->setCheckable(true);
+    sortByExifTimeAction->setCheckable(true);
     sortBySizeAction->setCheckable(true);
     sortByTypeAction->setCheckable(true);
     sortBySimilarityAction->setCheckable(true);
@@ -585,6 +588,7 @@ void Phototonic::createActions() {
     sortReverseAction->setCheckable(true);
     connect(sortByNameAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortByTimeAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
+    connect(sortByExifTimeAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortBySizeAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortByTypeAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortBySimilarityAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
@@ -981,6 +985,7 @@ void Phototonic::createMenus() {
     QActionGroup *sortTypesGroup = new QActionGroup(this);
     sortTypesGroup->addAction(sortByNameAction);
     sortTypesGroup->addAction(sortByTimeAction);
+    sortTypesGroup->addAction(sortByExifTimeAction);
     sortTypesGroup->addAction(sortBySizeAction);
     sortTypesGroup->addAction(sortByTypeAction);
     sortTypesGroup->addAction(sortBySimilarityAction);
@@ -1293,6 +1298,8 @@ void Phototonic::sortThumbnails() {
         thumbModel->setSortRole(ThumbsViewer::SortRole);
     } else if (sortByTimeAction->isChecked()) {
         thumbModel->setSortRole(ThumbsViewer::TimeRole);
+    } else if (sortByExifTimeAction->isChecked()) {
+        thumbModel->setSortRole(ThumbsViewer::DateTimeOriginal);
     } else if (sortBySizeAction->isChecked()) {
         thumbModel->setSortRole(ThumbsViewer::SizeRole);
     } else if (sortByTypeAction->isChecked()) {
@@ -2563,6 +2570,7 @@ void Phototonic::loadShortcuts() {
     Settings::actionKeys[sortByNameAction->objectName()] = sortByNameAction;
     Settings::actionKeys[sortBySizeAction->objectName()] = sortBySizeAction;
     Settings::actionKeys[sortByTimeAction->objectName()] = sortByTimeAction;
+    Settings::actionKeys[sortByExifTimeAction->objectName()] = sortByExifTimeAction;
     Settings::actionKeys[sortByTypeAction->objectName()] = sortByTypeAction;
     Settings::actionKeys[sortBySimilarityAction->objectName()] = sortBySimilarityAction;
     Settings::actionKeys[sortReverseAction->objectName()] = sortReverseAction;
