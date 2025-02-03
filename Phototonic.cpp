@@ -1982,17 +1982,20 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
 
     ProgressDialog *progressDialog = nullptr;
     int deleteFilesCount = 0;
-    QList<int> rows;
 
     for (QString fileNameFullPath : deathRow) {
 
         // Only show if it takes a lot of time, since popping this up for just
         // deleting a single image is annoying
         if (timer.elapsed() > 250) {
-            if (!progressDialog)
-               progressDialog = new ProgressDialog(this);
+            if (!progressDialog) {
+                progressDialog = new ProgressDialog(this);
+                progressDialog->opLabel->setWordWrap(true);
+                progressDialog->opLabel->setFixedWidth(QFontMetrics(progressDialog->opLabel->font()).averageCharWidth()*80);
+                progressDialog->show();
+            }
             progressDialog->opLabel->setText(tr("Deleting %1").arg(fileNameFullPath));
-            progressDialog->show();
+            QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
         }
 
         QString deleteError;
@@ -2010,10 +2013,8 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
         ++deleteFilesCount;
         if (deleteOk) {
             QModelIndexList indexList = thumbsViewer->model()->match(thumbsViewer->model()->index(0, 0), ThumbsViewer::FileNameRole, fileNameFullPath);
-            if (indexList.size()) {
-                rows << indexList.at(0).row();
-                thumbsViewer->model()->removeRow(rows.last());
-            }
+            if (indexList.size())
+                thumbsViewer->model()->removeRow(indexList.at(0).row());
         } else {
             MessageBox msgBox(this);
             msgBox.critical(tr("Error"),
