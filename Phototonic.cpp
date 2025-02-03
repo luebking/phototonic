@@ -1859,6 +1859,7 @@ static bool isReadableDir(const QString &path) {
 }
 
 void Phototonic::pasteThumbs() {
+    static bool pasteInProgress = false;
     if (!copyCutThumbsCount) {
         return;
     }
@@ -1894,12 +1895,14 @@ void Phototonic::pasteThumbs() {
         }
     }
 
-    if (thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
+    if (pasteInProgress || thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
         QTimer::singleShot(100, this, [=](){pasteThumbs();});
         return;
     }
 
+    pasteInProgress = true;
     CopyMoveDialog *copyMoveDialog = new CopyMoveDialog(this);
+    copyCutThumbsCount = 0; // setting this here avoids nested pastes
     copyMoveDialog->execute(thumbsViewer, destDir, pasteInCurrDir);
     if (pasteInCurrDir) {
         for (int thumb = 0; thumb < Settings::copyCutFileList.size(); ++thumb) {
@@ -1914,12 +1917,12 @@ void Phototonic::pasteThumbs() {
     copyMoveDialog->deleteLater();
     selectCurrentViewDir();
 
-    copyCutThumbsCount = 0;
     Settings::copyCutIndexList.clear();
     Settings::copyCutFileList.clear();
     pasteAction->setEnabled(false);
 
     thumbsViewer->loadVisibleThumbs();
+    pasteInProgress = false;
 }
 
 void Phototonic::loadCurrentImage(int currentRow) {
