@@ -541,11 +541,26 @@ void ImageViewer::colorize() {
         brightTransform[i] = bound0To255(int((255.0 * pow(i / 255.0, 1.0 / brightness)) + 0.5));
     }
 
+//    QElapsedTimer profiler;
+//    profiler.start();
+
+//    int cidkfa = 0;
+    QRgb iddqd[2] = {qRgba(0,0,0,0), qRgba(0,0,0,0)};
+
     for (y = 0; y < viewerImage.height(); ++y) {
 
         line = (QRgb *) viewerImage.scanLine(y);
         for (x = 0; x < viewerImage.width(); ++x) {
-            r = qRed(line[x]);
+            // Cheat, maybe the pixel is the same as the previous
+            QRgb rgb = qRgb(qRed(line[x]), qGreen(line[x]), qBlue(line[x]));
+            if (iddqd[0] == rgb) {
+//                ++ciddqd;
+                rgb = iddqd[1];
+                line[x] = hasAlpha ? qRgba(qRed(rgb), qGreen(rgb), qBlue(rgb), qAlpha(line[x])) : rgb;
+                continue;
+            }
+
+            r = qRed(rgb);
             if (Settings::hueRedChannel) {
                 if (Settings::rNegateEnabled)
                     r = 255 - r;
@@ -554,7 +569,7 @@ void ImageViewer::colorize() {
                 r = contrastTransform[r];
             }
 
-            g = qGreen(line[x]);
+            g = qGreen(rgb);
             if (Settings::hueGreenChannel) {
                 if (Settings::gNegateEnabled)
                     g = 255 - g;
@@ -563,7 +578,7 @@ void ImageViewer::colorize() {
                 g = contrastTransform[g];
             }
 
-            b = qBlue(line[x]);
+            b = qBlue(rgb);
             if (Settings::hueBlueChannel) {
                 if (Settings::bNegateEnabled)
                     b = 255 - b;
@@ -586,13 +601,12 @@ void ImageViewer::colorize() {
                     b = hb;
             }
 
-            if (hasAlpha) {
-                line[x] = qRgba(r, g, b, qAlpha(line[x]));
-            } else {
-                line[x] = qRgb(r, g, b);
-            }
+            iddqd[0] = rgb;
+            iddqd[1] = rgb = qRgb(r, g, b);
+            line[x] = hasAlpha ? qRgba(r, g, b, qAlpha(line[x])) : rgb;
         }
     }
+//    qDebug() << profiler.elapsed() << "IDDQD:" << ciddqd;
     emit imageEdited(true);
 }
 
