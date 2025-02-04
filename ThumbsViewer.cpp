@@ -189,7 +189,14 @@ void ThumbsViewer::onSelectionChanged() {
     }
 
     if (imageTags->isVisible() && imageTags->currentDisplayMode == SelectionTagsDisplay) {
-        imageTags->showSelectedImagesTags();
+        static QTimer *tagSelectionUpdateTimer = nullptr;
+        if (!tagSelectionUpdateTimer) {
+            tagSelectionUpdateTimer = new QTimer(this);
+            tagSelectionUpdateTimer->setSingleShot(true);
+            tagSelectionUpdateTimer->setInterval(250);
+            connect(tagSelectionUpdateTimer, &QTimer::timeout, imageTags, &ImageTags::showSelectedImagesTags);
+        }
+        tagSelectionUpdateTimer->start();
     }
 
     if (selectedThumbs >= 1) {

@@ -222,7 +222,7 @@ void cache(const QString &imageFullPath) {
 
                 QString tagName = QString::fromUtf8(iptcIt->toString().c_str());
                 imageMetadata.tags.insert(tagName);
-                Settings::knownTags.insert(tagName);
+//                Settings::knownTags.insert(tagName);
             }
         }
     } catch (Exiv2::Error &error) {

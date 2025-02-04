@@ -37,6 +37,8 @@
 
 #include <exiv2/exiv2.hpp>
 
+int NewTagRole = Qt::UserRole + 1;
+
 ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer) : QWidget(parent) {
     m_populated = false;
     tagsTree = new QTreeWidget;
@@ -54,7 +56,7 @@ ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer) : QWidget(pare
     tabs->setTabIcon(0, QIcon(":/images/tag_yellow.png"));
     tabs->setTabIcon(1, QIcon(":/images/tag_filter_off.png"));
     tabs->setExpanding(false);
-    connect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tabsChanged(int)));
+    connect(tabs, &QTabBar::currentChanged, this, [=](int idx) { idx ? showTagsFilter() : showSelectedImagesTags(); });
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setContentsMargins(0, 3, 0, 0);
@@ -84,8 +86,12 @@ ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer) : QWidget(pare
     actionAddTag->setIcon(QIcon(":/images/new_tag.png"));
     connect(actionAddTag, SIGNAL(triggered()), this, SLOT(addNewTag()));
 
+    learnTagAction = new QAction(tr("Remember this tag"), this);
+    connect(learnTagAction, SIGNAL(triggered()), this, SLOT(learnTags()));
+
     removeTagAction = new QAction(tr("Delete Tag"), this);
     removeTagAction->setIcon(QIcon::fromTheme("edit-delete", QIcon(":/images/delete.png")));
+    connect(removeTagAction, SIGNAL(triggered()), this, SLOT(removeTags()));
 
     actionClearTagsFilter = new QAction(tr("Clear Filters"), this);
     actionClearTagsFilter->setIcon(QIcon(":/images/tag_filter_off.png"));
@@ -99,6 +105,7 @@ ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer) : QWidget(pare
     tagsMenu->addAction(addToSelectionAction);
     tagsMenu->addAction(removeFromSelectionAction);
     tagsMenu->addSeparator();
+    tagsMenu->addAction(learnTagAction);
     tagsMenu->addAction(actionAddTag);
     tagsMenu->addAction(removeTagAction);
     tagsMenu->addSeparator();
@@ -113,40 +120,52 @@ void ImageTags::redrawTagTree() {
 
 void ImageTags::showMenu(QPoint point) {
     QTreeWidgetItem *item = tagsTree->itemAt(point);
-    addToSelectionAction->setEnabled(item != NULL);
-    removeFromSelectionAction->setEnabled(item != NULL);
-    removeTagAction->setEnabled(item != NULL);
+    addToSelectionAction->setEnabled(bool(item));
+    removeFromSelectionAction->setEnabled(bool(item));
+    removeTagAction->setEnabled(bool(item));
+    learnTagAction->setEnabled(item && item->data(0, NewTagRole).toBool());
     tagsMenu->popup(tagsTree->viewport()->mapToGlobal(point));
 }
 
-void ImageTags::setTagIcon(QTreeWidgetItem *tagItem, TagIcons icon) {
+void ImageTags::setTagIcon(QTreeWidgetItem *tagItem, TagIcon icon) {
+    static QIcon    grey(":/images/tag_grey.png"),
+                    yellow(":/images/tag_yellow.png"),
+                    multi(":/images/tag_multi.png"),
+                    red(":/images/tag_red.png"),
+                    on(":/images/tag_filter_on.png"),
+                    off(":/images/tag_filter_off.png"),
+                    negate(":/images/tag_filter_negate.png");
     switch (icon) {
         case TagIconDisabled:
-            tagItem->setIcon(0, QIcon(":/images/tag_grey.png"));
+            tagItem->setIcon(0, tagItem->data(0, NewTagRole).toBool() ? red : grey);
             break;
         case TagIconEnabled:
-            tagItem->setIcon(0, QIcon(":/images/tag_yellow.png"));
+            tagItem->setIcon(0, tagItem->data(0, NewTagRole).toBool() ? red : yellow);
             break;
         case TagIconMultiple:
-            tagItem->setIcon(0, QIcon(":/images/tag_multi.png"));
+            tagItem->setIcon(0, multi);
+            break;
+        case TagIconNew:
+            tagItem->setData(0, NewTagRole, true);
+            tagItem->setIcon(0, red);
             break;
         case TagIconFilterEnabled:
-            tagItem->setIcon(0, QIcon(":/images/tag_filter_on.png"));
+            tagItem->setIcon(0, on);
             break;
         case TagIconFilterDisabled:
-            tagItem->setIcon(0, QIcon(":/images/tag_filter_off.png"));
+            tagItem->setIcon(0, off);
             break;
         case TagIconFilterNegate:
-            tagItem->setIcon(0, QIcon(":/images/tag_filter_negate.png"));
+            tagItem->setIcon(0, negate);
             break;
     }
 }
 
-void ImageTags::addTag(QString tagName, bool tagChecked) {
+void ImageTags::addTag(QString tagName, bool tagChecked, TagIcon icon) {
     QTreeWidgetItem *tagItem = new QTreeWidgetItem();
     tagItem->setText(0, tagName);
     tagItem->setCheckState(0, tagChecked ? Qt::Checked : Qt::Unchecked);
-    setTagIcon(tagItem, tagChecked ? TagIconEnabled : TagIconDisabled);
+    setTagIcon(tagItem, icon);
     tagsTree->addTopLevelItem(tagItem);
 }
 
@@ -223,14 +242,13 @@ void ImageTags::showSelectedImagesTags() {
     int selectedThumbsNum = selectedThumbs.size();
     QMap<QString, int> tagsCount;
     for (int i = 0; i < selectedThumbsNum; ++i) {
-        QSetIterator<QString> imageTagsIter(Metadata::tags(selectedThumbs[i]));
+        QSetIterator<QString> imageTagsIter(Metadata::tags(selectedThumbs.at(i)));
         while (imageTagsIter.hasNext()) {
             QString imageTag = imageTagsIter.next();
             tagsCount[imageTag]++;
 
-            if (!Settings::knownTags.contains(imageTag)) {
-                addTag(imageTag, true);
-                Settings::knownTags.insert(imageTag);
+            if (tagsTree->findItems(imageTag, Qt::MatchExactly).isEmpty()) {
+                addTag(imageTag, true, TagIconNew);
             }
         }
     }
@@ -239,7 +257,7 @@ void ImageTags::showSelectedImagesTags() {
     QTreeWidgetItemIterator it(tagsTree);
     while (*it) {
         QString tagName = (*it)->text(0);
-        int tagCountTotal = tagsCount[tagName];
+        int tagCountTotal = tagsCount.value(tagName, 0);
 
         if (selectedThumbsNum == 0) {
             (*it)->setCheckState(0, Qt::Unchecked);
@@ -318,7 +336,7 @@ void ImageTags::populateTagsTree() {
     QList<QString> list(Settings::knownTags.cbegin(), Settings::knownTags.cend());
     std::sort(list.begin(), list.end());
     for (const QString &tag : list)
-        addTag(tag, false);
+        addTag(tag, false, TagIconDisabled);
 
     /// this calls redrawTagTree and that resizes the column what's first gonna be slow stil :(
     if (currentDisplayMode == SelectionTagsDisplay) {
@@ -334,6 +352,7 @@ void ImageTags::setActiveViewMode(TagsDisplayMode mode) {
     currentDisplayMode = mode;
     actionAddTag->setVisible(currentDisplayMode == SelectionTagsDisplay);
     removeTagAction->setVisible(currentDisplayMode == SelectionTagsDisplay);
+    learnTagAction->setVisible(currentDisplayMode == SelectionTagsDisplay);
     addToSelectionAction->setVisible(currentDisplayMode == SelectionTagsDisplay);
     removeFromSelectionAction->setVisible(currentDisplayMode == SelectionTagsDisplay);
     actionClearTagsFilter->setVisible(currentDisplayMode == DirectoryTagsDisplay);
@@ -436,14 +455,6 @@ void ImageTags::saveLastChangedTag(QTreeWidgetItem *item, int) {
     lastChangedTagItem = item;
 }
 
-void ImageTags::tabsChanged(int index) {
-    if (!index) {
-        showSelectedImagesTags();
-    } else {
-        showTagsFilter();
-    }
-}
-
 void ImageTags::tagClicked(QTreeWidgetItem *item, int) {
     if (item == lastChangedTagItem) {
         if (currentDisplayMode == DirectoryTagsDisplay) {
@@ -512,12 +523,12 @@ void ImageTags::addNewTag() {
         }
     }
 
-    addTag(newTagName, false);
+    addTag(newTagName, false, TagIconDisabled);
     Settings::knownTags.insert(newTagName);
     redrawTagTree();
 }
 
-void ImageTags::removeTag() {
+void ImageTags::removeTags() {
     if (!tagsTree->selectedItems().size()) {
         return;
     }
@@ -552,3 +563,21 @@ void ImageTags::removeTag() {
     }
 }
 
+void ImageTags::learnTags() {
+    if (!tagsTree->selectedItems().size()) {
+        return;
+    }
+
+    for (int i = 0; i < tagsTree->selectedItems().size(); ++i) {
+
+        QTreeWidgetItem *item = tagsTree->selectedItems().at(i);
+        QString tagName = item->text(0);
+        item->setData(0, NewTagRole, false);
+        if (item->checkState(0) ==  Qt::Unchecked)
+            setTagIcon(item, TagIconDisabled);
+        else if (item->checkState(0) ==  Qt::Checked)
+            setTagIcon(item, TagIconEnabled);
+        // tristate is the multi-icon, we ignore that
+        Settings::knownTags.insert(tagName);
+    }
+}

@@ -1287,7 +1287,6 @@ void Phototonic::createImageTagsDock() {
         QTimer::singleShot(500, this, [=]() { if (tagsDock->isVisible()) thumbsViewer->imageTags->populateTagsTree(); });
     });
     connect(thumbsViewer->imageTags, SIGNAL(reloadThumbs()), this, SLOT(reloadThumbs()));
-    connect(thumbsViewer->imageTags->removeTagAction, SIGNAL(triggered()), this, SLOT(deleteOperation()));
 }
 
 void Phototonic::sortThumbnails() {
@@ -2108,10 +2107,6 @@ void Phototonic::deleteFromViewer(bool trash) {
 
 // Main delete operation
 void Phototonic::deleteOperation() {
-    if (QApplication::focusWidget() == thumbsViewer->imageTags->tagsTree) {
-        thumbsViewer->imageTags->removeTag();
-        return;
-    }
 
     if (QApplication::focusWidget() == bookmarks) {
         bookmarks->removeBookmark();

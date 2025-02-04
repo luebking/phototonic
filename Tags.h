@@ -32,10 +32,11 @@ enum TagsDisplayMode {
     SelectionTagsDisplay
 };
 
-enum TagIcons {
+enum TagIcon {
     TagIconDisabled,
     TagIconEnabled,
     TagIconMultiple,
+    TagIconNew,
     TagIconFilterDisabled,
     TagIconFilterEnabled,
     TagIconFilterNegate
@@ -47,33 +48,26 @@ Q_OBJECT
 public:
     ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer);
 
-    void addTag(QString tagName, bool tagChecked);
-
+    void addTag(QString tagName, bool tagChecked, TagIcon icon);
+    bool isImageFilteredOut(QString imagePath);
+    void populateTagsTree();
+    void resetTagsState();
     void showTagsFilter();
 
+    /// @todo - detangle this
+    QTreeWidget *tagsTree; // phototonic.cpp
+    bool dirFilteringActive; // thumbsview.cpp
+    TagsDisplayMode currentDisplayMode; // thumbsview.cpp
+
+public slots:
     void showSelectedImagesTags();
-
-    void resetTagsState();
-
-    bool isImageFilteredOut(QString imagePath);
-
-    void removeTag();
-
-    void populateTagsTree();
-
-    QMenu *tagsMenu;
-    QTreeWidget *tagsTree;
-    bool dirFilteringActive;
-    QAction *removeTagAction;
-    TagsDisplayMode currentDisplayMode;
-    bool m_populated;
 
 private:
     bool writeTagsToImage(QString &imageFileName, const QSet<QString> &tags);
 
     QSet<QString> getCheckedTags(Qt::CheckState tagState);
 
-    void setTagIcon(QTreeWidgetItem *tagItem, TagIcons icon);
+    void setTagIcon(QTreeWidgetItem *tagItem, TagIcon icon);
 
     void setActiveViewMode(TagsDisplayMode mode);
 
@@ -89,35 +83,30 @@ private:
     QAction *removeFromSelectionAction;
     QAction *actionClearTagsFilter;
     QAction *negateAction;
+    QAction *learnTagAction;
+    QAction *removeTagAction;
     QTreeWidgetItem *lastChangedTagItem;
     ThumbsViewer *thumbView;
     QTabBar *tabs;
     bool negateFilterEnabled;
+    QMenu *tagsMenu;
+    bool m_populated;
 
 private slots:
 
+    void addNewTag();
+    void addTagsToSelection();
+    void applyTagFiltering();
+    void clearTagFilters();
+    void learnTags();
+    void negateFilter();
+    void removeTags();
+    void removeTagsFromSelection();
+    void saveLastChangedTag(QTreeWidgetItem *item, int column);
+    void showMenu(QPoint point);
     void tagClicked(QTreeWidgetItem *item, int column);
 
-    void saveLastChangedTag(QTreeWidgetItem *item, int column);
-
-    void applyTagFiltering();
-
-    void showMenu(QPoint point);
-
-    void addNewTag();
-
-    void addTagsToSelection();
-
-    void clearTagFilters();
-
-    void negateFilter();
-
-    void removeTagsFromSelection();
-
-    void tabsChanged(int index);
-
 signals:
-
     void reloadThumbs();
 
 };
