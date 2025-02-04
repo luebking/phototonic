@@ -410,7 +410,7 @@ static inline int bound0To255(int val) {
     return ((val > 255) ? 255 : (val < 0) ? 0 : val);
 }
 
-static inline int hslValue(double n1, double n2, double hue) {
+static inline int hslValue(float n1, float n2, int hue) {
     double value;
 
     if (hue > 255) {
@@ -419,21 +419,21 @@ static inline int hslValue(double n1, double n2, double hue) {
         hue += 255;
     }
 
-    if (hue < 42.5) {
-        value = n1 + (n2 - n1) * (hue / 42.5);
-    } else if (hue < 127.5) {
+    if (hue < 42.5f) {
+        value = n1 + (n2 - n1) * (hue / 42.5f);
+    } else if (hue < 127.5f) {
         value = n2;
     } else if (hue < 170) {
-        value = n1 + (n2 - n1) * ((170 - hue) / 42.5);
+        value = n1 + (n2 - n1) * ((170 - hue) / 42.5f);
     } else {
         value = n1;
     }
 
-    return ROUND(value * 255.0);
+    return ROUND(value * 255.0f);
 }
 
 void rgbToHsl(int r, int g, int b, unsigned char *hue, unsigned char *sat, unsigned char *light) {
-    double h, s, l;
+    float h, s, l;
     int min, max;
     int delta;
 
@@ -445,7 +445,7 @@ void rgbToHsl(int r, int g, int b, unsigned char *hue, unsigned char *sat, unsig
         min = MIN(r, b);
     }
 
-    l = (max + min) / 2.0;
+    l = (max + min) / 2.0f;
 
     if (max == min) {
         s = 0.0;
@@ -454,20 +454,20 @@ void rgbToHsl(int r, int g, int b, unsigned char *hue, unsigned char *sat, unsig
         delta = (max - min);
 
         if (l < 128) {
-            s = 255 * (double) delta / (double) (max + min);
+            s = 255 * delta / float(max + min);
         } else {
-            s = 255 * (double) delta / (double) (511 - max - min);
+            s = 255 * delta / float(511 - max - min);
         }
 
         if (r == max) {
-            h = (g - b) / (double) delta;
+            h = (g - b) / float(delta);
         } else if (g == max) {
-            h = 2 + (b - r) / (double) delta;
+            h = 2 + (b - r) / float(delta);
         } else {
-            h = 4 + (r - g) / (double) delta;
+            h = 4 + (r - g) / float(delta);
         }
 
-        h = h * 42.5;
+        h = h * 42.5f;
         if (h < 0) {
             h += 255;
         } else if (h > 255) {
@@ -480,7 +480,7 @@ void rgbToHsl(int r, int g, int b, unsigned char *hue, unsigned char *sat, unsig
     *light = ROUND(l);
 }
 
-void hslToRgb(double h, double s, double l,
+void hslToRgb(int h, int s, int l,
               unsigned char *red, unsigned char *green, unsigned char *blue) {
     if (s == 0) {
         /* achromatic case */
@@ -488,14 +488,14 @@ void hslToRgb(double h, double s, double l,
         *green = l;
         *blue = l;
     } else {
-        double m1, m2;
+        float m1, m2;
 
         if (l < 128)
-            m2 = (l * (255 + s)) / 65025.0;
+            m2 = (l * (255 + s)) / 65025.0f;
         else
-            m2 = (l + s - (l * s) / 255.0) / 255.0;
+            m2 = (l + s - (l * s) / 255.0f) / 255.0f;
 
-        m1 = (l / 127.5) - m2;
+        m1 = (l / 127.5f) - m2;
 
         /* chromatic case */
         *red = hslValue(m1, m2, h + 85);
