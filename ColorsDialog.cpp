@@ -25,6 +25,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QSlider>
+#include <QToolTip>
 
 #include "ImageViewer.h"
 #include "ColorsDialog.h"
@@ -47,17 +48,35 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     buttonsHbox->addWidget(okButton, 0, Qt::AlignRight);
     okButton->setDefault(true);
 
-    /* hue saturation */
-    QLabel *hueLab = new QLabel(tr("Hue"));
-    QLabel *satLab = new QLabel(tr("Saturation"));
-    QLabel *lightLab = new QLabel(tr("Lightness"));
+    auto makeSlider = [=](QString label, QSlider **slider) {
+        *slider = new QSlider(Qt::Horizontal);
+        (*slider)->setTickPosition(QSlider::TicksAbove);
+        (*slider)->setTickInterval(25);
+        (*slider)->setRange(-100, 100);
+        (*slider)->setTracking(false);
+        (*slider)->setToolTip("0");
+        connect(*slider, &QSlider::valueChanged, [=](int v) {
+            (*slider)->setToolTip(QString::number(v));
+            applyColors();
+        });
+        connect(*slider, &QSlider::sliderMoved, [=](int v) {
+            const QString n = QString::number(v);
+            (*slider)->setToolTip(n);
+            QToolTip::showText(QCursor::pos(), n, nullptr, QRect(), 0);
+        });
+        QAction *zero = new QAction(*slider);
+        zero->setShortcut(Qt::Key_0);
+        zero->setShortcutContext(Qt::WidgetWithChildrenShortcut);
+        connect(zero, &QAction::triggered, [=]() { (*slider)->setValue(0); });
+        (*slider)->addAction(zero);
+        return new QLabel(label);
+    };
 
-    hueSlider = new QSlider(Qt::Horizontal);
-    hueSlider->setTickPosition(QSlider::TicksAbove);
-    hueSlider->setTickInterval(25);
-    hueSlider->setRange(-100, 100);
-    hueSlider->setTracking(false);
-    connect(hueSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
+    /* hue saturation */
+    QLabel *hueLab = makeSlider(tr("Hue"), &hueSlider);
+    QLabel *satLab = makeSlider(tr("Saturation"), &saturationSlider);
+    QLabel *lightLab = makeSlider(tr("Lightness"), &lightnessSlider);
+
 
     colorizeCheckBox = new QCheckBox(tr("Colorize"), this);
     colorizeCheckBox->setCheckState(Settings::colorizeEnabled ? Qt::Checked : Qt::Unchecked);
@@ -75,19 +94,6 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     bNegateCheckBox->setCheckState(Settings::bNegateEnabled ? Qt::Checked : Qt::Unchecked);
     connect(bNegateCheckBox, SIGNAL(stateChanged(int)), this, SLOT(applyColors()));
 
-    saturationSlider = new QSlider(Qt::Horizontal);
-    saturationSlider->setTickPosition(QSlider::TicksAbove);
-    saturationSlider->setTickInterval(25);
-    saturationSlider->setRange(-100, 100);
-    saturationSlider->setTracking(false);
-    connect(saturationSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
-
-    lightnessSlider = new QSlider(Qt::Horizontal);
-    lightnessSlider->setTickPosition(QSlider::TicksAbove);
-    lightnessSlider->setTickInterval(25);
-    lightnessSlider->setRange(-100, 100);
-    lightnessSlider->setTracking(false);
-    connect(lightnessSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
 
     QHBoxLayout *channelsHbox = new QHBoxLayout;
     redCheckBox = new QCheckBox(tr("Red"));
@@ -127,23 +133,10 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     channelsGroup->setLayout(channelsLay);
 
     /* brightness contrast */
-    QLabel *brightLab = new QLabel(tr("Brightness"));
-    QLabel *contrastLab = new QLabel(tr("Contrast"));
-
-    brightSlider = new QSlider(Qt::Horizontal);
-    brightSlider->setTickPosition(QSlider::TicksAbove);
-    brightSlider->setTickInterval(25);
-    brightSlider->setRange(-100, 100);
-    brightSlider->setTracking(false);
-    connect(brightSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
-
-    contrastSlider = new QSlider(Qt::Horizontal);
-    contrastSlider->setTickPosition(QSlider::TicksAbove);
-    contrastSlider->setTickInterval(25);
-    contrastSlider->setRange(-100, 100);
-    contrastSlider->setTracking(false);
+    QLabel *brightLab = makeSlider(tr("Brightness"), &brightSlider);
+    QLabel *contrastLab = makeSlider(tr("Contrast"), &contrastSlider);
     contrastSlider->setInvertedAppearance(true);
-    connect(contrastSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
+
 
     QGridLayout *brightContrastbox = new QGridLayout;
     brightContrastbox->addWidget(brightLab, 1, 0, 1, 1);
@@ -156,29 +149,9 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     brightContrastGroup->setLayout(brightContrastbox);
 
     /* Channel mixer */
-    QLabel *redLab = new QLabel(tr("Red"));
-    redSlider = new QSlider(Qt::Horizontal);
-    redSlider->setTickPosition(QSlider::TicksAbove);
-    redSlider->setTickInterval(25);
-    redSlider->setRange(-100, 100);
-    redSlider->setTracking(false);
-    connect(redSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
-
-    QLabel *greenLab = new QLabel(tr("Green"));
-    greenSlider = new QSlider(Qt::Horizontal);
-    greenSlider->setTickPosition(QSlider::TicksAbove);
-    greenSlider->setTickInterval(25);
-    greenSlider->setRange(-100, 100);
-    greenSlider->setTracking(false);
-    connect(greenSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
-
-    QLabel *blueLab = new QLabel(tr("Blue"));
-    blueSlider = new QSlider(Qt::Horizontal);
-    blueSlider->setTickPosition(QSlider::TicksAbove);
-    blueSlider->setTickInterval(25);
-    blueSlider->setRange(-100, 100);
-    blueSlider->setTracking(false);
-    connect(blueSlider, SIGNAL(valueChanged(int)), this, SLOT(applyColors()));
+    QLabel *redLab = makeSlider(tr("Red"), &redSlider);
+    QLabel *greenLab = makeSlider(tr("Green"), &greenSlider);
+    QLabel *blueLab = makeSlider(tr("Blue"), &blueSlider);
 
     QGridLayout *channelMixbox = new QGridLayout;
     channelMixbox->addWidget(redLab, 1, 0, 1, 1);
