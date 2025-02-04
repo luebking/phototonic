@@ -193,7 +193,7 @@ void ThumbsViewer::onSelectionChanged() {
         if (!tagSelectionUpdateTimer) {
             tagSelectionUpdateTimer = new QTimer(this);
             tagSelectionUpdateTimer->setSingleShot(true);
-            tagSelectionUpdateTimer->setInterval(250);
+            tagSelectionUpdateTimer->setInterval(125);
             connect(tagSelectionUpdateTimer, &QTimer::timeout, imageTags, &ImageTags::showSelectedImagesTags);
         }
         tagSelectionUpdateTimer->start();

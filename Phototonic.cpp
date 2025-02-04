@@ -3161,6 +3161,8 @@ void Phototonic::reloadThumbs() {
         setThumbsViewerWindowTitle();
     }
 
+    thumbsViewer->imageTags->removeTransientTags();
+
     if (findDupesAction->isChecked()) {
         const bool actionEnabled[5] = { goBackAction->isEnabled(), goFrwdAction->isEnabled(), 
                                         goUpAction->isEnabled(), goHomeAction->isEnabled(), refreshAction->isEnabled() };
@@ -3194,6 +3196,12 @@ void Phototonic::reloadThumbs() {
         thumbsViewer->reLoad();
     }
     sortThumbnails();
+    QStringList files;
+    QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
+    for (int i = 0; i < thumbModel->rowCount(); ++i)
+        files << thumbModel->item(i)->data(ThumbsViewer::FileNameRole).toString();
+    std::sort(files.begin(), files.end()); // help out the tagviewer since QTW is slow af at sorting
+    thumbsViewer->imageTags->addTagsFor(files);
 }
 
 void Phototonic::setImageViewerWindowTitle() {

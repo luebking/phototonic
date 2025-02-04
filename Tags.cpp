@@ -169,6 +169,21 @@ void ImageTags::addTag(QString tagName, bool tagChecked, TagIcon icon) {
     tagsTree->addTopLevelItem(tagItem);
 }
 
+void ImageTags::addTagsFor(const QStringList &files) {
+    bool dunnit = false;
+    for (const QString &file : files) {
+        QSet<QString> tags = Metadata::tags(file);
+        for (auto tag = tags.cbegin(), end = tags.cend(); tag != end; ++tag) {
+            if (tagsTree->findItems(*tag, Qt::MatchExactly).isEmpty()) {
+                addTag(*tag, false, TagIconNew);
+                dunnit = true;
+            }
+        }
+    }
+    if (dunnit)
+        redrawTagTree();
+}
+
 bool ImageTags::writeTagsToImage(QString &imageFileName, const QSet<QString> &newTags) {
     QSet<QString> imageTags;
 
@@ -292,7 +307,7 @@ void ImageTags::showSelectedImagesTags() {
     addToSelectionAction->setEnabled(selectedThumbsNum ? true : false);
     removeFromSelectionAction->setEnabled(selectedThumbsNum ? true : false);
 
-    redrawTagTree();
+//    redrawTagTree();
     busy = false;
 }
 
@@ -550,16 +565,24 @@ void ImageTags::removeTags() {
         QString tagName = tagsTree->selectedItems().at(i)->text(0);
         Settings::knownTags.remove(tagName);
 
-        if (imageFilteringTags.contains(tagName)) {
-            imageFilteringTags.remove(tagName);
+        if (imageFilteringTags.remove(tagName))
             removedTagWasChecked = true;
-        }
 
         tagsTree->takeTopLevelItem(tagsTree->indexOfTopLevelItem(tagsTree->selectedItems().at(i)));
     }
 
     if (removedTagWasChecked) {
         applyTagFiltering();
+    }
+}
+
+void ImageTags::removeTransientTags() {
+    for (int i = tagsTree->topLevelItemCount() - 1; i > -1; --i) {
+
+        QTreeWidgetItem *item = tagsTree->topLevelItem(i);
+        if (!item->data(0, NewTagRole).toBool() || imageFilteringTags.contains(item->text(0)))
+            continue;
+        delete tagsTree->takeTopLevelItem(i);
     }
 }
 
