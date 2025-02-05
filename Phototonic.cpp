@@ -73,8 +73,6 @@
 #include "ThumbsViewer.h"
 #include "Trashcan.h"
 
-#include <exiv2/exiv2.hpp>
-
 Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *parent) : QMainWindow(parent) {
     Settings::appSettings = new QSettings("phototonic", "phototonic");
 
@@ -3352,13 +3350,7 @@ void Phototonic::rename() {
 
 void Phototonic::removeMetadata() {
 
-    QModelIndexList indexList = thumbsViewer->selectionModel()->selectedIndexes();
-    QStringList fileList;
-    copyCutThumbsCount = indexList.size();
-
-    for (int thumb = 0; thumb < copyCutThumbsCount; ++thumb) {
-        fileList.append(thumbsViewer->fullPathOf(indexList[thumb].row()));
-    }
+    QStringList fileList = thumbsViewer->selectedFiles();
 
     if (fileList.isEmpty()) {
         setStatus(tr("Invalid selection"));
@@ -3379,32 +3371,13 @@ void Phototonic::removeMetadata() {
     msgBox.exec();
 
     if (msgBox.clickedButton() == yesButton) {
-        for (int file = 0; file < fileList.size(); ++file) {
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-            Exiv2::Image::UniquePtr image;
-#else
-            Exiv2::Image::AutoPtr image;
-#endif
-#pragma clang diagnostic pop
-
-            try {
-                image = Exiv2::ImageFactory::open(fileList[file].toStdString());
-                image->clearMetadata();
-                image->writeMetadata();
-                Metadata::forget(fileList[file]);
-            }
-            catch (Exiv2::Error &error) {
+        for (int i = 0; i < fileList.size(); ++i) {
+            if (!Metadata::wipeFrom(fileList.at(i)))
                 msgBox.critical(tr("Error"), tr("Failed to remove Exif metadata."));
-                return;
-            }
         }
 
-        thumbsViewer->onSelectionChanged();
-        QString state = QString(tr("Metadata removed from selected images"));
-        setStatus(state);
+        thumbsViewer->imageTags->showSelectedImagesTags();
+        setStatus(tr("Metadata removed from selected images"));
     }
 }
 

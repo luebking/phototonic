@@ -233,6 +233,28 @@ void cache(const QString &imageFullPath) {
 }
 
 
+bool wipeFrom(const QString &imageFileName) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#if EXIV2_TEST_VERSION(0,28,0)
+    Exiv2::Image::UniquePtr image;
+#else
+    Exiv2::Image::AutoPtr image;
+#endif
+#pragma clang diagnostic pop
+
+    try {
+        image = Exiv2::ImageFactory::open(imageFileName.toStdString());
+        image->clearMetadata();
+        image->writeMetadata();
+        Metadata::forget(imageFileName);
+    }
+    catch (Exiv2::Error &error) {
+        return false;
+    }
+    return true;
+}
+
 bool write(const QString &imageFileName) {
     const QSet<QString> &newTags = tags(imageFileName);
 

@@ -33,6 +33,7 @@ namespace Metadata {
     void setTags(const QString &imageFileName, QSet<QString> tags);
     const QSet<QString> &tags(const QString &imageFileName);
     bool updateTags(const QString &imageFileName, QSet<QString> tags);
+    bool wipeFrom(const QString &imageFileName);
     bool write(const QString &imageFileName);
 };
 
