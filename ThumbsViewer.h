@@ -133,7 +133,7 @@ public:
 
     int getPrevRow();
 
-    QStringList getSelectedThumbsList();
+    QStringList selectedFiles() const;
 
     QString getSingleSelectionFilename();
     QString fullPathOf(int idx);
@@ -209,9 +209,10 @@ private:
     QString m_desiredThumbPath;
 
 public slots:
+    void invertSelection();
     void loadVisibleThumbs(int scrollBarValue = 0);
     void onSelectionChanged();
-    void invertSelection();
+    void tagSelected(const QStringList &tagsAdded, const QStringList &tagsRemoved) const;
 
 protected slots:
     void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;

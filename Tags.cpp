@@ -31,7 +31,6 @@
 
 #include "MessageBox.h"
 #include "MetadataCache.h"
-#include "ProgressDialog.h"
 #include "Settings.h"
 #include "Tags.h"
 #include "ThumbsViewer.h"
@@ -229,7 +228,7 @@ void ImageTags::showSelectedImagesTags() {
         return;
     }
     busy = true;
-    QStringList selectedThumbs = thumbView->getSelectedThumbsList();
+    QStringList selectedThumbs = thumbView->selectedFiles();
 
     setActiveViewMode(SelectionTagsDisplay);
 
@@ -395,49 +394,22 @@ void ImageTags::applyTagFiltering() {
 }
 
 void ImageTags::applyUserAction(QList<QTreeWidgetItem *> tagsList) {
-    ProgressDialog *progressDialog = new ProgressDialog(this);
-    progressDialog->show();
 
-    QStringList currentSelectedImages = thumbView->getSelectedThumbsList();
-    for (int currentImage = 0; currentImage < currentSelectedImages.size(); ++currentImage) {
+    QStringList tagsAdded, tagsRemoved;
+    for (int i = tagsList.size() - 1; i > -1; --i) {
+        QTreeWidgetItem *item = tagsList.at(i);
 
-        QString imageName = currentSelectedImages.at(currentImage);
-        for (int i = tagsList.size() - 1; i > -1; --i) {
-            QTreeWidgetItem *item = tagsList.at(i);
-            Qt::CheckState tagState = item->checkState(0);
-            TagIcon icon;
-            if (item->data(0, NewTag).toBool())
-                icon = TagIconNew;
-            else if (tagState == Qt::Checked)
-                icon = TagIconEnabled;
-            else
-                icon = TagIconDisabled;
-            setTagIcon(item, icon);
-            QString tagName = item->text(0);
+        Qt::CheckState tagState = item->checkState(0);
+        TagIcon icon = TagIconDisabled;
+        if (item->data(0, NewTag).toBool())
+            icon = TagIconNew;
+        else if (tagState == Qt::Checked)
+            icon = TagIconEnabled;
+        setTagIcon(item, icon);
 
-            if (tagState == Qt::Checked) {
-                progressDialog->opLabel->setText(tr("Tagging %1").arg(imageName));
-                Metadata::addTag(imageName, tagName);
-            } else {
-                progressDialog->opLabel->setText(tr("Untagging %1").arg(imageName));
-                Metadata::removeTag(imageName, tagName);
-            }
-        }
-
-        if (!Metadata::write(imageName)) {
-            MessageBox(this).critical(tr("Error"), tr("Failed to save tags to %1").arg(imageName));
-            Metadata::forget(imageName);
-        }
-
-        QApplication::processEvents();
-
-        if (progressDialog->abortOp) {
-            break;
-        }
+        (tagState == Qt::Checked ? tagsAdded : tagsRemoved) << item->text(0);
     }
-
-    progressDialog->close();
-    delete (progressDialog);
+    emit tagRequest(tagsAdded, tagsRemoved);
 }
 
 void ImageTags::removeTagsFromSelection() {

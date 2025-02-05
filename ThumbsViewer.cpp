@@ -38,7 +38,9 @@
 #include <QTreeWidget>
 #include <cmath>
 
+#include "MessageBox.h"
 #include "MetadataCache.h"
+#include "ProgressDialog.h"
 #include "Settings.h"
 #include "SmartCrop.h"
 #include "Tags.h"
@@ -105,7 +107,7 @@ QString ThumbsViewer::getSingleSelectionFilename() {
     if (selectionModel()->selectedIndexes().size() == 1)
         return m_model->item(selectionModel()->selectedIndexes().first().row())->data(FileNameRole).toString();
 
-    return ("");
+    return QString();
 }
 
 QString ThumbsViewer::fullPathOf(int idx)
@@ -208,15 +210,50 @@ void ThumbsViewer::onSelectionChanged() {
     }
 }
 
-QStringList ThumbsViewer::getSelectedThumbsList() {
+QStringList ThumbsViewer::selectedFiles() const {
     QModelIndexList indexesList = selectionModel()->selectedIndexes();
-    QStringList SelectedThumbsPaths;
+    QStringList paths;
+    for (int i = 0; i < indexesList.size(); ++i) {
+        paths << m_model->item(indexesList.at(i).row())->data(FileNameRole).toString();
+    }
+    return paths;
+}
 
-    for (int tn = indexesList.size() - 1; tn >= 0; --tn) {
-        SelectedThumbsPaths << m_model->item(indexesList[tn].row())->data(FileNameRole).toString();
+void ThumbsViewer::tagSelected(const QStringList &tagsAdded, const QStringList &tagsRemoved) const {
+    ProgressDialog *progressDialog = new ProgressDialog(window());
+
+    QStringList files = selectedFiles();
+    QElapsedTimer timer;
+    int totalTime;
+    timer.start();
+    for (int i = 0; i < files.size(); ++i) {
+
+        QString imageName = files.at(i);
+        progressDialog->opLabel->setText(tr("Tagging %1").arg(imageName));
+
+        for (const QString &tag : tagsAdded)
+            Metadata::addTag(imageName, tag);
+        for (const QString &tag : tagsRemoved)
+            Metadata::removeTag(imageName, tag);
+
+        if (!Metadata::write(imageName)) {
+            MessageBox(window()).critical(tr("Error"), tr("Failed to save tags to %1").arg(imageName));
+            Metadata::forget(imageName);
+        }
+
+        if (timer.elapsed() > 30) {
+            if ((totalTime += timer.elapsed()) > 500)
+                progressDialog->show();
+            QApplication::processEvents();
+        }
+
+        if (progressDialog->abortOp) {
+            break;
+        }
     }
 
-    return SelectedThumbsPaths;
+    progressDialog->close();
+    delete progressDialog;
 }
 
 void ThumbsViewer::startDrag(Qt::DropActions) {

@@ -1290,6 +1290,8 @@ void Phototonic::createImageTagsDock() {
             thumbsViewer->setTagFilters(mandatory, sufficient, invert);
             reload();
     });
+    connect(thumbsViewer->imageTags, &ImageTags::tagRequest, thumbsViewer, &ThumbsViewer::tagSelected);
+
     connect(thumbsViewer, &ThumbsViewer::filesAdded, thumbsViewer->imageTags, &ImageTags::addTagsFor);
     thumbsViewer->imageTags->populateTagsTree();
 }

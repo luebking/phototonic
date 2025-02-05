@@ -105,6 +105,7 @@ private slots:
 
 signals:
     void filterChanged(const QStringList &mandatory, const QStringList &sufficient, bool invert);
+    void tagRequest(const QStringList &tagsAdded, const QStringList &tagsRemoved);
 
 };
 
