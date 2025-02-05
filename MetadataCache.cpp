@@ -232,4 +232,64 @@ void cache(const QString &imageFullPath) {
     gs_cache.insert(imageFullPath, imageMetadata);
 }
 
+
+bool write(const QString &imageFileName) {
+    const QSet<QString> &newTags = tags(imageFileName);
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#if EXIV2_TEST_VERSION(0,28,0)
+    Exiv2::Image::UniquePtr exifImage;
+#else
+    Exiv2::Image::AutoPtr exifImage;
+#endif
+#pragma clang diagnostic pop
+
+    try {
+        exifImage = Exiv2::ImageFactory::open(imageFileName.toStdString());
+        exifImage->readMetadata();
+
+        Exiv2::IptcData newIptcData;
+
+        /* copy existing data */
+        Exiv2::IptcData &iptcData = exifImage->iptcData();
+        if (!iptcData.empty()) {
+            QString key;
+            Exiv2::IptcData::iterator end = iptcData.end();
+            for (Exiv2::IptcData::iterator iptcIt = iptcData.begin(); iptcIt != end; ++iptcIt) {
+                if (iptcIt->tagName() != "Keywords") {
+                    newIptcData.add(*iptcIt);
+                }
+            }
+        }
+
+        /* add new tags */
+        QSetIterator<QString> newTagsIt(newTags);
+        while (newTagsIt.hasNext()) {
+            QString tag = newTagsIt.next();
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#if EXIV2_TEST_VERSION(0,28,0)
+            Exiv2::Value::UniquePtr value = Exiv2::Value::create(Exiv2::string);
+#else
+            Exiv2::Value::AutoPtr value = Exiv2::Value::create(Exiv2::string);
+#endif
+#pragma clang diagnostic pop
+
+            value->read(tag.toStdString());
+            Exiv2::IptcKey key("Iptc.Application2.Keywords");
+            newIptcData.add(key, value.get());
+        }
+
+        exifImage->setIptcData(newIptcData);
+        exifImage->writeMetadata();
+    }
+    catch (Exiv2::Error &error) {
+        return false;
+    }
+
+    return true;
+}
+
 } // namespace Metadata

@@ -36,8 +36,6 @@
 #include "Tags.h"
 #include "ThumbsViewer.h"
 
-#include <exiv2/exiv2.hpp>
-
 enum { NewTag = Qt::UserRole + 1, InScope };
 
 ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer) : QWidget(parent) {
@@ -222,67 +220,6 @@ void ImageTags::addTagsFor(const QStringList &files) {
     }
     if (dunnit)
         sortTags();
-}
-
-bool ImageTags::writeTagsToImage(QString &imageFileName, const QSet<QString> &newTags) {
-    QSet<QString> imageTags;
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-    Exiv2::Image::UniquePtr exifImage;
-#else
-    Exiv2::Image::AutoPtr exifImage;
-#endif
-#pragma clang diagnostic pop
-
-    try {
-        exifImage = Exiv2::ImageFactory::open(imageFileName.toStdString());
-        exifImage->readMetadata();
-
-        Exiv2::IptcData newIptcData;
-
-        /* copy existing data */
-        Exiv2::IptcData &iptcData = exifImage->iptcData();
-        if (!iptcData.empty()) {
-            QString key;
-            Exiv2::IptcData::iterator end = iptcData.end();
-            for (Exiv2::IptcData::iterator iptcIt = iptcData.begin(); iptcIt != end; ++iptcIt) {
-                if (iptcIt->tagName() != "Keywords") {
-                    newIptcData.add(*iptcIt);
-                }
-            }
-        }
-
-        /* add new tags */
-        QSetIterator<QString> newTagsIt(newTags);
-        while (newTagsIt.hasNext()) {
-            QString tag = newTagsIt.next();
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-            Exiv2::Value::UniquePtr value = Exiv2::Value::create(Exiv2::string);
-#else
-            Exiv2::Value::AutoPtr value = Exiv2::Value::create(Exiv2::string);
-#endif
-#pragma clang diagnostic pop
-
-            value->read(tag.toStdString());
-            Exiv2::IptcKey key("Iptc.Application2.Keywords");
-            newIptcData.add(key, value.get());
-        }
-
-        exifImage->setIptcData(newIptcData);
-        exifImage->writeMetadata();
-    }
-    catch (Exiv2::Error &error) {
-        MessageBox msgBox(this);
-        msgBox.critical(tr("Error"), tr("Failed to save tags to %1").arg(imageFileName));
-        return false;
-    }
-
-    return true;
 }
 
 void ImageTags::showSelectedImagesTags() {
@@ -487,7 +424,8 @@ void ImageTags::applyUserAction(QList<QTreeWidgetItem *> tagsList) {
             }
         }
 
-        if (!writeTagsToImage(imageName, Metadata::tags(imageName))) {
+        if (!Metadata::write(imageName)) {
+            MessageBox(this).critical(tr("Error"), tr("Failed to save tags to %1").arg(imageName));
             Metadata::forget(imageName);
         }
 

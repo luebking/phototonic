@@ -65,8 +65,6 @@ protected:
     void showEvent(QShowEvent *event) override;
 
 private:
-    bool writeTagsToImage(QString &imageFileName, const QSet<QString> &tags);
-
     QStringList getCheckedTags(Qt::CheckState tagState);
 
     void setTagIcon(QTreeWidgetItem *tagItem, TagIcon icon);
