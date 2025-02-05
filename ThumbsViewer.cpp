@@ -49,6 +49,7 @@
 ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
     m_busy = false;
     m_resize = true;
+    m_invertTagFilter = false;
     Settings::thumbsBackgroundColor = Settings::value(Settings::optionThumbsBackgroundColor).value<QColor>();
     Settings::thumbsTextColor = Settings::value(Settings::optionThumbsTextColor).value<QColor>();
     setThumbColors();
@@ -745,6 +746,33 @@ bool ThumbsViewer::isConstrained(const QFileInfo &fileInfo) const {
     return constrained;
 }
 
+bool ThumbsViewer::matchesTagFilter(const QString &path) const {
+    bool emptyFilter = true;
+    QSet<QString> itags;
+    if (!m_mandatoryFilterTags.isEmpty()) {
+        emptyFilter = false;
+        itags = Metadata::tags(path);
+        for (const QString &s : m_mandatoryFilterTags) {
+            if (itags.contains(s) == m_invertTagFilter)
+                return false;
+        }
+    }
+    if (!m_sufficientFilterTags.isEmpty()) {
+        if (emptyFilter)
+            itags = Metadata::tags(path);
+        emptyFilter = true;
+        for (const QString &s : m_sufficientFilterTags) {
+            if (itags.contains(s))
+                return !m_invertTagFilter;
+        }
+        return m_invertTagFilter;
+    }
+    if (m_invertTagFilter && emptyFilter && !Metadata::tags(path).isEmpty())
+        return false;
+
+    return true;
+}
+
 void ThumbsViewer::initThumbs() {
     thumbFileInfoList = thumbsDir.entryInfoList();
 
@@ -775,7 +803,7 @@ void ThumbsViewer::initThumbs() {
 //    int totalTime = 0;
 
     for (int fileIndex = 0; fileIndex < thumbFileInfoList.size(); ++fileIndex) {
-        thumbFileInfo = thumbFileInfoList.at(fileIndex);
+        QFileInfo thumbFileInfo = thumbFileInfoList.at(fileIndex);
 
         Metadata::cache(thumbFileInfo.filePath());
 
@@ -784,9 +812,8 @@ void ThumbsViewer::initThumbs() {
 
         pathList << thumbFileInfo.filePath();
 
-        if (imageTags->dirFilteringActive && imageTags->isImageFilteredOut(thumbFileInfo.filePath())) {
+        if (!matchesTagFilter(thumbFileInfo.filePath()))
             continue;
-        }
 
         QStandardItem *thumbItem = new QStandardItem();
         thumbItem->setData(false, LoadedRole);
@@ -872,7 +899,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
                 break;
         }
 
-        thumbFileInfo = thumbFileInfoList.at(currThumb);
+        QFileInfo thumbFileInfo = thumbFileInfoList.at(currThumb);
 
         bool nameMatch = filterTokens.isEmpty();
         const QString &fn = thumbFileInfo.fileName();
@@ -1409,7 +1436,8 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
 QStandardItem * ThumbsViewer::addThumb(const QString &imageFullPath) {
 
     Metadata::cache(imageFullPath);
-    if (imageTags->dirFilteringActive && imageTags->isImageFilteredOut(imageFullPath)) {
+    emit filesAdded(QStringList() << imageFullPath);
+    if (!matchesTagFilter(imageFullPath)) {
         return nullptr;
     }
 
@@ -1418,7 +1446,7 @@ QStandardItem * ThumbsViewer::addThumb(const QString &imageFullPath) {
     QSize hintSize = itemSizeHint();
     QSize currThumbSize;
 
-    thumbFileInfo = QFileInfo(imageFullPath);
+    QFileInfo thumbFileInfo = QFileInfo(imageFullPath);
     thumbItem->setData(true, LoadedRole);
     thumbItem->setData(0, SortRole);
     thumbItem->setData(thumbFileInfo.size(), SizeRole);

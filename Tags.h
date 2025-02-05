@@ -50,14 +50,12 @@ public:
 
     QTreeWidgetItem* addTag(QString tagName, bool tagChecked, TagIcon icon);
     void addTagsFor(const QStringList &files);
-    bool isImageFilteredOut(QString imagePath);
     void populateTagsTree();
     void removeTransientTags();
     void showTagsFilter();
 
     /// @todo - detangle this
     QTreeWidget *tagsTree; // phototonic.cpp
-    bool dirFilteringActive; // thumbsview.cpp
     TagsDisplayMode currentDisplayMode; // thumbsview.cpp
 
 public slots:
@@ -69,19 +67,18 @@ protected:
 private:
     bool writeTagsToImage(QString &imageFileName, const QSet<QString> &tags);
 
-    QSet<QString> getCheckedTags(Qt::CheckState tagState);
+    QStringList getCheckedTags(Qt::CheckState tagState);
 
     void setTagIcon(QTreeWidgetItem *tagItem, TagIcon icon);
 
     void setActiveViewMode(TagsDisplayMode mode);
 
-    void applyUserAction(QTreeWidgetItem *item);
-
     void applyUserAction(QList<QTreeWidgetItem *> tagsList);
 
     void sortTags();
 
-    QSet<QString> imageFilteringTags;
+    QStringList m_mandatoryFilterTags;
+    QStringList m_sufficientFilterTags;
     QAction *actionAddTag;
     QAction *addToSelectionAction;
     QAction *removeFromSelectionAction;
@@ -104,15 +101,12 @@ private slots:
     void applyTagFiltering();
     void clearTagFilters();
     void learnTags();
-    void negateFilter();
     void removeTags();
     void removeTagsFromSelection();
-    void saveLastChangedTag(QTreeWidgetItem *item, int column);
     void showMenu(QPoint point);
-    void tagClicked(QTreeWidgetItem *item, int column);
 
 signals:
-    void reloadThumbs();
+    void filterChanged(const QStringList &mandatory, const QStringList &sufficient, bool invert);
 
 };
 

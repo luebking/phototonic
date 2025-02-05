@@ -1285,7 +1285,11 @@ void Phototonic::createImageTagsDock() {
             Settings::tagsDockVisible = visible;
         }
     });
-    connect(thumbsViewer->imageTags, SIGNAL(reloadThumbs()), this, SLOT(reloadThumbs()));
+    connect(thumbsViewer->imageTags, &ImageTags::filterChanged, this,
+        [=](const QStringList &mandatory, const QStringList &sufficient, bool invert) {
+            thumbsViewer->setTagFilters(mandatory, sufficient, invert);
+            reload();
+    });
     connect(thumbsViewer, &ThumbsViewer::filesAdded, thumbsViewer->imageTags, &ImageTags::addTagsFor);
     thumbsViewer->imageTags->populateTagsTree();
 }

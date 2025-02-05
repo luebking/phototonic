@@ -115,6 +115,12 @@ public:
     void setNeedToScroll(bool needToScroll);
     void setResizeEnabled(bool resize) { m_resize = resize; }
 
+    void setTagFilters(const QStringList &mandatory, const QStringList &sufficient, bool invert) {
+        m_mandatoryFilterTags = mandatory;
+        m_sufficientFilterTags = sufficient;
+        m_invertTagFilter = invert;
+    }
+
     void selectCurrentIndex();
 
     QStandardItem *addThumb(const QString &imageFullPath);
@@ -161,6 +167,7 @@ protected:
 
 private:
     bool isConstrained(const QFileInfo &fileInfo) const;
+    bool matchesTagFilter(const QString &path) const;
     void initThumbs();
 
     bool loadThumb(int row, bool fastOnly = false);
@@ -176,7 +183,6 @@ private:
     QString thumbnailFileName(const QString &path) const;
     void storeThumbnail(const QString &originalPath, QImage thumbnail, const QSize &originalSize) const;
 
-    QFileInfo thumbFileInfo;
     QFileInfoList thumbFileInfoList;
     QList<Histogram> histograms;
     QList<QString> histFiles;
@@ -194,6 +200,9 @@ private:
     QTimer m_loadThumbTimer;
     QString m_filter;
     QList<Constraint> m_constraints;
+    QStringList m_mandatoryFilterTags;
+    QStringList m_sufficientFilterTags;
+    bool m_invertTagFilter;
     bool m_busy;
     bool m_resize;
     QStandardItemModel *m_model;
