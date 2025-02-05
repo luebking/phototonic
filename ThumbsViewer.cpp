@@ -1497,6 +1497,7 @@ void ThumbsViewer::resizeEvent(QResizeEvent *event) {
     QListView::resizeEvent(event);
     if (Settings::thumbsLayout == Classic)
         setGridSize(QSize(dynamicGridWidth(), gridSize().height()));
+    scrollTo(currentIndex());
     m_loadThumbTimer.start();
 }
 
