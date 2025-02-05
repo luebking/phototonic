@@ -48,7 +48,7 @@ Q_OBJECT
 public:
     ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer);
 
-    void addTag(QString tagName, bool tagChecked, TagIcon icon);
+    QTreeWidgetItem* addTag(QString tagName, bool tagChecked, TagIcon icon);
     void addTagsFor(const QStringList &files);
     bool isImageFilteredOut(QString imagePath);
     void populateTagsTree();
