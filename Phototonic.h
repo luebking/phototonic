@@ -24,6 +24,7 @@ class ColorsDialog;
 class CopyMoveToDialog;
 class FileListWidget;
 class FileSystemTree;
+class ImageTags;
 class ImageViewer;
 class InfoView;
 class SettingsDialog;
@@ -332,6 +333,7 @@ private:
     int m_thumbSizeDelta;
     bool m_logHistogram;
     int m_editSteps;
+    ImageTags *m_imageTags;
 
     QPointer<ColorsDialog> colorsDialog;
 

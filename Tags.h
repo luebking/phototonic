@@ -20,7 +20,6 @@
 #define TAGS_H
 
 class QTabBar;
-class ThumbsViewer;
 class QTreeWidget;
 class QTreeWidgetItem;
 
@@ -46,7 +45,7 @@ class ImageTags : public QWidget {
 Q_OBJECT
 
 public:
-    ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer);
+    ImageTags(QWidget *parent);
 
     QTreeWidgetItem* addTag(QString tagName, bool tagChecked, TagIcon icon);
     void addTagsFor(const QStringList &files);
@@ -55,8 +54,7 @@ public:
     void showTagsFilter();
 
     /// @todo - detangle this
-    QTreeWidget *tagsTree; // phototonic.cpp
-    TagsDisplayMode currentDisplayMode; // thumbsview.cpp
+    TagsDisplayMode currentDisplayMode; // phototonic.cpp
 
 public slots:
     void setSelectedFiles(const QStringList &files);
@@ -66,14 +64,10 @@ protected:
     void showEvent(QShowEvent *event) override;
 
 private:
-    QStringList getCheckedTags(Qt::CheckState tagState);
-
-    void setTagIcon(QTreeWidgetItem *tagItem, TagIcon icon);
-
-    void setActiveViewMode(TagsDisplayMode mode);
-
     void applyUserAction(QList<QTreeWidgetItem *> tagsList);
-
+    QStringList getCheckedTags(Qt::CheckState tagState);
+    void setActiveViewMode(TagsDisplayMode mode);
+    void setTagIcon(QTreeWidgetItem *tagItem, TagIcon icon);
     void sortTags();
 
     QStringList m_selectedFiles;
@@ -87,15 +81,13 @@ private:
     QAction *learnTagAction;
     QAction *removeTagAction;
     QTreeWidgetItem *lastChangedTagItem;
-    ThumbsViewer *thumbView;
     QTabBar *tabs;
-    bool negateFilterEnabled;
     QMenu *tagsMenu;
+    QTreeWidget *tagsTree;
     bool m_populated;
     bool m_needToSort;
 
 private slots:
-
     void addNewTag();
     void addTagsToSelection();
     void applyTagFiltering();

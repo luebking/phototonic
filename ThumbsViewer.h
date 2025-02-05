@@ -19,8 +19,6 @@
 #ifndef THUMBS_VIEWER_H
 #define THUMBS_VIEWER_H
 
-class ImageTags;
-
 class QStandardItem;
 class QStandardItemModel;
 
@@ -148,8 +146,6 @@ public:
     QImage renderHistogram(const QString &imagePath, bool logarithmic = false);
     QString locateThumbnail(const QString &path) const;
     bool isBusy() { return m_busy; }
-
-    ImageTags *imageTags;
     QDir thumbsDir;
     QDir::SortFlags thumbsSortFlags;
     int thumbSize;

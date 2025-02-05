@@ -33,11 +33,10 @@
 #include "MetadataCache.h"
 #include "Settings.h"
 #include "Tags.h"
-#include "ThumbsViewer.h"
 
 enum { NewTag = Qt::UserRole + 1, InScope };
 
-ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer) : QWidget(parent) {
+ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
     m_populated = false;
     m_needToSort =false;
 
@@ -47,7 +46,6 @@ ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer) : QWidget(pare
     tagsTree->setSortingEnabled(true);
     tagsTree->header()->close();
     tagsTree->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    this->thumbView = thumbsViewer;
 
     tabs = new QTabBar(this);
     tabs->addTab(tr("Selection"));

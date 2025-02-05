@@ -1275,28 +1275,28 @@ void Phototonic::createImageTagsDock() {
     //: tags are image metadata
     tagsDock = new QDockWidget(tr("Tags"), this);
     tagsDock->setObjectName("Tags");
-    thumbsViewer->imageTags = new ImageTags(tagsDock, thumbsViewer);
-    tagsDock->setWidget(thumbsViewer->imageTags);
+    m_imageTags = new ImageTags(tagsDock);
+    tagsDock->setWidget(m_imageTags);
 
     connect(tagsDock, &QDockWidget::visibilityChanged, [=](bool visible) {
         if (Settings::layoutMode != ImageViewWidget) {
             Settings::tagsDockVisible = visible;
         }
     });
-    connect(thumbsViewer->imageTags, &ImageTags::filterChanged, this,
+    connect(m_imageTags, &ImageTags::filterChanged, this,
         [=](const QStringList &mandatory, const QStringList &sufficient, bool invert) {
             thumbsViewer->setTagFilters(mandatory, sufficient, invert);
             reload();
     });
-    connect(thumbsViewer->imageTags, &ImageTags::tagRequest, thumbsViewer, &ThumbsViewer::tagSelected);
+    connect(m_imageTags, &ImageTags::tagRequest, thumbsViewer, &ThumbsViewer::tagSelected);
 
-    connect(thumbsViewer, &ThumbsViewer::filesAdded, thumbsViewer->imageTags, &ImageTags::addTagsFor);
+    connect(thumbsViewer, &ThumbsViewer::filesAdded, m_imageTags, &ImageTags::addTagsFor);
 
-    connect(thumbsViewer, &ThumbsViewer::selectionChanged, thumbsViewer->imageTags, [=]() {
-        thumbsViewer->imageTags->setSelectedFiles(thumbsViewer->selectedFiles());
+    connect(thumbsViewer, &ThumbsViewer::selectionChanged, m_imageTags, [=]() {
+        m_imageTags->setSelectedFiles(thumbsViewer->selectedFiles());
     });
 
-    thumbsViewer->imageTags->populateTagsTree();
+    m_imageTags->populateTagsTree();
 }
 
 void Phototonic::sortThumbnails() {
@@ -3173,7 +3173,7 @@ void Phototonic::reloadThumbs() {
         setThumbsViewerWindowTitle();
     }
 
-    thumbsViewer->imageTags->removeTransientTags();
+    m_imageTags->removeTransientTags();
 
     if (findDupesAction->isChecked()) {
         const bool actionEnabled[5] = { goBackAction->isEnabled(), goFrwdAction->isEnabled(), 
@@ -3381,8 +3381,8 @@ void Phototonic::removeMetadata() {
                 msgBox.critical(tr("Error"), tr("Failed to remove Exif metadata."));
         }
 
-        if (thumbsViewer->imageTags->currentDisplayMode == SelectionTagsDisplay)
-            thumbsViewer->imageTags->showSelectedImagesTags();
+        if (m_imageTags->currentDisplayMode == SelectionTagsDisplay)
+            m_imageTags->showSelectedImagesTags();
         setStatus(tr("Metadata removed from selected images"));
     }
 }
@@ -3661,7 +3661,7 @@ void Phototonic::setInterfaceEnabled(bool enable) {
     thumbsViewer->setEnabled(enable);
     fileSystemTree->setEnabled(enable);
     bookmarks->setEnabled(enable);
-    thumbsViewer->imageTags->setEnabled(enable);
+    m_imageTags->setEnabled(enable);
     myMainToolBar->setEnabled(enable);
     interfaceDisabled = !enable;
 
