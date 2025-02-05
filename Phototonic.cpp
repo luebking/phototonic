@@ -1284,9 +1284,10 @@ void Phototonic::createImageTagsDock() {
         if (Settings::layoutMode != ImageViewWidget) {
             Settings::tagsDockVisible = visible;
         }
-        QTimer::singleShot(500, this, [=]() { if (tagsDock->isVisible()) thumbsViewer->imageTags->populateTagsTree(); });
     });
     connect(thumbsViewer->imageTags, SIGNAL(reloadThumbs()), this, SLOT(reloadThumbs()));
+    connect(thumbsViewer, &ThumbsViewer::filesAdded, thumbsViewer->imageTags, &ImageTags::addTagsFor);
+    thumbsViewer->imageTags->populateTagsTree();
 }
 
 void Phototonic::sortThumbnails() {
@@ -3202,8 +3203,6 @@ void Phototonic::reloadThumbs() {
     QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
     for (int i = 0; i < thumbModel->rowCount(); ++i)
         files << thumbModel->item(i)->data(ThumbsViewer::FileNameRole).toString();
-    std::sort(files.begin(), files.end()); // help out the tagviewer since QTW is slow af at sorting
-    thumbsViewer->imageTags->addTagsFor(files);
 }
 
 void Phototonic::setImageViewerWindowTitle() {

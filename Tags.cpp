@@ -24,6 +24,7 @@
 #include <QLineEdit>
 #include <QMenu>
 #include <QTabBar>
+#include <QTimer>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <QTreeWidgetItemIterator>
@@ -41,6 +42,8 @@ int NewTagRole = Qt::UserRole + 1;
 
 ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer) : QWidget(parent) {
     m_populated = false;
+    m_needToSort =false;
+
     tagsTree = new QTreeWidget;
     tagsTree->setColumnCount(2);
     tagsTree->setDragEnabled(false);
@@ -113,18 +116,37 @@ ImageTags::ImageTags(QWidget *parent, ThumbsViewer *thumbsViewer) : QWidget(pare
     tagsMenu->addAction(negateAction);
 }
 
-void ImageTags::redrawTagTree() {
-    tagsTree->resizeColumnToContents(0);
-    tagsTree->sortItems(0, Qt::AscendingOrder);
+void ImageTags::sortTags() {
+    if (!isVisible()) {
+        m_needToSort = true;
+        return; // the below is slow AF for large lists
+    }
+    static QTimer *bouncer = nullptr;
+    if (!bouncer) {
+        bouncer = new QTimer(this);
+        bouncer->setSingleShot(true);
+        bouncer->setInterval(250);
+        connect (bouncer, &QTimer::timeout, this, [=]() {
+            tagsTree->resizeColumnToContents(0);
+            tagsTree->sortItems(0, Qt::AscendingOrder);
+        });
+    }
+    bouncer->start();
 }
 
 void ImageTags::showMenu(QPoint point) {
     QTreeWidgetItem *item = tagsTree->itemAt(point);
     addToSelectionAction->setEnabled(bool(item));
     removeFromSelectionAction->setEnabled(bool(item));
-    removeTagAction->setEnabled(bool(item));
+    removeTagAction->setEnabled(item && !item->data(0, NewTagRole).toBool());
     learnTagAction->setEnabled(item && item->data(0, NewTagRole).toBool());
     tagsMenu->popup(tagsTree->viewport()->mapToGlobal(point));
+}
+
+void ImageTags::showEvent(QShowEvent *event) {
+    QWidget::showEvent(event);
+    if (m_needToSort)
+        sortTags();
 }
 
 void ImageTags::setTagIcon(QTreeWidgetItem *tagItem, TagIcon icon) {
@@ -181,7 +203,7 @@ void ImageTags::addTagsFor(const QStringList &files) {
         }
     }
     if (dunnit)
-        redrawTagTree();
+        sortTags();
 }
 
 bool ImageTags::writeTagsToImage(QString &imageFileName, const QSet<QString> &newTags) {
@@ -247,8 +269,10 @@ bool ImageTags::writeTagsToImage(QString &imageFileName, const QSet<QString> &ne
 
 void ImageTags::showSelectedImagesTags() {
     static bool busy = false;
-    if (busy)
+    if (busy) {
+        qDebug() << "meek: showSelectedImagesTags recursion";
         return;
+    }
     busy = true;
     QStringList selectedThumbs = thumbView->getSelectedThumbsList();
 
@@ -263,6 +287,7 @@ void ImageTags::showSelectedImagesTags() {
             tagsCount[imageTag]++;
 
             if (tagsTree->findItems(imageTag, Qt::MatchExactly).isEmpty()) {
+                qDebug() << "meek: why is there an unknown tag during the selection?";
                 addTag(imageTag, true, TagIconNew);
             }
         }
@@ -307,14 +332,16 @@ void ImageTags::showSelectedImagesTags() {
     addToSelectionAction->setEnabled(selectedThumbsNum ? true : false);
     removeFromSelectionAction->setEnabled(selectedThumbsNum ? true : false);
 
-//    redrawTagTree();
+//    sortTags(); // see above meek
     busy = false;
 }
 
 void ImageTags::showTagsFilter() {
     static bool busy = false;
-    if (busy)
+    if (busy) {
+        qDebug() << "showTagsFilter recursion";
         return;
+    }
     busy = true;
 
     setActiveViewMode(DirectoryTagsDisplay);
@@ -334,7 +361,7 @@ void ImageTags::showTagsFilter() {
         ++it;
     }
 
-    redrawTagTree();
+    sortTags();
     busy = false;
 }
 
@@ -353,7 +380,7 @@ void ImageTags::populateTagsTree() {
     for (const QString &tag : list)
         addTag(tag, false, TagIconDisabled);
 
-    /// this calls redrawTagTree and that resizes the column what's first gonna be slow stil :(
+    /// this calls sortTags and that resizes the column what's first gonna be slow stil :(
     if (currentDisplayMode == SelectionTagsDisplay) {
         showSelectedImagesTags();
     } else {
@@ -387,10 +414,6 @@ bool ImageTags::isImageFilteredOut(QString imageFileName) {
     return !negateFilterEnabled;
 }
 
-void ImageTags::resetTagsState() {
-    tagsTree->clear();
-    Metadata::dropCache();
-}
 
 QSet<QString> ImageTags::getCheckedTags(Qt::CheckState tagState) {
     QSet<QString> checkedTags;
@@ -540,7 +563,7 @@ void ImageTags::addNewTag() {
 
     addTag(newTagName, false, TagIconDisabled);
     Settings::knownTags.insert(newTagName);
-    redrawTagTree();
+    sortTags();
 }
 
 void ImageTags::removeTags() {

@@ -149,6 +149,7 @@ public:
     int thumbSize;
 
 signals:
+    void filesAdded(const QStringList &files);
     void status(QString s);
     void progress(unsigned int current, unsigned int total);
     void currentIndexChanged(const QModelIndex &current);

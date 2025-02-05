@@ -53,7 +53,6 @@ public:
     bool isImageFilteredOut(QString imagePath);
     void populateTagsTree();
     void removeTransientTags();
-    void resetTagsState();
     void showTagsFilter();
 
     /// @todo - detangle this
@@ -63,6 +62,9 @@ public:
 
 public slots:
     void showSelectedImagesTags();
+
+protected:
+    void showEvent(QShowEvent *event) override;
 
 private:
     bool writeTagsToImage(QString &imageFileName, const QSet<QString> &tags);
@@ -77,7 +79,7 @@ private:
 
     void applyUserAction(QList<QTreeWidgetItem *> tagsList);
 
-    void redrawTagTree();
+    void sortTags();
 
     QSet<QString> imageFilteringTags;
     QAction *actionAddTag;
@@ -93,6 +95,7 @@ private:
     bool negateFilterEnabled;
     QMenu *tagsMenu;
     bool m_populated;
+    bool m_needToSort;
 
 private slots:
 

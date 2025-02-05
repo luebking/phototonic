@@ -367,9 +367,7 @@ void ThumbsViewer::loadFileList() {
         addThumb(Settings::filesList.at(i));
     }
     updateThumbsCount();
-
-    if (imageTags->isVisible())
-        QTimer::singleShot(500, this, [=]() { if (imageTags->isVisible()) imageTags->populateTagsTree(); });
+    emit filesAdded(Settings::filesList);
 
     if (!m_desiredThumbPath.isEmpty()) {
         setCurrentIndex(m_desiredThumbPath);
@@ -662,8 +660,9 @@ void ThumbsViewer::loadPrepare() {
 
     thumbsRangeFirst = -1;
     thumbsRangeLast = -1;
-    /// @todo why does this get reset whenever the thumbview updates?
-//    imageTags->resetTagsState();
+
+    // memory management - important?
+    // Metadata::dropCache();
 }
 
 void ThumbsViewer::refreshThumbs() {
@@ -770,6 +769,7 @@ void ThumbsViewer::initThumbs() {
 
     QSize hintSize = itemSizeHint();
 
+    QStringList pathList;;
     QElapsedTimer timer;
     timer.start();
 //    int totalTime = 0;
@@ -778,12 +778,15 @@ void ThumbsViewer::initThumbs() {
         thumbFileInfo = thumbFileInfoList.at(fileIndex);
 
         Metadata::cache(thumbFileInfo.filePath());
-        if (imageTags->dirFilteringActive && imageTags->isImageFilteredOut(thumbFileInfo.filePath())) {
-            continue;
-        }
 
         if (isConstrained(thumbFileInfo))
             continue;
+
+        pathList << thumbFileInfo.filePath();
+
+        if (imageTags->dirFilteringActive && imageTags->isImageFilteredOut(thumbFileInfo.filePath())) {
+            continue;
+        }
 
         QStandardItem *thumbItem = new QStandardItem();
         thumbItem->setData(false, LoadedRole);
@@ -806,6 +809,7 @@ void ThumbsViewer::initThumbs() {
         m_model->appendRow(thumbItem);
 
         if (timer.elapsed() > 30) {
+            emit filesAdded(pathList);
             QApplication::processEvents();
             /** @todo: nice idea, but doesn't work
             totalTime += timer.elapsed();
@@ -814,12 +818,10 @@ void ThumbsViewer::initThumbs() {
                 totalTime = INT_MIN; // so don't time out again.
             }
             */
+            pathList.clear();
             timer.restart();
         }
     }
-
-    if (imageTags->isVisible())
-        QTimer::singleShot(500, this, [=]() { if (imageTags->isVisible()) imageTags->populateTagsTree(); });
 
     if (!m_desiredThumbPath.isEmpty()) {
         setCurrentIndex(m_desiredThumbPath);
@@ -828,6 +830,7 @@ void ThumbsViewer::initThumbs() {
     } else if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
         setCurrentIndex(0);
     }
+    emit filesAdded(pathList);
 }
 
 void ThumbsViewer::updateThumbsCount() {
