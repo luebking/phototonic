@@ -113,6 +113,7 @@ public:
     bool setCurrentIndex(int row);
 
     void setNeedToScroll(bool needToScroll);
+    void setResizeEnabled(bool resize) { m_resize = resize; }
 
     void selectCurrentIndex();
 
@@ -193,6 +194,7 @@ private:
     QString m_filter;
     QList<Constraint> m_constraints;
     bool m_busy;
+    bool m_resize;
     QStandardItemModel *m_model;
     QString m_desiredThumbPath;
 

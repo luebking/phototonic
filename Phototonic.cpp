@@ -2820,7 +2820,7 @@ void Phototonic::showViewer() {
         Settings::layoutMode = ImageViewWidget;
 //        Settings::setValue("Geometry", saveGeometry());
 //        Settings::setValue("WindowState", saveState());
-
+        thumbsViewer->setResizeEnabled(false);
         stackedLayout->addWidget(imageViewer);
         stackedLayout->setCurrentWidget(imageViewer);
         setDocksVisibility(false);
@@ -2981,6 +2981,8 @@ void Phototonic::hideViewer() {
     stackedLayout->setCurrentWidget(thumbsViewer);
 
     setDocksVisibility(true);
+    thumbsViewer->setResizeEnabled(true);
+
     while (QApplication::overrideCursor()) {
         QApplication::restoreOverrideCursor();
     }

@@ -48,6 +48,7 @@
 
 ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
     m_busy = false;
+    m_resize = true;
     Settings::thumbsBackgroundColor = Settings::value(Settings::optionThumbsBackgroundColor).value<QColor>();
     Settings::thumbsTextColor = Settings::value(Settings::optionThumbsTextColor).value<QColor>();
     setThumbColors();
@@ -1491,6 +1492,8 @@ int ThumbsViewer::dynamicGridWidth() {
 }
 
 void ThumbsViewer::resizeEvent(QResizeEvent *event) {
+    if (!m_resize)
+        return;
     QListView::resizeEvent(event);
     if (Settings::thumbsLayout == Classic)
         setGridSize(QSize(dynamicGridWidth(), gridSize().height()));
