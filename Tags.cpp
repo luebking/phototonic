@@ -207,7 +207,9 @@ void ImageTags::addTagsFor(const QStringList &files) {
         for (auto tag = tags.cbegin(), end = tags.cend(); tag != end; ++tag) {
             QList <QTreeWidgetItem*> present = tagsTree->findItems(*tag, Qt::MatchExactly);
             if (present.isEmpty()) {
-                addTag(*tag, false, TagIconNew)->setData(0, InScope, true);
+                QTreeWidgetItem *item = addTag(*tag, false, TagIconNew);
+                item->setData(0, NewTag, true);
+                item->setData(0, InScope, true);
                 dunnit = true;
             } else {
                 for (QTreeWidgetItem *item : present)
@@ -319,7 +321,7 @@ void ImageTags::showTagsFilter() {
         if (m_mandatoryFilterTags.contains(tagName)) {
             (*it)->setCheckState(0, Qt::Checked);
             setTagIcon(*it, negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled);
-        } if (m_sufficientFilterTags.contains(tagName)) {
+        } else if (m_sufficientFilterTags.contains(tagName)) {
             (*it)->setCheckState(0, Qt::PartiallyChecked);
             setTagIcon(*it, negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled);
         } else {
