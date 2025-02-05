@@ -75,9 +75,9 @@ ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
     m_model->setSortRole(SortRole);
     setModel(m_model);
 
-    m_selectionChangedTimer.setInterval(10);
+    m_selectionChangedTimer.setInterval(100);
     m_selectionChangedTimer.setSingleShot(true);
-    connect(&m_selectionChangedTimer, &QTimer::timeout, this, &ThumbsViewer::onSelectionChanged);
+    connect(&m_selectionChangedTimer, &QTimer::timeout, this, &ThumbsViewer::promoteSelectionChange);
     connect(this->selectionModel(), &QItemSelectionModel::selectionChanged, this, [=]() {
         if (!m_selectionChangedTimer.isActive()) {
             m_selectionChangedTimer.start();
@@ -176,38 +176,23 @@ void ThumbsViewer::currentChanged(const QModelIndex &current, const QModelIndex 
     emit currentIndexChanged(current);
 }
 
-void ThumbsViewer::onSelectionChanged() {
-    if (Settings::setWindowIcon) {
-        window()->setWindowIcon(QApplication::windowIcon());
-    }
-
-    QModelIndexList indexesList = selectionModel()->selectedIndexes();
+void ThumbsViewer::promoteSelectionChange() {
+    const QModelIndexList indexesList = selectionModel()->selectedIndexes();
     int selectedThumbs = indexesList.size();
-    if (selectedThumbs > 0) {
-        int currentRow = indexesList.first().row();
-        QString thumbFullPath = m_model->item(currentRow)->data(FileNameRole).toString();
 
-        if (Settings::setWindowIcon) {
-            window()->setWindowIcon(m_model->item(currentRow)->icon().pixmap(WINDOW_ICON_SIZE));
-        }
+    if (Settings::setWindowIcon) {
+        if (selectedThumbs > 0)
+            window()->setWindowIcon(m_model->item(indexesList.first().row())->icon().pixmap(WINDOW_ICON_SIZE));
+        else
+            window()->setWindowIcon(QApplication::windowIcon());
     }
 
-    if (imageTags->isVisible() && imageTags->currentDisplayMode == SelectionTagsDisplay) {
-        static QTimer *tagSelectionUpdateTimer = nullptr;
-        if (!tagSelectionUpdateTimer) {
-            tagSelectionUpdateTimer = new QTimer(this);
-            tagSelectionUpdateTimer->setSingleShot(true);
-            tagSelectionUpdateTimer->setInterval(125);
-            connect(tagSelectionUpdateTimer, &QTimer::timeout, imageTags, &ImageTags::showSelectedImagesTags);
-        }
-        tagSelectionUpdateTimer->start();
-    }
+    emit selectionChanged(indexesList.size());
 
-    if (selectedThumbs >= 1) {
-        emit status(tr("Selected %1 of %n image(s)", "", m_model->rowCount()).arg(QString::number(selectedThumbs)));
-    } else if (!selectedThumbs) {
+    if (!selectedThumbs)
         updateThumbsCount();
-    }
+    else
+        emit status(tr("Selected %1 of %n image(s)", "", m_model->rowCount()).arg(QString::number(selectedThumbs)));
 }
 
 QStringList ThumbsViewer::selectedFiles() const {
@@ -224,7 +209,7 @@ void ThumbsViewer::tagSelected(const QStringList &tagsAdded, const QStringList &
 
     QStringList files = selectedFiles();
     QElapsedTimer timer;
-    int totalTime;
+    int totalTime = 0;
     timer.start();
     for (int i = 0; i < files.size(); ++i) {
 
@@ -481,7 +466,7 @@ void ThumbsViewer::loadSubDirectories() {
         }
     }
 
-    onSelectionChanged();
+    promoteSelectionChange();
 }
 
 bool ThumbsViewer::setFilter(const QString &filter, QString *error) {

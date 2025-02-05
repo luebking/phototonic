@@ -59,6 +59,7 @@ public:
     TagsDisplayMode currentDisplayMode; // thumbsview.cpp
 
 public slots:
+    void setSelectedFiles(const QStringList &files);
     void showSelectedImagesTags();
 
 protected:
@@ -75,6 +76,7 @@ private:
 
     void sortTags();
 
+    QStringList m_selectedFiles;
     QStringList m_mandatoryFilterTags;
     QStringList m_sufficientFilterTags;
     QAction *actionAddTag;

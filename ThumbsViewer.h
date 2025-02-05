@@ -155,10 +155,11 @@ public:
     int thumbSize;
 
 signals:
-    void filesAdded(const QStringList &files);
-    void status(QString s);
-    void progress(unsigned int current, unsigned int total);
     void currentIndexChanged(const QModelIndex &current);
+    void filesAdded(const QStringList &files);
+    void progress(unsigned int current, unsigned int total);
+    void status(QString s);
+    void selectionChanged(int count);
 
 protected:
     void startDrag(Qt::DropActions) override;
@@ -211,7 +212,7 @@ private:
 public slots:
     void invertSelection();
     void loadVisibleThumbs(int scrollBarValue = 0);
-    void onSelectionChanged();
+    void promoteSelectionChange();
     void tagSelected(const QStringList &tagsAdded, const QStringList &tagsRemoved) const;
 
 protected slots:

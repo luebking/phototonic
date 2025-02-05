@@ -1291,6 +1291,11 @@ void Phototonic::createImageTagsDock() {
     connect(thumbsViewer->imageTags, &ImageTags::tagRequest, thumbsViewer, &ThumbsViewer::tagSelected);
 
     connect(thumbsViewer, &ThumbsViewer::filesAdded, thumbsViewer->imageTags, &ImageTags::addTagsFor);
+
+    connect(thumbsViewer, &ThumbsViewer::selectionChanged, thumbsViewer->imageTags, [=]() {
+        thumbsViewer->imageTags->setSelectedFiles(thumbsViewer->selectedFiles());
+    });
+
     thumbsViewer->imageTags->populateTagsTree();
 }
 
@@ -3376,7 +3381,8 @@ void Phototonic::removeMetadata() {
                 msgBox.critical(tr("Error"), tr("Failed to remove Exif metadata."));
         }
 
-        thumbsViewer->imageTags->showSelectedImagesTags();
+        if (thumbsViewer->imageTags->currentDisplayMode == SelectionTagsDisplay)
+            thumbsViewer->imageTags->showSelectedImagesTags();
         setStatus(tr("Metadata removed from selected images"));
     }
 }

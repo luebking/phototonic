@@ -221,6 +221,12 @@ void ImageTags::addTagsFor(const QStringList &files) {
         sortTags();
 }
 
+void ImageTags::setSelectedFiles(const QStringList &files) {
+    m_selectedFiles = files;
+    if (isVisible() && currentDisplayMode == SelectionTagsDisplay)
+        showSelectedImagesTags();
+}
+
 void ImageTags::showSelectedImagesTags() {
     static bool busy = false;
     if (busy) {
@@ -228,7 +234,7 @@ void ImageTags::showSelectedImagesTags() {
         return;
     }
     busy = true;
-    QStringList selectedThumbs = thumbView->selectedFiles();
+    QStringList selectedThumbs = m_selectedFiles;
 
     setActiveViewMode(SelectionTagsDisplay);
 
