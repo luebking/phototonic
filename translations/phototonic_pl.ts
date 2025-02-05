@@ -625,7 +625,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="983"/>
         <source>Doubleclick to crop, right click to abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Kliknij dwukrotnie, aby przyciąć, kliknij prawym przyciskiem myszy, aby przerwać</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1127"/>
@@ -1121,12 +1121,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="380"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Przytnij</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="381"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz obszar przycinania za pomocą kombinacji klawisz Ctrl + lewy przycisk myszy</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="447"/>
@@ -2092,7 +2092,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1767"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Określ obszar przycinania&lt;/h3&gt;&lt;p&gt;Otwórz obraz, ewentualnie obróć go.&lt;br&gt;Następnie naciśnij i przytrzymaj klawisz Ctrl, aby zaznaczyć prostokąt przycinania.&lt;br&gt;&lt;b&gt;Nie&lt;/b&gt; stosuj przycinania, klikając dwukrotnie zaznaczenie!&lt;br&gt;Jeśli nie używasz podglądu, zamknij przeglądarkę.&lt;/p&gt;Teraz możesz powtórzyć czynność na wielu obrazach.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1871"/>

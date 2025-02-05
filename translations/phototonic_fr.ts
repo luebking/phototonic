@@ -630,7 +630,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="703"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h1&gt;Avertissement&lt;/h1&gt;Les dimensions de l&apos;image %1x%2 dépassent les limites&lt;br&gt;Image redimensionnée à %3x%4&lt;br&gt;&lt;h3&gt;L&apos;application des modifications entraînera la sauvegarde de l&apos;image redimensionnée!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="973"/>
@@ -644,7 +644,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="983"/>
         <source>Doubleclick to crop, right click to abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Double-clic pour recadrer, clic-droit pour annuler</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1127"/>
@@ -1437,12 +1437,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="380"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Recadrer</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="381"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner la zone à recadrer avec Ctrl + clic gauche</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="383"/>
@@ -2191,7 +2191,7 @@
         <location filename="../Phototonic.cpp" line="1076"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation>&lt;h2&gt;[sous-chaînes] [/ critère [/ autre critère]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt&#x202f;; 5d &amp;lt&#x202f;; 1M / &amp;lt&#x202f;; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, remonte à 5 jours de plus mais est plus récent qu&apos;un mois - ou moins de 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus gros que/Après&#x202f;: &amp;gt&#x202f;;&lt;/li&gt;&lt;li&gt;Plus léger que/Avant&#x202f;: &amp;lt&#x202f;;&lt;/li&gt;&lt;li&gt;L&apos;âge exact ou le poids (arrondi) est sinon implicite ou explicite avec&#x202f;: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (YYYY-MM-DD) ou relatives (5m&#x202f;:h&#x202f;:d&#x202f;:w&#x202f;:M&#x202f;:y)&lt;/li&gt;&lt;li&gt;Les poids sont définis avec 4kB&#x202f;:MB&#x202f;:GB ou 4MP (méga-pixel)&lt;/li&gt;&lt;li&gt;Les dimensions utilisent le séparateur &quot;x&quot; ([largeur]x[hauteur])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Toutes les unités ignorent la casse sauf m|inute et M|ois&lt;/i&gt;&lt;br&gt;&quot;/&quot; démarre un nouveau groupe de critères, la correspondance de sous-chaînes est facultative.</translation>
+        <translation>&lt;h2&gt;[sous-chaînes] [/ critère [/ autre critère]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt ; 5d &amp;lt ; 1M / &amp;lt ; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, remonte à 5 jours de plus mais est plus récent qu&apos;un mois - ou moins de 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus gros que/Après : &amp;gt ;&lt;/li&gt;&lt;li&gt;Plus léger que/Avant : &amp;lt ;&lt;/li&gt;&lt;li&gt;L&apos;âge exact ou le poids (arrondi) est sinon implicite ou explicite avec : =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (YYYY-MM-DD) ou relatives (5m :h :d :w :M :y)&lt;/li&gt;&lt;li&gt;Les poids sont définis avec 4kB :MB :GB ou 4MP (méga-pixel)&lt;/li&gt;&lt;li&gt;Les dimensions utilisent le séparateur &quot;x&quot; ([largeur]x[hauteur])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Toutes les unités ignorent la casse sauf m|inute et M|ois&lt;/i&gt;&lt;br&gt;&quot;/&quot; démarre un nouveau groupe de critères, la correspondance de sous-chaînes est facultative.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1761"/>
@@ -2207,7 +2207,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1767"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Définir la zone à recadrer&lt;/h3&gt;&lt;p&gt;Ouvrir une image, la pivoter si besoin.&lt;br&gt;Puis maintenir pressée la touche Ctrl pour sélectionner la zone à recadrer.&lt;br&gt;Ne &lt;b&gt;pas&lt;/b&gt; utiliser le double-clic pour confirmer la zone à recadrer!&lt;br&gt;Si l&apos;aperçu activé, quitter la visionneuse.&lt;/p&gt;Si nécessaire, renouveler la manipulation.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1871"/>
