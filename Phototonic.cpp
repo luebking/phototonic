@@ -394,6 +394,7 @@ void Phototonic::createImageViewer() {
     menu->addAction(saveAsAction);
     menu->addAction(renameAction);
     menu->addSeparator();
+    menu->addAction(removeMetadataAction);
     menu->addAction(deleteAction);
     menu->addAction(deletePermanentlyAction);
 
@@ -1023,6 +1024,7 @@ void Phototonic::createMenus() {
     thumbsViewer->addAction(batchTransformAction);
 //    thumbsViewer->addAction(batchSubMenuAction);
     thumbsViewer->addAction("")->setSeparator(true);
+    thumbsViewer->addAction(removeMetadataAction);
     thumbsViewer->addAction(deleteAction);
     thumbsViewer->addAction(deletePermanentlyAction);
     thumbsViewer->setContextMenuPolicy(Qt::ActionsContextMenu);
