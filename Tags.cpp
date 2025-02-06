@@ -210,11 +210,11 @@ void ImageTags::addTagsFor(const QStringList &files) {
             if (present.isEmpty()) {
                 QTreeWidgetItem *item = addTag(*tag, false, TagIconNew);
                 item->setData(0, NewTag, true);
-                item->setData(0, InScope, true);
+                item->setData(0, InScope, 1);
                 dunnit = true;
             } else {
                 for (QTreeWidgetItem *item : present)
-                    item->setData(0, InScope, true);
+                    item->setData(0, InScope, item->data(0, InScope).toInt() + 1);
             }
         }
     }
@@ -419,7 +419,15 @@ void ImageTags::applyUserAction(QList<QTreeWidgetItem *> tagsList) {
             icon = TagIconEnabled;
         setTagIcon(item, icon);
 
-        (tagState == Qt::Checked ? tagsAdded : tagsRemoved) << item->text(0);
+        int scope = item->data(0, NewTag).toInt();
+        if (tagState == Qt::Checked) {
+            tagsAdded << item->text(0);
+            ++scope;
+        } else {
+            tagsRemoved << item->text(0);
+            --scope;
+        }
+        item->setData(0, InScope, qMax(0, scope));
     }
     emit tagRequest(tagsAdded, tagsRemoved);
 }
@@ -522,7 +530,7 @@ void ImageTags::removeTransientTags() {
         if (!item->data(0, NewTag).toBool() ||
             m_mandatoryFilterTags.contains(item->text(0)) ||
             m_sufficientFilterTags.contains(item->text(0))) {
-            item->setData(0, InScope, false);
+            item->setData(0, InScope, 0);
             continue;
         }
         delete tagsTree->takeTopLevelItem(i);
