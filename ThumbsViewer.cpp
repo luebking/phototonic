@@ -424,10 +424,21 @@ void ThumbsViewer::reLoad() {
 
     loadPrepare();
 
+    static QString lastPath;
+
     if (Settings::isFileListLoaded) {
+        if (!lastPath.isEmpty()) {
+            lastPath = QString();
+            Metadata::dropCache();
+        }
         loadFileList();
         m_busy = false;
         return;
+    }
+
+    if (lastPath != Settings::currentDirectory) {
+        lastPath = Settings::currentDirectory;
+        Metadata::dropCache();
     }
 
     applyFilter();
@@ -683,9 +694,6 @@ void ThumbsViewer::loadPrepare() {
 
     thumbsRangeFirst = -1;
     thumbsRangeLast = -1;
-
-    // memory management - important?
-    // Metadata::dropCache();
 }
 
 void ThumbsViewer::refreshThumbs() {
