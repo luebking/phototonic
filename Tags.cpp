@@ -130,6 +130,7 @@ void ImageTags::sortTags() {
         connect (bouncer, &QTimer::timeout, this, [=]() {
             tagsTree->resizeColumnToContents(0);
             tagsTree->sortItems(0, Qt::AscendingOrder);
+            m_needToSort = false;
         });
     }
     bouncer->start();
@@ -255,7 +256,10 @@ void ImageTags::showSelectedImagesTags() {
 
     bool imagesTagged = false, imagesTaggedMixed = false;
     QTreeWidgetItemIterator it(tagsTree);
+    bool needToResize = false;
     while (*it) {
+        if ((*it)->isHidden())
+            needToResize = true;
         (*it)->setHidden(false);
         QString tagName = (*it)->text(0);
         int tagCountTotal = tagsCount.value(tagName, 0);
@@ -294,6 +298,8 @@ void ImageTags::showSelectedImagesTags() {
     addToSelectionAction->setEnabled(selectedThumbsNum ? true : false);
     removeFromSelectionAction->setEnabled(selectedThumbsNum ? true : false);
 
+    if (needToResize)
+        tagsTree->resizeColumnToContents(0);
 //    sortTags(); // see above meek
     busy = false;
 }
