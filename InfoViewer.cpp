@@ -29,9 +29,8 @@
 #include <QStandardItemModel>
 #include <QTableView>
 
+#include "MetadataCache.h"
 #include "InfoViewer.h"
-
-#include <exiv2/exiv2.hpp>
 
 InfoView::InfoView(QWidget *parent) : QWidget(parent) {
 
@@ -190,51 +189,25 @@ void InfoView::read(QString imageFullPath, const QImage &histogram) {
         addEntry(key, val);
     }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-    Exiv2::Image::UniquePtr exifImage;
-#else
-    Exiv2::Image::AutoPtr exifImage;
-#endif
-#pragma clang diagnostic pop
+    QMap<QString, QString> EXIF, IPTC, XMP;
+    Metadata::data(imageFullPath, &EXIF, &IPTC, &XMP);
 
-    try {
-        exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
-        exifImage->readMetadata();
-    }
-    catch (const Exiv2::Error &error) {
-        qWarning() << "EXIV2:" << error.what();
-        return;
-    }
-
-#define EXIV2_ENTRY QString::fromUtf8(md->tagName().c_str()), QString::fromUtf8(md->print().c_str())
-    Exiv2::ExifData &exifData = exifImage->exifData();
-    if (!exifData.empty()) {
-        Exiv2::ExifData::const_iterator end = exifData.end();
+    if (!EXIF.isEmpty()) {
         addTitleEntry("Exif");
-        for (Exiv2::ExifData::const_iterator md = exifData.begin(); md != end; ++md) {
-            addEntry(EXIV2_ENTRY);
-        }
+        for (auto i = EXIF.cbegin(), end = EXIF.cend(); i != end; ++i)
+            addEntry(i.key(), i.value());
     }
-
-    Exiv2::IptcData &iptcData = exifImage->iptcData();
-    if (!iptcData.empty()) {
-        Exiv2::IptcData::iterator end = iptcData.end();
+    if (!IPTC.isEmpty()) {
         addTitleEntry("IPTC");
-        for (Exiv2::IptcData::iterator md = iptcData.begin(); md != end; ++md) {
-            addEntry(EXIV2_ENTRY);
-        }
+        for (auto i = IPTC.cbegin(), end = IPTC.cend(); i != end; ++i)
+            addEntry(i.key(), i.value());
+    }
+    if (!XMP.isEmpty()) {
+        addTitleEntry("XMP");
+        for (auto i = XMP.cbegin(), end = XMP.cend(); i != end; ++i)
+            addEntry(i.key(), i.value());
     }
 
-    Exiv2::XmpData &xmpData = exifImage->xmpData();
-    if (!xmpData.empty()) {
-        Exiv2::XmpData::iterator end = xmpData.end();
-        addTitleEntry("XMP");
-        for (Exiv2::XmpData::iterator md = xmpData.begin(); md != end; ++md) {
-            addEntry(EXIV2_ENTRY);
-        }
-    }
     infoViewerTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     infoViewerTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     filterItems();

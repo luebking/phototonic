@@ -24,6 +24,8 @@
 namespace Metadata {
     bool addTag(const QString &imageFileName, const QString &tagName);
     void cache(const QString &imageFullPath);
+    void data(const QString &imageFullPath, QMap<QString,QString> *EXIF = nullptr,
+              QMap<QString,QString> *IPTC = nullptr, QMap<QString,QString> *XMP = nullptr);
     void dropCache();
     QTransform transformation(const QString &imageFullPath);
     void forget(const QString &imageFileName);
