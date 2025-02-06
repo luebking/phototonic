@@ -1201,8 +1201,6 @@ void ThumbsViewer::scanForSort(UserRoles role) {
 
 void ThumbsViewer::loadThumbsRange() {
     static bool isInProgress = false;
-    static int currentRowCount;
-    int currThumb;
 
     if (isInProgress) {
         isAbortThumbsLoading = true;
@@ -1210,13 +1208,17 @@ void ThumbsViewer::loadThumbsRange() {
         return;
     }
 
+    int currentRowCount = m_model->rowCount();
+    if (!currentRowCount)
+        return;
+
     isInProgress = true;
-    currentRowCount = m_model->rowCount();
 
     QElapsedTimer timer;
     timer.start();
 
     for (bool fastOnly : { true, false }) {
+    int currThumb;
     for (scrolledForward ? currThumb = thumbsRangeFirst : currThumb = thumbsRangeLast;
          (scrolledForward ? currThumb <= thumbsRangeLast : currThumb >= thumbsRangeFirst);
          scrolledForward ? ++currThumb : --currThumb) {
@@ -1224,7 +1226,12 @@ void ThumbsViewer::loadThumbsRange() {
         if (isAbortThumbsLoading || m_model->rowCount() != currentRowCount || currThumb < 0)
             break;
 
-        if (m_model->item(currThumb)->data(LoadedRole).toBool())
+        QStandardItem *item = m_model->item(currThumb);
+        if (!item) {
+            qDebug() << "meek" << m_model->rowCount() << currentRowCount << currThumb << thumbsRangeFirst << thumbsRangeLast << scrolledForward;
+            continue;
+        }
+        if (item->data(LoadedRole).toBool())
             continue;
 
         loadThumb(currThumb, fastOnly);
