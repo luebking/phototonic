@@ -25,6 +25,19 @@ webcam shots and align them well enough to make a time-lapse video.
 <img src="https://translate.lxqt-project.org/widgets/luebking/-/phototonic/multi-blue.svg" align="right" alt="Translation status" />
 </a>
 
+##### 7. February 2025
+Second alpha release
++ Proper thread usage - snappier behavior, less crashes
++ Reviewed the entire tag handling
++ lot's of fixes when using the viewer as preview (including the crop rect)
+Improve colorizing performance
++ sort by exif date
++ lots of UI tweaks and bug fixes
++ introduced a couple of bugs (likely)
+
+##### 27. January 2025
+First alpha release
+
 ##### January 2025
 + OpenGL for the the image viewer
 + Load images outside the GUI thread
