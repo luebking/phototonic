@@ -66,6 +66,7 @@
         <file>translations/phototonic_es.qm</file>
         <file>translations/phototonic_et.qm</file>
         <file>translations/phototonic_uk.qm</file>
+        <file>translations/phototonic_ka.qm</file>
         <file>translations/phototonic_zh.qm</file>
     </qresource>
 </RCC>
