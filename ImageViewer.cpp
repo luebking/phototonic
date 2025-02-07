@@ -504,53 +504,21 @@ void hslToRgb(int h, int s, int l,
     }
 }
 
-void ImageViewer::colorize() {
-    int y, x;
+
+void ImageViewer::colorize(int startLine, int endLine, const unsigned char (*contrastTransform)[256], const unsigned char (*brightTransform)[256]) {
     unsigned char hr, hg, hb;
+    unsigned char h, s, l;
     int r, g, b;
     QRgb *line;
-    unsigned char h, s, l;
-    static unsigned char contrastTransform[256];
-    static unsigned char brightTransform[256];
+
     bool hasAlpha = viewerImage.hasAlphaChannel();
 
-    switch(viewerImage.format()) {
-    case QImage::Format_RGB32:
-    case QImage::Format_ARGB32:
-    case QImage::Format_ARGB32_Premultiplied:
-        break;
-    default:
-        viewerImage = viewerImage.convertToFormat(QImage::Format_RGB32);
-    }
-
-    int i;
-    float contrast = ((float) Settings::contrastVal / 100.0);
-    float brightness = ((float) Settings::brightVal / 100.0);
-
-    for (i = 0; i < 256; ++i) {
-        if (i < (int) (128.0f + 128.0f * tan(contrast)) && i > (int) (128.0f - 128.0f * tan(contrast))) {
-            contrastTransform[i] = bound0To255((i - 128) / tan(contrast) + 128);
-        } else if (i >= (int) (128.0f + 128.0f * tan(contrast))) {
-            contrastTransform[i] = 255;
-        } else {
-            contrastTransform[i] = 0;
-        }
-    }
-
-    for (i = 0; i < 256; ++i) {
-        brightTransform[i] = bound0To255(int((255.0 * pow(i / 255.0, 1.0 / brightness)) + 0.5));
-    }
-
-//    QElapsedTimer profiler;
-//    profiler.start();
-
-//    int cidkfa = 0;
+//    int ciddqd = 0;
     QRgb iddqd[2] = {qRgba(0,0,0,0), qRgba(0,0,0,0)};
 
-    for (y = 0; y < viewerImage.height(); ++y) {
-
+    for (int y = startLine; y < endLine; ++y) {
         line = (QRgb *) viewerImage.scanLine(y);
-        for (x = 0; x < viewerImage.width(); ++x) {
+        for (int x = 0; x < viewerImage.width(); ++x) {
             // Cheat, maybe the pixel is the same as the previous
             QRgb rgb = qRgb(qRed(line[x]), qGreen(line[x]), qBlue(line[x]));
             if (iddqd[0] == rgb) {
@@ -565,8 +533,8 @@ void ImageViewer::colorize() {
                 if (Settings::rNegateEnabled)
                     r = 255 - r;
                 r = bound0To255((r * (Settings::redVal + 100)) / 100);
-                r = brightTransform[r];
-                r = contrastTransform[r];
+                r = (*brightTransform)[r];
+                r = (*contrastTransform)[r];
             }
 
             g = qGreen(rgb);
@@ -574,8 +542,8 @@ void ImageViewer::colorize() {
                 if (Settings::gNegateEnabled)
                     g = 255 - g;
                 g = bound0To255((g * (Settings::greenVal + 100)) / 100);
-                g = brightTransform[g];
-                g = contrastTransform[g];
+                g = (*brightTransform)[g];
+                g = (*contrastTransform)[g];
             }
 
             b = qBlue(rgb);
@@ -583,8 +551,8 @@ void ImageViewer::colorize() {
                 if (Settings::bNegateEnabled)
                     b = 255 - b;
                 b = bound0To255((b * (Settings::blueVal + 100)) / 100);
-                b = brightTransform[b];
-                b = contrastTransform[b];
+                b = (*brightTransform)[b];
+                b = (*contrastTransform)[b];
             }
 
             if (Settings::hueVal != 0 || Settings::saturationVal != 100 || Settings::lightnessVal != 100) {
@@ -606,7 +574,85 @@ void ImageViewer::colorize() {
             line[x] = hasAlpha ? qRgba(r, g, b, qAlpha(line[x])) : rgb;
         }
     }
-//    qDebug() << profiler.elapsed() << "IDDQD:" << ciddqd;
+}
+
+void ImageViewer::colorize() {
+    switch(viewerImage.format()) {
+    case QImage::Format_RGB32:
+    case QImage::Format_ARGB32:
+    case QImage::Format_ARGB32_Premultiplied:
+        break;
+    default:
+        viewerImage = viewerImage.convertToFormat(QImage::Format_RGB32);
+    }
+
+    float contrast = ((float) Settings::contrastVal / 100.0);
+    float brightness = ((float) Settings::brightVal / 100.0);
+
+    static unsigned char contrastTransform[256];
+    static unsigned char brightTransform[256];
+    for (int i = 0; i < 256; ++i) {
+        if (i < (int) (128.0f + 128.0f * tan(contrast)) && i > (int) (128.0f - 128.0f * tan(contrast))) {
+            contrastTransform[i] = bound0To255((i - 128) / tan(contrast) + 128);
+        } else if (i >= (int) (128.0f + 128.0f * tan(contrast))) {
+            contrastTransform[i] = 255;
+        } else {
+            contrastTransform[i] = 0;
+        }
+    }
+
+    for (int i = 0; i < 256; ++i) {
+        brightTransform[i] = bound0To255(int((255.0 * pow(i / 255.0, 1.0 / brightness)) + 0.5));
+    }
+
+//    QElapsedTimer profiler;
+//    profiler.start();
+
+#if 0
+    /// @todo this is somehow not thread safe, crashes at random line processing even on only two threads
+    const int threadCount = qMin(QThread::idealThreadCount(), viewerImage.height()/512);
+#else
+    const int threadCount = 1;
+#endif
+    if (!threadCount) {
+        colorize(0, viewerImage.height(), &contrastTransform, &brightTransform);
+    } else {
+        QThread **threads = new QThread*[threadCount];
+        int batch = viewerImage.height()/threadCount;
+        if (threadCount > 1) {
+            for (int i = 0; i < threadCount-1; ++i) {
+                threads[i] = QThread::create([=](){colorize(i*batch, (i+1)*batch, &contrastTransform, &brightTransform);});
+                threads[i]->start();
+            }
+        }
+        threads[threadCount-1] = QThread::create([=](){colorize((threadCount-1)*batch, viewerImage.height(), &contrastTransform, &brightTransform);});
+        threads[threadCount-1]->start();
+
+#if 1
+        // live updates make things slower but give the user the comfort that sth's going on
+        bool done = false;
+        while (!done) {
+            done = true;
+            for (int i = 0; i < threadCount; ++i) {
+                if (!threads[i]->wait(500)) {
+                    done = false;
+                    imageWidget->setImage(viewerImage, m_exifTransformation);
+                    resizeImage();
+                    imageWidget->repaint();
+                    break;
+                }
+            }
+        }
+#else
+        for (int i = 0; i < threadCount; ++i)
+            threads[i]->wait();
+#endif
+        for (int i = 0; i < threadCount; ++i)
+            delete threads[i];
+        delete [] threads;
+    }
+
+//    qDebug() << profiler.elapsed() << threadCount; // << "IDDQD:" << ciddqd;
     emit imageEdited(true);
 }
 
