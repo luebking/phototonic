@@ -504,8 +504,8 @@ void hslToRgb(int h, int s, int l,
     }
 }
 
-
-void ImageViewer::colorize(int startLine, int endLine, const unsigned char (*contrastTransform)[256], const unsigned char (*brightTransform)[256]) {
+static int linesDone = 0;
+void ImageViewer::colorize(uchar *bits, int bytesPerLine, int startLine, int endLine, const unsigned char (*contrastTransform)[256], const unsigned char (*brightTransform)[256]) {
     unsigned char hr, hg, hb;
     unsigned char h, s, l;
     int r, g, b;
@@ -517,7 +517,7 @@ void ImageViewer::colorize(int startLine, int endLine, const unsigned char (*con
     QRgb iddqd[2] = {qRgba(0,0,0,0), qRgba(0,0,0,0)};
 
     for (int y = startLine; y < endLine; ++y) {
-        line = (QRgb *) viewerImage.scanLine(y);
+        line = reinterpret_cast<QRgb*>(bits + (y * bytesPerLine));
         for (int x = 0; x < viewerImage.width(); ++x) {
             // Cheat, maybe the pixel is the same as the previous
             QRgb rgb = qRgb(qRed(line[x]), qGreen(line[x]), qBlue(line[x]));
@@ -572,6 +572,7 @@ void ImageViewer::colorize(int startLine, int endLine, const unsigned char (*con
             iddqd[0] = rgb;
             iddqd[1] = rgb = qRgb(r, g, b);
             line[x] = hasAlpha ? qRgba(r, g, b, qAlpha(line[x])) : rgb;
+            linesDone = y;
         }
     }
 }
@@ -608,37 +609,52 @@ void ImageViewer::colorize() {
 //    QElapsedTimer profiler;
 //    profiler.start();
 
-#if 0
-    /// @todo this is somehow not thread safe, crashes at random line processing even on only two threads
     const int threadCount = qMin(QThread::idealThreadCount(), viewerImage.height()/512);
-#else
-    const int threadCount = 1;
-#endif
+
+    uchar *bits;
+    if (viewerImage.constBits() == origImage.constBits()) {
+        bits = viewerImage.bits(); // detach to preserve origImage
+    } else {
+        bits = const_cast<uchar*>(viewerImage.constBits());
+    }
+
+    const int bpl = viewerImage.bytesPerLine();
     if (!threadCount) {
-        colorize(0, viewerImage.height(), &contrastTransform, &brightTransform);
+        colorize(bits, bpl, 0, viewerImage.height(), &contrastTransform, &brightTransform);
     } else {
         QThread **threads = new QThread*[threadCount];
         int batch = viewerImage.height()/threadCount;
         if (threadCount > 1) {
             for (int i = 0; i < threadCount-1; ++i) {
-                threads[i] = QThread::create([=](){colorize(i*batch, (i+1)*batch, &contrastTransform, &brightTransform);});
+                threads[i] = QThread::create([=](){colorize(bits, bpl, i*batch, (i+1)*batch, &contrastTransform, &brightTransform);});
                 threads[i]->start();
             }
         }
-        threads[threadCount-1] = QThread::create([=](){colorize((threadCount-1)*batch, viewerImage.height(), &contrastTransform, &brightTransform);});
+        threads[threadCount-1] = QThread::create([=](){colorize(bits, bpl, (threadCount-1)*batch, viewerImage.height(), &contrastTransform, &brightTransform);});
         threads[threadCount-1]->start();
 
 #if 1
         // live updates make things slower but give the user the comfort that sth's going on
         bool done = false;
+        int cycle = 1;
         while (!done) {
             done = true;
             for (int i = 0; i < threadCount; ++i) {
-                if (!threads[i]->wait(500)) {
+                if (!threads[i]->wait(250)) {
                     done = false;
-                    imageWidget->setImage(viewerImage, m_exifTransformation);
-                    resizeImage();
-                    imageWidget->repaint();
+                    // the threads update linesDone independently and we just guess that they run at
+                    // the same speed, then predict how long this is gonna take and avoid "late" previews
+                    // that would cause overall slowdown
+                    if (float(threadCount*linesDone)/viewerImage.height() < 1.0f-1.0f/++cycle) {
+                        // we need to wrap the altered bits in a new image to make Qt/QGLWidget
+                        // understand/believe that there's sth. to update here
+                        // the final update in ::refresh is fine because viewerImage got detached
+                        imageWidget->setImage(QImage(viewerImage.constBits(), viewerImage.width(),
+                                                     viewerImage.height(), viewerImage.bytesPerLine(),
+                                                     viewerImage.format()), m_exifTransformation);
+                        resizeImage();
+                        imageWidget->repaint();
+                    }
                     break;
                 }
             }

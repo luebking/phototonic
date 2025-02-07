@@ -142,7 +142,7 @@ private:
     void mirror();
 
     void colorize();
-    void colorize(int, int, const unsigned char(*)[256], const unsigned char(*)[256]); // thread helper
+    void colorize(uchar*, int, int, int, const unsigned char(*)[256], const unsigned char(*)[256]); // thread helper
     void setImage(const QImage &image);
 };
 
