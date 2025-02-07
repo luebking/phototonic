@@ -103,7 +103,7 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
 
     negateAction = new QAction(this);
     negateAction->setCheckable(true);
-    connect(negateAction, SIGNAL(triggered()), this, SLOT(applyTagFiltering()));
+    connect(negateAction, &QAction::triggered, this, [=]() {lastChangedTagItem = nullptr; applyTagFiltering();});
 
     tagsMenu = new QMenu("");
     tagsMenu->addAction(addToSelectionAction);
@@ -194,6 +194,7 @@ QTreeWidgetItem* ImageTags::addTag(QString tagName, bool tagChecked, TagIcon ico
     if (currentDisplayMode == DirectoryTagsDisplay) {
         setTagIcon(tagItem, tagChecked ? TagIconFilterEnabled : TagIconFilterDisabled);
         tagItem->setFlags(tagItem->flags() | Qt::ItemIsUserCheckable|Qt::ItemIsUserTristate);
+//        setToolTip(tagItem);
     } else {
         setTagIcon(tagItem, icon);
     }
@@ -284,6 +285,7 @@ void ImageTags::showSelectedImagesTags() {
             (*it)->setFlags(((*it)->flags() | Qt::ItemIsUserCheckable) & ~Qt::ItemIsUserTristate);
             setTagIcon(*it, newTag ? TagIconNew : TagIconDisabled);
         }
+        setToolTip(*it);
         ++it;
     }
 
@@ -303,6 +305,22 @@ void ImageTags::showSelectedImagesTags() {
 //    sortTags(); // see above meek
     busy = false;
 }
+
+void ImageTags::setToolTip(QTreeWidgetItem *item) {
+    static const QString mandatory = tr("Mandatory:");
+    static const QString sufficient = tr("Sufficient:");
+    static const QString mustnot = tr("The image must not have this tag");
+    static const QString must = tr("The image must have this tag");
+    static const QString mustany = tr("The image must have any of these tags");
+
+    if (currentDisplayMode == SelectionTagsDisplay || item->checkState(0) == Qt::Unchecked)
+        item->setToolTip(0, QString());
+    else if (item->checkState(0) == Qt::PartiallyChecked)
+        item->setToolTip(0, sufficient + "\n" + (negateAction->isChecked() ? mustnot : mustany));
+    else if (item->checkState(0) == Qt::Checked)
+        item->setToolTip(0, mandatory + "\n" + (negateAction->isChecked() ? mustnot : must));
+}
+
 
 void ImageTags::showTagsFilter() {
     static bool busy = false;
@@ -327,12 +345,15 @@ void ImageTags::showTagsFilter() {
         if (m_mandatoryFilterTags.contains(tagName)) {
             (*it)->setCheckState(0, Qt::Checked);
             setTagIcon(*it, negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled);
+            setToolTip(*it);
         } else if (m_sufficientFilterTags.contains(tagName)) {
             (*it)->setCheckState(0, Qt::PartiallyChecked);
             setTagIcon(*it, negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled);
+            setToolTip(*it);
         } else {
             (*it)->setCheckState(0, Qt::Unchecked);
             setTagIcon(*it, TagIconFilterDisabled);
+            setToolTip(*it);
         }
         ++it;
     }
@@ -392,6 +413,19 @@ QStringList ImageTags::getCheckedTags(Qt::CheckState tagState) {
 }
 
 void ImageTags::applyTagFiltering() {
+    TagIcon icon = negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled;
+    if (lastChangedTagItem) {
+        setToolTip(lastChangedTagItem);
+        setTagIcon(lastChangedTagItem, lastChangedTagItem->checkState(0) == Qt::Unchecked ? TagIconFilterDisabled : icon);
+    } else { // inversion
+        QTreeWidgetItemIterator it(tagsTree);
+        while (*it) {
+            setToolTip(*it);
+            if ((*it)->checkState(0) != Qt::Unchecked)
+                setTagIcon(*it, icon);
+            ++it;
+        }
+    }
     m_mandatoryFilterTags = getCheckedTags(Qt::Checked);
     m_sufficientFilterTags = getCheckedTags(Qt::PartiallyChecked);
 

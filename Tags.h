@@ -68,6 +68,7 @@ private:
     QStringList getCheckedTags(Qt::CheckState tagState);
     void setActiveViewMode(TagsDisplayMode mode);
     void setTagIcon(QTreeWidgetItem *tagItem, TagIcon icon);
+    void setToolTip(QTreeWidgetItem *item);
     void sortTags();
 
     QStringList m_selectedFiles;
