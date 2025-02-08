@@ -71,7 +71,6 @@
 #include "SettingsDialog.h"
 #include "Tags.h"
 #include "ThumbsViewer.h"
-#include "Trashcan.h"
 
 Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *parent) : QMainWindow(parent) {
     Settings::appSettings = new QSettings("phototonic", "phototonic");
@@ -2030,17 +2029,12 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
         Metadata::forget(fileNameFullPath);
         ThumbsViewer::removeFromCache(fileNameFullPath);
 
-        QString deleteError;
+        QFile fileToRemove(fileNameFullPath);
         bool deleteOk;
-        if (trash) {
-            deleteOk = Trash::moveToTrash(fileNameFullPath, deleteError) == Trash::Success;
-        } else {
-            QFile fileToRemove(fileNameFullPath);
+        if (trash)
+            deleteOk = fileToRemove.moveToTrash();
+        else
             deleteOk = fileToRemove.remove();
-            if (!deleteOk) {
-                deleteError = fileToRemove.errorString();
-            }
-        }
 
         ++deleteFilesCount;
         if (deleteOk) {
@@ -2051,7 +2045,7 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
             MessageBox msgBox(this);
             msgBox.critical(tr("Error"),
                             (trash ? tr("Failed to move image to the trash.") : tr("Failed to delete image.")) + "\n" +
-                            deleteError);
+                            fileToRemove.errorString());
             break;
         }
 
@@ -2110,8 +2104,7 @@ void Phototonic::deleteFromViewer(bool trash) {
     }
 
     QString trashError;
-    if (trash ? (Trash::moveToTrash(fullPath, trashError) == Trash::Success) :
-                QFile::remove(fullPath)) {
+    if (trash ? QFile::moveToTrash(fullPath) : QFile::remove(fullPath)) {
         m_deleteInProgress = true;
         int currentRow = thumbsViewer->currentIndex().row();
         loadImage(Phototonic::Next);
@@ -2121,10 +2114,10 @@ void Phototonic::deleteFromViewer(bool trash) {
         m_deleteInProgress = false;
     } else {
         MessageBox msgBox(this);
-        msgBox.critical(tr("Error"), trash ? trashError : tr("Failed to delete image"));
+        msgBox.critical(tr("Error"), tr("Failed to delete image"));
     }
     Metadata::forget(fullPath);
-    qDebug() << ThumbsViewer::removeFromCache(fullPath);
+    ThumbsViewer::removeFromCache(fullPath);
 
     if (isFullScreen())
         imageViewer->setCursorHiding(true);
@@ -3421,20 +3414,15 @@ void Phototonic::deleteDirectory(bool trash) {
     msgBox.setDefaultButton(MessageBox::Cancel);
     msgBox.exec();
 
-    QString trashError;
     if (msgBox.clickedButton() == yesButton) {
-        if (trash) {
-            removeDirectoryOk = Trash::moveToTrash(deletePath, trashError) == Trash::Success;
-        } else {
-            removeDirectoryOk = removeDirectoryOperation(deletePath);
-        }
+        removeDirectoryOk = trash ? QFile::moveToTrash(deletePath) : removeDirectoryOperation(deletePath);
     } else {
         selectCurrentViewDir();
         return;
     }
 
     if (!removeDirectoryOk) {
-        msgBox.critical(tr("Error"), trash ? tr("Failed to move directory to the trash:") + "\n" + trashError
+        msgBox.critical(tr("Error"), trash ? tr("Failed to move directory to the trash.")
                                            : tr("Failed to delete directory."));
         selectCurrentViewDir();
         return;
