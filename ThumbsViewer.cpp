@@ -1250,18 +1250,72 @@ void ThumbsViewer::loadThumbsRange() {
     }
 }
 
-QString ThumbsViewer::thumbnailFileName(const QString &originalPath) const
+QString ThumbsViewer::thumbnailFileName(const QString &originalPath)
 {
     QFileInfo info(originalPath);
     QString canonicalPath = info.canonicalFilePath();
     if (canonicalPath.isEmpty()) {
-        qWarning() << originalPath << "does not exist!";
+//        qWarning() << originalPath << "does not exist!";
         canonicalPath = info.absoluteFilePath();
     }
     QUrl url = QUrl::fromLocalFile(canonicalPath);
     QCryptographicHash md5(QCryptographicHash::Md5);
     md5.addData(QFile::encodeName(url.adjusted(QUrl::RemovePassword).url()));
     return QString::fromLatin1(md5.result().toHex()) + QStringLiteral(".png");
+}
+
+int ThumbsViewer::removeFromCache(const QString &path) {
+#if defined(Q_OS_MAC) || defined(Q_OS_WIN)
+    return 0;
+#else
+    const QString filename = thumbnailFileName(path);
+    if (filename.isEmpty()) {
+        qDebug() << "meek, remove thumb" << filename;
+        return 0;
+    }
+    QStringList folders = {
+        QStringLiteral("xx-large/"), // max 1024px
+        QStringLiteral("x-large/"), // max 512px
+        QStringLiteral("large/"), // max 256px, doesn't look too bad when upscaled to max
+        QStringLiteral("normal/")
+    };
+    int count = 0;
+    const QString basePath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) +
+                                                                        QLatin1String("/thumbnails/");
+    for (const QString &folder : folders) {
+        if (QFile::remove(basePath + folder + filename))
+            ++count;
+    }
+    return count;
+#endif
+}
+
+int ThumbsViewer::moveCache(const QString &oldpath, const QString &newpath) {
+#if defined(Q_OS_MAC) || defined(Q_OS_WIN)
+    return 0;
+#else
+    const QString oldthumb = thumbnailFileName(oldpath);
+    const QString newthumb = thumbnailFileName(newpath);
+    if (oldthumb.isEmpty() || newthumb.isEmpty()) {
+        qDebug() << "meek, move thumb" << oldthumb << newthumb;
+        return 0;
+    }
+    QStringList folders = {
+        QStringLiteral("xx-large/"), // max 1024px
+        QStringLiteral("x-large/"), // max 512px
+        QStringLiteral("large/"), // max 256px, doesn't look too bad when upscaled to max
+        QStringLiteral("normal/")
+    };
+    int count = 0;
+    const QString basePath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) +
+                                                                        QLatin1String("/thumbnails/");
+    for (const QString &folder : folders) {
+        if (QFile::rename(basePath + folder + oldthumb, basePath + folder + newthumb) ||
+            QFile::remove(basePath + folder + oldthumb)) // at least delete the source - the dst likely already exists
+            ++count;
+    }
+    return count;
+#endif
 }
 
 QString ThumbsViewer::locateThumbnail(const QString &originalPath) const

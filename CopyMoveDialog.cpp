@@ -26,6 +26,7 @@
 #include <QPushButton>
 
 #include "CopyMoveDialog.h"
+#include "MetadataCache.h"
 #include "Settings.h"
 #include "ThumbsViewer.h"
 
@@ -45,7 +46,7 @@ static QString autoRename(const QString &destDir, const QString &currFile) {
 }
 
 int CopyMoveDialog::copyOrMoveFile(const QString &srcPath, QString &dstPath, bool copy) {
-    int res;
+    int res = 0;
 
     if (copy) {
         res = QFile::copy(srcPath, dstPath);
@@ -64,6 +65,11 @@ int CopyMoveDialog::copyOrMoveFile(const QString &srcPath, QString &dstPath, boo
             res = QFile::rename(srcPath, newDestPath);
         }
         dstPath = newDestPath;
+    }
+
+    if (res && !copy) {
+        ThumbsViewer::moveCache(srcPath, dstPath);
+        Metadata::rename(srcPath, dstPath);
     }
 
     return res;

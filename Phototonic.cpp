@@ -2019,6 +2019,10 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
             QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
         }
 
+        // w/o the file the canonical path cannot be resolved
+        Metadata::forget(fileNameFullPath);
+        ThumbsViewer::removeFromCache(fileNameFullPath);
+
         QString deleteError;
         bool deleteOk;
         if (trash) {
@@ -2112,6 +2116,8 @@ void Phototonic::deleteFromViewer(bool trash) {
         MessageBox msgBox(this);
         msgBox.critical(tr("Error"), trash ? trashError : tr("Failed to delete image"));
     }
+    Metadata::forget(fullPath);
+    qDebug() << ThumbsViewer::removeFromCache(fullPath);
 
     if (isFullScreen())
         imageViewer->setCursorHiding(true);

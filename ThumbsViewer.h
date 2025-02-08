@@ -146,6 +146,8 @@ public:
     QImage renderHistogram(const QString &imagePath, bool logarithmic = false);
     QString locateThumbnail(const QString &path) const;
     bool isBusy() { return m_busy; }
+    static int removeFromCache(const QString &path);
+    static int moveCache(const QString &oldpath, const QString &newpath);
     QDir thumbsDir;
     QDir::SortFlags thumbsSortFlags;
     int thumbSize;
@@ -177,7 +179,7 @@ private:
 
     QSize itemSizeHint() const;
 
-    QString thumbnailFileName(const QString &path) const;
+    static QString thumbnailFileName(const QString &path);
     void storeThumbnail(const QString &originalPath, QImage thumbnail, const QSize &originalSize) const;
 
     QFileInfoList thumbFileInfoList;

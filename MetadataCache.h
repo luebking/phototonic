@@ -29,6 +29,7 @@ namespace Metadata {
     void dropCache();
     QTransform transformation(const QString &imageFullPath);
     void forget(const QString &imageFileName);
+    void rename(const QString &oldImageFileName, const QString &newImageFileName);
     long orientation(const QString &imageFileName);
     qint64 dateTimeOriginal(const QString &imageFileName);
     bool removeTag(const QString &imageFileName, const QString &tagName);

@@ -57,6 +57,10 @@ void forget(const QString &imageFileName) {
     gs_cache.remove(imageFileName);
 }
 
+void rename(const QString &oldImageFileName, const QString &newImageFileName) {
+    gs_cache.insert(newImageFileName, gs_cache.take(oldImageFileName));
+}
+
 // getImageTags
 const QSet<QString> &tags(const QString &imageFileName) {
     static QSet<QString> dummy;
