@@ -72,7 +72,7 @@ ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
     setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 
     m_model = new QStandardItemModel(this);
-    m_model->setSortRole(SortRole);
+//    m_model->setSortRole(Qt::DisplayRole);
     setModel(m_model);
 
     m_selectionChangedTimer.setInterval(100);
@@ -387,7 +387,7 @@ int ThumbsViewer::lastVisibleThumb() {
 
 void ThumbsViewer::loadFileList() {
     for (int i = 0; i < Settings::filesList.size(); i++) {
-        addThumb(Settings::filesList.at(i));
+        addThumb(QFileInfo(Settings::filesList.at(i)));
     }
     updateThumbsCount();
     emit filesAdded(Settings::filesList);
@@ -399,6 +399,7 @@ void ThumbsViewer::loadFileList() {
     } else if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
         setCurrentIndex(0);
     }
+    loadVisibleThumbs();
 }
 
 void ThumbsViewer::reLoad() {
@@ -825,8 +826,6 @@ void ThumbsViewer::initThumbs() {
         }
     }
 
-    QSize hintSize = itemSizeHint();
-
     QStringList pathList;;
     QElapsedTimer timer;
     timer.start();
@@ -834,36 +833,8 @@ void ThumbsViewer::initThumbs() {
 
     for (int fileIndex = 0; fileIndex < thumbFileInfoList.size(); ++fileIndex) {
         QFileInfo thumbFileInfo = thumbFileInfoList.at(fileIndex);
-
-        Metadata::cache(thumbFileInfo.filePath());
-
-        if (isConstrained(thumbFileInfo))
-            continue;
-
-        pathList << thumbFileInfo.filePath();
-
-        if (!matchesTagFilter(thumbFileInfo.filePath()))
-            continue;
-
-        QStandardItem *thumbItem = new QStandardItem();
-        thumbItem->setData(false, LoadedRole);
-        thumbItem->setData(fileIndex, SortRole);
-        thumbItem->setData(thumbFileInfo.size(), SizeRole);
-        thumbItem->setData(thumbFileInfo.suffix(), TypeRole);
-        thumbItem->setData(thumbFileInfo.lastModified(), TimeRole);
-        thumbItem->setData(thumbFileInfo.filePath(), FileNameRole);
-        qint64 exifTime = Metadata::dateTimeOriginal(thumbFileInfo.filePath());
-        if (!exifTime)
-            exifTime = thumbFileInfo.birthTime().toSecsSinceEpoch();
-        thumbItem->setData(exifTime, DateTimeOriginal);
-        thumbItem->setSizeHint(hintSize);
-
-        if (Settings::thumbsLayout != Squares) {
-            thumbItem->setTextAlignment(Qt::AlignTop | Qt::AlignHCenter);
-            thumbItem->setText(thumbFileInfo.fileName());
-        }
-
-        m_model->appendRow(thumbItem);
+        if (addThumb(thumbFileInfo) || !isConstrained(thumbFileInfo))
+            pathList << thumbFileInfo.filePath();
 
         if (timer.elapsed() > 30) {
             emit filesAdded(pathList);
@@ -887,6 +858,7 @@ void ThumbsViewer::initThumbs() {
     } else if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
         setCurrentIndex(0);
     }
+    loadVisibleThumbs();
     emit filesAdded(pathList);
 }
 
@@ -988,16 +960,22 @@ void ThumbsViewer::findDupes(bool resetCounters)
         } else {
             ++duplicateFiles;
             // display sibling
+            QStringList newFiles;
             if (match.value().duplicates < 1) {
-                if (QStandardItem *item = addThumb(match.value().filePath)) {
+                if (QStandardItem *item = addThumb(QFileInfo(match.value().filePath))) {
+                    newFiles << match.value().filePath;
                     item->setData(match.value().id, SortRole);
                 }
             }
             // ... and this one
             match.value().duplicates++;
-            if (QStandardItem *item = addThumb(currentFilePath)) {
+            if (QStandardItem *item = addThumb(QFileInfo(currentFilePath))) {
+                newFiles << currentFilePath;
                 item->setData(match.value().id, SortRole);
             }
+            emit filesAdded(newFiles);
+            if (!newFiles.isEmpty())
+                loadVisibleThumbs();
         }
 
         if (isAbortThumbsLoading) {
@@ -1007,7 +985,6 @@ void ThumbsViewer::findDupes(bool resetCounters)
 
     emit progress(scannedFiles, totalFiles);
     emit status(tr("Found %n duplicate(s) among %1 files", "", duplicateFiles).arg(totalFiles));
-    m_model->sort(0);
     QApplication::processEvents();
 }
 
@@ -1524,66 +1501,31 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
     return true;
 }
 
-QStandardItem * ThumbsViewer::addThumb(const QString &imageFullPath) {
+QStandardItem * ThumbsViewer::addThumb(const QFileInfo &thumbFileInfo) {
 
-    Metadata::cache(imageFullPath);
-    emit filesAdded(QStringList() << imageFullPath);
-    if (!matchesTagFilter(imageFullPath)) {
+    Metadata::cache(thumbFileInfo.filePath());
+
+    if (isConstrained(thumbFileInfo))
         return nullptr;
-    }
+
+    if (!matchesTagFilter(thumbFileInfo.filePath()))
+        return nullptr;
 
     QStandardItem *thumbItem = new QStandardItem();
-    QImageReader thumbReader;
-    QSize hintSize = itemSizeHint();
-    QSize currThumbSize;
-
-    QFileInfo thumbFileInfo = QFileInfo(imageFullPath);
-    thumbItem->setData(true, LoadedRole);
-    thumbItem->setData(0, SortRole);
+    thumbItem->setData(false, LoadedRole);
     thumbItem->setData(thumbFileInfo.size(), SizeRole);
-    thumbItem->setData(thumbFileInfo.lastModified(), TimeRole);
     thumbItem->setData(thumbFileInfo.suffix(), TypeRole);
+    thumbItem->setData(thumbFileInfo.lastModified(), TimeRole);
     thumbItem->setData(thumbFileInfo.filePath(), FileNameRole);
-    if (Settings::thumbsLayout != Squares) {
-        thumbItem->setTextAlignment(Qt::AlignTop | Qt::AlignHCenter);
-        thumbItem->setData(thumbFileInfo.fileName(), Qt::DisplayRole);
-    }
     qint64 exifTime = Metadata::dateTimeOriginal(thumbFileInfo.filePath());
     if (!exifTime)
         exifTime = thumbFileInfo.birthTime().toSecsSinceEpoch();
     thumbItem->setData(exifTime, DateTimeOriginal);
-    thumbItem->setSizeHint(hintSize);
+    thumbItem->setSizeHint(itemSizeHint());
 
-    thumbReader.setFileName(imageFullPath);
-    currThumbSize = thumbReader.size();
-    if (currThumbSize.isValid()) {
-        if (Settings::upscalePreview || currThumbSize.width() > thumbSize || currThumbSize.height() > thumbSize) {
-            currThumbSize.scale(QSize(thumbSize, thumbSize), Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
-        }
-
-        thumbReader.setScaledSize(currThumbSize);
-        QImage thumb;
-        QThread *thread = QThread::create([&](){thumbReader.read(&thumb);});
-        thread->start();
-        while (!thread->wait(30)) {
-            QApplication::processEvents();
-        }
-        thread->deleteLater();
-
-        if (Settings::exifThumbRotationEnabled) {
-            thumb = thumb.transformed(Metadata::transformation(imageFullPath), Qt::SmoothTransformation);
-            currThumbSize = thumb.size();
-            currThumbSize.scale(QSize(thumbSize, thumbSize), Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
-        }
-        thumbItem->setData(qGray(thumb.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)) / 255.0, BrightnessRole);
-
-        thumbItem->setIcon(QPixmap::fromImage(thumb));
-    } else {
-        thumbItem->setIcon(
-                QIcon::fromTheme("image-missing", QIcon(":/images/error_image.png")).pixmap(BAD_IMAGE_SIZE,
-                                                                                            BAD_IMAGE_SIZE));
-        currThumbSize.setHeight(BAD_IMAGE_SIZE);
-        currThumbSize.setWidth(BAD_IMAGE_SIZE);
+    if (Settings::thumbsLayout != Squares) {
+        thumbItem->setTextAlignment(Qt::AlignTop | Qt::AlignHCenter);
+        thumbItem->setText(thumbFileInfo.fileName());
     }
 
     m_model->appendRow(thumbItem);

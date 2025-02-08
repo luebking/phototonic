@@ -121,7 +121,7 @@ public:
 
     void selectCurrentIndex();
 
-    QStandardItem *addThumb(const QString &imageFullPath);
+    QStandardItem *addThumb(const QFileInfo &thumbFileInfo);
 
     void abort(bool permanent = false);
 

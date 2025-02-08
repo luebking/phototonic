@@ -826,6 +826,13 @@ void Phototonic::createActions() {
     findDupesAction->setCheckable(true);
     connect(findDupesAction, &QAction::triggered, [=]() {
         if (findDupesAction->isChecked()) {
+            sortByNameAction->setChecked(false);
+            sortByTimeAction->setChecked(false);
+            sortByExifTimeAction->setChecked(false);
+            sortBySizeAction->setChecked(false);
+            sortByTypeAction->setChecked(false);
+            sortBySimilarityAction->setChecked(false);
+            sortByBrightnessAction->setChecked(false);
             // scenario: user enters a filter and clicks the duplicate button
             QString error;
             if (!thumbsViewer->setFilter(filterLineEdit->text(), &error))
@@ -1306,7 +1313,7 @@ void Phototonic::sortThumbnails() {
 
     QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
     if (sortByNameAction->isChecked()) {
-        thumbModel->setSortRole(ThumbsViewer::SortRole);
+        thumbModel->setSortRole(Qt::DisplayRole/* ThumbsViewer::SortRole */);
     } else if (sortByTimeAction->isChecked()) {
         thumbModel->setSortRole(ThumbsViewer::TimeRole);
     } else if (sortByExifTimeAction->isChecked()) {
@@ -1924,7 +1931,7 @@ void Phototonic::pasteThumbs() {
     copyMoveDialog->execute(thumbsViewer, destDir, pasteInCurrDir);
     if (pasteInCurrDir) {
         for (int thumb = 0; thumb < Settings::copyCutFileList.size(); ++thumb) {
-            thumbsViewer->addThumb(Settings::copyCutFileList.at(thumb));
+            thumbsViewer->addThumb(QFileInfo(Settings::copyCutFileList.at(thumb)));
         }
     } else if (thumbsViewer->model()->rowCount()) {
         thumbsViewer->setCurrentIndex(qMin(copyMoveDialog->latestRow, thumbsViewer->model()->rowCount() - 1));
