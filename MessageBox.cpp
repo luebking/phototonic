@@ -68,6 +68,7 @@ void MessageBox::about() {
                     << "Portuguese: Marcos M. Nascimento" // wstlmn@uol.com.br
                     << "Russian: Ilya Alexandrovich" // yast4ik@gmail.com
                     << "Serbian: Dino Duratović" // dinomol@mail.com
+                    << "Swedish: Luna Jernberg" // dinomol@mail.com
                     << "Ukrainian: Ihor Hordiichuk" // <igor_ck@outlook.com>
                     << "Standreas and the entire LXQt weblate team"
                     ;
