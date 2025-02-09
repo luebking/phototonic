@@ -40,7 +40,6 @@
 
 #include "MessageBox.h"
 #include "MetadataCache.h"
-#include "ProgressDialog.h"
 #include "Settings.h"
 #include "SmartCrop.h"
 #include "Tags.h"
@@ -205,16 +204,17 @@ QStringList ThumbsViewer::selectedFiles() const {
 }
 
 void ThumbsViewer::tagSelected(const QStringList &tagsAdded, const QStringList &tagsRemoved) const {
-    ProgressDialog *progressDialog = new ProgressDialog(window());
-
+    QProgressDialog progress(window());
     QStringList files = selectedFiles();
+    progress.setMaximum(files.size());
     QElapsedTimer timer;
     int totalTime = 0;
     timer.start();
+    int cycle = 1;
     for (int i = 0; i < files.size(); ++i) {
 
         QString imageName = files.at(i);
-        progressDialog->opLabel->setText(tr("Tagging %1").arg(imageName));
+        progress.setLabelText(tr("Tagging %1").arg(imageName));
 
         for (const QString &tag : tagsAdded)
             Metadata::addTag(imageName, tag);
@@ -225,20 +225,19 @@ void ThumbsViewer::tagSelected(const QStringList &tagsAdded, const QStringList &
             MessageBox(window()).critical(tr("Error"), tr("Failed to save tags to %1").arg(imageName));
             Metadata::forget(imageName);
         }
-
         if (timer.elapsed() > 30) {
-            if ((totalTime += timer.elapsed()) > 500)
-                progressDialog->show();
+            if ((totalTime += timer.elapsed()) > 250) {
+                totalTime = 0;
+                if (float(i)/files.size() < 1.0f-1.0f/++cycle)
+                    progress.show();
+            }
             QApplication::processEvents();
         }
 
-        if (progressDialog->abortOp) {
+        if (progress.wasCanceled()) {
             break;
         }
     }
-
-    progressDialog->close();
-    delete progressDialog;
 }
 
 void ThumbsViewer::startDrag(Qt::DropActions) {
@@ -1041,6 +1040,7 @@ void ThumbsViewer::scanForSort(UserRoles role) {
         return;
 
     QProgressDialog progress(tr("Loading..."), tr("Abort"), 0, thumbFileInfoList.count(), this);
+    progress.setMaximum(thumbFileInfoList.count());
 
     QElapsedTimer timer;
     timer.start();
@@ -1107,6 +1107,7 @@ void ThumbsViewer::scanForSort(UserRoles role) {
         return; // this should be sorted already, less files doesn't change the similarity of the remaining - we've some holes in the list
 
     progress.setLabelText(tr("Comparing..."));
+    progress.setMaximum(histFiles.count());
     progress.setValue(0);
     if ((totalTime += timer.elapsed()) > 600)
         progress.show();
@@ -1139,7 +1140,7 @@ void ThumbsViewer::scanForSort(UserRoles role) {
     }
 
     progress.setLabelText(tr("Sorting..."));
-    progress.setMaximum(thumbFileInfoList.count() + 1); // + 1 for the call to sort() at the bottom
+    progress.setMaximum(thumbFileInfoList.count());
     progress.setValue(0);
     if ((totalTime += timer.elapsed()) > 800)
         progress.show();

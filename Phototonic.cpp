@@ -33,6 +33,7 @@
 #include <QMovie>
 #include <QProcess>
 #include <QProgressBar>
+#include <QProgressDialog>
 #include <QPropertyAnimation>
 #include <QPushButton>
 #include <QRandomGenerator>
@@ -63,7 +64,6 @@
 #include "MessageBox.h"
 #include "MetadataCache.h"
 #include "Phototonic.h"
-#include "ProgressDialog.h"
 #include "RangeInputDialog.h"
 #include "RenameDialog.h"
 #include "ResizeDialog.h"
@@ -1999,7 +1999,7 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
     // To only show progress dialog if deleting actually takes time
     QElapsedTimer timer;
     timer.start();
-
+    int totalTime = 0;
     // Avoid a lot of not interesting updates while deleting
     QSignalBlocker fsBlocker(fileSystemModel);
     QSignalBlocker scrollbarBlocker(thumbsViewer->verticalScrollBar());
@@ -2007,22 +2007,33 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
     // Avoid reloading thumbnails all the time
     m_deleteInProgress = true;
 
-    ProgressDialog *progressDialog = nullptr;
+    QProgressDialog *progress = nullptr;
     int deleteFilesCount = 0;
-
-    for (QString fileNameFullPath : deathRow) {
+    int cycle = 1;
+    for (int i = 0; i < deathRow.size(); ++i) {
 
         // Only show if it takes a lot of time, since popping this up for just
         // deleting a single image is annoying
-        if (timer.elapsed() > 250) {
-            if (!progressDialog) {
-                progressDialog = new ProgressDialog(this);
-                progressDialog->opLabel->setWordWrap(true);
-                progressDialog->opLabel->setFixedWidth(QFontMetrics(progressDialog->opLabel->font()).averageCharWidth()*80);
-                progressDialog->show();
+        const QString &fileNameFullPath = deathRow.at(i);
+        if (timer.elapsed() > 30) {
+            if ((totalTime += timer.elapsed()) > 250) {
+                totalTime = 0;
+                if (!progress && float(i)/deathRow.size() < 1.0f-1.0f/++cycle) {
+                    progress = new QProgressDialog(this);
+                    progress->setMaximum(deathRow.size());
+                    QLabel *l = new QLabel(progress);
+                    l->setWordWrap(true);
+                    l->setFixedWidth(QFontMetrics(l->font()).averageCharWidth()*80);
+                    progress->setLabel(l);
+                    progress->show();
+                }
             }
-            progressDialog->opLabel->setText(tr("Deleting %1").arg(fileNameFullPath));
-            QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+            timer.restart();
+            if (progress) {
+                progress->setValue(i);
+                progress->setLabelText(tr("Deleting %1").arg(fileNameFullPath));
+                QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+            }
         }
 
         // w/o the file the canonical path cannot be resolved
@@ -2051,14 +2062,14 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
 
         Settings::filesList.removeOne(fileNameFullPath);
 
-        if (progressDialog && progressDialog->abortOp) {
+        if (progress && progress->wasCanceled()) {
             break;
         }
     }
 
-    if (progressDialog) {
-        progressDialog->close();
-        progressDialog->deleteLater();
+    if (progress) {
+        progress->close();
+        progress->deleteLater();
     }
 
     setStatus(tr("Deleted %n image(s)", "", deleteFilesCount));
