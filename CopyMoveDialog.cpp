@@ -24,6 +24,8 @@
 #include <QFontMetrics>
 #include <QLabel>
 #include <QPushButton>
+#include <QScrollBar>
+#include <QSignalBlocker>
 
 #include "CopyMoveDialog.h"
 #include "MetadataCache.h"
@@ -75,99 +77,69 @@ int CopyMoveDialog::copyOrMoveFile(const QString &srcPath, QString &dstPath, boo
     return res;
 }
 
-CopyMoveDialog::CopyMoveDialog(QWidget *parent) : QDialog(parent) {
-    abortOp = false;
-
-    opLabel = new QLabel("");
-    opLabel->setWordWrap(true);
-    opLabel->setFixedWidth(QFontMetrics(opLabel->font()).averageCharWidth()*80);
-
-    cancelButton = new QPushButton(tr("Cancel"));
-    cancelButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    connect(cancelButton, SIGNAL(clicked()), this, SLOT(abort()));
-
-    QHBoxLayout *topLayout = new QHBoxLayout;
-    topLayout->addWidget(opLabel);
-
-    QHBoxLayout *buttonsLayout = new QHBoxLayout;
-    buttonsLayout->addWidget(cancelButton);
-
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    mainLayout->addLayout(topLayout);
-    mainLayout->addLayout(buttonsLayout, Qt::AlignRight);
-    setLayout(mainLayout);
+CopyMoveDialog::CopyMoveDialog(QWidget *parent) : QProgressDialog(parent) {
+    m_label = new QLabel("");
+    m_label->setWordWrap(true);
+    m_label->setFixedWidth(QFontMetrics(m_label->font()).averageCharWidth()*80);
+    setLabel(m_label);
 }
 
 void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurrDir) {
 
+    QList<int> rowList; // Only for !pasteInCurrDir
+    QFontMetrics fm(m_label->font());
+
     QElapsedTimer duration;
-    int totaltime = 0;
+    int totalTime = 0;
     duration.start();
-    QFontMetrics fm(opLabel->font());
-    if (pasteInCurrDir) {
-        for (int tn = 0; tn < Settings::copyCutFileList.size(); ++tn) {
-            if (totaltime > 500)
-                show();
-            QString sourceFile = Settings::copyCutFileList.at(tn);
-            QString destFile = destDir + QDir::separator() + QFileInfo(sourceFile).fileName();
+    int cycle = 1;
 
-            QString text = (Settings::isCopyOperation ? tr("Copying \"%1\" to \"%2\".") :
-                                                        tr("Moving \"%1\" to \"%2\".")).arg(sourceFile).arg(destFile);
-//            text = fm.elidedText(text, Qt::ElideMiddle, opLabel->width(), Qt::TextWordWrap);
-            opLabel->setText(text);
-            if (duration.elapsed() > 30) {
-                QApplication::processEvents();
-                totaltime += duration.elapsed();
-                duration.restart();
+    int n = pasteInCurrDir ? Settings::copyCutFileList.size() : Settings::copyCutIndexList.size();
+    setMaximum(n);
+
+    for (int i = pasteInCurrDir ? 0 : n-1; pasteInCurrDir ? i < n : i >= 0; pasteInCurrDir ? ++i : --i) {
+        qDebug() << i << n;
+        QString sourceFile = pasteInCurrDir ? Settings::copyCutFileList.at(i)
+                                            : thumbView->fullPathOf(Settings::copyCutIndexList.at(i).row());
+        QString destFile = destDir + QDir::separator() + QFileInfo(sourceFile).fileName();
+        if (duration.elapsed() > 30) {
+            const int count = pasteInCurrDir ? i : n - i;
+            if ((totalTime += duration.elapsed()) > 250) {
+                totalTime = 0;
+                if (float(count)/n < 1.0f-1.0f/++cycle)
+                    show();
             }
-            int res = copyOrMoveFile(sourceFile, destFile, Settings::isCopyOperation);
+            if (isVisible()) {
+                setValue(count);
+                QString text =
+                    (Settings::isCopyOperation ? tr("Copying \"%1\" to \"%2\".") : tr("Moving \"%1\" to \"%2\"."))
+                    .arg(fm.elidedText(sourceFile, Qt::ElideMiddle, m_label->width(), Qt::TextWordWrap))
+                    .arg(fm.elidedText(destFile, Qt::ElideMiddle, m_label->width(), Qt::TextWordWrap));
 
-            if (!res || abortOp) {
-                break;
-            } else {
-                Settings::copyCutFileList[tn] = destFile;
+                setLabelText(text);
             }
-        }
-    } else {
-        QList<int> rowList;
-        for (int tn = Settings::copyCutIndexList.size() - 1; tn >= 0; --tn) {
-            if (totaltime > 500)
-                show();
-            QString sourceFile = thumbView->fullPathOf(Settings::copyCutIndexList.at(tn).row());
-            QString destFile = destDir + QDir::separator() + QFileInfo(sourceFile).fileName();
-
-            QString text = (Settings::isCopyOperation ? tr("Copying \"%1\" to \"%2\".") :
-                                                        tr("Moving \"%1\" to \"%2\".")).arg(sourceFile).arg(destFile);
-//            text = fm.elidedText(text, Qt::ElideMiddle, opLabel->width(), Qt::TextWordWrap);
-            opLabel->setText(text);
-
-            if (duration.elapsed() > 30) {
-                QApplication::processEvents();
-                totaltime += duration.elapsed();
-                duration.restart();
-            }
-
-            int res = copyOrMoveFile(sourceFile, destFile, Settings::isCopyOperation);
-
-            if (!res || abortOp) {
-                break;
-            }
-
-            rowList.append(Settings::copyCutIndexList.at(tn).row());
+            QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+            duration.restart();
         }
 
+        int res = copyOrMoveFile(sourceFile, destFile, Settings::isCopyOperation);
+        if (!res || wasCanceled())
+            break;
+
+        if (pasteInCurrDir)
+            Settings::copyCutFileList[i] = destFile;
+        else
+            rowList.append(Settings::copyCutIndexList.at(i).row());
+    }
+
+    if (!pasteInCurrDir) {
         if (!Settings::isCopyOperation) {
             std::sort(rowList.begin(), rowList.end());
+            QSignalBlocker scrollbarBlocker(thumbView->verticalScrollBar()); // to not trigger thumb loading
             for (int t = rowList.size() - 1; t >= 0; --t)
                 thumbView->model()->removeRow(rowList.at(t));
         }
         latestRow = rowList.size() ? rowList.at(0) : -1;
     }
-
-    nFiles = Settings::copyCutIndexList.size();
     close();
-}
-
-void CopyMoveDialog::abort() {
-    abortOp = true;
 }

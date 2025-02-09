@@ -21,14 +21,10 @@
 
 class ThumbsViewer;
 class QLabel;
-#include <QDialog>
+#include <QProgressDialog>
 
-class CopyMoveDialog : public QDialog {
+class CopyMoveDialog : public QProgressDialog {
 Q_OBJECT
-
-public slots:
-
-    void abort();
 
 public:
     CopyMoveDialog(QWidget *parent);
@@ -39,18 +35,12 @@ public:
     static int moveFile(const QString &srcPath, QString &dstPath) {
         return copyOrMoveFile(srcPath, dstPath, false);
     }
-
     static int copyOrMoveFile(const QString &srcPath, QString &dstPath, bool copy);
 
     void execute(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurrDir);
-
-    int nFiles;
     int latestRow;
-
 private:
-    QLabel *opLabel;
-    QPushButton *cancelButton;
-    bool abortOp;
+    QLabel *m_label;
 };
 
 #endif // COPY_MOVE_DIALOG_H

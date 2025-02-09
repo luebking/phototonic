@@ -1928,15 +1928,17 @@ void Phototonic::pasteThumbs() {
     CopyMoveDialog *copyMoveDialog = new CopyMoveDialog(this);
     copyCutThumbsCount = 0; // setting this here avoids nested pastes
     copyMoveDialog->execute(thumbsViewer, destDir, pasteInCurrDir);
+    int n = 0;
     if (pasteInCurrDir) {
+        n = Settings::copyCutFileList.size();
         for (int thumb = 0; thumb < Settings::copyCutFileList.size(); ++thumb) {
             thumbsViewer->addThumb(QFileInfo(Settings::copyCutFileList.at(thumb)));
         }
     } else if (thumbsViewer->model()->rowCount()) {
+        n = Settings::copyCutIndexList.size();
         thumbsViewer->setCurrentIndex(qMin(copyMoveDialog->latestRow, thumbsViewer->model()->rowCount() - 1));
     }
-    QString state = Settings::isCopyOperation ? tr("Copied %n image(s)", "", copyMoveDialog->nFiles)
-                                              : tr("Moved %n image(s)", "", copyMoveDialog->nFiles);
+    QString state = Settings::isCopyOperation ? tr("Copied %n image(s)", "", n) : tr("Moved %n image(s)", "", n);
     setStatus(state);
     copyMoveDialog->deleteLater();
     selectCurrentViewDir();
@@ -3072,7 +3074,7 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
         return;
     }
 
-    if (!Settings::isCopyOperation && thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
+    if (!Settings::isCopyOperation && (m_deleteInProgress || thumbsViewer->isBusy())) { // defer, don't alter while the thumbsviewer is loading stuff
         QTimer::singleShot(100, this, [=](){dropOp(keyMods, dirOp, copyMoveDirPath);});
         return;
     }
@@ -3096,6 +3098,8 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
             setStatus(tr("Directory moved"));
         }
     } else {
+        if (!Settings::isCopyOperation)
+            m_deleteInProgress = true;
         CopyMoveDialog *copyMoveDialog = new CopyMoveDialog(this);
         Settings::copyCutIndexList = thumbsViewer->selectionModel()->selectedIndexes();
         copyMoveDialog->execute(thumbsViewer, destDir, false);
@@ -3104,9 +3108,10 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
             if (thumbsViewer->model()->rowCount()) {
                 thumbsViewer->setCurrentIndex(qMin(copyMoveDialog->latestRow, thumbsViewer->model()->rowCount() - 1));
             }
+            m_deleteInProgress = false;
         }
-        QString state = Settings::isCopyOperation ? tr("Copied %n image(s)", "", copyMoveDialog->nFiles)
-                                                  : tr("Moved %n image(s)", "", copyMoveDialog->nFiles);
+        QString state = Settings::isCopyOperation ? tr("Copied %n image(s)", "", Settings::copyCutIndexList.size())
+                                                  : tr("Moved %n image(s)", "", Settings::copyCutIndexList.size());
         setStatus(state);
         copyMoveDialog->deleteLater();
     }
