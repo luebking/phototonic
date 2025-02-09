@@ -3560,16 +3560,16 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
 
     if (o == thumbsViewer && e->type() == QEvent::KeyPress) {
         QKeyEvent *ke = static_cast<QKeyEvent*>(e);
-        if (ke->key() == Qt::Key_PageUp) {
+        if (ke->key() == Qt::Key_PageUp && !ke->modifiers()) {
             scrollThumbs(-100);
             return true;
-        } else if (ke->key() == Qt::Key_PageDown) {
+        } else if (ke->key() == Qt::Key_PageDown && !ke->modifiers()) {
             scrollThumbs(100);
             return true;
-        } else if (ke->key() == Qt::Key_Home) {
+        } else if (ke->key() == Qt::Key_Home && !ke->modifiers()) {
             scrollThumbs(-1000);
             return true;
-        } else if (ke->key() == Qt::Key_End) {
+        } else if (ke->key() == Qt::Key_End && !ke->modifiers()) {
             scrollThumbs(1000);
             return true;
         } else if (ke->key() == Qt::Key_Up || ke->key() == Qt::Key_Left) {
