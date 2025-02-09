@@ -1491,9 +1491,7 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
         histFiles.append(imageFileName);
         m_model->item(currThumb)->setSizeHint(itemSizeHint());
     } else {
-        m_model->item(currThumb)->setIcon(QIcon::fromTheme("image-missing",
-                                                                     QIcon(":/images/error_image.png")).pixmap(
-                BAD_IMAGE_SIZE, BAD_IMAGE_SIZE));
+        m_model->item(currThumb)->setIcon(QIcon(":/images/error_image.png"));
         currentThumbSize.setHeight(BAD_IMAGE_SIZE);
         currentThumbSize.setWidth(BAD_IMAGE_SIZE);
         return false;
