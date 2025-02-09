@@ -111,8 +111,8 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
             return;
         if (m_infoViewer->isVisible()) {
             QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
-            m_infoViewer->hint(tr("Average brightness"),
-                               QString::number(thumbModel->item(current.row())->data(ThumbsViewer::BrightnessRole).toReal(), 'f', 2));
+            if (QStandardItem *citem = thumbModel->item(current.row()))
+                m_infoViewer->hint(tr("Average brightness"), QString::number(citem->data(ThumbsViewer::BrightnessRole).toReal(), 'f', 2));
             const QString filePath = thumbsViewer->fullPathOf(current.row());
             m_infoViewer->read(filePath, thumbsViewer->renderHistogram(filePath, m_logHistogram));
         }
