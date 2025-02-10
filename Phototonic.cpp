@@ -3334,7 +3334,6 @@ void Phototonic::rename() {
     int renameConfirmed;
 
     RenameDialog *renameDialog = new RenameDialog(this);
-    renameDialog->setModal(true);
     renameDialog->setFileName(currentFileInfo.fileName());
     renameConfirmed = renameDialog->exec();
 
