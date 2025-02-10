@@ -1321,9 +1321,11 @@ void ImageViewer::saveImage() {
         QDir saveDir(Settings::saveDirectory);
         savePath = saveDir.filePath(QFileInfo(fullImagePath).fileName());
     }
+    QTransform matrix;
+    if (Settings::exifRotationEnabled) // undo previous exif rotation for saving
+        matrix = Metadata::transformation(fullImagePath).inverted();
     int rotation = qRound(Settings::rotation);
     if (!batchMode && (Settings::flipH || Settings::flipV || !(rotation % 90))) {
-        QTransform matrix;
         matrix.scale(Settings::flipH ? -1 : 1, Settings::flipV ? -1 : 1);
         if (!(rotation % 90))
             matrix.rotate((Settings::flipH xor Settings::flipV) ? 360-rotation : rotation);
