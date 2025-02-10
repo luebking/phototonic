@@ -28,42 +28,14 @@
 #include "CopyMoveToDialog.h"
 #include "Settings.h"
 
-void CopyMoveToDialog::selection(const QItemSelection &, const QItemSelection &) {
-    if (pathsTable->selectionModel()->selectedRows().size() > 0) {
-        destinationLabel->setText(tr("Destination:") + " " +
-                                  pathsTableModel->item(
-                                          pathsTable->selectionModel()->selectedRows().at(0).row())->text());
-    }
-}
-
-void CopyMoveToDialog::pathDoubleClick(const QModelIndex &) {
-    copyOrMove();
-}
-
 void CopyMoveToDialog::savePaths() {
     Settings::bookmarkPaths.clear();
     for (int i = 0; i < pathsTableModel->rowCount(); ++i) {
-        Settings::bookmarkPaths.insert
-                (pathsTableModel->itemFromIndex(pathsTableModel->index(i, 0))->text());
+        if (QStandardItem *bookmark = pathsTableModel->item(i))
+            Settings::bookmarkPaths.insert(bookmark->text());
     }
 }
 
-void CopyMoveToDialog::copyOrMove() {
-    savePaths();
-
-    QModelIndexList indexesList;
-    if ((indexesList = pathsTable->selectionModel()->selectedIndexes()).size()) {
-        selectedPath = pathsTableModel->itemFromIndex(indexesList.first())->text();
-        accept();
-    } else {
-        reject();
-    }
-}
-
-void CopyMoveToDialog::justClose() {
-    savePaths();
-    reject();
-}
 
 void CopyMoveToDialog::add() {
     QString dirName = QFileDialog::getExistingDirectory(this, tr("Choose Directory"), currentPath,
@@ -80,29 +52,25 @@ void CopyMoveToDialog::add() {
                                          QItemSelectionModel::Select);
 }
 
-void CopyMoveToDialog::remove() {
-    QModelIndexList indexesList;
-    if ((indexesList = pathsTable->selectionModel()->selectedIndexes()).size()) {
-        pathsTableModel->removeRow(indexesList.first().row());
-    }
+void CopyMoveToDialog::closeEvent(QCloseEvent *event) {
+    savePaths();
+    QDialog::closeEvent(event);
 }
 
-CopyMoveToDialog::CopyMoveToDialog(QWidget *parent, QString thumbsPath, bool move) : QDialog(parent) {
-    copyOp = !move;
-    if (move) {
-        setWindowTitle(tr("Move to..."));
-        setWindowIcon(QIcon::fromTheme("go-next"));
-    } else {
+CopyMoveToDialog::CopyMoveToDialog(QWidget *parent, QString thumbsPath, bool copyOp) : QDialog(parent) {
+    if (copyOp) {
         setWindowTitle(tr("Copy to..."));
         setWindowIcon(QIcon::fromTheme("edit-copy"));
+    } else {
+        setWindowTitle(tr("Move to..."));
+        setWindowIcon(QIcon::fromTheme("go-next"));
     }
 
-    resize(350, 250);
+    const int w = QFontMetrics(font()).averageCharWidth()*60;
+    resize(w, 10*w/16);
     currentPath = thumbsPath;
 
     pathsTable = new QTableView(this);
-    pathsTable->setSelectionBehavior(QAbstractItemView::SelectItems);
-    pathsTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
     pathsTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     pathsTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     pathsTable->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -110,52 +78,66 @@ CopyMoveToDialog::CopyMoveToDialog(QWidget *parent, QString thumbsPath, bool mov
     pathsTable->setModel(pathsTableModel);
     pathsTable->verticalHeader()->setVisible(false);
     pathsTable->horizontalHeader()->setVisible(false);
-    pathsTable->verticalHeader()->setDefaultSectionSize(pathsTable->verticalHeader()->
-            minimumSectionSize());
+    pathsTable->verticalHeader()->setDefaultSectionSize(pathsTable->verticalHeader()->minimumSectionSize());
     pathsTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     pathsTable->setShowGrid(false);
 
-    connect(pathsTable->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
-            this, SLOT(selection(QItemSelection, QItemSelection)));
-    connect(pathsTable, SIGNAL(doubleClicked(
-                                       const QModelIndex &)),
-            this, SLOT(pathDoubleClick(
-                               const QModelIndex &)));
+    connect(pathsTable->selectionModel(), &QItemSelectionModel::selectionChanged, [=](){
+        m_destination = QString();
+        QModelIndexList indexesList;
+        QStandardItem *item;
+        if ((indexesList = pathsTable->selectionModel()->selectedIndexes()).size() &&
+            (item = pathsTableModel->itemFromIndex(indexesList.first())))
+                m_destination = item->text();
+        destinationLabel->setText(m_destination);
+    });
 
-    QHBoxLayout *addRemoveHbox = new QHBoxLayout;
+    connect(pathsTable, &QTableView::doubleClicked, this, [=](){ m_destination.isEmpty() ? reject() : accept(); });
+
+    QVBoxLayout *addRemoveBox = new QVBoxLayout;
+
     QPushButton *addButton = new QPushButton(tr("Browse..."));
     connect(addButton, SIGNAL(clicked()), this, SLOT(add()));
+    addRemoveBox->addWidget(addButton, 0);
+
     QPushButton *removeButton = new QPushButton(tr("Delete Bookmark"));
-    connect(removeButton, SIGNAL(clicked()), this, SLOT(remove()));
-    addRemoveHbox->addWidget(removeButton, 0, Qt::AlignLeft);
-    addRemoveHbox->addStretch(1);
-    addRemoveHbox->addWidget(addButton, 0, Qt::AlignRight);
+    connect(removeButton, &QPushButton::clicked, this, [=]() {
+        QModelIndexList indexesList;
+        if ((indexesList = pathsTable->selectionModel()->selectedIndexes()).size())
+            pathsTableModel->removeRow(indexesList.first().row());
+    });
+    addRemoveBox->addWidget(removeButton, 0);
+
+    addRemoveBox->addStretch(1);
 
     QHBoxLayout *buttonsHbox = new QHBoxLayout;
     QPushButton *cancelButton = new QPushButton(tr("Cancel"));
-    cancelButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    connect(cancelButton, SIGNAL(clicked()), this, SLOT(justClose()));
+    connect(cancelButton, &QPushButton::clicked, this, [=](){ reject(); });
 
-    QPushButton *okButton = new QPushButton(tr("OK"));
-    okButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    QPushButton *okButton = new QPushButton(copyOp ? tr("Copy") : tr("Move"));
     okButton->setDefault(true);
 
-    connect(okButton, SIGNAL(clicked()), this, SLOT(copyOrMove()));
+    connect(okButton, &QPushButton::clicked, this, [=](){ m_destination.isEmpty() ? reject() : accept(); });
 
     buttonsHbox->addStretch(1);
-    buttonsHbox->addWidget(cancelButton, 0, Qt::AlignRight);
-    buttonsHbox->addWidget(okButton, 0, Qt::AlignRight);
+    buttonsHbox->addWidget(cancelButton, 0);
+    buttonsHbox->addWidget(okButton, 0);
 
-    destinationLabel = new QLabel(tr("Destination:"));
-    QFrame *line = new QFrame(this);
-    line->setObjectName(QString::fromUtf8("line"));
-    line->setFrameShape(QFrame::HLine);
-    line->setFrameShadow(QFrame::Sunken);
+    destinationLabel = new QLabel(this);
+    destinationLabel->setAlignment(Qt::AlignCenter);
+    QFont fnt = destinationLabel->font();
+    if (fnt.pointSize() > 0)
+        fnt.setPointSize(8*fnt.pointSize()/5);
+    else
+        fnt.setPixelSize(8*fnt.pixelSize()/5);
+    destinationLabel->setFont(fnt);
 
+    QHBoxLayout *pathsBox = new QHBoxLayout;
+    pathsBox->addWidget(pathsTable);
+    pathsBox->addLayout(addRemoveBox);
     QVBoxLayout *mainVbox = new QVBoxLayout;
-    mainVbox->addWidget(pathsTable);
-    mainVbox->addLayout(addRemoveHbox);
-    mainVbox->addWidget(line);
+    mainVbox->addLayout(pathsBox);
+    mainVbox->addWidget(new QLabel(tr("Destination:")));
     mainVbox->addWidget(destinationLabel);
     mainVbox->addLayout(buttonsHbox);
     setLayout(mainVbox);

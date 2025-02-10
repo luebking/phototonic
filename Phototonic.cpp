@@ -1582,10 +1582,10 @@ void Phototonic::copyOrMoveImages(bool isCopyOperation) {
         return;
     }
 
-    copyMoveToDialog = new CopyMoveToDialog(this, getSelectedPath(), !isCopyOperation);
+    copyMoveToDialog = new CopyMoveToDialog(this, getSelectedPath(), isCopyOperation);
     if (copyMoveToDialog->exec()) {
         if (Settings::layoutMode == ThumbViewWidget) {
-            copyOrCutThumbs(copyMoveToDialog->copyOp);
+            copyOrCutThumbs(isCopyOperation);
             pasteThumbs();
         } else {
             if (imageViewer->isNewImage()) {
@@ -1596,14 +1596,14 @@ void Phototonic::copyOrMoveImages(bool isCopyOperation) {
                 return;
             }
 
-            QString destFile = copyMoveToDialog->selectedPath + QDir::separator() + QFileInfo(imageViewer->fullImagePath).fileName();
-            int result = CopyMoveDialog::copyOrMoveFile(imageViewer->fullImagePath, destFile, copyMoveToDialog->copyOp);
+            QString destFile = copyMoveToDialog->destination() + QDir::separator() + QFileInfo(imageViewer->fullImagePath).fileName();
+            int result = CopyMoveDialog::copyOrMoveFile(imageViewer->fullImagePath, destFile, isCopyOperation);
 
             if (!result) {
                 MessageBox msgBox(this);
                 msgBox.critical(tr("Error"), tr("Failed to copy or move image."));
             } else {
-                if (!copyMoveToDialog->copyOp) {
+                if (!isCopyOperation) {
                     int currentRow = thumbsViewer->currentIndex().row();
                     thumbsViewer->model()->removeRow(currentRow);
                     loadCurrentImage(currentRow);
@@ -1890,7 +1890,7 @@ void Phototonic::pasteThumbs() {
 
     QString destDir;
     if (copyMoveToDialog) {
-        destDir = copyMoveToDialog->selectedPath;
+        destDir = copyMoveToDialog->destination();
     } else if (QApplication::focusWidget() != bookmarks) {
         destDir = getSelectedPath();
     } else if (bookmarks->currentItem()) {
