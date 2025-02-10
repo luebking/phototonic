@@ -98,7 +98,6 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
     setMaximum(n);
 
     for (int i = pasteInCurrDir ? 0 : n-1; pasteInCurrDir ? i < n : i >= 0; pasteInCurrDir ? ++i : --i) {
-        qDebug() << i << n;
         QString sourceFile = pasteInCurrDir ? Settings::copyCutFileList.at(i)
                                             : thumbView->fullPathOf(Settings::copyCutIndexList.at(i).row());
         QString destFile = destDir + QDir::separator() + QFileInfo(sourceFile).fileName();
