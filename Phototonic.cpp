@@ -3349,6 +3349,8 @@ void Phototonic::rename() {
     if (renameConfirmed) {
         QString newFileNameFullPath = currentFileInfo.absolutePath() + QDir::separator() + newFileName;
         if (currentFileFullPath.rename(newFileNameFullPath)) {
+            ThumbsViewer::moveCache(selectedImageFileName, newFileNameFullPath);
+            Metadata::rename(selectedImageFileName, newFileNameFullPath);
             QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
             QModelIndexList indexesList = thumbsViewer->selectionModel()->selectedIndexes();
             thumbModel->item(indexesList.first().row())->setData(newFileNameFullPath, thumbsViewer->FileNameRole);
