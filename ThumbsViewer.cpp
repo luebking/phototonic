@@ -161,6 +161,18 @@ bool ThumbsViewer::setCurrentIndex(const QString &fileName) {
     return false;
 }
 
+void ThumbsViewer::updateThumbnail(const QString &fileName) {
+    if (!m_model->rowCount())
+        return;
+    QModelIndexList indexList = m_model->match(m_model->index(0, 0), FileNameRole, fileName);
+    if (!indexList.size())
+        return;
+    QModelIndex idx = indexList.at(0);
+    m_model->setData(idx, false, LoadedRole);
+    if (viewport()->rect().intersects(visualRect(idx)))
+        loadThumb(idx.row());
+}
+
 bool ThumbsViewer::setCurrentIndex(int row) {
     QModelIndex idx = m_model->indexFromItem(m_model->item(row));
     if (idx.isValid()) {

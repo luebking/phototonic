@@ -274,6 +274,7 @@ void Phototonic::createImageViewer() {
         if (thumbsViewer->selectionModel()->selectedIndexes().size() < 1)
             thumbsViewer->setCurrentIndex(imageViewer->fullImagePath);
     });
+    connect(imageViewer, &ImageViewer::imageSaved, thumbsViewer, &ThumbsViewer::updateThumbnail);
     m_editSteps = 0;
     connect(imageViewer, &ImageViewer::imageEdited, [=](bool yes) {
         m_editSteps = yes ? m_editSteps+1 : 0;

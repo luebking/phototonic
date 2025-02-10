@@ -212,6 +212,7 @@ public slots:
     void loadVisibleThumbs(int scrollBarValue = 0);
     void promoteSelectionChange();
     void tagSelected(const QStringList &tagsAdded, const QStringList &tagsRemoved) const;
+    void updateThumbnail(const QString &fileName);
 
 protected slots:
     void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;

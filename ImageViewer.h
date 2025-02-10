@@ -79,6 +79,7 @@ signals:
     void gotFocus();
     void toolsUpdated();
     void imageEdited(bool);
+    void imageSaved(const QString &imageFileName);
 
 public slots:
     void applyCropAndRotation();

@@ -1372,6 +1372,7 @@ void ImageViewer::saveImage() {
 
     reload();
     setFeedback(tr("Image saved."));
+    emit imageSaved(savePath);
 }
 
 void ImageViewer::saveImageAs() {
