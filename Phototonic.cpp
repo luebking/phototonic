@@ -2006,6 +2006,7 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
     QProgressDialog *progress = nullptr;
     int deleteFilesCount = 0;
     int cycle = 1;
+    QStringList filesRemoved;
     for (int i = 0; i < deathRow.size(); ++i) {
 
         // Only show if it takes a lot of time, since popping this up for just
@@ -2033,7 +2034,6 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
         }
 
         // w/o the file the canonical path cannot be resolved
-        Metadata::forget(fileNameFullPath);
         ThumbsViewer::removeFromCache(fileNameFullPath);
 
         QFile fileToRemove(fileNameFullPath);
@@ -2045,6 +2045,7 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
 
         ++deleteFilesCount;
         if (deleteOk) {
+            filesRemoved << fileNameFullPath;
             QModelIndexList indexList = thumbsViewer->model()->match(thumbsViewer->model()->index(0, 0), ThumbsViewer::FileNameRole, fileNameFullPath);
             if (indexList.size())
                 thumbsViewer->model()->removeRow(indexList.at(0).row());
@@ -2067,6 +2068,10 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
         progress->close();
         progress->deleteLater();
     }
+
+    m_imageTags->removeTagsFor(filesRemoved);
+    for (const QString &path : filesRemoved)
+        Metadata::forget(path);
 
     setStatus(tr("Deleted %n image(s)", "", deleteFilesCount));
 
