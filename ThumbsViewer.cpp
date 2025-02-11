@@ -51,6 +51,7 @@ ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
     m_busy = false;
     m_resize = true;
     m_invertTagFilter = false;
+    m_filterDirty = false;
     Settings::thumbsBackgroundColor = Settings::value(Settings::optionThumbsBackgroundColor).value<QColor>();
     Settings::thumbsTextColor = Settings::value(Settings::optionThumbsTextColor).value<QColor>();
     setThumbColors();
@@ -378,6 +379,8 @@ void ThumbsViewer::loadVisibleThumbs(int scrollBarValue) {
 
 int ThumbsViewer::firstVisibleThumb() {
     for (int currThumb = 0; currThumb < m_model->rowCount(); ++currThumb) {
+        if (isRowHidden(currThumb))
+            continue;
         const QModelIndex idx = m_model->indexFromItem(m_model->item(currThumb));
         if (viewport()->rect().contains(QPoint(0, visualRect(idx).bottom() + 1))) {
             return idx.row();
@@ -388,6 +391,8 @@ int ThumbsViewer::firstVisibleThumb() {
 
 int ThumbsViewer::lastVisibleThumb() {
     for (int currThumb = m_model->rowCount() - 1; currThumb >= 0; --currThumb) {
+        if (isRowHidden(currThumb))
+            continue;
         const QModelIndex idx = m_model->indexFromItem(m_model->item(currThumb));
         if (viewport()->rect().contains(QPoint(0, visualRect(idx).y() + 1))) {
             return idx.row();
@@ -397,11 +402,17 @@ int ThumbsViewer::lastVisibleThumb() {
 }
 
 void ThumbsViewer::loadFileList() {
-    for (int i = 0; i < Settings::filesList.size(); i++) {
-        addThumb(QFileInfo(Settings::filesList.at(i)));
+    int j = 0;
+    for (int i = 0; i < Settings::filesList.size(); ++i) {
+        if (addThumb(QFileInfo(Settings::filesList.at(i))))
+            ++j;
+    }
+
+    if (j) {
+        m_filterDirty = true;
+        filterRows(j);
     }
     updateThumbsCount();
-    emit filesAdded(Settings::filesList);
 
     if (!m_desiredThumbPath.isEmpty()) {
         setCurrentIndex(m_desiredThumbPath);
@@ -436,7 +447,7 @@ void ThumbsViewer::reLoad() {
 
     loadPrepare();
 
-    static QString lastPath;
+    static QString lastPath; // do we need to drop the metadata cache
 
     if (Settings::isFileListLoaded) {
         if (!lastPath.isEmpty()) {
@@ -453,7 +464,33 @@ void ThumbsViewer::reLoad() {
         Metadata::dropCache();
     }
 
-    applyFilter();
+    // Get all patterns supported by QImageReader
+    static QStringList imageTypeGlobs;
+    if (imageTypeGlobs.isEmpty()) {
+        QMimeDatabase db;
+        for (const QByteArray &type : QImageReader::supportedMimeTypes()) {
+            imageTypeGlobs.append(db.mimeTypeForName(type).globPatterns());
+        }
+    }
+
+    thumbsDir.setNameFilters(imageTypeGlobs);
+    thumbsDir.setFilter(QDir::Files);
+    if (Settings::showHiddenFiles) {
+        thumbsDir.setFilter(thumbsDir.filter() | QDir::Hidden);
+    }
+
+    thumbsDir.setPath(Settings::currentDirectory);
+    QDir::SortFlags tempThumbsSortFlags = thumbsSortFlags;
+    if (tempThumbsSortFlags & QDir::Size || tempThumbsSortFlags & QDir::Time) {
+        tempThumbsSortFlags ^= QDir::Reversed;
+    }
+
+    if (thumbsSortFlags & QDir::Time || thumbsSortFlags & QDir::Size || thumbsSortFlags & QDir::Type) {
+        thumbsDir.setSorting(tempThumbsSortFlags);
+    } else { // by name
+        thumbsDir.setSorting(QDir::NoSort);
+    }
+
     initThumbs();
     updateThumbsCount();
     loadVisibleThumbs();
@@ -490,6 +527,14 @@ void ThumbsViewer::loadSubDirectories() {
     }
 
     promoteSelectionChange();
+}
+
+void ThumbsViewer::setTagFilters(const QStringList &mandatory, const QStringList &sufficient, bool invert) {
+    m_mandatoryFilterTags = mandatory;
+    m_sufficientFilterTags = sufficient;
+    m_invertTagFilter = invert;
+    m_filterDirty = true;
+    QMetaObject::invokeMethod(this, "filterRows", Qt::QueuedConnection);
 }
 
 bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
@@ -610,51 +655,70 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
         }
         side = 0;
     }
+    if (sane) {
+        m_filterDirty = true;
+        QMetaObject::invokeMethod(this, "filterRows", Qt::QueuedConnection);
+    }
     return sane;
 }
 
-void ThumbsViewer::applyFilter() {
-    // Get all patterns supported by QImageReader
-    static QStringList imageTypeGlobs;
-    // Not threadsafe, but whatever
-    if (imageTypeGlobs.isEmpty()) {
-        QMimeDatabase db;
-        for (const QByteArray &type : QImageReader::supportedMimeTypes()) {
-            imageTypeGlobs.append(db.mimeTypeForName(type).globPatterns());
+void ThumbsViewer::filterRows(int first, int last) {
+    if (!m_filterDirty)
+        return;
+
+    if (first < 0)
+        first = 0;
+    if (last < 0)
+        last = m_model->rowCount() - 1;
+
+    QStringList hidden;
+    QStringList shown;
+
+    QList<QRegularExpression> globs;
+    for (const QString &g : m_filter.split(" ", Qt::SkipEmptyParts))
+        globs << QRegularExpression::fromWildcard(g, Qt::CaseInsensitive, QRegularExpression::UnanchoredWildcardConversion);
+
+    for (int i = first; i < last + 1; ++i) {
+        bool wasHidden = isRowHidden(i);
+        QFileInfo fileInfo(fullPathOf(i));
+
+        bool globFailure = false;
+        for (const QRegularExpression &g : globs) {
+            if (fileInfo.fileName().contains(g))
+                continue;
+            if (!wasHidden)
+                hidden << fileInfo.filePath();
+            setRowHidden(i, true);
+            globFailure = true;
+            break;
         }
-    }
+        if (globFailure)
+            continue;
 
-    QStringList fileFilters;
-    QStringList tokens = m_filter.split(" ", Qt::SkipEmptyParts);
-    if (tokens.isEmpty())
-        tokens.append(QString()); // basic filetype glob
-    for (const QString &t : tokens) {
-        if (imageTypeGlobs.contains(t))
-            fileFilters.append(t);
-        else {
-            for (const QString &glob : imageTypeGlobs) {
-                fileFilters.append("*" + t + glob);
-            }
+        if (isConstrained(fileInfo)) {
+            if (!wasHidden)
+                hidden << fileInfo.filePath();
+            setRowHidden(i, true);
+            continue;
         }
+        if (!matchesTagFilter(fileInfo.filePath())) {
+            // deliberately do NOT emit those as hidden to keep their tags in the tagviewer
+//            if (!wasHidden)
+//                hidden << fileInfo.filePath();
+            setRowHidden(i, true);
+            continue;
+        }
+        if (wasHidden)
+            shown << fileInfo.filePath();
+        setRowHidden(i, false);
     }
 
-    thumbsDir.setNameFilters(fileFilters);
-    thumbsDir.setFilter(QDir::Files);
-    if (Settings::showHiddenFiles) {
-        thumbsDir.setFilter(thumbsDir.filter() | QDir::Hidden);
-    }
-
-    thumbsDir.setPath(Settings::currentDirectory);
-    QDir::SortFlags tempThumbsSortFlags = thumbsSortFlags;
-    if (tempThumbsSortFlags & QDir::Size || tempThumbsSortFlags & QDir::Time) {
-        tempThumbsSortFlags ^= QDir::Reversed;
-    }
-
-    if (thumbsSortFlags & QDir::Time || thumbsSortFlags & QDir::Size || thumbsSortFlags & QDir::Type) {
-        thumbsDir.setSorting(tempThumbsSortFlags);
-    } else { // by name
-        thumbsDir.setSorting(QDir::NoSort);
-    }
+    if (!hidden.isEmpty())
+        emit filesHidden(hidden);
+    if (!shown.isEmpty())
+        emit filesShown(shown);
+    loadVisibleThumbs(); // slow last
+    m_filterDirty = false;
 }
 
 static int gs_fontHeight = 0;
@@ -842,13 +906,16 @@ void ThumbsViewer::initThumbs() {
     timer.start();
 //    int totalTime = 0;
 
+    int batchStart = 0, batchEnd = -1;
     for (int fileIndex = 0; fileIndex < thumbFileInfoList.size(); ++fileIndex) {
         QFileInfo thumbFileInfo = thumbFileInfoList.at(fileIndex);
-        if (addThumb(thumbFileInfo) || !isConstrained(thumbFileInfo))
-            pathList << thumbFileInfo.filePath();
+        if (addThumb(thumbFileInfo))
+            ++batchEnd;
 
         if (timer.elapsed() > 30) {
-            emit filesAdded(pathList);
+            m_filterDirty = true;
+            filterRows(batchStart, batchEnd);
+            batchStart = batchEnd;
             QApplication::processEvents();
             /** @todo: nice idea, but doesn't work
             totalTime += timer.elapsed();
@@ -857,10 +924,11 @@ void ThumbsViewer::initThumbs() {
                 totalTime = INT_MIN; // so don't time out again.
             }
             */
-            pathList.clear();
             timer.restart();
         }
     }
+    m_filterDirty = true;
+    filterRows(batchStart, -1);
 
     if (!m_desiredThumbPath.isEmpty()) {
         setCurrentIndex(m_desiredThumbPath);
@@ -870,7 +938,6 @@ void ThumbsViewer::initThumbs() {
         setCurrentIndex(0);
     }
     loadVisibleThumbs();
-    emit filesAdded(pathList);
 }
 
 void ThumbsViewer::updateThumbsCount() {
@@ -971,22 +1038,23 @@ void ThumbsViewer::findDupes(bool resetCounters)
         } else {
             ++duplicateFiles;
             // display sibling
-            QStringList newFiles;
+            int newFiles = 0;
             if (match.value().duplicates < 1) {
                 if (QStandardItem *item = addThumb(QFileInfo(match.value().filePath))) {
-                    newFiles << match.value().filePath;
+                    ++newFiles;
                     item->setData(match.value().id, SortRole);
                 }
             }
             // ... and this one
             match.value().duplicates++;
             if (QStandardItem *item = addThumb(QFileInfo(currentFilePath))) {
-                newFiles << currentFilePath;
+                ++newFiles;
                 item->setData(match.value().id, SortRole);
             }
-            emit filesAdded(newFiles);
-            if (!newFiles.isEmpty())
-                loadVisibleThumbs();
+            if (newFiles) {
+                m_filterDirty = true;
+                filterRows(m_model->rowCount() - newFiles);
+            }
         }
 
         if (isAbortThumbsLoading) {
@@ -1215,6 +1283,9 @@ void ThumbsViewer::loadThumbsRange() {
 
         if (isAbortThumbsLoading || m_model->rowCount() != currentRowCount || currThumb < 0)
             break;
+
+        if (isRowHidden(currThumb))
+            continue;
 
         QStandardItem *item = m_model->item(currThumb);
         if (!item) {
@@ -1540,6 +1611,7 @@ QStandardItem * ThumbsViewer::addThumb(const QFileInfo &thumbFileInfo) {
     }
 
     m_model->appendRow(thumbItem);
+    setRowHidden(m_model->rowCount() - 1, true);
     return thumbItem;
 }
 

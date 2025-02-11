@@ -95,8 +95,6 @@ public:
 
     void loadPrepare();
 
-    void applyFilter();
-
     void reLoad();
     void loadDuplicates();
 
@@ -113,11 +111,7 @@ public:
     void setNeedToScroll(bool needToScroll);
     void setResizeEnabled(bool resize) { m_resize = resize; }
 
-    void setTagFilters(const QStringList &mandatory, const QStringList &sufficient, bool invert) {
-        m_mandatoryFilterTags = mandatory;
-        m_sufficientFilterTags = sufficient;
-        m_invertTagFilter = invert;
-    }
+    void setTagFilters(const QStringList &mandatory, const QStringList &sufficient, bool invert);
 
     void selectCurrentIndex();
 
@@ -155,6 +149,8 @@ public:
 signals:
     void currentIndexChanged(const QModelIndex &current);
     void filesAdded(const QStringList &files);
+    void filesHidden(const QStringList &files);
+    void filesShown(const QStringList &files);
     void progress(unsigned int current, unsigned int total);
     void status(QString s);
     void selectionChanged(int count);
@@ -206,9 +202,11 @@ private:
     bool m_resize;
     QStandardItemModel *m_model;
     QString m_desiredThumbPath;
+    bool m_filterDirty;
 
 public slots:
     void invertSelection();
+    void filterRows(int first = -1, int last = -1);
     void loadVisibleThumbs(int scrollBarValue = 0);
     void promoteSelectionChange();
     void tagSelected(const QStringList &tagsAdded, const QStringList &tagsRemoved) const;

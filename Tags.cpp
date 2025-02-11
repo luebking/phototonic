@@ -205,6 +205,10 @@ QTreeWidgetItem* ImageTags::addTag(QString tagName, bool tagChecked, TagIcon ico
 void ImageTags::addTagsFor(const QStringList &files) {
     bool dunnit = false;
     for (const QString &file : files) {
+        size_t hash = qHash(file);
+        if (m_trackedFiles.contains(hash))
+            continue;
+        m_trackedFiles << hash;
         QSet<QString> tags = Metadata::tags(file);
         for (auto tag = tags.cbegin(), end = tags.cend(); tag != end; ++tag) {
             QList <QTreeWidgetItem*> present = tagsTree->findItems(*tag, Qt::MatchExactly);
@@ -214,13 +218,35 @@ void ImageTags::addTagsFor(const QStringList &files) {
                 item->setData(0, InScope, 1);
                 dunnit = true;
             } else {
-                for (QTreeWidgetItem *item : present)
+                for (QTreeWidgetItem *item : present) {
                     item->setData(0, InScope, item->data(0, InScope).toInt() + 1);
+                }
             }
         }
     }
     if (dunnit)
         sortTags();
+}
+
+void ImageTags::removeTagsFor(const QStringList &files) {
+    for (const QString &file : files) {
+        m_trackedFiles.removeOne(qHash(file));
+        QSet<QString> tags = Metadata::tags(file);
+        for (auto tag = tags.cbegin(), end = tags.cend(); tag != end; ++tag) {
+            QList <QTreeWidgetItem*> present = tagsTree->findItems(*tag, Qt::MatchExactly);
+            if (present.isEmpty())
+                continue;
+            for (QTreeWidgetItem *item : present) {
+                if (!item->data(0, NewTag).toBool())
+                    continue;
+                const int scope = item->data(0, InScope).toInt() - 1;
+                if (scope <= 0)
+                    delete tagsTree->takeTopLevelItem(tagsTree->indexOfTopLevelItem(item));
+                else
+                    item->setData(0, InScope, scope);
+            }
+        }
+    }
 }
 
 void ImageTags::setSelectedFiles(const QStringList &files) {
@@ -549,7 +575,7 @@ void ImageTags::removeTags() {
         if (item->data(0, InScope).toBool())
             setTagIcon(item, TagIconNew);
         else
-            tagsTree->takeTopLevelItem(tagsTree->indexOfTopLevelItem(item));
+            delete tagsTree->takeTopLevelItem(tagsTree->indexOfTopLevelItem(item));
     }
 
     if (removedTagWasChecked) {

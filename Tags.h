@@ -49,6 +49,7 @@ public:
 
     QTreeWidgetItem* addTag(QString tagName, bool tagChecked, TagIcon icon);
     void addTagsFor(const QStringList &files);
+    void removeTagsFor(const QStringList &files);
     void populateTagsTree();
     void removeTransientTags();
     void showTagsFilter();
@@ -87,6 +88,7 @@ private:
     QTreeWidget *tagsTree;
     bool m_populated;
     bool m_needToSort;
+    QList<size_t> m_trackedFiles;
 
 private slots:
     void addNewTag();

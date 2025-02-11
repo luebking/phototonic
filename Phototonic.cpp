@@ -493,19 +493,19 @@ void Phototonic::createActions() {
     setClassicThumbsAction->setCheckable(true);
     setClassicThumbsAction->setChecked(Settings::thumbsLayout == ThumbsViewer::Classic);
     setClassicThumbsAction->setObjectName("setClassicThumbs");
-    connect(setClassicThumbsAction, &QAction::triggered, [=](){ Settings::thumbsLayout = ThumbsViewer::Classic; refreshThumbs(false); });
+    connect(setClassicThumbsAction, &QAction::triggered, [=](){ Settings::thumbsLayout = ThumbsViewer::Classic; thumbsViewer->refreshThumbs(); });
 
     setSquareThumbsAction = new QAction(tr("Show square thumbnails"), this);
     setSquareThumbsAction->setCheckable(true);
     setSquareThumbsAction->setChecked(Settings::thumbsLayout == ThumbsViewer::Squares);
     setSquareThumbsAction->setObjectName("setSquareThumbs");
-    connect(setSquareThumbsAction, &QAction::triggered, [=](){ Settings::thumbsLayout = ThumbsViewer::Squares; refreshThumbs(false); });
+    connect(setSquareThumbsAction, &QAction::triggered, [=](){ Settings::thumbsLayout = ThumbsViewer::Squares; thumbsViewer->refreshThumbs(); });
 
     setCompactThumbsAction = new QAction(tr("Show compact thumbnails"), this);
     setCompactThumbsAction->setCheckable(true);
     setCompactThumbsAction->setChecked(Settings::thumbsLayout == ThumbsViewer::Compact);
     setCompactThumbsAction->setObjectName("setCompactThumbs");
-    connect(setCompactThumbsAction, &QAction::triggered, [=](){ Settings::thumbsLayout = ThumbsViewer::Compact; refreshThumbs(false); });
+    connect(setCompactThumbsAction, &QAction::triggered, [=](){ Settings::thumbsLayout = ThumbsViewer::Compact; thumbsViewer->refreshThumbs(); });
 
     copyToAction = new QAction(tr("Copy to..."), this);
     copyToAction->setObjectName("copyTo");
@@ -1084,14 +1084,6 @@ void Phototonic::createToolBars() {
     filterLineEdit->setMaximumWidth(200);
     //: hint for the filter lineedit, "/" triggers more hints at extended features
     filterLineEdit->setPlaceholderText(tr("Filter - try \"/\"..."));
-    connect(filterLineEdit, &QLineEdit::returnPressed, [=](){
-        QString error;
-        if (thumbsViewer->setFilter(filterLineEdit->text(), &error))
-            refreshThumbs(true);
-        else
-            QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
-                                error, filterLineEdit);
-    });
     static const QString rtfm =
     //: This is a tooltip explaining extended filter features
     tr( "<h2>[substring] [/ constraint [/ more constraints]]</h2>"
@@ -1107,13 +1099,13 @@ void Phototonic::createToolBars() {
         "Subsequent \"/\" start a new sufficient condition group, the substring match is optional."
     );
     connect(filterLineEdit, &QLineEdit::textEdited, [=](){
-        if (filterLineEdit->text() == "") {
-            thumbsViewer->setFilter("");
-            refreshThumbs(true);
-        } else if (filterLineEdit->text().contains("/")) {
+        if (filterLineEdit->text().contains("/"))
             QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
                                 rtfm, filterLineEdit);
-        }
+        QString error;
+        if (!thumbsViewer->setFilter(filterLineEdit->text(), &error))
+            QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
+                                error, filterLineEdit);
     });
     filterLineEdit->setMouseTracking(true);
     filterLineEdit->installEventFilter(this);
@@ -1295,11 +1287,11 @@ void Phototonic::createImageTagsDock() {
     connect(m_imageTags, &ImageTags::filterChanged, this,
         [=](const QStringList &mandatory, const QStringList &sufficient, bool invert) {
             thumbsViewer->setTagFilters(mandatory, sufficient, invert);
-            reload();
     });
     connect(m_imageTags, &ImageTags::tagRequest, thumbsViewer, &ThumbsViewer::tagSelected);
 
-    connect(thumbsViewer, &ThumbsViewer::filesAdded, m_imageTags, &ImageTags::addTagsFor);
+    connect(thumbsViewer, &ThumbsViewer::filesHidden, m_imageTags, &ImageTags::removeTagsFor);
+    connect(thumbsViewer, &ThumbsViewer::filesShown, m_imageTags, &ImageTags::addTagsFor);
 
     connect(thumbsViewer, &ThumbsViewer::selectionChanged, m_imageTags, [=]() {
         m_imageTags->setSelectedFiles(thumbsViewer->selectedFiles());
@@ -1506,7 +1498,7 @@ void Phototonic::showSettings() {
             needThumbsRefresh = true;
             rotateToolAction->setChecked(Settings::mouseRotateEnabled);
         } else {
-            refreshThumbs(false);
+            thumbsViewer->refreshThumbs();
         }
 
         if (!Settings::setWindowIcon) {
@@ -1856,7 +1848,7 @@ void Phototonic::batchTransform() {
     Settings::keepTransform = keepTransformWas;
     imageViewer->batchMode = false;
     setUpdatesEnabled(true);
-    reloadThumbs();
+    thumbsViewer->refreshThumbs();
 }
 
 void Phototonic::showColorsDialog() {
@@ -2835,9 +2827,7 @@ void Phototonic::viewImage() {
         return;
     } else if (QApplication::focusWidget() == filterLineEdit) {
         QString error;
-        if (thumbsViewer->setFilter(filterLineEdit->text(), &error))
-            refreshThumbs(true);
-        else
+        if (!thumbsViewer->setFilter(filterLineEdit->text(), &error))
             QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height())),
                                 error, filterLineEdit);
         return;
@@ -3029,7 +3019,7 @@ void Phototonic::hideViewer() {
 
     if (needThumbsRefresh) {
         needThumbsRefresh = false;
-        refreshThumbs(true);
+        thumbsViewer->refreshThumbs();
     } else {
         if (thumbsViewer->model()->rowCount() > 0) {
             thumbsViewer->setCurrentIndex(imageViewer->fullImagePath);
