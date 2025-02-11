@@ -115,7 +115,7 @@ public:
 
     void selectCurrentIndex();
 
-    QStandardItem *addThumb(const QFileInfo &thumbFileInfo);
+    int addThumbs(const QFileInfoList &fileInfos);
 
     void abort(bool permanent = false);
 
@@ -160,6 +160,7 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
+    QStandardItem *addThumb(const QFileInfo &thumbFileInfo);
     bool isConstrained(const QFileInfo &fileInfo) const;
     bool matchesTagFilter(const QString &path) const;
     void initThumbs();

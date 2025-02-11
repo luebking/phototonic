@@ -901,34 +901,7 @@ void ThumbsViewer::initThumbs() {
         }
     }
 
-    QStringList pathList;;
-    QElapsedTimer timer;
-    timer.start();
-//    int totalTime = 0;
-
-    int batchStart = 0, batchEnd = -1;
-    for (int fileIndex = 0; fileIndex < thumbFileInfoList.size(); ++fileIndex) {
-        QFileInfo thumbFileInfo = thumbFileInfoList.at(fileIndex);
-        if (addThumb(thumbFileInfo))
-            ++batchEnd;
-
-        if (timer.elapsed() > 30) {
-            m_filterDirty = true;
-            filterRows(batchStart, batchEnd);
-            batchStart = batchEnd;
-            QApplication::processEvents();
-            /** @todo: nice idea, but doesn't work
-            totalTime += timer.elapsed();
-            if (totalTime > 500) { // if this takes too long
-                loadVisibleThumbs(); // make it look fast
-                totalTime = INT_MIN; // so don't time out again.
-            }
-            */
-            timer.restart();
-        }
-    }
-    m_filterDirty = true;
-    filterRows(batchStart, -1);
+    addThumbs(thumbFileInfoList);
 
     if (!m_desiredThumbPath.isEmpty()) {
         setCurrentIndex(m_desiredThumbPath);
@@ -1086,7 +1059,7 @@ static Histogram calcHist(const QImage &img)
 {
     Histogram hist;
     if (img.isNull()) {
-        qWarning() << "Invalid file";
+        qWarning() << "Histogram calculation: Invalid file";
         return hist;
     }
     const QImage image = img.scaled(256, 256).convertToFormat(QImage::Format_RGB888);
@@ -1583,15 +1556,42 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
     return true;
 }
 
+int ThumbsViewer::addThumbs(const QFileInfoList &fileInfos) {
+    QElapsedTimer timer;
+    timer.start();
+//    int totalTime = 0;
+
+    int batchStart = 0, batchEnd = -1;
+    int added = 0;
+    for (int i = 0; i < fileInfos.size(); ++i) {
+        if (addThumb(fileInfos.at(i))) {
+            ++added;
+            ++batchEnd;
+        }
+
+        if (timer.elapsed() > 30) {
+            m_filterDirty = true;
+            filterRows(batchStart, batchEnd);
+            batchStart = batchEnd;
+            QApplication::processEvents();
+            /** @todo: nice idea, but doesn't work
+            totalTime += timer.elapsed();
+            if (totalTime > 500) { // if this takes too long
+                loadVisibleThumbs(); // make it look fast
+                totalTime = INT_MIN; // so don't time out again.
+            }
+            */
+            timer.restart();
+        }
+    }
+    m_filterDirty = true;
+    filterRows(batchStart, -1);
+    return added;
+}
+
 QStandardItem * ThumbsViewer::addThumb(const QFileInfo &thumbFileInfo) {
 
     Metadata::cache(thumbFileInfo.filePath());
-
-    if (isConstrained(thumbFileInfo))
-        return nullptr;
-
-    if (!matchesTagFilter(thumbFileInfo.filePath()))
-        return nullptr;
 
     QStandardItem *thumbItem = new QStandardItem();
     thumbItem->setData(false, LoadedRole);
@@ -1686,6 +1686,7 @@ QImage ThumbsViewer::renderHistogram(const QString &filename, bool logarithmic) 
                 }
             }
         }
+        qDebug() << "emergency";
         histogram = calcHist(thumb);
     }
     QRgb red = 0xffa06464/* d01717 */, green = 0xff8ca064/* 8cc716 */, blue = 0xff648ca0/* 1793d0 */;

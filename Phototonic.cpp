@@ -1924,9 +1924,10 @@ void Phototonic::pasteThumbs() {
     int n = 0;
     if (pasteInCurrDir) {
         n = Settings::copyCutFileList.size();
-        for (int thumb = 0; thumb < Settings::copyCutFileList.size(); ++thumb) {
-            thumbsViewer->addThumb(QFileInfo(Settings::copyCutFileList.at(thumb)));
-        }
+        QFileInfoList infos;
+        for (const QString &path : Settings::copyCutFileList)
+            infos << QFileInfo(path);
+        thumbsViewer->addThumbs(infos);
     } else if (thumbsViewer->model()->rowCount()) {
         n = Settings::copyCutIndexList.size();
         thumbsViewer->setCurrentIndex(qMin(copyMoveDialog->latestRow, thumbsViewer->model()->rowCount() - 1));
