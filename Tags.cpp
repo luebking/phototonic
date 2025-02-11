@@ -479,7 +479,7 @@ void ImageTags::applyUserAction(QList<QTreeWidgetItem *> tagsList) {
             icon = TagIconEnabled;
         setTagIcon(item, icon);
 
-        int scope = item->data(0, NewTag).toInt();
+        int scope = item->data(0, InScope).toInt();
         if (tagState == Qt::Checked) {
             tagsAdded << item->text(0);
             ++scope;
