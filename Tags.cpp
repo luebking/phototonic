@@ -584,6 +584,7 @@ void ImageTags::removeTags() {
 }
 
 void ImageTags::removeTransientTags() {
+    m_trackedFiles.clear();
     for (int i = tagsTree->topLevelItemCount() - 1; i > -1; --i) {
 
         QTreeWidgetItem *item = tagsTree->topLevelItem(i);
