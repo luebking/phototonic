@@ -148,7 +148,6 @@ public:
 
 signals:
     void currentIndexChanged(const QModelIndex &current);
-    void filesAdded(const QStringList &files);
     void filesHidden(const QStringList &files);
     void filesShown(const QStringList &files);
     void progress(unsigned int current, unsigned int total);
