@@ -389,7 +389,8 @@ private:
     void copyOrMoveImages(bool isCopyOperation);
 
     void setViewerKeyEventsEnabled(bool enabled);
-    void zoom(double multiplier = 1., QPoint focus = QPoint(-1, -1));
+    void zoom(float multiplier = 1., QPoint focus = QPoint(-1, -1));
+    void zoomTo(float value, QPoint focus = QPoint(-1, -1));
     int copyCutThumbsCount;
     void setStatus(QString state);
 };

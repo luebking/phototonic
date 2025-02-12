@@ -47,6 +47,7 @@
 #include <QToolBar>
 #include <QToolButton>
 #include <QToolTip>
+#include <QVariantAnimation>
 #include <QWheelEvent>
 
 #include "Bookmarks.h"
@@ -1649,11 +1650,33 @@ void Phototonic::resizeThumbs() {
         thumbsViewer->refreshThumbs();
 }
 
+#define ZOOMINATOR 1
 
-void Phototonic::zoom(double multiplier, QPoint focus) {
+void Phototonic::zoomTo(float goal, QPoint focus) {
+#if ZOOMINATOR
+    static QVariantAnimation *zoominator = nullptr;
+    if (!zoominator) {
+        zoominator = new QVariantAnimation(this);
+        zoominator->setDuration(125);
+        connect(zoominator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
+            Settings::imageZoomFactor = value.toFloat();
+            imageViewer->resizeImage(zoominator->property("zoomfocus").toPoint());
+        });
+        connect(zoominator, &QObject::destroyed, [=]() {zoominator = nullptr;});
+    }
+    zoominator->setProperty("zoomfocus", focus);
+    zoominator->setStartValue(Settings::imageZoomFactor);
+    zoominator->setEndValue(goal);
+    zoominator->start();
+#endif
+}
+
+
+void Phototonic::zoom(float multiplier, QPoint focus) {
+    // sanitize to 10% step, necessary for unscale image and zoominator
+    Settings::imageZoomFactor = qRound(Settings::imageZoomFactor*10)*0.1;
+
     if (imageViewer->tempDisableResize) {
-        // coming from unscaled image "zoom", sanitize to 10% step
-        Settings::imageZoomFactor = qRound(Settings::imageZoomFactor*10)*0.1;
         imageViewer->tempDisableResize = false; // … and unlock
     }
 
@@ -1668,37 +1691,63 @@ void Phototonic::zoom(double multiplier, QPoint focus) {
 
     // by size
     multiplier *= Settings::imageZoomFactor * 0.5;
-
-    // by speed
-    static QElapsedTimer speedometer;
-    if (!speedometer.isValid() || speedometer.elapsed() > 250)
-        multiplier *= 0.05;
-    else if (speedometer.elapsed() > 150)
-        multiplier *= 0.1;
-    else if (speedometer.elapsed() > 75)
+    if (focus.x() >= 0) {
+        // by speed
+        static QElapsedTimer speedometer;
+        if (!speedometer.isValid() || speedometer.elapsed() > 250)
+            multiplier *= 0.05;
+        else if (speedometer.elapsed() > 150)
+            multiplier *= 0.1;
+        else if (speedometer.elapsed() > 75)
+            multiplier *= 0.5;
+        speedometer.restart();
+    } else {
         multiplier *= 0.5;
-    speedometer.restart();
+    }
 
     // round and limit to 10%
     multiplier = multiplier > 0.0 ? qMax(0.1, qRound(multiplier*10)*0.1) : qMin(-0.1, qRound(multiplier*10)*0.1);
 
-    Settings::imageZoomFactor = qMin(16.0, qMax(0.1, Settings::imageZoomFactor + multiplier));
-    imageViewer->resizeImage(focus);
+
+    float zoomTarget = qMin(16.0, qMax(0.1, Settings::imageZoomFactor + multiplier));
+#if ZOOMINATOR
+        zoomTo(zoomTarget, focus);
+#else
+        Settings::imageZoomFactor = zoomTarget;
+        imageViewer->resizeImage(focus);
+#endif
+
     //: nb the trailing "%" for eg. 80%
-    imageViewer->setFeedback(tr("Zoom %1%").arg(QString::number(Settings::imageZoomFactor * 100)));
+    imageViewer->setFeedback(tr("Zoom %1%").arg(QString::number(zoomTarget * 100)));
 }
 
 void Phototonic::resetZoom() {
-    Settings::imageZoomFactor = 1.0;
     imageViewer->tempDisableResize = false;
-    imageViewer->resizeImage();
+#if ZOOMINATOR
+        zoomTo(1.0);
+#else
+        Settings::imageZoomFactor = 1.0;
+        imageViewer->resizeImage();
+#endif
     imageViewer->setFeedback(tr("Zoom Reset"));
 }
 
 void Phototonic::origZoom() {
-    // Settings::imageZoomFactor gets fixed by imageViewer->resizeImage()
-    imageViewer->tempDisableResize = true;
-    imageViewer->resizeImage();
+#if ZOOMINATOR
+        // evelish hack, we abuse resizeImage() to calculate Settings::imageZoomFactor
+        // use that as target value and then reset it again…
+        float oldZoomF = Settings::imageZoomFactor;
+        imageViewer->tempDisableResize = true;
+        imageViewer->resizeImage();
+        imageViewer->tempDisableResize = false;
+        float newZoomF = Settings::imageZoomFactor;
+        Settings::imageZoomFactor = oldZoomF;
+        zoomTo(newZoomF);
+#else
+        // Settings::imageZoomFactor gets fixed by imageViewer->resizeImage()
+        imageViewer->tempDisableResize = true;
+        imageViewer->resizeImage();
+#endif
     imageViewer->setFeedback(tr("Original Size"));
 }
 
