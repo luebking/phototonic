@@ -664,13 +664,28 @@ void Phototonic::createActions() {
     goBackAction = new QAction(tr("Back"), this);
     goBackAction->setObjectName("goBack");
     goBackAction->setIcon(QIcon::fromTheme("go-previous", QIcon(":/images/back.png")));
-    connect(goBackAction, SIGNAL(triggered()), this, SLOT(goBack()));
+    connect(goBackAction, &QAction::triggered, this, [=]() {
+        if (currentHistoryIdx < 1)
+            return;
+        needHistoryRecord = false;
+        goTo(pathHistoryList.at(--currentHistoryIdx));
+        goFrwdAction->setEnabled(true);
+        if (currentHistoryIdx == 0)
+            goBackAction->setEnabled(false);
+    });
     goBackAction->setEnabled(false);
 
     goFrwdAction = new QAction(tr("Forward"), this);
     goFrwdAction->setObjectName("goFrwd");
     goFrwdAction->setIcon(QIcon::fromTheme("go-next", QIcon(":/images/next.png")));
-    connect(goFrwdAction, SIGNAL(triggered()), this, SLOT(goForward()));
+    connect(goFrwdAction, &QAction::triggered, this, [=]() {
+        if (currentHistoryIdx > pathHistoryList.size() - 2)
+            return;
+        needHistoryRecord = false;
+        goTo(pathHistoryList.at(++currentHistoryIdx));
+        if (currentHistoryIdx == (pathHistoryList.size() - 1))
+            goFrwdAction->setEnabled(false);
+    });
     goFrwdAction->setEnabled(false);
 
     goUpAction = new QAction(tr("Go Up"), this);
@@ -1198,7 +1213,7 @@ void Phototonic::createFileSystemDock() {
     fileSystemTree->addAction(addBookmarkAction);
     fileSystemTree->setContextMenuPolicy(Qt::ActionsContextMenu);
 
-    connect(fileSystemTree, &FileSystemTree::clicked, this, &Phototonic::goSelectedDir);
+    connect(fileSystemTree, &FileSystemTree::clicked, this, [=]() { goTo(getSelectedPath()); });
     connect(fileSystemModel, &QFileSystemModel::rowsRemoved, this, &Phototonic::checkDirState);
     connect(fileSystemTree, &FileSystemTree::dropOp, this, &Phototonic::dropOp);
 
@@ -2179,25 +2194,13 @@ void Phototonic::goTo(QString path) {
     findDupesAction->setChecked(false);
     Settings::isFileListLoaded = false;
     fileListWidget->clearSelection();
-    fileSystemTree->setCurrentIndex(fileSystemModel->index(path));
     Settings::currentDirectory = path;
+    fileSystemTree->setCurrentIndex(fileSystemModel->index(path));
     refreshThumbs(true);
-}
-
-void Phototonic::goSelectedDir(const QModelIndex &idx) {
-    includeSubDirectoriesAction->setChecked(false);
-    findDupesAction->setChecked(false);
-    Settings::isFileListLoaded = false;
-    fileListWidget->clearSelection();
-    Settings::currentDirectory = getSelectedPath();
-    refreshThumbs(true);
-    fileSystemTree->expand(idx);
+    selectCurrentViewDir();
 }
 
 void Phototonic::goPathBarDir() {
-    includeSubDirectoriesAction->setChecked(false);
-    findDupesAction->setChecked(false);
-
     if (pathLineEdit->completer()->popup())
         pathLineEdit->completer()->popup()->hide();
     if (!isReadableDir(pathLineEdit->text())) {
@@ -2206,31 +2209,8 @@ void Phototonic::goPathBarDir() {
         pathLineEdit->setText(Settings::currentDirectory);
         return;
     }
-
-    Settings::currentDirectory = pathLineEdit->text();
-    refreshThumbs(true);
-    selectCurrentViewDir();
     thumbsViewer->setFocus(Qt::OtherFocusReason);
-}
-
-void Phototonic::goBack() {
-    if (currentHistoryIdx > 0) {
-        needHistoryRecord = false;
-        goTo(pathHistoryList.at(--currentHistoryIdx));
-        goFrwdAction->setEnabled(true);
-        if (currentHistoryIdx == 0)
-            goBackAction->setEnabled(false);
-    }
-}
-
-void Phototonic::goForward() {
-
-    if (currentHistoryIdx < pathHistoryList.size() - 1) {
-        needHistoryRecord = false;
-        goTo(pathHistoryList.at(++currentHistoryIdx));
-        if (currentHistoryIdx == (pathHistoryList.size() - 1))
-            goFrwdAction->setEnabled(false);
-    }
+    goTo(pathLineEdit->text());
 }
 
 void Phototonic::updateActions() {
@@ -2815,7 +2795,7 @@ void Phototonic::viewImage() {
     }
 
     if (QApplication::focusWidget() == fileSystemTree) {
-        goSelectedDir(fileSystemTree->getCurrentIndex());
+        goTo(getSelectedPath());
         return;
     } else if (QApplication::focusWidget() == thumbsViewer || QApplication::focusWidget() == imageViewer) {
         QModelIndex selectedImageIndex;
@@ -3123,6 +3103,7 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
 void Phototonic::selectCurrentViewDir() {
     QModelIndex idx = fileSystemModel->index(Settings::currentDirectory);
     if (idx.isValid()) {
+        fileSystemTree->expand(idx);
         fileSystemTree->setCurrentIndex(idx);
         fileSystemTree->scrollTo(idx);
     }

@@ -104,15 +104,9 @@ private slots:
 
     void checkDirState(const QModelIndex &, int, int);
 
-    void goSelectedDir(const QModelIndex &currDir);
-
     void goPathBarDir();
 
-    void goBack();
-
     void goTo(QString path);
-
-    void goForward();
 
     void toggleSlideShow();
 
