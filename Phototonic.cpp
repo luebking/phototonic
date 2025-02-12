@@ -152,6 +152,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     currentHistoryIdx = -1;
     needHistoryRecord = true;
     interfaceDisabled = false;
+    m_reloadPending = false;
 
     refreshThumbs(true);
     if (Settings::layoutMode == ThumbViewWidget) {
@@ -1342,6 +1343,9 @@ void Phototonic::setIncludeSubDirs() {
 
 void Phototonic::refreshThumbs(bool scrollToTop) {
     thumbsViewer->setNeedToScroll(scrollToTop);
+    if (m_reloadPending)
+        return;
+    m_reloadPending = true;
     QMetaObject::invokeMethod(this, "reloadThumbs", Qt::QueuedConnection);
 }
 
@@ -3132,7 +3136,7 @@ void Phototonic::checkDirState(const QModelIndex &, int, int) {
     thumbsViewer->abort();
     if (!QDir().exists(Settings::currentDirectory)) {
         Settings::currentDirectory.clear();
-        QMetaObject::invokeMethod(this, "reloadThumbs", Qt::QueuedConnection);
+        refreshThumbs(false);
     }
 }
 
@@ -3163,6 +3167,7 @@ void Phototonic::reloadThumbs() {
         QTimer::singleShot(32, this, SLOT(reloadThumbs())); // rate control @30Hz
         return;
     }
+    m_reloadPending = false;
 
     if (!Settings::isFileListLoaded) {
         if (Settings::currentDirectory.isEmpty()) {

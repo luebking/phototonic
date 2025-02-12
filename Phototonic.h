@@ -332,6 +332,7 @@ private:
     QLabel *m_statusLabel;
     int m_thumbSizeDelta;
     bool m_logHistogram;
+    bool m_reloadPending;
     int m_editSteps;
     ImageTags *m_imageTags;
 
