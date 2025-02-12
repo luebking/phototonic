@@ -3229,10 +3229,6 @@ void Phototonic::reloadThumbs() {
         thumbsViewer->reLoad();
     }
     sortThumbnails();
-    QStringList files;
-    QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
-    for (int i = 0; i < thumbModel->rowCount(); ++i)
-        files << thumbModel->item(i)->data(ThumbsViewer::FileNameRole).toString();
 }
 
 void Phototonic::setImageViewerWindowTitle() {
