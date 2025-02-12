@@ -130,9 +130,7 @@ private slots:
 
     void keepZoom();
 
-    void rotateLeft();
-
-    void rotateRight();
+    void rotate(int deg);
 
     void flipVertical();
 
@@ -140,9 +138,7 @@ private slots:
 
     void scaleImage();
 
-    void freeRotateLeft();
-
-    void freeRotateRight();
+    void freeRotate(int deg);
 
     void batchTransform();
 

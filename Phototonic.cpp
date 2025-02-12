@@ -788,12 +788,12 @@ void Phototonic::createActions() {
     rotateLeftAction = new QAction(tr("Rotate 90° CCW"), this);
     rotateLeftAction->setObjectName("rotateLeft");
     rotateLeftAction->setIcon(QIcon::fromTheme("object-rotate-left", QIcon(":/images/rotate_left.png")));
-    connect(rotateLeftAction, SIGNAL(triggered()), this, SLOT(rotateLeft()));
+    connect(rotateLeftAction, &QAction::triggered, this, [=]() { rotate(-90); });
 
     rotateRightAction = new QAction(tr("Rotate 90° CW"), this);
     rotateRightAction->setObjectName("rotateRight");
     rotateRightAction->setIcon(QIcon::fromTheme("object-rotate-right", QIcon(":/images/rotate_right.png")));
-    connect(rotateRightAction, SIGNAL(triggered()), this, SLOT(rotateRight()));
+    connect(rotateRightAction, &QAction::triggered, this, [=]() { rotate(+90); });
 
     rotateToolAction = new QAction(tr("Rotate with mouse"), this);
     rotateToolAction->setObjectName("rotateRight");
@@ -826,11 +826,11 @@ void Phototonic::createActions() {
 
     freeRotateLeftAction = new QAction(tr("Rotate 1° CCW"), this);
     freeRotateLeftAction->setObjectName("freeRotateLeft");
-    connect(freeRotateLeftAction, SIGNAL(triggered()), this, SLOT(freeRotateLeft()));
+    connect(freeRotateLeftAction, &QAction::triggered, this, [=]() { freeRotate(-1); });
 
     freeRotateRightAction = new QAction(tr("Rotate 1° CW"), this);
     freeRotateRightAction->setObjectName("freeRotateRight");
-    connect(freeRotateRightAction, SIGNAL(triggered()), this, SLOT(freeRotateRight()));
+    connect(freeRotateRightAction, &QAction::triggered, this, [=]() { freeRotate(+1); });
 
     colorsAction = new QAction(tr("Colors"), this);
     colorsAction->setObjectName("colors");
@@ -1760,30 +1760,48 @@ void Phototonic::keepZoom() {
     }
 }
 
-void Phototonic::rotateLeft() {
-    Settings::rotation -= 90;
-    if (qAbs(Settings::rotation) > 360.0)
-        Settings::rotation -= int(360*Settings::rotation)/360;
-    Settings::rotation = 90*qCeil(Settings::rotation/90);
-    if (Settings::rotation < 0)
-        Settings::rotation += 360;
-    imageViewer->resizeImage();
-    imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(Settings::rotation)));
-    m_editSteps = qMax(0, m_editSteps + (Settings::rotation ? 1 : -1));
-    saveAction->setEnabled(m_editSteps);
-    saveAsAction->setEnabled(m_editSteps);
-}
+void Phototonic::rotate(int deg) {
+    if (!deg)
+        return;
 
-void Phototonic::rotateRight() {
-    Settings::rotation += 90;
-    if (qAbs(Settings::rotation) > 360.0)
-        Settings::rotation -= int(360*Settings::rotation)/360;
-    Settings::rotation = 90*int(Settings::rotation/90);
-    if (Settings::rotation > 270)
-        Settings::rotation -= 360;
+    qreal rotation = Settings::rotation + deg;
+    if (qAbs(rotation) > 360.0)
+        rotation -= int(360*rotation)/360;
+    if (deg > 0) {
+        rotation = 90*int(rotation/90);
+        if (rotation > 270)
+            rotation -= 360;
+    } else {
+        rotation = 90*qCeil(rotation/90);
+        if (rotation < 0)
+            rotation += 360;
+    }
+    // wrap the starting angle for the animation, so we don't rotate backwards
+    if (deg > 0 && rotation < Settings::rotation)
+        Settings::rotation -= 360.0;
+    if (deg < 0 && rotation > Settings::rotation)
+        Settings::rotation += 360.0;
+#if 1
+    static QVariantAnimation *rotator = nullptr;
+    if (!rotator) {
+        rotator = new QVariantAnimation(this);
+        rotator->setEasingCurve(QEasingCurve::InOutCubic);
+        connect(rotator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
+            Settings::rotation = value.toReal();
+            imageViewer->resizeImage();
+        });
+        connect(rotator, &QObject::destroyed, [=]() {rotator = nullptr;});
+    }
+    rotator->setDuration(2*qAbs(deg));
+    rotator->setStartValue(Settings::rotation);
+    rotator->setEndValue(rotation);
+    rotator->start();
+#else
+    Settings::rotation = rotation;
     imageViewer->resizeImage();
-    imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(Settings::rotation)));
-    m_editSteps = qMax(0, m_editSteps + (Settings::rotation ? 1 : -1));
+#endif
+    imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(rotation)));
+    m_editSteps = qMax(0, m_editSteps + (rotation ? 1 : -1));
     saveAction->setEnabled(m_editSteps);
     saveAsAction->setEnabled(m_editSteps);
 }
@@ -1832,16 +1850,10 @@ void Phototonic::scaleImage() {
 //    }
 }
 
-void Phototonic::freeRotateLeft() {
-    --Settings::rotation;
+void Phototonic::freeRotate(int deg) {
+    Settings::rotation += deg;
     if (Settings::rotation < 0)
         Settings::rotation = 359;
-    imageViewer->resizeImage();
-    imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(Settings::rotation)));
-}
-
-void Phototonic::freeRotateRight() {
-    ++Settings::rotation;
     if (Settings::rotation > 360)
         Settings::rotation = 1;
     imageViewer->resizeImage();
