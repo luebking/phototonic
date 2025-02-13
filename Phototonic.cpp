@@ -809,8 +809,6 @@ void Phototonic::createActions() {
 
     MAKE_ACTION_NOSC(feedbackImageInfoAction, tr("Image Info"), "imageinfo");
     feedbackImageInfoAction->setCheckable(true);
-    feedbackImageInfoAction->setShortcut(Qt::Key_I);
-    feedbackImageInfoAction->setShortcutContext(Qt::WidgetShortcut);
     connect(feedbackImageInfoAction, &QAction::triggered, [=]() {
         if (feedbackImageInfoAction->isChecked()) {
             m_infoViewer->read(imageViewer->fullImagePath);
@@ -2186,12 +2184,15 @@ void Phototonic::updateActions() {
         setViewerKeyEventsEnabled(true);
         fullScreenAction->setEnabled(true);
         CloseImageAction->setEnabled(true);
+        feedbackImageInfoAction->setShortcuts(QList<QKeySequence>() << feedbackImageInfoAction->shortcut() << Qt::Key_I);
     } else {
         if (QApplication::focusWidget() == imageViewer) {
             setViewerKeyEventsEnabled(true);
+            feedbackImageInfoAction->setShortcuts(QList<QKeySequence>() << feedbackImageInfoAction->shortcut() << Qt::Key_I);
             fullScreenAction->setEnabled(false);
             CloseImageAction->setEnabled(false);
         } else {
+            feedbackImageInfoAction->setShortcuts(QList<QKeySequence>() << feedbackImageInfoAction->shortcut());
             setViewerKeyEventsEnabled(false);
             fullScreenAction->setEnabled(false);
             CloseImageAction->setEnabled(false);
