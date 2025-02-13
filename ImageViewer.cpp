@@ -605,7 +605,7 @@ void ImageViewer::refresh() {
 
     viewerImage = origImage;
 
-    if (Settings::colorsActive || Settings::keepTransform) {
+    if (Settings::colorsActive) {
         colorize();
     }
 
@@ -747,7 +747,7 @@ void ImageViewer::reload() {
             }
             viewerImage = origImage;
 
-            if (Settings::colorsActive || Settings::keepTransform) {
+            if (Settings::colorsActive) {
                 colorize();
             }
         } else {
