@@ -1792,7 +1792,7 @@ void Phototonic::rotate(int deg) {
         });
         connect(rotator, &QObject::destroyed, [=]() {rotator = nullptr;});
     }
-    rotator->setDuration(2*qAbs(deg));
+    rotator->setDuration(2*qAbs(rotation-Settings::rotation));
     rotator->setStartValue(Settings::rotation);
     rotator->setEndValue(rotation);
     rotator->start();
