@@ -104,7 +104,6 @@ ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     myContextMenu = nullptr;
     cursorIsHidden = false;
     moveImageLocked = false;
-    myMirrorLayout = MirrorNone;
     imageWidget = new ImageWidget;
     imageWidget->setLetterbox(m_letterbox);
     m_crossfade = false;
@@ -330,79 +329,6 @@ void ImageViewer::centerImage(QSize imgSize) {
         imageWidget->setImagePosition(QPoint((imageWidget->width() - imgSize.width())/2, (imageWidget->height() - imgSize.height())/2));
     } else {
         ensureVisible(imgSize.width()/2, imgSize.height()/2, width()/2, height()/2);
-    }
-}
-
-
-void ImageViewer::mirror() {
-    switch (myMirrorLayout) {
-        case MirrorDual: {
-            mirrorImage = QImage(viewerImage.width() * 2, viewerImage.height(),
-                                 QImage::Format_ARGB32);
-            QPainter painter(&mirrorImage);
-            painter.drawImage(0, 0, viewerImage);
-            painter.drawImage(viewerImage.width(), 0, viewerImage.mirrored(true, false));
-            break;
-        }
-
-        case MirrorTriple: {
-            mirrorImage = QImage(viewerImage.width() * 3, viewerImage.height(),
-                                 QImage::Format_ARGB32);
-            QPainter painter(&mirrorImage);
-            painter.drawImage(0, 0, viewerImage);
-            painter.drawImage(viewerImage.width(), 0, viewerImage.mirrored(true, false));
-            painter.drawImage(viewerImage.width() * 2, 0, viewerImage.mirrored(false, false));
-            break;
-        }
-
-        case MirrorQuad: {
-            mirrorImage = QImage(viewerImage.width() * 2, viewerImage.height() * 2,
-                                 QImage::Format_ARGB32);
-            QPainter painter(&mirrorImage);
-            painter.drawImage(0, 0, viewerImage);
-            painter.drawImage(viewerImage.width(), 0, viewerImage.mirrored(true, false));
-            painter.drawImage(0, viewerImage.height(), viewerImage.mirrored(false, true));
-            painter.drawImage(viewerImage.width(), viewerImage.height(),
-                              viewerImage.mirrored(true, true));
-            break;
-        }
-
-        case MirrorVDual: {
-            mirrorImage = QImage(viewerImage.width(), viewerImage.height() * 2,
-                                 QImage::Format_ARGB32);
-            QPainter painter(&mirrorImage);
-            painter.drawImage(0, 0, viewerImage);
-            painter.drawImage(0, viewerImage.height(), viewerImage.mirrored(false, true));
-            break;
-        }
-        default: break;
-    }
-
-    viewerImage = mirrorImage;
-    static int nag_counter = 0;
-    if (myMirrorLayout != MirrorNone && ++nag_counter < 9)
-        setFeedback("<h1>Hello there.</h1><h4>Yes you behind the monitor.</h4>"
-                    "<h2>I'm talking to you!</h2>"
-                    "<p>Since you're using this you probably have an idea<br>"
-                    "what this is supposed to be good for?</p>"
-                    "<p>Do you mind filing a bug that explains the feature?<br>"
-                    "Otherwise it might easily hit the curb for the final release.</p>"
-                    "<p>Thanks<br>"
-                    "You can hide this message by clicking on it.</p>", false);
-    else
-        setFeedback("", false);
-}
-
-void ImageViewer::setMirror(MirrorLayout layout) {
-    myMirrorLayout = layout;
-    refresh();
-    switch (myMirrorLayout) {
-        case MirrorNone: setFeedback(tr("Mirror Disabled")); break;
-        case MirrorDual: setFeedback(tr("Mirror: Dual")); break;
-        case MirrorTriple: setFeedback(tr("Mirror: Triple")); break;
-        case MirrorQuad: setFeedback(tr("Mirror: Quad")); break;
-        case MirrorVDual: setFeedback(tr("Mirror: Dual Vertical")); break;
-        default: qDebug() << "invalid mirror layout" << layout;
     }
 }
 
@@ -683,10 +609,6 @@ void ImageViewer::refresh() {
         colorize();
     }
 
-    if (myMirrorLayout) {
-        mirror();
-    }
-
     imageWidget->setImage(viewerImage, m_exifTransformation);
     resizeImage();
 }
@@ -827,9 +749,6 @@ void ImageViewer::reload() {
 
             if (Settings::colorsActive || Settings::keepTransform) {
                 colorize();
-            }
-            if (myMirrorLayout) {
-                mirror();
             }
         } else {
             viewerImage = QImage(":/images/error_image.png");

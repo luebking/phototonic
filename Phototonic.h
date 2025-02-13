@@ -233,11 +233,6 @@ private:
     QAction *freeRotateLeftAction;
     QAction *freeRotateRightAction;
     QAction *colorsAction;
-    QAction *mirrorDisabledAction;
-    QAction *mirrorDualAction;
-    QAction *mirrorTripleAction;
-    QAction *mirrorDualVerticalAction;
-    QAction *mirrorQuadAction;
     QAction *moveLeftAction;
     QAction *moveRightAction;
     QAction *moveUpAction;

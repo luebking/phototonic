@@ -45,14 +45,6 @@ public:
         Disprop
     };
 
-    enum MirrorLayout {
-        MirrorNone = 0,
-        MirrorDual,
-        MirrorTriple,
-        MirrorQuad,
-        MirrorVDual
-    };
-
     void clearImage();
     void configureLetterbox();
     QSize currentImageSize() const;
@@ -69,7 +61,6 @@ public:
     void setCursorHiding(bool hide);
     void setFeedback(QString feedbackString, int timeLimited = 3000);
     void setInfo(QString infoString);
-    void setMirror(MirrorLayout layout);
     void showFileName(bool yesno) { myFilenameLabel->setVisible(yesno); }
     void slideImage(QPoint delta);
 
@@ -108,12 +99,10 @@ protected:
 private:
     QMenu *myContextMenu;
     QLabel *myFilenameLabel;
-    MirrorLayout myMirrorLayout;
     QLabel *movieWidget = nullptr;
     ImageWidget *imageWidget = nullptr;
     QImage origImage;
     QImage viewerImage;
-    QImage mirrorImage;
     QImage m_preloadedImage;
     QString m_preloadedPath;
     bool m_crossfade;
@@ -139,8 +128,6 @@ private:
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 
     void centerImage(QSize imgSize);
-
-    void mirror();
 
     void colorize();
     void colorize(uchar*, int, int, int, const unsigned char(*)[256], const unsigned char(*)[256]); // thread helper

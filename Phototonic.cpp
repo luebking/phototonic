@@ -313,11 +313,6 @@ void Phototonic::createImageViewer() {
     imageViewer->addAction(CloseImageAction);
     imageViewer->addAction(fullScreenAction);
     imageViewer->addAction(settingsAction);
-    imageViewer->addAction(mirrorDisabledAction);
-    imageViewer->addAction(mirrorDualAction);
-    imageViewer->addAction(mirrorTripleAction);
-    imageViewer->addAction(mirrorDualVerticalAction);
-    imageViewer->addAction(mirrorQuadAction);
     imageViewer->addAction(keepTransformAction);
     imageViewer->addAction(keepZoomAction);
     imageViewer->addAction(refreshAction);
@@ -378,14 +373,6 @@ void Phototonic::createImageViewer() {
     connect (menu->addAction(tr("Crop")), &QAction::triggered, [=](){
         imageViewer->setFeedback(tr("Select the crop area with Ctrl + left mouse button"), 5000);
         });
-    submenu = menu->addMenu(tr("Mirror"));
-    QActionGroup *group = new QActionGroup(submenu);
-    group->addAction(mirrorDisabledAction);
-    group->addAction(mirrorDualAction);
-    group->addAction(mirrorTripleAction);
-    group->addAction(mirrorDualVerticalAction);
-    group->addAction(mirrorQuadAction);
-    submenu->addActions(group->actions());
 
     menu = contextMenu->addMenu(tr("File"));
     menu->addAction(copyToAction);
@@ -786,24 +773,6 @@ void Phototonic::createActions() {
         }
         refreshThumbs(true);
     });
-
-    MAKE_ACTION(mirrorDisabledAction, tr("Disable Mirror"), "mirrorDisabled", "Ctrl+1");
-    MAKE_ACTION(mirrorDualAction, tr("Dual Mirror"), "mirrorDual", "Ctrl+2");
-    MAKE_ACTION(mirrorTripleAction, tr("Triple Mirror"), "mirrorTriple", "Ctrl+3");
-    MAKE_ACTION(mirrorDualVerticalAction, tr("Dual Vertical Mirror"), "mirrorVDual", "Ctrl+4");
-    MAKE_ACTION(mirrorQuadAction, tr("Quad Mirror"), "mirrorQuad", "Ctrl+5");
-
-    mirrorDisabledAction->setCheckable(true);
-    mirrorDualAction->setCheckable(true);
-    mirrorTripleAction->setCheckable(true);
-    mirrorDualVerticalAction->setCheckable(true);
-    mirrorQuadAction->setCheckable(true);
-//    connect(mirrorDisabledAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorNone); });
-//    connect(mirrorDualAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorDual); });
-//    connect(mirrorTripleAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorTriple); });
-//    connect(mirrorDualVerticalAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorVDual); });
-//    connect(mirrorQuadAction, &QAction::triggered, [=](){ imageViewer->setMirror(ImageViewer::MirrorQuad); });
-    mirrorDisabledAction->setChecked(true);
 
     MAKE_ACTION(keepTransformAction, tr("Keep Transformations"), "keepTransform", "Ctrl+K");
     keepTransformAction->setCheckable(true);
