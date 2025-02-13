@@ -152,7 +152,6 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     m_deleteInProgress = false;
     currentHistoryIdx = -1;
     needHistoryRecord = true;
-    interfaceDisabled = false;
     m_reloadPending = false;
 
     refreshThumbs(true);
@@ -1744,20 +1743,20 @@ void Phototonic::flipHorizontal() {
 }
 
 void Phototonic::cropImage() {
-    if (Settings::slideShowActive) {
+    if (Settings::slideShowActive)
         toggleSlideShow();
-    }
 
-    setInterfaceEnabled(false);
+    imageViewer->setCursorHiding(false);
     imageViewer->configureLetterbox();
-    setInterfaceEnabled(true);
+    if (isFullScreen())
+        imageViewer->setCursorHiding(true);
 }
 
 void Phototonic::scaleImage() {
-    if (Settings::slideShowActive) {
+    if (Settings::slideShowActive)
         toggleSlideShow();
-    }
 
+    imageViewer->setCursorHiding(false);
 //    if (Settings::layoutMode == ImageViewWidget) {
         ResizeDialog dlg(imageViewer->currentImageSize(), imageViewer);
         if (dlg.exec() == QDialog::Accepted) {
@@ -1767,6 +1766,8 @@ void Phototonic::scaleImage() {
 //        ASSERT_IMAGES_SELECTED
         /// @todo: looks like there were plans to allow mass-resizing from the thumbnail browser
 //    }
+    if (isFullScreen())
+        imageViewer->setCursorHiding(true);
 }
 
 void Phototonic::freeRotate(int deg) {
@@ -1861,8 +1862,11 @@ void Phototonic::showColorsDialog() {
         connect(imageViewer, &ImageViewer::imageEdited, [=](bool dirty){ if (!dirty)colorsDialog->reset(); });
     }
 
+    imageViewer->setCursorHiding(false);
     Settings::colorsActive = true;
     colorsDialog->exec();
+    if (isFullScreen())
+        imageViewer->setCursorHiding(true);
 }
 
 static bool isWritableDir(const QString &path) {
@@ -2224,7 +2228,7 @@ void Phototonic::updateActions() {
         toggleFileSpecificActions(false);
     }
 
-    if (Settings::layoutMode == ImageViewWidget && !interfaceDisabled) {
+    if (Settings::layoutMode == ImageViewWidget) {
         setViewerKeyEventsEnabled(true);
         fullScreenAction->setEnabled(true);
         CloseImageAction->setEnabled(true);
@@ -2544,9 +2548,6 @@ void Phototonic::setStatus(QString state) {
 }
 
 void Phototonic::mouseDoubleClickEvent(QMouseEvent *event) {
-    if (interfaceDisabled) {
-        return;
-    }
 
     if (event->button() == Qt::LeftButton) {
         if (Settings::layoutMode == ImageViewWidget) {
@@ -2567,9 +2568,6 @@ void Phototonic::mouseDoubleClickEvent(QMouseEvent *event) {
 }
 
 void Phototonic::mousePressEvent(QMouseEvent *event) {
-    if (interfaceDisabled) {
-        return;
-    }
 
     if (Settings::layoutMode == ImageViewWidget) {
         if (event->button() == Qt::MiddleButton) {
@@ -3479,44 +3477,6 @@ bool Phototonic::removeDirectoryOperation(QString dirToDelete) {
         }
     removeDirOk = dir.rmdir(dirToDelete);
     return removeDirOk;
-}
-
-void Phototonic::setInterfaceEnabled(bool enable) {
-    // actions
-    colorsAction->setEnabled(enable);
-    renameAction->setEnabled(enable);
-    removeMetadataAction->setEnabled(enable);
-    cropAction->setEnabled(enable);
-    resizeAction->setEnabled(enable);
-    CloseImageAction->setEnabled(enable);
-    nextImageAction->setEnabled(enable);
-    prevImageAction->setEnabled(enable);
-    firstImageAction->setEnabled(enable);
-    lastImageAction->setEnabled(enable);
-    randomImageAction->setEnabled(enable);
-    slideShowAction->setEnabled(enable);
-    copyToAction->setEnabled(enable);
-    moveToAction->setEnabled(enable);
-    deleteAction->setEnabled(enable);
-    deletePermanentlyAction->setEnabled(enable);
-    settingsAction->setEnabled(enable);
-    viewImageAction->setEnabled(enable);
-
-    // other
-    thumbsViewer->setEnabled(enable);
-    fileSystemTree->setEnabled(enable);
-    bookmarks->setEnabled(enable);
-    m_imageTags->setEnabled(enable);
-    myMainToolBar->setEnabled(enable);
-    interfaceDisabled = !enable;
-
-    if (enable) {
-        if (isFullScreen()) {
-            imageViewer->setCursorHiding(true);
-        }
-    } else {
-        imageViewer->setCursorHiding(false);
-    }
 }
 
 void Phototonic::addBookmark(QString path) {

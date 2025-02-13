@@ -306,7 +306,6 @@ private:
     QWidget *imagePreviewDockEmptyWidget;
     QWidget *tagsDockEmptyWidget;
     QWidget *imageInfoDockEmptyWidget;
-    bool interfaceDisabled;
     FileListWidget *fileListWidget;
     QFileSystemModel *fileSystemModel;
     QStackedLayout *stackedLayout;
@@ -377,8 +376,6 @@ private:
     void showNewImageWarning();
 
     bool removeDirectoryOperation(QString dirToDelete);
-
-    void setInterfaceEnabled(bool enable);
 
     void addBookmark(QString path);
 
