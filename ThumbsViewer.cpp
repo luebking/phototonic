@@ -1040,21 +1040,6 @@ void ThumbsViewer::findDupes(bool resetCounters)
     QApplication::processEvents();
 }
 
-void ThumbsViewer::selectByBrightness(qreal min, qreal max) {
-    scanForSort(BrightnessRole);
-    QItemSelection sel;
-    for (int row = 0; row < m_model->rowCount(); ++row) {
-        QModelIndex idx = m_model->index(row, 0);
-        QVariant brightness = m_model->data(idx, BrightnessRole);
-        if (brightness.isValid()) {
-            qreal val = brightness.toReal();
-            if (val >= min && val <= max)
-                sel.select(idx, idx);
-        }
-    }
-    selectionModel()->select(sel, QItemSelectionModel::ClearAndSelect);
-}
-
 static Histogram calcHist(const QImage &img)
 {
     Histogram hist;

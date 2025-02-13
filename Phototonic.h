@@ -114,8 +114,6 @@ private slots:
 
     void selectAllThumbs();
 
-    void selectByBrightness();
-
     void deleteOperation();
 
     void deletePermanentlyOperation();
@@ -188,7 +186,6 @@ private:
     QAction *renameAction;
     QAction *removeMetadataAction;
     QAction *selectAllAction;
-    QAction *selectByBrightnesAction;
     QAction *copyImageAction;
     QAction *pasteImageAction;
     QAction *showClipboardAction;

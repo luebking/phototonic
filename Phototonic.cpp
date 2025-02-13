@@ -65,7 +65,6 @@
 #include "MessageBox.h"
 #include "MetadataCache.h"
 #include "Phototonic.h"
-#include "RangeInputDialog.h"
 #include "RenameDialog.h"
 #include "ResizeDialog.h"
 #include "Settings.h"
@@ -537,9 +536,6 @@ void Phototonic::createActions() {
     MAKE_ACTION_NOSC(selectAllAction, tr("Select All"), "selectAll");
     connect(selectAllAction, SIGNAL(triggered()), this, SLOT(selectAllThumbs()));
 
-    MAKE_ACTION_NOSC(selectByBrightnesAction, tr("Select by Brightness"), "selectByBrightness");
-//    connect(selectByBrightnesAction, SIGNAL(triggered()), this, SLOT(selectByBrightness()));
-
     MAKE_ACTION_NOSC(aboutAction, tr("About"), "about");
     connect(aboutAction, &QAction::triggered, [=](){MessageBox(this).about();});
 
@@ -882,7 +878,6 @@ void Phototonic::createMenus() {
     menu->addAction(deletePermanentlyAction);
     menu->addSeparator();
     menu->addAction(selectAllAction);
-    menu->addAction(selectByBrightnesAction);
     menu->addAction(invertSelectionAction);
     menu->addAction(batchTransformAction);
 //    menu->addAction(batchSubMenuAction);
@@ -960,7 +955,6 @@ void Phototonic::createMenus() {
     thumbsViewer->addAction(moveToAction);
     thumbsViewer->addAction("")->setSeparator(true);
     thumbsViewer->addAction(selectAllAction);
-    thumbsViewer->addAction(selectByBrightnesAction);
     thumbsViewer->addAction(invertSelectionAction);
     thumbsViewer->addAction("")->setSeparator(true);
     thumbsViewer->addAction(batchTransformAction);
@@ -1462,15 +1456,6 @@ void Phototonic::toggleFullScreen() {
 
 void Phototonic::selectAllThumbs() {
     thumbsViewer->selectAll();
-}
-
-void Phototonic::selectByBrightness() {
-    RangeInputDialog dlg(this);
-    if (dlg.exec()) {
-        qreal min = dlg.minimumValue();
-        qreal max = dlg.maximumValue();
-        thumbsViewer->selectByBrightness(min, max);
-    }
 }
 
 #define ASSERT_IMAGES_SELECTED if(thumbsViewer->selectionModel()->selectedIndexes().size()<1){setStatus(tr("No images selected"));return;}

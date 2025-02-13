@@ -119,8 +119,6 @@ public:
 
     void abort(bool permanent = false);
 
-    void selectByBrightness(qreal min, qreal max);
-
     int getNextRow();
 
     int getPrevRow();
