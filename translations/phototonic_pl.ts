@@ -480,47 +480,47 @@
     <message>
         <location filename="../Tags.cpp" line="93"/>
         <source>Add to library</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj do biblioteki</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="96"/>
         <source>Remove from library</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń z biblioteki</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="146"/>
         <source>Show untagged</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż nieotagowane</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="146"/>
         <source>Invert filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Odwróć filtr</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="310"/>
         <source>Mandatory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Obowiązkowe:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="311"/>
         <source>Sufficient:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wystarczające:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="312"/>
         <source>The image must not have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz nie może mieć tego tagu</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="313"/>
         <source>The image must have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz musi mieć ten tag</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="314"/>
         <source>The image must have any of these tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz musi mieć którykolwiek z tych tagów</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="497"/>
@@ -3200,17 +3200,17 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="217"/>
         <source>Tagging %1</source>
-        <translation type="unfinished">Tagowanie %1</translation>
+        <translation>Tagowanie %1</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="225"/>
         <source>Error</source>
-        <translation type="unfinished">Błąd</translation>
+        <translation>Błąd</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="225"/>
         <source>Failed to save tags to %1</source>
-        <translation type="unfinished">Nie udało się zapisać tagów w %1</translation>
+        <translation>Nie udało się zapisać tagów w %1</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="725"/>

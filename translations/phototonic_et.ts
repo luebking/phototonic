@@ -99,19 +99,19 @@
     <message>
         <location filename="../CopyMoveDialog.cpp" line="79"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Katkesta</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="108"/>
         <location filename="../CopyMoveDialog.cpp" line="133"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopeerime „%1“ -&gt; „%2“.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="109"/>
         <location filename="../CopyMoveDialog.cpp" line="134"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Teisaldame „%1“ -&gt; „%2“.</translation>
     </message>
 </context>
 <context>
@@ -119,43 +119,43 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="69"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Vali kaust</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="93"/>
         <source>Move to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Teisalda uude asukohta...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="96"/>
         <source>Copy to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopeeri uude asukohta...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="126"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sirvi...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="128"/>
         <source>Delete Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Kustuta järjehoidja</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="135"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Katkesta</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="139"/>
         <source>OK</source>
-        <translation type="unfinished">Sobib</translation>
+        <translation>Sobib</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="33"/>
         <location filename="../CopyMoveToDialog.cpp" line="149"/>
         <source>Destination:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sihtkaust:</translation>
     </message>
 </context>
 <context>
@@ -169,12 +169,12 @@
     <message>
         <location filename="../CropDialog.cpp" line="38"/>
         <source>Reset</source>
-        <translation type="unfinished">Lähtesta</translation>
+        <translation>Lähtesta</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="40"/>
         <source>OK</source>
-        <translation type="unfinished">Sobib</translation>
+        <translation>Sobib</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="69"/>
@@ -202,53 +202,53 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="35"/>
         <source>Manage External Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Halda väliseid rakendusi</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="47"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="49"/>
         <source>Application path and arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Rakenduse asukohta ja käivitusvõtmed</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="56"/>
         <source>Pick Executable...</source>
         <extracomment>open an existing executable</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Vali käivitusfail...</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="59"/>
         <source>Add manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisa käsitsi</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="62"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Kustuta</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="72"/>
         <source>Wallpaper command</source>
-        <translation type="unfinished"></translation>
+        <translation>Taustapildi käsk</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="76"/>
         <source>OK</source>
-        <translation type="unfinished">Sobib</translation>
+        <translation>Sobib</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="124"/>
         <source>Choose Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Vali rakendus</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="135"/>
         <source>New Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Uus rakendus</translation>
     </message>
 </context>
 <context>
@@ -257,7 +257,7 @@
         <location filename="../FileListWidget.cpp" line="39"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Faililoend</translation>
     </message>
 </context>
 <context>
@@ -289,66 +289,66 @@
     <message>
         <location filename="../Tags.cpp" line="100"/>
         <source>Clear Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Eemalda filtrid</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="514"/>
         <source>Tag %1 already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 silt on juba olemas</translation>
     </message>
     <message numerus="yes">
         <location filename="../Tags.cpp" line="530"/>
         <source>Delete %n selected tags(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Kas kustutame %n sildi?</numerusform>
+            <numerusform>Kas kustutame %n silti?</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="531"/>
         <source>Delete tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Kustuta silt</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="89"/>
         <source>New Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Uus silt</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="52"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtreeri</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="505"/>
         <location filename="../Tags.cpp" line="514"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Viga</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="496"/>
         <source>Add a new tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisa uus silt</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="93"/>
         <source>Add to library</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisa pildikogusse</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="96"/>
         <source>Remove from library</source>
-        <translation type="unfinished"></translation>
+        <translation>Eemalda pidlikogust</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="146"/>
         <source>Show untagged</source>
-        <translation type="unfinished"></translation>
+        <translation>Näita sildistamata pilte</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="146"/>
         <source>Invert filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Pööra filter teistpidi</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="310"/>
@@ -363,27 +363,27 @@
     <message>
         <location filename="../Tags.cpp" line="312"/>
         <source>The image must not have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Pildil ei tohi olla seda silti</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="313"/>
         <source>The image must have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Pildil peab olema see silt</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="314"/>
         <source>The image must have any of these tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Pildil peab olema üks neist siltidest</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="497"/>
         <source>Enter new tag name</source>
-        <translation type="unfinished"></translation>
+        <translation>Sisesta uue sildi nimi</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="505"/>
         <source>No name entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimi on sisestamata</translation>
     </message>
 </context>
 <context>
@@ -392,7 +392,7 @@
         <location filename="../ImageViewer.cpp" line="304"/>
         <location filename="../ImageViewer.cpp" line="1093"/>
         <source>New image size: %1x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Pildi uus suurus: %1x%2</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="400"/>
@@ -433,45 +433,45 @@
     <message>
         <location filename="../ImageViewer.cpp" line="1001"/>
         <source>Selection: </source>
-        <translation type="unfinished"></translation>
+        <translation>Valik: </translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1011"/>
         <source>Doubleclick to crop, right click to abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Topeltklõps kadreerimiseks, parem klõps katkestamiseks</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1155"/>
         <source>Rotation %1°</source>
-        <translation type="unfinished"></translation>
+        <translation>Pööramine %1°</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1246"/>
         <source>Saving...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvestamine...</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1273"/>
         <location filename="../ImageViewer.cpp" line="1303"/>
         <location filename="../ImageViewer.cpp" line="1358"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Viga</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1273"/>
         <location filename="../ImageViewer.cpp" line="1358"/>
         <source>Failed to save image.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pildi salvestamine ei õnnestunud.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1301"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Ära näita seda sõnumit enam uuesti</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1303"/>
         <source>Failed to save Exif metadata.</source>
-        <translation type="unfinished"></translation>
+        <translation>Exifi-põhise metateabe salvestamine ei õnnestunud.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1307"/>
@@ -483,22 +483,22 @@
         <location filename="../ImageViewer.cpp" line="1313"/>
         <location filename="../ImageViewer.cpp" line="1371"/>
         <source>Image saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pilt on salvestatud.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1333"/>
         <source>Save image as</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvesta pilt kui</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1335"/>
         <source>Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pildid</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1412"/>
         <source>Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Lõikelaud</translation>
     </message>
 </context>
 <context>
@@ -506,57 +506,57 @@
     <message>
         <location filename="../InfoViewer.cpp" line="51"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopeeri</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="62"/>
         <source>Filter Items</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtreeri objekte</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="169"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Pilt</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="170"/>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Failinimi</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="171"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Asukoht</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="172"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Suurus</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="173"/>
         <source>Modified</source>
-        <translation type="unfinished"></translation>
+        <translation>Muudetud</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="177"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorming</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="180"/>
         <source>Resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Lahutusvõime</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="181"/>
         <source>Megapixel</source>
-        <translation type="unfinished"></translation>
+        <translation>Megapiksel</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="187"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Viga</translation>
     </message>
 </context>
 <context>
@@ -564,22 +564,22 @@
     <message>
         <location filename="../MessageBox.cpp" line="75"/>
         <source>Image Viewer and Organizer</source>
-        <translation type="unfinished"></translation>
+        <translation>Piltide näitaja ja haldur</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="76"/>
         <source>Home page and bug reports</source>
-        <translation type="unfinished"></translation>
+        <translation>Koduleht ja veateated</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="82"/>
         <source>Special thanks to our contributers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Suur tänu meie kaasautoritele.</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="85"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Rakenduse teave</translation>
     </message>
 </context>
 <context>
@@ -588,22 +588,22 @@
         <location filename="../Phototonic.cpp" line="236"/>
         <location filename="../Phototonic.cpp" line="903"/>
         <source>Image Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Pildi teave</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="355"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Suumi</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="353"/>
         <source>Transform</source>
-        <translation type="unfinished"></translation>
+        <translation>Muuda</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="402"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaata</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="436"/>
@@ -618,72 +618,72 @@
     <message>
         <location filename="../Phototonic.cpp" line="450"/>
         <source>Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Täisekraanivaade</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="455"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Eelistused</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="460"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Välju</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="464"/>
         <source>Enlarge Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Suurenda pisipilte</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="472"/>
         <source>Shrink Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Vähenda pisipilte</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="480"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Lõika</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="486"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopeeri</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="510"/>
         <source>Copy to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopeeri uude asukohta...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="514"/>
         <source>Move to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Teisalda uude asukohta...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="523"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Kustuta</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="528"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvesta</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="533"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvesta kui</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="543"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Muuda nime</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="551"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Vali kõik</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="559"/>
@@ -693,90 +693,90 @@
     <message>
         <location filename="../Phototonic.cpp" line="608"/>
         <source>Show Hidden Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Näita peidetud faile</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="620"/>
         <source>Hide Dock Title Bars</source>
-        <translation type="unfinished"></translation>
+        <translation>Peida doki tiitliriba</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="626"/>
         <source>Show Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Näita tööriistariba</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="636"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Laadi uuesti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="647"/>
         <source>Paste Here</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta siia</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="663"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Tagasi</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="669"/>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Edasi</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="675"/>
         <source>Go Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Liigu üles</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="680"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Avaleht</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="685"/>
         <location filename="../Phototonic.cpp" line="2864"/>
         <source>Slide Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Slaidiseanss</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="719"/>
         <source>Load Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Laadi lõikelaud</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="728"/>
         <location filename="../Phototonic.cpp" line="729"/>
         <source>Open With...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ava rakendusega...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="737"/>
         <source>Add Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisa järjehoidja</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="746"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Suumi välja</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="751"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>Suumi sisse</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="756"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähtesta suum</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="761"/>
         <location filename="../Phototonic.cpp" line="1684"/>
         <source>Original Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Algne suurus</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="766"/>
@@ -801,7 +801,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="818"/>
         <source>Colors</source>
-        <translation type="unfinished">Värvid</translation>
+        <translation>Värvid</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="823"/>
@@ -1508,7 +1508,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3407"/>
         <source>OK</source>
-        <translation type="unfinished">Sobib</translation>
+        <translation>Sobib</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3424"/>
@@ -1996,7 +1996,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="312"/>
         <source>OK</source>
-        <translation type="unfinished">Sobib</translation>
+        <translation>Sobib</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="316"/>
@@ -2132,9 +2132,9 @@
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="894"/>
         <source>%n image(s)</source>
-        <translation type="unfinished">
-            <numerusform>%n image</numerusform>
-            <numerusform>%n images</numerusform>
+        <translation>
+            <numerusform>%n pilt</numerusform>
+            <numerusform>%n pilti</numerusform>
         </translation>
     </message>
     <message>

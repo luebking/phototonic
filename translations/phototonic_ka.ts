@@ -6,62 +6,62 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="35"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>ფერები</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="41"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>ჩამოყრა</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="45"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>დიახ</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="76"/>
         <source>Hue</source>
-        <translation type="unfinished"></translation>
+        <translation>ტონი</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="77"/>
         <source>Saturation</source>
-        <translation type="unfinished"></translation>
+        <translation>გაჯერებულობა</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="78"/>
         <source>Lightness</source>
-        <translation type="unfinished"></translation>
+        <translation>სიკაშკაშე</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="81"/>
         <source>Colorize</source>
-        <translation type="unfinished"></translation>
+        <translation>გაფერადება</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="85"/>
         <location filename="../ColorsDialog.cpp" line="89"/>
         <location filename="../ColorsDialog.cpp" line="93"/>
         <source>Negative</source>
-        <translation type="unfinished"></translation>
+        <translation>უარყოფითი</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="99"/>
         <location filename="../ColorsDialog.cpp" line="152"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation>წითელი</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="104"/>
         <location filename="../ColorsDialog.cpp" line="153"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation>მწვანე</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="109"/>
         <location filename="../ColorsDialog.cpp" line="154"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation>ლურჯი</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="126"/>
@@ -71,17 +71,17 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="132"/>
         <source>Affected Channels</source>
-        <translation type="unfinished"></translation>
+        <translation>შეეხო არხებს</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="136"/>
         <source>Brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>სიკაშკაშე</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="137"/>
         <source>Contrast</source>
-        <translation type="unfinished"></translation>
+        <translation>კონტრასტი</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="148"/>
@@ -91,7 +91,7 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="168"/>
         <source>Color Balance</source>
-        <translation type="unfinished"></translation>
+        <translation>ფერების ბალანსი</translation>
     </message>
 </context>
 <context>
@@ -99,7 +99,7 @@
     <message>
         <location filename="../CopyMoveDialog.cpp" line="79"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>გაუქმება</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="108"/>
@@ -119,43 +119,43 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="69"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>აირჩიეთ საქაღალდე</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="93"/>
         <source>Move to...</source>
-        <translation type="unfinished"></translation>
+        <translation>გადატანა...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="96"/>
         <source>Copy to...</source>
-        <translation type="unfinished"></translation>
+        <translation>კოპირება...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="126"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>პოვნა...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="128"/>
         <source>Delete Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>სანიშნეს წაშლა</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="135"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>გაუქმება</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="139"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>დიახ</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="33"/>
         <location filename="../CopyMoveToDialog.cpp" line="149"/>
         <source>Destination:</source>
-        <translation type="unfinished"></translation>
+        <translation>დანიშნულება:</translation>
     </message>
 </context>
 <context>
@@ -164,37 +164,37 @@
         <location filename="../CropDialog.cpp" line="31"/>
         <source>Letterbox</source>
         <extracomment>Like a bad dvd where you get a black frame around the image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>საფოსტო ყუთი</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="38"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>ჩამოყრა</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="40"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>დიახ</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="69"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>მარცხნივ</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="73"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>მარჯვნივ</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="77"/>
         <source>Top</source>
-        <translation type="unfinished"></translation>
+        <translation>ზემოთ</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="81"/>
         <source>Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>ქვემოთ</translation>
     </message>
 </context>
 <context>
@@ -207,7 +207,7 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="47"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>სახელი</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="49"/>
@@ -218,37 +218,37 @@
         <location filename="../ExternalAppsDialog.cpp" line="56"/>
         <source>Pick Executable...</source>
         <extracomment>open an existing executable</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>აირჩიეთ გამშვები ფაილი...</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="59"/>
         <source>Add manually</source>
-        <translation type="unfinished"></translation>
+        <translation>ხელით დამატება</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="62"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>წაშლა</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="72"/>
         <source>Wallpaper command</source>
-        <translation type="unfinished"></translation>
+        <translation>ფონის სურათის ბრძანება</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="76"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>დიახ</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="124"/>
         <source>Choose Application</source>
-        <translation type="unfinished"></translation>
+        <translation>აირჩიეთ აპლიკაცია</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="135"/>
         <source>New Application</source>
-        <translation type="unfinished"></translation>
+        <translation>ახალი აპლიკაცია</translation>
     </message>
 </context>
 <context>
@@ -257,7 +257,7 @@
         <location filename="../FileListWidget.cpp" line="39"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>ფაილების სია</translation>
     </message>
 </context>
 <context>
@@ -266,7 +266,7 @@
         <location filename="../GuideWidget.cpp" line="40"/>
         <source>Remove Guide</source>
         <extracomment>The guide is a visible line for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>გიდის მოცილება</translation>
     </message>
 </context>
 <context>
@@ -274,27 +274,27 @@
     <message>
         <location filename="../Tags.cpp" line="51"/>
         <source>Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>მონიშნული</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="82"/>
         <source>Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>ჭდე</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="86"/>
         <source>Untag</source>
-        <translation type="unfinished"></translation>
+        <translation>ჭდის მოხსნა</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="100"/>
         <source>Clear Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>ფილტრების გასუფთავება</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="514"/>
         <source>Tag %1 already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>ჭდე სახელით &quot;%1&quot; უკვე არსებობს</translation>
     </message>
     <message numerus="yes">
         <location filename="../Tags.cpp" line="530"/>
@@ -307,23 +307,23 @@
     <message>
         <location filename="../Tags.cpp" line="531"/>
         <source>Delete tag</source>
-        <translation type="unfinished"></translation>
+        <translation>ჭდის წაშლა</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="89"/>
         <source>New Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>ახალი ჭდე</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="52"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>ფილტრი</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="505"/>
         <location filename="../Tags.cpp" line="514"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>შეცდომა</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="496"/>
@@ -353,12 +353,12 @@
     <message>
         <location filename="../Tags.cpp" line="310"/>
         <source>Mandatory:</source>
-        <translation type="unfinished"></translation>
+        <translation>აუცილებელი:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="311"/>
         <source>Sufficient:</source>
-        <translation type="unfinished"></translation>
+        <translation>საკმარისი:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="312"/>
@@ -397,22 +397,22 @@
     <message>
         <location filename="../ImageViewer.cpp" line="400"/>
         <source>Mirror Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>სარკე გამორთულია</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="401"/>
         <source>Mirror: Dual</source>
-        <translation type="unfinished"></translation>
+        <translation>სარკე: ორმაგი</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="402"/>
         <source>Mirror: Triple</source>
-        <translation type="unfinished"></translation>
+        <translation>სარკე: სამმაგი</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="403"/>
         <source>Mirror: Quad</source>
-        <translation type="unfinished"></translation>
+        <translation>სარკე: ოთხმაგი</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="404"/>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="1001"/>
         <source>Selection: </source>
-        <translation type="unfinished"></translation>
+        <translation>არჩევანი: </translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1011"/>
@@ -443,30 +443,30 @@
     <message>
         <location filename="../ImageViewer.cpp" line="1155"/>
         <source>Rotation %1°</source>
-        <translation type="unfinished"></translation>
+        <translation>შებრუნება კუთხით %1°</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1246"/>
         <source>Saving...</source>
-        <translation type="unfinished"></translation>
+        <translation>Შენახვა...</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1273"/>
         <location filename="../ImageViewer.cpp" line="1303"/>
         <location filename="../ImageViewer.cpp" line="1358"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>შეცდომა</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1273"/>
         <location filename="../ImageViewer.cpp" line="1358"/>
         <source>Failed to save image.</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილის შენახვის შეცდომა.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1301"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>ეს შეტყობინება აღარ მაჩვენო</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1303"/>
@@ -483,22 +483,22 @@
         <location filename="../ImageViewer.cpp" line="1313"/>
         <location filename="../ImageViewer.cpp" line="1371"/>
         <source>Image saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულება შენახულია.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1333"/>
         <source>Save image as</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულების შენახვა, როგორც</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1335"/>
         <source>Images</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულებები</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1412"/>
         <source>Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>გაცვლის ბუფერი</translation>
     </message>
 </context>
 <context>
@@ -506,57 +506,57 @@
     <message>
         <location filename="../InfoViewer.cpp" line="51"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>კოპირება</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="62"/>
         <source>Filter Items</source>
-        <translation type="unfinished"></translation>
+        <translation>ელემენტების გაფილტვრა</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="169"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულება</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="170"/>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილის სახელი</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="171"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>მდებარეობა</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="172"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>ზომა</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="173"/>
         <source>Modified</source>
-        <translation type="unfinished"></translation>
+        <translation>შეიცვალა</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="177"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>ფორმატი</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="180"/>
         <source>Resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>გარჩევადობა</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="181"/>
         <source>Megapixel</source>
-        <translation type="unfinished"></translation>
+        <translation>მეგაპიქსელი</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="187"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>შეცდომა</translation>
     </message>
 </context>
 <context>
@@ -579,7 +579,7 @@
     <message>
         <location filename="../MessageBox.cpp" line="85"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>შესახებ</translation>
     </message>
 </context>
 <context>
@@ -588,112 +588,112 @@
         <location filename="../Phototonic.cpp" line="236"/>
         <location filename="../Phototonic.cpp" line="903"/>
         <source>Image Info</source>
-        <translation type="unfinished"></translation>
+        <translation>ინფორმაცია გამოსახულების შესახებ</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="355"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>მასშტაბი</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="353"/>
         <source>Transform</source>
-        <translation type="unfinished"></translation>
+        <translation>ტრასფორმირება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="402"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>ხედი</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="436"/>
         <source>Top</source>
-        <translation type="unfinished"></translation>
+        <translation>ზემოთ</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="441"/>
         <source>Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>ქვემოთ</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="450"/>
         <source>Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>სრული ეკრანი</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="455"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>მორგება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="460"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>გასვლა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="464"/>
         <source>Enlarge Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>მინიატურების გაზრდა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="472"/>
         <source>Shrink Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>მინიატურების დაპატარავება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="480"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>ამოჭრა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="486"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>კოპირება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="510"/>
         <source>Copy to...</source>
-        <translation type="unfinished"></translation>
+        <translation>კოპირება...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="514"/>
         <source>Move to...</source>
-        <translation type="unfinished"></translation>
+        <translation>გადატანა...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="523"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>წაშლა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="528"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>შენახვა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="533"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>შენახვა, როგორც</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="543"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>სახელის გადარქმევა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="551"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>ყველას მონიშვნა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="559"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>შესახებ</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="608"/>
         <source>Show Hidden Files</source>
-        <translation type="unfinished"></translation>
+        <translation>დამალული ფაილების ჩვენება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="620"/>
@@ -703,105 +703,105 @@
     <message>
         <location filename="../Phototonic.cpp" line="626"/>
         <source>Show Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>პანელის ჩვენება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="636"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>თავიდან ჩატვირთვა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="647"/>
         <source>Paste Here</source>
-        <translation type="unfinished"></translation>
+        <translation>აქ ჩასმა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="663"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>უკან</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="669"/>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>წინ</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="675"/>
         <source>Go Up</source>
-        <translation type="unfinished"></translation>
+        <translation>მაღლა ასვლა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="680"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Home</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="685"/>
         <location filename="../Phototonic.cpp" line="2864"/>
         <source>Slide Show</source>
-        <translation type="unfinished"></translation>
+        <translation>სლაიდების ჩვენება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="719"/>
         <source>Load Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>ბუფერის ჩატვირთვა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="728"/>
         <location filename="../Phototonic.cpp" line="729"/>
         <source>Open With...</source>
-        <translation type="unfinished"></translation>
+        <translation>გამხსნელი პროგრამა...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="737"/>
         <source>Add Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>სანიშნის დამატება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="746"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>დაპატარავება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="751"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>გადიდება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="756"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>გადიდების საწყისი პარამეტრები</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="761"/>
         <location filename="../Phototonic.cpp" line="1684"/>
         <source>Original Size</source>
-        <translation type="unfinished"></translation>
+        <translation>საწყისი ზომა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="766"/>
         <source>Keep Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>გადიდების შენარჩუნება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="790"/>
         <source>Flip Horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>ჰორიზონტალურად გადაბრუნება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="795"/>
         <source>Flip Vertically</source>
-        <translation type="unfinished"></translation>
+        <translation>ვერტიკალურად გადაბრუნება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="805"/>
         <source>Scale Image</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულების მასშტაბირება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="818"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>ფერები</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="823"/>
@@ -811,7 +811,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="883"/>
         <source>Invert Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>მონიშვნის ინვერსია</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="891"/>
@@ -821,50 +821,50 @@
     <message>
         <location filename="../Phototonic.cpp" line="896"/>
         <source>Filter by Name</source>
-        <translation type="unfinished"></translation>
+        <translation>სახელით გაფილტვრა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="920"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ფაილი</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="931"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ჩასწორება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="954"/>
         <source>&amp;Go</source>
         <extracomment>&quot;go&quot; like in go forward, backward, etc</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;წავიდა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="969"/>
         <source>&amp;View</source>
         <extracomment>configure visual features of the app</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ნახვა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="375"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>ჩასწორება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1178"/>
         <source>File System</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილური სისტემა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1236"/>
         <source>Bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>სანიშნეები</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1278"/>
         <source>Tags</source>
         <extracomment>tags are image metadata</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>ჭდეები</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="181"/>
@@ -889,7 +889,7 @@
         <location filename="../Phototonic.cpp" line="3457"/>
         <location filename="../Phototonic.cpp" line="3467"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>შეცდომა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1423"/>
@@ -899,7 +899,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1403"/>
         <source>Invalid selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>არასწორი მონიშნული.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1598"/>
@@ -911,33 +911,33 @@
         <location filename="../Phototonic.cpp" line="1670"/>
         <source>Zoom %1%</source>
         <extracomment>nb the trailing &quot;%&quot; for eg. 80%</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>გადიდება %1%</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1677"/>
         <source>Zoom Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>გადიდების ჩამოყრა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1690"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished"></translation>
+        <translation>გადიდების დაბლოკვა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1692"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished"></translation>
+        <translation>გადიდება განბლოკილია</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="866"/>
         <source>Transformations Locked</source>
-        <translation type="unfinished"></translation>
+        <translation>გარდაქმნები დაბლოკილია</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="115"/>
         <location filename="../Phototonic.cpp" line="249"/>
         <source>Average brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>საშუალო სიკაშკაშე</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="181"/>
@@ -947,7 +947,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="345"/>
         <source>Navigate</source>
-        <translation type="unfinished"></translation>
+        <translation>ნავიგაცია</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="363"/>
@@ -957,7 +957,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="378"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>ამოჭრა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="379"/>
@@ -967,18 +967,18 @@
     <message>
         <location filename="../Phototonic.cpp" line="381"/>
         <source>Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>სარკე</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="390"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილი</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="408"/>
         <source>Guides</source>
         <extracomment>The guides a lines across the image for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>მიმმართველები</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="409"/>
@@ -993,7 +993,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="446"/>
         <source>Close Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>დამთვალიერებლის დახურვა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="492"/>
@@ -1015,24 +1015,24 @@
         <location filename="../Phototonic.cpp" line="1983"/>
         <location filename="../Phototonic.cpp" line="2089"/>
         <source>Move to Trash</source>
-        <translation type="unfinished"></translation>
+        <translation>ნაგვის ყუთში გადატანა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="538"/>
         <source>Copy Image</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულების კოპირება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="540"/>
         <source>Paste Image</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულების ჩასმა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="547"/>
         <location filename="../Phototonic.cpp" line="3373"/>
         <location filename="../Phototonic.cpp" line="3376"/>
         <source>Remove Metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>მეტამონაცემების მოცილება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="555"/>
@@ -1042,23 +1042,23 @@
     <message>
         <location filename="../Phototonic.cpp" line="564"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"></translation>
+        <translation>სახელის მიხედვით დალაგება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="566"/>
         <location filename="../Phototonic.cpp" line="568"/>
         <source>Sort by Time</source>
-        <translation type="unfinished"></translation>
+        <translation>დროის მიხედვით დალაგება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="570"/>
         <source>Sort by Size</source>
-        <translation type="unfinished"></translation>
+        <translation>ზომით დალაგება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="572"/>
         <source>Sort by Type</source>
-        <translation type="unfinished"></translation>
+        <translation>ტიპის მიხედვით დალაგება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="574"/>
@@ -1083,12 +1083,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="641"/>
         <source>Include Sub-directories</source>
-        <translation type="unfinished"></translation>
+        <translation>ქვესაქაღალდეების ჩასმა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="653"/>
         <source>New Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>ახალი საქაღალდე</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="658"/>
@@ -1098,47 +1098,47 @@
     <message>
         <location filename="../Phototonic.cpp" line="690"/>
         <source>Next Image</source>
-        <translation type="unfinished"></translation>
+        <translation>შემდეგი გამოსახულება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="695"/>
         <source>Previous Image</source>
-        <translation type="unfinished"></translation>
+        <translation>წინა გამოსახულება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="700"/>
         <source>First Image</source>
-        <translation type="unfinished"></translation>
+        <translation>პირველი გამოსახულება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="705"/>
         <source>Last Image</source>
-        <translation type="unfinished"></translation>
+        <translation>ბოლო გამოსახულება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="710"/>
         <source>Random Image</source>
-        <translation type="unfinished"></translation>
+        <translation>შემთხვევითი გამოსახულება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="714"/>
         <source>View Image</source>
-        <translation type="unfinished"></translation>
+        <translation>სურათის ნახვა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="724"/>
         <source>Set Wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>ფონის გამოსახულების დაყენება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="732"/>
         <source>External Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>გარე აპლიკაციები</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="742"/>
         <source>Delete Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>სანიშნეს წაშლა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="771"/>
@@ -1163,7 +1163,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="800"/>
         <source>Letterbox</source>
-        <translation type="unfinished"></translation>
+        <translation>საფოსტო ყუთი</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="810"/>
@@ -1178,17 +1178,17 @@
     <message>
         <location filename="../Phototonic.cpp" line="838"/>
         <source>Disable Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>სარკის გათიშვა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="840"/>
         <source>Dual Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>ორმაგი სარკე</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="842"/>
         <source>Triple Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>სამმაგი სარკე</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="844"/>
@@ -1198,17 +1198,17 @@
     <message>
         <location filename="../Phototonic.cpp" line="846"/>
         <source>Quad Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>ოთხმაგი სარკე</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="861"/>
         <source>Keep Transformations</source>
-        <translation type="unfinished"></translation>
+        <translation>გარდაქმნების შენარჩუნება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="866"/>
         <source>Transformations Unlocked</source>
-        <translation type="unfinished"></translation>
+        <translation>გარდაქმნები განბლოკილია</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="870"/>
@@ -1238,12 +1238,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="970"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation>ფანჯარა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="982"/>
         <source>Thumbnails Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>მინიატურების დალაგება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1079"/>
@@ -1254,17 +1254,17 @@
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>მენიუ</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1135"/>
         <source>Viewer Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>დათვალიერების ხელსაწყოთა ზოლი</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1259"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>მინიატურა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1411"/>
@@ -1290,12 +1290,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="1643"/>
         <source>Maximum Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>მაქსიმალური გადიდება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1647"/>
         <source>Minimum Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>მინიმალური გადიდება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1704"/>
@@ -1303,27 +1303,27 @@
         <location filename="../Phototonic.cpp" line="1773"/>
         <location filename="../Phototonic.cpp" line="1781"/>
         <source>Rotation %1°</source>
-        <translation type="unfinished"></translation>
+        <translation>შებრუნების კუთხე %1°</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1727"/>
         <source>Flipped Vertically</source>
-        <translation type="unfinished"></translation>
+        <translation>ვერტიკალურად გადატრიალებული</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1727"/>
         <source>Unflipped Vertically</source>
-        <translation type="unfinished"></translation>
+        <translation>გადმობრუნდა ვერტიკალურად</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1736"/>
         <source>Flipped Horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>ჰორიზონტალურად გადატრიალებული</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1736"/>
         <source>Unflipped Horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>გადმობრუნდა ჰორიზონტალურად</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1788"/>
@@ -1411,7 +1411,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="2109"/>
         <source>Deleted %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 წაშლილია</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2183"/>
@@ -1436,12 +1436,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="3068"/>
         <source>Move directory</source>
-        <translation type="unfinished"></translation>
+        <translation>საქაღალდის გადატანა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3071"/>
         <source>Move Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>საქაღალდის გადატანა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3077"/>
@@ -1451,7 +1451,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3079"/>
         <source>Directory moved</source>
-        <translation type="unfinished"></translation>
+        <translation>საქაღალდე გადატანილია</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3158"/>
@@ -1503,12 +1503,12 @@
         <location filename="../Phototonic.cpp" line="3404"/>
         <location filename="../Phototonic.cpp" line="3407"/>
         <source>Delete Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>საქაღალდის წაშლა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3407"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>დიახ</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3424"/>
@@ -1538,7 +1538,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3472"/>
         <source>Created %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 შეიქმნა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3478"/>
@@ -1555,13 +1555,13 @@
     <message>
         <location filename="../Phototonic.cpp" line="2113"/>
         <source>Failed to delete image</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულების წაშლის შეცდომა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1983"/>
         <location filename="../Phototonic.cpp" line="2089"/>
         <source>Delete images</source>
-        <translation type="unfinished"></translation>
+        <translation>ასლების წაშლა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1090"/>
@@ -1577,7 +1577,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1805"/>
         <source>Create backups?</source>
-        <translation type="unfinished"></translation>
+        <translation>შევქმნა მარქაფები?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1806"/>
@@ -1612,7 +1612,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="2018"/>
         <source>Deleting %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1-ის წაშლა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2042"/>
@@ -1622,7 +1622,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="2805"/>
         <source>No images</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულებების გარეშე</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2865"/>
@@ -1647,17 +1647,17 @@
     <message>
         <location filename="../Phototonic.cpp" line="3237"/>
         <source>Files List</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილების სია</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3248"/>
         <source>Rename %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1-ის გადარქმევა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3250"/>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>ახალი სახელი:</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3260"/>
@@ -1669,7 +1669,7 @@
         <location filename="../Phototonic.cpp" line="3301"/>
         <location filename="../Phototonic.cpp" line="3363"/>
         <source>Invalid selection</source>
-        <translation type="unfinished"></translation>
+        <translation>არასწორი მონიშნული</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3324"/>
@@ -1684,12 +1684,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="3430"/>
         <source>Removed &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; წაიშალა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3618"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>გაფრთხილება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3618"/>
@@ -1702,7 +1702,7 @@
     <message>
         <location filename="../ProgressDialog.cpp" line="29"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>გაუქმება</translation>
     </message>
 </context>
 <context>
@@ -1715,12 +1715,12 @@
     <message>
         <location filename="../RangeInputDialog.ui" line="32"/>
         <source>From</source>
-        <translation type="unfinished"></translation>
+        <translation>ვისგან</translation>
     </message>
     <message>
         <location filename="../RangeInputDialog.ui" line="52"/>
         <source>to</source>
-        <translation type="unfinished"></translation>
+        <translation>სადამდე</translation>
     </message>
 </context>
 <context>
@@ -1728,22 +1728,22 @@
     <message>
         <location filename="../RenameDialog.cpp" line="28"/>
         <source>Rename Image</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულების სახელის გადარქმევა</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="31"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>სახელის გადარქმევა</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="35"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>გაუქმება</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="41"/>
         <source>New name: </source>
-        <translation type="unfinished"></translation>
+        <translation>ახალი სახელი: </translation>
     </message>
 </context>
 <context>
@@ -1751,57 +1751,57 @@
     <message>
         <location filename="../ResizeDialog.cpp" line="29"/>
         <source>Scale Image</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულების მასშტაბირება</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="33"/>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>მასშტაბი</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="36"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>გაუქმება</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="51"/>
         <source>Current size:</source>
-        <translation type="unfinished"></translation>
+        <translation>მიმდინარე ზომა:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="54"/>
         <source>New Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>ახალი სიგანე:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="55"/>
         <source>New Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>ახალი სიმაღლე:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="56"/>
         <source>Units:</source>
-        <translation type="unfinished"></translation>
+        <translation>ერთეულები:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="58"/>
         <source>New size:</source>
-        <translation type="unfinished"></translation>
+        <translation>ახალი ზომა:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="61"/>
         <source>Pixels</source>
-        <translation type="unfinished"></translation>
+        <translation>პიქსელი</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="65"/>
         <source>Keep aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>საწყისი ფარდობის შენარჩუნება</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="72"/>
         <source>Percent</source>
-        <translation type="unfinished"></translation>
+        <translation>პროცენტი</translation>
     </message>
 </context>
 <context>
@@ -1809,7 +1809,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="38"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>მორგება</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="42"/>
@@ -1820,13 +1820,13 @@
         <location filename="../SettingsDialog.cpp" line="45"/>
         <location filename="../SettingsDialog.cpp" line="61"/>
         <source>By width</source>
-        <translation type="unfinished"></translation>
+        <translation>სიგანით</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="46"/>
         <location filename="../SettingsDialog.cpp" line="62"/>
         <source>By height</source>
-        <translation type="unfinished"></translation>
+        <translation>სიმაღლით</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="47"/>
@@ -1852,7 +1852,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="74"/>
         <source>Background color:</source>
-        <translation type="unfinished"></translation>
+        <translation>ფონის ფერი:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="44"/>
@@ -1864,7 +1864,7 @@
         <location filename="../SettingsDialog.cpp" line="43"/>
         <location filename="../SettingsDialog.cpp" line="59"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>არა</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="90"/>
@@ -1889,12 +1889,12 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="141"/>
         <source>Label color:</source>
-        <translation type="unfinished"></translation>
+        <translation>ჭდის ფერი:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="153"/>
         <source>Background image:</source>
-        <translation type="unfinished"></translation>
+        <translation>ფონის გამოსახულება:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="183"/>
@@ -1925,7 +1925,7 @@
         <location filename="../SettingsDialog.cpp" line="258"/>
         <location filename="../SettingsDialog.cpp" line="339"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>მალსახმობი</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="264"/>
@@ -1945,7 +1945,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="304"/>
         <source>Slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation>სლაიდშოუ</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="423"/>
@@ -1980,53 +1980,53 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="216"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>ნაგულისხმევი</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="218"/>
         <source>Specify:</source>
         <extracomment>specificy a startup directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>მიუთითეთ:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="210"/>
         <source>Delete confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>წაშლის დადასტურება</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="312"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>დიახ</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="316"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>გაუქმება</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="327"/>
         <source>Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>მაყურებელი</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="331"/>
         <source>Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>ესკიზები</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="335"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>ზოგადი</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="445"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილის გახსნა</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="446"/>
         <source>Images</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულებები</translation>
     </message>
 </context>
 <context>
@@ -2049,22 +2049,22 @@
     <message>
         <location filename="../ShortcutsTable.cpp" line="147"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>ქმედება</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="148"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>მალმხმობი</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="44"/>
         <source>Delete shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>მალსახმობის წაშლა</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="86"/>
         <source>Set shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>მალსახმობის დაყენება</translation>
     </message>
 </context>
 <context>
@@ -2117,7 +2117,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="225"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>შეცდომა</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="225"/>
@@ -2132,15 +2132,15 @@
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="894"/>
         <source>%n image(s)</source>
-        <translation type="unfinished">
-            <numerusform>%n image</numerusform>
-            <numerusform>%n images</numerusform>
+        <translation>
+            <numerusform>%n გამოსახულება</numerusform>
+            <numerusform>%n გამოსახულება</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="894"/>
         <source>No images</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულებების გარეშე</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="924"/>
@@ -2154,22 +2154,22 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="1066"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>შეწყვეტა</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1066"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>იტვირთება...</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1132"/>
         <source>Comparing...</source>
-        <translation type="unfinished"></translation>
+        <translation>შედარება...</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1164"/>
         <source>Sorting...</source>
-        <translation type="unfinished"></translation>
+        <translation>დალაგება…</translation>
     </message>
 </context>
 <context>
@@ -2197,7 +2197,7 @@
     <message>
         <location filename="../main.cpp" line="40"/>
         <source>language</source>
-        <translation type="unfinished"></translation>
+        <translation>ენა</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="44"/>
@@ -2207,7 +2207,7 @@
     <message>
         <location filename="../main.cpp" line="45"/>
         <source>directory</source>
-        <translation type="unfinished"></translation>
+        <translation>საქაღალდე</translation>
     </message>
 </context>
 </TS>
