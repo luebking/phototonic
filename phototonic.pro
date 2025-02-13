@@ -91,5 +91,6 @@ TRANSLATIONS = 	translations/phototonic_en.ts \
         translations/phototonic_es.ts \
         translations/phototonic_et.ts \
         translations/phototonic_ka.ts \
-		translations/phototonic_zh.ts
+		translations/phototonic_zh.ts \
+        translations/phototonic_zh_TW.ts
 
