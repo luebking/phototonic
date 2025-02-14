@@ -695,6 +695,10 @@ void ImageViewer::reload() {
         }
     }
 
+    // clean up - don't waste memory and bogus 1-frame gifs will otherwise kill resizeImage()
+    delete animation;
+    animation = nullptr;
+
     // It's not a movie
     if (fullImagePath == m_preloadedPath) {
         viewerImage = origImage = m_preloadedImage;
