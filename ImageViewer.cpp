@@ -723,7 +723,7 @@ void ImageViewer::reload() {
         }
         bool imageOk = false;
         if (batchMode || Settings::slideShowActive) {
-            imageReader.read(&origImage);
+            imageOk = imageReader.read(&origImage);
         } else {
             QThread *thread = QThread::create([&](){imageOk = imageReader.read(&origImage);});
             thread->start();
@@ -756,7 +756,7 @@ void ImageViewer::reload() {
             }
         } else {
             viewerImage = QImage(":/images/error_image.png");
-            setInfo(QFileInfo(imageReader.fileName()).fileName() + ": " + imageReader.errorString());
+            setFeedback(QFileInfo(imageReader.fileName()).fileName() + ": " + imageReader.errorString());
         }
     }
 
