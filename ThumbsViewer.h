@@ -140,6 +140,7 @@ public:
     bool isBusy() { return m_busy; }
     static int removeFromCache(const QString &path);
     static int moveCache(const QString &oldpath, const QString &newpath);
+    int visibleThumbs() const { return m_visibleThumbs; }
     QDir thumbsDir;
     QDir::SortFlags thumbsSortFlags;
     int thumbSize;
@@ -201,6 +202,7 @@ private:
     QStandardItemModel *m_model;
     QString m_desiredThumbPath;
     bool m_filterDirty;
+    int m_visibleThumbs;
 
 public slots:
     void invertSelection();

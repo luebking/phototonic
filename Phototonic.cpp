@@ -2719,10 +2719,22 @@ void Phototonic::slideShowHandler() {
         thumbsViewer->setCurrentIndex(next);
     last = thumbsViewer->currentIndex().row();
 
-    if (Settings::slideShowRandom)
-        next = QRandomGenerator::global()->bounded(thumbsViewer->model()->rowCount());
-    else
+    if (Settings::slideShowRandom) {
+        next = QRandomGenerator::global()->bounded(thumbsViewer->visibleThumbs());
+        if (thumbsViewer->visibleThumbs() != thumbsViewer->model()->rowCount()) {
+            // for the filtered case we've to figure the nth non-hidden thumb, naively picking some
+            // number and moving to the next visible will cause less than random results if a huge
+            // block is hidden because we'll often end at its adjacent indexes
+            int n = next;
+            for (next = 0; next < thumbsViewer->model()->rowCount(); ++next) {
+                if (!thumbsViewer->isRowHidden(next) && --n < 0)
+                    break;
+            }
+        }
+            
+    } else {
         next = thumbsViewer->nextRow();
+    }
 
     if (next < 0)
         next = Settings::wrapImageList ? 0 : -2;

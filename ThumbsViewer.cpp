@@ -442,6 +442,7 @@ void ThumbsViewer::reLoad() {
     histFiles.clear(); // these can grow out of control and currently sort O(n^2)
     histograms.clear();
     m_histSorted = false;
+    m_visibleThumbs = 0;
 
     loadPrepare();
 
@@ -710,6 +711,8 @@ void ThumbsViewer::filterRows(int first, int last) {
             shown << fileInfo.filePath();
         setRowHidden(i, false);
     }
+
+    m_visibleThumbs += shown.size() - hidden.size();
 
     if (!hidden.isEmpty())
         emit filesHidden(hidden);
