@@ -119,9 +119,9 @@ public:
 
     void abort(bool permanent = false);
 
-    int getNextRow();
+    int nextRow();
 
-    int getPrevRow();
+    int previousRow();
 
     QStringList selectedFiles() const;
 

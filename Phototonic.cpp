@@ -2674,7 +2674,7 @@ void Phototonic::toggleSlideShow() {
         if (Settings::layoutMode == ThumbViewWidget) {
             QModelIndexList indexesList = thumbsViewer->selectionModel()->selectedIndexes();
             if (indexesList.size() != 1) {
-                thumbsViewer->setCurrentIndex(0);
+                loadImage(Phototonic::First);
             } else {
                 thumbsViewer->setCurrentIndex(indexesList.first());
             }
@@ -2719,15 +2719,13 @@ void Phototonic::slideShowHandler() {
         thumbsViewer->setCurrentIndex(next);
     last = thumbsViewer->currentIndex().row();
 
-    if (Settings::slideShowRandom) {
+    if (Settings::slideShowRandom)
         next = QRandomGenerator::global()->bounded(thumbsViewer->model()->rowCount());
-    } else if (thumbsViewer->getNextRow() > 0) {
-        next = thumbsViewer->getNextRow();
-    } else if (Settings::wrapImageList) {
-        next = 0;
-    } else {
-        next = -2;
-    }
+    else
+        next = thumbsViewer->nextRow();
+
+    if (next < 0)
+        next = Settings::wrapImageList ? 0 : -2;
 
     if (next > -1 && next < thumbsViewer->model()->rowCount())
         QTimer::singleShot(500, this, [=]() {imageViewer->preload(thumbsViewer->fullPathOf(next));});
@@ -2742,19 +2740,25 @@ void Phototonic::loadImage(SpecialImageIndex idx) {
     switch (idx) {
         case Phototonic::First:
             thumb = 0;
+            while (thumb < thumbsViewer->model()->rowCount() && thumbsViewer->isRowHidden(thumb))
+                ++thumb;
+            if (thumb >= thumbsViewer->model()->rowCount())
+                thumb = -1;
             break;
         case Phototonic::Next:
-            thumb = thumbsViewer->getNextRow();
+            thumb = thumbsViewer->nextRow();
             if (thumb < 0 && Settings::wrapImageList)
                 thumb = 0;
             break;
         case Phototonic::Previous:
-            thumb = thumbsViewer->getPrevRow();
+            thumb = thumbsViewer->previousRow();
             if (thumb < 0 && Settings::wrapImageList)
                 thumb = thumbsViewer->model()->rowCount() - 1;
             break;
         case Phototonic::Last:
             thumb = thumbsViewer->model()->rowCount() - 1;
+            while (thumb > -1 && thumbsViewer->isRowHidden(thumb))
+                --thumb;
             break;
         case Phototonic::Random:
             thumb = QRandomGenerator::global()->bounded(thumbsViewer->model()->rowCount());

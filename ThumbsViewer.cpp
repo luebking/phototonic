@@ -133,20 +133,18 @@ QIcon ThumbsViewer::icon(int idx)
     return icon;
 }
 
-int ThumbsViewer::getNextRow() {
-    if (currentIndex().row() == m_model->rowCount() - 1) {
-        return -1;
-    }
-
-    return currentIndex().row() + 1;
+int ThumbsViewer::nextRow() {
+    int next = currentIndex().row() + 1;
+    while (next < m_model->rowCount() && isRowHidden(next))
+        ++next;
+    return next < m_model->rowCount() ? next : -1;
 }
 
-int ThumbsViewer::getPrevRow() {
-    if (currentIndex().row() == 0) {
-        return -1;
-    }
-
-    return currentIndex().row() - 1;
+int ThumbsViewer::previousRow() {
+    int prev = currentIndex().row() - 1;
+    while (prev > -1 && isRowHidden(prev))
+        --prev;
+    return prev > -1 ? prev : -1;
 }
 
 bool ThumbsViewer::setCurrentIndex(const QString &fileName) {
