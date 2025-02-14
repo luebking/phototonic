@@ -2672,11 +2672,12 @@ void Phototonic::toggleSlideShow() {
         }
 
         if (Settings::layoutMode == ThumbViewWidget) {
-            QModelIndexList indexesList = thumbsViewer->selectionModel()->selectedIndexes();
-            if (indexesList.size() != 1) {
+            QModelIndexList selection = thumbsViewer->selectionModel()->selectedIndexes();
+            if (selection.size() < 2) {
                 loadImage(Phototonic::First);
             } else {
-                thumbsViewer->setCurrentIndex(indexesList.first());
+                thumbsViewer->selectionModel()->setCurrentIndex(selection.first(), QItemSelectionModel::NoUpdate);
+//                thumbsViewer->setCurrentIndex(selection.first());
             }
 
             showViewer();
@@ -2715,29 +2716,55 @@ void Phototonic::slideShowHandler() {
         return;
     }
 
-    if (next > -1 && next < thumbsViewer->model()->rowCount() && last == thumbsViewer->currentIndex().row())
-        thumbsViewer->setCurrentIndex(next);
+    QModelIndexList selection = thumbsViewer->selectionModel()->selectedIndexes();
+    QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
+    if (next > -1 && next < thumbModel->rowCount() && last == thumbsViewer->currentIndex().row()) {
+        if (selection.size() > 1) {
+            QModelIndex idx = thumbModel->indexFromItem(thumbModel->item(next));
+            if (idx.isValid())
+                thumbsViewer->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::NoUpdate);
+        } else {
+            thumbsViewer->setCurrentIndex(next);
+        }
+    }
     last = thumbsViewer->currentIndex().row();
 
-    if (Settings::slideShowRandom) {
-        next = QRandomGenerator::global()->bounded(thumbsViewer->visibleThumbs());
-        if (thumbsViewer->visibleThumbs() != thumbsViewer->model()->rowCount()) {
-            // for the filtered case we've to figure the nth non-hidden thumb, naively picking some
-            // number and moving to the next visible will cause less than random results if a huge
-            // block is hidden because we'll often end at its adjacent indexes
-            int n = next;
-            for (next = 0; next < thumbsViewer->model()->rowCount(); ++next) {
-                if (!thumbsViewer->isRowHidden(next) && --n < 0)
+    if (selection.size() > 1) { // use only selected images
+        if (Settings::slideShowRandom) {
+            next = QRandomGenerator::global()->bounded(selection.size());
+            next = selection.at(next).row();
+        } else {
+            next = -1;
+            for (int i = 0; i < selection.size(); ++i) {
+                if (selection.at(i).row() == last) {
+                    if (i < selection.size() - 1)
+                        next = selection.at(i+1).row();
+                    else if (Settings::wrapImageList)
+                        next = selection.at(0).row();
                     break;
+                }
             }
         }
-            
-    } else {
-        next = thumbsViewer->nextRow();
+    } else { // use all visible images
+        if (Settings::slideShowRandom) {
+            next = QRandomGenerator::global()->bounded(thumbsViewer->visibleThumbs());
+            if (thumbsViewer->visibleThumbs() != thumbsViewer->model()->rowCount()) {
+                // for the filtered case we've to figure the n-th non-hidden thumb, naively picking some
+                // number and moving to the next visible will cause less than random results if a huge
+                // block is hidden because we'll often end at its adjacent indexes
+                int n = next;
+                for (next = 0; next < thumbsViewer->model()->rowCount(); ++next) {
+                    if (!thumbsViewer->isRowHidden(next) && --n < 0)
+                        break;
+                }
+            }
+        } else {
+            next = thumbsViewer->nextRow();
+        }
     }
 
     if (next < 0)
-        next = Settings::wrapImageList ? 0 : -2;
+        next = Settings::wrapImageList ? -1 : -2;
 
     if (next > -1 && next < thumbsViewer->model()->rowCount())
         QTimer::singleShot(500, this, [=]() {imageViewer->preload(thumbsViewer->fullPathOf(next));});
