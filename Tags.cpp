@@ -360,13 +360,8 @@ void ImageTags::showTagsFilter() {
 
     QTreeWidgetItemIterator it(tagsTree);
     while (*it) {
-        if (!(*it)->data(0, InScope).toBool()) {
-            (*it)->setHidden(true);
-            ++it;
-            continue;
-        }
-        QString tagName = (*it)->text(0);
 
+        QString tagName = (*it)->text(0);
         (*it)->setFlags((*it)->flags() | Qt::ItemIsUserCheckable|Qt::ItemIsUserTristate);
         if (m_mandatoryFilterTags.contains(tagName)) {
             (*it)->setCheckState(0, Qt::Checked);
@@ -376,6 +371,8 @@ void ImageTags::showTagsFilter() {
             (*it)->setCheckState(0, Qt::PartiallyChecked);
             setTagIcon(*it, negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled);
             setToolTip(*it);
+        } else if (!(*it)->data(0, InScope).toBool()) {
+            (*it)->setHidden(true);
         } else {
             (*it)->setCheckState(0, Qt::Unchecked);
             setTagIcon(*it, TagIconFilterDisabled);
@@ -441,8 +438,14 @@ QStringList ImageTags::getCheckedTags(Qt::CheckState tagState) {
 void ImageTags::applyTagFiltering() {
     TagIcon icon = negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled;
     if (lastChangedTagItem) {
-        setToolTip(lastChangedTagItem);
-        setTagIcon(lastChangedTagItem, lastChangedTagItem->checkState(0) == Qt::Unchecked ? TagIconFilterDisabled : icon);
+        if (lastChangedTagItem->checkState(0) == Qt::Unchecked &&
+                lastChangedTagItem->data(0, NewTag).toBool() &&
+                lastChangedTagItem->data(0, InScope).toInt() < 1) {
+            delete tagsTree->takeTopLevelItem(tagsTree->indexOfTopLevelItem(lastChangedTagItem));
+        } else {
+            setToolTip(lastChangedTagItem);
+            setTagIcon(lastChangedTagItem, lastChangedTagItem->checkState(0) == Qt::Unchecked ? TagIconFilterDisabled : icon);
+        }
     } else { // inversion
         QTreeWidgetItemIterator it(tagsTree);
         while (*it) {
@@ -487,7 +490,14 @@ void ImageTags::applyUserAction(QList<QTreeWidgetItem *> tagsList) {
             tagsRemoved << item->text(0);
             --scope;
         }
-        item->setData(0, InScope, qMax(0, scope));
+
+        if (scope < 1 && item->data(0, NewTag).toBool() && // out of scope former transient tag
+            !m_mandatoryFilterTags.contains(item->text(0)) && // not used by either …
+            !m_sufficientFilterTags.contains(item->text(0))) { // … filter
+            delete tagsTree->takeTopLevelItem(tagsTree->indexOfTopLevelItem(item));
+        } else {
+            item->setData(0, InScope, qMax(0, scope));
+        }
     }
     emit tagRequest(tagsAdded, tagsRemoved);
 }
