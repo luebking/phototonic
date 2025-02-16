@@ -51,13 +51,16 @@ void MessageBox::about() {
                     << "Code: Peter Mattern (https://github.com/pmattern)" //
                     << "Code: Thomas Lübking - some patches in 2015 ;)" // thomas.luebking@gmail.com
                     << "Bosnian: Dino Duratović" // dinomol@mail.com
+                    << "Chinese: BigELK176 ≡" // <BigELK176@gmail.com>
                     << "Croatian: Dino Duratović" // dinomol@mail.com
                     << "Czech: Pavel Fric" // pavelfric@seznam.cz
                     << "Dutch: Heimen Stoffels" // <vistausss@fastmail.com>
+                    << "Estonian: Priit Jõerüüt" //<lxqtwlate@joeruut.com>
                     << "French: Adrien Daugabel" // adrien.d@mageialinux-online.org
                     << "French: David Geiger" // david.david@mageialinux-online.org
                     << "French: Nicolas PARLANT" // <nicolas.parlant@parhuet.fr>
                     << "French: Rémi Verschelde" // akien@mageia.org
+                    << "Georgian: NorwayFun" //  <temuri.doghonadze@gmail.com>
                     << "German: Jonathan Hooverman" // jonathan.hooverman@gmail.com
                     << "German: Some wordstumbling fool" // thomas.luebking@gmail.com
                     << "Italian: Standreas (stefonarch)" // github.com/stefonarch
