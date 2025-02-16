@@ -43,6 +43,7 @@
 #include <QStandardPaths>
 #include <QStandardItemModel>
 #include <QStatusBar>
+#include <QTextEdit>
 #include <QThread>
 #include <QToolBar>
 #include <QToolButton>
@@ -1937,6 +1938,8 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
                              : tr("Permanently delete %n selected image(s)?", "", deathRow.size()));
         QString fileList;
         msgBox.setDetailedText(deathRow.join("\n"));
+        if (QTextEdit *details = msgBox.findChild<QTextEdit*>())
+            details->setWordWrapMode(QTextOption::NoWrap);
         msgBox.setWindowTitle(trash ? tr("Move to Trash") : tr("Delete images"));
         msgBox.setIcon(MessageBox::Warning);
         msgBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
