@@ -41,7 +41,7 @@ class QToolButton;
 
 #include <memory>
 
-#define VERSION "Phototonic v2.96"
+#define VERSION "Phototonic v2.97"
 
 class Phototonic : public QMainWindow {
 Q_OBJECT
