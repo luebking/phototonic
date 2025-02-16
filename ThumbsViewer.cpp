@@ -719,6 +719,7 @@ void ThumbsViewer::filterRows(int first, int last) {
     if (!shown.isEmpty())
         emit filesShown(shown);
     loadVisibleThumbs(); // slow last
+    updateThumbsCount();
     m_filterDirty = false;
 }
 
@@ -915,7 +916,12 @@ void ThumbsViewer::initThumbs() {
 }
 
 void ThumbsViewer::updateThumbsCount() {
-    emit status(m_model->rowCount() > 0 ? tr("%n image(s)", "", m_model->rowCount()) : tr("No images"));
+    if (m_visibleThumbs < 1)
+        emit status(tr("No images"));
+    else if (m_visibleThumbs != m_model->rowCount())
+        emit status(tr("%n of %1 image(s)", "", m_visibleThumbs).arg(m_model->rowCount()));
+    else
+        emit status(tr("%n image(s)", "", m_visibleThumbs));
     thumbsDir.setPath(Settings::currentDirectory);
 }
 
