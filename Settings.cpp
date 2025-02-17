@@ -43,9 +43,6 @@ namespace Settings {
     const char optionDefaultSaveQuality[] = "defaultSaveQuality";
     const char optionSlideShowDelay[] = "slideShowDelay";
     const char optionSlideShowRandom[] = "slideShowRandom";
-    const char optionEditToolBarVisible[] = "editToolBarVisible";
-    const char optionGoToolBarVisible[] = "goToolBarVisible";
-    const char optionViewToolBarVisible[] = "viewToolBarVisible";
     const char optionFileSystemDockVisible[] = "fileSystemDockVisible";
     const char optionBookmarksDockVisible[] = "bookmarksDockVisible";
     const char optionImagePreviewDockVisible[] = "imagePreviewDockVisible";
@@ -70,7 +67,7 @@ namespace Settings {
     const char optionScrollZooms[] = "scrollZooms";
 
     QSettings *appSettings;
-    QVariant value(const char *c) { return appSettings->value(QByteArray(c)); }
+    QVariant value(const char *c, const QVariant &defaultValue) { return appSettings->value(QByteArray(c), defaultValue); }
     void setValue(const char *c, const QVariant &value) { appSettings->setValue(QByteArray(c), value); }
     void beginGroup(const char *c) { appSettings->beginGroup(QByteArray(c)); }
     unsigned int layoutMode;

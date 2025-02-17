@@ -86,7 +86,7 @@ namespace Settings {
     extern const char optionScrollZooms[];
 
     extern QSettings *appSettings;
-    QVariant value(const char *c);
+    QVariant value(const char *c, const QVariant &defaultValue);
     void setValue(const char *c, const QVariant &value);
     void beginGroup(const char *c);
     extern unsigned int layoutMode;

@@ -55,11 +55,11 @@ ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
     m_filterDirty = false;
     gs_fontHeight = QFontMetrics(font()).height();
 
-    Settings::thumbsBackgroundColor = Settings::value(Settings::optionThumbsBackgroundColor).value<QColor>();
-    Settings::thumbsTextColor = Settings::value(Settings::optionThumbsTextColor).value<QColor>();
+    Settings::thumbsBackgroundColor = Settings::value(Settings::optionThumbsBackgroundColor, QColor(39,39,39)).value<QColor>();
+    Settings::thumbsTextColor = Settings::value(Settings::optionThumbsTextColor, QColor(250,250,250)).value<QColor>();
     setThumbColors();
-    Settings::thumbsPagesReadCount = Settings::value(Settings::optionThumbsPagesReadCount).toUInt();
-    thumbSize = Settings::value(Settings::optionThumbsZoomLevel).toInt();
+    Settings::thumbsPagesReadCount = Settings::value(Settings::optionThumbsPagesReadCount, 2).toUInt();
+    thumbSize = Settings::value(Settings::optionThumbsZoomLevel, 200).toInt();
 
     setViewMode(QListView::IconMode);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
