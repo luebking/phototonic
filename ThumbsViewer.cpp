@@ -420,7 +420,7 @@ void ThumbsViewer::loadFileList() {
         setCurrentIndex(m_desiredThumbPath);
         m_desiredThumbPath.clear();
         scrollTo(currentIndex());
-    } else if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
+    } else if (m_model->rowCount() && selectionModel()->selectedIndexes().size() == 0) {
         setCurrentIndex(0);
     }
     loadVisibleThumbs();
@@ -863,7 +863,7 @@ bool ThumbsViewer::matchesTagFilter(const QString &path) const {
 }
 
 void ThumbsViewer::initThumbs() {
-    thumbFileInfoList = thumbsDir.entryInfoList();
+    QFileInfoList thumbFileInfoList = thumbsDir.entryInfoList();
 
     if (!(thumbsSortFlags & QDir::Time) && !(thumbsSortFlags & QDir::Size) && !(thumbsSortFlags & QDir::Type)) {
         QCollator collator;
@@ -890,7 +890,7 @@ void ThumbsViewer::initThumbs() {
         setCurrentIndex(m_desiredThumbPath);
         m_desiredThumbPath.clear();
         scrollTo(currentIndex());
-    } else if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
+    } else if (m_model->rowCount() && selectionModel()->selectedIndexes().size() == 0) {
         setCurrentIndex(0);
     }
     promoteThumbsCount();
@@ -915,14 +915,14 @@ struct DuplicateImage
 
 void ThumbsViewer::findDupes(bool resetCounters)
 {
-    thumbFileInfoList = thumbsDir.entryInfoList();
+    const QFileInfoList thumbFileInfoList = thumbsDir.entryInfoList();
     static unsigned int duplicateFiles, scannedFiles, totalFiles;
     static QHash<QBitArray, DuplicateImage> imageHashes;
     if (resetCounters) {
         imageHashes.clear();
         duplicateFiles = scannedFiles = totalFiles = 0;
     }
-    totalFiles += thumbsDir.entryInfoList().size();
+    totalFiles += thumbFileInfoList.size();
 
     QStringList filterTokens = m_filter.split(" ", Qt::SkipEmptyParts);
 

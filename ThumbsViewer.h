@@ -177,7 +177,6 @@ private:
     static QString thumbnailFileName(const QString &path);
     void storeThumbnail(const QString &originalPath, QImage thumbnail, const QSize &originalSize) const;
 
-    QFileInfoList thumbFileInfoList;
     QList<Histogram> histograms;
     QList<QString> histFiles;
     bool m_histSorted;
