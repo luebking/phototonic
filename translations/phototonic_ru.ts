@@ -155,7 +155,7 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="41"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите каталог</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="65"/>
@@ -175,17 +175,17 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="103"/>
         <source>Delete Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить закладку</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Copy</source>
-        <translation type="unfinished">Копировать</translation>
+        <translation>Копировать</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Переместить</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -273,33 +273,33 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="35"/>
         <source>Manage External Applications</source>
-        <translation type="unfinished">Управление внешними приложениями</translation>
+        <translation>Управление сторонними приложениями</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="47"/>
         <source>Name</source>
-        <translation type="unfinished">Имя</translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="49"/>
         <source>Application path and arguments</source>
-        <translation type="unfinished">Путь к приложению и аргументы</translation>
+        <translation>Путь к приложению и аргументы</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="56"/>
         <source>Pick Executable...</source>
         <extracomment>open an existing executable</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать исполняемый файл...</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="59"/>
         <source>Add manually</source>
-        <translation type="unfinished">Добавить вручную</translation>
+        <translation>Добавить вручную</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="62"/>
         <source>Delete</source>
-        <translation type="unfinished">Удалить</translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="72"/>
@@ -309,12 +309,12 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="76"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="124"/>
         <source>Choose Application</source>
-        <translation type="unfinished">Выбрать приложение</translation>
+        <translation>Выбрать приложение</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="135"/>
@@ -350,17 +350,17 @@
     <message>
         <location filename="../Tags.cpp" line="82"/>
         <source>Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Пометить</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="86"/>
         <source>Untag</source>
-        <translation type="unfinished"></translation>
+        <translation>Снять метку</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="100"/>
         <source>Clear Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Сбросить фильтры</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="540"/>
@@ -379,12 +379,12 @@
     <message>
         <location filename="../Tags.cpp" line="557"/>
         <source>Delete tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить метку</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="89"/>
         <source>New Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая метка</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="52"/>
@@ -395,27 +395,27 @@
         <location filename="../Tags.cpp" line="531"/>
         <location filename="../Tags.cpp" line="540"/>
         <source>Error</source>
-        <translation type="unfinished">Ошибка</translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="522"/>
         <source>Add a new tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить новую метку</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="93"/>
         <source>Add to library</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить в библиотеку</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="96"/>
         <source>Remove from library</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить из библиотеки</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="146"/>
         <source>Show untagged</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать непомеченные</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="146"/>
@@ -430,32 +430,32 @@
     <message>
         <location filename="../Tags.cpp" line="337"/>
         <source>Sufficient:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Достаточно:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="338"/>
         <source>The image must not have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Это изображение не должно иметь эту метку</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="339"/>
         <source>The image must have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображение должно иметь эту метку</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="340"/>
         <source>The image must have any of these tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображение должно иметь любую из этих меток</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="523"/>
         <source>Enter new tag name</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите новое имя метки</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="531"/>
         <source>No name entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя метки не введено</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -515,7 +515,7 @@
         <location filename="../ImageViewer.cpp" line="303"/>
         <location filename="../ImageViewer.cpp" line="1073"/>
         <source>New image size: %1x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Новый размер изображения: %1х%2</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="673"/>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="981"/>
         <source>Selection: </source>
-        <translation type="unfinished"></translation>
+        <translation>Выбранное: </translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="991"/>
@@ -546,57 +546,57 @@
     <message>
         <location filename="../ImageViewer.cpp" line="1226"/>
         <source>Saving...</source>
-        <translation type="unfinished">Сохранение...</translation>
+        <translation>Сохранение...</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1255"/>
         <location filename="../ImageViewer.cpp" line="1285"/>
         <location filename="../ImageViewer.cpp" line="1341"/>
         <source>Error</source>
-        <translation type="unfinished">Ошибка</translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1255"/>
         <location filename="../ImageViewer.cpp" line="1341"/>
         <source>Failed to save image.</source>
-        <translation type="unfinished">Не удалось сохранить изображение.</translation>
+        <translation>Не удалось сохранить изображение.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1283"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Больше не показывать это сообщение</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1285"/>
         <source>Failed to save Exif metadata.</source>
-        <translation type="unfinished">Не удалось сохранить метаданные Exif.</translation>
+        <translation>Не удалось сохранить метаданные Exif.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1289"/>
         <source>Failed to safe Exif metadata:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Не получилось сохранить Exif метаданные:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1295"/>
         <location filename="../ImageViewer.cpp" line="1354"/>
         <source>Image saved.</source>
-        <translation type="unfinished">Изображение сохранено.</translation>
+        <translation>Изображение сохранено.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1316"/>
         <source>Save image as</source>
-        <translation type="unfinished">Сохранить изображение как</translation>
+        <translation>Сохранить изображение как</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1318"/>
         <source>Images</source>
-        <translation type="unfinished">Изображения</translation>
+        <translation>Изображения</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1395"/>
         <source>Clipboard</source>
-        <translation type="unfinished">Буфер обмена</translation>
+        <translation>Буфер обмена</translation>
     </message>
 </context>
 <context>
@@ -614,12 +614,12 @@
     <message>
         <location filename="../InfoViewer.cpp" line="173"/>
         <source>Image</source>
-        <translation type="unfinished">Изображение</translation>
+        <translation>Изображение</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="174"/>
         <source>File name</source>
-        <translation type="unfinished">Имя файла</translation>
+        <translation>Имя файла</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="175"/>
@@ -629,12 +629,12 @@
     <message>
         <location filename="../InfoViewer.cpp" line="176"/>
         <source>Size</source>
-        <translation type="unfinished">Размер</translation>
+        <translation>Размер</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="177"/>
         <source>Modified</source>
-        <translation type="unfinished">Изменён</translation>
+        <translation>Изменён</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="181"/>
@@ -654,7 +654,7 @@
     <message>
         <location filename="../InfoViewer.cpp" line="191"/>
         <source>Error</source>
-        <translation type="unfinished">Ошибка</translation>
+        <translation>Ошибка</translation>
     </message>
 </context>
 <context>
@@ -677,7 +677,7 @@
     <message>
         <location filename="../MessageBox.cpp" line="86"/>
         <source>About</source>
-        <translation type="unfinished">О программе</translation>
+        <translation>О программе</translation>
     </message>
 </context>
 <context>
@@ -2019,7 +2019,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3208"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3220"/>
@@ -2153,17 +2153,17 @@
     <message>
         <location filename="../RenameDialog.cpp" line="28"/>
         <source>Rename Image</source>
-        <translation type="unfinished">Переименовать изображение</translation>
+        <translation>Переименовать изображение</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="31"/>
         <source>Rename</source>
-        <translation type="unfinished">Переименовать</translation>
+        <translation>Переименовать</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="35"/>
         <source>Cancel</source>
-        <translation type="unfinished">Отмена</translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="41"/>
@@ -2683,7 +2683,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="238"/>
         <source>Error</source>
-        <translation type="unfinished">Ошибка</translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="238"/>
@@ -2707,7 +2707,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="917"/>
         <source>No images</source>
-        <translation type="unfinished">Нет изображений</translation>
+        <translation>Нет изображений</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="947"/>
