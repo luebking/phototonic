@@ -1065,14 +1065,14 @@ void ThumbsViewer::scanForSort(UserRoles role) {
     if (role != HistogramRole && role != BrightnessRole)
         return;
 
-    QProgressDialog progress(tr("Loading..."), tr("Abort"), 0, thumbFileInfoList.count(), this);
-    progress.setMaximum(thumbFileInfoList.count());
+    QProgressDialog progress(tr("Loading..."), tr("Abort"), 0, m_model->rowCount(), this);
+    progress.setMaximum(m_model->rowCount());
 
     QElapsedTimer timer;
     timer.start();
     qint64 totalTime = 0;
 
-    for (int i = 0; i < thumbFileInfoList.count(); ++i) {
+    for (int i = 0; i < m_model->rowCount(); ++i) {
         QStandardItem *item = m_model->item(i);
 
         Q_ASSERT(item);
@@ -1166,7 +1166,7 @@ void ThumbsViewer::scanForSort(UserRoles role) {
     }
 
     progress.setLabelText(tr("Sorting..."));
-    progress.setMaximum(thumbFileInfoList.count());
+    progress.setMaximum(m_model->rowCount());
     progress.setValue(0);
     if ((totalTime += timer.elapsed()) > 800)
         progress.show();
@@ -1176,7 +1176,7 @@ void ThumbsViewer::scanForSort(UserRoles role) {
     for (int i=0; i<histFiles.size(); i++) {
         indices[histFiles.at(i)] = i;
     }
-    for (int i = 0; i < thumbFileInfoList.count(); ++i) {
+    for (int i = 0; i < m_model->rowCount(); ++i) {
         QStandardItem *item = m_model->item(i);
         if (!item) {
             qWarning() << "Invalid item" << i;
