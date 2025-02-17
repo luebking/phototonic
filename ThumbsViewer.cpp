@@ -22,6 +22,7 @@
 #include <QDirIterator>
 #include <QCryptographicHash>
 #include <QDrag>
+#include <QFileSystemWatcher>
 #include <QImageReader>
 #include <QLabel>
 #include <QMimeData>
@@ -89,6 +90,13 @@ ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
     m_loadThumbTimer.setInterval(250);
     m_loadThumbTimer.setSingleShot(true);
     connect(&m_loadThumbTimer, &QTimer::timeout, [=](){ loadVisibleThumbs(verticalScrollBar()->value()); });
+
+    QTimer *fsUpdateDelay = new QTimer(this);
+    fsUpdateDelay->setSingleShot(true);
+    fsUpdateDelay->setInterval(500);
+    connect(fsUpdateDelay, &QTimer::timeout, this, [=]() {reload(true);});
+    m_fsWatcher = new QFileSystemWatcher(this);
+    connect(m_fsWatcher, &QFileSystemWatcher::directoryChanged, fsUpdateDelay, qOverload<>(&QTimer::start));
 
     emptyImg.load(":/images/no_image.png");
 
@@ -426,11 +434,10 @@ void ThumbsViewer::loadFileList() {
     loadVisibleThumbs();
 }
 
-void ThumbsViewer::reload(bool fast) {
-    Q_UNUSED(fast)
+void ThumbsViewer::reload(bool iterative) {
     if (m_busy) {
         abort();
-        QTimer::singleShot(50, this, [=]() { reload(); });
+        QTimer::singleShot(50, this, [=]() { reload(iterative); });
         return;
     }
     static QTimer *scrollDelay = nullptr;
@@ -444,7 +451,8 @@ void ThumbsViewer::reload(bool fast) {
     disconnect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
     m_busy = true;
 
-    loadPrepare();
+    if (!iterative)
+        loadPrepare();
 
     if (Settings::isFileListLoaded) {
         loadFileList();
@@ -480,18 +488,40 @@ void ThumbsViewer::reload(bool fast) {
         thumbsDir.setSorting(QDir::NoSort);
     }
 
-    initThumbs();
+    QStringList selection;
+    if (iterative) { // remove file selection since it might be affected by the change
+        setUpdatesEnabled(false);
+        selection = selectedFiles();
+        selectionModel()->clearSelection();
+    }
+
+    initThumbs(iterative);
 
     if (Settings::includeSubDirectories) {
-        loadSubDirectories();
+        loadSubDirectories(iterative);
         thumbsDir.setPath(Settings::currentDirectory);
+    }
+
+    if (iterative && selection.size()) { // restore selection
+        for (int i = 0; i < m_model->rowCount(); ++i) {
+            for (int j = 0; j < selection.size(); ++j) {
+                if (fullPathOf(i) == selection.at(j)) {
+                    selectionModel()->select(m_model->index(i,0), QItemSelectionModel::Select);
+                    selection.remove(j);
+                    break;
+                }
+            }
+            if (!selection.size())
+                break;
+        }
+        setUpdatesEnabled(true);
     }
 
     m_busy = false;
     connect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
 }
 
-void ThumbsViewer::loadSubDirectories() {
+void ThumbsViewer::loadSubDirectories(bool iterative) {
     QDirIterator dirIterator(Settings::currentDirectory, QDirIterator::Subdirectories);
 
     while (dirIterator.hasNext()) {
@@ -499,7 +529,7 @@ void ThumbsViewer::loadSubDirectories() {
         if (dirIterator.fileInfo().isDir() && dirIterator.fileName() != "." && dirIterator.fileName() != "..") {
             thumbsDir.setPath(dirIterator.filePath());
 
-            initThumbs();
+            initThumbs(iterative);
 
             if (isAbortThumbsLoading) {
                 return;
@@ -730,6 +760,7 @@ void ThumbsViewer::loadPrepare() {
     m_histSorted = false;
     m_visibleThumbs = 0;
     if (Settings::isFileListLoaded || lastPath != Settings::currentDirectory) {
+        m_fsWatcher->removePaths(m_fsWatcher->directories());
         lastPath = Settings::isFileListLoaded ? QString() : Settings::currentDirectory;
         Metadata::dropCache();
         histFiles.clear(); // these can grow out of control and currently sort O(n^2)
@@ -862,8 +893,36 @@ bool ThumbsViewer::matchesTagFilter(const QString &path) const {
     return true;
 }
 
-void ThumbsViewer::initThumbs() {
+void ThumbsViewer::initThumbs(bool iterative) {
+    m_fsWatcher->addPath(thumbsDir.path());
     QFileInfoList thumbFileInfoList = thumbsDir.entryInfoList();
+
+    if (iterative) {
+        int doing = 0;
+        for (int i = m_model->rowCount() - 1; i >=0 ; --i) {
+            QStandardItem *item = m_model->item(i);
+            if (!item) {
+                qDebug() << "meek, why's there no item?!";
+                continue;
+            }
+            QFileInfo file(item->data(FileNameRole).toString());
+            if (!file.exists()) {
+                if (!isRowHidden(i))
+                    --m_visibleThumbs;
+                m_model->removeRow(i); // file was deleted, drop thumb
+                continue;
+            }
+            if (item->data(TimeRole).toDateTime() != file.lastModified()) { // outdated
+                m_model->item(i)->setData(false, LoadedRole); // reload
+                int idx = histFiles.indexOf(file.filePath());
+                if (idx > -1) {
+                    histFiles.remove(idx);
+                    histograms.remove(idx);
+                }
+            }
+            doing += thumbFileInfoList.removeAll(file); // we already have this file
+        }
+    }
 
     if (!(thumbsSortFlags & QDir::Time) && !(thumbsSortFlags & QDir::Size) && !(thumbsSortFlags & QDir::Type)) {
         QCollator collator;
@@ -886,12 +945,14 @@ void ThumbsViewer::initThumbs() {
 
     addThumbs(thumbFileInfoList);
 
-    if (!m_desiredThumbPath.isEmpty()) {
-        setCurrentIndex(m_desiredThumbPath);
-        m_desiredThumbPath.clear();
-        scrollTo(currentIndex());
-    } else if (m_model->rowCount() && selectionModel()->selectedIndexes().size() == 0) {
-        setCurrentIndex(0);
+    if (!iterative) {
+        if (!m_desiredThumbPath.isEmpty()) {
+            setCurrentIndex(m_desiredThumbPath);
+            m_desiredThumbPath.clear();
+            scrollTo(currentIndex());
+        } else if (m_model->rowCount() && selectionModel()->selectedIndexes().size() == 0) {
+            setCurrentIndex(0);
+        }
     }
     promoteThumbsCount();
     loadVisibleThumbs();

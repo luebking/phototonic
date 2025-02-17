@@ -19,6 +19,7 @@
 #ifndef THUMBS_VIEWER_H
 #define THUMBS_VIEWER_H
 
+class QFileSystemWatcher;
 class QStandardItem;
 class QStandardItemModel;
 
@@ -95,12 +96,9 @@ public:
 
     void loadPrepare();
 
-    void reload(bool fast = false);
+    void reload(bool iterative = false);
     void loadDuplicates();
-
     void loadFileList();
-
-    void loadSubDirectories();
 
     void setThumbColors();
 
@@ -162,13 +160,13 @@ private:
     QStandardItem *addThumb(const QFileInfo &thumbFileInfo);
     bool isConstrained(const QFileInfo &fileInfo) const;
     bool matchesTagFilter(const QString &path) const;
-    void initThumbs();
 
+    void initThumbs(bool iterative);
     bool loadThumb(int row, bool fastOnly = false);
+    void promoteThumbsCount();
 
     void findDupes(bool resetCounters);
-
-    void promoteThumbsCount();
+    void loadSubDirectories(bool iterative);
 
     void updateImageInfoViewer(int row);
 
@@ -199,6 +197,7 @@ private:
     bool m_busy;
     bool m_resize;
     QStandardItemModel *m_model;
+    QFileSystemWatcher *m_fsWatcher;
     QString m_desiredThumbPath;
     bool m_filterDirty;
     int m_visibleThumbs;
