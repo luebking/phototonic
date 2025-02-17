@@ -2505,58 +2505,6 @@ void Phototonic::setStatus(QString state) {
     statusTimer->start();
 }
 
-void Phototonic::mouseDoubleClickEvent(QMouseEvent *event) {
-
-    if (event->button() == Qt::LeftButton) {
-        if (Settings::layoutMode == ImageViewWidget) {
-            if (Settings::reverseMouseBehavior) {
-                fullScreenAction->setChecked(!(fullScreenAction->isChecked()));
-                toggleFullScreen();
-                event->accept();
-            } else if (CloseImageAction->isEnabled()) {
-                hideViewer();
-                event->accept();
-            }
-        } else {
-            if (QApplication::focusWidget() == imageViewer) {
-                viewImage();
-            }
-        }
-    }
-}
-
-void Phototonic::mousePressEvent(QMouseEvent *event) {
-
-    if (Settings::layoutMode == ImageViewWidget) {
-        if (event->button() == Qt::MiddleButton) {
-
-            if (event->modifiers() == Qt::ShiftModifier) {
-                origZoom();
-                event->accept();
-                return;
-            }
-            if (event->modifiers() == Qt::ControlModifier) {
-                resetZoom();
-                event->accept();
-                return;
-            }
-
-            if (Settings::reverseMouseBehavior && CloseImageAction->isEnabled()) {
-                hideViewer();
-                event->accept();
-            } else {
-                fullScreenAction->setChecked(!(fullScreenAction->isChecked()));
-                toggleFullScreen();
-                event->accept();
-            }
-        }
-    } else if (QApplication::focusWidget() == imageViewer) {
-        if (event->button() == Qt::MiddleButton) {
-            viewImage();
-        }
-    }
-}
-
 void Phototonic::newImage() {
     if (Settings::layoutMode == ThumbViewWidget) {
         showViewer();
@@ -3411,6 +3359,30 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
             setStatus(tr("No images selected"));
         }
         return QMainWindow::eventFilter(o, e);
+    }
+
+    if ((e->type() == QEvent::MouseButtonDblClick ||
+         e->type() == QEvent::MouseButtonPress)         && o == imageViewer->viewport()) {
+        QMouseEvent *me = static_cast<QMouseEvent*>(e);
+        bool dblclk = (me->button() == Qt::LeftButton && e->type() == QEvent::MouseButtonDblClick);
+        if (Settings::reverseMouseBehavior)
+            dblclk = (me->button() == Qt::MiddleButton && e->type() == QEvent::MouseButtonPress);
+
+        if (dblclk) {
+            if (me->modifiers() == Qt::ControlModifier) { /// @todo Utilize Qt::ShiftModifier
+                Settings::imageZoomFactor == 1.0 ? origZoom() : resetZoom();
+            } else if (Settings::layoutMode == ImageViewWidget) {
+                if (me->modifiers() == Qt::AltModifier) { /// @todo this doesn't work - no event shows up
+                    toggleFullScreen();
+                } else
+                    hideViewer();
+            } else {
+                viewImage();
+                if (me->modifiers() == Qt::AltModifier && !fullScreenAction->isChecked())
+                    toggleFullScreen(); /// @todo dto.
+            }
+            return QMainWindow::eventFilter(o, e);
+        }
     }
 
     if (e->type() != QEvent::Wheel)
