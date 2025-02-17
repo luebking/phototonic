@@ -3352,6 +3352,14 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
             filterLineEdit->setClearButtonEnabled(!filterLineEdit->text().isEmpty());
         } else if (e->type() == QEvent::Leave) {
             filterLineEdit->setClearButtonEnabled(false);
+        } else if (e->type() == QEvent::KeyPress) {
+            // since we filter it anyway, allow some thumb navigation w/ keys irrelevant to the lineedit
+            QKeyEvent *ke = static_cast<QKeyEvent*>(e);
+            if (ke->key() == Qt::Key_PageUp || ke->key() == Qt::Key_PageDown ||
+                ke->key() == Qt::Key_Up || ke->key() == Qt::Key_Down) {
+                QApplication::sendEvent(thumbsViewer, e);
+                return true;
+            }
         }
         return QMainWindow::eventFilter(o, e);
     }
