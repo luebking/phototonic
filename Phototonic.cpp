@@ -3057,7 +3057,7 @@ void Phototonic::reloadThumbs() {
         m_progressBarAction->setVisible(false);
         m_pathLineEditAction->setVisible(true);
         m_progressBar->reset();
-        thumbsViewer->reLoad();
+        thumbsViewer->reload();
     }
     sortThumbnails();
 }

@@ -95,7 +95,7 @@ public:
 
     void loadPrepare();
 
-    void reLoad();
+    void reload(bool fast = false);
     void loadDuplicates();
 
     void loadFileList();
@@ -168,7 +168,7 @@ private:
 
     void findDupes(bool resetCounters);
 
-    void updateThumbsCount();
+    void promoteThumbsCount();
 
     void updateImageInfoViewer(int row);
 

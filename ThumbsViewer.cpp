@@ -45,13 +45,15 @@
 #include "Tags.h"
 #include "ThumbsViewer.h"
 
-#define BATCH_SIZE 10
+static int gs_fontHeight = 0;
 
 ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
     m_busy = false;
     m_resize = true;
     m_invertTagFilter = false;
     m_filterDirty = false;
+    gs_fontHeight = QFontMetrics(font()).height();
+
     Settings::thumbsBackgroundColor = Settings::value(Settings::optionThumbsBackgroundColor).value<QColor>();
     Settings::thumbsTextColor = Settings::value(Settings::optionThumbsTextColor).value<QColor>();
     setThumbColors();
@@ -89,6 +91,8 @@ ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
     connect(&m_loadThumbTimer, &QTimer::timeout, [=](){ loadVisibleThumbs(verticalScrollBar()->value()); });
 
     emptyImg.load(":/images/no_image.png");
+
+    refreshThumbs(); // apply settings to icon layout
 }
 
 void ThumbsViewer::setThumbColors() {
@@ -200,7 +204,7 @@ void ThumbsViewer::promoteSelectionChange() {
     emit selectionChanged(indexesList.size());
 
     if (!selectedThumbs)
-        updateThumbsCount();
+        promoteThumbsCount();
     else
         emit status(tr("Selected %1 of %n image(s)", "", m_model->rowCount()).arg(QString::number(selectedThumbs)));
 }
@@ -410,7 +414,7 @@ void ThumbsViewer::loadFileList() {
         m_filterDirty = true;
         filterRows(j);
     }
-    updateThumbsCount();
+    promoteThumbsCount();
 
     if (!m_desiredThumbPath.isEmpty()) {
         setCurrentIndex(m_desiredThumbPath);
@@ -422,10 +426,11 @@ void ThumbsViewer::loadFileList() {
     loadVisibleThumbs();
 }
 
-void ThumbsViewer::reLoad() {
+void ThumbsViewer::reload(bool fast) {
+    Q_UNUSED(fast)
     if (m_busy) {
         abort();
-        QTimer::singleShot(50, this, [=]() { reLoad(); });
+        QTimer::singleShot(50, this, [=]() { reload(); });
         return;
     }
     static QTimer *scrollDelay = nullptr;
@@ -439,28 +444,13 @@ void ThumbsViewer::reLoad() {
     disconnect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
     m_busy = true;
 
-    histFiles.clear(); // these can grow out of control and currently sort O(n^2)
-    histograms.clear();
-    m_histSorted = false;
-    m_visibleThumbs = 0;
-
     loadPrepare();
 
-    static QString lastPath; // do we need to drop the metadata cache
-
     if (Settings::isFileListLoaded) {
-        if (!lastPath.isEmpty()) {
-            lastPath = QString();
-            Metadata::dropCache();
-        }
         loadFileList();
+        connect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
         m_busy = false;
         return;
-    }
-
-    if (lastPath != Settings::currentDirectory) {
-        lastPath = Settings::currentDirectory;
-        Metadata::dropCache();
     }
 
     // Get all patterns supported by QImageReader
@@ -491,11 +481,10 @@ void ThumbsViewer::reLoad() {
     }
 
     initThumbs();
-    updateThumbsCount();
-    loadVisibleThumbs();
 
     if (Settings::includeSubDirectories) {
         loadSubDirectories();
+        thumbsDir.setPath(Settings::currentDirectory);
     }
 
     m_busy = false;
@@ -505,23 +494,16 @@ void ThumbsViewer::reLoad() {
 void ThumbsViewer::loadSubDirectories() {
     QDirIterator dirIterator(Settings::currentDirectory, QDirIterator::Subdirectories);
 
-    int processed = 0;
     while (dirIterator.hasNext()) {
         dirIterator.next();
         if (dirIterator.fileInfo().isDir() && dirIterator.fileName() != "." && dirIterator.fileName() != "..") {
             thumbsDir.setPath(dirIterator.filePath());
 
             initThumbs();
-            updateThumbsCount();
-            loadVisibleThumbs();
 
             if (isAbortThumbsLoading) {
                 return;
             }
-        }
-        if (++processed > BATCH_SIZE) {
-            QApplication::processEvents();
-            processed = 0;
         }
     }
 
@@ -719,11 +701,9 @@ void ThumbsViewer::filterRows(int first, int last) {
     if (!shown.isEmpty())
         emit filesShown(shown);
     loadVisibleThumbs(); // slow last
-    updateThumbsCount();
+    promoteThumbsCount();
     m_filterDirty = false;
 }
-
-static int gs_fontHeight = 0;
 
 QSize ThumbsViewer::itemSizeHint() const
 {
@@ -745,21 +725,15 @@ QSize ThumbsViewer::itemSizeHint() const
 void ThumbsViewer::loadPrepare() {
 
     m_model->clear();
-    gs_fontHeight = QFontMetrics(font()).height();
-    setIconSize(QSize(thumbSize, thumbSize));
-    setViewportMargins(0, gs_fontHeight, 0, 0);
 
-    if (Settings::thumbsLayout == Squares) {
-        setSpacing(0);
-        setUniformItemSizes(true);
-        setGridSize(itemSizeHint());
-    } else if (Settings::thumbsLayout == Compact) {
-        setSpacing(0);
-        setUniformItemSizes(false);
-        setGridSize(itemSizeHint());
-    } else {
-        setUniformItemSizes(false);
-        setGridSize(QSize(dynamicGridWidth(), itemSizeHint().height() + gs_fontHeight));
+    static QString lastPath; // do we need to drop the metadata cache
+    m_histSorted = false;
+    m_visibleThumbs = 0;
+    if (Settings::isFileListLoaded || lastPath != Settings::currentDirectory) {
+        lastPath = Settings::isFileListLoaded ? QString() : Settings::currentDirectory;
+        Metadata::dropCache();
+        histFiles.clear(); // these can grow out of control and currently sort O(n^2)
+        histograms.clear();
     }
 
     if (isNeedToScroll) {
@@ -778,11 +752,17 @@ void ThumbsViewer::refreshThumbs() {
     for (int row = 0; row < m_model->rowCount(); ++row)
         m_model->setData(m_model->index(row, 0), false, LoadedRole);
     setIconSize(QSize(thumbSize, thumbSize));
+    setViewportMargins(0, gs_fontHeight, 0, 0);
     if (Settings::thumbsLayout == Squares) {
+        setSpacing(0);
+        setUniformItemSizes(true);
         setGridSize(itemSizeHint());
     } else if (Settings::thumbsLayout == Compact) {
+        setSpacing(0);
+        setUniformItemSizes(false);
         setGridSize(itemSizeHint());
     } else {
+        setUniformItemSizes(false);
         setGridSize(QSize(dynamicGridWidth(), itemSizeHint().height() + gs_fontHeight));
     }
     thumbsRangeFirst = -1;
@@ -821,6 +801,7 @@ void ThumbsViewer::loadDuplicates()
     }
 
 finish:
+    thumbsDir.setPath(Settings::currentDirectory);
     m_model->sort(0);
     m_busy = false;
     return;
@@ -912,17 +893,17 @@ void ThumbsViewer::initThumbs() {
     } else if (thumbFileInfoList.size() && selectionModel()->selectedIndexes().size() == 0) {
         setCurrentIndex(0);
     }
+    promoteThumbsCount();
     loadVisibleThumbs();
 }
 
-void ThumbsViewer::updateThumbsCount() {
+void ThumbsViewer::promoteThumbsCount() {
     if (m_visibleThumbs < 1)
         emit status(tr("No images"));
     else if (m_visibleThumbs != m_model->rowCount())
         emit status(tr("%n of %1 image(s)", "", m_visibleThumbs).arg(m_model->rowCount()));
     else
         emit status(tr("%n image(s)", "", m_visibleThumbs));
-    thumbsDir.setPath(Settings::currentDirectory);
 }
 
 struct DuplicateImage
@@ -1536,8 +1517,10 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
 
         m_model->item(currThumb)->setIcon(QPixmap::fromImage(thumb));
         m_model->item(currThumb)->setData(true, LoadedRole);
-        histograms.append(calcHist(thumb));
-        histFiles.append(imageFileName);
+        if (!histFiles.contains(imageFileName)) {
+            histograms.append(calcHist(thumb));
+            histFiles.append(imageFileName);
+        }
         m_model->item(currThumb)->setSizeHint(itemSizeHint());
     } else {
         m_model->item(currThumb)->setIcon(QIcon(":/images/error_image.png"));
