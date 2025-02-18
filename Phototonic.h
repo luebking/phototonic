@@ -118,7 +118,7 @@ private slots:
 
     void resizeThumbs();
 
-    void resetZoom();
+    void resetZoom(QPoint focus = QPoint(-1, -1));
 
     void origZoom(QPoint focus = QPoint(-1, -1));
 

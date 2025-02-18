@@ -1584,10 +1584,12 @@ void Phototonic::zoom(float multiplier, QPoint focus) {
     imageViewer->setFeedback(tr("Zoom %1%").arg(QString::number(zoomTarget * 100)));
 }
 
-void Phototonic::resetZoom() {
+void Phototonic::resetZoom(QPoint focus) {
     imageViewer->tempDisableResize = false;
+    if (focus.x() < 0)
+        focus = imageViewer->rect().center();
 #if ZOOMINATOR
-        zoomTo(1.0);
+        zoomTo(1.0, focus);
 #else
         Settings::imageZoomFactor = 1.0;
         imageViewer->resizeImage();
