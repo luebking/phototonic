@@ -207,15 +207,6 @@ void Phototonic::loadStartupFileList(QStringList argumentsList, int filesStartAt
     Settings::isFileListLoaded = true;
 }
 
-bool Phototonic::event(QEvent *event) {
-    if (event->type() == QEvent::ActivationChange ||
-        (Settings::layoutMode == ThumbViewWidget && event->type() == QEvent::MouseButtonRelease)) {
-        thumbsViewer->loadVisibleThumbs();
-    }
-
-    return QMainWindow::event(event);
-}
-
 void Phototonic::createThumbsViewer() {
     thumbsViewer = new ThumbsViewer(this);
     thumbsViewer->installEventFilter(this);
@@ -1535,7 +1526,7 @@ void Phototonic::zoomTo(float goal, QPoint focus) {
         connect(zoominator, &QObject::destroyed, [=]() {zoominator = nullptr;});
     }
     zoominator->setProperty("zoomfocus", focus);
-    zoominator->setStartValue(Settings::imageZoomFactor);
+    zoominator->setStartValue(float(Settings::imageZoomFactor));
     zoominator->setEndValue(goal);
     zoominator->start();
 #endif

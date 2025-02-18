@@ -58,7 +58,6 @@ public:
 protected:
     void closeEvent(QCloseEvent *event) override;
     bool eventFilter(QObject *o, QEvent *e) override;
-    bool event(QEvent *event) override;
 
 public slots:
     void setSaveDirectory(QString path = QString());
