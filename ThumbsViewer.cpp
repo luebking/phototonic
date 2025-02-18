@@ -1620,8 +1620,11 @@ int ThumbsViewer::addThumbs(const QFileInfoList &fileInfos) {
             timer.restart();
         }
     }
-    m_filterDirty = true;
-    filterRows(batchStart, -1);
+    if (added) {
+        m_histSorted = false;
+        m_filterDirty = true;
+        filterRows(batchStart, -1);
+    }
     return added;
 }
 
