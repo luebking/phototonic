@@ -490,8 +490,9 @@ void ThumbsViewer::reload(bool iterative) {
 
     QStringList selection;
     if (iterative) { // remove file selection since it might be affected by the change
-        setUpdatesEnabled(false);
         selection = selectedFiles();
+        if (selection.size())
+            setUpdatesEnabled(false);
         selectionModel()->clearSelection();
     }
 
