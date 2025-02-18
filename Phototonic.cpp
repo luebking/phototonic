@@ -1602,7 +1602,7 @@ void Phototonic::resetZoom() {
     imageViewer->setFeedback(tr("Zoom Reset"));
 }
 
-void Phototonic::origZoom() {
+void Phototonic::origZoom(QPoint focus) {
 #if ZOOMINATOR
         // evelish hack, we abuse resizeImage() to calculate Settings::imageZoomFactor
         // use that as target value and then reset it again…
@@ -1612,11 +1612,13 @@ void Phototonic::origZoom() {
         imageViewer->tempDisableResize = false;
         float newZoomF = Settings::imageZoomFactor;
         Settings::imageZoomFactor = oldZoomF;
-        zoomTo(newZoomF);
+        if (focus.x() < 0)
+            focus = imageViewer->rect().center();
+        zoomTo(newZoomF, focus);
 #else
         // Settings::imageZoomFactor gets fixed by imageViewer->resizeImage()
         imageViewer->tempDisableResize = true;
-        imageViewer->resizeImage();
+        imageViewer->resizeImage(focus);
 #endif
     imageViewer->setFeedback(tr("Original Size"));
 }
@@ -3337,7 +3339,7 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
 
         if (dblclk) {
             if (me->modifiers() == Qt::ControlModifier) { /// @todo Utilize Qt::ShiftModifier
-                Settings::imageZoomFactor == 1.0 ? origZoom() : resetZoom();
+                Settings::imageZoomFactor == 1.0 ? origZoom(me->position().toPoint()) : resetZoom();
             } else if (Settings::layoutMode == ImageViewWidget) {
                 if (me->modifiers() == Qt::AltModifier) { /// @todo this doesn't work - no event shows up
                     toggleFullScreen();

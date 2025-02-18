@@ -121,7 +121,7 @@ private slots:
 
     void resetZoom();
 
-    void origZoom();
+    void origZoom(QPoint focus = QPoint(-1, -1));
 
     void keepZoom();
 
