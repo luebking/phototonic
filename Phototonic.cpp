@@ -1520,6 +1520,8 @@ void Phototonic::zoomTo(float goal, QPoint focus) {
         zoominator = new QVariantAnimation(this);
         zoominator->setDuration(125);
         connect(zoominator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
+            if (zoominator->state() != QAbstractAnimation::Running)
+                return;
             Settings::imageZoomFactor = value.toFloat();
             imageViewer->resizeImage(zoominator->property("zoomfocus").toPoint());
         });
@@ -1650,6 +1652,8 @@ void Phototonic::rotate(int deg) {
         rotator = new QVariantAnimation(this);
         rotator->setEasingCurve(QEasingCurve::InOutCubic);
         connect(rotator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
+            if (rotator->state() != QAbstractAnimation::Running)
+                    return;
             Settings::rotation = value.toReal();
             imageViewer->resizeImage();
         });

@@ -65,7 +65,12 @@ void ImageWidget::setImage(const QImage &i, QTransform matrix)
             fadeAnimator->setStartValue(1.0);
             fadeAnimator->setEndValue(0.0);
             fadeAnimator->setDuration(250);
-            connect(fadeAnimator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {m_fadeout = value.toFloat(); update();});
+            connect(fadeAnimator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
+                if (fadeAnimator->state() != QAbstractAnimation::Running)
+                    return;
+                m_fadeout = value.toFloat();
+                update();
+            });
             connect(fadeAnimator, &QVariantAnimation::finished, [=]() {m_prevImage = QImage();});
             connect(fadeAnimator, &QObject::destroyed, [=]() {fadeAnimator = nullptr;});
         }
