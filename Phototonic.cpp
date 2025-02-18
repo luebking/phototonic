@@ -3335,17 +3335,19 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
             dblclk = (me->button() == Qt::MiddleButton && e->type() == QEvent::MouseButtonPress);
 
         if (dblclk) {
-            if (me->modifiers() == Qt::ControlModifier) { /// @todo Utilize Qt::ShiftModifier
+            if (me->modifiers() == Qt::ControlModifier) {
                 Settings::imageZoomFactor == 1.0 ? origZoom(me->position().toPoint()) : resetZoom();
             } else if (Settings::layoutMode == ImageViewWidget) {
-                if (me->modifiers() == Qt::AltModifier) { /// @todo this doesn't work - no event shows up
-                    toggleFullScreen();
+                if (me->modifiers() == Qt::ShiftModifier) {
+                    fullScreenAction->trigger();
                 } else
                     hideViewer();
             } else {
                 viewImage();
-                if (me->modifiers() == Qt::AltModifier && !fullScreenAction->isChecked())
-                    toggleFullScreen(); /// @todo dto.
+                if (me->modifiers() == Qt::ShiftModifier && !fullScreenAction->isChecked()) {
+                    fullScreenAction->setChecked(true);
+                    toggleFullScreen();
+                }
             }
             return QMainWindow::eventFilter(o, e);
         }
