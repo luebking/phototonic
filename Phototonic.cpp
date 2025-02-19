@@ -39,6 +39,7 @@
 #include <QRandomGenerator>
 #include <QScrollBar>
 #include <QSettings>
+#include <QSpinBox>
 #include <QStackedLayout>
 #include <QStandardPaths>
 #include <QStandardItemModel>
@@ -50,6 +51,7 @@
 #include <QToolTip>
 #include <QVariantAnimation>
 #include <QWheelEvent>
+#include <QWidgetAction>
 
 #include "Bookmarks.h"
 #include "CopyMoveDialog.h"
@@ -962,6 +964,45 @@ void Phototonic::createToolBars() {
     static_cast<QToolButton*>(myMainToolBar->widgetForAction(sortMenuAction))->setPopupMode(QToolButton::InstantPopup);
 
     myMainToolBar->addAction(findDupesAction);
+    QToolButton *btn = static_cast<QToolButton*>(myMainToolBar->widgetForAction(findDupesAction));
+    QMenu *btnmenu = new QMenu(btn);
+    QWidgetAction *qwa = new QWidgetAction(btnmenu);
+    QSpinBox *precision = new QSpinBox();
+    precision->setRange(0, 100);
+    precision->setSingleStep(5);
+    precision->setPrefix(tr("Accuracy: "));
+    precision->setSuffix("%");
+    precision->setValue(Settings::dupeAccuracy);
+    connect(precision, &QSpinBox::valueChanged, [=](int v) {Settings::dupeAccuracy = v;});
+    QAction *act = new QAction(btn->text());
+    act->setShortcut(Qt::Key_Enter);
+    act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
+    connect(act, &QAction::triggered, [=]() {
+        findDupesAction->setChecked(false); findDupesAction->trigger();
+    });
+    precision->addAction(act);
+    btnmenu->addAction(act);
+    static const QString rtfmalso =
+    tr( "Ok, this isn't exactly AI driven."
+        "<p>Duplicates are detected via a grayscale mosaic<br>"
+        "(<i>do the desaturated images look the same from very far away?</i>)<br>"
+        "and by comparing the color distribution<br>"
+        "(<i>immune against mirrors, rotation, anamorphic scales …</i>)<br>"
+        "Both can cause funny false positives.</p>"
+        "<p>The required proximity of the color distribution can be configured here<br>"
+        "60% is a sensible default, but can be too easy if you're dealing with monochrome pictures<br>"
+        "Going much lower will cause too many false positives, increase the accuracy to get rid of such</p>"
+        "<h3>Notice that this can cause disjunct match groups!</h3>"
+        "<p>[A] can be similar to [B] and [C], while [B] and [C] are not close enough.<br>"
+        "The result is that [A] the <b>same image can show up multiple times!</b><br>"
+        "Don't just assume the sorting is wrong these are clearly duplicates<br>"
+        "and press delete. They are <b>the same image</b> and deleting one means to<br>"
+        "delete both.</p><h3>Pay attention to the file names!</h3>"
+    );
+    precision->setToolTip(rtfmalso);
+    qwa->setDefaultWidget(precision);
+    btnmenu->addAction(qwa);
+    btn->setMenu(btnmenu);
 
     myMainToolBar->addAction(slideShowAction);
 
@@ -1000,7 +1041,7 @@ void Phototonic::createToolBars() {
     myMainToolBar->addSeparator();
     myMainToolBar->addWidget(filterLineEdit);
 
-    QAction *act = new QAction;;
+    act = new QAction;
     act->setShortcut(Qt::Key_Escape);
     act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
     connect(act, &QAction::triggered, [=]() {
@@ -2249,6 +2290,7 @@ void Phototonic::writeSettings() {
     Settings::setValue(Settings::optionShowViewerToolbar, (bool) Settings::showViewerToolbar);
     Settings::setValue(Settings::optionSetWindowIcon, (bool) Settings::setWindowIcon);
     Settings::setValue(Settings::optionUpscalePreview, (bool) Settings::upscalePreview);
+    Settings::setValue("DuplicateHistogramProximity", (int) Settings::dupeAccuracy);
 
     /* Action shortcuts */
     Settings::beginGroup(Settings::optionShortcuts);
@@ -2317,6 +2359,7 @@ void Phototonic::readSettings() {
     Settings::showViewerToolbar = Settings::value(Settings::optionShowViewerToolbar, false).toBool();
     Settings::setWindowIcon = Settings::value(Settings::optionSetWindowIcon, false).toBool();
     Settings::upscalePreview = Settings::value(Settings::optionUpscalePreview, false).toBool();
+    Settings::dupeAccuracy = Settings::value("DuplicateHistogramProximity", 60).toInt();
 
     // meehh
     Settings::fileSystemDockVisible = Settings::value(Settings::optionFileSystemDockVisible, true).toBool();

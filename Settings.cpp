@@ -143,5 +143,6 @@ namespace Settings {
     bool setWindowIcon;
     bool upscalePreview;
     bool scrollZooms;
+    int dupeAccuracy;
 }
 

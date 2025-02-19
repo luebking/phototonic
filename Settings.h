@@ -163,6 +163,7 @@ namespace Settings {
     extern bool setWindowIcon;
     extern bool upscalePreview;
     extern bool scrollZooms;
+    extern int dupeAccuracy;
 }
 
 #endif // SETTINGS_H

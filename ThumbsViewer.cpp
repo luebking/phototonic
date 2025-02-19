@@ -968,18 +968,45 @@ void ThumbsViewer::promoteThumbsCount() {
         emit status(tr("%n image(s)", "", m_visibleThumbs));
 }
 
-struct DuplicateImage
+static Histogram calcHist(const QImage &img)
 {
-    QString filePath;
-    unsigned int duplicates;
-    unsigned int id = 0;
-};
+    Histogram hist;
+    if (img.isNull()) {
+        qWarning() << "Histogram calculation: Invalid file";
+        return hist;
+    }
+    const QImage image = img.scaled(256, 256).convertToFormat(QImage::Format_RGB888);
+    for (int y=0; y<image.height(); y++) {
+        const uchar *line = image.scanLine(y);
+        for (int x=0; x<image.width(); x++) {
+            const int index = x * 3;
+            hist.red[line[index + 0]] += 1.f;
+            hist.green[line[index + 1]] += 1.f;
+            hist.blue[line[index + 2]] += 1.f;
+        }
+    }
+    return hist;
+}
+/*
+static Histogram calcHist(const QString &filePath) {
+    QImageReader reader(filePath);
+    reader.setScaledSize(QSize(256, 256));
+    reader.setAutoTransform(false);
+    QImage image = reader.read();
+    if (image.isNull()) {
+        qWarning() << "Invalid file" << filePath << reader.errorString();
+        return {};
+    }
+    return calcHist(image);
+}
+*/
 
 void ThumbsViewer::findDupes(bool resetCounters)
 {
     const QFileInfoList thumbFileInfoList = thumbsDir.entryInfoList();
+    const float accuracy = (100-qMax(0, qMin(100, Settings::dupeAccuracy)))/100.0f;
     static unsigned int duplicateFiles, scannedFiles, totalFiles;
-    static QHash<QBitArray, DuplicateImage> imageHashes;
+    static QHash<QBitArray, QStringList> imageHashes;
     if (resetCounters) {
         imageHashes.clear();
         duplicateFiles = scannedFiles = totalFiles = 0;
@@ -991,6 +1018,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
     QElapsedTimer timer;
     timer.start();
 
+    QSize size256(qMax(256,thumbSize),qMax(256,thumbSize));
     for (int currThumb = 0; currThumb < thumbFileInfoList.size(); ++currThumb) {
         if (timer.elapsed() > 30) {
             emit progress(scannedFiles, totalFiles);
@@ -1032,6 +1060,9 @@ void ThumbsViewer::findDupes(bool resetCounters)
         }
         if (targetSize != realSize) {
             imageReader.setFileName(imageFileName);
+            QSize thumbSize = imageReader.size();
+            thumbSize.scale(size256, Qt::KeepAspectRatio);
+            imageReader.setScaledSize(thumbSize);
             imageReader.read(&image);
         }
 
@@ -1040,6 +1071,13 @@ void ThumbsViewer::findDupes(bool resetCounters)
         if (image.isNull()) {
             qWarning() << "invalid image" << thumbFileInfo.fileName();
             continue;
+        }
+
+        int histIdx = histFiles.indexOf(imageFileName);
+        if (histIdx < 0) {
+            histograms.append(calcHist(image));
+            histFiles.append(imageFileName);
+            histIdx = histFiles.size() - 1;
         }
 
         QBitArray imageHash(64);
@@ -1055,29 +1093,66 @@ void ThumbsViewer::findDupes(bool resetCounters)
 
         QString currentFilePath = thumbFileInfo.filePath();
 
-        QHash<QBitArray, DuplicateImage>::iterator match = imageHashes.find(imageHash);
+        QList<QStringList*> dupes;
+        QStringList *closest = nullptr;
+        float closestScore = 10000.0f;
+        QHash<QBitArray, QStringList>::iterator match = imageHashes.find(imageHash);
         if (match == imageHashes.end()) {
-            imageHashes.insert(imageHash, {currentFilePath, 0, (unsigned int)imageHashes.count()});
+            imageHashes.insert(imageHash, QStringList(currentFilePath));
         } else {
-            ++duplicateFiles;
-            // display sibling
-            int newFiles = 0;
-            if (match.value().duplicates < 1) {
-                if (QStandardItem *item = addThumb(QFileInfo(match.value().filePath))) {
-                    ++newFiles;
-                    item->setData(match.value().id, SortRole);
+            closest = &match.value();
+            closestScore = 0.0f;
+            if (!dupes.contains(closest))
+                dupes << closest;
+        }
+
+        for (int i = 0; i < currThumb; ++i) {
+            const int otherIdx = histFiles.indexOf(thumbFileInfoList.at(i).absoluteFilePath());
+            if (otherIdx < 0) {
+                qDebug() << "meek, we lost a histogram" << thumbFileInfoList.at(i).absoluteFilePath();
+                continue;
+            }
+            const float score = histograms.at(histIdx).compare(histograms.at(otherIdx));
+            if (score <= accuracy) {
+                for (auto hash = imageHashes.cbegin(), end = imageHashes.cend(); hash != end; ++hash) {
+                    if (!hash.value().contains(histFiles.at(otherIdx)))
+                       continue;
+                    const QStringList *dupe = &(hash.value());
+                    if (!dupes.contains(dupe))
+                        dupes.append(const_cast<QStringList*>(dupe));
+                    if (score < closestScore) {
+                        closestScore = score;
+                        closest = const_cast<QStringList*>(dupe);
+                    }
+                    break;
                 }
             }
-            // ... and this one
-            match.value().duplicates++;
+        }
+//        if (closest)
+//            qDebug() << closestScore;
+        int newFiles = 0;
+        for (QStringList *dupe : dupes) {
+            // display sibling
+            if (dupe->size() == 1) {
+                if (QStandardItem *item = addThumb(QFileInfo(dupe->at(0)))) {
+                    ++newFiles;
+                    item->setData(quint64(dupe), SortRole);
+                }
+            }
+            // ... and ...
+            *dupe << currentFilePath;
+        }
+        if (dupes.size()) {
+            // ... this one
+            ++duplicateFiles;
             if (QStandardItem *item = addThumb(QFileInfo(currentFilePath))) {
                 ++newFiles;
-                item->setData(match.value().id, SortRole);
+                item->setData(quint64(closest), SortRole);
             }
-            if (newFiles) {
-                m_filterDirty = true;
-                filterRows(m_model->rowCount() - newFiles);
-            }
+        }
+        if (newFiles) {
+            m_filterDirty = true;
+            filterRows(m_model->rowCount() - newFiles);
         }
 
         if (isAbortThumbsLoading) {
@@ -1089,39 +1164,6 @@ void ThumbsViewer::findDupes(bool resetCounters)
     emit status(tr("Found %n duplicate(s) among %1 files", "", duplicateFiles).arg(totalFiles));
     QApplication::processEvents();
 }
-
-static Histogram calcHist(const QImage &img)
-{
-    Histogram hist;
-    if (img.isNull()) {
-        qWarning() << "Histogram calculation: Invalid file";
-        return hist;
-    }
-    const QImage image = img.scaled(256, 256).convertToFormat(QImage::Format_RGB888);
-    for (int y=0; y<image.height(); y++) {
-        const uchar *line = image.scanLine(y);
-        for (int x=0; x<image.width(); x++) {
-            const int index = x * 3;
-            hist.red[line[index + 0]] += 1.f;
-            hist.green[line[index + 1]] += 1.f;
-            hist.blue[line[index + 2]] += 1.f;
-        }
-    }
-    return hist;
-}
-/*
-static Histogram calcHist(const QString &filePath) {
-    QImageReader reader(filePath);
-    reader.setScaledSize(QSize(256, 256));
-    reader.setAutoTransform(false);
-    QImage image = reader.read();
-    if (image.isNull()) {
-        qWarning() << "Invalid file" << filePath << reader.errorString();
-        return {};
-    }
-    return calcHist(image);
-}
-*/
 
 void ThumbsViewer::scanForSort(UserRoles role) {
     if (role != HistogramRole && role != BrightnessRole)
