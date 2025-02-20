@@ -764,8 +764,9 @@ void ThumbsViewer::loadPrepare() {
         m_fsWatcher->removePaths(m_fsWatcher->directories());
         lastPath = Settings::isFileListLoaded ? QString() : Settings::currentDirectory;
         Metadata::dropCache();
-        histFiles.clear(); // these can grow out of control and currently sort O(n^2)
-        histograms.clear();
+        m_histogramFiles.clear(); // these can grow out of control and currently sort O(n^2)
+        m_histograms.clear();
+        m_signatures.clear();
     }
 
     if (isNeedToScroll) {
@@ -906,7 +907,8 @@ void ThumbsViewer::initThumbs(bool iterative) {
                 qDebug() << "meek, why's there no item?!";
                 continue;
             }
-            QFileInfo file(item->data(FileNameRole).toString());
+            const QString filePath = item->data(FileNameRole).toString();
+            QFileInfo file(filePath);
             if (!file.exists()) {
                 if (!isRowHidden(i))
                     --m_visibleThumbs;
@@ -915,10 +917,11 @@ void ThumbsViewer::initThumbs(bool iterative) {
             }
             if (item->data(TimeRole).toDateTime() != file.lastModified()) { // outdated
                 m_model->item(i)->setData(false, LoadedRole); // reload
-                int idx = histFiles.indexOf(file.filePath());
+                m_signatures.remove(filePath);
+                int idx = m_histogramFiles.indexOf(filePath);
                 if (idx > -1) {
-                    histFiles.remove(idx);
-                    histograms.remove(idx);
+                    m_histogramFiles.remove(idx);
+                    m_histograms.remove(idx);
                 }
             }
             doing += thumbFileInfoList.removeAll(file); // we already have this file
@@ -975,6 +978,7 @@ static Histogram calcHist(const QImage &img)
         qWarning() << "Histogram calculation: Invalid file";
         return hist;
     }
+    hist.brightness = qGray(img.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0))/255.0f;
     const QImage image = img.scaled(256, 256).convertToFormat(QImage::Format_RGB888);
     for (int y=0; y<image.height(); y++) {
         const uchar *line = image.scanLine(y);
@@ -1018,7 +1022,6 @@ void ThumbsViewer::findDupes(bool resetCounters)
     QElapsedTimer timer;
     timer.start();
 
-    QSize size256(qMax(256,thumbSize),qMax(256,thumbSize));
     for (int currThumb = 0; currThumb < thumbFileInfoList.size(); ++currThumb) {
         if (timer.elapsed() > 30) {
             emit progress(scannedFiles, totalFiles);
@@ -1045,77 +1048,38 @@ void ThumbsViewer::findDupes(bool resetCounters)
         if (!nameMatch || isConstrained(thumbFileInfo))
             continue;
 
-        QImageReader imageReader;
         QString imageFileName = thumbFileInfo.absoluteFilePath();
-        QImage image;
-        imageReader.setFileName(imageFileName);
-        imageReader.setQuality(50); // 50 is the threshold where Qt does fast decoding, but still good scaling
-        const QSize targetSize = imageReader.size();
-        QSize realSize;
-        QString thumbnailPath = locateThumbnail(imageFileName);
-        if (!thumbnailPath.isEmpty() && QImageReader(thumbnailPath).canRead()) {
-            imageReader.setFileName(thumbnailPath);
-            imageReader.read(&image);
-            realSize = QSize(image.text("Thumb::Image::Width").toInt(), image.text("Thumb::Image::Height").toInt());
-        }
-        if (targetSize != realSize) {
-            imageReader.setFileName(imageFileName);
-            QSize thumbSize = imageReader.size();
-            thumbSize.scale(size256, Qt::KeepAspectRatio);
-            imageReader.setScaledSize(thumbSize);
-            imageReader.read(&image);
-        }
 
-        ++scannedFiles;
-
-        if (image.isNull()) {
-            qWarning() << "invalid image" << thumbFileInfo.fileName();
+        if (cacheSignatures(imageFileName))
+            ++scannedFiles;
+        else
             continue;
-        }
-
-        int histIdx = histFiles.indexOf(imageFileName);
-        if (histIdx < 0) {
-            histograms.append(calcHist(image));
-            histFiles.append(imageFileName);
-            histIdx = histFiles.size() - 1;
-        }
-
-        QBitArray imageHash(64);
-        image = image.convertToFormat(QImage::Format_Grayscale8).scaled(9, 9, Qt::KeepAspectRatioByExpanding /*, Qt::SmoothTransformation*/);
-        for (int y=0; y<8; ++y) {
-            const uchar *line = image.scanLine(y);
-            //const uchar *nextLine = image.scanLine(y+1);
-            for (int x=0; x<8; ++x) {
-                imageHash.setBit(y * 8 + x, line[x] > line[x+1]);
-                //imageHash.setBit(y * 8 + x + 64, line[x] > nextLine[x]);
-            }
-        }
-
-        QString currentFilePath = thumbFileInfo.filePath();
 
         QList<QStringList*> dupes;
         QStringList *closest = nullptr;
         float closestScore = 10000.0f;
+        QBitArray imageHash = signature(imageFileName);
         QHash<QBitArray, QStringList>::iterator match = imageHashes.find(imageHash);
         if (match == imageHashes.end()) {
-            imageHashes.insert(imageHash, QStringList(currentFilePath));
+            imageHashes.insert(imageHash, QStringList(imageFileName));
         } else {
             closest = &match.value();
             closestScore = 0.0f;
             if (!dupes.contains(closest))
                 dupes << closest;
         }
-
+#if 1
+        int histIdx = m_histogramFiles.indexOf(imageFileName);
         for (int i = 0; i < currThumb; ++i) {
-            const int otherIdx = histFiles.indexOf(thumbFileInfoList.at(i).absoluteFilePath());
+            const int otherIdx = m_histogramFiles.indexOf(thumbFileInfoList.at(i).absoluteFilePath());
             if (otherIdx < 0) {
                 qDebug() << "meek, we lost a histogram" << thumbFileInfoList.at(i).absoluteFilePath();
                 continue;
             }
-            const float score = histograms.at(histIdx).compare(histograms.at(otherIdx));
+            const float score = m_histograms.at(histIdx).compare(m_histograms.at(otherIdx));
             if (score <= accuracy) {
                 for (auto hash = imageHashes.cbegin(), end = imageHashes.cend(); hash != end; ++hash) {
-                    if (!hash.value().contains(histFiles.at(otherIdx)))
+                    if (!hash.value().contains(m_histogramFiles.at(otherIdx)))
                        continue;
                     const QStringList *dupe = &(hash.value());
                     if (!dupes.contains(dupe))
@@ -1128,6 +1092,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
                 }
             }
         }
+#endif
 //        if (closest)
 //            qDebug() << closestScore;
         int newFiles = 0;
@@ -1140,12 +1105,12 @@ void ThumbsViewer::findDupes(bool resetCounters)
                 }
             }
             // ... and ...
-            *dupe << currentFilePath;
+            *dupe << imageFileName;
         }
         if (dupes.size()) {
             // ... this one
             ++duplicateFiles;
-            if (QStandardItem *item = addThumb(QFileInfo(currentFilePath))) {
+            if (QStandardItem *item = addThumb(QFileInfo(imageFileName))) {
                 ++newFiles;
                 item->setData(quint64(closest), SortRole);
             }
@@ -1164,6 +1129,73 @@ void ThumbsViewer::findDupes(bool resetCounters)
     emit status(tr("Found %n duplicate(s) among %1 files", "", duplicateFiles).arg(totalFiles));
     QApplication::processEvents();
 }
+
+bool ThumbsViewer::cacheSignatures(const QString &imagePath, bool overwrite, const QImage *image) {
+    int histIdx = m_histogramFiles.indexOf(imagePath);
+    if (!overwrite && histIdx > -1 && m_signatures.contains(imagePath)) {
+        return true; // fake action and announce success
+    }
+
+    QImage thumb;
+    if (image && !image->isNull()) {
+        thumb = *image;
+    } else {
+        static QSize size256(qMax(256,thumbSize),qMax(256,thumbSize));
+        QImageReader imageReader;
+        imageReader.setFileName(imagePath);
+        imageReader.setQuality(50); // 50 is the threshold where Qt does fast decoding, but still good scaling
+        const QSize targetSize = imageReader.size();
+        QSize realSize;
+        QString thumbnailPath = locateThumbnail(imagePath, 256);
+        if (!thumbnailPath.isEmpty() && QImageReader(thumbnailPath).canRead()) {
+            imageReader.setFileName(thumbnailPath);
+            imageReader.read(&thumb);
+            realSize = QSize(thumb.text("Thumb::Image::Width").toInt(), thumb.text("Thumb::Image::Height").toInt());
+        }
+        if (targetSize != realSize) {
+            imageReader.setFileName(imagePath);
+            QSize thumbSize = imageReader.size();
+            thumbSize.scale(size256, Qt::KeepAspectRatio);
+            imageReader.setScaledSize(thumbSize);
+            imageReader.setAutoTransform(false);
+            imageReader.read(&thumb);
+        }
+        if (thumb.isNull()) {
+            qWarning() << "Invalid file" << imagePath << imageReader.errorString();
+            return false;
+        }
+    }
+    if (histIdx < 0) {
+        m_histogramFiles.append(imagePath);
+        m_histograms.append(calcHist(thumb));
+        m_histSorted = false;
+    }
+
+    QBitArray signature(64);
+    thumb = thumb.convertToFormat(QImage::Format_Grayscale8).scaled(9, 9, Qt::KeepAspectRatioByExpanding /*, Qt::SmoothTransformation*/);
+    const uchar *bits = thumb.constBits();
+    for (int y=0; y<8; ++y) {
+        for (int x=0; x<8; ++x) {
+            signature.setBit(8*y+x, bits[8*y+x] > bits[8*y+x+1]);
+        }
+    }
+    m_signatures[imagePath] = signature;
+    return true;
+}
+
+const QBitArray &ThumbsViewer::signature(const QString &imagePath) {
+    QHash<QString, QBitArray>::const_iterator cit = m_signatures.find(imagePath);
+    if (cit == m_signatures.end()) {
+        if (cacheSignatures(imagePath))
+            cit = m_signatures.find(imagePath);
+    }
+    if (cit != m_signatures.end())
+        return cit.value();
+    static QBitArray dummy(64);
+    qDebug() << "failed to obtain signature for" << imagePath;
+    return dummy;
+}
+
 
 void ThumbsViewer::scanForSort(UserRoles role) {
     if (role != HistogramRole && role != BrightnessRole)
@@ -1185,38 +1217,11 @@ void ThumbsViewer::scanForSort(UserRoles role) {
         }
 
         const QString filename = item->data(FileNameRole).toString();
-        if (item->data(BrightnessRole).isValid() && histFiles.contains(filename)) {
+        if (item->data(BrightnessRole).isValid() && !cacheSignatures(filename)) {
             continue;
         }
 
-        // try to use thumbnail (they're used when storing the histogram in ::loadThumb as well)
-        bool haveThumbogram = false;
-        QString thumbname = locateThumbnail(filename);
-        if (!thumbname.isEmpty()) {
-            QImageReader thumbReader(thumbname);
-            QImage image;
-            thumbReader.read(&image);
-            haveThumbogram = QImageReader(filename).size() == QSize(image.text("Thumb::Image::Width").toInt(), 
-                                                                    image.text("Thumb::Image::Height").toInt());
-            if (haveThumbogram) {
-                histograms.append(calcHist(image));
-                item->setData(qGray(image.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)) / 255.0, BrightnessRole);
-            }
-        }
-        if (!haveThumbogram) {
-            QImageReader reader(filename);
-            reader.setScaledSize(QSize(256, 256));
-            reader.setAutoTransform(false);
-            QImage image = reader.read();
-            if (image.isNull()) {
-                qWarning() << "Invalid file" << filename << reader.errorString();
-                continue;
-            }
-            histograms.append(calcHist(image));
-            item->setData(qGray(image.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)) / 255.0, BrightnessRole);
-        }
-        histFiles.append(filename);
-        m_histSorted = false;
+        item->setData(m_histograms.at(m_histogramFiles.indexOf(filename)).brightness, BrightnessRole);
 
         if (timer.elapsed() > 30) {
             if ((totalTime += timer.elapsed()) > 500) {
@@ -1237,26 +1242,26 @@ void ThumbsViewer::scanForSort(UserRoles role) {
         return; // this should be sorted already, less files doesn't change the similarity of the remaining - we've some holes in the list
 
     progress.setLabelText(tr("Comparing..."));
-    progress.setMaximum(histFiles.count());
+    progress.setMaximum(m_histogramFiles.count());
     progress.setValue(0);
     if ((totalTime += timer.elapsed()) > 600)
         progress.show();
     timer.restart();
 
-    for (int i=0; i<histFiles.size() - 1; i++) {
+    for (int i=0; i<m_histogramFiles.size() - 1; i++) {
         float minScore = std::numeric_limits<float>::max();
         int minIndex = i+1;
 
-        for (int j=i+1; j<histFiles.size(); j++) {
-            const float score = histograms.at(i).compare(histograms.at(j));
+        for (int j=i+1; j<m_histogramFiles.size(); j++) {
+            const float score = m_histograms.at(i).compare(m_histograms.at(j));
             if (score > minScore) {
                 continue;
             }
             minIndex = j;
             minScore = score;
         }
-        histFiles.swapItemsAt(i+1, minIndex);
-        histograms.swapItemsAt(i+1, minIndex);
+        m_histogramFiles.swapItemsAt(i+1, minIndex);
+        m_histograms.swapItemsAt(i+1, minIndex);
 
         if (timer.elapsed() > 30) {
             if ((totalTime += timer.elapsed()) > 700)
@@ -1277,8 +1282,8 @@ void ThumbsViewer::scanForSort(UserRoles role) {
     timer.restart();
 
     QHash<QString, int> indices;
-    for (int i=0; i<histFiles.size(); i++) {
-        indices[histFiles.at(i)] = i;
+    for (int i=0; i<m_histogramFiles.size(); i++) {
+        indices[m_histogramFiles.at(i)] = i;
     }
     for (int i = 0; i < m_model->rowCount(); ++i) {
         QStandardItem *item = m_model->item(i);
@@ -1429,7 +1434,7 @@ int ThumbsViewer::moveCache(const QString &oldpath, const QString &newpath) {
 #endif
 }
 
-QString ThumbsViewer::locateThumbnail(const QString &originalPath) const
+QString ThumbsViewer::locateThumbnail(const QString &originalPath, int minSize) const
 {
 #if defined(Q_OS_MAC) || defined(Q_OS_WIN)
     return "";
@@ -1439,13 +1444,16 @@ QString ThumbsViewer::locateThumbnail(const QString &originalPath) const
     if (originalPath.startsWith(basePath))
         return QString(); // we're in the thumbnail cache, no point in checking stuff
 
+    if (minSize < 0)
+        minSize = thumbSize;
+
     QStringList folders = {
         QStringLiteral("xx-large/"), // max 1024px
         QStringLiteral("x-large/"), // max 512px
         QStringLiteral("large/"), // max 256px, doesn't look too bad when upscaled to max
     };
 
-    if (thumbSize <= 200) {
+    if (minSize <= 200) {
         folders.append(QStringLiteral("normal/")); // 128px max
     }
     const QString filename = thumbnailFileName(originalPath);
@@ -1613,7 +1621,12 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
             currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
         }
 
-        m_model->item(currThumb)->setData(qGray(thumb.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)) / 255.0, BrightnessRole);
+        float brightness;
+        if (thumbSize > 128 && cacheSignatures(imageFileName, false, &thumb)) // don't use super-tiny thumbnails
+            brightness = m_histograms.at(m_histogramFiles.indexOf(imageFileName)).brightness;
+        else
+            brightness = qGray(thumb.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)) / 255.0f;
+        m_model->item(currThumb)->setData(brightness, BrightnessRole);
 
         if (Settings::thumbsLayout != Classic) {
             thumb = SmartCrop::crop(thumb, thumbSizeQ);
@@ -1621,10 +1634,6 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
 
         m_model->item(currThumb)->setIcon(QPixmap::fromImage(thumb));
         m_model->item(currThumb)->setData(true, LoadedRole);
-        if (!histFiles.contains(imageFileName)) {
-            histograms.append(calcHist(thumb));
-            histFiles.append(imageFileName);
-        }
         m_model->item(currThumb)->setSizeHint(itemSizeHint());
     } else {
         m_model->item(currThumb)->setIcon(QIcon(":/images/error_image.png"));
@@ -1745,32 +1754,15 @@ void ThumbsViewer::setNeedToScroll(bool needToScroll) {
 QImage ThumbsViewer::renderHistogram(const QString &filename, bool logarithmic) {
     QImage image(256,160,QImage::Format_ARGB32);
     image.fill(Qt::transparent);
-    Histogram histogram;
-    int idx = histFiles.indexOf(filename);
-    if (idx > -1) {
-        histogram = histograms.at(idx);
-    } else {
-        QImage thumb;
-        // try to use thumbnail (they're used when storing the histogram in ::loadThumb as well)
-        QString thumbname = locateThumbnail(filename);
-        if (!thumbname.isEmpty()) {
-            QImageReader reader(thumbname);
-            reader.read(&thumb);
-            if (QImageReader(filename).size() != QSize(thumb.text("Thumb::Image::Width").toInt(), 
-                                                       thumb.text("Thumb::Image::Height").toInt())) {
-                reader.setFileName(filename);
-                reader.setScaledSize(QSize(256, 256));
-                reader.setAutoTransform(false);
-                reader.read(&thumb);
-                if (thumb.isNull()) {
-                    qWarning() << "Invalid file" << filename << reader.errorString();
-                    return image;
-                }
-            }
-        }
-        qDebug() << "emergency";
-        histogram = calcHist(thumb);
+    int histIdx = m_histogramFiles.indexOf(filename);
+    if (histIdx < 0 && cacheSignatures(filename))
+        histIdx = m_histogramFiles.size()-1;
+    if (histIdx < 0) {
+        qWarning() << "Cannot obtain histogram for" << filename;
+        return image;
     }
+
+    Histogram histogram = m_histograms.at(histIdx);
     QRgb red = 0xffa06464/* d01717 */, green = 0xff8ca064/* 8cc716 */, blue = 0xff648ca0/* 1793d0 */;
     float factor = 0.0;
     float average = 0.0;

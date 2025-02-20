@@ -34,6 +34,7 @@ struct Histogram
     float red[256]{};
     float green[256]{};
     float blue[256]{};
+    float brightness;
 
     inline float compareChannel(const float hist1[256], const float hist2[256]) const
     {
@@ -134,7 +135,7 @@ public:
     int firstVisibleThumb();
     int lastVisibleThumb();
     QImage renderHistogram(const QString &imagePath, bool logarithmic = false);
-    QString locateThumbnail(const QString &path) const;
+    QString locateThumbnail(const QString &path, int minSize = -1) const;
     bool isBusy() { return m_busy; }
     static int removeFromCache(const QString &path);
     static int moveCache(const QString &oldpath, const QString &newpath);
@@ -175,9 +176,13 @@ private:
     static QString thumbnailFileName(const QString &path);
     void storeThumbnail(const QString &originalPath, QImage thumbnail, const QSize &originalSize) const;
 
-    QList<Histogram> histograms;
-    QList<QString> histFiles;
+    bool cacheSignatures(const QString &imagePath, bool overwrite = false, const QImage *image = nullptr);
+    const QBitArray &signature(const QString &imagePath);
+    QStringList m_histogramFiles;
+    QList<Histogram> m_histograms;
     bool m_histSorted;
+    QHash<QString, QBitArray> m_signatures;
+
     QPixmap emptyImg;
 
     bool isAbortThumbsLoading = false;
