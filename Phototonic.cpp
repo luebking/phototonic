@@ -1000,9 +1000,11 @@ void Phototonic::createToolBars() {
         "delete both.</p><h3>Pay attention to the file names!</h3>"
     );
     precision->setToolTip(rtfmalso);
+    precision->setToolTipDuration(120000);
     qwa->setDefaultWidget(precision);
     btnmenu->addAction(qwa);
     btn->setMenu(btnmenu);
+    btn->setPopupMode(QToolButton::MenuButtonPopup);
 
     myMainToolBar->addAction(slideShowAction);
 
@@ -1029,7 +1031,7 @@ void Phototonic::createToolBars() {
     connect(filterLineEdit, &QLineEdit::textEdited, [=](){
         if (filterLineEdit->text().contains("/"))
             QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
-                                rtfm, filterLineEdit);
+                                rtfm, filterLineEdit, {}, 120000);
         QString error;
         if (!thumbsViewer->setFilter(filterLineEdit->text(), &error))
             QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
