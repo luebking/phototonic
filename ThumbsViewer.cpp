@@ -1172,6 +1172,12 @@ bool ThumbsViewer::cacheSignatures(const QString &imagePath, bool overwrite, con
     }
 
     QBitArray signature(64);
+    /// @HACK - direct grayscale conversion crashes for some images w/ custom ICC profiles, so we try
+    // to mitigate that here
+    if (thumb.colorSpace().iccProfile().size() > 8192) {
+        qDebug() << "WARNING: " << imagePath << "has a large ICC profile (" << thumb.colorSpace().iccProfile().size() << ") - converting to RGB888 interim";
+        thumb = thumb.convertToFormat(QImage::Format_RGB888);
+    }
     thumb = thumb.convertToFormat(QImage::Format_Grayscale8).scaled(9, 9, Qt::KeepAspectRatioByExpanding /*, Qt::SmoothTransformation*/);
     const uchar *bits = thumb.constBits();
     for (int y=0; y<8; ++y) {
