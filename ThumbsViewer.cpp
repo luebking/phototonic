@@ -1623,11 +1623,6 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
 //            else
 //                qDebug() << "not storing thumb for pathetically small image" << origThumbSize;
         }
-        if (Settings::exifThumbRotationEnabled) {
-            thumb = thumb.transformed(Metadata::transformation(imageFileName), Qt::SmoothTransformation);
-            currentThumbSize = thumb.size();
-            currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
-        }
 
         float brightness;
         if (thumbSize > 128 && cacheSignatures(imageFileName, false, &thumb)) // don't use super-tiny thumbnails
@@ -1635,6 +1630,12 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
         else
             brightness = qGray(thumb.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)) / 255.0f;
         m_model->item(currThumb)->setData(brightness, BrightnessRole);
+
+        if (Settings::exifThumbRotationEnabled) {
+            thumb = thumb.transformed(Metadata::transformation(imageFileName), Qt::SmoothTransformation);
+            currentThumbSize = thumb.size();
+            currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
+        }
 
         if (Settings::thumbsLayout != Classic) {
             thumb = SmartCrop::crop(thumb, thumbSizeQ);
