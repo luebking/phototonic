@@ -812,6 +812,8 @@ void ThumbsViewer::loadDuplicates()
     }
     m_busy = true;
     loadPrepare();
+    // we don't want to reload the directory (even iteratively) when looking for dupes
+    m_fsWatcher->removePaths(m_fsWatcher->directories());
 
     emit status(tr("Searching duplicate images..."));
 
