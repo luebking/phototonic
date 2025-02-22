@@ -147,12 +147,12 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Copy</source>
-        <translation type="unfinished">Copia</translation>
+        <translation>Copia</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sposta</translation>
     </message>
     <message>
         <source>OK</source>
@@ -1394,7 +1394,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3220"/>
         <source>Failed to move directory to the trash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile spostare la cartella nel cestino.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3221"/>

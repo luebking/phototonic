@@ -154,12 +154,12 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Copy</source>
-        <translation type="unfinished">Копіювати</translation>
+        <translation>Копіювати</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Перемістити</translation>
     </message>
     <message>
         <source>OK</source>
@@ -278,7 +278,7 @@
         <location filename="../FileListWidget.cpp" line="39"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Список файлів</translation>
     </message>
 </context>
 <context>
@@ -315,17 +315,17 @@
     <message>
         <location filename="../Tags.cpp" line="93"/>
         <source>Add to library</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати до бібліотеки</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="96"/>
         <source>Remove from library</source>
-        <translation type="unfinished"></translation>
+        <translation>Вилучити з бібліотеки</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="146"/>
         <source>Show untagged</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати не позначені тегами</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="146"/>
@@ -389,10 +389,10 @@
     <message numerus="yes">
         <location filename="../Tags.cpp" line="556"/>
         <source>Delete %n selected tags(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Видалити %n вибраний тег?</numerusform>
+            <numerusform>Видалити %n вибрані теги?</numerusform>
+            <numerusform>Видалити %n вибраних тегів?</numerusform>
         </translation>
     </message>
     <message>
@@ -466,13 +466,13 @@
         <location filename="../ImageViewer.cpp" line="303"/>
         <location filename="../ImageViewer.cpp" line="1073"/>
         <source>New image size: %1x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Розмір нового зображення: %1x%2</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="673"/>
         <source>skipping animation in batch mode:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>пропуск анімації в пакетному режимі:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="715"/>
@@ -492,7 +492,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="1135"/>
         <source>Rotation %1°</source>
-        <translation type="unfinished">Обертання %1°</translation>
+        <translation>Обертання %1°</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1226"/>
@@ -515,7 +515,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="1283"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Більше не показувати це повідомлення</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1285"/>
@@ -526,7 +526,7 @@
         <location filename="../ImageViewer.cpp" line="1289"/>
         <source>Failed to safe Exif metadata:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося захистити метадані Exif:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1295"/>
@@ -565,47 +565,47 @@
     <message>
         <location filename="../InfoViewer.cpp" line="173"/>
         <source>Image</source>
-        <translation type="unfinished">Зображення</translation>
+        <translation>Зображення</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="174"/>
         <source>File name</source>
-        <translation type="unfinished">Ім&apos;я файлу</translation>
+        <translation>Назва файлу</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="175"/>
         <source>Location</source>
-        <translation type="unfinished">Розташування</translation>
+        <translation>Розташування</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="176"/>
         <source>Size</source>
-        <translation type="unfinished">Розмір</translation>
+        <translation>Розмір</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="177"/>
         <source>Modified</source>
-        <translation type="unfinished">Змінене</translation>
+        <translation>Змінено</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="181"/>
         <source>Format</source>
-        <translation type="unfinished">Формат</translation>
+        <translation>Формат</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="184"/>
         <source>Resolution</source>
-        <translation type="unfinished">Роздатність</translation>
+        <translation>Роздільність</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="185"/>
         <source>Megapixel</source>
-        <translation type="unfinished">Мегапікселів</translation>
+        <translation>Мегапікселів</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="191"/>
         <source>Error</source>
-        <translation type="unfinished">Помилка</translation>
+        <translation>Помилка</translation>
     </message>
 </context>
 <context>
@@ -621,17 +621,17 @@
     <message>
         <location filename="../MessageBox.cpp" line="76"/>
         <source>Image Viewer and Organizer</source>
-        <translation type="unfinished"></translation>
+        <translation>Переглядач та упорядник зображень</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="77"/>
         <source>Home page and bug reports</source>
-        <translation type="unfinished"></translation>
+        <translation>Головна сторінка та повідомлення про помилки</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="83"/>
         <source>Special thanks to our contributers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Особлива подяка нашим помічникам.</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="86"/>
@@ -669,12 +669,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="370"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Змінити</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="373"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Обітнути</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="374"/>
@@ -684,7 +684,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="377"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="389"/>
