@@ -973,10 +973,10 @@ void Phototonic::createToolBars() {
     precision->setPrefix(tr("Accuracy: "));
     precision->setSuffix("%");
     precision->setValue(Settings::dupeAccuracy);
-    btn->setToolTip(precision->text());
+    findDupesAction->setToolTip(findDupesAction->text() + "\n" + precision->text());
     connect(precision, &QSpinBox::valueChanged, [=](int v) {
         Settings::dupeAccuracy = v;
-        btn->setToolTip(precision->text());
+        findDupesAction->setToolTip(findDupesAction->text() + "\n" + precision->text());
     });
     QAction *act = new QAction(btn->text());
     act->setShortcut(Qt::Key_Enter);
