@@ -1013,10 +1013,9 @@ void ThumbsViewer::findDupes(bool resetCounters)
     const float accuracy = (100-qMax(0, qMin(100, Settings::dupeAccuracy)))/100.0f;
     static unsigned int duplicateFiles, scannedFiles, totalFiles;
     static QHash<QBitArray, QStringList> imageHashes;
-    static QHash<QString, int> histIndexes;
+
     if (resetCounters) {
         imageHashes.clear();
-        histIndexes.clear();
         duplicateFiles = scannedFiles = totalFiles = 0;
     }
     totalFiles += thumbFileInfoList.size();
@@ -1027,6 +1026,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
     QElapsedTimer timer;
     timer.start();
 
+    QHash<QString, int> histIndexes;
     for (int currThumb = 0; currThumb < thumbFileInfoList.size(); ++currThumb) {
         if (timer.elapsed() > 30) {
             emit progress(scannedFiles, totalFiles);
@@ -1082,6 +1082,8 @@ void ThumbsViewer::findDupes(bool resetCounters)
                 qDebug() << "meek, we lost a histogram" << thumbFileInfoList.at(i).absoluteFilePath();
                 continue;
             }
+            if (qAbs(m_histograms.at(histIdx).brightness - m_histograms.at(otherIdx).brightness) > 0.05)
+                continue; // images with different brightness are not the same
             const float score = m_histograms.at(histIdx).compare(m_histograms.at(otherIdx));
             if (score <= accuracy) {
                 for (auto hash = imageHashes.cbegin(), end = imageHashes.cend(); hash != end; ++hash) {
