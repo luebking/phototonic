@@ -1657,6 +1657,7 @@ void Phototonic::origZoom(QPoint focus) {
         if (focus.x() < 0)
             focus = imageViewer->rect().center();
         zoomTo(newZoomF, focus);
+        QTimer::singleShot(125, this, [=]() {imageViewer->tempDisableResize = true;});
 #else
         // Settings::imageZoomFactor gets fixed by imageViewer->resizeImage()
         imageViewer->tempDisableResize = true;
