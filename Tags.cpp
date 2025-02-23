@@ -25,6 +25,7 @@
 #include <QMenu>
 #include <QTabBar>
 #include <QTimer>
+#include <QToolButton>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <QTreeWidgetItemIterator>
@@ -54,6 +55,13 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
     tabs->setTabIcon(1, QIcon(":/images/tag_filter_off.png"));
     tabs->setExpanding(false);
     connect(tabs, &QTabBar::currentChanged, this, [=](int idx) { idx ? showTagsFilter() : showSelectedImagesTags(); });
+
+    QToolButton *btn = new QToolButton;
+    btn->setToolTip(tr("Clear Filters"));
+    btn->setIcon(QIcon::fromTheme("edit-delete", QIcon(":/images/delete.png")));
+    connect (btn, &QToolButton::clicked, this, &ImageTags::clearTagFilters);
+    tabs->setTabButton(1, QTabBar::RightSide, btn);
+    btn->setEnabled(false);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setContentsMargins(0, 3, 0, 0);
@@ -138,12 +146,13 @@ void ImageTags::sortTags() {
 
 void ImageTags::showMenu(QPoint point) {
     QTreeWidgetItem *item = tagsTree->itemAt(point);
-    addToSelectionAction->setEnabled(bool(item));
-    removeFromSelectionAction->setEnabled(bool(item));
+    addToSelectionAction->setEnabled(item && item->checkState(0) == Qt::Unchecked);
+    removeFromSelectionAction->setEnabled(item && item->checkState(0) == Qt::Checked);
     removeTagAction->setEnabled(item && !item->data(0, NewTag).toBool());
     learnTagAction->setEnabled(item && item->data(0, NewTag).toBool());
-    negateAction->setText((m_mandatoryFilterTags.isEmpty() &&
-                           m_sufficientFilterTags.isEmpty()) ? tr("Show untagged") : tr("Invert filter"));
+    bool noSelection = m_mandatoryFilterTags.isEmpty() && m_sufficientFilterTags.isEmpty();
+    negateAction->setText(noSelection ? tr("Show untagged") : tr("Invert filter"));
+    actionClearTagsFilter->setEnabled(!noSelection);
     tagsMenu->popup(tagsTree->viewport()->mapToGlobal(point));
 }
 
@@ -458,8 +467,11 @@ void ImageTags::applyTagFiltering() {
     m_mandatoryFilterTags = getCheckedTags(Qt::Checked);
     m_sufficientFilterTags = getCheckedTags(Qt::PartiallyChecked);
 
-    if (m_mandatoryFilterTags.isEmpty() && m_sufficientFilterTags.isEmpty())
+    tabs->tabButton(1, QTabBar::RightSide)->setEnabled(true);
+    if (m_mandatoryFilterTags.isEmpty() && m_sufficientFilterTags.isEmpty()) {
+        tabs->tabButton(1, QTabBar::RightSide)->setEnabled(false);
         tabs->setTabIcon(1, QIcon(":/images/tag_filter_off.png"));
+    }
     else if (negateAction->isChecked())
         tabs->setTabIcon(1, QIcon(":/images/tag_filter_negate.png"));
     else
@@ -519,12 +531,24 @@ void ImageTags::addTagsToSelection() {
 }
 
 void ImageTags::clearTagFilters() {
+    const bool juggle = currentDisplayMode != DirectoryTagsDisplay;
+
+    if (juggle) {
+        setUpdatesEnabled(false);
+        showTagsFilter();
+    }
+
     QTreeWidgetItemIterator it(tagsTree);
     while (*it) {
         (*it)->setCheckState(0, Qt::Unchecked);
         ++it;
     }
     applyTagFiltering();
+
+    if (juggle) {
+        showSelectedImagesTags();
+        setUpdatesEnabled(true);
+    }
 }
 
 void ImageTags::addNewTag() {
