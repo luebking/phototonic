@@ -1032,14 +1032,20 @@ void Phototonic::createToolBars() {
         "<i>All suffixes are case-insensitive but m|inute and M|onth</i><br>"
         "Subsequent \"/\" start a new sufficient condition group, the substring match is optional."
     );
-    connect(filterLineEdit, &QLineEdit::textEdited, [=](){
-        if (filterLineEdit->text().contains("/"))
-            QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
-                                rtfm, filterLineEdit, {}, 120000);
+    QTimer *filterBouncer = new QTimer(this);
+    filterBouncer->setSingleShot(true);
+    filterBouncer->setInterval(250);
+    connect (filterBouncer, &QTimer::timeout, this, [=]() {
         QString error;
         if (!thumbsViewer->setFilter(filterLineEdit->text(), &error))
             QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
                                 error, filterLineEdit);
+    });
+    connect(filterLineEdit, &QLineEdit::textEdited, [=](){
+        if (filterLineEdit->text().contains("/"))
+            QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
+                                rtfm, filterLineEdit, {}, 120000);
+        filterBouncer->start();
     });
     filterLineEdit->setMouseTracking(true);
     filterLineEdit->installEventFilter(this);
