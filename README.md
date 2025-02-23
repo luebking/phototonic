@@ -25,6 +25,18 @@ webcam shots and align them well enough to make a time-lapse video.
 <img src="https://translate.lxqt-project.org/widgets/luebking/-/phototonic/multi-blue.svg" align="right" alt="Translation status" />
 </a>
 
+##### 23. February 2025
+3rd and omega alpha release
+
++ lots of code cleanup and bugfixes
++ the biggest changes are that
+  + the filter now operates on the view instead of reloading the directory
+  + the duplicate search incorporates histogram similarity to find potential duplicates
+  + the filesystem is monitored and updated on external changes (new images saved by gimp show up automatically)
++ animated zoom and rotation and multithreaded color correction and also transactions (move/delete) are aplied to the thumbnail cache
++ I hopefully didn't introduce too many bugs…
+
+
 ##### 7. February 2025
 Second alpha release
 + Proper thread usage - snappier behavior, less crashes
