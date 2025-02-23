@@ -146,12 +146,12 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Copy</source>
-        <translation type="unfinished">Kopiera</translation>
+        <translation>Kopiera</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta</translation>
     </message>
     <message>
         <source>OK</source>
@@ -1674,7 +1674,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3220"/>
         <source>Failed to move directory to the trash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Misslyckades att flytta katalog till papperskorgen.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3226"/>

@@ -1323,7 +1323,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3220"/>
         <source>Failed to move directory to the trash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się przenieść katalogu do kosza.</translation>
     </message>
     <message>
         <source>Disable Mirror</source>

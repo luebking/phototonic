@@ -147,7 +147,7 @@
     <message>
         <location filename="../CopyMoveDialog.cpp" line="114"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Movendo &quot;%1&quot; to &quot;%2&quot;.</translation>
+        <translation>A mover &quot;%1&quot; para&quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -155,7 +155,7 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="41"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher diretório</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="65"/>
@@ -175,17 +175,17 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="103"/>
         <source>Delete Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar marcador</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -289,17 +289,17 @@
         <location filename="../ExternalAppsDialog.cpp" line="56"/>
         <source>Pick Executable...</source>
         <extracomment>open an existing executable</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Escolher executável...</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="59"/>
         <source>Add manually</source>
-        <translation type="unfinished">Adicionar manual</translation>
+        <translation>Adicionar manualmente</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="62"/>
         <source>Delete</source>
-        <translation type="unfinished">Excluir</translation>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="72"/>
@@ -345,7 +345,7 @@
     <message>
         <location filename="../Tags.cpp" line="51"/>
         <source>Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleção</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="82"/>
@@ -692,7 +692,7 @@
     <message>
         <location filename="../InfoViewer.cpp" line="185"/>
         <source>Megapixel</source>
-        <translation type="unfinished">Megapixel</translation>
+        <translation>Megapixel</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="191"/>
