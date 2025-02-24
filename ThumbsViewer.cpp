@@ -836,7 +836,9 @@ void ThumbsViewer::loadDuplicates()
     }
 
 finish:
-    thumbsDir.setPath(Settings::currentDirectory);
+    thumbsDir.setPath(QString());
+    findDupes(true); // clean up
+    thumbsDir.setPath(Settings::currentDirectory); // reset
     m_model->sort(0);
     m_busy = false;
     return;
@@ -1013,20 +1015,26 @@ void ThumbsViewer::findDupes(bool resetCounters)
     const float accuracy = (100-qMax(0, qMin(100, Settings::dupeAccuracy)))/100.0f;
     static unsigned int duplicateFiles, scannedFiles, totalFiles;
     static QHash<QBitArray, QStringList> imageHashes;
+    static QHash<QString, int> histIndexes;
 
     if (resetCounters) {
         imageHashes.clear();
+        histIndexes.clear();
         duplicateFiles = scannedFiles = totalFiles = 0;
     }
+    if (!thumbFileInfoList.size()) // used to clean up the static hashes after the recursion
+        return;
+
     totalFiles += thumbFileInfoList.size();
 
 
     QStringList filterTokens = m_filter.split(" ", Qt::SkipEmptyParts);
 
+//    QElapsedTimer profiler;
+//    int totalCompareTime = 0;
     QElapsedTimer timer;
     timer.start();
 
-    QHash<QString, int> histIndexes;
     for (int currThumb = 0; currThumb < thumbFileInfoList.size(); ++currThumb) {
         if (timer.elapsed() > 30) {
             emit progress(scannedFiles, totalFiles);
@@ -1074,21 +1082,22 @@ void ThumbsViewer::findDupes(bool resetCounters)
                 dupes << closest;
         }
 #if 1
+//        profiler.start();
         int histIdx = m_histogramFiles.indexOf(imageFileName);
         histIndexes[imageFileName] = histIdx;
-        for (int i = 0; i < currThumb; ++i) {
-            const int otherIdx = histIndexes.value(thumbFileInfoList.at(i).absoluteFilePath(), -1);
-            if (otherIdx < 0) {
-                qDebug() << "meek, we lost a histogram" << thumbFileInfoList.at(i).absoluteFilePath();
-                continue;
-            }
-            if (qAbs(m_histograms.at(histIdx).brightness - m_histograms.at(otherIdx).brightness) > 0.05)
-                continue; // images with different brightness are not the same
-            const float score = m_histograms.at(histIdx).compare(m_histograms.at(otherIdx));
-            if (score <= accuracy) {
-                for (auto hash = imageHashes.cbegin(), end = imageHashes.cend(); hash != end; ++hash) {
-                    if (!hash.value().contains(m_histogramFiles.at(otherIdx)))
-                       continue;
+        for (auto hash = imageHashes.cbegin(), end = imageHashes.cend(); hash != end; ++hash) {
+            for (const QString &otherFile : hash.value()) {
+                if (imageFileName == otherFile)
+                    continue; // inserted above, don't match ourselves
+                const int otherIdx = histIndexes.value(otherFile, -1);
+                if (otherIdx < 0) {
+                    qDebug() << "meek, we lost a histogram" << otherFile;
+                    continue;
+                }
+                if (qAbs(m_histograms.at(histIdx).brightness - m_histograms.at(otherIdx).brightness) > 0.05)
+                    continue; // images with different brightness are not the same
+                const float score = m_histograms.at(histIdx).compare(m_histograms.at(otherIdx));
+                if (score <= accuracy) {
                     const QStringList *dupe = &(hash.value());
                     if (!dupes.contains(dupe))
                         dupes.append(const_cast<QStringList*>(dupe));
@@ -1096,10 +1105,10 @@ void ThumbsViewer::findDupes(bool resetCounters)
                         closestScore = score;
                         closest = const_cast<QStringList*>(dupe);
                     }
-                    break;
                 }
             }
         }
+//        totalCompareTime += profiler.elapsed();
 #endif
 //        if (closest)
 //            qDebug() << closestScore;
@@ -1132,6 +1141,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
             break;
         }
     }
+//    qDebug() << "totalCompareTime:" << totalCompareTime;
 
     emit progress(scannedFiles, totalFiles);
     emit status(tr("Found %n duplicate(s) among %1 files", "", duplicateFiles).arg(totalFiles));
