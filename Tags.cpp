@@ -275,6 +275,15 @@ void ImageTags::showSelectedImagesTags() {
 
     setActiveViewMode(SelectionTagsDisplay);
 
+    if (!m_deathRow.isEmpty()) {
+        for (int i = tagsTree->topLevelItemCount() - 1; i > -1; --i) {
+            QTreeWidgetItem *item = tagsTree->topLevelItem(i);
+            if (m_deathRow.contains(item->text(0)))
+                delete tagsTree->takeTopLevelItem(tagsTree->indexOfTopLevelItem(item));
+        }
+        m_deathRow.clear();
+    }
+
     int selectedThumbsNum = selectedThumbs.size();
     QMap<QString, int> tagsCount;
     for (int i = 0; i < selectedThumbsNum; ++i) {
@@ -483,6 +492,7 @@ void ImageTags::applyTagFiltering() {
 void ImageTags::applyUserAction(QList<QTreeWidgetItem *> tagsList) {
 
     QStringList tagsAdded, tagsRemoved;
+    m_deathRow.clear();
     for (int i = tagsList.size() - 1; i > -1; --i) {
         QTreeWidgetItem *item = tagsList.at(i);
 
@@ -506,7 +516,8 @@ void ImageTags::applyUserAction(QList<QTreeWidgetItem *> tagsList) {
         if (scope < 1 && item->data(0, NewTag).toBool() && // out of scope former transient tag
             !m_mandatoryFilterTags.contains(item->text(0)) && // not used by either …
             !m_sufficientFilterTags.contains(item->text(0))) { // … filter
-            delete tagsTree->takeTopLevelItem(tagsTree->indexOfTopLevelItem(item));
+            m_deathRow << item->text(0);
+            item->setData(0, InScope, 0);
         } else {
             item->setData(0, InScope, qMax(0, scope));
         }

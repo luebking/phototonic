@@ -75,6 +75,7 @@ private:
     QStringList m_selectedFiles;
     QStringList m_mandatoryFilterTags;
     QStringList m_sufficientFilterTags;
+    QStringList m_deathRow;
     QAction *actionAddTag;
     QAction *addToSelectionAction;
     QAction *removeFromSelectionAction;
