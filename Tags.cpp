@@ -46,8 +46,6 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
     tagsTree->setDragEnabled(false);
     tagsTree->setSortingEnabled(true);
     tagsTree->header()->close();
-    tagsTree->setSelectionMode(QAbstractItemView::ExtendedSelection);
-
     tabs = new QTabBar(this);
     tabs->addTab(tr("Selection"));
     tabs->addTab(tr("Filter"));
@@ -437,6 +435,9 @@ void ImageTags::setActiveViewMode(TagsDisplayMode mode) {
     removeFromSelectionAction->setVisible(currentDisplayMode == SelectionTagsDisplay);
     actionClearTagsFilter->setVisible(currentDisplayMode == DirectoryTagsDisplay);
     negateAction->setVisible(currentDisplayMode == DirectoryTagsDisplay);
+    tagsTree->setSelectionMode(currentDisplayMode == DirectoryTagsDisplay ?
+                                                            QAbstractItemView::NoSelection :
+                                                            QAbstractItemView::ExtendedSelection);
 }
 
 QStringList ImageTags::getCheckedTags(Qt::CheckState tagState) {
