@@ -29,8 +29,6 @@ namespace Settings {
     const char optionThumbsTextColor[] = "optionThumbsTextColor";
     const char optionThumbsPagesReadCount[] = "optionThumbsPagesReadCount";
     const char optionThumbsLayout[] = "optionThumbsLayout";
-    const char optionViewerZoomOutFlags[] = "optionViewerZoomOutFlags";
-    const char optionViewerZoomInFlags[] = "optionViewerZoomInFlags";
     const char optionShowImageName[] = "optionShowImageName";
     const char optionEnableAnimations[] = "enableAnimations";
     const char optionWrapImageList[] = "wrapImageList";
@@ -71,8 +69,6 @@ namespace Settings {
     void setValue(const char *c, const QVariant &value) { appSettings->setValue(QByteArray(c), value); }
     void beginGroup(const char *c) { appSettings->beginGroup(QByteArray(c)); }
     unsigned int layoutMode;
-    unsigned int zoomInFlags;
-    unsigned int zoomOutFlags;
     QColor viewerBackgroundColor;
     QColor thumbsBackgroundColor;
     QColor thumbsTextColor;

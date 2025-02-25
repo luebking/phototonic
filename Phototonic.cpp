@@ -694,11 +694,15 @@ void Phototonic::createActions() {
 
     MAKE_ACTION(resetZoomAction, tr("Reset Zoom"), "resetZoom", "*");
     resetZoomAction->setIcon(QIcon::fromTheme("zoom-fit-best", QIcon(":/images/zoom.png")));
-    connect(resetZoomAction, SIGNAL(triggered()), this, SLOT(resetZoom()));
+    connect(resetZoomAction, &QAction::triggered, this, [=](){
+        imageViewer->zoomTo(imageViewer->zoomMode() == ImageViewer::ZoomToFit ?
+                                                                    ImageViewer::ZoomToFill :
+                                                                    ImageViewer::ZoomToFit); 
+    });
 
     MAKE_ACTION(origZoomAction, tr("Original Size"), "origZoom", "/");
     origZoomAction->setIcon(QIcon::fromTheme("zoom-original", QIcon(":/images/zoom1.png")));
-    connect(origZoomAction, SIGNAL(triggered()), this, SLOT(origZoom()));
+    connect(origZoomAction, &QAction::triggered, this, [=](){ imageViewer->zoomTo(ImageViewer::ZoomOriginal); });
 
     MAKE_ACTION_NOSC(keepZoomAction, tr("Keep Zoom"), "keepZoom");
     keepZoomAction->setCheckable(true);
@@ -1433,7 +1437,7 @@ void Phototonic::showSettings() {
     if (settingsDialog->exec()) {
         imageViewer->setBackgroundColor();
         thumbsViewer->setThumbColors();
-        Settings::imageZoomFactor = 1.0;
+//        Settings::imageZoomFactor = 1.0;
         imageViewer->showFileName(Settings::showImageName);
 
         if (Settings::layoutMode == ImageViewWidget) {
@@ -1564,37 +1568,10 @@ void Phototonic::resizeThumbs() {
         thumbsViewer->refreshThumbs();
 }
 
-#define ZOOMINATOR 1
-
-void Phototonic::zoomTo(float goal, QPoint focus) {
-#if ZOOMINATOR
-    static QVariantAnimation *zoominator = nullptr;
-    if (!zoominator) {
-        zoominator = new QVariantAnimation(this);
-        zoominator->setDuration(125);
-        connect(zoominator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
-            if (zoominator->state() != QAbstractAnimation::Running)
-                return;
-            Settings::imageZoomFactor = value.toFloat();
-            imageViewer->resizeImage(zoominator->property("zoomfocus").toPoint());
-        });
-        connect(zoominator, &QObject::destroyed, [=]() {zoominator = nullptr;});
-    }
-    zoominator->setProperty("zoomfocus", focus);
-    zoominator->setStartValue(float(Settings::imageZoomFactor));
-    zoominator->setEndValue(goal);
-    zoominator->start();
-#endif
-}
-
 
 void Phototonic::zoom(float multiplier, QPoint focus) {
     // sanitize to 10% step, necessary for unscale image and zoominator
     Settings::imageZoomFactor = qRound(Settings::imageZoomFactor*10)*0.1;
-
-    if (imageViewer->tempDisableResize) {
-        imageViewer->tempDisableResize = false; // … and unlock
-    }
 
     if (multiplier > 0.0 && Settings::imageZoomFactor == 16.0) {
         imageViewer->setFeedback(tr("Maximum Zoom"));
@@ -1626,50 +1603,10 @@ void Phototonic::zoom(float multiplier, QPoint focus) {
 
 
     float zoomTarget = qMin(16.0, qMax(0.1, Settings::imageZoomFactor + multiplier));
-#if ZOOMINATOR
-        zoomTo(zoomTarget, focus);
-#else
-        Settings::imageZoomFactor = zoomTarget;
-        imageViewer->resizeImage(focus);
-#endif
+    imageViewer->zoomTo(zoomTarget, focus);
 
     //: nb the trailing "%" for eg. 80%
     imageViewer->setFeedback(tr("Zoom %1%").arg(QString::number(zoomTarget * 100)));
-}
-
-void Phototonic::resetZoom(QPoint focus) {
-    imageViewer->tempDisableResize = false;
-    if (focus.x() < 0)
-        focus = imageViewer->rect().center();
-#if ZOOMINATOR
-        zoomTo(1.0, focus);
-#else
-        Settings::imageZoomFactor = 1.0;
-        imageViewer->resizeImage();
-#endif
-    imageViewer->setFeedback(tr("Zoom Reset"));
-}
-
-void Phototonic::origZoom(QPoint focus) {
-#if ZOOMINATOR
-        // evelish hack, we abuse resizeImage() to calculate Settings::imageZoomFactor
-        // use that as target value and then reset it again…
-        float oldZoomF = Settings::imageZoomFactor;
-        imageViewer->tempDisableResize = true;
-        imageViewer->resizeImage();
-        imageViewer->tempDisableResize = false;
-        float newZoomF = Settings::imageZoomFactor;
-        Settings::imageZoomFactor = oldZoomF;
-        if (focus.x() < 0)
-            focus = imageViewer->rect().center();
-        zoomTo(newZoomF, focus);
-        QTimer::singleShot(125, this, [=]() {imageViewer->tempDisableResize = true;});
-#else
-        // Settings::imageZoomFactor gets fixed by imageViewer->resizeImage()
-        imageViewer->tempDisableResize = true;
-        imageViewer->resizeImage(focus);
-#endif
-    imageViewer->setFeedback(tr("Original Size"));
 }
 
 void Phototonic::keepZoom() {
@@ -2361,8 +2298,6 @@ void Phototonic::readSettings() {
     Settings::showHiddenFiles = Settings::value(Settings::optionShowHiddenFiles, false).toBool();
     Settings::wrapImageList = Settings::value(Settings::optionWrapImageList, false).toBool();
     Settings::imageZoomFactor = Settings::value(Settings::optionImageZoomFactor, 1.0f).toFloat();
-    Settings::zoomOutFlags = Settings::value(Settings::optionViewerZoomOutFlags, 1).toUInt();
-    Settings::zoomInFlags = Settings::value(Settings::optionViewerZoomInFlags, 0).toUInt();
     Settings::defaultSaveQuality = Settings::value(Settings::optionDefaultSaveQuality, 90).toInt();
     Settings::slideShowDelay = Settings::value(Settings::optionSlideShowDelay, 5).toInt();
     Settings::slideShowRandom = Settings::value(Settings::optionSlideShowRandom, false).toBool();
@@ -3392,7 +3327,9 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
 
         if (dblclk) {
             if (me->modifiers() == Qt::ControlModifier) {
-                Settings::imageZoomFactor == 1.0 ? origZoom(me->position().toPoint()) : resetZoom();
+                imageViewer->zoomTo(Settings::imageZoomFactor == 1.0 ?
+                                                    ImageViewer::ZoomToFit :
+                                                    ImageViewer::ZoomOriginal, me->position().toPoint());
             } else if (Settings::layoutMode == ImageViewWidget) {
                 if (me->modifiers() == Qt::ShiftModifier) {
                     fullScreenAction->trigger();

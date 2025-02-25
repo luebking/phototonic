@@ -33,16 +33,13 @@ Q_OBJECT
 
 public:
     ImageViewer(QWidget *parent);
-    bool tempDisableResize;
     bool batchMode = false;
     QString fullImagePath;
 
-    enum ZoomMethods {
-        Disable = 0,
-        WidthAndHeight,
-        Width,
-        Height,
-        Disprop
+    enum ZoomMode {
+        ZoomOriginal = 0,
+        ZoomToFit,
+        ZoomToFill
     };
 
     void clearImage();
@@ -63,6 +60,9 @@ public:
     void setInfo(QString infoString);
     void showFileName(bool yesno) { myFilenameLabel->setVisible(yesno); }
     void slideImage(QPoint delta);
+    ZoomMode zoomMode() const { return m_zoomMode; }
+    void zoomTo(ZoomMode mode, QPoint focus = QPoint(-1,-1));
+    void zoomTo(float percent, QPoint focus = QPoint(-1,-1));
 
     QPoint contextSpot();
 
@@ -124,6 +124,7 @@ private:
     QRect m_letterbox;
     CropRubberBand *cropRubberBand;
     QRect m_isoCropRect;
+    ZoomMode m_zoomMode;
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 

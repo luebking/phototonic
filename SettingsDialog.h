@@ -31,8 +31,6 @@ class SettingsDialog : public QDialog {
 Q_OBJECT
 
 public:
-    static int const nZoomRadios = 5;
-
     SettingsDialog(QWidget *parent);
 
 private slots:
@@ -54,8 +52,6 @@ public slots:
     void saveSettings();
 
 private:
-    QRadioButton *fitLargeRadios[nZoomRadios];
-    QRadioButton *fitSmallRadios[nZoomRadios];
     QToolButton *backgroundColorButton;
     QToolButton *thumbsColorPickerButton;
     QToolButton *thumbsLabelColorButton;

@@ -38,38 +38,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     setWindowTitle(tr("Preferences"));
     setWindowIcon(QIcon::fromTheme("preferences-system", QIcon(":/images/phototonic.png")));
 
-    // Zoom large images
-    QGroupBox *fitLargeGroupBox = new QGroupBox(tr("Fit Large Images"));
-    fitLargeRadios[0] = new QRadioButton(tr("No"));
-    fitLargeRadios[1] = new QRadioButton(tr("By width or height"));
-    fitLargeRadios[2] = new QRadioButton(tr("By width"));
-    fitLargeRadios[3] = new QRadioButton(tr("By height"));
-    fitLargeRadios[4] = new QRadioButton(tr("Stretch disproportionately"));
-    QVBoxLayout *fitLargeVbox = new QVBoxLayout;
-    for (int i = 0; i < nZoomRadios; ++i) {
-        fitLargeVbox->addWidget(fitLargeRadios[i]);
-        fitLargeRadios[i]->setChecked(false);
-    }
-    fitLargeVbox->addStretch(1);
-    fitLargeGroupBox->setLayout(fitLargeVbox);
-    fitLargeRadios[Settings::zoomOutFlags]->setChecked(true);
-
-    // Zoom small images
-    QGroupBox *fitSmallGroupBox = new QGroupBox(tr("Fit Small Images"));
-    fitSmallRadios[0] = new QRadioButton(tr("No"));
-    fitSmallRadios[1] = new QRadioButton(tr("By width or height"));
-    fitSmallRadios[2] = new QRadioButton(tr("By width"));
-    fitSmallRadios[3] = new QRadioButton(tr("By height"));
-    fitSmallRadios[4] = new QRadioButton(tr("Stretch disproportionately"));
-    QVBoxLayout *fitSmallVbox = new QVBoxLayout;
-    for (int i = 0; i < nZoomRadios; ++i) {
-        fitSmallVbox->addWidget(fitSmallRadios[i]);
-        fitSmallRadios[i]->setChecked(false);
-    }
-    fitSmallVbox->addStretch(1);
-    fitSmallGroupBox->setLayout(fitSmallVbox);
-    fitSmallRadios[Settings::zoomInFlags]->setChecked(true);
-
     // imageViewer background color
     QLabel *backgroundColorLabel = new QLabel(tr("Background color:"));
     backgroundColorButton = new QToolButton();
@@ -110,13 +78,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
 
     // Viewer options
     QVBoxLayout *viewerOptsBox = new QVBoxLayout;
-    QHBoxLayout *zoomOptsBox = new QHBoxLayout;
-    zoomOptsBox->setAlignment(Qt::AlignTop);
-    zoomOptsBox->addWidget(fitLargeGroupBox);
-    zoomOptsBox->addWidget(fitSmallGroupBox);
-    zoomOptsBox->addStretch(1);
-
-    viewerOptsBox->addLayout(zoomOptsBox);
     viewerOptsBox->addLayout(backgroundColorHBox);
     viewerOptsBox->addWidget(enableExifCheckBox);
     viewerOptsBox->addWidget(showImageNameCheckBox);
@@ -345,24 +306,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
 }
 
 void SettingsDialog::saveSettings() {
-    unsigned int i;
-
-    for (i = 0; i < nZoomRadios; ++i) {
-        if (fitLargeRadios[i]->isChecked()) {
-            Settings::zoomOutFlags = i;
-            Settings::setValue(Settings::optionViewerZoomOutFlags, (int) Settings::zoomOutFlags);
-            break;
-        }
-    }
-
-    for (i = 0; i < nZoomRadios; ++i) {
-        if (fitSmallRadios[i]->isChecked()) {
-            Settings::zoomInFlags = i;
-            Settings::setValue(Settings::optionViewerZoomInFlags, (int) Settings::zoomInFlags);
-            break;
-        }
-    }
-
     Settings::viewerBackgroundColor = imageViewerBackgroundColor;
     Settings::thumbsBackgroundColor = thumbsBackgroundColor;
     Settings::thumbsTextColor = thumbsTextColor;

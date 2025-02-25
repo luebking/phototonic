@@ -33,6 +33,7 @@
 #include <QThread>
 #include <QTimer>
 #include <QWheelEvent>
+#include <QVariantAnimation>
 
 #include "CropDialog.h"
 #include "CropRubberband.h"
@@ -159,99 +160,68 @@ ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     cropRubberBand = 0;
 }
 
-static unsigned int getHeightByWidth(int imgWidth, int imgHeight, int newWidth) {
-    return qRound(imgHeight * newWidth / double(imgWidth));
+
+void ImageViewer::zoomTo(float goal, QPoint focus) {
+    if (focus.x() < 0)
+        focus = rect().center();
+    m_zoomMode = ZoomOriginal;
+    static QVariantAnimation *zoominator = nullptr;
+    if (!zoominator) {
+        zoominator = new QVariantAnimation(this);
+        zoominator->setDuration(125);
+        connect(zoominator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
+            if (zoominator->state() != QAbstractAnimation::Running)
+                return;
+            Settings::imageZoomFactor = value.toFloat();
+            resizeImage(zoominator->property("zoomfocus").toPoint());
+        });
+        connect(zoominator, &QObject::destroyed, [=]() {zoominator = nullptr;});
+    }
+    zoominator->setProperty("zoomfocus", focus);
+    zoominator->setStartValue(float(Settings::imageZoomFactor));
+    zoominator->setEndValue(goal);
+    zoominator->start();
 }
 
-static unsigned int getWidthByHeight(int imgHeight, int imgWidth, int newHeight) {
-    return qRound(imgWidth * newHeight / double(imgHeight));
-}
-
-static inline int calcZoom(int size) {
-    return qRound(size * Settings::imageZoomFactor);
-}
-
-void ImageViewer::resizeImage(QPoint focus) {
-    static bool busy = false;
-    if (busy)
-        return;
-
+void ImageViewer::zoomTo(ImageViewer::ZoomMode mode, QPoint focus) {
     QSize imageSize = animation ? animation->currentPixmap().size() : imageWidget->image().size();
     if (imageSize.isEmpty())
         return;
 
-    busy = true;
-
-    QSize originalImageSize = imageSize;
-    imageSize *= Settings::imageZoomFactor;
-    if (tempDisableResize) { // calcZoom to identity
-        Settings::imageZoomFactor = 1.0;
+    float factor = 1.0;
+    if (mode == ZoomToFit) {
+        QSize targetSize = imageSize.scaled(size(), Qt::KeepAspectRatio);
+        factor = targetSize.width()/float(imageSize.width());
+        setFeedback(tr("Fit View"));
     }
-    switch (Settings::zoomInFlags) {
-        case Disable:
-            if (imageSize.width() <= width() && imageSize.height() <= height()) {
-                imageSize.scale(calcZoom(imageSize.width()), calcZoom(imageSize.height()), Qt::KeepAspectRatio);
-            }
-            break;
-
-        case WidthAndHeight:
-            if (imageSize.width() <= width() && imageSize.height() <= height()) {
-                imageSize.scale(calcZoom(width()), calcZoom(height()), Qt::KeepAspectRatio);
-            }
-            break;
-
-        case Width:
-            if (imageSize.width() <= width()) {
-                imageSize.scale(calcZoom(width()), calcZoom(getHeightByWidth(imageSize.width(), imageSize.height(), width())), Qt::KeepAspectRatio);
-            }
-            break;
-
-        case Height:
-            if (imageSize.height() <= height()) {
-                imageSize.scale(calcZoom(getWidthByHeight(imageSize.height(), imageSize.width(), height())), calcZoom(height()), Qt::KeepAspectRatio);
-            }
-            break;
-
-        case Disprop:
-            imageSize.scale(calcZoom(qMax(imageSize.width(), width())), calcZoom(qMax(imageSize.height(), height())), Qt::IgnoreAspectRatio);
-            break;
+    else if (mode == ZoomToFill) {
+        QSize targetSize = imageSize.scaled(size(), Qt::KeepAspectRatioByExpanding);
+        factor = targetSize.width()/float(imageSize.width());
+        setFeedback(tr("Fill View"));
+    } else {
+        setFeedback(tr("Original Size"));
     }
+    zoomTo(factor, focus);
+    QTimer::singleShot(125, this, [=]() {m_zoomMode = mode;});
+}
 
-    switch (Settings::zoomOutFlags) {
-        case Disable:
-            if (imageSize.width() >= width() || imageSize.height() >= height()) {
-                imageSize.scale(calcZoom(imageSize.width()), calcZoom(imageSize.height()), Qt::KeepAspectRatio);
-            }
-            break;
+void ImageViewer::resizeImage(QPoint focus) {
+    QSize imageSize = animation ? animation->currentPixmap().size() : imageWidget->image().size();
+    if (imageSize.isEmpty())
+        return;
 
-        case WidthAndHeight:
-            if (imageSize.width() >= width() || imageSize.height() >= height()) {
-                imageSize.scale(calcZoom(width()), calcZoom(height()), Qt::KeepAspectRatio);
-            }
-            break;
-
-        case Width:
-            if (imageSize.width() >= width()) {
-                imageSize.scale(calcZoom(width()), calcZoom(getHeightByWidth(imageSize.width(), imageSize.height(), width())), Qt::KeepAspectRatio);
-            }
-            break;
-
-        case Height:
-            if (imageSize.height() >= height()) {
-                imageSize.scale(calcZoom(getWidthByHeight(imageSize.height(), imageSize.width(), height())), calcZoom(height()), Qt::KeepAspectRatio);
-            }
-            break;
-
-        case Disprop:
-            imageSize.scale(calcZoom(qMin(imageSize.width(), width())), calcZoom(qMin(imageSize.height(), height())), Qt::IgnoreAspectRatio);
-            break;
+    if (m_zoomMode == ZoomToFit) {
+        QSize oSize = imageSize;
+        imageSize.scale(size(), Qt::KeepAspectRatio);
+        Settings::imageZoomFactor = imageSize.width()/float(oSize.width());
     }
-
-    if (tempDisableResize) {
-        Settings::imageZoomFactor = (float(originalImageSize.width())/imageSize.width() +
-                                     float(originalImageSize.height())/imageSize.height())/2.0;
-        imageSize = originalImageSize;
-        imageSize.scale(imageSize.width(), imageSize.height(), Qt::KeepAspectRatio);
+    else if (m_zoomMode == ZoomToFill) {
+        QSize oSize = imageSize;
+        imageSize.scale(size(), Qt::KeepAspectRatioByExpanding);
+        Settings::imageZoomFactor = imageSize.width()/float(oSize.width());
+    } else {
+        imageSize = QSize(qRound(imageSize.width() * Settings::imageZoomFactor),
+                          qRound(imageSize.height() * Settings::imageZoomFactor));
     }
 
     if (imageWidget) {
@@ -294,7 +264,6 @@ void ImageViewer::resizeImage(QPoint focus) {
             verticalScrollBar()->setValue(verticalScrollBar()->maximum() * positionY);
         }
     }
-    busy = false;
 }
 
 void ImageViewer::scaleImage(QSize newSize) {
@@ -824,23 +793,20 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
     newImage = false;
     fullImagePath = imageFileName;
 
+    const QSize fullSize = QImageReader(fullImagePath).size();
+    const bool largeImage = !fullSize.isValid() || fullSize.width() >= width() || fullSize.height() >= height();
+
     if (!Settings::keepZoomFactor) {
-        tempDisableResize = false;
-        Settings::imageZoomFactor = 1.0;
+        m_zoomMode = largeImage ? ZoomToFit : ZoomOriginal;
+        if (!largeImage)
+            Settings::imageZoomFactor = 1.0f;
     }
     if (!preview.isNull()) {
-        QSize fullSize = QImageReader(fullImagePath).size();
         // don't preview small images w/ a huge thumbnail upscale
         // it's pointless and causes ugly flicker
-        if (!fullSize.isValid() || (fullSize.width() > 4*width()/5 && fullSize.height() > 4*height()/5)) {
+        if (largeImage) {
             setImage(preview);
-            const int zif = Settings::zoomInFlags;
-            const bool disRes = tempDisableResize;
-            tempDisableResize = false;
-            Settings::zoomInFlags = WidthAndHeight;
             resizeImage();
-            Settings::zoomInFlags = zif;
-            tempDisableResize = disRes;
         }
     }
 
@@ -1067,8 +1033,7 @@ void ImageViewer::applyCropAndRotation() {
         Settings::rotation = 0;
         imageWidget->setRotation(Settings::rotation);
         if (!Settings::keepZoomFactor) {
-            tempDisableResize = false;
-            Settings::imageZoomFactor = 1.0;
+            m_zoomMode = ZoomToFit;
         }
         m_isoCropRect = QRect(); // invalidate
     }

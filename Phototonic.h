@@ -118,10 +118,6 @@ private slots:
 
     void resizeThumbs();
 
-    void resetZoom(QPoint focus = QPoint(-1, -1));
-
-    void origZoom(QPoint focus = QPoint(-1, -1));
-
     void keepZoom();
 
     void rotate(int deg);
@@ -371,7 +367,6 @@ private:
 
     void setViewerKeyEventsEnabled(bool enabled);
     void zoom(float multiplier = 1., QPoint focus = QPoint(-1, -1));
-    void zoomTo(float value, QPoint focus = QPoint(-1, -1));
     int copyCutThumbsCount;
     void setStatus(QString state);
 };
