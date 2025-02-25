@@ -56,7 +56,6 @@ namespace Settings {
     extern const char optionReverseMouseBehavior[];
     extern const char optionDeleteConfirm[];
     extern const char optionShowHiddenFiles[];
-    extern const char optionImageZoomFactor[];
     extern const char optionDefaultSaveQuality[];
     extern const char optionSlideShowDelay[];
     extern const char optionSlideShowRandom[];
@@ -88,8 +87,6 @@ namespace Settings {
     void setValue(const char *c, const QVariant &value);
     void beginGroup(const char *c);
     extern unsigned int layoutMode;
-    extern unsigned int zoomInFlags;
-    extern unsigned int zoomOutFlags;
     extern QColor viewerBackgroundColor;
     extern QColor thumbsBackgroundColor;
     extern QColor thumbsTextColor;
@@ -97,8 +94,6 @@ namespace Settings {
     extern unsigned int thumbsPagesReadCount;
     extern bool wrapImageList;
     extern bool enableAnimations;
-    extern float imageZoomFactor;
-    extern bool keepZoomFactor;
     extern qreal rotation;
     extern bool mouseRotateEnabled;
     extern bool keepTransform;

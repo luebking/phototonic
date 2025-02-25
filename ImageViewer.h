@@ -60,6 +60,7 @@ public:
     void setInfo(QString infoString);
     void showFileName(bool yesno) { myFilenameLabel->setVisible(yesno); }
     void slideImage(QPoint delta);
+    float zoom() const { return m_zoom; }
     ZoomMode zoomMode() const { return m_zoomMode; }
     void zoomTo(ZoomMode mode, QPoint focus = QPoint(-1,-1));
     void zoomTo(float percent, QPoint focus = QPoint(-1,-1));
@@ -74,6 +75,7 @@ signals:
 
 public slots:
     void applyCropAndRotation();
+    void lockZoom(bool);
     void monitorCursorState();
     void saveImage();
     void saveImageAs();
@@ -125,6 +127,8 @@ private:
     CropRubberBand *cropRubberBand;
     QRect m_isoCropRect;
     ZoomMode m_zoomMode;
+    float m_zoom;
+    bool m_lockZoom;
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 

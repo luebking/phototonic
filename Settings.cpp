@@ -37,7 +37,6 @@ namespace Settings {
     const char optionReverseMouseBehavior[] = "reverseMouseBehavior";
     const char optionDeleteConfirm[] = "deleteConfirm";
     const char optionShowHiddenFiles[] = "showHiddenFiles";
-    const char optionImageZoomFactor[] = "imageZoomFactor";
     const char optionDefaultSaveQuality[] = "defaultSaveQuality";
     const char optionSlideShowDelay[] = "slideShowDelay";
     const char optionSlideShowRandom[] = "slideShowRandom";
@@ -76,8 +75,6 @@ namespace Settings {
     unsigned int thumbsPagesReadCount;
     bool wrapImageList;
     bool enableAnimations;
-    float imageZoomFactor;
-    bool keepZoomFactor;
     qreal rotation;
     bool mouseRotateEnabled = false;
     bool keepTransform;

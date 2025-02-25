@@ -118,8 +118,6 @@ private slots:
 
     void resizeThumbs();
 
-    void keepZoom();
-
     void rotate(int deg);
 
     void flipVertical();

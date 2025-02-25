@@ -706,7 +706,8 @@ void Phototonic::createActions() {
 
     MAKE_ACTION_NOSC(keepZoomAction, tr("Keep Zoom"), "keepZoom");
     keepZoomAction->setCheckable(true);
-    connect(keepZoomAction, SIGNAL(triggered()), this, SLOT(keepZoom()));
+    connect(keepZoomAction, &QAction::toggled, this, [=](bool keep) {imageViewer->lockZoom(keep);});
+//    keepZoomAction->isChecked()
 
     MAKE_ACTION(rotateLeftAction, tr("Rotate 90° CCW"), "rotateLeft", "Ctrl+Left");
     rotateLeftAction->setIcon(QIcon::fromTheme("object-rotate-left", QIcon(":/images/rotate_left.png")));
@@ -1437,7 +1438,6 @@ void Phototonic::showSettings() {
     if (settingsDialog->exec()) {
         imageViewer->setBackgroundColor();
         thumbsViewer->setThumbColors();
-//        Settings::imageZoomFactor = 1.0;
         imageViewer->showFileName(Settings::showImageName);
 
         if (Settings::layoutMode == ImageViewWidget) {
@@ -1571,19 +1571,19 @@ void Phototonic::resizeThumbs() {
 
 void Phototonic::zoom(float multiplier, QPoint focus) {
     // sanitize to 10% step, necessary for unscale image and zoominator
-    Settings::imageZoomFactor = qRound(Settings::imageZoomFactor*10)*0.1;
+    float zoomTarget = qRound(imageViewer->zoom()*10)*0.1;
 
-    if (multiplier > 0.0 && Settings::imageZoomFactor == 16.0) {
+    if (multiplier > 0.0 && zoomTarget == 16.0) {
         imageViewer->setFeedback(tr("Maximum Zoom"));
         return;
     }
-    if (multiplier < 0.0 && Settings::imageZoomFactor == 0.1) {
+    if (multiplier < 0.0 && zoomTarget == 0.1) {
         imageViewer->setFeedback(tr("Minimum Zoom"));
         return;
     }
 
     // by size
-    multiplier *= Settings::imageZoomFactor * 0.5;
+    multiplier *= zoomTarget * 0.5;
     if (focus.x() >= 0) {
         // by speed
         static QElapsedTimer speedometer;
@@ -1602,20 +1602,11 @@ void Phototonic::zoom(float multiplier, QPoint focus) {
     multiplier = multiplier > 0.0 ? qMax(0.1, qRound(multiplier*10)*0.1) : qMin(-0.1, qRound(multiplier*10)*0.1);
 
 
-    float zoomTarget = qMin(16.0, qMax(0.1, Settings::imageZoomFactor + multiplier));
+    zoomTarget = qMin(16.0, qMax(0.1, zoomTarget + multiplier));
     imageViewer->zoomTo(zoomTarget, focus);
 
     //: nb the trailing "%" for eg. 80%
     imageViewer->setFeedback(tr("Zoom %1%").arg(QString::number(zoomTarget * 100)));
-}
-
-void Phototonic::keepZoom() {
-    Settings::keepZoomFactor = keepZoomAction->isChecked();
-    if (Settings::keepZoomFactor) {
-        imageViewer->setFeedback(tr("Zoom Locked"));
-    } else {
-        imageViewer->setFeedback(tr("Zoom Unlocked"));
-    }
 }
 
 void Phototonic::rotate(int deg) {
@@ -2219,7 +2210,6 @@ void Phototonic::writeSettings() {
     Settings::setValue(Settings::optionDeleteConfirm, (bool) Settings::deleteConfirm);
     Settings::setValue(Settings::optionShowHiddenFiles, (bool) Settings::showHiddenFiles);
     Settings::setValue(Settings::optionWrapImageList, (bool) Settings::wrapImageList);
-    Settings::setValue(Settings::optionImageZoomFactor, Settings::imageZoomFactor);
     Settings::setValue(Settings::optionDefaultSaveQuality, Settings::defaultSaveQuality);
     Settings::setValue(Settings::optionSlideShowDelay, Settings::slideShowDelay);
     Settings::setValue(Settings::optionSlideShowRandom, (bool) Settings::slideShowRandom);
@@ -2297,7 +2287,6 @@ void Phototonic::readSettings() {
     Settings::deleteConfirm = Settings::value(Settings::optionDeleteConfirm, true).toBool();
     Settings::showHiddenFiles = Settings::value(Settings::optionShowHiddenFiles, false).toBool();
     Settings::wrapImageList = Settings::value(Settings::optionWrapImageList, false).toBool();
-    Settings::imageZoomFactor = Settings::value(Settings::optionImageZoomFactor, 1.0f).toFloat();
     Settings::defaultSaveQuality = Settings::value(Settings::optionDefaultSaveQuality, 90).toInt();
     Settings::slideShowDelay = Settings::value(Settings::optionSlideShowDelay, 5).toInt();
     Settings::slideShowRandom = Settings::value(Settings::optionSlideShowRandom, false).toBool();
@@ -3327,7 +3316,7 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
 
         if (dblclk) {
             if (me->modifiers() == Qt::ControlModifier) {
-                imageViewer->zoomTo(Settings::imageZoomFactor == 1.0 ?
+                imageViewer->zoomTo(imageViewer->zoom() == 1.0 ?
                                                     ImageViewer::ZoomToFit :
                                                     ImageViewer::ZoomOriginal, me->position().toPoint());
             } else if (Settings::layoutMode == ImageViewWidget) {

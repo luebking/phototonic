@@ -110,6 +110,9 @@ ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     m_crossfade = false;
     imageWidget->setCrossfade(m_crossfade);
     animation = nullptr;
+    m_zoomMode = ZoomToFit;
+    m_zoom = 1.0;
+    m_lockZoom = false;
 
     setContentsMargins(0, 0, 0, 0);
     setAlignment(Qt::AlignCenter);
@@ -160,6 +163,10 @@ ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     cropRubberBand = 0;
 }
 
+void ImageViewer::lockZoom(bool locked) {
+    m_lockZoom = locked;
+    setFeedback(locked ? tr("Zoom Locked") : tr("Zoom Unlocked"));
+}
 
 void ImageViewer::zoomTo(float goal, QPoint focus) {
     if (focus.x() < 0)
@@ -172,13 +179,13 @@ void ImageViewer::zoomTo(float goal, QPoint focus) {
         connect(zoominator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
             if (zoominator->state() != QAbstractAnimation::Running)
                 return;
-            Settings::imageZoomFactor = value.toFloat();
+            m_zoom = value.toFloat();
             resizeImage(zoominator->property("zoomfocus").toPoint());
         });
         connect(zoominator, &QObject::destroyed, [=]() {zoominator = nullptr;});
     }
     zoominator->setProperty("zoomfocus", focus);
-    zoominator->setStartValue(float(Settings::imageZoomFactor));
+    zoominator->setStartValue(m_zoom);
     zoominator->setEndValue(goal);
     zoominator->start();
 }
@@ -213,15 +220,15 @@ void ImageViewer::resizeImage(QPoint focus) {
     if (m_zoomMode == ZoomToFit) {
         QSize oSize = imageSize;
         imageSize.scale(size(), Qt::KeepAspectRatio);
-        Settings::imageZoomFactor = imageSize.width()/float(oSize.width());
+        m_zoom = imageSize.width()/float(oSize.width());
     }
     else if (m_zoomMode == ZoomToFill) {
         QSize oSize = imageSize;
         imageSize.scale(size(), Qt::KeepAspectRatioByExpanding);
-        Settings::imageZoomFactor = imageSize.width()/float(oSize.width());
+        m_zoom = imageSize.width()/float(oSize.width());
     } else {
-        imageSize = QSize(qRound(imageSize.width() * Settings::imageZoomFactor),
-                          qRound(imageSize.height() * Settings::imageZoomFactor));
+        imageSize = QSize(qRound(imageSize.width() * m_zoom),
+                          qRound(imageSize.height() * m_zoom));
     }
 
     if (imageWidget) {
@@ -796,10 +803,12 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
     const QSize fullSize = QImageReader(fullImagePath).size();
     const bool largeImage = !fullSize.isValid() || fullSize.width() >= width() || fullSize.height() >= height();
 
-    if (!Settings::keepZoomFactor) {
-        m_zoomMode = largeImage ? ZoomToFit : ZoomOriginal;
-        if (!largeImage)
-            Settings::imageZoomFactor = 1.0f;
+    if (!m_lockZoom) {
+        m_zoomMode = ZoomToFit;
+        if (!largeImage) {
+            m_zoomMode = ZoomOriginal;
+            m_zoom = 1.0f;
+        }
     }
     if (!preview.isNull()) {
         // don't preview small images w/ a huge thumbnail upscale
@@ -807,6 +816,7 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
         if (largeImage) {
             setImage(preview);
             resizeImage();
+            centerImage(imageWidget->imageSize());
         }
     }
 
@@ -1032,7 +1042,7 @@ void ImageViewer::applyCropAndRotation() {
         Settings::flipH = Settings::flipV = false;
         Settings::rotation = 0;
         imageWidget->setRotation(Settings::rotation);
-        if (!Settings::keepZoomFactor) {
+        if (!m_lockZoom) {
             m_zoomMode = ZoomToFit;
         }
         m_isoCropRect = QRect(); // invalidate
