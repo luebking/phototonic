@@ -83,7 +83,6 @@ private:
     QAction *negateAction;
     QAction *learnTagAction;
     QAction *removeTagAction;
-    QListWidgetItem *lastChangedTagItem;
     QTabBar *tabs;
     QMenu *tagsMenu;
     QListWidget *tagsTree;
@@ -94,7 +93,7 @@ private:
 private slots:
     void addNewTag();
     void addTagsToSelection();
-    void applyTagFiltering();
+    void applyTagFiltering(QListWidgetItem *item = nullptr);
     void clearTagFilters();
     void learnTags();
     void removeTags();

@@ -34,9 +34,12 @@
 #include "Settings.h"
 #include "Tags.h"
 
+#define BLOCK_RECURSION QSignalBlocker blocker(tagsTree);
+
 enum { NewTag = Qt::UserRole + 1, InScope };
 
 ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
+
     m_populated = false;
     m_needToSort =false;
 
@@ -66,19 +69,6 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
     setLayout(mainLayout);
     currentDisplayMode = SelectionTagsDisplay;
 
-    connect(tagsTree, &QListWidget::itemChanged, this, [=](QListWidgetItem *item) {
-        lastChangedTagItem = item;
-    });
-    connect(tagsTree, &QListWidget::itemClicked, this, [=](QListWidgetItem *item) {
-        if (item != lastChangedTagItem)
-            return;
-        if (currentDisplayMode == DirectoryTagsDisplay)
-            applyTagFiltering();
-        else
-            applyUserAction(QList<QListWidgetItem *>() << item);
-        lastChangedTagItem = 0;
-    });
-
     tagsTree->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(tagsTree, SIGNAL(customContextMenuRequested(QPoint)), SLOT(showMenu(QPoint)));
 
@@ -106,7 +96,7 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
 
     negateAction = new QAction(this);
     negateAction->setCheckable(true);
-    connect(negateAction, &QAction::triggered, this, [=]() {lastChangedTagItem = nullptr; applyTagFiltering();});
+    connect(negateAction, &QAction::triggered, this, [=]() {applyTagFiltering();});
 
     tagsMenu = new QMenu("");
     tagsMenu->addAction(addToSelectionAction);
@@ -118,6 +108,14 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
     tagsMenu->addSeparator();
     tagsMenu->addAction(actionClearTagsFilter);
     tagsMenu->addAction(negateAction);
+
+    QObject::connect(tagsTree, &QListWidget::itemChanged, this, [=](QListWidgetItem *item) {
+        BLOCK_RECURSION
+        if (currentDisplayMode == DirectoryTagsDisplay)
+            applyTagFiltering(item);
+        else
+            applyUserAction(QList<QListWidgetItem *>() << item);
+    });
 }
 
 void ImageTags::sortTags() {
@@ -131,6 +129,7 @@ void ImageTags::sortTags() {
         bouncer->setSingleShot(true);
         bouncer->setInterval(250);
         connect (bouncer, &QTimer::timeout, this, [=]() {
+            BLOCK_RECURSION
             tagsTree->sortItems(Qt::AscendingOrder);
             m_needToSort = false;
         });
@@ -157,6 +156,7 @@ void ImageTags::showEvent(QShowEvent *event) {
 }
 
 void ImageTags::setTagIcon(QListWidgetItem *tagItem, TagIcon icon) {
+    BLOCK_RECURSION
     static QIcon    grey(":/images/tag_grey.png"),
                     yellow(":/images/tag_yellow.png"),
                     multi(":/images/tag_multi.png"),
@@ -191,6 +191,7 @@ void ImageTags::setTagIcon(QListWidgetItem *tagItem, TagIcon icon) {
 }
 
 QListWidgetItem* ImageTags::addTag(QString tagName, bool tagChecked, TagIcon icon) {
+    BLOCK_RECURSION
     QListWidgetItem *tagItem = new QListWidgetItem();
     tagItem->setText(tagName);
     tagItem->setCheckState(tagChecked ? Qt::Checked : Qt::Unchecked);
@@ -206,6 +207,7 @@ QListWidgetItem* ImageTags::addTag(QString tagName, bool tagChecked, TagIcon ico
 }
 
 void ImageTags::addTagsFor(const QStringList &files) {
+    BLOCK_RECURSION
     bool dunnit = false;
     for (const QString &file : files) {
         size_t hash = qHash(file);
@@ -232,6 +234,7 @@ void ImageTags::addTagsFor(const QStringList &files) {
 }
 
 void ImageTags::removeTagsFor(const QStringList &files) {
+    BLOCK_RECURSION
     for (const QString &file : files) {
         m_trackedFiles.removeOne(qHash(file));
         QSet<QString> tags = Metadata::tags(file);
@@ -259,12 +262,7 @@ void ImageTags::setSelectedFiles(const QStringList &files) {
 }
 
 void ImageTags::showSelectedImagesTags() {
-    static bool busy = false;
-    if (busy) {
-        qDebug() << "meek: showSelectedImagesTags recursion";
-        return;
-    }
-    busy = true;
+    BLOCK_RECURSION
     QStringList selectedThumbs = m_selectedFiles;
 
     setActiveViewMode(SelectionTagsDisplay);
@@ -335,10 +333,10 @@ void ImageTags::showSelectedImagesTags() {
     removeFromSelectionAction->setEnabled(selectedThumbsNum ? true : false);
 
 //    sortTags(); // see above meek
-    busy = false;
 }
 
 void ImageTags::updateToolTip(QListWidgetItem *item) {
+    BLOCK_RECURSION
     static const QString mandatory = tr("Mandatory:");
     static const QString sufficient = tr("Sufficient:");
     static const QString mustnot = tr("The image must not have this tag");
@@ -355,12 +353,7 @@ void ImageTags::updateToolTip(QListWidgetItem *item) {
 
 
 void ImageTags::showTagsFilter() {
-    static bool busy = false;
-    if (busy) {
-        qDebug() << "showTagsFilter recursion";
-        return;
-    }
-    busy = true;
+    BLOCK_RECURSION
 
     setActiveViewMode(DirectoryTagsDisplay);
 
@@ -386,13 +379,13 @@ void ImageTags::showTagsFilter() {
     }
 
     sortTags();
-    busy = false;
 }
 
 void ImageTags::populateTagsTree() {
     if (m_populated)
         return;
 
+    BLOCK_RECURSION
     // technically unnecessary now
     tagsTree->clear();
 
@@ -415,6 +408,7 @@ void ImageTags::populateTagsTree() {
 }
 
 void ImageTags::setActiveViewMode(TagsDisplayMode mode) {
+    BLOCK_RECURSION
     currentDisplayMode = mode;
     actionAddTag->setVisible(currentDisplayMode == SelectionTagsDisplay);
     removeTagAction->setVisible(currentDisplayMode == SelectionTagsDisplay);
@@ -440,16 +434,17 @@ QStringList ImageTags::getCheckedTags(Qt::CheckState tagState) {
     return checkedTags;
 }
 
-void ImageTags::applyTagFiltering() {
+void ImageTags::applyTagFiltering(QListWidgetItem *item) {
+    BLOCK_RECURSION
     TagIcon icon = negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled;
-    if (lastChangedTagItem) {
-        if (lastChangedTagItem->checkState() == Qt::Unchecked &&
-                lastChangedTagItem->data(NewTag).toBool() &&
-                lastChangedTagItem->data(InScope).toInt() < 1) {
-            delete tagsTree->takeItem(tagsTree->row(lastChangedTagItem));
+    if (item) {
+        if (item->checkState() == Qt::Unchecked &&
+                item->data(NewTag).toBool() &&
+                item->data(InScope).toInt() < 1) {
+            delete tagsTree->takeItem(tagsTree->row(item));
         } else {
-            updateToolTip(lastChangedTagItem);
-            setTagIcon(lastChangedTagItem, lastChangedTagItem->checkState() == Qt::Unchecked ? TagIconFilterDisabled : icon);
+            updateToolTip(item);
+            setTagIcon(item, item->checkState() == Qt::Unchecked ? TagIconFilterDisabled : icon);
         }
     } else { // inversion
         for (int i = 0; i < tagsTree->count(); ++i) {
@@ -476,7 +471,7 @@ void ImageTags::applyTagFiltering() {
 }
 
 void ImageTags::applyUserAction(QList<QListWidgetItem *> tagsList) {
-
+    BLOCK_RECURSION
     QStringList tagsAdded, tagsRemoved;
     m_deathRow.clear();
     for (int i = tagsList.size() - 1; i > -1; --i) {
@@ -512,6 +507,7 @@ void ImageTags::applyUserAction(QList<QListWidgetItem *> tagsList) {
 }
 
 void ImageTags::removeTagsFromSelection() {
+    BLOCK_RECURSION
     for (int i = tagsTree->selectedItems().size() - 1; i > -1; --i) {
         tagsTree->selectedItems().at(i)->setCheckState(Qt::Unchecked);
     }
@@ -520,6 +516,7 @@ void ImageTags::removeTagsFromSelection() {
 }
 
 void ImageTags::addTagsToSelection() {
+    BLOCK_RECURSION
     for (int i = tagsTree->selectedItems().size() - 1; i > -1; --i) {
         tagsTree->selectedItems().at(i)->setCheckState(Qt::Checked);
     }
@@ -528,6 +525,7 @@ void ImageTags::addTagsToSelection() {
 }
 
 void ImageTags::clearTagFilters() {
+    BLOCK_RECURSION
     const bool juggle = currentDisplayMode != DirectoryTagsDisplay;
 
     if (juggle) {
@@ -561,6 +559,7 @@ void ImageTags::addNewTag() {
         return;
     }
 
+    BLOCK_RECURSION
     QSetIterator<QString> knownTagsIt(Settings::knownTags);
     while (knownTagsIt.hasNext()) {
         QString tag = knownTagsIt.next();
@@ -592,6 +591,7 @@ void ImageTags::removeTags() {
         return;
     }
 
+    BLOCK_RECURSION
     bool removedTagWasChecked = false;
     for (int i = tagsTree->selectedItems().size() - 1; i > -1; --i) {
 
@@ -613,6 +613,7 @@ void ImageTags::removeTags() {
 }
 
 void ImageTags::removeTransientTags() {
+    BLOCK_RECURSION
     m_trackedFiles.clear();
     for (int i = tagsTree->count() - 1; i > -1; --i) {
 
@@ -632,6 +633,7 @@ void ImageTags::learnTags() {
         return;
     }
 
+    BLOCK_RECURSION
     for (int i = 0; i < tagsTree->selectedItems().size(); ++i) {
 
         QListWidgetItem *item = tagsTree->selectedItems().at(i);
