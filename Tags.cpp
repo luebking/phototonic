@@ -26,9 +26,8 @@
 #include <QTabBar>
 #include <QTimer>
 #include <QToolButton>
-#include <QTreeWidget>
-#include <QTreeWidgetItem>
-#include <QTreeWidgetItemIterator>
+#include <QListWidget>
+#include <QListWidgetItem>
 
 #include "MessageBox.h"
 #include "MetadataCache.h"
@@ -41,11 +40,9 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
     m_populated = false;
     m_needToSort =false;
 
-    tagsTree = new QTreeWidget;
-    tagsTree->setColumnCount(2);
+    tagsTree = new QListWidget;
     tagsTree->setDragEnabled(false);
     tagsTree->setSortingEnabled(true);
-    tagsTree->header()->close();
     tabs = new QTabBar(this);
     tabs->addTab(tr("Selection"));
     tabs->addTab(tr("Filter"));
@@ -69,16 +66,16 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
     setLayout(mainLayout);
     currentDisplayMode = SelectionTagsDisplay;
 
-    connect(tagsTree, &QTreeWidget::itemChanged, this, [=](QTreeWidgetItem *item, int) {
+    connect(tagsTree, &QListWidget::itemChanged, this, [=](QListWidgetItem *item) {
         lastChangedTagItem = item;
     });
-    connect(tagsTree, &QTreeWidget::itemClicked, this, [=](QTreeWidgetItem *item, int) {
+    connect(tagsTree, &QListWidget::itemClicked, this, [=](QListWidgetItem *item) {
         if (item != lastChangedTagItem)
             return;
         if (currentDisplayMode == DirectoryTagsDisplay)
             applyTagFiltering();
         else
-            applyUserAction(QList<QTreeWidgetItem *>() << item);
+            applyUserAction(QList<QListWidgetItem *>() << item);
         lastChangedTagItem = 0;
     });
 
@@ -134,8 +131,7 @@ void ImageTags::sortTags() {
         bouncer->setSingleShot(true);
         bouncer->setInterval(250);
         connect (bouncer, &QTimer::timeout, this, [=]() {
-            tagsTree->resizeColumnToContents(0);
-            tagsTree->sortItems(0, Qt::AscendingOrder);
+            tagsTree->sortItems(Qt::AscendingOrder);
             m_needToSort = false;
         });
     }
@@ -143,11 +139,11 @@ void ImageTags::sortTags() {
 }
 
 void ImageTags::showMenu(QPoint point) {
-    QTreeWidgetItem *item = tagsTree->itemAt(point);
-    addToSelectionAction->setEnabled(item && item->checkState(0) == Qt::Unchecked);
-    removeFromSelectionAction->setEnabled(item && item->checkState(0) == Qt::Checked);
-    removeTagAction->setEnabled(item && !item->data(0, NewTag).toBool());
-    learnTagAction->setEnabled(item && item->data(0, NewTag).toBool());
+    QListWidgetItem *item = tagsTree->itemAt(point);
+    addToSelectionAction->setEnabled(item && item->checkState() == Qt::Unchecked);
+    removeFromSelectionAction->setEnabled(item && item->checkState() == Qt::Checked);
+    removeTagAction->setEnabled(item && !item->data(NewTag).toBool());
+    learnTagAction->setEnabled(item && item->data(NewTag).toBool());
     bool noSelection = m_mandatoryFilterTags.isEmpty() && m_sufficientFilterTags.isEmpty();
     negateAction->setText(noSelection ? tr("Show untagged") : tr("Invert filter"));
     actionClearTagsFilter->setEnabled(!noSelection);
@@ -160,7 +156,7 @@ void ImageTags::showEvent(QShowEvent *event) {
         sortTags();
 }
 
-void ImageTags::setTagIcon(QTreeWidgetItem *tagItem, TagIcon icon) {
+void ImageTags::setTagIcon(QListWidgetItem *tagItem, TagIcon icon) {
     static QIcon    grey(":/images/tag_grey.png"),
                     yellow(":/images/tag_yellow.png"),
                     multi(":/images/tag_multi.png"),
@@ -170,34 +166,34 @@ void ImageTags::setTagIcon(QTreeWidgetItem *tagItem, TagIcon icon) {
                     negate(":/images/tag_filter_negate.png");
     switch (icon) {
         case TagIconDisabled:
-            tagItem->setIcon(0, tagItem->data(0, NewTag).toBool() ? red : grey);
+            tagItem->setIcon(tagItem->data(NewTag).toBool() ? red : grey);
             break;
         case TagIconEnabled:
-            tagItem->setIcon(0, tagItem->data(0, NewTag).toBool() ? red : yellow);
+            tagItem->setIcon(tagItem->data(NewTag).toBool() ? red : yellow);
             break;
         case TagIconMultiple:
-            tagItem->setIcon(0, multi);
+            tagItem->setIcon(multi);
             break;
         case TagIconNew:
-            tagItem->setData(0, NewTag, true);
-            tagItem->setIcon(0, red);
+            tagItem->setData(NewTag, true);
+            tagItem->setIcon(red);
             break;
         case TagIconFilterEnabled:
-            tagItem->setIcon(0, on);
+            tagItem->setIcon(on);
             break;
         case TagIconFilterDisabled:
-            tagItem->setIcon(0, off);
+            tagItem->setIcon(off);
             break;
         case TagIconFilterNegate:
-            tagItem->setIcon(0, negate);
+            tagItem->setIcon(negate);
             break;
     }
 }
 
-QTreeWidgetItem* ImageTags::addTag(QString tagName, bool tagChecked, TagIcon icon) {
-    QTreeWidgetItem *tagItem = new QTreeWidgetItem();
-    tagItem->setText(0, tagName);
-    tagItem->setCheckState(0, tagChecked ? Qt::Checked : Qt::Unchecked);
+QListWidgetItem* ImageTags::addTag(QString tagName, bool tagChecked, TagIcon icon) {
+    QListWidgetItem *tagItem = new QListWidgetItem();
+    tagItem->setText(tagName);
+    tagItem->setCheckState(tagChecked ? Qt::Checked : Qt::Unchecked);
     if (currentDisplayMode == DirectoryTagsDisplay) {
         setTagIcon(tagItem, tagChecked ? TagIconFilterEnabled : TagIconFilterDisabled);
         tagItem->setFlags(tagItem->flags() | Qt::ItemIsUserCheckable|Qt::ItemIsUserTristate);
@@ -205,7 +201,7 @@ QTreeWidgetItem* ImageTags::addTag(QString tagName, bool tagChecked, TagIcon ico
     } else {
         setTagIcon(tagItem, icon);
     }
-    tagsTree->addTopLevelItem(tagItem);
+    tagsTree->addItem(tagItem);
     return tagItem;
 }
 
@@ -218,15 +214,15 @@ void ImageTags::addTagsFor(const QStringList &files) {
         m_trackedFiles << hash;
         QSet<QString> tags = Metadata::tags(file);
         for (auto tag = tags.cbegin(), end = tags.cend(); tag != end; ++tag) {
-            QList <QTreeWidgetItem*> present = tagsTree->findItems(*tag, Qt::MatchExactly);
+            QList <QListWidgetItem*> present = tagsTree->findItems(*tag, Qt::MatchExactly);
             if (present.isEmpty()) {
-                QTreeWidgetItem *item = addTag(*tag, false, TagIconNew);
-                item->setData(0, NewTag, true);
-                item->setData(0, InScope, 1);
+                QListWidgetItem *item = addTag(*tag, false, TagIconNew);
+                item->setData(NewTag, true);
+                item->setData(InScope, 1);
                 dunnit = true;
             } else {
-                for (QTreeWidgetItem *item : present) {
-                    item->setData(0, InScope, item->data(0, InScope).toInt() + 1);
+                for (QListWidgetItem *item : present) {
+                    item->setData(InScope, item->data(InScope).toInt() + 1);
                 }
             }
         }
@@ -240,17 +236,17 @@ void ImageTags::removeTagsFor(const QStringList &files) {
         m_trackedFiles.removeOne(qHash(file));
         QSet<QString> tags = Metadata::tags(file);
         for (auto tag = tags.cbegin(), end = tags.cend(); tag != end; ++tag) {
-            QList <QTreeWidgetItem*> present = tagsTree->findItems(*tag, Qt::MatchExactly);
+            QList <QListWidgetItem*> present = tagsTree->findItems(*tag, Qt::MatchExactly);
             if (present.isEmpty())
                 continue;
-            for (QTreeWidgetItem *item : present) {
-                if (!item->data(0, NewTag).toBool())
+            for (QListWidgetItem *item : present) {
+                if (!item->data(NewTag).toBool())
                     continue;
-                const int scope = item->data(0, InScope).toInt() - 1;
+                const int scope = item->data(InScope).toInt() - 1;
                 if (scope <= 0)
-                    delete tagsTree->takeTopLevelItem(tagsTree->indexOfTopLevelItem(item));
+                    delete tagsTree->takeItem(tagsTree->row(item));
                 else
-                    item->setData(0, InScope, scope);
+                    item->setData(InScope, scope);
             }
         }
     }
@@ -274,10 +270,10 @@ void ImageTags::showSelectedImagesTags() {
     setActiveViewMode(SelectionTagsDisplay);
 
     if (!m_deathRow.isEmpty()) {
-        for (int i = tagsTree->topLevelItemCount() - 1; i > -1; --i) {
-            QTreeWidgetItem *item = tagsTree->topLevelItem(i);
-            if (m_deathRow.contains(item->text(0)))
-                delete tagsTree->takeTopLevelItem(tagsTree->indexOfTopLevelItem(item));
+        for (int i = tagsTree->count() - 1; i > -1; --i) {
+            QListWidgetItem *item = tagsTree->item(i);
+            if (m_deathRow.contains(item->text()))
+                delete tagsTree->takeItem(tagsTree->row(item));
         }
         m_deathRow.clear();
     }
@@ -298,37 +294,33 @@ void ImageTags::showSelectedImagesTags() {
     }
 
     bool imagesTagged = false, imagesTaggedMixed = false;
-    QTreeWidgetItemIterator it(tagsTree);
-    bool needToResize = false;
-    while (*it) {
-        if ((*it)->isHidden())
-            needToResize = true;
-        (*it)->setHidden(false);
-        QString tagName = (*it)->text(0);
+    for (int i = 0; i < tagsTree->count(); ++i) {
+        QListWidgetItem *item = tagsTree->item(i);
+        item->setHidden(false);
+        QString tagName = item->text();
         int tagCountTotal = tagsCount.value(tagName, 0);
 
-        bool newTag = (*it)->data(0, NewTag).toBool();
+        bool newTag = item->data(NewTag).toBool();
         if (selectedThumbsNum == 0) {
-            (*it)->setCheckState(0, Qt::Unchecked);
-            (*it)->setFlags((*it)->flags() & ~(Qt::ItemIsUserCheckable|Qt::ItemIsUserTristate));
-            setTagIcon(*it, newTag ? TagIconNew : TagIconDisabled);
+            item->setCheckState(Qt::Unchecked);
+            item->setFlags(item->flags() & ~(Qt::ItemIsUserCheckable|Qt::ItemIsUserTristate));
+            setTagIcon(item, newTag ? TagIconNew : TagIconDisabled);
         } else if (tagCountTotal == selectedThumbsNum) {
-            (*it)->setCheckState(0, Qt::Checked);
-            (*it)->setFlags(((*it)->flags() | Qt::ItemIsUserCheckable) & ~Qt::ItemIsUserTristate);
-            setTagIcon(*it, newTag ? TagIconNew : TagIconEnabled);
+            item->setCheckState(Qt::Checked);
+            item->setFlags((item->flags() | Qt::ItemIsUserCheckable) & ~Qt::ItemIsUserTristate);
+            setTagIcon(item, newTag ? TagIconNew : TagIconEnabled);
             imagesTagged = true;
         } else if (tagCountTotal) {
-            (*it)->setCheckState(0, Qt::PartiallyChecked);
-            (*it)->setFlags(((*it)->flags() | Qt::ItemIsUserCheckable) & ~Qt::ItemIsUserTristate);
-            setTagIcon(*it, TagIconMultiple);
+            item->setCheckState(Qt::PartiallyChecked);
+            item->setFlags((item->flags() | Qt::ItemIsUserCheckable) & ~Qt::ItemIsUserTristate);
+            setTagIcon(item, TagIconMultiple);
             imagesTaggedMixed = true;
         } else {
-            (*it)->setCheckState(0, Qt::Unchecked);
-            (*it)->setFlags(((*it)->flags() | Qt::ItemIsUserCheckable) & ~Qt::ItemIsUserTristate);
-            setTagIcon(*it, newTag ? TagIconNew : TagIconDisabled);
+            item->setCheckState(Qt::Unchecked);
+            item->setFlags((item->flags() | Qt::ItemIsUserCheckable) & ~Qt::ItemIsUserTristate);
+            setTagIcon(item, newTag ? TagIconNew : TagIconDisabled);
         }
-        setToolTip(*it);
-        ++it;
+        updateToolTip(item);
     }
 
     if (imagesTagged) {
@@ -342,25 +334,23 @@ void ImageTags::showSelectedImagesTags() {
     addToSelectionAction->setEnabled(selectedThumbsNum ? true : false);
     removeFromSelectionAction->setEnabled(selectedThumbsNum ? true : false);
 
-    if (needToResize)
-        tagsTree->resizeColumnToContents(0);
 //    sortTags(); // see above meek
     busy = false;
 }
 
-void ImageTags::setToolTip(QTreeWidgetItem *item) {
+void ImageTags::updateToolTip(QListWidgetItem *item) {
     static const QString mandatory = tr("Mandatory:");
     static const QString sufficient = tr("Sufficient:");
     static const QString mustnot = tr("The image must not have this tag");
     static const QString must = tr("The image must have this tag");
     static const QString mustany = tr("The image must have any of these tags");
 
-    if (currentDisplayMode == SelectionTagsDisplay || item->checkState(0) == Qt::Unchecked)
-        item->setToolTip(0, QString());
-    else if (item->checkState(0) == Qt::PartiallyChecked)
-        item->setToolTip(0, sufficient + "\n" + (negateAction->isChecked() ? mustnot : mustany));
-    else if (item->checkState(0) == Qt::Checked)
-        item->setToolTip(0, mandatory + "\n" + (negateAction->isChecked() ? mustnot : must));
+    if (currentDisplayMode == SelectionTagsDisplay || item->checkState() == Qt::Unchecked)
+        item->setToolTip(QString());
+    else if (item->checkState() == Qt::PartiallyChecked)
+        item->setToolTip(sufficient + "\n" + (negateAction->isChecked() ? mustnot : mustany));
+    else if (item->checkState() == Qt::Checked)
+        item->setToolTip(mandatory + "\n" + (negateAction->isChecked() ? mustnot : must));
 }
 
 
@@ -374,27 +364,25 @@ void ImageTags::showTagsFilter() {
 
     setActiveViewMode(DirectoryTagsDisplay);
 
-    QTreeWidgetItemIterator it(tagsTree);
-    while (*it) {
-
-        QString tagName = (*it)->text(0);
-        (*it)->setFlags((*it)->flags() | Qt::ItemIsUserCheckable|Qt::ItemIsUserTristate);
+    for (int i = 0; i < tagsTree->count(); ++i) {
+        QListWidgetItem *item = tagsTree->item(i);
+        QString tagName = item->text();
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable|Qt::ItemIsUserTristate);
         if (m_mandatoryFilterTags.contains(tagName)) {
-            (*it)->setCheckState(0, Qt::Checked);
-            setTagIcon(*it, negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled);
-            setToolTip(*it);
+            item->setCheckState(Qt::Checked);
+            setTagIcon(item, negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled);
+            updateToolTip(item);
         } else if (m_sufficientFilterTags.contains(tagName)) {
-            (*it)->setCheckState(0, Qt::PartiallyChecked);
-            setTagIcon(*it, negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled);
-            setToolTip(*it);
-        } else if (!(*it)->data(0, InScope).toBool()) {
-            (*it)->setHidden(true);
+            item->setCheckState(Qt::PartiallyChecked);
+            setTagIcon(item, negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled);
+            updateToolTip(item);
+        } else if (!item->data(InScope).toBool()) {
+            item->setHidden(true);
         } else {
-            (*it)->setCheckState(0, Qt::Unchecked);
-            setTagIcon(*it, TagIconFilterDisabled);
-            setToolTip(*it);
+            item->setCheckState(Qt::Unchecked);
+            setTagIcon(item, TagIconFilterDisabled);
+            updateToolTip(item);
         }
-        ++it;
     }
 
     sortTags();
@@ -409,7 +397,7 @@ void ImageTags::populateTagsTree() {
     tagsTree->clear();
 
     // tagsTree->sortItems() on many unsorted items is slow AF, so we set the order ahead
-    tagsTree->sortItems(0, Qt::AscendingOrder);
+    tagsTree->sortItems(Qt::AscendingOrder);
     // and pre-sort a list to speed that up *A LOT*
     QList<QString> list(Settings::knownTags.cbegin(), Settings::knownTags.cend());
     std::sort(list.begin(), list.end());
@@ -442,13 +430,11 @@ void ImageTags::setActiveViewMode(TagsDisplayMode mode) {
 
 QStringList ImageTags::getCheckedTags(Qt::CheckState tagState) {
     QStringList checkedTags;
-    QTreeWidgetItemIterator it(tagsTree);
-
-    while (*it) {
-        if ((*it)->checkState(0) == tagState) {
-            checkedTags << (*it)->text(0);
+    for (int i = 0; i < tagsTree->count(); ++i) {
+        QListWidgetItem *item = tagsTree->item(i);
+        if (item->checkState() == tagState) {
+            checkedTags << item->text();
         }
-        ++it;
     }
 
     return checkedTags;
@@ -457,21 +443,20 @@ QStringList ImageTags::getCheckedTags(Qt::CheckState tagState) {
 void ImageTags::applyTagFiltering() {
     TagIcon icon = negateAction->isChecked() ? TagIconFilterNegate : TagIconFilterEnabled;
     if (lastChangedTagItem) {
-        if (lastChangedTagItem->checkState(0) == Qt::Unchecked &&
-                lastChangedTagItem->data(0, NewTag).toBool() &&
-                lastChangedTagItem->data(0, InScope).toInt() < 1) {
-            delete tagsTree->takeTopLevelItem(tagsTree->indexOfTopLevelItem(lastChangedTagItem));
+        if (lastChangedTagItem->checkState() == Qt::Unchecked &&
+                lastChangedTagItem->data(NewTag).toBool() &&
+                lastChangedTagItem->data(InScope).toInt() < 1) {
+            delete tagsTree->takeItem(tagsTree->row(lastChangedTagItem));
         } else {
-            setToolTip(lastChangedTagItem);
-            setTagIcon(lastChangedTagItem, lastChangedTagItem->checkState(0) == Qt::Unchecked ? TagIconFilterDisabled : icon);
+            updateToolTip(lastChangedTagItem);
+            setTagIcon(lastChangedTagItem, lastChangedTagItem->checkState() == Qt::Unchecked ? TagIconFilterDisabled : icon);
         }
     } else { // inversion
-        QTreeWidgetItemIterator it(tagsTree);
-        while (*it) {
-            setToolTip(*it);
-            if ((*it)->checkState(0) != Qt::Unchecked)
-                setTagIcon(*it, icon);
-            ++it;
+        for (int i = 0; i < tagsTree->count(); ++i) {
+            QListWidgetItem *item = tagsTree->item(i);
+            updateToolTip(item);
+            if (item->checkState() != Qt::Unchecked)
+                setTagIcon(item, icon);
         }
     }
     m_mandatoryFilterTags = getCheckedTags(Qt::Checked);
@@ -490,37 +475,37 @@ void ImageTags::applyTagFiltering() {
     emit filterChanged(m_mandatoryFilterTags, m_sufficientFilterTags, negateAction->isChecked());
 }
 
-void ImageTags::applyUserAction(QList<QTreeWidgetItem *> tagsList) {
+void ImageTags::applyUserAction(QList<QListWidgetItem *> tagsList) {
 
     QStringList tagsAdded, tagsRemoved;
     m_deathRow.clear();
     for (int i = tagsList.size() - 1; i > -1; --i) {
-        QTreeWidgetItem *item = tagsList.at(i);
+        QListWidgetItem *item = tagsList.at(i);
 
-        Qt::CheckState tagState = item->checkState(0);
+        Qt::CheckState tagState = item->checkState();
         TagIcon icon = TagIconDisabled;
-        if (item->data(0, NewTag).toBool())
+        if (item->data(NewTag).toBool())
             icon = TagIconNew;
         else if (tagState == Qt::Checked)
             icon = TagIconEnabled;
         setTagIcon(item, icon);
 
-        int scope = item->data(0, InScope).toInt();
+        int scope = item->data(InScope).toInt();
         if (tagState == Qt::Checked) {
-            tagsAdded << item->text(0);
+            tagsAdded << item->text();
             ++scope;
         } else {
-            tagsRemoved << item->text(0);
+            tagsRemoved << item->text();
             --scope;
         }
 
-        if (scope < 1 && item->data(0, NewTag).toBool() && // out of scope former transient tag
-            !m_mandatoryFilterTags.contains(item->text(0)) && // not used by either …
-            !m_sufficientFilterTags.contains(item->text(0))) { // … filter
-            m_deathRow << item->text(0);
-            item->setData(0, InScope, 0);
+        if (scope < 1 && item->data(NewTag).toBool() && // out of scope former transient tag
+            !m_mandatoryFilterTags.contains(item->text()) && // not used by either …
+            !m_sufficientFilterTags.contains(item->text())) { // … filter
+            m_deathRow << item->text();
+            item->setData(InScope, 0);
         } else {
-            item->setData(0, InScope, qMax(0, scope));
+            item->setData(InScope, qMax(0, scope));
         }
     }
     emit tagRequest(tagsAdded, tagsRemoved);
@@ -528,7 +513,7 @@ void ImageTags::applyUserAction(QList<QTreeWidgetItem *> tagsList) {
 
 void ImageTags::removeTagsFromSelection() {
     for (int i = tagsTree->selectedItems().size() - 1; i > -1; --i) {
-        tagsTree->selectedItems().at(i)->setCheckState(0, Qt::Unchecked);
+        tagsTree->selectedItems().at(i)->setCheckState(Qt::Unchecked);
     }
 
     applyUserAction(tagsTree->selectedItems());
@@ -536,7 +521,7 @@ void ImageTags::removeTagsFromSelection() {
 
 void ImageTags::addTagsToSelection() {
     for (int i = tagsTree->selectedItems().size() - 1; i > -1; --i) {
-        tagsTree->selectedItems().at(i)->setCheckState(0, Qt::Checked);
+        tagsTree->selectedItems().at(i)->setCheckState(Qt::Checked);
     }
 
     applyUserAction(tagsTree->selectedItems());
@@ -550,11 +535,9 @@ void ImageTags::clearTagFilters() {
         showTagsFilter();
     }
 
-    QTreeWidgetItemIterator it(tagsTree);
-    while (*it) {
-        (*it)->setCheckState(0, Qt::Unchecked);
-        ++it;
-    }
+    for (int i = 0; i < tagsTree->count(); ++i)
+        tagsTree->item(i)->setCheckState(Qt::Unchecked);
+
     applyTagFiltering();
 
     if (juggle) {
@@ -612,16 +595,16 @@ void ImageTags::removeTags() {
     bool removedTagWasChecked = false;
     for (int i = tagsTree->selectedItems().size() - 1; i > -1; --i) {
 
-        QTreeWidgetItem *item = tagsTree->selectedItems().at(i);
-        QString tagName = item->text(0);
+        QListWidgetItem *item = tagsTree->selectedItems().at(i);
+        QString tagName = item->text();
         Settings::knownTags.remove(tagName);
 
         if (m_mandatoryFilterTags.removeOne(tagName) | m_sufficientFilterTags.removeOne(tagName))
             removedTagWasChecked = true;
-        if (item->data(0, InScope).toBool())
+        if (item->data(InScope).toBool())
             setTagIcon(item, TagIconNew);
         else
-            delete tagsTree->takeTopLevelItem(tagsTree->indexOfTopLevelItem(item));
+            delete tagsTree->takeItem(tagsTree->row(item));
     }
 
     if (removedTagWasChecked) {
@@ -631,16 +614,16 @@ void ImageTags::removeTags() {
 
 void ImageTags::removeTransientTags() {
     m_trackedFiles.clear();
-    for (int i = tagsTree->topLevelItemCount() - 1; i > -1; --i) {
+    for (int i = tagsTree->count() - 1; i > -1; --i) {
 
-        QTreeWidgetItem *item = tagsTree->topLevelItem(i);
-        if (!item->data(0, NewTag).toBool() ||
-            m_mandatoryFilterTags.contains(item->text(0)) ||
-            m_sufficientFilterTags.contains(item->text(0))) {
-            item->setData(0, InScope, 0);
+        QListWidgetItem *item = tagsTree->item(i);
+        if (!item->data(NewTag).toBool() ||
+            m_mandatoryFilterTags.contains(item->text()) ||
+            m_sufficientFilterTags.contains(item->text())) {
+            item->setData(InScope, 0);
             continue;
         }
-        delete tagsTree->takeTopLevelItem(i);
+        delete tagsTree->takeItem(i);
     }
 }
 
@@ -651,12 +634,12 @@ void ImageTags::learnTags() {
 
     for (int i = 0; i < tagsTree->selectedItems().size(); ++i) {
 
-        QTreeWidgetItem *item = tagsTree->selectedItems().at(i);
-        QString tagName = item->text(0);
-        item->setData(0, NewTag, false);
-        if (item->checkState(0) ==  Qt::Unchecked)
+        QListWidgetItem *item = tagsTree->selectedItems().at(i);
+        QString tagName = item->text();
+        item->setData(NewTag, false);
+        if (item->checkState() ==  Qt::Unchecked)
             setTagIcon(item, TagIconDisabled);
-        else if (item->checkState(0) ==  Qt::Checked)
+        else if (item->checkState() ==  Qt::Checked)
             setTagIcon(item, TagIconEnabled);
         // tristate is the multi-icon, we ignore that
         Settings::knownTags.insert(tagName);

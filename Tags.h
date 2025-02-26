@@ -20,8 +20,8 @@
 #define TAGS_H
 
 class QTabBar;
-class QTreeWidget;
-class QTreeWidgetItem;
+class QListWidget;
+class QListWidgetItem;
 
 #include <QWidget>
 
@@ -47,7 +47,7 @@ Q_OBJECT
 public:
     ImageTags(QWidget *parent);
 
-    QTreeWidgetItem* addTag(QString tagName, bool tagChecked, TagIcon icon);
+    QListWidgetItem* addTag(QString tagName, bool tagChecked, TagIcon icon);
     void addTagsFor(const QStringList &files);
     void removeTagsFor(const QStringList &files);
     void populateTagsTree();
@@ -65,11 +65,11 @@ protected:
     void showEvent(QShowEvent *event) override;
 
 private:
-    void applyUserAction(QList<QTreeWidgetItem *> tagsList);
+    void applyUserAction(QList<QListWidgetItem *> tagsList);
     QStringList getCheckedTags(Qt::CheckState tagState);
     void setActiveViewMode(TagsDisplayMode mode);
-    void setTagIcon(QTreeWidgetItem *tagItem, TagIcon icon);
-    void setToolTip(QTreeWidgetItem *item);
+    void setTagIcon(QListWidgetItem *tagItem, TagIcon icon);
+    void updateToolTip(QListWidgetItem *item);
     void sortTags();
 
     QStringList m_selectedFiles;
@@ -83,10 +83,10 @@ private:
     QAction *negateAction;
     QAction *learnTagAction;
     QAction *removeTagAction;
-    QTreeWidgetItem *lastChangedTagItem;
+    QListWidgetItem *lastChangedTagItem;
     QTabBar *tabs;
     QMenu *tagsMenu;
-    QTreeWidget *tagsTree;
+    QListWidget *tagsTree;
     bool m_populated;
     bool m_needToSort;
     QList<size_t> m_trackedFiles;
