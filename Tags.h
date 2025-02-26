@@ -89,6 +89,7 @@ private:
     bool m_populated;
     bool m_needToSort;
     QList<size_t> m_trackedFiles;
+    QStringList m_selectedTags;
 
 private slots:
     void addNewTag();

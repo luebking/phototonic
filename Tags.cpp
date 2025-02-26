@@ -266,6 +266,7 @@ void ImageTags::showSelectedImagesTags() {
     QStringList selectedThumbs = m_selectedFiles;
 
     setActiveViewMode(SelectionTagsDisplay);
+    tagsTree->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     if (!m_deathRow.isEmpty()) {
         for (int i = tagsTree->count() - 1; i > -1; --i) {
@@ -296,6 +297,7 @@ void ImageTags::showSelectedImagesTags() {
         QListWidgetItem *item = tagsTree->item(i);
         item->setHidden(false);
         QString tagName = item->text();
+        item->setSelected(m_selectedTags.contains(tagName));
         int tagCountTotal = tagsCount.value(tagName, 0);
 
         bool newTag = item->data(NewTag).toBool();
@@ -356,10 +358,14 @@ void ImageTags::showTagsFilter() {
     BLOCK_RECURSION
 
     setActiveViewMode(DirectoryTagsDisplay);
-
+    m_selectedTags.clear();
     for (int i = 0; i < tagsTree->count(); ++i) {
         QListWidgetItem *item = tagsTree->item(i);
         QString tagName = item->text();
+        if (item->isSelected()) {
+            m_selectedTags << tagName;
+            item->setSelected(false);
+        }
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable|Qt::ItemIsUserTristate);
         if (m_mandatoryFilterTags.contains(tagName)) {
             item->setCheckState(Qt::Checked);
@@ -377,6 +383,7 @@ void ImageTags::showTagsFilter() {
             updateToolTip(item);
         }
     }
+    tagsTree->setSelectionMode(QAbstractItemView::NoSelection);
 
     sortTags();
 }
@@ -417,9 +424,6 @@ void ImageTags::setActiveViewMode(TagsDisplayMode mode) {
     removeFromSelectionAction->setVisible(currentDisplayMode == SelectionTagsDisplay);
     actionClearTagsFilter->setVisible(currentDisplayMode == DirectoryTagsDisplay);
     negateAction->setVisible(currentDisplayMode == DirectoryTagsDisplay);
-    tagsTree->setSelectionMode(currentDisplayMode == DirectoryTagsDisplay ?
-                                                            QAbstractItemView::NoSelection :
-                                                            QAbstractItemView::ExtendedSelection);
 }
 
 QStringList ImageTags::getCheckedTags(Qt::CheckState tagState) {
