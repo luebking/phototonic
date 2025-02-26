@@ -107,7 +107,14 @@ void ThumbsViewer::setThumbColors() {
     QColor background = Settings::thumbsLayout == Squares ? Qt::transparent : Settings::thumbsBackgroundColor;
     QPalette pal = palette();
     pal.setColor(QPalette::Base, background);
+    if (!style()->styleHint(QStyle::SH_ScrollView_FrameOnlyAroundContents)) {
+        setAutoFillBackground(true);
+        pal.setColor(QPalette::Window, background);
+        pal.setColor(QPalette::Mid, background);
+        pal.setColor(QPalette::WindowText, Settings::thumbsTextColor);
+    }
     pal.setColor(QPalette::Text, Settings::thumbsTextColor);
+
     if (!Settings::thumbsBackgroundImage.isEmpty()) {
         QImage bgImg(Settings::thumbsBackgroundImage);
         pal.setBrush(QPalette::Base, bgImg);
