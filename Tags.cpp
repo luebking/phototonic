@@ -383,7 +383,7 @@ void ImageTags::showTagsFilter() {
             updateToolTip(item);
         }
     }
-    tagsTree->setSelectionMode(QAbstractItemView::NoSelection);
+    tagsTree->setSelectionMode(QAbstractItemView::SingleSelection);
 
     sortTags();
 }
