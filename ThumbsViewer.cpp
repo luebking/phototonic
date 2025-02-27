@@ -419,16 +419,12 @@ int ThumbsViewer::lastVisibleThumb() {
 }
 
 void ThumbsViewer::loadFileList() {
-    int j = 0;
-    for (int i = 0; i < Settings::filesList.size(); ++i) {
-        if (addThumb(QFileInfo(Settings::filesList.at(i))))
-            ++j;
-    }
+    for (int i = 0; i < Settings::filesList.size(); ++i)
+        m_filterDirty = addThumb(QFileInfo(Settings::filesList.at(i))) || m_filterDirty;
 
-    if (j) {
-        m_filterDirty = true;
-        filterRows(j);
-    }
+    if (m_filterDirty)
+        filterRows();
+
     promoteThumbsCount();
 
     if (!m_desiredThumbPath.isEmpty()) {
