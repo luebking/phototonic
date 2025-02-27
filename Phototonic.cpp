@@ -3043,13 +3043,12 @@ void Phototonic::rename() {
     }
     imageViewer->setCursorHiding(false);
 
-    QFile currentFileFullPath(selectedImageFileName);
-    QFileInfo currentFileInfo(currentFileFullPath);
-    int renameConfirmed;
+    QFile file(selectedImageFileName);
+    QFileInfo fileInfo(file);
 
     RenameDialog *renameDialog = new RenameDialog(this);
-    renameDialog->setFileName(currentFileInfo.fileName());
-    renameConfirmed = renameDialog->exec();
+    renameDialog->setFileName(fileInfo.fileName());
+    int renameConfirmed = renameDialog->exec();
 
     QString newFileName = renameDialog->getFileName();
     renameDialog->deleteLater();
@@ -3061,21 +3060,20 @@ void Phototonic::rename() {
     }
 
     if (renameConfirmed) {
-        QString newFileNameFullPath = currentFileInfo.absolutePath() + QDir::separator() + newFileName;
-        if (currentFileFullPath.rename(newFileNameFullPath)) {
-            ThumbsViewer::moveCache(selectedImageFileName, newFileNameFullPath);
-            Metadata::rename(selectedImageFileName, newFileNameFullPath);
+        QString newFullPath = fileInfo.absolutePath() + QDir::separator() + newFileName;
+        if (file.rename(newFullPath)) {
+            ThumbsViewer::moveCache(selectedImageFileName, newFullPath);
+            Metadata::rename(selectedImageFileName, newFullPath);
             QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
             QModelIndexList indexesList = thumbsViewer->selectionModel()->selectedIndexes();
-            thumbModel->item(indexesList.first().row())->setData(newFileNameFullPath, thumbsViewer->FileNameRole);
+            thumbModel->item(indexesList.first().row())->setData(newFullPath, thumbsViewer->FileNameRole);
             thumbModel->item(indexesList.first().row())->setData(newFileName, Qt::DisplayRole);
 
             imageViewer->setInfo(newFileName);
-            imageViewer->fullImagePath = newFileNameFullPath;
+            imageViewer->fullImagePath = newFullPath;
 
-            if (Settings::filesList.contains(currentFileInfo.absoluteFilePath())) {
-                Settings::filesList.replace(Settings::filesList.indexOf(currentFileInfo.absoluteFilePath()),
-                                            newFileNameFullPath);
+            if (Settings::filesList.contains(fileInfo.absoluteFilePath())) {
+                Settings::filesList.replace(Settings::filesList.indexOf(fileInfo.absoluteFilePath()), newFullPath);
             }
 
             if (Settings::layoutMode == ImageViewWidget) {
