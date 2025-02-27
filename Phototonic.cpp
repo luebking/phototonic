@@ -162,9 +162,16 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     }
 }
 
+static QString localFile(const QString &fileOrUrl) {
+    QUrl url(fileOrUrl);
+    if (url.scheme().isEmpty())
+        return fileOrUrl;
+    return url.toLocalFile();
+}
+
 void Phototonic::processStartupArguments(QStringList argumentsList, int filesStartAt) {
     if (argumentsList.size() > filesStartAt) {
-        QFileInfo firstArgument(argumentsList.at(filesStartAt));
+        QFileInfo firstArgument(localFile(argumentsList.at(filesStartAt)));
         if (firstArgument.isDir()) {
             // Confusingly we need the absoluteFile and not absolutePath if it's a directory
             Settings::currentDirectory = firstArgument.absoluteFilePath();
@@ -196,9 +203,7 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
 void Phototonic::loadStartupFileList(QStringList argumentsList, int filesStartAt) {
     Settings::filesList.clear();
     for (int i = filesStartAt; i < argumentsList.size(); i++) {
-        QFile currentFileFullPath(argumentsList[i]);
-        QFileInfo currentFileInfo(currentFileFullPath);
-
+        QFileInfo currentFileInfo(localFile(argumentsList[i]));
         if (!Settings::filesList.contains(currentFileInfo.absoluteFilePath())) {
             Settings::filesList << currentFileInfo.absoluteFilePath();
         }
