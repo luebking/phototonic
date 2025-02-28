@@ -1059,14 +1059,17 @@ static Histogram calcHist(const QImage &img)
     hist.hueIndicator = qMax(0, qMin(255, qRound(h/359.0f*255)));
     hist.saturation = qMax(0, qMin(255, s));
     hist.brightness = qMax(0, qMin(255, l));
+
     const QImage image = img.scaled(256, 256).convertToFormat(QImage::Format_RGB888);
-    for (int y=0; y<image.height(); y++) {
-        const uchar *line = image.scanLine(y);
-        for (int x=0; x<image.width(); x++) {
-            const int index = x * 3;
-            hist.red[line[index + 0]] += 1.f;
-            hist.green[line[index + 1]] += 1.f;
-            hist.blue[line[index + 2]] += 1.f;
+    const uchar *bits = image.constBits();
+    const int bpl = image.bytesPerLine();
+    for (int y = 0; y < image.height(); ++y) {
+        const uchar *line = bits + (y * bpl);
+        int x = 0;
+        while (x < bpl) {
+            hist.red[line[x++]] += 1.f;
+            hist.green[line[x++]] += 1.f;
+            hist.blue[line[x++]] += 1.f;
         }
     }
     return hist;
