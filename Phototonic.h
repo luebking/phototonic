@@ -194,6 +194,7 @@ private:
     QAction *sortByTypeAction;
     QAction *sortBySimilarityAction;
     QAction *sortByBrightnessAction;
+    QAction *sortByColorAction;
     QAction *sortReverseAction;
     QAction *refreshAction;
     QAction *includeSubDirectoriesAction;

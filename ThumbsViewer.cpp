@@ -557,11 +557,60 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
     m_filter = tokens.first().trimmed();
     m_constraints.clear();
     bool sane = true;
+    bool needHistogram = false;
     for (int i = 1; i < tokens.size(); ++i) {
         m_constraints.append(Constraint());
         QStringList subtokens = tokens.at(i).split(' ', Qt::SkipEmptyParts);
         char side = 0;
         for (QString t : subtokens) {
+            auto setHue = [=,&needHistogram](QString name, unsigned char min, unsigned char max) {
+                if (t.compare(name, Qt::CaseInsensitive))
+                    return false;
+                m_constraints.last().minHue = min;
+                m_constraints.last().maxHue = max;
+                m_constraints.last().minBright = 25;
+                m_constraints.last().maxBright = 242;
+                m_constraints.last().minSaturation = 25;
+                needHistogram = true;
+                return true;
+            };
+            // the "hue" ranges [0,255] and also is shifted by 15°,
+            // so center red is ~10.5, true bracket is 21.33, but we overlap.
+            // we're mushing the entire picture into a single color,
+            // so none of this is precise anyway
+            if (setHue("red", 0, 22)) continue;
+            if (setHue("orange", 21, 43)) continue;
+            if (setHue("yellow", 42, 64)) continue;
+            if (setHue("lime", 64, 86)) continue;
+            if (setHue("green", 85, 107)) continue;
+            if (setHue("mint", 106, 128)) continue;
+            if (setHue("cyan", 128, 150)) continue;
+            if (setHue("azure", 149, 171)) continue;
+            if (setHue("blue", 170, 192)) continue;
+            if (setHue("purple", 192, 214)) continue;
+            if (setHue("magenta", 213, 235)) continue;
+            if (setHue("pink", 234, 255)) continue;
+            if (!t.compare("dark", Qt::CaseInsensitive)) {
+                needHistogram = true;
+                m_constraints.last().maxBright = 64; continue; // is 25% good?
+            }
+            if (!t.compare("bright", Qt::CaseInsensitive)) {
+                needHistogram = true;
+                m_constraints.last().minBright = 168; continue;
+            }
+            if (!t.compare("black", Qt::CaseInsensitive)) {
+                needHistogram = true;
+                m_constraints.last().maxBright = 12; continue; // … or 5%
+            }
+            if (!t.compare("white", Qt::CaseInsensitive)) {
+                needHistogram = true;
+                m_constraints.last().minBright = 242; continue;
+            }
+            /// @todo, this doesn't work because if you squash a rainbow into a single pixel, it's gray
+            // monochrome, compare the 3 histogram ratios?
+//            if (!t.compare("gray", Qt::CaseInsensitive)) {
+//                m_constraints.last().maxSaturation = 25; continue;
+//            }
             if (t.startsWith("<")) {
                 side = side ? -1 : 1; t.remove(0,1);
             } else if (t.startsWith("=")) {
@@ -671,6 +720,8 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
         side = 0;
     }
     if (sane) {
+        if (needHistogram) // yes, "BrightnessRole" - we don't need to sort it
+            scanForSort(BrightnessRole);
         m_filterDirty = true;
         QMetaObject::invokeMethod(this, "filterRows", Qt::QueuedConnection);
     }
@@ -847,7 +898,7 @@ finish:
     return;
 }
 
-bool ThumbsViewer::isConstrained(const QFileInfo &fileInfo) const {
+bool ThumbsViewer::isConstrained(const QFileInfo &fileInfo) {
     bool constrained = false;
     for (const Constraint &c : m_constraints) {
         constrained = false;
@@ -857,19 +908,33 @@ bool ThumbsViewer::isConstrained(const QFileInfo &fileInfo) const {
         if ((constrained = (c.older   && age < c.older  ))) continue;
         if ((constrained = (c.younger && age > c.younger))) continue;
 
-        if (!(c.minPix || c.maxPix || c.minRes.isValid() || c.maxRes.isValid()))
-            break;
-        // we gotta inspect the image for this
-        QSize res = QImageReader(fileInfo.filePath()).size();
-        if (!res.isValid())
-            break; // if we can't check the image we give it a pass
-        if ((constrained = (c.minPix && res.width()*res.height() < c.minPix))) continue;
-        if ((constrained = (c.maxPix && res.width()*res.height() > c.maxPix))) continue;
-        if ((constrained = (c.minRes.width() > 0 && res.width() < c.minRes.width()))) continue;
-        if ((constrained = (c.minRes.height() > 0 && res.height() < c.minRes.height()))) continue;
-        if ((constrained = (c.maxRes.width() > 0 && res.width() > c.maxRes.width()))) continue;
-        if ((constrained = (c.maxRes.height() > 0 && res.height() > c.maxRes.height()))) continue;
-
+        if (c.minPix || c.maxPix || c.minRes.isValid() || c.maxRes.isValid()) {
+            // we gotta inspect the image for this
+            QSize res = QImageReader(fileInfo.filePath()).size();
+            if (!res.isValid())
+                break; // if we can't check the image we give it a pass
+            if ((constrained = (c.minPix && res.width()*res.height() < c.minPix))) continue;
+            if ((constrained = (c.maxPix && res.width()*res.height() > c.maxPix))) continue;
+            if ((constrained = (c.minRes.width() > 0 && res.width() < c.minRes.width()))) continue;
+            if ((constrained = (c.minRes.height() > 0 && res.height() < c.minRes.height()))) continue;
+            if ((constrained = (c.maxRes.width() > 0 && res.width() > c.maxRes.width()))) continue;
+            if ((constrained = (c.maxRes.height() > 0 && res.height() > c.maxRes.height()))) continue;
+        }
+        if (c.minHue > -1 || c.minHue > -1 || c.minBright > -1 ||
+                c.maxBright > -1 || c.minSaturation > -1 || c.maxSaturation > -1) {
+            int idx = m_histogramFiles.indexOf(fileInfo.absoluteFilePath());
+            if (idx < 0 && cacheSignatures(fileInfo.absoluteFilePath()))
+                idx = m_histogramFiles.size()-1;
+            if (idx < 0)
+                break; // no histogram? give it a pass
+#define CONSTRAIN_COLOR(_V_, _OP_, _C_) if ((constrained = (c._C_ > -1 && m_histograms.at(idx)._V_ _OP_ c._C_))) continue
+            CONSTRAIN_COLOR(hueIndicator, <, minHue);
+            CONSTRAIN_COLOR(hueIndicator, >, maxHue);
+            CONSTRAIN_COLOR(brightness, <, minBright);
+            CONSTRAIN_COLOR(brightness, >, maxBright);
+            CONSTRAIN_COLOR(saturation, <, minSaturation);
+            CONSTRAIN_COLOR(saturation, >, maxSaturation);
+        }
         break; // this constraint is sufficient
     }
     return constrained;
@@ -985,7 +1050,15 @@ static Histogram calcHist(const QImage &img)
         qWarning() << "Histogram calculation: Invalid file";
         return hist;
     }
-    hist.brightness = qGray(img.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0))/255.0f;
+    int h,s,l;
+    QColor(img.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)).getHsl(&h,&s,&l);
+    // shift hue by 15° so we don't wrap *inside* red but the spectrum ends with pink
+    h += 15;
+    if (h > 359)
+        h -= 360;
+    hist.hueIndicator = qMax(0, qMin(255, qRound(h/359.0f*255)));
+    hist.saturation = qMax(0, qMin(255, s));
+    hist.brightness = qMax(0, qMin(255, l));
     const QImage image = img.scaled(256, 256).convertToFormat(QImage::Format_RGB888);
     for (int y=0; y<image.height(); y++) {
         const uchar *line = image.scanLine(y);
@@ -1097,7 +1170,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
                     qDebug() << "meek, we lost a histogram" << otherFile;
                     continue;
                 }
-                if (qAbs(m_histograms.at(histIdx).brightness - m_histograms.at(otherIdx).brightness) > 0.05)
+                if (qAbs(int(m_histograms.at(histIdx).brightness) - int(m_histograms.at(otherIdx).brightness)) > 12)
                     continue; // images with different brightness are not the same
                 const float score = m_histograms.at(histIdx).compare(m_histograms.at(otherIdx));
                 if (score <= accuracy) {
@@ -1643,12 +1716,21 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
 //                qDebug() << "not storing thumb for pathetically small image" << origThumbSize;
         }
 
-        float brightness;
-        if (thumbSize > 128 && cacheSignatures(imageFileName, false, &thumb)) // don't use super-tiny thumbnails
-            brightness = m_histograms.at(m_histogramFiles.indexOf(imageFileName)).brightness;
-        else
-            brightness = qGray(thumb.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)) / 255.0f;
-        m_model->item(currThumb)->setData(brightness, BrightnessRole);
+        unsigned char h = 0, s = 0, l = 0;
+        if (thumbSize > 128 && cacheSignatures(imageFileName, false, &thumb)) { // don't use super-tiny thumbnails
+            h = m_histograms.at(m_histogramFiles.indexOf(imageFileName)).hueIndicator;
+            s = m_histograms.at(m_histogramFiles.indexOf(imageFileName)).saturation;
+            l = m_histograms.at(m_histogramFiles.indexOf(imageFileName)).brightness;
+        } else {
+            int ih,is,il;
+            QColor(thumb.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)).getHsl(&ih,&is,&il);
+            l = qMax(0, qMin(255, il));
+            s = qMax(0, qMin(255, is));
+            ih += 15; if (ih > 359) { ih -= 360; } h = qMax(0, qMin(255, qRound(ih/359.0f*255)));
+        }
+        m_model->item(currThumb)->setData(l, BrightnessRole);
+        int colorHash = h | ((s > 25) << 8) | ((l > 242 ? 0 : (l < 12 ? 2 : 1))  << 9);
+        m_model->item(currThumb)->setData(colorHash, ColorRole);
 
         if (Settings::exifThumbRotationEnabled) {
             thumb = thumb.transformed(Metadata::transformation(imageFileName), Qt::SmoothTransformation);

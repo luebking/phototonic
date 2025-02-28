@@ -34,7 +34,7 @@ struct Histogram
     float red[256]{};
     float green[256]{};
     float blue[256]{};
-    float brightness;
+    unsigned char hueIndicator, saturation, brightness;
 
     inline float compareChannel(const float hist1[256], const float hist2[256]) const
     {
@@ -70,6 +70,12 @@ struct Constraint
     QSize maxRes;
     qint64 minPix = 0;
     qint64 maxPix = 0;
+    short int minHue = -1;
+    short int maxHue = -1;
+    short int minBright = -1;
+    short int maxBright = -1;
+    short int minSaturation = -1;
+    short int maxSaturation = -1;
 };
 
 class ThumbsViewer : public QListView {
@@ -85,6 +91,7 @@ public:
         SizeRole,
         TimeRole,
         HistogramRole,
+        ColorRole,
         DateTimeOriginal
     };
     enum ThumbnailLayouts {
@@ -159,7 +166,7 @@ protected:
 
 private:
     QStandardItem *addThumb(const QFileInfo &thumbFileInfo);
-    bool isConstrained(const QFileInfo &fileInfo) const;
+    bool isConstrained(const QFileInfo &fileInfo);
     bool matchesTagFilter(const QString &path) const;
 
     void initThumbs(bool iterative);

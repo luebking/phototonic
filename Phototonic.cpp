@@ -115,7 +115,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
         if (m_infoViewer->isVisible()) {
             QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
             if (QStandardItem *citem = thumbModel->item(current.row()))
-                m_infoViewer->hint(tr("Average brightness"), QString::number(citem->data(ThumbsViewer::BrightnessRole).toReal(), 'f', 2));
+                m_infoViewer->hint(tr("Average brightness"), QString::number(citem->data(ThumbsViewer::BrightnessRole).toInt()/255.0f, 'f', 2));
             const QString filePath = thumbsViewer->fullPathOf(current.row());
             m_infoViewer->read(filePath, thumbsViewer->renderHistogram(filePath, m_logHistogram));
         }
@@ -244,7 +244,7 @@ void Phototonic::createThumbsViewer() {
             int currentRow = thumbsViewer->currentIndex().row();
             if (currentRow > -1) {
                 m_infoViewer->hint(tr("Average brightness"),
-                                    QString::number(thumbModel->item(currentRow)->data(ThumbsViewer::BrightnessRole).toReal(), 'f', 2));
+                                    QString::number(thumbModel->item(currentRow)->data(ThumbsViewer::BrightnessRole).toInt()/255.0f, 'f', 2));
                 const QString filePath = thumbsViewer->fullPathOf(currentRow);
                 m_infoViewer->read(filePath, thumbsViewer->renderHistogram(filePath, m_logHistogram));
             }
@@ -532,6 +532,7 @@ void Phototonic::createActions() {
     MAKE_ACTION_NOSC(sortByTypeAction, tr("Sort by Type"), "type");
     MAKE_ACTION_NOSC(sortBySimilarityAction, tr("Sort by Similarity"), "similarity");
     MAKE_ACTION_NOSC(sortByBrightnessAction, tr("Sort by Brightness"), "brightness");
+    MAKE_ACTION_NOSC(sortByColorAction, tr("Sort by Color"), "color");
     MAKE_ACTION_NOSC(sortReverseAction, tr("Reverse Sort Order"), "reverse");
     sortByNameAction->setCheckable(true);
     sortByTimeAction->setCheckable(true);
@@ -540,6 +541,7 @@ void Phototonic::createActions() {
     sortByTypeAction->setCheckable(true);
     sortBySimilarityAction->setCheckable(true);
     sortByBrightnessAction->setCheckable(true);
+    sortByColorAction->setCheckable(true);
     sortReverseAction->setCheckable(true);
     connect(sortByNameAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortByTimeAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
@@ -548,6 +550,7 @@ void Phototonic::createActions() {
     connect(sortByTypeAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortBySimilarityAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortByBrightnessAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
+    connect(sortByColorAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
     connect(sortReverseAction, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
 
     if (thumbsViewer->thumbsSortFlags & QDir::Time) {
@@ -768,6 +771,7 @@ void Phototonic::createActions() {
             sortByTypeAction->setChecked(false);
             sortBySimilarityAction->setChecked(false);
             sortByBrightnessAction->setChecked(false);
+            sortByColorAction->setChecked(false);
             // scenario: user enters a filter and clicks the duplicate button
             QString error;
             if (!thumbsViewer->setFilter(filterLineEdit->text(), &error))
@@ -896,6 +900,7 @@ void Phototonic::createMenus() {
     sortTypesGroup->addAction(sortByTypeAction);
     sortTypesGroup->addAction(sortBySimilarityAction);
     sortTypesGroup->addAction(sortByBrightnessAction);
+    sortTypesGroup->addAction(sortByColorAction);
     sortMenu->addActions(sortTypesGroup->actions());
     sortMenu->addSeparator();
     sortMenu->addAction(sortReverseAction);
@@ -1042,6 +1047,10 @@ void Phototonic::createToolBars() {
         "<i>All suffixes are case-insensitive but m|inute and M|onth</i><br>"
         "Subsequent \"/\" start a new sufficient condition group, the substring match is optional."
     );
+    static const QString rtfm2 =
+    tr("<hr>In addition you can filter for <b>black, white, dark, bright</b> and the colors<br>"
+    "<b>red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink</b>");
+
     QTimer *filterBouncer = new QTimer(this);
     filterBouncer->setSingleShot(true);
     filterBouncer->setInterval(250);
@@ -1054,7 +1063,7 @@ void Phototonic::createToolBars() {
     connect(filterLineEdit, &QLineEdit::textEdited, [=](){
         if (filterLineEdit->text().contains("/"))
             QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
-                                rtfm, filterLineEdit, {}, 120000);
+                                rtfm + rtfm2, filterLineEdit, {}, 120000);
         filterBouncer->start();
     });
     filterLineEdit->setMouseTracking(true);
@@ -1270,6 +1279,9 @@ void Phototonic::sortThumbnails() {
     } else if (sortByBrightnessAction->isChecked()) {
         thumbsViewer->scanForSort(ThumbsViewer::BrightnessRole);
         thumbModel->setSortRole(ThumbsViewer::BrightnessRole);
+    } else if (sortByColorAction->isChecked()) {
+        thumbsViewer->scanForSort(ThumbsViewer::BrightnessRole);
+        thumbModel->setSortRole(ThumbsViewer::ColorRole);
     }
     thumbModel->sort(0, sortReverseAction->isChecked() ? Qt::DescendingOrder : Qt::AscendingOrder);
     thumbsViewer->loadVisibleThumbs(-1);
