@@ -1235,6 +1235,13 @@ void ThumbsViewer::findDupes(bool resetCounters)
                 }
                 if (qAbs(int(m_histograms.at(histIdx).brightness) - int(m_histograms.at(otherIdx).brightness)) > 12)
                     continue; // images with different brightness are not the same
+                if (qAbs(int(m_histograms.at(histIdx).chromaVariance) - int(m_histograms.at(otherIdx).chromaVariance)) > 4)
+                    continue; // images with different chromaVariance are not the same
+                int deltaHue = qAbs(int(m_histograms.at(histIdx).hueIndicator) - int(m_histograms.at(otherIdx).hueIndicator));
+                if (deltaHue > 128)
+                    deltaHue = 255 - deltaHue;
+                if (deltaHue > 22) // ~30°
+                    continue; // images with different average hue are not the same
                 const float score = m_histograms.at(histIdx).compare(m_histograms.at(otherIdx));
                 if (score <= accuracy) {
                     const QStringList *dupe = &(hash.value());
