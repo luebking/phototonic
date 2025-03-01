@@ -606,11 +606,15 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 needHistogram = true;
                 m_constraints.last().minBright = 242; continue;
             }
-            /// @todo, this doesn't work because if you squash a rainbow into a single pixel, it's gray
-            // monochrome, compare the 3 histogram ratios?
-//            if (!t.compare("gray", Qt::CaseInsensitive)) {
-//                m_constraints.last().maxSaturation = 25; continue;
-//            }
+            if (!t.compare("monochrome", Qt::CaseInsensitive)) {
+                needHistogram = true;
+                m_constraints.last().maxChroma = 2; continue;
+            }
+            if (!t.compare("gray", Qt::CaseInsensitive)) {
+                needHistogram = true;
+                m_constraints.last().maxSaturation = 15;
+                m_constraints.last().maxChroma = 2; continue;
+            }
             if (t.startsWith("<")) {
                 side = side ? -1 : 1; t.remove(0,1);
             } else if (t.startsWith("=")) {
@@ -653,7 +657,29 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 return true;
             };
 
-            if (t.endsWith("kb", Qt::CaseInsensitive)) {
+            if (t.endsWith("lm")) {
+                bool ok;
+                qint64 v = t.chopped(2).toUInt(&ok);
+                if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; sane = false; break; }
+                v = qMin(v, 255);
+                if (side & 1) m_constraints.last().maxBright = v;
+                if (side & 2) m_constraints.last().minBright = v;
+                if ((side & 3) == 3) {
+                    m_constraints.last().minBright =  qMax(0, v - 1);
+                    m_constraints.last().maxBright =  qMin(v + 1, 255);
+                }
+            } else if (t.endsWith("cr")) {
+                bool ok;
+                qint64 v = t.chopped(2).toUInt(&ok);
+                if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; sane = false; break; }
+                v = qMin(v, 255);
+                if (side & 1) m_constraints.last().maxChroma = v;
+                if (side & 2) m_constraints.last().minChroma = v;
+                if ((side & 3) == 3) {
+                    m_constraints.last().minChroma =  qMax(0, v - 1);
+                    m_constraints.last().maxChroma =  qMin(v + 1, 255);
+                }
+            } else if (t.endsWith("kb", Qt::CaseInsensitive)) {
                 if (!setSizeConstraint(1024)) { sane = false; break; }
             } else if (t.endsWith("mb", Qt::CaseInsensitive)) {
                 if (!setSizeConstraint(1024*1024)) { sane = false; break; }
@@ -920,20 +946,22 @@ bool ThumbsViewer::isConstrained(const QFileInfo &fileInfo) {
             if ((constrained = (c.maxRes.width() > 0 && res.width() > c.maxRes.width()))) continue;
             if ((constrained = (c.maxRes.height() > 0 && res.height() > c.maxRes.height()))) continue;
         }
-        if (c.minHue > -1 || c.minHue > -1 || c.minBright > -1 ||
-                c.maxBright > -1 || c.minSaturation > -1 || c.maxSaturation > -1) {
+        if (c.minHue > -1 || c.minHue > -1 || c.minBright > -1 || c.maxBright > -1 ||
+            c.minSaturation > -1 || c.maxSaturation > -1 || c.minChroma > -1 || c.maxChroma > -1) {
             int idx = m_histogramFiles.indexOf(fileInfo.absoluteFilePath());
             if (idx < 0 && cacheSignatures(fileInfo.absoluteFilePath()))
                 idx = m_histogramFiles.size()-1;
             if (idx < 0)
                 break; // no histogram? give it a pass
 #define CONSTRAIN_COLOR(_V_, _OP_, _C_) if ((constrained = (c._C_ > -1 && m_histograms.at(idx)._V_ _OP_ c._C_))) continue
-            CONSTRAIN_COLOR(hueIndicator, <, minHue);
-            CONSTRAIN_COLOR(hueIndicator, >, maxHue);
-            CONSTRAIN_COLOR(brightness, <, minBright);
-            CONSTRAIN_COLOR(brightness, >, maxBright);
-            CONSTRAIN_COLOR(saturation, <, minSaturation);
-            CONSTRAIN_COLOR(saturation, >, maxSaturation);
+            CONSTRAIN_COLOR(hueIndicator, <=, minHue);
+            CONSTRAIN_COLOR(hueIndicator, >=, maxHue);
+            CONSTRAIN_COLOR(brightness, <=, minBright);
+            CONSTRAIN_COLOR(brightness, >=, maxBright);
+            CONSTRAIN_COLOR(saturation, <=, minSaturation);
+            CONSTRAIN_COLOR(saturation, >=, maxSaturation);
+            CONSTRAIN_COLOR(chromaVariance, <=, minChroma);
+            CONSTRAIN_COLOR(chromaVariance, >=, maxChroma);
         }
         break; // this constraint is sufficient
     }
@@ -1052,6 +1080,7 @@ static Histogram calcHist(const QImage &img)
     }
     int h,s,l;
     QColor(img.scaled(1, 1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).pixel(0, 0)).getHsl(&h,&s,&l);
+    const int aHue = h;
     // shift hue by 15° so we don't wrap *inside* red but the spectrum ends with pink
     h += 15;
     if (h > 359)
@@ -1060,7 +1089,9 @@ static Histogram calcHist(const QImage &img)
     hist.saturation = qMax(0, qMin(255, s));
     hist.brightness = qMax(0, qMin(255, l));
 
-    const QImage image = img.scaled(256, 256).convertToFormat(QImage::Format_RGB888);
+    // the actual histogram
+    QImage image = img.scaled(256, 256).convertToFormat(QImage::Format_RGB888);
+    {
     const uchar *bits = image.constBits();
     const int bpl = image.bytesPerLine();
     for (int y = 0; y < image.height(); ++y) {
@@ -1071,6 +1102,30 @@ static Histogram calcHist(const QImage &img)
             hist.green[line[x++]] += 1.f;
             hist.blue[line[x++]] += 1.f;
         }
+    }
+    }
+    image = image.scaled(8, 8, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
+    // chromatic variance, sum of standard variances btween the red and green and red and blue channel
+    {
+    const uchar *bits = image.constBits();
+    const int bpl = image.bytesPerLine();
+    uint variance = 0;
+    for (int y = 0; y < image.height(); ++y) {
+        const uchar *line = bits + (y * bpl);
+        for (int x = 0; x < bpl; x += 3) {
+            QColor(line[x], line[x+1], line[x+2]).getHsl(&h,&s,&l);
+            if (h < 0) // white/black etc. have no hue
+                continue;
+            int delta = qAbs(h - aHue);
+            if (delta > 180)
+                delta = 360 - delta;
+            variance += (s/255.0f)*(1-qAbs(l-128)/128.0f)*delta;
+//            variance += delta;
+        }
+    }
+    hist.chromaVariance = qMin(255, qRound(variance/45.17)); // 64/(255/180) ~= 45.17
+//    qDebug() << hist.chromaVariance;
     }
     return hist;
 }

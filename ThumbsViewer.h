@@ -34,7 +34,7 @@ struct Histogram
     float red[256]{};
     float green[256]{};
     float blue[256]{};
-    unsigned char hueIndicator, saturation, brightness;
+    unsigned char hueIndicator, saturation, brightness, chromaVariance;
 
     inline float compareChannel(const float hist1[256], const float hist2[256]) const
     {
@@ -76,6 +76,8 @@ struct Constraint
     short int maxBright = -1;
     short int minSaturation = -1;
     short int maxSaturation = -1;
+    short int minChroma = -1;
+    short int maxChroma = -1;
 };
 
 class ThumbsViewer : public QListView {

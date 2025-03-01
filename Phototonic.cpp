@@ -1043,13 +1043,14 @@ void Phototonic::createToolBars() {
         "<li>The exact age or (rounded) size is otherwise implied or explicit with: =</li></ul><hr>"
         "<ul><li>Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)</li>"
         "<li>Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)</li>"
-        "<li>Dimensions are pre/in/suffixed \"x\" ([width]x[height])</li></ul>"
+        "<li>Dimensions are pre/in/suffixed \"x\" ([width]x[height])</li>"
+        "<li>Chromatic variance is suffixed [0-255]cr (real values will rarely be > 100)</li>"
+        "<li>Luminance is suffixed [0-255]lm</li></ul>"
         "<i>All suffixes are case-insensitive but m|inute and M|onth</i><br>"
         "Subsequent \"/\" start a new sufficient condition group, the substring match is optional."
+        "<hr>In addition you can filter for <b>black, white, dark, bright, monochrome, gray</b> and the colors<br>"
+        "<b>red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink</b>"
     );
-    static const QString rtfm2 =
-    tr("<hr>In addition you can filter for <b>black, white, dark, bright</b> and the colors<br>"
-    "<b>red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink</b>");
 
     QTimer *filterBouncer = new QTimer(this);
     filterBouncer->setSingleShot(true);
@@ -1063,7 +1064,7 @@ void Phototonic::createToolBars() {
     connect(filterLineEdit, &QLineEdit::textEdited, [=](){
         if (filterLineEdit->text().contains("/"))
             QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
-                                rtfm + rtfm2, filterLineEdit, {}, 120000);
+                                rtfm, filterLineEdit, {}, 120000);
         filterBouncer->start();
     });
     filterLineEdit->setMouseTracking(true);
