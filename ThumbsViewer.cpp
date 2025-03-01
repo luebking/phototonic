@@ -1104,6 +1104,11 @@ static Histogram calcHist(const QImage &img)
         }
     }
     }
+
+    if (aHue < 0) {
+        hist.chromaVariance = 0;
+        return hist;
+    }
     image = image.scaled(8, 8, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
     // chromatic variance, sum of standard variances btween the red and green and red and blue channel
