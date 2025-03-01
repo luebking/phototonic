@@ -1032,7 +1032,7 @@ void Phototonic::createToolBars() {
     filterLineEdit->setMinimumWidth(100);
     filterLineEdit->setMaximumWidth(200);
     //: hint for the filter lineedit, "/" triggers more hints at extended features
-    filterLineEdit->setPlaceholderText(tr("Filter - try \"/\"..."));
+    filterLineEdit->setPlaceholderText(tr("Filter - try \"/?\"..."));
     static const QString rtfm =
     //: This is a tooltip explaining extended filter features
     tr( "<h2>[substring] [/ constraint [/ more constraints]]</h2>"
@@ -1056,15 +1056,17 @@ void Phototonic::createToolBars() {
     filterBouncer->setSingleShot(true);
     filterBouncer->setInterval(250);
     connect (filterBouncer, &QTimer::timeout, this, [=]() {
+        if (filterLineEdit->text().contains("/?"))
+            return;
         QString error;
         if (!thumbsViewer->setFilter(filterLineEdit->text(), &error))
             QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
                                 error, filterLineEdit);
     });
     connect(filterLineEdit, &QLineEdit::textEdited, [=](){
-        if (filterLineEdit->text().contains("/"))
+        if (filterLineEdit->text().contains("/?"))
             QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
-                                rtfm, filterLineEdit, {}, 120000);
+                                rtfm, filterLineEdit, {}, 300000);
         filterBouncer->start();
     });
     filterLineEdit->setMouseTracking(true);
