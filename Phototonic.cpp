@@ -1059,7 +1059,9 @@ void Phototonic::createToolBars() {
         if (filterLineEdit->text().contains("/?"))
             return;
         QString error;
-        if (!thumbsViewer->setFilter(filterLineEdit->text(), &error))
+        if (thumbsViewer->setFilter(filterLineEdit->text(), &error))
+            QToolTip::showText(QPoint(), QString());
+        else
             QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
                                 error, filterLineEdit);
     });
