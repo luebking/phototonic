@@ -1045,7 +1045,7 @@ void Phototonic::createToolBars() {
         "<li>Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)</li>"
         "<li>Dimensions are pre/in/suffixed \"x\" ([width]x[height])</li>"
         "<li>Chromatic variance is suffixed [0-255]cr (real values will rarely be > 100)</li>"
-        "<li>Luminance is suffixed [0-255]lm</li></ul>"
+        "<li>Luminance is suffixed [0.0-1.0]|[0-255]lm</li></ul>"
         "<i>All suffixes are case-insensitive but m|inute and M|onth</i><br>"
         "Subsequent \"/\" start a new sufficient condition group, the substring match is optional."
         "<hr>In addition you can filter for <b>black, white, dark, bright, monochrome, gray</b> and the colors<br>"

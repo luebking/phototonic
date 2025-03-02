@@ -659,10 +659,11 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
 
             if (t.endsWith("lm")) {
                 bool ok;
-                qint64 v = t.chopped(2).toUInt(&ok);
+                uint v = t.chopped(2).toUInt(&ok);
+                if (!ok) v = t.chopped(2).toFloat(&ok) * 255; // try [0,1]
                 if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; sane = false; break; }
                 needHistogram = true;
-                v = qMin(v, 255);
+                v = qMin(v, 255u);
                 if (side & 1) m_constraints.last().maxBright = v;
                 if (side & 2) m_constraints.last().minBright = v;
                 if ((side & 3) == 3) {
@@ -671,10 +672,10 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 }
             } else if (t.endsWith("cr")) {
                 bool ok;
-                qint64 v = t.chopped(2).toUInt(&ok);
+                uint v = t.chopped(2).toUInt(&ok);
                 if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; sane = false; break; }
                 needHistogram = true;
-                v = qMin(v, 255);
+                v = qMin(v, 255u);
                 if (side & 1) m_constraints.last().maxChroma = v;
                 if (side & 2) m_constraints.last().minChroma = v;
                 if ((side & 3) == 3) {
