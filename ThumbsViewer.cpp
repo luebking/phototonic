@@ -661,23 +661,25 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 bool ok;
                 qint64 v = t.chopped(2).toUInt(&ok);
                 if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; sane = false; break; }
+                needHistogram = true;
                 v = qMin(v, 255);
                 if (side & 1) m_constraints.last().maxBright = v;
                 if (side & 2) m_constraints.last().minBright = v;
                 if ((side & 3) == 3) {
-                    m_constraints.last().minBright =  qMax(0, v - 1);
-                    m_constraints.last().maxBright =  qMin(v + 1, 255);
+                    m_constraints.last().minBright =  v - 1;
+                    m_constraints.last().maxBright =  v + 1;
                 }
             } else if (t.endsWith("cr")) {
                 bool ok;
                 qint64 v = t.chopped(2).toUInt(&ok);
                 if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; sane = false; break; }
+                needHistogram = true;
                 v = qMin(v, 255);
                 if (side & 1) m_constraints.last().maxChroma = v;
                 if (side & 2) m_constraints.last().minChroma = v;
                 if ((side & 3) == 3) {
-                    m_constraints.last().minChroma =  qMax(0, v - 1);
-                    m_constraints.last().maxChroma =  qMin(v + 1, 255);
+                    m_constraints.last().minChroma =  v - 1;
+                    m_constraints.last().maxChroma =  v + 1;
                 }
             } else if (t.endsWith("kb", Qt::CaseInsensitive)) {
                 if (!setSizeConstraint(1024)) { sane = false; break; }
