@@ -40,6 +40,7 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QSpinBox>
+#include <QSocketNotifier>
 #include <QStackedLayout>
 #include <QStandardPaths>
 #include <QStandardItemModel>
@@ -52,6 +53,8 @@
 #include <QVariantAnimation>
 #include <QWheelEvent>
 #include <QWidgetAction>
+
+#include <unistd.h>
 
 #include "Bookmarks.h"
 #include "CopyMoveDialog.h"
@@ -191,7 +194,50 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
             }
         }
     } else {
-        if (Settings::startupDir == Settings::SpecifiedDir) {
+        QFile *input = nullptr;
+#ifdef Q_OS_WIN
+        if (!_isatty(_fileno(stdin))) {
+#else
+        if (!isatty(fileno(stdin))) {
+#endif
+            input = new QFile;
+            if (!input->open(stdin, QFile::ReadOnly)) {
+                delete input;
+                input = nullptr;
+            }
+        }
+        if (input) {
+            Settings::isFileListLoaded = true; // prevent directory loading, even though the list is empty
+            QSocketNotifier *snr = new QSocketNotifier(input->handle(), QSocketNotifier::Read, input);
+            static QStringList newFiles;
+            static QTimer *bouncer;
+            if (!bouncer) {
+                bouncer = new QTimer(this);
+                bouncer->setInterval(30);
+                bouncer->setSingleShot(true);
+                connect(bouncer, &QTimer::timeout, [=]() {
+                    loadStartupFileList(newFiles, 0);
+                    newFiles.clear();
+                    thumbsViewer->reload(true);
+                });
+            }
+            connect (snr, &QSocketNotifier::activated, [=](){
+                QByteArray ba = input->readLine();
+                if (ba.isEmpty()) {
+                    snr->setEnabled(false);
+                    input->close();
+                    delete input;
+//                    snr->deleteLater(); // segfault
+                    return;
+                }
+                QString line = QString::fromLocal8Bit(ba.trimmed());
+                if (!line.isEmpty()) {
+                    newFiles << line;
+                    if (newFiles.size() < 25) // if we got some batch, let the timer run out to load it
+                        bouncer->start();
+                }
+            });
+        } else if (Settings::startupDir == Settings::SpecifiedDir) {
             Settings::currentDirectory = Settings::specifiedStartDir;
         } else if (Settings::startupDir == Settings::RememberLastDir) {
             Settings::currentDirectory = Settings::value(Settings::optionLastDir, QString()).toString();
@@ -201,11 +247,12 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
 }
 
 void Phototonic::loadStartupFileList(QStringList argumentsList, int filesStartAt) {
-    Settings::filesList.clear();
     for (int i = filesStartAt; i < argumentsList.size(); i++) {
-        QFileInfo currentFileInfo(localFile(argumentsList[i]));
-        if (!Settings::filesList.contains(currentFileInfo.absoluteFilePath())) {
-            Settings::filesList << currentFileInfo.absoluteFilePath();
+        QFileInfo file(localFile(argumentsList[i]));
+        if (!file.exists() || file.isDir())
+            continue;
+        if (!Settings::filesList.contains(file.absoluteFilePath())) {
+            Settings::filesList << file.absoluteFilePath();
         }
     }
     fileSystemTree->clearSelection();

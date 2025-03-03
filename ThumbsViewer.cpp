@@ -418,9 +418,21 @@ int ThumbsViewer::lastVisibleThumb() {
     return -1;
 }
 
-void ThumbsViewer::loadFileList() {
-    for (int i = 0; i < Settings::filesList.size(); ++i)
-        m_filterDirty = addThumb(QFileInfo(Settings::filesList.at(i))) || m_filterDirty;
+void ThumbsViewer::loadFileList(bool iterative) {
+    QStringList list = Settings::filesList;
+    if (iterative) {
+        int doing = 0;
+        for (int i = 0; i < m_model->rowCount(); ++i) {
+            QStandardItem *item = m_model->item(i);
+            if (!item) {
+                qDebug() << "meek, why's there no item?!";
+                continue;
+            }
+            list.removeAll(item->data(FileNameRole).toString()); // we already have this file
+        }
+    }
+    for (int i = 0; i < list.size(); ++i)
+        m_filterDirty = addThumb(QFileInfo(list.at(i))) || m_filterDirty;
 
     if (m_filterDirty)
         filterRows();
@@ -458,7 +470,7 @@ void ThumbsViewer::reload(bool iterative) {
         loadPrepare();
 
     if (Settings::isFileListLoaded) {
-        loadFileList();
+        loadFileList(iterative);
         connect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
         m_busy = false;
         return;

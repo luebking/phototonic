@@ -108,7 +108,7 @@ public:
 
     void reload(bool iterative = false);
     void loadDuplicates();
-    void loadFileList();
+    void loadFileList(bool iterative = false);
 
     void setThumbColors();
 
