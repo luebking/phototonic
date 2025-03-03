@@ -90,6 +90,7 @@ private:
     bool m_needToSort;
     QList<size_t> m_trackedFiles;
     QStringList m_selectedTags;
+    char m_tagGroup;
 
 private slots:
     void addNewTag();

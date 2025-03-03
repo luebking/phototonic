@@ -55,6 +55,29 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
     connect(tabs, &QTabBar::currentChanged, this, [=](int idx) { idx ? showTagsFilter() : showSelectedImagesTags(); });
 
     QToolButton *btn = new QToolButton;
+    btn->setToolTip(tr("Show only library tags"));
+    m_tagGroup = 3;
+    btn->setIcon(QIcon(":/images/tag_multi.png"));
+    connect (btn, &QToolButton::clicked, this, [=]() {
+        if (m_tagGroup == 3) {
+            m_tagGroup = 1;
+            btn->setIcon(QIcon(":/images/tag_grey.png"));
+            btn->setToolTip(tr("Show only relevant tags"));
+        } else if (m_tagGroup == 1) {
+            m_tagGroup = 2;
+            btn->setIcon(QIcon(":/images/tag_red.png"));
+            btn->setToolTip(tr("Show all tags"));
+        } else {
+            m_tagGroup = 3;
+            btn->setIcon(QIcon(":/images/tag_multi.png"));
+            btn->setToolTip(tr("Show only library tags"));
+        }
+        if (tabs->currentIndex() == 0)
+            showSelectedImagesTags();
+    });
+    tabs->setTabButton(0, QTabBar::RightSide, btn);
+
+    btn = new QToolButton;
     btn->setToolTip(tr("Clear Filters"));
     btn->setIcon(QIcon::fromTheme("edit-delete", QIcon(":/images/delete.png")));
     connect (btn, &QToolButton::clicked, this, &ImageTags::clearTagFilters);
@@ -295,7 +318,7 @@ void ImageTags::showSelectedImagesTags() {
     bool imagesTagged = false, imagesTaggedMixed = false;
     for (int i = 0; i < tagsTree->count(); ++i) {
         QListWidgetItem *item = tagsTree->item(i);
-        item->setHidden(false);
+        item->setHidden(!(m_tagGroup & (item->data(NewTag).toBool() ? 2 : 1)));
         QString tagName = item->text();
         item->setSelected(m_selectedTags.contains(tagName));
         int tagCountTotal = tagsCount.value(tagName, 0);
