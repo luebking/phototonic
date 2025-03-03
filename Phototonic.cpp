@@ -227,6 +227,10 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
                     snr->setEnabled(false);
                     input->close();
                     delete input;
+                    if (Settings::filesList.isEmpty()) {
+                        Settings::isFileListLoaded = false;
+                        reloadThumbs();
+                    }
 //                    snr->deleteLater(); // segfault
                     return;
                 }
@@ -237,7 +241,8 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
                         bouncer->start();
                 }
             });
-        } else if (Settings::startupDir == Settings::SpecifiedDir) {
+        }
+        if (Settings::startupDir == Settings::SpecifiedDir) {
             Settings::currentDirectory = Settings::specifiedStartDir;
         } else if (Settings::startupDir == Settings::RememberLastDir) {
             Settings::currentDirectory = Settings::value(Settings::optionLastDir, QString()).toString();
