@@ -421,7 +421,6 @@ int ThumbsViewer::lastVisibleThumb() {
 void ThumbsViewer::loadFileList(bool iterative) {
     QStringList list = Settings::filesList;
     if (iterative) {
-        int doing = 0;
         for (int i = 0; i < m_model->rowCount(); ++i) {
             QStandardItem *item = m_model->item(i);
             if (!item) {
@@ -1015,7 +1014,6 @@ void ThumbsViewer::initThumbs(bool iterative) {
     QFileInfoList thumbFileInfoList = thumbsDir.entryInfoList();
 
     if (iterative) {
-        int doing = 0;
         for (int i = m_model->rowCount() - 1; i >=0 ; --i) {
             QStandardItem *item = m_model->item(i);
             if (!item) {
@@ -1039,7 +1037,7 @@ void ThumbsViewer::initThumbs(bool iterative) {
                     m_histograms.remove(idx);
                 }
             }
-            doing += thumbFileInfoList.removeAll(file); // we already have this file
+            thumbFileInfoList.removeAll(file); // we already have this file
         }
     }
 
