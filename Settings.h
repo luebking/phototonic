@@ -75,6 +75,7 @@ namespace Settings {
     extern const char optionWindowState[];
     extern const char optionShortcuts[];
     extern const char optionExternalApps[];
+    extern const char optionBangs[];
     extern const char optionWallpaperCommand[];
     extern const char optionCopyMoveToPaths[];
     extern const char optionKnownTags[];
@@ -126,6 +127,7 @@ namespace Settings {
     extern bool showHiddenFiles;
     extern bool showViewerToolbar;
     extern QMap<QString, QString> externalApps;
+    extern QMap<QString, QString> bangs;
     extern QString wallpaperCommand;
     extern QSet<QString> bookmarkPaths;
     extern QSet<QString> knownTags;

@@ -2206,6 +2206,24 @@ void Phototonic::goTo(QString path) {
 void Phototonic::goPathBarDir() {
     if (pathLineEdit->completer()->popup())
         pathLineEdit->completer()->popup()->hide();
+    QMap<QString,QString>::const_iterator it = Settings::bangs.constFind(pathLineEdit->text().section(':', 0, 0));
+    if (it != Settings::bangs.constEnd()) {
+        QString command = it.value();
+        command.replace("%s", pathLineEdit->text().section(':', 1));
+        QProcess *job = new QProcess(this);
+        connect(job, &QProcess::readyReadStandardOutput, this, [=]() {
+            QByteArray ba = job->readAllStandardOutput();
+            QStringList list = QString::fromLocal8Bit(ba).split('\n');
+            loadStartupFileList(list, 0);
+            thumbsViewer->reload(true);
+        });
+        connect(job, &QProcess::finished, job, &QObject::deleteLater);
+        Settings::filesList.clear();
+        Settings::isFileListLoaded = true;
+        reload();
+        job->startCommand(command);
+        return;
+    }
     if (!isReadableDir(pathLineEdit->text())) {
         MessageBox msgBox(this);
         msgBox.critical(tr("Error"), tr("Invalid Path: %1").arg(pathLineEdit->text()));
@@ -2336,6 +2354,15 @@ void Phototonic::writeSettings() {
     }
     Settings::appSettings->endGroup();
 
+    Settings::beginGroup(Settings::optionBangs);
+    Settings::appSettings->remove("");
+    QMapIterator<QString, QString> bIter(Settings::bangs);
+    while (bIter.hasNext()) {
+        bIter.next();
+        Settings::appSettings->setValue(bIter.key(), bIter.value());
+    }
+    Settings::appSettings->endGroup();
+
     /* save bookmarks */
     int idx = 0;
     Settings::beginGroup(Settings::optionCopyMoveToPaths);
@@ -2406,6 +2433,13 @@ void Phototonic::readSettings() {
     QStringList extApps = Settings::appSettings->childKeys();
     for (int i = 0; i < extApps.size(); ++i) {
         Settings::externalApps[extApps.at(i)] = Settings::appSettings->value(extApps.at(i)).toString();
+    }
+    Settings::appSettings->endGroup();
+
+    Settings::beginGroup(Settings::optionBangs);
+    QStringList bangs = Settings::appSettings->childKeys();
+    for (int i = 0; i < bangs.size(); ++i) {
+        Settings::bangs[bangs.at(i)] = Settings::appSettings->value(bangs.at(i)).toString();
     }
     Settings::appSettings->endGroup();
 
