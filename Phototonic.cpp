@@ -201,13 +201,20 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
         if (!isatty(fileno(stdin))) {
 #endif
             input = new QFile;
-            if (!input->open(stdin, QFile::ReadOnly)) {
+            QByteArray ba;
+            if (input->open(stdin, QFile::ReadOnly))
+                ba = input->readLine();
+            if (ba.isEmpty()) { // catches /dev/null or <&-
+                input->close();
                 delete input;
                 input = nullptr;
+            } else { // load first file into list
+                QString line = QString::fromLocal8Bit(ba.trimmed());
+                if (!line.isEmpty())
+                    loadStartupFileList(QStringList() << line, 0);
             }
         }
         if (input) {
-            Settings::isFileListLoaded = true; // prevent directory loading, even though the list is empty
             QSocketNotifier *snr = new QSocketNotifier(input->handle(), QSocketNotifier::Read, input);
             static QStringList newFiles;
             static QTimer *bouncer;
@@ -220,17 +227,15 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
                     newFiles.clear();
                     thumbsViewer->reload(true);
                 });
+                if (!Settings::filesList.isEmpty())
+                    bouncer->start(); // for the first file
             }
             connect (snr, &QSocketNotifier::activated, [=](){
                 QByteArray ba = input->readLine();
-                if (ba.isEmpty()) {
+                if (ba.isEmpty()) { // effectively EOF
                     snr->setEnabled(false);
                     input->close();
                     delete input;
-                    if (Settings::filesList.isEmpty()) {
-                        Settings::isFileListLoaded = false;
-                        reloadThumbs();
-                    }
 //                    snr->deleteLater(); // segfault
                     return;
                 }
@@ -252,6 +257,7 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
 }
 
 void Phototonic::loadStartupFileList(QStringList argumentsList, int filesStartAt) {
+    const int oldSize = Settings::filesList.size();
     for (int i = filesStartAt; i < argumentsList.size(); i++) {
         QFileInfo file(localFile(argumentsList[i]));
         if (!file.exists() || file.isDir())
@@ -260,10 +266,14 @@ void Phototonic::loadStartupFileList(QStringList argumentsList, int filesStartAt
             Settings::filesList << file.absoluteFilePath();
         }
     }
-    fileSystemTree->clearSelection();
-    fileListWidget->show();
-    fileListWidget->itemAt(0, 0)->setSelected(true);
-    Settings::isFileListLoaded = true;
+    if (oldSize == Settings::filesList.size())
+        return; // stale
+    if (!oldSize) { // only on first update, don't undo user interactions
+        fileSystemTree->clearSelection();
+        fileListWidget->show();
+        fileListWidget->itemAt(0, 0)->setSelected(true);
+        Settings::isFileListLoaded = true;
+    }
 }
 
 void Phototonic::createThumbsViewer() {
