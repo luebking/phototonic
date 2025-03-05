@@ -914,7 +914,7 @@ void ThumbsViewer::loadDuplicates()
     findDupes(true);
     m_model->setSortRole(SortRole);
 
-    if (Settings::includeSubDirectories) {
+    if (!Settings::isFileListLoaded && Settings::includeSubDirectories) {
         QDirIterator iterator(Settings::currentDirectory, QDirIterator::Subdirectories);
         while (iterator.hasNext()) {
             iterator.next();
@@ -931,8 +931,11 @@ void ThumbsViewer::loadDuplicates()
 
 finish:
     thumbsDir.setPath(QString());
+    const bool isFileListLoaded = Settings::isFileListLoaded;
+    Settings::isFileListLoaded = false;
     findDupes(true); // clean up
     thumbsDir.setPath(Settings::currentDirectory); // reset
+    Settings::isFileListLoaded = isFileListLoaded;
     m_model->sort(0);
     m_busy = false;
     return;
@@ -1164,7 +1167,13 @@ static Histogram calcHist(const QString &filePath) {
 
 void ThumbsViewer::findDupes(bool resetCounters)
 {
-    const QFileInfoList thumbFileInfoList = thumbsDir.entryInfoList();
+    QFileInfoList thumbFileInfoList;
+    if (Settings::isFileListLoaded) {
+        for (const QString &path: Settings::filesList)
+            thumbFileInfoList << QFileInfo(path);
+    } else {
+        thumbFileInfoList = thumbsDir.entryInfoList();
+    }
     const float accuracy = (100-qMax(0, qMin(100, Settings::dupeAccuracy)))/100.0f;
     static unsigned int duplicateFiles, scannedFiles, totalFiles;
     static QHash<QBitArray, QStringList> imageHashes;
