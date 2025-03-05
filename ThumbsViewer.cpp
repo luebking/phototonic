@@ -619,12 +619,12 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
             }
             if (!t.compare("monochrome", Qt::CaseInsensitive)) {
                 needHistogram = true;
-                m_constraints.last().maxChroma = 2; continue;
+                m_constraints.last().maxChroma = 3; continue;
             }
             if (!t.compare("gray", Qt::CaseInsensitive)) {
                 needHistogram = true;
                 m_constraints.last().maxSaturation = 15;
-                m_constraints.last().maxChroma = 2; continue;
+                m_constraints.last().maxChroma = 3; continue;
             }
             if (t.startsWith("<")) {
                 side = side ? -1 : 1; t.remove(0,1);
@@ -1143,7 +1143,7 @@ static Histogram calcHist(const QImage &img)
 //            variance += delta;
         }
     }
-    hist.chromaVariance = qMin(255, qRound(variance/45.17)); // 64/(255/180) ~= 45.17
+    hist.chromaVariance = qMin(255, qRound(variance/22.6)); // 64/(255/90) ~= 22.6
 //    qDebug() << hist.chromaVariance;
     }
     return hist;
@@ -1249,7 +1249,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
                 }
                 if (qAbs(int(m_histograms.at(histIdx).brightness) - int(m_histograms.at(otherIdx).brightness)) > 12)
                     continue; // images with different brightness are not the same
-                if (qAbs(int(m_histograms.at(histIdx).chromaVariance) - int(m_histograms.at(otherIdx).chromaVariance)) > 4)
+                if (qAbs(int(m_histograms.at(histIdx).chromaVariance) - int(m_histograms.at(otherIdx).chromaVariance)) > 7)
                     continue; // images with different chromaVariance are not the same
                 int deltaHue = qAbs(int(m_histograms.at(histIdx).hueIndicator) - int(m_histograms.at(otherIdx).hueIndicator));
                 if (deltaHue > 128)
