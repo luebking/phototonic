@@ -262,8 +262,13 @@ void Phototonic::loadStartupFileList(QStringList argumentsList, int filesStartAt
         QFileInfo file(localFile(argumentsList[i]));
         if (!file.exists() || file.isDir())
             continue;
-        if (!Settings::filesList.contains(file.absoluteFilePath())) {
-            Settings::filesList << file.absoluteFilePath();
+
+        QString path = file.canonicalFilePath();
+        if (path.isEmpty())
+            path = file.absoluteFilePath();
+
+        if (!Settings::filesList.contains(path)) {
+            Settings::filesList << path;
         }
     }
     if (oldSize == Settings::filesList.size())
