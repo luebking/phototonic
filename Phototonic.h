@@ -68,6 +68,7 @@ private slots:
     void hideViewer();
     void dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyMoveDirPath);
     void sortThumbnails();
+    void setFileListMode(bool on);
 
     void reload();
 

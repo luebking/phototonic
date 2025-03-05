@@ -274,11 +274,19 @@ void Phototonic::loadStartupFileList(QStringList argumentsList, int filesStartAt
     if (oldSize == Settings::filesList.size())
         return; // stale
     if (!oldSize) { // only on first update, don't undo user interactions
-        fileSystemTree->clearSelection();
         fileListWidget->show();
-        fileListWidget->itemAt(0, 0)->setSelected(true);
-        Settings::isFileListLoaded = true;
+        setFileListMode(true);
     }
+}
+
+void Phototonic::setFileListMode(bool on) {
+    Settings::isFileListLoaded = on;
+    if (on) {
+        includeSubDirectoriesAction->setChecked(false);
+        fileSystemTree->clearSelection();
+        fileListWidget->itemAt(0, 0)->setSelected(true);
+    }
+    includeSubDirectoriesAction->setEnabled(!on);
 }
 
 void Phototonic::createThumbsViewer() {
@@ -1211,8 +1219,7 @@ void Phototonic::createFileSystemDock() {
     fileListWidget = new FileListWidget(fileSystemDock);
     connect(fileListWidget, &FileListWidget::itemSelectionChanged, [=](){
         if (initComplete && fileListWidget->itemAt(0, 0)->isSelected()) {
-            Settings::isFileListLoaded = true;
-            fileSystemTree->clearSelection();
+            setFileListMode(true);
             refreshThumbs(true);
         }
     });
@@ -2200,7 +2207,7 @@ void Phototonic::deletePermanentlyOperation() {
 void Phototonic::goTo(QString path) {
     includeSubDirectoriesAction->setChecked(false);
     findDupesAction->setChecked(false);
-    Settings::isFileListLoaded = false;
+    setFileListMode(false);
     fileListWidget->clearSelection();
     Settings::currentDirectory = path;
     fileSystemTree->setCurrentIndex(fileSystemModel->index(path));
@@ -2224,7 +2231,7 @@ void Phototonic::goPathBarDir() {
         });
         connect(job, &QProcess::finished, job, &QObject::deleteLater);
         Settings::filesList.clear();
-        Settings::isFileListLoaded = true;
+        setFileListMode(true);
         reload();
         job->startCommand(command);
         return;
