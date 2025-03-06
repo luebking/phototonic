@@ -21,6 +21,7 @@
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QGroupBox>
+#include <QHeaderView>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPainter>
@@ -28,6 +29,7 @@
 #include <QRadioButton>
 #include <QSpinBox>
 #include <QTabWidget>
+#include <QTableWidget>
 #include <QToolButton>
 
 #include "Settings.h"
@@ -268,6 +270,73 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     generalSettingsLayout->addWidget(setWindowIconCheckBox);
     generalSettingsLayout->addStretch(1);
 
+    QVBoxLayout *bangLayout = new QVBoxLayout;
+    QLabel *rtfm = new QLabel(
+    tr("<p>Bangs allow you to use external commands to generate the list of shown images.<br>"
+    "The main purpose is to query databases like locate, baloo or tracker, "
+    "but anything that can generate a list of image files is suitable</p>"
+    "<p>The token <b>%s</b> in the command will be replaced with the parameter.</p>"
+    "<p>Eg. for plocate, using the shortcut <i>locate</i> and the command<br>"
+    "<i>bash -c \"locate -i '*%s*' | grep --line-buffered -iE '(jpe?g|png)$'\"</i><br>"
+    "allows you to enter <i>locate:waldo</i> to display indexed jpg's and png's of waldo.</p>"
+    "<p>Phototonic tests the files for existence and will remove duplicates (including file and "
+    "directory symlinks.</p>"));
+    rtfm->setWordWrap(true);
+    bangLayout->addWidget(rtfm);
+    bangTable = new QTableWidget(this);
+    bangTable->setColumnCount(2);
+    bangTable->setSelectionMode(QAbstractItemView::SingleSelection);
+    bangTable->setSelectionBehavior(QAbstractItemView::SelectItems);
+    bangTable->verticalHeader()->setVisible(false);
+    bangTable->verticalHeader()->setDefaultSectionSize(bangTable->verticalHeader()->minimumSectionSize());
+    bangTable->setHorizontalHeaderItem(0, new QTableWidgetItem(tr("Shortcut")));
+    bangTable->setHorizontalHeaderItem(1, new QTableWidgetItem(tr("Command")));
+    bangTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Interactive);
+    bangTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+    bangTable->setShowGrid(true);
+    bangTable->setRowCount(Settings::bangs.size()+1);
+    int row = 0;
+    for (auto i = Settings::bangs.cbegin(), end = Settings::bangs.cend(); i != end; ++i) {
+        bangTable->setItem(row, 0, new QTableWidgetItem(i.key()));
+        bangTable->setItem(row++, 1, new QTableWidgetItem(i.value()));
+    }
+    bangLayout->addWidget(bangTable);
+    connect (bangTable, &QTableWidget::cellChanged, this, [=](int row, int col) {
+        if (row < bangTable->rowCount() - 1 && bangTable->item(row,0)->text().isEmpty() && bangTable->item(row,1)->text().isEmpty()) {
+            bangTable->removeRow(row);
+        } else {
+            if (col == 0) {
+                bangTable->blockSignals(true);
+                for (int i = 0; i < bangTable->rowCount(); ++i) {
+                    if (QTableWidgetItem *item = bangTable->item(i, 0))
+                        item->setForeground(QBrush());
+                }
+                for (int i = 0; i < bangTable->rowCount() - 1; ++i) {
+                    QTableWidgetItem *item_i = bangTable->item(i, 0);
+                    if (!item_i)
+                        continue;
+                for (int j = i + 1; j < bangTable->rowCount(); ++j) {
+                    QTableWidgetItem *item_j = bangTable->item(j, 0);
+                    if (!item_j || item_j->text() != item_i->text())
+                        continue;
+                    item_i->setForeground(QColor(208,23,23));
+                    item_j->setForeground(QColor(208,23,23));
+                }
+                }
+                bangTable->blockSignals(false);
+            }
+            if (row == bangTable->rowCount()-1 && !bangTable->item(row,col)->text().isEmpty())
+                bangTable->setRowCount(bangTable->rowCount() + 1);
+        }
+    });
+    QAction *act = new QAction;
+    act->setShortcut(Qt::Key_Delete);
+    act->setShortcutContext(Qt::WidgetShortcut);
+    connect(act, &QAction::triggered, [=]() {
+        bangTable->currentItem()->setText(QString());
+    });
+    bangTable->addAction(act);
+
     /* Confirmation buttons */
     QHBoxLayout *confirmSettingsLayout = new QHBoxLayout;
     QPushButton *okButton = new QPushButton(tr("OK"));
@@ -298,6 +367,10 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     QWidget *keyboardSettings = new QWidget;
     keyboardSettings->setLayout(keyboardSettingsLayout);
     settingsTabs->addTab(keyboardSettings, tr("Shortcuts"));
+
+    QWidget *bangSettings = new QWidget;
+    bangSettings->setLayout(bangLayout);
+    settingsTabs->addTab(bangSettings, tr("Bangs"));
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addWidget(settingsTabs);
@@ -332,6 +405,17 @@ void SettingsDialog::saveSettings() {
     } else {
         Settings::startupDir = Settings::SpecifiedDir;
         Settings::specifiedStartDir = startupDirLineEdit->text();
+    }
+
+    Settings::bangs.clear();
+    for (int i = 0; i < bangTable->rowCount() - 1; ++i) {
+        QString key = QString("bang_%1").arg(i);
+        if (bangTable->item(i,0) && !bangTable->item(i,0)->text().isEmpty())
+            key = bangTable->item(i,0)->text();
+        QString value;
+        if (bangTable->item(i,1))
+            value = bangTable->item(i,1)->text();
+        Settings::bangs[key] = value;
     }
 
     accept();

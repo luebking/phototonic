@@ -24,6 +24,7 @@ class QCheckBox;
 class QLineEdit;
 class QRadioButton;
 class QSpinBox;
+class QTableWidget;
 class QToolButton;
 #include <QDialog>
 
@@ -76,6 +77,7 @@ private:
     QCheckBox *thumbsRepeatBackgroundImageCheckBox;
     QCheckBox *setWindowIconCheckBox;
     QCheckBox *upscalePreviewCheckBox;
+    QTableWidget *bangTable;
 
     void setButtonBgColor(QColor &color, QAbstractButton *button);
 };
