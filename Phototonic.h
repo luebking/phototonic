@@ -22,7 +22,6 @@
 class BookMarks;
 class ColorsDialog;
 class CopyMoveToDialog;
-class FileListWidget;
 class FileSystemTree;
 class ImageTags;
 class ImageViewer;
@@ -290,7 +289,6 @@ private:
     QWidget *imagePreviewDockEmptyWidget;
     QWidget *tagsDockEmptyWidget;
     QWidget *imageInfoDockEmptyWidget;
-    FileListWidget *fileListWidget;
     QFileSystemModel *fileSystemModel;
     QStackedLayout *stackedLayout;
 

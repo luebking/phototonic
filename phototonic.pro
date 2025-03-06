@@ -43,15 +43,13 @@ CONFIG += optimize
 HEADERS += Phototonic.h ThumbsViewer.h ImageViewer.h CropRubberband.h SettingsDialog.h Settings.h InfoViewer.h \
 			FileSystemTree.h Bookmarks.h DirCompleter.h Tags.h MetadataCache.h ShortcutsTable.h CopyMoveDialog.h \
 			CopyMoveToDialog.h CropDialog.h ColorsDialog.h ResizeDialog.h ExternalAppsDialog.h \
-			ImageWidget.h FileListWidget.h RenameDialog.h MessageBox.h \
-			GuideWidget.h SmartCrop.h
+			ImageWidget.h RenameDialog.h MessageBox.h GuideWidget.h SmartCrop.h
 
 SOURCES += main.cpp Phototonic.cpp ThumbsViewer.cpp ImageViewer.cpp CropRubberband.cpp SettingsDialog.cpp \
 			Settings.cpp InfoViewer.cpp FileSystemTree.cpp Bookmarks.cpp DirCompleter.cpp Tags.cpp \
 			MetadataCache.cpp ShortcutsTable.cpp CopyMoveDialog.cpp CopyMoveToDialog.cpp CropDialog.cpp \
-			ExternalAppsDialog.cpp ColorsDialog.cpp ResizeDialog.cpp \
-			ImageWidget.cpp FileListWidget.cpp RenameDialog.cpp MessageBox.cpp \
-			GuideWidget.cpp IconProvider.cpp SmartCrop.cpp
+			ExternalAppsDialog.cpp ColorsDialog.cpp ResizeDialog.cpp ImageWidget.cpp RenameDialog.cpp \
+            MessageBox.cpp GuideWidget.cpp IconProvider.cpp SmartCrop.cpp
 
 RESOURCES += phototonic.qrc
 

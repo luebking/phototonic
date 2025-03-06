@@ -62,7 +62,6 @@
 #include "ColorsDialog.h"
 #include "DirCompleter.h"
 #include "ExternalAppsDialog.h"
-#include "FileListWidget.h"
 #include "FileSystemTree.h"
 #include "GuideWidget.h"
 #include "IconProvider.h"
@@ -274,7 +273,14 @@ void Phototonic::loadStartupFileList(QStringList argumentsList, int filesStartAt
     if (oldSize == Settings::filesList.size())
         return; // stale
     if (!oldSize) { // only on first update, don't undo user interactions
-        fileListWidget->show();
+        QToolButton *btn = static_cast<QToolButton*>(myMainToolBar->widgetForAction(goHomeAction));
+        QMenu *btnmenu = new QMenu(btn);
+        QAction *act = btnmenu->addAction(tr("Home"));
+        connect(act, &QAction::triggered, [=]() { goTo(QDir::homePath()); });
+        //: The file list is the optional list of files in the execution parameters, some virtual directory
+        act = btnmenu->addAction(tr("File List"));
+        connect(act, &QAction::triggered, [=]() { goTo("Phototonic::FileList"); });
+        btn->setMenu(btnmenu);
         setFileListMode(true);
     }
 }
@@ -284,7 +290,6 @@ void Phototonic::setFileListMode(bool on) {
     if (on) {
         includeSubDirectoriesAction->setChecked(false);
         fileSystemTree->clearSelection();
-        fileListWidget->itemAt(0, 0)->setSelected(true);
     }
     includeSubDirectoriesAction->setEnabled(!on);
 }
@@ -715,7 +720,12 @@ void Phototonic::createActions() {
     connect(goUpAction, &QAction::triggered, [=](){ goTo(QFileInfo(Settings::currentDirectory).dir().absolutePath()); });
 
     MAKE_ACTION_NOSC(goHomeAction, tr("Home"), "home");
-    connect(goHomeAction, &QAction::triggered, [=](){ goTo(QDir::homePath()); });
+    connect(goHomeAction, &QAction::triggered, [=](){
+        if (Settings::isFileListLoaded || Settings::filesList.isEmpty() || Settings::currentDirectory != QDir::homePath())
+            goTo(QDir::homePath());
+        else
+            goTo("Phototonic::FileList");
+    });
     goHomeAction->setIcon(QIcon::fromTheme("go-home", QIcon(":/images/home.png")));
 
     MAKE_ACTION(slideShowAction, tr("Slide Show"), "toggleSlideShow", "Ctrl+W");
@@ -1216,15 +1226,6 @@ void Phototonic::createFileSystemDock() {
     fileSystemDock = new QDockWidget(tr("File System"), this);
     fileSystemDock->setObjectName("File System");
 
-    fileListWidget = new FileListWidget(fileSystemDock);
-    connect(fileListWidget, &FileListWidget::itemSelectionChanged, [=](){
-        if (initComplete && fileListWidget->itemAt(0, 0)->isSelected()) {
-            setFileListMode(true);
-            refreshThumbs(true);
-        }
-    });
-    fileListWidget->hide();
-
     fileSystemTree = new FileSystemTree(fileSystemDock);
     fileSystemTree->addAction(createDirectoryAction);
     fileSystemTree->addAction(renameAction);
@@ -1242,7 +1243,6 @@ void Phototonic::createFileSystemDock() {
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
-    mainLayout->addWidget(fileListWidget);
     mainLayout->addWidget(fileSystemTree);
 
     QWidget *fileSystemTreeMainWidget = new QWidget(fileSystemDock);
@@ -2207,12 +2207,13 @@ void Phototonic::deletePermanentlyOperation() {
 void Phototonic::goTo(QString path) {
     includeSubDirectoriesAction->setChecked(false);
     findDupesAction->setChecked(false);
-    setFileListMode(false);
-    fileListWidget->clearSelection();
-    Settings::currentDirectory = path;
-    fileSystemTree->setCurrentIndex(fileSystemModel->index(path));
+    setFileListMode(path == "Phototonic::FileList");
+    if (!Settings::isFileListLoaded) {
+        Settings::currentDirectory = path;
+        fileSystemTree->setCurrentIndex(fileSystemModel->index(path));
+        selectCurrentViewDir();
+    }
     refreshThumbs(true);
-    selectCurrentViewDir();
 }
 
 void Phototonic::goPathBarDir() {
@@ -3010,7 +3011,9 @@ void Phototonic::reloadThumbs() {
     }
     m_reloadPending = false;
 
-    if (!Settings::isFileListLoaded) {
+    if (Settings::isFileListLoaded) {
+        addPathHistoryRecord("Phototonic::FileList");
+    } else {
         if (Settings::currentDirectory.isEmpty()) {
             Settings::currentDirectory = getSelectedPath();
             if (Settings::currentDirectory.isEmpty()) {
