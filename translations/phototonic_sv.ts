@@ -1242,7 +1242,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="973"/>
         <source>Accuracy: </source>
-        <translation type="unfinished"></translation>
+        <translation>Noggrannhet: </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="990"/>
@@ -2134,9 +2134,9 @@
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="971"/>
         <source>%n of %1 image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n av %1 bild</numerusform>
+            <numerusform>%n av %1 bilder</numerusform>
         </translation>
     </message>
     <message numerus="yes">
