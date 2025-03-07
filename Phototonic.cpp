@@ -172,28 +172,14 @@ static QString localFile(const QString &fileOrUrl) {
 }
 
 void Phototonic::processStartupArguments(QStringList argumentsList, int filesStartAt) {
-    if (argumentsList.size() > filesStartAt) {
-        QFileInfo firstArgument(localFile(argumentsList.at(filesStartAt)));
-        if (firstArgument.isDir()) {
-            // Confusingly we need the absoluteFile and not absolutePath if it's a directory
-            Settings::currentDirectory = firstArgument.absoluteFilePath();
-        } else if (argumentsList.size() > filesStartAt + 1) {
-            loadStartupFileList(argumentsList, filesStartAt);
-            return;
-        } else {
-            Settings::currentDirectory = firstArgument.absolutePath();
-            const QString cliFileName = Settings::currentDirectory + QDir::separator() + firstArgument.fileName();
-            if (QFile::exists(cliFileName)) {
-                showViewer();
-                imageViewer->loadImage(cliFileName);
-                thumbsViewer->setCurrentIndex(cliFileName);
-                setWindowTitle(cliFileName + " - Phototonic");
-            } else {
-                MessageBox(this).critical(tr("Error"), tr("Failed to open file %1, file not found.").arg(cliFileName));
-            }
-        }
-    } else {
-        QFile *input = nullptr;
+    if (Settings::startupDir == Settings::SpecifiedDir) {
+        Settings::currentDirectory = Settings::specifiedStartDir;
+    } else if (Settings::startupDir == Settings::RememberLastDir) {
+        Settings::currentDirectory = Settings::value(Settings::optionLastDir, QString()).toString();
+    }
+
+    QFile *input = nullptr;
+    if (filesStartAt < argumentsList.size() && argumentsList.at(filesStartAt) == "-") { // stdin ?
 #ifdef Q_OS_WIN
         if (!_isatty(_fileno(stdin))) {
 #else
@@ -213,43 +199,60 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
                     loadStartupFileList(QStringList() << line, 0);
             }
         }
-        if (input) {
-            QSocketNotifier *snr = new QSocketNotifier(input->handle(), QSocketNotifier::Read, input);
-            static QStringList newFiles;
-            static QTimer *bouncer;
-            if (!bouncer) {
-                bouncer = new QTimer(this);
-                bouncer->setInterval(30);
-                bouncer->setSingleShot(true);
-                connect(bouncer, &QTimer::timeout, [=]() {
-                    loadStartupFileList(newFiles, 0);
-                    newFiles.clear();
-                    thumbsViewer->reload(true);
-                });
-                if (!Settings::filesList.isEmpty())
-                    bouncer->start(); // for the first file
-            }
-            connect (snr, &QSocketNotifier::activated, [=](){
-                QByteArray ba = input->readLine();
-                if (ba.isEmpty()) { // effectively EOF
-                    snr->setEnabled(false);
-                    input->close();
-                    delete input;
-//                    snr->deleteLater(); // segfault
-                    return;
-                }
-                QString line = QString::fromLocal8Bit(ba.trimmed());
-                if (!line.isEmpty()) {
-                    newFiles << line;
-                    if (newFiles.size() < 25) // if we got some batch, let the timer run out to load it
-                        bouncer->start();
-                }
+        if (!input)
+            argumentsList.remove(filesStartAt);
+    }
+    if (input) {
+        QSocketNotifier *snr = new QSocketNotifier(input->handle(), QSocketNotifier::Read, input);
+        static QStringList newFiles;
+        static QTimer *bouncer;
+        if (!bouncer) {
+            bouncer = new QTimer(this);
+            bouncer->setInterval(30);
+            bouncer->setSingleShot(true);
+            connect(bouncer, &QTimer::timeout, [=]() {
+                loadStartupFileList(newFiles, 0);
+                newFiles.clear();
+                thumbsViewer->reload(true);
             });
+            if (!Settings::filesList.isEmpty())
+                bouncer->start(); // for the first file
         }
-        if (Settings::startupDir == Settings::SpecifiedDir) {
-            Settings::currentDirectory = Settings::specifiedStartDir;
-        } else if (Settings::startupDir == Settings::RememberLastDir) {
-            Settings::currentDirectory = Settings::value(Settings::optionLastDir, QString()).toString();
+        connect (snr, &QSocketNotifier::activated, [=](){
+            QByteArray ba = input->readLine();
+            if (ba.isEmpty()) { // effectively EOF
+                snr->setEnabled(false);
+                input->close();
+                delete input;
+//                snr->deleteLater(); // segfault
+                return;
+            }
+            QString line = QString::fromLocal8Bit(ba.trimmed());
+            if (!line.isEmpty()) {
+                newFiles << line;
+                if (newFiles.size() < 25) // if we got some batch, let the timer run out to load it
+                    bouncer->start();
+            }
+        });
+    } else if (filesStartAt < argumentsList.size()) {
+        QFileInfo firstArgument(localFile(argumentsList.at(filesStartAt)));
+        if (firstArgument.isDir()) {
+            // Confusingly we need the absoluteFile and not absolutePath if it's a directory
+            Settings::currentDirectory = firstArgument.absoluteFilePath();
+        } else if (argumentsList.size() > filesStartAt + 1) {
+            loadStartupFileList(argumentsList, filesStartAt);
+            return;
+        } else {
+            Settings::currentDirectory = firstArgument.absolutePath();
+            const QString cliFileName = Settings::currentDirectory + QDir::separator() + firstArgument.fileName();
+            if (QFile::exists(cliFileName)) {
+                showViewer();
+                imageViewer->loadImage(cliFileName);
+                thumbsViewer->setCurrentIndex(cliFileName);
+                setWindowTitle(cliFileName + " - Phototonic");
+            } else {
+                MessageBox(this).critical(tr("Error"), tr("Failed to open file %1, file not found.").arg(cliFileName));
+            }
         }
     }
     selectCurrentViewDir();
