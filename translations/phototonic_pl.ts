@@ -1324,12 +1324,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="973"/>
         <source>Accuracy: </source>
-        <translation type="unfinished"></translation>
+        <translation>Dokładność: </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="990"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok, to nie jest dokładnie napędzane przez sztuczną inteligencję.&lt;p&gt;Duplikaty są wykrywane za pomocą mozaiki w skali szarości&lt;br&gt;(&lt;i&gt;czy odbarwione obrazy wyglądają tak samo z dużej odległości?&lt;/i&gt;)&lt;br&gt;i przez porównanie rozkładu kolorów&lt;br&gt;(&lt;i&gt;odporny na lustra, obrót, skale anamorficzne...&lt;/i&gt;)&lt;br&gt;Oba mogą powodować zabawne fałszywie pozytywne wyniki.&lt;/p&gt;&lt;p&gt;Wymaganą bliskość rozkładu kolorów można skonfigurować tutaj&lt;br&gt;60% to rozsądne ustawienie domyślne, ale może być zbyt łatwe, jeśli masz do czynienia ze zdjęciami monochromatycznymi&lt;br&gt;Zmiana na znacznie niższą wartość spowoduje zbyt wiele fałszywie pozytywnych wyników, więc zwiększ dokładność, aby się ich pozbyć&lt;/p&gt;&lt;h3&gt;Zauważ, że może to powodować rozłączne grupy dopasowań!&lt;/h3&gt;&lt;p&gt;[A] może być podobne do [B] i [C], podczas gdy [B] i [C] nie są wystarczająco bliskie.&lt;br&gt;W rezultacie [A] &lt;b&gt;ten sam obraz może pojawiać się wiele razy!&lt;/b&gt;&lt;br&gt;Nie zakładaj, że sortowanie jest nieprawidłowe, to są ewidentnie duplikaty&lt;br&gt;i nie naciskaj Delete. To &lt;b&gt;ten sam obraz&lt;/b&gt;, a usunięcie jednego oznacza&lt;br&gt;usunięcie obu.&lt;/p&gt;&lt;h3&gt;Zwróć uwagę na nazwy plików!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3227"/>
@@ -3214,10 +3214,10 @@
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="971"/>
         <source>%n of %1 image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n z %1 obrazu</numerusform>
+            <numerusform>%n z %1 obrazów</numerusform>
+            <numerusform>%n z %1 obrazów</numerusform>
         </translation>
     </message>
     <message numerus="yes">

@@ -396,47 +396,47 @@
     <message>
         <location filename="../Tags.cpp" line="101"/>
         <source>Add to library</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter à la photothèque</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="104"/>
         <source>Remove from library</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer de la photothèque</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="154"/>
         <source>Show untagged</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer les détagué(s)</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="154"/>
         <source>Invert filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverser le filtre</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="345"/>
         <source>Mandatory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Obligatoire :</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="346"/>
         <source>Sufficient:</source>
-        <translation type="unfinished"></translation>
+        <translation>Suffisant :</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="347"/>
         <source>The image must not have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;image ne doit pas avoir ce tag</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="348"/>
         <source>The image must have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;image doit avoir ce tag</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="349"/>
         <source>The image must have any of these tags</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;image ne doit avoir aucun de ces tags</translation>
     </message>
     <message>
         <source>Delete Tag</source>
@@ -1676,17 +1676,17 @@
     <message>
         <location filename="../Phototonic.cpp" line="973"/>
         <source>Accuracy: </source>
-        <translation type="unfinished"></translation>
+        <translation>Précision : </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="990"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce n&apos;est pas exactement de l&apos;IA.&lt;p&gt;Les doublons sont détectés par une mosaïque de niveau de gris&lt;br&gt;(&lt;i&gt;les image désaturées semblent identique de loin ?&lt;/i&gt;)&lt;br&gt;en comparant la répartition des couleurs&lt;br&gt;(&lt;i&gt;non affecté par les miroirs, rotations, ratio ...&lt;/i&gt;)&lt;br&gt;Des faux-positifs sont possibles.&lt;/p&gt;&lt;p&gt;La sensibilité à la répartition des couleurs peut être configurée&lt;br&gt;60% par défaut, mais cette valeur est à modifier, notamment pour les images monochromes&lt;br&gt;Une valeur plus basse augmente le risque de faux-positifs&lt;/p&gt;&lt;h3&gt;Cela peut affecter les correspondances de groupes !&lt;/h3&gt;&lt;p&gt;[A] est similaire à [B] et [C], alors que [B] et [C] sont trop différentes.&lt;br&gt;Il en résulte pour [A] &lt;b&gt;qu&apos;une image peut être affichée plusieurs fois !&lt;/b&gt;&lt;br&gt;Ne pas conclure qu&apos;il s&apos;agit de doublons&lt;br&gt;à effacer. Il s&apos;agit en fait&lt;b&gt;d&apos;une seule et même image&lt;/b&gt;et en effacer une &lt;br&gt;les supprimera toutes.&lt;/p&gt;&lt;h3&gt;Bien vérifier les noms de fichiers !&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3227"/>
         <source>Failed to move directory to the trash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Echec du déplacement du répertoire vers la corbeille.</translation>
     </message>
     <message>
         <source>Disable Mirror</source>
@@ -2229,7 +2229,7 @@
         <location filename="../Phototonic.cpp" line="1023"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation>&lt;h2&gt;[sous-chaînes] [/ critère [/ autre critère]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt&#x202f;; 5d &amp;lt&#x202f;; 1M / &amp;lt&#x202f;; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, remonte à 5 jours de plus mais est plus récent qu&apos;un mois - ou moins de 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus gros que/Après&#x202f;: &amp;gt&#x202f;;&lt;/li&gt;&lt;li&gt;Plus léger que/Avant&#x202f;: &amp;lt&#x202f;;&lt;/li&gt;&lt;li&gt;L&apos;âge exact ou le poids (arrondi) est sinon implicite ou explicite avec&#x202f;: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (YYYY-MM-DD) ou relatives (5m&#x202f;:h&#x202f;:d&#x202f;:w&#x202f;:M&#x202f;:y)&lt;/li&gt;&lt;li&gt;Les poids sont définis avec 4kB&#x202f;:MB&#x202f;:GB ou 4MP (méga-pixel)&lt;/li&gt;&lt;li&gt;Les dimensions utilisent le séparateur &quot;x&quot; ([largeur]x[hauteur])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Toutes les unités ignorent la casse sauf m|inute et M|ois&lt;/i&gt;&lt;br&gt;&quot;/&quot; démarre un nouveau groupe de critères, la correspondance de sous-chaînes est facultative.</translation>
+        <translation>&lt;h2&gt;[sous-chaînes] [/ critère [/ autre critère]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt ; 5d &amp;lt ; 1M / &amp;lt ; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, remonte à 5 jours de plus mais est plus récent qu&apos;un mois - ou moins de 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus gros que/Après : &amp;gt ;&lt;/li&gt;&lt;li&gt;Plus léger que/Avant : &amp;lt ;&lt;/li&gt;&lt;li&gt;L&apos;âge exact ou le poids (arrondi) est sinon implicite ou explicite avec : =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (YYYY-MM-DD) ou relatives (5m :h :d :w :M :y)&lt;/li&gt;&lt;li&gt;Les poids sont définis avec 4kB :MB :GB ou 4MP (méga-pixel)&lt;/li&gt;&lt;li&gt;Les dimensions utilisent le séparateur &quot;x&quot; ([largeur]x[hauteur])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Toutes les unités ignorent la casse sauf m|inute et M|ois&lt;/i&gt;&lt;br&gt;&quot;/&quot; démarre un nouveau groupe de critères, la correspondance de sous-chaînes est facultative.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1792"/>
@@ -3184,17 +3184,17 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="240"/>
         <source>Tagging %1</source>
-        <translation type="unfinished">Tague %1</translation>
+        <translation>Tague %1</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="248"/>
         <source>Error</source>
-        <translation type="unfinished">Erreur</translation>
+        <translation>Erreur</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="248"/>
         <source>Failed to save tags to %1</source>
-        <translation type="unfinished">Échec de la sauvegarde du tag dans %1</translation>
+        <translation>Échec de la sauvegarde du tag dans %1</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="818"/>
@@ -3204,9 +3204,9 @@
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="971"/>
         <source>%n of %1 image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n de %1 image</numerusform>
+            <numerusform>%n de %1 images</numerusform>
         </translation>
     </message>
     <message numerus="yes">
