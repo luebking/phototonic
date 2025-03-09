@@ -32,8 +32,8 @@ int main(int argc, char *argv[]) {
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument(QCoreApplication::translate("main", "files or directory"),
-                                 QCoreApplication::translate("main", "files or directory to open"),
-                                 QCoreApplication::translate("main", "[FILE...] | [DIRECTORY]"));
+                                 QCoreApplication::translate("main", "files or directory to open, \"-\" to read them from stdin."),
+                                 QCoreApplication::translate("main", "[FILE...] | [DIRECTORY] | [-]"));
 
     QCommandLineOption langOption(QStringList() << "l" << "lang",
                                              QCoreApplication::translate("main", "start with a specific translation"),
@@ -44,6 +44,10 @@ int main(int argc, char *argv[]) {
             QCoreApplication::translate("main", "Copy all modified images into <directory>."),
             QCoreApplication::translate("main", "directory"));
     parser.addOption(targetDirectoryOption);
+
+    QCommandLineOption singletonOption(QStringList() << "s" << "single",
+            QCoreApplication::translate("main", "Run a single instance of Phototonic or open files in such already running."));
+//    parser.addOption(singletonOption); /// @todo: implement this first
 
     parser.process(QApp);
 
