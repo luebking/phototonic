@@ -1230,12 +1230,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="973"/>
         <source>Accuracy: </source>
-        <translation type="unfinished"></translation>
+        <translation>სიზუსტე: </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="990"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>კარგი, ეს არ არის ზუსტად ხელოვნური ინტელექტის გამომწვევი.&lt;p&gt;დუბლიკატების აღმოჩენა ხდება ნაცრისფერი მოზაიკის საშუალებით&lt;br&gt;(&lt;i&gt;გაჯერებული სურათები ძალიან შორიდან ერთნაირად გამოიყურებიან?&lt;/i&gt;)&lt;br&gt;და ფერების განაწილების შედარებით&lt;br&gt;(&lt;i&gt;იმუნური სარკეების, ბრუნვის, ანამორფული სახალისო მიზეზების მიმართ...br&gt; დადებითი.&lt;/p&gt;&lt;p&gt;ფერების განაწილების საჭირო სიახლოვის კონფიგურაცია შესაძლებელია აქ&lt;br&gt;60% გონივრული ნაგულისხმევია, მაგრამ შეიძლება ძალიან მარტივი იყოს, თუ საქმე გაქვთ მონოქრომული ნახატებთან&lt;br&gt;დაბალზე გადასვლა გამოიწვევს ძალიან ბევრ ცრუ პოზიტიურს. და [C], ხოლო [B] და [C] საკმარისად ახლოს არ არის.&lt;br&gt;შედეგი არის ის, რომ [A] &lt;b&gt;იგივე სურათი შეიძლება გამოჩნდეს რამდენჯერმე!&lt;/b&gt;&lt;br&gt;ნუ იფიქრებთ, რომ დალაგება არასწორია, ეს აშკარად დუბლიკატებია&lt;br&gt;და დააჭირეთ წაშლას. ისინი &lt;b&gt;იგივე სურათია&lt;/b&gt; და ერთის წაშლა ნიშნავს&lt;br&gt;ორივეს წაშლას.&lt;/p&gt;&lt;h3&gt;ყურადღება მიაქციეთ ფაილების სახელებს!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1020"/>
@@ -2114,9 +2114,9 @@
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="971"/>
         <source>%n of %1 image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n გამოსახულება %1-დან</numerusform>
+            <numerusform>%n გამოსახულება %1-დან</numerusform>
         </translation>
     </message>
     <message numerus="yes">
