@@ -285,7 +285,7 @@
     <message>
         <location filename="../Tags.cpp" line="90"/>
         <source>Tag</source>
-        <translation>Etichetta</translation>
+        <translation>Aggiungi etichetta</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="94"/>
@@ -960,12 +960,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="973"/>
         <source>Accuracy: </source>
-        <translation type="unfinished"></translation>
+        <translation>Accuratezza: </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="990"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Va bene, non è esattamente guidato dall&apos;intelligenza artificiale.&lt;p&gt;I duplicati vengono rilevati tramite un mosaico in scala di grigi&lt;br&gt;(&lt;i&gt;le immagini desaturate sembrano uguali da molto lontano?&lt;/i&gt;)&lt;br&gt;e confrontando la distribuzione del colore&lt;br&gt;(&lt;i&gt;immune a specchi, rotazione, scale anamorfiche...&lt;/i&gt;)&lt;br&gt;Entrambi possono causare buffi falsi positivi.&lt;/p&gt;&lt;p&gt;La prossimità richiesta della distribuzione del colore può essere configurata qui&lt;br&gt;Il 60% è un valore predefinito ragionevole, ma può essere troppo facile se si ha a che fare con immagini monocromatiche&lt;br&gt;Scendere molto più in basso causerà troppi falsi positivi, aumenta la precisione per sbarazzartene&lt;/p&gt;&lt;h3&gt;Nota che questo può causare gruppi di corrispondenze disgiunte!&lt;/h3&gt;&lt;p&gt;[A] può essere simile a [B] e [C], mentre [B] e [C] non sono abbastanza vicini.&lt;br&gt;Il risultato è che [A] la &lt;b&gt;stessa immagine può apparire più volte!&lt;/b&gt;&lt;br&gt;Non supponi semplicemente che l&apos;ordinamento sia sbagliato, questi sono chiaramente duplicati&lt;br&gt;e premi elimina. Sono &lt;b&gt;la stessa immagine&lt;/b&gt; e cancellarne una significa&lt;br&gt;cancellare entrambe.&lt;/p&gt;&lt;h3&gt;Fai attenzione ai nomi dei file!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1117"/>
@@ -2133,9 +2133,9 @@
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="971"/>
         <source>%n of %1 image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n di un immagine</numerusform>
+            <numerusform>%n di %1 immagini</numerusform>
         </translation>
     </message>
     <message numerus="yes">

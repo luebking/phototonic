@@ -240,7 +240,7 @@
     <message>
         <location filename="../CropDialog.cpp" line="38"/>
         <source>Reset</source>
-        <translation>Restaurar</translation>
+        <translation>Repor</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="40"/>
@@ -273,17 +273,17 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="35"/>
         <source>Manage External Applications</source>
-        <translation type="unfinished">Gerir aplicativos externos</translation>
+        <translation>Gerir aplicações externas</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="47"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="49"/>
         <source>Application path and arguments</source>
-        <translation type="unfinished">Localização e argumentos</translation>
+        <translation>Caminho e argumentos da aplicação</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="56"/>
@@ -314,7 +314,7 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="124"/>
         <source>Choose Application</source>
-        <translation type="unfinished">Escolher aplicativo</translation>
+        <translation>Escolher aplicação</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="135"/>

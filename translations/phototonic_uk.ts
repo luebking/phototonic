@@ -254,7 +254,7 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="72"/>
         <source>Wallpaper command</source>
-        <translation type="unfinished"></translation>
+        <translation>Команда для шпалер</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="76"/>
@@ -287,7 +287,7 @@
         <location filename="../GuideWidget.cpp" line="40"/>
         <source>Remove Guide</source>
         <extracomment>The guide is a visible line for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Прибрати підказку</translation>
     </message>
 </context>
 <context>
@@ -330,32 +330,32 @@
     <message>
         <location filename="../Tags.cpp" line="154"/>
         <source>Invert filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Інвертувати фільтр</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="345"/>
         <source>Mandatory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Обов&apos;язково:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="346"/>
         <source>Sufficient:</source>
-        <translation type="unfinished"></translation>
+        <translation>Достатньо:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="347"/>
         <source>The image must not have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Зображення не повинно мати цього тегу</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="348"/>
         <source>The image must have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Зображення повинно мати цей тег</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="349"/>
         <source>The image must have any of these tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Зображення повинно мати будь-який з цих тегів</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="52"/>
@@ -385,7 +385,7 @@
     <message>
         <location filename="../Tags.cpp" line="574"/>
         <source>Tag %1 already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Тег %1 уже існує</translation>
     </message>
     <message numerus="yes">
         <location filename="../Tags.cpp" line="590"/>
