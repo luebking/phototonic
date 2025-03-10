@@ -71,7 +71,7 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="132"/>
         <source>Affected Channels</source>
-        <translation>受影響的色板</translation>
+        <translation>受影響的色版</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="136"/>
@@ -116,7 +116,7 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="41"/>
         <source>Choose Directory</source>
-        <translation>選擇路徑</translation>
+        <translation>選擇目錄</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="65"/>
@@ -146,12 +146,12 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Copy</source>
-        <translation type="unfinished">複製</translation>
+        <translation>複製</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>移動</translation>
     </message>
     <message>
         <source>OK</source>
@@ -338,7 +338,7 @@
     <message>
         <location filename="../Tags.cpp" line="101"/>
         <source>Add to library</source>
-        <translation>添加到庫源</translation>
+        <translation>增到庫源</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="104"/>
@@ -428,7 +428,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="719"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation>&lt;h1&gt;警告&lt;/h1&gt;原始圖檔影像大小 %1x%2 超出限制&lt;br&gt;調整變小至 %3x%4&lt;br&gt;&lt;h3&gt;儲存編輯將會儲存較小的圖片！&lt;/h3&gt;</translation>
+        <translation>&lt;h1&gt;警告&lt;/h1&gt;原始影像圖檔大小 %1x%2 超出限制&lt;br&gt;調整變小至 %3x%4&lt;br&gt;&lt;h3&gt;儲存編輯時將會儲存較小的圖檔！&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="985"/>
@@ -678,7 +678,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="510"/>
         <source>Rename</source>
-        <translation>更改名稱</translation>
+        <translation>重新命名</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="516"/>
@@ -755,7 +755,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="680"/>
         <source>Add Bookmark</source>
-        <translation>添加書籤</translation>
+        <translation>增加書籤</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="687"/>
@@ -806,7 +806,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="749"/>
         <source>Find Duplicate Images</source>
-        <translation>找出重複影像圖檔</translation>
+        <translation>尋找重複影像圖檔</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="787"/>
@@ -942,7 +942,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="183"/>
         <source>Failed to open file %1, file not found.</source>
-        <translation>開啟檔案 %1 失敗，未找到檔案。</translation>
+        <translation>開啟檔案 %1 失敗，查無檔案。</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="333"/>
@@ -982,12 +982,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="389"/>
         <source>Add vertical guide</source>
-        <translation>添加垂直定位線</translation>
+        <translation>增加垂直定位線</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="392"/>
         <source>Add horizontal guide</source>
-        <translation>添加水平定位線</translation>
+        <translation>增加水平定位線</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="432"/>
@@ -1086,12 +1086,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="597"/>
         <source>New Directory</source>
-        <translation>新建資料夾</translation>
+        <translation>新建目錄</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="601"/>
         <source>Set Save Directory</source>
-        <translation>設定存檔資料夾</translation>
+        <translation>設定儲存目錄</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="642"/>
@@ -1241,12 +1241,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="973"/>
         <source>Accuracy: </source>
-        <translation type="unfinished"></translation>
+        <translation>準確度： </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="990"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1020"/>
@@ -1348,7 +1348,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1917"/>
         <source>Can not move to the same directory</source>
-        <translation>不可移動至相同的資料夾</translation>
+        <translation>不可移動至相同的目錄</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1943"/>
@@ -1415,47 +1415,47 @@
     <message>
         <location filename="../Phototonic.cpp" line="2854"/>
         <source>Can not move or copy images to this directory.</source>
-        <translation>不可移動或複製影像圖檔至此資料夾。</translation>
+        <translation>不可移動或複製影像圖檔至此目錄。</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2860"/>
         <source>Destination directory is the same as the source directory.</source>
-        <translation>目的地資料夾與來源資料夾相同。</translation>
+        <translation>目的地目錄與來源目錄相同。</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2873"/>
         <source>Move directory %1 to %2?</source>
-        <translation>移動資料夾 %1 至 %2 ？</translation>
+        <translation>移動目錄 %1 至 %2 ？</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2874"/>
         <source>Move directory</source>
-        <translation>移動資料夾</translation>
+        <translation>移動目錄</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2877"/>
         <source>Move Directory</source>
-        <translation>移動資料夾</translation>
+        <translation>移動目錄</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2883"/>
         <source>Failed to move directory.</source>
-        <translation>移動資料夾失敗。</translation>
+        <translation>移動目錄失敗。</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2885"/>
         <source>Directory moved</source>
-        <translation>資料夾已經移動</translation>
+        <translation>目錄已經移動</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2969"/>
         <source>Failed to open directory %1</source>
-        <translation>開啟資料夾 %1 失敗</translation>
+        <translation>開啟目錄 %1 失敗</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2970"/>
         <source>No directory selected</source>
-        <translation>未有選擇資料夾</translation>
+        <translation>沒有選擇目錄</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3002"/>
@@ -1466,7 +1466,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3077"/>
         <source>Failed to rename directory.</source>
-        <translation>更改資料夾名稱失敗。</translation>
+        <translation>變更目錄名稱失敗。</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3180"/>
@@ -1486,18 +1486,18 @@
     <message>
         <location filename="../Phototonic.cpp" line="3206"/>
         <source>Move directory %1 to the trash?</source>
-        <translation>移動資料夾 %1 至垃圾桶？</translation>
+        <translation>移動目錄 %1 至垃圾桶？</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3207"/>
         <source>Permanently delete the directory %1 and all of its contents?</source>
-        <translation>永久刪除資料夾 %1 及其全部內容？</translation>
+        <translation>永久刪除目錄 %1 及其全部內容？</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3212"/>
         <location filename="../Phototonic.cpp" line="3215"/>
         <source>Delete Directory</source>
-        <translation>刪除資料夾</translation>
+        <translation>刪除目錄</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3215"/>
@@ -1511,12 +1511,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="3228"/>
         <source>Failed to delete directory.</source>
-        <translation>刪除資料夾失敗。</translation>
+        <translation>刪除目錄失敗。</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3250"/>
         <source>New Sub directory</source>
-        <translation>新建子資料夾</translation>
+        <translation>新建下層目錄</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3251"/>
@@ -1526,7 +1526,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3270"/>
         <source>Failed to create new directory.</source>
-        <translation>建立新的資料夾失敗。</translation>
+        <translation>建立新的目錄失敗。</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3275"/>
@@ -1536,7 +1536,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3281"/>
         <source>Directory to save images into:</source>
-        <translation>資料夾儲存影像圖檔至：</translation>
+        <translation>目錄儲存影像圖檔至：</translation>
     </message>
     <message numerus="yes">
         <source>%n image(s)</source>
@@ -1559,7 +1559,7 @@
         <location filename="../Phototonic.cpp" line="1023"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;符合 foo， 超過五天但少於一 個月 - 或低於 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;較大於/之後： &amp;gt;&lt;/li&gt;&lt;li&gt;較小於/之前： &amp;lt;&lt;/li&gt;&lt;li&gt;確切的年齡或(四捨五入)大小是另有暗示或明確的：=&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;日期是絕對日期 (YYYY-MM-DD) 或相對日期 (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;大小單位是以 4 kB:MB:GB 或 4MP(百萬像素)作為後綴&lt;/li&gt;&lt;li&gt;尺寸是使用 &quot;x&quot; ([寬度] x [高度])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;所有後綴不區分大小寫，但 m|分鐘 和 M|月份&lt;/i&gt;&lt;br&gt;後續的 &quot;/&quot; 開始一個新的充分條件群組，子字串匹配是可選的。</translation>
+        <translation>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;符合 foo， 超過五天但少於一 個月 - 或低於 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;較大於/之後： &amp;gt;&lt;/li&gt;&lt;li&gt;較小於/之前： &amp;lt;&lt;/li&gt;&lt;li&gt;確切的年齡或(四捨五入)大小是另有暗示或明確的：=&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;日期是絕對日期 (YYYY-MM-DD) 或相對日期 (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;大小單位是以 4 kB:MB:GB 或 4MP(百萬像素)作為後綴&lt;/li&gt;&lt;li&gt;大小是使用 &quot;x&quot; ([寬度] x [高度])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;所有後綴不區分大小寫，但 m|分鐘 和 M|月份&lt;/i&gt;&lt;br&gt;後續的 &quot;/&quot; 開始一個新的充分條件群組，子字串匹配是可選的。</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1797"/>
@@ -1574,7 +1574,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1810"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
-        <translation>未有定義全域儲存目錄，影像圖檔將會被覆蓋。&lt;h3&gt;您要建立備份嗎？&lt;/h3&gt;</translation>
+        <translation>尚無定義整體儲存目錄，影像圖檔將會被覆蓋。&lt;h3&gt;您要建立備份嗎？&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1815"/>
@@ -1644,7 +1644,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3055"/>
         <source>Rename %1</source>
-        <translation>更改名稱 %1</translation>
+        <translation>重新命名 %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3057"/>
@@ -1671,12 +1671,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="3157"/>
         <source>Failed to rename image.</source>
-        <translation>更改影像圖檔名稱失敗。</translation>
+        <translation>變更影像圖檔名稱失敗。</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3227"/>
         <source>Failed to move directory to the trash.</source>
-        <translation type="unfinished"></translation>
+        <translation>移動目錄至垃圾桶失敗。</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3233"/>
@@ -1721,12 +1721,12 @@
     <message>
         <location filename="../RenameDialog.cpp" line="28"/>
         <source>Rename Image</source>
-        <translation>更改影像圖檔名稱</translation>
+        <translation>變更影像圖檔名稱</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="31"/>
         <source>Rename</source>
-        <translation>更改名稱</translation>
+        <translation>重新命名</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="35"/>
@@ -1744,7 +1744,7 @@
     <message>
         <location filename="../ResizeDialog.cpp" line="29"/>
         <source>Scale Image</source>
-        <translation>調整影像大小</translation>
+        <translation>調整圖片大小</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="33"/>
@@ -1897,7 +1897,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="187"/>
         <source>Scale up small images in preview</source>
-        <translation>在預覽中調整小型圖像大小</translation>
+        <translation>在預覽中小型圖像調整放大</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="203"/>
@@ -1912,7 +1912,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="214"/>
         <source>Startup directory if not specified by command line</source>
-        <translation>如果命令列未指定即啟動資料夾</translation>
+        <translation>如果指令列未指定即啟動目錄</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="258"/>
@@ -1948,7 +1948,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="439"/>
         <source>Choose Startup Directory</source>
-        <translation>選擇啟動資料夾</translation>
+        <translation>選擇啟始目錄</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="174"/>
@@ -2120,8 +2120,8 @@
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="971"/>
         <source>%n of %1 image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n / %1 個影像圖檔</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -2141,7 +2141,7 @@
         <location filename="../ThumbsViewer.cpp" line="1137"/>
         <source>Found %n duplicate(s) among %1 files</source>
         <translation>
-            <numerusform>找到 %n 個重複的於 %1 個檔案中</numerusform>
+            <numerusform>查到 %n 個重複的於 %1 個檔案中</numerusform>
         </translation>
     </message>
     <message>
@@ -2170,17 +2170,17 @@
     <message>
         <location filename="../main.cpp" line="34"/>
         <source>files or directory</source>
-        <translation>檔案或資料夾</translation>
+        <translation>檔案或目錄</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="35"/>
         <source>files or directory to open</source>
-        <translation>檔案或資料夾進行開啟</translation>
+        <translation>檔案或目錄進行開啟</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="36"/>
         <source>[FILE...] | [DIRECTORY]</source>
-        <translation>[檔案...] | [路徑資料夾]</translation>
+        <translation>[檔案...] | [目錄]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="39"/>
@@ -2195,12 +2195,12 @@
     <message>
         <location filename="../main.cpp" line="44"/>
         <source>Copy all modified images into &lt;directory&gt;.</source>
-        <translation>將所有修改過的圖檔複製到&lt;目錄資料夾&gt;中。</translation>
+        <translation>將所有修改過的圖檔複製到&lt;目錄&gt;中。</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="45"/>
         <source>directory</source>
-        <translation>目錄資料夾</translation>
+        <translation>目錄</translation>
     </message>
 </context>
 </TS>
