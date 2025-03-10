@@ -79,6 +79,10 @@ ExternalAppsDialog::ExternalAppsDialog(QWidget *parent) : QDialog(parent) {
     buttonsLayout->addWidget(okButton, 0, Qt::AlignRight);
 
     QVBoxLayout *externalAppsMainLayout = new QVBoxLayout;
+    externalAppsMainLayout->addWidget(new QLabel(
+            tr("· %f and %tf will be substituted with the single image and thumbnail paths\n"
+               "· %u and %tu with their respective URIs (file:///path/to/file)\n"
+               "· by default the selected images are appended to the command"), this));
     externalAppsMainLayout->addLayout(wrapperLayout);
     externalAppsMainLayout->addLayout(wallpaperLayout);
     externalAppsMainLayout->addLayout(buttonsLayout);
