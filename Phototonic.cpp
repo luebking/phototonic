@@ -1422,15 +1422,20 @@ void Phototonic::runExternalApp() {
                         Settings::externalApps[static_cast<QAction*>(sender())->text()];
 
     auto substituteCommand = [=,&execCommand](QString path) {
+        char parameter = 2;
         if (execCommand.contains("%f", Qt::CaseInsensitive))
             execCommand.replace("%f", path, Qt::CaseInsensitive);
         else if (execCommand.contains("%u", Qt::CaseInsensitive))
             execCommand.replace("%u", QUrl::fromLocalFile(path).url(), Qt::CaseInsensitive);
-        else if (execCommand.contains("%tf", Qt::CaseInsensitive))
+        else
+            --parameter;
+        if (execCommand.contains("%tf", Qt::CaseInsensitive))
             execCommand.replace("%tf", thumbsViewer->locateThumbnail(path), Qt::CaseInsensitive);
         else if (execCommand.contains("%tu", Qt::CaseInsensitive))
             execCommand.replace("%tu", QUrl::fromLocalFile(thumbsViewer->locateThumbnail(path)).url(), Qt::CaseInsensitive);
         else
+            --parameter;
+        if (!parameter)
             execCommand += " \"" + path + "\"";
     };
     if (Settings::layoutMode == ImageViewWidget) {
