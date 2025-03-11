@@ -258,6 +258,24 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
     selectCurrentViewDir();
 }
 
+// for singleton update
+void Phototonic::setCurrentFileOrDirectory(const QString &path) {
+    activateWindow();
+    QFileInfo info(localFile(path));
+    if (info.isDir()) {
+        if (Settings::currentDirectory != info.absoluteFilePath())
+            goTo(info.absoluteFilePath());
+    } else if (info.exists()) {
+        showViewer();
+        imageViewer->loadImage(info.absoluteFilePath());
+        setWindowTitle(info.absoluteFilePath() + " - Phototonic");
+        if (Settings::currentDirectory != info.absolutePath())
+            goTo(info.absolutePath());
+        thumbsViewer->setCurrentIndex(info.absoluteFilePath());
+        thumbsViewer->scrollTo(thumbsViewer->currentIndex());
+    }
+}
+
 void Phototonic::loadStartupFileList(QStringList argumentsList, int filesStartAt) {
     const int oldSize = Settings::filesList.size();
     for (int i = filesStartAt; i < argumentsList.size(); i++) {

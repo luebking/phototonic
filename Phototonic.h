@@ -48,6 +48,7 @@ Q_OBJECT
 public:
     Phototonic(QStringList argumentsList, int filesStartAt, QWidget *parent = 0);
     QMenu *createPopupMenu() override;
+    void setCurrentFileOrDirectory(const QString &path);
 
     enum CentralWidgets {
         ThumbViewWidget = 0,
