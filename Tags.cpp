@@ -318,12 +318,19 @@ void ImageTags::showSelectedImagesTags() {
     bool imagesTagged = false, imagesTaggedMixed = false;
     for (int i = 0; i < tagsTree->count(); ++i) {
         QListWidgetItem *item = tagsTree->item(i);
-        item->setHidden(!(m_tagGroup & (item->data(NewTag).toBool() ? 2 : 1)));
+        bool newTag = item->data(NewTag).toBool();
+
+        // 1: library, 2: relevant
+        int flag = 0;
+        if (!newTag) // in library
+            flag |= 1;
+        if (item->data(InScope).toInt())
+            flag |= 2; // relevant
+        item->setHidden(!(m_tagGroup & flag));
         QString tagName = item->text();
         item->setSelected(m_selectedTags.contains(tagName));
         int tagCountTotal = tagsCount.value(tagName, 0);
 
-        bool newTag = item->data(NewTag).toBool();
         if (selectedThumbsNum == 0) {
             item->setCheckState(Qt::Unchecked);
             item->setFlags(item->flags() & ~(Qt::ItemIsUserCheckable|Qt::ItemIsUserTristate));
