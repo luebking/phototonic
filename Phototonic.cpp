@@ -320,7 +320,6 @@ void Phototonic::createThumbsViewer() {
     thumbsViewer->installEventFilter(this);
     thumbsViewer->viewport()->installEventFilter(this);
     thumbsViewer->thumbsSortFlags = (QDir::SortFlags) Settings::value(Settings::optionThumbsSortFlags, 0).toInt();
-    thumbsViewer->thumbsSortFlags |= QDir::IgnoreCase;
 
     connect(thumbsViewer->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
             this, SLOT(updateActions()));
@@ -1360,18 +1359,21 @@ void Phototonic::createImageTagsDock() {
 }
 
 void Phototonic::sortThumbnails() {
+    QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
     thumbsViewer->thumbsSortFlags = QDir::IgnoreCase;
 
-    QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
     if (sortByNameAction->isChecked()) {
         thumbModel->setSortRole(Qt::DisplayRole/* ThumbsViewer::SortRole */);
     } else if (sortByTimeAction->isChecked()) {
+        thumbsViewer->thumbsSortFlags |= QDir::Time;
         thumbModel->setSortRole(ThumbsViewer::TimeRole);
     } else if (sortByExifTimeAction->isChecked()) {
         thumbModel->setSortRole(ThumbsViewer::DateTimeOriginal);
     } else if (sortBySizeAction->isChecked()) {
+        thumbsViewer->thumbsSortFlags |= QDir::Size;
         thumbModel->setSortRole(ThumbsViewer::SizeRole);
     } else if (sortByTypeAction->isChecked()) {
+        thumbsViewer->thumbsSortFlags |= QDir::Type;
         thumbModel->setSortRole(ThumbsViewer::TypeRole);
     } else if (sortBySimilarityAction->isChecked()) {
         thumbsViewer->scanForSort(ThumbsViewer::HistogramRole);
@@ -1383,6 +1385,9 @@ void Phototonic::sortThumbnails() {
         thumbsViewer->scanForSort(ThumbsViewer::BrightnessRole);
         thumbModel->setSortRole(ThumbsViewer::ColorRole);
     }
+    if (sortReverseAction->isChecked())
+        thumbsViewer->thumbsSortFlags |= QDir::Reversed;
+
     thumbModel->sort(0, sortReverseAction->isChecked() ? Qt::DescendingOrder : Qt::AscendingOrder);
     thumbsViewer->loadVisibleThumbs(-1);
 }

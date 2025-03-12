@@ -46,6 +46,19 @@
 #include "Tags.h"
 #include "ThumbsViewer.h"
 
+static QCollator gs_filenameCollator;
+
+class PStandardItem : public QStandardItem {
+public:
+    using QStandardItem::QStandardItem;
+    virtual bool operator<(const QStandardItem &other) const override {
+        const int role = model() ? model()->sortRole() : Qt::DisplayRole;
+        if (role == Qt::DisplayRole)
+            return gs_filenameCollator.compare(data(role).toString(), other.data(role).toString()) < 0;
+        return QStandardItem::operator<(other);
+    }
+};
+
 static int gs_fontHeight = 0;
 
 ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
@@ -54,6 +67,8 @@ ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
     m_invertTagFilter = false;
     m_filterDirty = false;
     gs_fontHeight = QFontMetrics(font()).height();
+    gs_filenameCollator.setCaseSensitivity(Qt::CaseInsensitive);
+    gs_filenameCollator.setNumericMode(true);
 
     Settings::thumbsBackgroundColor = Settings::value(Settings::optionThumbsBackgroundColor, QColor(39,39,39)).value<QColor>();
     Settings::thumbsTextColor = Settings::value(Settings::optionThumbsTextColor, QColor(250,250,250)).value<QColor>();
@@ -492,11 +507,11 @@ void ThumbsViewer::reload(bool iterative) {
 
     thumbsDir.setPath(Settings::currentDirectory);
     QDir::SortFlags tempThumbsSortFlags = thumbsSortFlags;
-    if (tempThumbsSortFlags & QDir::Size || tempThumbsSortFlags & QDir::Time) {
+    if (tempThumbsSortFlags & (QDir::Size|QDir::Time)) {
         tempThumbsSortFlags ^= QDir::Reversed;
     }
 
-    if (thumbsSortFlags & QDir::Time || thumbsSortFlags & QDir::Size || thumbsSortFlags & QDir::Type) {
+    if (thumbsSortFlags & (QDir::Time|QDir::Size|QDir::Type)) {
         thumbsDir.setSorting(tempThumbsSortFlags);
     } else { // by name
         thumbsDir.setSorting(QDir::NoSort);
@@ -1044,21 +1059,14 @@ void ThumbsViewer::initThumbs(bool iterative) {
         }
     }
 
-    if (!(thumbsSortFlags & QDir::Time) && !(thumbsSortFlags & QDir::Size) && !(thumbsSortFlags & QDir::Type)) {
-        QCollator collator;
-        if (thumbsSortFlags & QDir::IgnoreCase) {
-            collator.setCaseSensitivity(Qt::CaseInsensitive);
-        }
-
-        collator.setNumericMode(true);
-
+    if (!(thumbsSortFlags & (QDir::Time|QDir::Size|QDir::Type))) {
         if (thumbsSortFlags & QDir::Reversed) {
             std::sort(thumbFileInfoList.begin(), thumbFileInfoList.end(), [&](const QFileInfo &a, const QFileInfo &b) {
-                    return collator.compare(a.fileName(), b.fileName()) > 0;
+                    return gs_filenameCollator.compare(a.fileName(), b.fileName()) > 0;
                     });
         } else {
             std::sort(thumbFileInfoList.begin(), thumbFileInfoList.end(), [&](const QFileInfo &a, const QFileInfo &b) {
-                    return collator.compare(a.fileName(), b.fileName()) < 0;
+                    return gs_filenameCollator.compare(a.fileName(), b.fileName()) < 0;
                     });
         }
     }
@@ -1887,7 +1895,7 @@ QStandardItem * ThumbsViewer::addThumb(const QFileInfo &thumbFileInfo) {
 
     Metadata::cache(thumbFileInfo.filePath());
 
-    QStandardItem *thumbItem = new QStandardItem();
+    QStandardItem *thumbItem = new PStandardItem();
     thumbItem->setData(false, LoadedRole);
     thumbItem->setData(thumbFileInfo.size(), SizeRole);
     thumbItem->setData(thumbFileInfo.suffix(), TypeRole);
