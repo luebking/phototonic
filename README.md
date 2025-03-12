@@ -25,6 +25,19 @@ webcam shots and align them well enough to make a time-lapse video.
 <img src="https://translate.lxqt-project.org/widgets/luebking/-/phototonic/multi-blue.svg" align="right" alt="Translation status" />
 </a>
 
+##### 12. March 2025
+1st beta release
+
+- Final new features:
+  - filter for colors, colorfulness and brightness
+  - take an image list from stdin and
+  - support bangs to invoke external commands (locate, find, baloo, tracker, …) to generate image lists from the path bar
+  - allow phototonic to run as singleton (ie. subsequent starts remote-control the existing process)
+- Some UI tweaks
+  - most notably removed various questionable auto-scale options for sane defaults and dynamic adjustment
+- More code clean-up
+- Fixed bugs (mostly just introduced ones) - and I just realized one more (but completely uncritical and it's too late now)
+
 ##### 23. February 2025
 3rd and omega alpha release
 
