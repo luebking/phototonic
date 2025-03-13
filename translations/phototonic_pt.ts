@@ -50,12 +50,12 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="41"/>
         <source>Reset</source>
-        <translation>Restaurar</translation>
+        <translation>Repor</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="45"/>
         <source>OK</source>
-        <translation>Ok</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="76"/>
@@ -105,7 +105,7 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="126"/>
         <source>Hue and Saturation</source>
-        <translation>Matiz e saturação</translation>
+        <translation>Matiz e Saturação</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="132"/>
@@ -125,7 +125,7 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="148"/>
         <source>Brightness and Contrast</source>
-        <translation>Brilho e contraste</translation>
+        <translation>Brilho e Contraste</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="168"/>
@@ -235,7 +235,7 @@
         <location filename="../CropDialog.cpp" line="31"/>
         <source>Letterbox</source>
         <extracomment>Like a bad dvd where you get a black frame around the image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Barras pretas</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="38"/>
@@ -304,12 +304,12 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="72"/>
         <source>Wallpaper command</source>
-        <translation type="unfinished"></translation>
+        <translation>Comando do papel de parede</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="76"/>
         <source>OK</source>
-        <translation type="unfinished">Ok</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="83"/>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="139"/>
         <source>New Application</source>
-        <translation type="unfinished">Novo aplicativo</translation>
+        <translation>Nova aplicação</translation>
     </message>
 </context>
 <context>
@@ -335,7 +335,7 @@
         <location filename="../GuideWidget.cpp" line="40"/>
         <source>Remove Guide</source>
         <extracomment>The guide is a visible line for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Remover guia</translation>
     </message>
 </context>
 <context>
@@ -374,12 +374,12 @@
     <message>
         <location filename="../Tags.cpp" line="109"/>
         <source>Add to library</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar à biblioteca</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="112"/>
         <source>Remove from library</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover da biblioteca</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="170"/>
@@ -425,20 +425,20 @@
     <message>
         <location filename="../Tags.cpp" line="595"/>
         <source>Tag %1 already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>A etiqueta %1 já existe</translation>
     </message>
     <message numerus="yes">
         <location filename="../Tags.cpp" line="611"/>
         <source>Delete %n selected tags(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Eliminar %n etiqueta selecionada?</numerusform>
+            <numerusform>Eliminar %n etiquetas selecionadas?</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="612"/>
         <source>Delete tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar etiqueta</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="105"/>
@@ -488,12 +488,12 @@
     <message>
         <location filename="../Tags.cpp" line="577"/>
         <source>Enter new tag name</source>
-        <translation>Digite o novo nome da etiqueta</translation>
+        <translation>Introduza o novo nome da etiqueta</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="585"/>
         <source>No name entered</source>
-        <translation>Nenhum nome digitado</translation>
+        <translation>Nenhum nome introduzido</translation>
     </message>
     <message>
         <source>Tag </source>
@@ -598,13 +598,13 @@
         <location filename="../ImageViewer.cpp" line="279"/>
         <location filename="../ImageViewer.cpp" line="1052"/>
         <source>New image size: %1x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo tamanho da imagem: %1x%2</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="649"/>
         <source>skipping animation in batch mode:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>a ignorar animação em modo de lote:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="695"/>
@@ -614,7 +614,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="961"/>
         <source>Selection: </source>
-        <translation type="unfinished"></translation>
+        <translation>Seleção: </translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="971"/>
@@ -624,62 +624,62 @@
     <message>
         <location filename="../ImageViewer.cpp" line="1114"/>
         <source>Rotation %1°</source>
-        <translation type="unfinished">Rotação %1°</translation>
+        <translation>Rotação %1°</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1205"/>
         <source>Saving...</source>
-        <translation type="unfinished">Gravando...</translation>
+        <translation>A gravar...</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1234"/>
         <location filename="../ImageViewer.cpp" line="1264"/>
         <location filename="../ImageViewer.cpp" line="1320"/>
         <source>Error</source>
-        <translation type="unfinished">Erro</translation>
+        <translation>Erro</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1234"/>
         <location filename="../ImageViewer.cpp" line="1320"/>
         <source>Failed to save image.</source>
-        <translation type="unfinished">Falha ao gravar imagem.</translation>
+        <translation>Falha ao gravar imagem.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1262"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Não mostrar esta mensagem novamente</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1264"/>
         <source>Failed to save Exif metadata.</source>
-        <translation type="unfinished">Falha ao gravar metadados Eixf.</translation>
+        <translation>Falha ao gravar metadados Eixf.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1268"/>
         <source>Failed to safe Exif metadata:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao gravar os metadados Exif:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1274"/>
         <location filename="../ImageViewer.cpp" line="1333"/>
         <source>Image saved.</source>
-        <translation type="unfinished">Imagem gravada.</translation>
+        <translation>Imagem gravada.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1295"/>
         <source>Save image as</source>
-        <translation type="unfinished">Gravar imagem como</translation>
+        <translation>Gravar imagem como</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1297"/>
         <source>Images</source>
-        <translation type="unfinished">Imagens</translation>
+        <translation>Imagens</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1374"/>
         <source>Clipboard</source>
-        <translation type="unfinished">Área de transferência</translation>
+        <translation>Área de transferência</translation>
     </message>
 </context>
 <context>
@@ -697,37 +697,37 @@
     <message>
         <location filename="../InfoViewer.cpp" line="173"/>
         <source>Image</source>
-        <translation type="unfinished">Imagem</translation>
+        <translation>Imagem</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="174"/>
         <source>File name</source>
-        <translation type="unfinished">Nome do arquivo</translation>
+        <translation>Nome do ficheiro</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="175"/>
         <source>Location</source>
-        <translation type="unfinished">Localização</translation>
+        <translation>Localização</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="176"/>
         <source>Size</source>
-        <translation type="unfinished">Dimensão</translation>
+        <translation>Tamanho</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="177"/>
         <source>Modified</source>
-        <translation type="unfinished">Modificada</translation>
+        <translation>Modificado</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="181"/>
         <source>Format</source>
-        <translation type="unfinished">Formato</translation>
+        <translation>Formato</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="184"/>
         <source>Resolution</source>
-        <translation type="unfinished">Resolução</translation>
+        <translation>Resolução</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="185"/>
@@ -737,7 +737,7 @@
     <message>
         <location filename="../InfoViewer.cpp" line="191"/>
         <source>Error</source>
-        <translation type="unfinished">Erro</translation>
+        <translation>Erro</translation>
     </message>
 </context>
 <context>
@@ -760,7 +760,7 @@
     <message>
         <location filename="../MessageBox.cpp" line="89"/>
         <source>About</source>
-        <translation type="unfinished">Sobre</translation>
+        <translation>Acerca</translation>
     </message>
 </context>
 <context>
@@ -807,7 +807,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="523"/>
         <source>Full Screen</source>
-        <translation>Tela cheia</translation>
+        <translation>Ecrã inteiro</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="527"/>
@@ -853,7 +853,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="583"/>
         <source>Delete</source>
-        <translation>Excluir</translation>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="587"/>
@@ -881,12 +881,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="604"/>
         <source>Select All</source>
-        <translation>Selecionar todas</translation>
+        <translation>Selecionar tudo</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="607"/>
         <source>About</source>
-        <translation>Sobre</translation>
+        <translation>Acerca</translation>
     </message>
     <message>
         <source>Name</source>
@@ -911,7 +911,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="650"/>
         <source>Show Hidden Files</source>
-        <translation>Mostrar arquivos ocultos</translation>
+        <translation>Mostrar ficheiros ocultos</translation>
     </message>
     <message>
         <source>Show Labels</source>
@@ -968,7 +968,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="696"/>
         <source>Back</source>
-        <translation>Retornar</translation>
+        <translation>Voltar</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="709"/>
@@ -984,7 +984,7 @@
         <location filename="../Phototonic.cpp" line="281"/>
         <location filename="../Phototonic.cpp" line="725"/>
         <source>Home</source>
-        <translation>Início</translation>
+        <translation>Pasta pessoal</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="734"/>
@@ -1035,7 +1035,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="776"/>
         <source>Add Bookmark</source>
-        <translation>Adicionar aos favoritos</translation>
+        <translation>Adicionar marcador</translation>
     </message>
     <message>
         <source>Remove Bookmark</source>
@@ -1044,12 +1044,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="783"/>
         <source>Zoom Out</source>
-        <translation>Menos zoom</translation>
+        <translation>Reduzir</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="787"/>
         <source>Zoom In</source>
-        <translation>Mais zoom</translation>
+        <translation>Ampliar</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="791"/>
@@ -1059,7 +1059,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="799"/>
         <source>Original Size</source>
-        <translation>Dimensão original</translation>
+        <translation>Tamanho original</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="803"/>
@@ -1113,7 +1113,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="850"/>
         <source>Find Duplicate Images</source>
-        <translation>Pesquisar imagens duplicadas</translation>
+        <translation>Localizar imagens duplicadas</translation>
     </message>
     <message>
         <source>Disable</source>
@@ -1172,7 +1172,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="920"/>
         <source>&amp;File</source>
-        <translation>&amp;Arquivos</translation>
+        <translation>&amp;Ficheiro</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="931"/>
@@ -1227,7 +1227,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1229"/>
         <source>File System</source>
-        <translation>Sistema de arquivos</translation>
+        <translation>Sistema de ficheiros</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1276"/>
@@ -1285,7 +1285,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1474"/>
         <source>Failed to start external application.</source>
-        <translation>Falha ao iniciar aplicativo externo.</translation>
+        <translation>Falha ao iniciar aplicação externa.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1454"/>
@@ -1535,7 +1535,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="780"/>
         <source>Delete Bookmark</source>
-        <translation type="unfinished">Eliminar marcador</translation>
+        <translation>Eliminar marcador</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="808"/>
@@ -1938,7 +1938,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3278"/>
         <source>OK</source>
-        <translation type="unfinished">Ok</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3290"/>
@@ -2041,7 +2041,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="2171"/>
         <source>Failed to delete image</source>
-        <translation>Falha ao excluir imagem</translation>
+        <translation>Falha ao eliminar imagem</translation>
     </message>
     <message>
         <source>Permanently delete selected images?</source>
@@ -2061,7 +2061,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="2097"/>
         <source>Failed to delete image.</source>
-        <translation>Falha ao excluir imagem.</translation>
+        <translation>Falha ao eliminar imagem.</translation>
     </message>
     <message>
         <source>Deleted</source>
@@ -2248,17 +2248,17 @@
     <message>
         <location filename="../RenameDialog.cpp" line="28"/>
         <source>Rename Image</source>
-        <translation type="unfinished">Renomear imagem</translation>
+        <translation>Renomear imagem</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="31"/>
         <source>Rename</source>
-        <translation type="unfinished">Renomear</translation>
+        <translation>Renomear</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="35"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="41"/>
@@ -2318,7 +2318,7 @@
     <message>
         <location filename="../ResizeDialog.cpp" line="58"/>
         <source>New size:</source>
-        <translation>Nova dimensão:</translation>
+        <translation>Novo tamanho:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="61"/>
@@ -2333,7 +2333,7 @@
     <message>
         <location filename="../ResizeDialog.cpp" line="72"/>
         <source>Percent</source>
-        <translation>Porcentual</translation>
+        <translation>Percentual</translation>
     </message>
     <message>
         <source>Lock aspect ratio</source>
@@ -2415,7 +2415,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="78"/>
         <source>Show image file name in viewer</source>
-        <translation>Mostre o nome do arquivo no visualizador</translation>
+        <translation>Mostrar o nome do ficheiro no visualizador</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="92"/>
@@ -2533,7 +2533,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="248"/>
         <source>Delay between slides in seconds:</source>
-        <translation>Intervalo entre slides em segundos:</translation>
+        <translation>Intervalo entre diapositivos em segundos:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="258"/>
@@ -2551,7 +2551,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="178"/>
         <source>Remember last</source>
-        <translation>Relembrar última</translation>
+        <translation>Lembrar a última</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="179"/>
@@ -2571,7 +2571,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="173"/>
         <source>Delete confirmation</source>
-        <translation>Confirmar excluir</translation>
+        <translation>Confirmar eliminação</translation>
     </message>
     <message>
         <source>Keyboard Shortcuts</source>
@@ -2613,7 +2613,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="472"/>
         <source>Open File</source>
-        <translation>Abrir arquivo</translation>
+        <translation>Abrir ficheiro</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="473"/>
@@ -2651,7 +2651,7 @@
     <message>
         <location filename="../ShortcutsTable.cpp" line="44"/>
         <source>Delete shortcut</source>
-        <translation>Excluir atalho</translation>
+        <translation>Eliminar atalho</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="86"/>
@@ -2769,7 +2769,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="255"/>
         <source>Error</source>
-        <translation type="unfinished">Erro</translation>
+        <translation>Erro</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="255"/>
@@ -2779,7 +2779,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="912"/>
         <source>Searching duplicate images...</source>
-        <translation type="unfinished">Procurar imagens duplicadas...</translation>
+        <translation>A procurar imagens duplicadas...</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1085"/>
@@ -2792,7 +2792,7 @@
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1087"/>
         <source>%n image(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n imagem</numerusform>
             <numerusform>%n imagens</numerusform>
         </translation>
@@ -2800,7 +2800,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="1083"/>
         <source>No images</source>
-        <translation type="unfinished">Nenhuma imagem</translation>
+        <translation>Nenhuma imagem</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1203"/>

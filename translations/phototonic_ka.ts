@@ -250,7 +250,9 @@
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
 · %u and %tu with their respective URIs (file:///path/to/file)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· f და %tf ჩანაცვლდება ერთი გამოსახულებისა და მინიატურის ბილიკებით
+· %u და %tu ჩანაცვლდება შესაბამისი ბმულებით (file:///ბილიკი/ფაილამდე)
+· ნაგულისხმევად ბრძანებას მონიშნული გამოსახულებები მიეწერება ბოლოში</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="128"/>
@@ -346,17 +348,17 @@
         <location filename="../Tags.cpp" line="58"/>
         <location filename="../Tags.cpp" line="73"/>
         <source>Show only library tags</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ ბიბლიოთეკის ჭდეების ჩვენება</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="65"/>
         <source>Show only relevant tags</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ შესაბამისი ჭდეების ჩვენება</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>ყველა ჭდის ჩვენება</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="109"/>
@@ -441,27 +443,27 @@
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished">გადიდების დაბლოკვა</translation>
+        <translation>გადიდება ჩაკეტილია</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished">გადიდება განბლოკილია</translation>
+        <translation>გადიდება განბლოკილია</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="202"/>
         <source>Fit View</source>
-        <translation type="unfinished"></translation>
+        <translation>ხედის ჩატევა</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="207"/>
         <source>Fill View</source>
-        <translation type="unfinished"></translation>
+        <translation>ხედის შევსება</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="209"/>
         <source>Original Size</source>
-        <translation type="unfinished">საწყისი ზომა</translation>
+        <translation>საწყისი ზომა</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="649"/>
@@ -648,7 +650,7 @@
         <location filename="../Phototonic.cpp" line="284"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished">ფაილების სია</translation>
+        <translation>ფაილების სია</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="470"/>
@@ -904,7 +906,7 @@
         <location filename="../Phototonic.cpp" line="1123"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>ფილტრი - სცადეთ &quot;/?&quot;...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
@@ -1126,7 +1128,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="618"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>ფერით დალაგება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="619"/>
@@ -1990,17 +1992,17 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Shortcut</source>
-        <translation type="unfinished">მალმხმობი</translation>
+        <translation>მალსახმობი</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="293"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>ბრძანება</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="373"/>
         <source>Bangs</source>
-        <translation type="unfinished"></translation>
+        <translation>დარტყმა</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="450"/>
@@ -2253,12 +2255,12 @@
     <message>
         <location filename="../main.cpp" line="35"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
-        <translation type="unfinished"></translation>
+        <translation>გასახსნელი ფაილები ან საქაღალდე. &quot;-&quot; მათი stdin-დან წასაკითხად.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="36"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
-        <translation type="unfinished"></translation>
+        <translation>[ფაილი...] | [საქაღალდე] | [-]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="39"/>
@@ -2283,7 +2285,7 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
-        <translation type="unfinished"></translation>
+        <translation>Phototonic-ის ერთი გაშვებული ასლის ქონე თუ უკვე გაშვებულში გახსნა.</translation>
     </message>
 </context>
 </TS>

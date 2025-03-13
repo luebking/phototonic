@@ -368,7 +368,9 @@
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
 · %u and %tu with their respective URIs (file:///path/to/file)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f i %tf zostaną zastąpione ścieżkami pojedynczego obrazu i miniatury
+· %u i %tu z ich odpowiednimi URI (file:///path/to/file)
+· domyślnie wybrane obrazy są dołączane do polecenia</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="128"/>
@@ -485,17 +487,17 @@
         <location filename="../Tags.cpp" line="58"/>
         <location filename="../Tags.cpp" line="73"/>
         <source>Show only library tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż tylko biblioteczne tagi</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="65"/>
         <source>Show only relevant tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż tylko istotne tagi</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż wszystkie tagi</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="109"/>
@@ -679,27 +681,27 @@
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished">Powiększenie zablokowane</translation>
+        <translation>Powiększenie zablokowane</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished">Powiększenie odblokowane</translation>
+        <translation>Powiększenie odblokowane</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="202"/>
         <source>Fit View</source>
-        <translation type="unfinished"></translation>
+        <translation>Widok dopasowania</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="207"/>
         <source>Fill View</source>
-        <translation type="unfinished"></translation>
+        <translation>Widok wypełnienia</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="209"/>
         <source>Original Size</source>
-        <translation type="unfinished">Oryginalny rozmiar</translation>
+        <translation>Rozmiar oryginalny</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="971"/>
@@ -1200,7 +1202,7 @@
         <location filename="../Phototonic.cpp" line="284"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished">Lista plików</translation>
+        <translation>Lista plików</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="454"/>
@@ -1273,7 +1275,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="618"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortuj według koloru</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="619"/>
@@ -1394,13 +1396,13 @@
         <location filename="../Phototonic.cpp" line="1123"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Filtr – wypróbuj &quot;/?&quot;...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for &lt;b&gt;black, white, dark, bright, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;pasuje do foo, starsze niż 5 dni, ale młodsze niż miesiąc — lub mniejsze niż 10 kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Większe niż/Po: &amp;gt;&lt;/li&gt;&lt;li&gt;Mniejsze niż/Przed: &amp;lt;&lt;/li&gt;&lt;li&gt;Dokładny wiek lub (zaokrąglony) rozmiar jest w przeciwnym razie dorozumiany lub jawny za pomocą: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Daty są bezwzględne (RRRR-MM-DD) lub względne (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Rozmiary mają przyrostek 4 kB:MB:GB lub 4 MP (megapiksele)&lt;/li&gt;&lt;li&gt;Wymiary są przed/w/z przyrostkiem „x” ([szerokość]x[wysokość])&lt;/li&gt;&lt;li&gt;Wariancja chromatyczna ma przyrostek [0-255]cr (rzeczywiste wartości rzadko będą &gt; 100)&lt;/li&gt;&lt;li&gt;Jasność ma przyrostek [0,0-1,0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Wszystkie przyrostki nie uwzględniają wielkości liter, ale m|inute i M|onth&lt;/i&gt;&lt;br&gt;Następne „/” rozpoczynają nową wystarczającą grupę warunków, dopasowanie podciągu jest opcjonalne.&lt;hr&gt;Dodatkowo można filtrować według &lt;b&gt;czarnego, białego, ciemnego, jasnego, monochromatycznego, szarego&lt;/b&gt; i kolorów&lt;br&gt;&lt;b&gt;czerwonego, pomarańczowego, żółtego, limonkowego, zielonego, miętowego, cyjanowego, lazurowego, niebieskiego, fioletowego, magenty, różowego&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3290"/>
@@ -2794,17 +2796,17 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="275"/>
         <source>&lt;p&gt;Bangs allow you to use external commands to generate the list of shown images.&lt;br&gt;The main purpose is to query databases like locate, baloo or tracker, but anything that can generate a list of image files is suitable&lt;/p&gt;&lt;p&gt;The token &lt;b&gt;%s&lt;/b&gt; in the command will be replaced with the parameter.&lt;/p&gt;&lt;p&gt;Eg. for plocate, using the shortcut &lt;i&gt;locate&lt;/i&gt; and the command&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;allows you to enter &lt;i&gt;locate:waldo&lt;/i&gt; to display indexed jpg&apos;s and png&apos;s of waldo.&lt;/p&gt;&lt;p&gt;Phototonic tests the files for existence and will remove duplicates (including file and directory symlinks.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Huki umożliwiają korzystanie z poleceń zewnętrznych w celu wygenerowania listy wyświetlanych obrazów.&lt;br&gt;Głównym celem jest wykonywanie zapytań w bazach danych, takich jak locate, baloo lub tracker, ale nadaje się każda funkcja generująca listę plików graficznych.&lt;/p&gt;&lt;p&gt;Token &lt;b&gt;%s&lt;/b&gt; w poleceniu zostanie zastąpiony parametrem.&lt;/p&gt;&lt;p&gt;Na przykład w przypadku plocate użycie skrótu &lt;i&gt;locate&lt;/i&gt; i polecenia&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;umożliwia wprowadzenie polecenia &lt;i&gt;locate:waldo&lt;/i&gt; w celu wyświetlenia indeksowanych plików jpg i png waldo.&lt;/p&gt;&lt;p&gt;Phototonic sprawdza, czy pliki istnieją, i usuwa duplikaty (w tym dowiązania symboliczne do plików i katalogów).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Shortcut</source>
-        <translation type="unfinished">Skrót</translation>
+        <translation>Skrót</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="293"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Polecenie</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="342"/>
@@ -2902,7 +2904,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="373"/>
         <source>Bangs</source>
-        <translation type="unfinished"></translation>
+        <translation>Huki</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="450"/>
@@ -3356,12 +3358,12 @@
     <message>
         <location filename="../main.cpp" line="35"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
-        <translation type="unfinished"></translation>
+        <translation>pliki lub katalogi do otwarcia, „-” aby je odczytać ze standardowego wejścia.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="36"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
-        <translation type="unfinished"></translation>
+        <translation>[PLIK...] | [KATALOG] | [-]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="39"/>
@@ -3386,7 +3388,7 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom pojedynczą instancję Phototonic lub otwórz pliki w już uruchomionej.</translation>
     </message>
 </context>
 </TS>
