@@ -251,7 +251,9 @@
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
 · %u and %tu with their respective URIs (file:///path/to/file)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f e %tf saranno sostituti con l immagine e il percorso alla miniatura
+· %u e %tu con loro rispettive URIs (file:///percorso/al/file)
+· per impostazione predefinita le immagini selezionate vengono aggiunte al comando</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="128"/>
@@ -362,17 +364,17 @@
         <location filename="../Tags.cpp" line="58"/>
         <location filename="../Tags.cpp" line="73"/>
         <source>Show only library tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra solo etichette presenti nella libreria</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="65"/>
         <source>Show only relevant tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra solo tag rilevanti</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra tutte le etichette</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="109"/>
@@ -486,17 +488,17 @@
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished">Ingrandimento bloccato</translation>
+        <translation>Ingrandimento bloccato</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished">Ingrandimento sbloccato</translation>
+        <translation>Ingrandimento sbloccato</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="202"/>
         <source>Fit View</source>
-        <translation type="unfinished"></translation>
+        <translation>Adatta vista</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="207"/>
@@ -1018,7 +1020,7 @@
         <location filename="../Phototonic.cpp" line="1123"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Filtra - prova &quot;/?&quot;...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
@@ -1157,7 +1159,7 @@
         <location filename="../Phototonic.cpp" line="284"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished">Lista file</translation>
+        <translation>Lista file</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="595"/>
@@ -1200,7 +1202,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="618"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordina per colore</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="655"/>
@@ -2092,17 +2094,17 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="275"/>
         <source>&lt;p&gt;Bangs allow you to use external commands to generate the list of shown images.&lt;br&gt;The main purpose is to query databases like locate, baloo or tracker, but anything that can generate a list of image files is suitable&lt;/p&gt;&lt;p&gt;The token &lt;b&gt;%s&lt;/b&gt; in the command will be replaced with the parameter.&lt;/p&gt;&lt;p&gt;Eg. for plocate, using the shortcut &lt;i&gt;locate&lt;/i&gt; and the command&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;allows you to enter &lt;i&gt;locate:waldo&lt;/i&gt; to display indexed jpg&apos;s and png&apos;s of waldo.&lt;/p&gt;&lt;p&gt;Phototonic tests the files for existence and will remove duplicates (including file and directory symlinks.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;p&gt;Bangs consente di utilizzare comandi esterni per generare l&apos;elenco delle immagini visualizzate.&lt;br&gt;Lo scopo principale è interrogare database come locate, baloo o tracker, ma è adatto qualsiasi cosa che possa generare un elenco di file immagine.&lt;/p&gt;&lt;p&gt;Il token &lt;b&gt;%s&lt;/b&gt; nel comando verrà sostituito con il parametro.&lt;/p&gt;&lt;p&gt;Ad esempio, per plocate, utilizzando la scorciatoia &lt;i&gt;locate&lt;/i&gt; e il comando&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;è possibile immettere &lt;i&gt;locate:waldo&lt;/i&gt; per visualizzare i file jpg e png indicizzati di waldo.&lt;/p&gt;&lt;p&gt;Phototonic verifica l&apos;esistenza dei file e rimuove i duplicati (inclusi i collegamenti simbolici di file e directory).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Shortcut</source>
-        <translation type="unfinished">Scorciatoia</translation>
+        <translation>Scorciatoia</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="293"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Comando</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="365"/>
@@ -2191,7 +2193,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="255"/>
         <source>Error</source>
-        <translation type="unfinished">Errore</translation>
+        <translation>Errore</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="255"/>
@@ -2272,12 +2274,12 @@
     <message>
         <location filename="../main.cpp" line="35"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
-        <translation type="unfinished"></translation>
+        <translation>file o cartelle da aprire, &quot;-&quot; per leggerle da stdin.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="36"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
-        <translation type="unfinished"></translation>
+        <translation>[FILE...] | [CARTELLA] | [-]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="39"/>
@@ -2302,7 +2304,7 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
-        <translation type="unfinished"></translation>
+        <translation>Esegui una singola istanza di Phototonic o apri file in essa se è in esecuzione.</translation>
     </message>
 </context>
 </TS>
