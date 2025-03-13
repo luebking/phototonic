@@ -325,7 +325,7 @@
         <location filename="../ExternalAppsDialog.cpp" line="56"/>
         <source>Pick Executable...</source>
         <extracomment>open an existing executable</extracomment>
-        <translation>Ausführbare Datei wählen</translation>
+        <translation>Ausführbare Datei wählen…</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="59"/>
@@ -352,7 +352,9 @@
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
 · %u and %tu with their respective URIs (file:///path/to/file)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f und %tf werden durch den Dateipfad des Bildes beziehungsweise. der Miniatur ersetzt
+· %u und %tu mit den entsprechenden URIs (file:///pfad/zur/datei)
+· ansonsten werden die Pfade der ausgewählten Bilder an das Kommando angehängt</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="128"/>
@@ -393,17 +395,17 @@
         <location filename="../Tags.cpp" line="58"/>
         <location filename="../Tags.cpp" line="73"/>
         <source>Show only library tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige nur Tags in der Bibliothek</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="65"/>
         <source>Show only relevant tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige nur Tags für aktuelle Bilderliste</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige alle Tags</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="98"/>
@@ -418,47 +420,47 @@
     <message>
         <location filename="../Tags.cpp" line="109"/>
         <source>Add to library</source>
-        <translation type="unfinished"></translation>
+        <translation>Zur Bibliothek hinzufügen</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="112"/>
         <source>Remove from library</source>
-        <translation type="unfinished"></translation>
+        <translation>Aus der Bibliothek entfernen</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="170"/>
         <source>Show untagged</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige Bilder ohne Tags</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="170"/>
         <source>Invert filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter umkehren</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="365"/>
         <source>Mandatory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Notwendig:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="366"/>
         <source>Sufficient:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinreichend:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="367"/>
         <source>The image must not have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Bild darf diesen Tag nicht haben</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="368"/>
         <source>The image must have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Bild muß diesen Tag haben</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="369"/>
         <source>The image must have any of these tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Bild muß irgendeinen dieser Tags haben</translation>
     </message>
     <message>
         <source>Delete Tag</source>
@@ -670,27 +672,27 @@
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished">Zoom beibehalten</translation>
+        <translation>Zoom beibehalten</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished">Zoom entsperrt</translation>
+        <translation>Zoom entsperrt</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="202"/>
         <source>Fit View</source>
-        <translation type="unfinished"></translation>
+        <translation>Einpassen</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="207"/>
         <source>Fill View</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausfüllen</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="209"/>
         <source>Original Size</source>
-        <translation type="unfinished">Originalgröße</translation>
+        <translation>Originalgröße</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="971"/>
@@ -1896,7 +1898,7 @@
         <location filename="../Phototonic.cpp" line="284"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished">Startparameterbilderliste</translation>
+        <translation>Bilderliste</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="454"/>
@@ -1954,7 +1956,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="618"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach Farbe sortieren</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="619"/>
@@ -2064,29 +2066,29 @@
     <message>
         <location filename="../Phototonic.cpp" line="1076"/>
         <source>Accuracy: </source>
-        <translation type="unfinished"></translation>
+        <translation>Genauigkeit: </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1093"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok, das hier hat nicht gerade KI Niveau.&lt;p&gt;Duplikate werden anhand eines Graustufenmosaiks &lt;br&gt;(&lt;i&gt;sehen die entsättigten Bilder aus großer Distanz gleich aus?&lt;/i&gt;)&lt;br&gt; und der Ähnlichkeit der Farbverteilung&lt;br&gt;(&lt;i&gt;immun gegen Spiegelungen, Rotationen, anamorphische Verzerrungen, …&lt;i&gt;) erkannt&lt;br&gt;Beides kann zu lustigen Falschmeldungen führen.&lt;/p&gt;&lt;p&gt;Die notwendige Ähnlichkeit der Farbverteilung kann hier eingestellt werden.&lt;br&gt;60% ist eine brauchbare Voreinstellung, aber kann insbesondere im Umgang mit Graustufenbildern zu weich sein.&lt;br&gt;Deutlich geringere Werte werden viel zu viele Falschmeldungen produziere und je höher die geforderte Ähnlichkeit, destoweniger werden solche auftreten.&lt;/p&gt;&lt;h3&gt;Achtung: die Erkennung kann unzusammenhängende Gruppen erzeugen!&lt;/h3&gt;&lt;p&gt;[A] kann mit [B] und [C] hinreichende Ähnlichkeit aufweisen ohne das [B] und [C] sich ähnlich sind.&lt;br&gt;Da Ergebnis ist, daß &lt;b&gt;das selbe Bild [A] mitunter mehrfach angezeigt wird!&lt;/b&gt;&lt;br&gt;Nehmen Sie nicht einfach an, daß hier falsch sortiert wurde&lt;br&gt;um dann das vermeintliche Duplikat zu löschen. Es ist &lt;b&gt;dieselbe Datei&lt;/b&gt; und beide &quot;Duplikate&quot; würden gelöscht.&lt;/p&gt;&lt;h3&gt;Achten Sie auf die Dateinamen!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1123"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Filter - versuch mal &quot;/?&quot;...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for &lt;b&gt;black, white, dark, bright, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[Namensteil] [/ Einschränkung [/ Mehr Einschränkungen]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;Trifft foo, älter als 5 Tage aber jünger als ein Monat - oder kleiner 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Größer/Neuer als: &amp;gt;&lt;/li&gt;&lt;li&gt;Kleiner/Älter als: &amp;lt;&lt;/li&gt;&lt;li&gt;Genaues Alter oder (gerundete) Größe sind sonst impliziert oder können explizit mit &quot;=&quot; gefordert werden&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Daten sind absolut (JJJJ-MM-TT) oder relativ (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Größen werden mit 4kB:MB:GB or 4MP (Megapixel) angegeben&lt;/li&gt;&lt;li&gt;Dimensionen sind durch &quot;x&quot; vor-, nach- oder zwischengestelltes &quot;x&quot; gekennzeichnet ([Weite]x[Höhe])&lt;/li&gt;&lt;li&gt;Farbvarianz wird mit [0-255]cr angegeben (realistisch sind Werte &amp;lt; 100)&lt;/li&gt;&lt;li&gt;Helligkeit wird mit [0.0-1.0]|[0-255]lm angegeben&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Groß-/Kleinschreibung wird außer bei m|inute und M|onat ignoriert&lt;/i&gt;&lt;br&gt;Jedes &quot;/&quot; startet eine neue, hinreichende Einschränkungsgruppe, der Namensteilfilter am Anfang ist optional.&lt;hr&gt;Zusätzlich kann nach &lt;b&gt;black, white, dark, bright, monochrome, gray&lt;/b&gt; und den Farben &lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt; gefiltert werden.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3290"/>
         <source>Failed to move directory to the trash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Verzeichnis konnte nicht in den Papierkorb geworfen werden.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="880"/>
@@ -2758,7 +2760,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="179"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="221"/>
@@ -2789,17 +2791,17 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="275"/>
         <source>&lt;p&gt;Bangs allow you to use external commands to generate the list of shown images.&lt;br&gt;The main purpose is to query databases like locate, baloo or tracker, but anything that can generate a list of image files is suitable&lt;/p&gt;&lt;p&gt;The token &lt;b&gt;%s&lt;/b&gt; in the command will be replaced with the parameter.&lt;/p&gt;&lt;p&gt;Eg. for plocate, using the shortcut &lt;i&gt;locate&lt;/i&gt; and the command&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;allows you to enter &lt;i&gt;locate:waldo&lt;/i&gt; to display indexed jpg&apos;s and png&apos;s of waldo.&lt;/p&gt;&lt;p&gt;Phototonic tests the files for existence and will remove duplicates (including file and directory symlinks.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Mit Bangs können externe Kommandos verwendet werden um dynamische Bilderlisten zu generieren.&lt;br&gt;Der Hauptzweck ist es auf Datenbanken wie locate, baloo oder tracker zuzugreifen, aber jedes Kommando das eine Bilderliste generiert kann eingebunden werden.&lt;/p&gt;&lt;p&gt;Das Muster &lt;b&gt;%s&lt;/b&gt; im Kommando wird mit der Anfrage ersetzt&lt;/p&gt;&lt;p&gt;zB. kann das Kürzel &lt;i&gt;locate&lt;/i&gt; mit dem Kommando&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;verbunden werden um mit &lt;i&gt;locate:waldo&lt;/i&gt; jpg&apos;s und png&apos;s von Waldo in der plocate Datenbank anzuzeigen.&lt;/p&gt;&lt;p&gt;Phototonic prüft die Dateien auf Vorhandensein und entfernt Mehrfachnennungen (auch über Datei- oder Verzeichnislinks).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Shortcut</source>
-        <translation type="unfinished">Shortcut</translation>
+        <translation>Shortcut</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="293"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommando</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="342"/>
@@ -2901,7 +2903,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="373"/>
         <source>Bangs</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="450"/>
@@ -3245,17 +3247,17 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="247"/>
         <source>Tagging %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="255"/>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="255"/>
         <source>Failed to save tags to %1</source>
-        <translation type="unfinished">Tags für %1 konnten nicht geschrieben werden</translation>
+        <translation>Tags für %1 konnten nicht geschrieben werden</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="912"/>
@@ -3265,9 +3267,9 @@
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1085"/>
         <source>%n of %1 image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Bild von %1</numerusform>
+            <numerusform>%n Bilder von %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -3318,42 +3320,42 @@
     <message>
         <location filename="../main.cpp" line="34"/>
         <source>files or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateien oder Verzeichnisse</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="35"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zu öffnende Dateien oder Verzeichnisse, &quot;-&quot; um sie aus der Standareingabe (stdin) zu lesen.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="36"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
-        <translation type="unfinished"></translation>
+        <translation>[DATEI...] | [VERZEICHNIS] | [-]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="39"/>
         <source>start with a specific translation</source>
-        <translation type="unfinished"></translation>
+        <translation>Mit einer spezifischen Übersetzung starten</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="40"/>
         <source>language</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="44"/>
         <source>Copy all modified images into &lt;directory&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle veränderten Bilder nach &lt;Verzeichnis&gt; speichern.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="45"/>
         <source>directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur eine Instanz von Phototonic starten oder wiederverwenden.</translation>
     </message>
 </context>
 </TS>
