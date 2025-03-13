@@ -2701,7 +2701,12 @@ void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
     if (!imageViewer->batchMode)
         showViewer();
     thumbsViewer->setCurrentIndex(idx);
-    imageViewer->loadImage(thumbsViewer->fullPathOf(idx.row()), thumbsViewer->icon(idx.row()).pixmap(THUMB_SIZE_MAX).toImage());
+    const QString imagePath = thumbsViewer->fullPathOf(idx.row());
+    if (feedbackImageInfoAction->isChecked()) {
+        m_infoViewer->read(imagePath);
+        imageViewer->setFeedback(m_infoViewer->html(), false);
+    }
+    imageViewer->loadImage(imagePath, thumbsViewer->icon(idx.row()).pixmap(THUMB_SIZE_MAX).toImage());
     setImageViewerWindowTitle();
 }
 
