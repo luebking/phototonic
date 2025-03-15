@@ -2227,7 +2227,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="1397"/>
         <source>Loading...</source>
-        <translation>載入…</translation>
+        <translation>載入中…</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1437"/>
