@@ -1115,30 +1115,46 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
         // qDebug() << "image center" << fulcrum << "line" << vector << "angle" << vector.angle() << "geom" << imageWidget->geometry();
 
     } else if (moveImageLocked) {
-        int newX = layoutX + (event->pos().x() - mouseX);
-        int newY = layoutY + (event->pos().y() - mouseY);
-        bool needToMove = false;
-
-        if (imageWidget->imageSize().width() > size().width()) {
-            if (newX > 0) {
-                newX = 0;
-            } else if (newX < (size().width() - imageWidget->imageSize().width())) {
-                newX = (size().width() - imageWidget->imageSize().width());
-            }
-            needToMove = true;
+        int newX = layoutX;
+        int newY = layoutY;
+        if (Settings::rotation != 0) {
+            QPointF fulcrum(QPointF(imageWidget->width() / 2.0, imageWidget->height() / 2.0));
+            QLineF vector(fulcrum, event->pos());
+            vector.setAngle(vector.angle() + Settings::rotation);
+            newX += qRound(vector.x2());
+            newY += qRound(vector.y2());
+            vector.setP2(QPoint(mouseX, mouseY));
+            vector.setAngle(vector.angle() + Settings::rotation);
+            newX -= qRound(vector.x2());
+            newY -= qRound(vector.y2());
         } else {
-            newX = layoutX;
+            newX += event->pos().x() - mouseX;
+            newY += event->pos().y() - mouseY;
         }
 
-        if (imageWidget->imageSize().height() > size().height()) {
-            if (newY > 0) {
-                newY = 0;
-            } else if (newY < (size().height() - imageWidget->imageSize().height())) {
-                newY = (size().height() - imageWidget->imageSize().height());
+        bool needToMove = Settings::rotation != 0;
+        if (!needToMove) {
+            if (imageWidget->imageSize().width() > size().width()) {
+                if (newX > 0) {
+                    newX = 0;
+                } else if (newX < (size().width() - imageWidget->imageSize().width())) {
+                    newX = (size().width() - imageWidget->imageSize().width());
+                }
+                needToMove = true;
+            } else {
+                newX = layoutX;
             }
-            needToMove = true;
-        } else {
-            newY = layoutY;
+
+            if (imageWidget->imageSize().height() > size().height()) {
+                if (newY > 0) {
+                    newY = 0;
+                } else if (newY < (size().height() - imageWidget->imageSize().height())) {
+                    newY = (size().height() - imageWidget->imageSize().height());
+                }
+                needToMove = true;
+            } else {
+                newY = layoutY;
+            }
         }
 
         if (needToMove) {
@@ -1155,24 +1171,31 @@ void ImageViewer::slideImage(QPoint delta) {
     QPoint newPos = imageWidget->imagePosition() + delta;
     layoutX = newPos.x();
     layoutY = newPos.y();
-    bool needToMove = false;
-
-    if (imageWidget->imageSize().width() > size().width()) {
-        if (newPos.x() > 0) {
-            newPos.setX(0);
-        } else if (newPos.x() < (size().width() - imageWidget->imageSize().width())) {
-            newPos.setX(size().width() - imageWidget->imageSize().width());
-        }
-        needToMove = true;
+    if (Settings::rotation != 0) {
+        QPointF fulcrum(QPointF(imageWidget->width() / 2.0, imageWidget->height() / 2.0));
+        QLineF vector(QPoint(0,0), delta);
+        vector.setAngle(vector.angle() + Settings::rotation);
+        newPos = imageWidget->imagePosition() + vector.p2().toPoint();
     }
-
-    if (imageWidget->imageSize().height() > size().height()) {
-        if (newPos.y() > 0) {
-            newPos.setY(0);
-        } else if (newPos.y() < (size().height() - imageWidget->imageSize().height())) {
-            newPos.setY(size().height() - imageWidget->imageSize().height());
+    bool needToMove = Settings::rotation != 0;
+    if (!needToMove) {
+        if (imageWidget->imageSize().width() > size().width()) {
+            if (newPos.x() > 0) {
+                newPos.setX(0);
+            } else if (newPos.x() < (size().width() - imageWidget->imageSize().width())) {
+                newPos.setX(size().width() - imageWidget->imageSize().width());
+            }
+            needToMove = true;
         }
-        needToMove = true;
+
+        if (imageWidget->imageSize().height() > size().height()) {
+            if (newPos.y() > 0) {
+                newPos.setY(0);
+            } else if (newPos.y() < (size().height() - imageWidget->imageSize().height())) {
+                newPos.setY(size().height() - imageWidget->imageSize().height());
+            }
+            needToMove = true;
+        }
     }
 
     if (needToMove) {
