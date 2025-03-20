@@ -252,7 +252,7 @@
 · by default the selected images are appended to the command</source>
         <translation>· %f 和 %tf 將被替換為單一圖檔和縮圖路徑
 · %u 和 %tu 及其各自的 URIs (file:///path/to/file)
-· 預設情況下，所選定的圖檔將附加至指令</translation>
+· 預設情況下，所選取的圖檔將附加至指令</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="128"/>
@@ -314,7 +314,7 @@
         <location filename="../Tags.cpp" line="611"/>
         <source>Delete %n selected tags(s)?</source>
         <translation>
-            <numerusform>刪除 %n 個選定的標記？</numerusform>
+            <numerusform>刪除 %n 個選取的標記？</numerusform>
         </translation>
     </message>
     <message>
@@ -362,12 +362,12 @@
     <message>
         <location filename="../Tags.cpp" line="109"/>
         <source>Add to library</source>
-        <translation>增到庫源</translation>
+        <translation>增加至程式庫</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="112"/>
         <source>Remove from library</source>
-        <translation>從庫源刪除</translation>
+        <translation>從程式庫移除</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="170"/>
@@ -876,7 +876,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="896"/>
         <source>Rotate and Crop images</source>
-        <translation>旋轉與裁剪圖像</translation>
+        <translation>旋轉與裁剪影像圖片</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="900"/>
@@ -1396,7 +1396,7 @@
         <location filename="../Phototonic.cpp" line="1824"/>
         <location filename="../Phototonic.cpp" line="3444"/>
         <source>No images selected</source>
-        <translation>未有圖像圖檔選擇</translation>
+        <translation>未有選取影像圖檔</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1824"/>
@@ -1406,7 +1406,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1830"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation>&lt;h3&gt;定義裁切區域&lt;/h3&gt;&lt;p&gt;開啟影像圖檔，可以旋轉它。&lt;br&gt;然後按住 Ctrl 鍵選擇裁切矩形。&lt;br&gt;&lt;b&gt;切勿&lt;/b&gt;點按二下進行選擇來套用裁切！ &lt;br&gt;如果不使用預覽，請退出檢視器。&lt;/p&gt;您現在可以在多張圖像上重覆此操作。</translation>
+        <translation>&lt;h3&gt;定義裁切區域&lt;/h3&gt;&lt;p&gt;開啟圖檔，可以旋轉它。&lt;br&gt;然後按住 Ctrl 鍵選擇裁切矩形。&lt;br&gt;&lt;b&gt;切勿&lt;/b&gt;點按二下進行選擇來套用裁切！ &lt;br&gt;如果不使用預覽，請退出檢視器。&lt;/p&gt;您現在可以在多張圖檔上重覆此操作。</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1937"/>
@@ -1641,7 +1641,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1842"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
-        <translation>尚無定義整體儲存目錄，影像圖檔將會被覆蓋。&lt;h3&gt;您要建立備份嗎？&lt;/h3&gt;</translation>
+        <translation>尚無定義整體儲存目錄，影像圖檔將會被覆寫。&lt;h3&gt;確定要建立備份嗎？&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1847"/>
@@ -1894,12 +1894,12 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="56"/>
         <source>Wrap image list when reaching last or first image</source>
-        <translation>當到達最後一張或第一張影像時打包圖像列表</translation>
+        <translation>當到達最後一張或第一張影像圖片時打包圖檔列表</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="70"/>
         <source>Enable GIF animation</source>
-        <translation>啟用 GIF 動畫圖像</translation>
+        <translation>啟用 GIF 動畫</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="44"/>
@@ -1952,7 +1952,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="150"/>
         <source>Scale up small images in preview</source>
-        <translation>在預覽中小型圖像調整放大</translation>
+        <translation>在預覽中將小型影像圖片調整放大</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="166"/>
@@ -2227,7 +2227,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="1397"/>
         <source>Loading...</source>
-        <translation>載入…</translation>
+        <translation>載入中…</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1437"/>
@@ -2278,7 +2278,7 @@
     <message>
         <location filename="../main.cpp" line="44"/>
         <source>Copy all modified images into &lt;directory&gt;.</source>
-        <translation>將所有修改過的圖檔複製到&lt;目錄&gt;中。</translation>
+        <translation>將全部修改過的圖檔複製到 &lt;目錄&gt; 中。</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="45"/>
