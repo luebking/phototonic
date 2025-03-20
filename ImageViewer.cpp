@@ -815,8 +815,12 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
         // it's pointless and causes ugly flicker
         if (largeImage) {
             setImage(preview);
+            const float o_zoom = m_zoom;
+            if (m_zoomMode == ZoomOriginal && fullSize.isValid())
+                m_zoom *= (fullSize.width()/float(preview.width()) + fullSize.height()/float(preview.height()))/2.0f;
             resizeImage();
             centerImage(imageWidget->imageSize());
+            m_zoom = o_zoom;
         }
     }
 
