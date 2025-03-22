@@ -317,7 +317,7 @@
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати всі теги</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="98"/>
@@ -488,12 +488,12 @@
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished">Масштаб зафіксований</translation>
+        <translation>Масштаб заблоковано</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished">Масштаб розблокований</translation>
+        <translation>Масштаб розблоковано</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="202"/>
@@ -508,7 +508,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="209"/>
         <source>Original Size</source>
-        <translation type="unfinished">Оригінальний розмір</translation>
+        <translation>Оригінальний розмір</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="279"/>
@@ -803,17 +803,17 @@
     <message>
         <location filename="../Phototonic.cpp" line="558"/>
         <source>Show classic thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати класичні мініатюри</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="563"/>
         <source>Show square thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати квадратні мініатюри</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="568"/>
         <source>Show compact thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати компактні мініатюри</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="573"/>
@@ -865,22 +865,22 @@
     <message>
         <location filename="../Phototonic.cpp" line="616"/>
         <source>Sort by Similarity</source>
-        <translation type="unfinished"></translation>
+        <translation>Упорядкувати за схожістю</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="617"/>
         <source>Sort by Brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>Упорядкувати за яскравістю</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="618"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Упорядкувати за кольором</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="619"/>
         <source>Reverse Sort Order</source>
-        <translation type="unfinished"></translation>
+        <translation>Зворотний порядок сортування</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="650"/>
@@ -905,12 +905,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="683"/>
         <source>Paste Here</source>
-        <translation>Вставити тут</translation>
+        <translation>Вставити сюди</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="692"/>
         <source>Set Save Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштувати каталог збереження</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="696"/>
@@ -937,7 +937,7 @@
         <location filename="../Phototonic.cpp" line="284"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished">Список файлів</translation>
+        <translation>Список файлів</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="734"/>
@@ -953,7 +953,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="765"/>
         <source>Set Wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>Установити шпалери</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="768"/>
@@ -1384,22 +1384,22 @@
     <message>
         <location filename="../Phototonic.cpp" line="808"/>
         <source>Rotate 90° CCW</source>
-        <translation type="unfinished"></translation>
+        <translation>Обернути на 90° ліворуч</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="812"/>
         <source>Rotate 90° CW</source>
-        <translation type="unfinished"></translation>
+        <translation>Обернути на 90° праворуч</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="816"/>
         <source>Rotate with mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>Оберніть мишею</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="821"/>
         <source>Or try holding Shift</source>
-        <translation type="unfinished"></translation>
+        <translation>Або затисніть Shift</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="832"/>
@@ -1409,17 +1409,17 @@
     <message>
         <location filename="../Phototonic.cpp" line="840"/>
         <source>Rotate 1° CCW</source>
-        <translation type="unfinished"></translation>
+        <translation>Обернути на 1° ліворуч</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="843"/>
         <source>Rotate 1° CW</source>
-        <translation type="unfinished"></translation>
+        <translation>Обернути на 1° праворуч</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="850"/>
         <source>Find Duplicate Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Знайти дублікати зображень</translation>
     </message>
     <message>
         <source>Disable Mirror</source>
@@ -1557,7 +1557,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="896"/>
         <source>Rotate and Crop images</source>
-        <translation type="unfinished"></translation>
+        <translation>Обертання або обрізання зображень</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1829"/>
@@ -1582,7 +1582,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1847"/>
         <source>Overwrite the original files</source>
-        <translation type="unfinished"></translation>
+        <translation>Перезаписати оригінальні файли</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1850"/>
@@ -2274,7 +2274,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Shortcut</source>
-        <translation type="unfinished">Сполучення клавіш</translation>
+        <translation>Комбінація клавіш</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="293"/>
@@ -2474,17 +2474,17 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="1397"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Завантаження...</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1437"/>
         <source>Comparing...</source>
-        <translation type="unfinished"></translation>
+        <translation>Порівнювання...</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1470"/>
         <source>Sorting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортування...</translation>
     </message>
 </context>
 <context>
@@ -2492,37 +2492,37 @@
     <message>
         <location filename="../main.cpp" line="34"/>
         <source>files or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>файли або каталог</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="35"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
-        <translation type="unfinished"></translation>
+        <translation>файли або каталог для відкриття, &quot;-&quot;, щоб прочитати їх з stdin.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="36"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
-        <translation type="unfinished"></translation>
+        <translation>[ФАЙЛ...] | [КАТАЛОГ] | [-]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="39"/>
         <source>start with a specific translation</source>
-        <translation type="unfinished"></translation>
+        <translation>розпочати від певного перекладу</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="40"/>
         <source>language</source>
-        <translation type="unfinished"></translation>
+        <translation>мова</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="44"/>
         <source>Copy all modified images into &lt;directory&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Копіювати всі змінені зображення в &lt;каталог&gt;.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="45"/>
         <source>directory</source>
-        <translation type="unfinished"></translation>
+        <translation>каталог</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="49"/>
