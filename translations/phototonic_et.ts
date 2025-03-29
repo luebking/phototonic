@@ -31,67 +31,67 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="78"/>
         <source>Lightness</source>
-        <translation type="unfinished"></translation>
+        <translation>Heledus</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="81"/>
         <source>Colorize</source>
-        <translation type="unfinished"></translation>
+        <translation>Värvi</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="85"/>
         <location filename="../ColorsDialog.cpp" line="89"/>
         <location filename="../ColorsDialog.cpp" line="93"/>
         <source>Negative</source>
-        <translation type="unfinished"></translation>
+        <translation>Negatiiv</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="99"/>
         <location filename="../ColorsDialog.cpp" line="152"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation>Punane</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="104"/>
         <location filename="../ColorsDialog.cpp" line="153"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation>Roheline</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="109"/>
         <location filename="../ColorsDialog.cpp" line="154"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation>Sinine</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="126"/>
         <source>Hue and Saturation</source>
-        <translation type="unfinished"></translation>
+        <translation>Värvitoon ja küllastus</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="132"/>
         <source>Affected Channels</source>
-        <translation type="unfinished"></translation>
+        <translation>Mõjutatud kanalid</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="136"/>
         <source>Brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>Eredus</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="137"/>
         <source>Contrast</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrast</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="148"/>
         <source>Brightness and Contrast</source>
-        <translation type="unfinished"></translation>
+        <translation>Eredus ja kontrast</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="168"/>
         <source>Color Balance</source>
-        <translation type="unfinished"></translation>
+        <translation>Värvitasakaal</translation>
     </message>
 </context>
 <context>
@@ -250,7 +250,9 @@
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
 · %u and %tu with their respective URIs (file:///path/to/file)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f ja %tf asendatakse üksiku pildiga ja pisipildi asukohaga
+· %u ja %tu vastavalt nende aadrerssidega (file:///asukoht/faili/juurde)
+· vaikimisi valitud pildid lisatakse käsule</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="128"/>
@@ -346,17 +348,17 @@
         <location filename="../Tags.cpp" line="58"/>
         <location filename="../Tags.cpp" line="73"/>
         <source>Show only library tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Näita vaid pildikogu silte</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="65"/>
         <source>Show only relevant tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Näita vaid asjakohaseid silte</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Näita kõiki silte</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="109"/>
@@ -419,27 +421,27 @@
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished">Suumitase on lukustatud</translation>
+        <translation>Suumitase on lukustatud</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished">Suumitase pole lukustatud</translation>
+        <translation>Suumitase pole lukustatud</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="202"/>
         <source>Fit View</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobita vaade</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="207"/>
         <source>Fill View</source>
-        <translation type="unfinished"></translation>
+        <translation>Täida vaade</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="209"/>
         <source>Original Size</source>
-        <translation type="unfinished">Algne suurus</translation>
+        <translation>Algne suurus</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="279"/>
@@ -451,12 +453,12 @@
         <location filename="../ImageViewer.cpp" line="649"/>
         <source>skipping animation in batch mode:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>jätame pakktöötluses animatsiooni vahele:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="695"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h1&gt;Hoiatus&lt;/h1&gt;Algne pildimõõt %1x%2 ületab lubatud piire&lt;br&gt;Mõõt on vähendatud suuruseni %3x%4&lt;br&gt;&lt;h3&gt;Muudatuste salvestamine salvestab ka väiksema pildi!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="961"/>
@@ -882,13 +884,13 @@
         <location filename="../Phototonic.cpp" line="1123"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Filter - proovi „/?“...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for &lt;b&gt;black, white, dark, bright, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[sõne] [/ piirang [/ veel piiranguid]]&lt;/h2&gt;&lt;tt&gt;einomuidugi / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;vastab sõnele „einomuidugi“, mis on vanemad, kui 5 päeva, aga nooremad, kui üks kuu - või alla 10kB mahuga&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Suurem kui/Peale: &amp;gt;&lt;/li&gt;&lt;li&gt;Väiksem kui/Enne: &amp;lt;&lt;/li&gt;&lt;li&gt;Täpne vanus või (ümardatud) suurus muidu eeldatav või sõnaselge kasutades: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Kuupäevad on absoluutsed (AAAA-KK-PP) või suhtelised (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Suurused kas 4kB:MB:GB või 4MP (megapikslites)&lt;/li&gt;&lt;li&gt;Mõõtuse eraldajaks on „x“ ([laius]x[kõrgus])&lt;/li&gt;&lt;li&gt;Kromaatilise varieeruvuse kirjapilt on [0-255]cr (tvaliselt väärtused ei ületa 100 piiri)&lt;/li&gt;&lt;li&gt;Helduse kirjapilt on [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Kõik järelliited on tõstutundetud, välja arvatud minut ning kuu (m|inute ja M|onth)&lt;/i&gt;&lt;br&gt;Järgnev „/“ käivitab uue piisavate tingimuste grupi, alamsõne klapitamine pole kohustuslik.&lt;hr&gt;Lisaks saad filtrisse märkida olekuid &lt;b&gt;black, white, dark, bright, monochrome, gray&lt;/b&gt; ja värve&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1229"/>
@@ -968,7 +970,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="876"/>
         <source>Transformations Locked</source>
-        <translation type="unfinished"></translation>
+        <translation>Muudatused on lukustatud</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="120"/>
@@ -985,17 +987,17 @@
         <location filename="../Phototonic.cpp" line="284"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished">Faililoend</translation>
+        <translation>Faililoend</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="421"/>
         <source>Navigate</source>
-        <translation type="unfinished"></translation>
+        <translation>Liigu</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="439"/>
         <source>Flip and Flop and Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Pööra ja keera</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="454"/>
@@ -1031,7 +1033,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="520"/>
         <source>Close Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Sulge vaatamisliides</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="558"/>
@@ -1106,7 +1108,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="618"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Järjesta värvi alusel</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="619"/>
@@ -1266,7 +1268,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1093"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Nojah, see pole ju otseselt tehisintellektipõhine.&lt;p&gt;Tuvastame topeltpilte halltoonides mosaiigi alusel&lt;br&gt;(&lt;i&gt;küllastumata pildid näevad ju kaugelt samad välja?&lt;/i&gt;)&lt;br&gt;ning võrreldes värvijaotust&lt;br&gt;(&lt;i&gt;teda ei mõjuta peegelpildid, pööramine, anamorfsed muutused…&lt;/i&gt;)&lt;br&gt;Aga mõlemad meedodid võivad põhjustada naljakaid valepositiivseid olukordi.&lt;/p&gt;&lt;p&gt;Vajalikku värvide jaotuse lähedust saad seadistada siin&lt;br&gt;60% on mõistlik vaikimisi väärtus, aga mustvalgete piltide puhul võib sellest väheks jääda&lt;br&gt;Väiksem väärtus lisab juurde palju valepositiivseid tulemusi, mille vältimiseks pead siis jälle täpsust suurendama&lt;/p&gt;&lt;h3&gt;Arvesta, et see võib põhjustada katkendlikke vastavusi!&lt;/h3&gt;&lt;p&gt;[A] võib olla sarnane [B] ja [C]&apos;ga, samas [B] ja [C] pole üldse sarnased.&lt;br&gt;Tulemuseks võib olla, et [A] võib &lt;b&gt;leidub sama pildina mitu korda!&lt;/b&gt;&lt;br&gt;Ära lihtsalt eelda, et järjestamine on vale ja need on selgelt duplikaadid&lt;br&gt;ning vajuta kustutamisnuppu. Nad ongi &lt;b&gt;üks ja sama pilt&lt;/b&gt; ning ühe kustutamine tähendab&lt;br&gt;mõlema kustutamist.&lt;/p&gt;&lt;h3&gt;Selguse mõttes jälgi failinimesid!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1177"/>
@@ -1354,7 +1356,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1830"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Kadreerimisala määratlemine&lt;/h3&gt;&lt;p&gt;Ava pilt, vajadusel pööra teda.&lt;br&gt;Kadreeritava ala hiirega valimiseks vajuta alla ja hoia all ctrl-klahvi.&lt;br&gt;Kindlasti &lt;b&gt;ära&lt;/b&gt; ürita kadreerimist jõustada valiku topeltklõpsimisega!&lt;br&gt;Kui sa ei kasuta eelvaadet, siis välju vaaterežiimist.&lt;/p&gt;Sama tegevust saad nüüd korrata mitmete piltidega.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1937"/>
@@ -1817,37 +1819,37 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="56"/>
         <source>Wrap image list when reaching last or first image</source>
-        <translation type="unfinished"></translation>
+        <translation>Esimese või viimase pildini jõudes jätka loendi teisest äärest</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="70"/>
         <source>Enable GIF animation</source>
-        <translation type="unfinished"></translation>
+        <translation>Luba gif-failide animatsioonid</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="44"/>
         <source>Background color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taustavärv:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="60"/>
         <source>Default quality when saving:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaikimisi kvaliteet salvesatmisel:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="74"/>
         <source>Rotate image according to Exif orientation value</source>
-        <translation type="unfinished"></translation>
+        <translation>Pööra pilti vastavalt Exif-metainfos olevatele andmetele</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="78"/>
         <source>Show image file name in viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Näita vaatamisliides pildifaili nime</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="92"/>
         <source>Thumbnails and Preview Background Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pisipiltide ja eelvaate taustavärv:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="104"/>
@@ -1877,12 +1879,12 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="169"/>
         <source>Use scroll wheel for zooming in image viewer</source>
-        <translation>Kasuta vaaterežiimis hiireratast suumimiseks</translation>
+        <translation>Kasuta vaatamisliideses hiireratast suumimiseks</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="177"/>
         <source>Startup directory if not specified by command line</source>
-        <translation>Lähtekaust, kuid see käsurealt pole ette antud</translation>
+        <translation>Lähtekaust, kui see pole käsurealt ette antud</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="221"/>
@@ -1898,57 +1900,57 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="231"/>
         <source>Select an entry and press a key to set a new shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Uue kiirklahvi seadistamiseks vali kirje ja vajuta soovitud klahvi</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="238"/>
         <source>Set the application icon according to the current image</source>
-        <translation type="unfinished"></translation>
+        <translation>Loo rakenduse ikoon dünaamiliselt hetkel näidatava pildi alusel</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="267"/>
         <source>Slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation>Slaidiseanss</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="275"/>
         <source>&lt;p&gt;Bangs allow you to use external commands to generate the list of shown images.&lt;br&gt;The main purpose is to query databases like locate, baloo or tracker, but anything that can generate a list of image files is suitable&lt;/p&gt;&lt;p&gt;The token &lt;b&gt;%s&lt;/b&gt; in the command will be replaced with the parameter.&lt;/p&gt;&lt;p&gt;Eg. for plocate, using the shortcut &lt;i&gt;locate&lt;/i&gt; and the command&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;allows you to enter &lt;i&gt;locate:waldo&lt;/i&gt; to display indexed jpg&apos;s and png&apos;s of waldo.&lt;/p&gt;&lt;p&gt;Phototonic tests the files for existence and will remove duplicates (including file and directory symlinks.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Hüüumärgiga otsekäsud võimaldavad sul kasutada väliseid käske näidatavate piltide loendi koostamiseks.&lt;br&gt;Nende põhieesmärgiks on võimaldada otsingut andmekogudest nagu locate, baloo või tracker, aga sobib mis iganes vidin, mis oskab luua pildifailide loendit&lt;/p&gt;&lt;p&gt;Käsus olev &lt;b&gt;%s&lt;/b&gt; märk asendatakse parameetriga.&lt;/p&gt;&lt;p&gt;Näiteks plocate puhul, kasutades otsekäsku &lt;i&gt;locate&lt;/i&gt; ja käsku&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;võimaldab sul sisestada &lt;i&gt;locate:waldo&lt;/i&gt; ja saada tulemuseks waldo indekseeritud jpg ja png failid.&lt;/p&gt;&lt;p&gt;Phototonic kontrollib failide olemasolu ja eemaldab topeltfailid (kaasa arvatud failide ja kaustade sümbollingid).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Shortcut</source>
-        <translation type="unfinished">Kiirklahv</translation>
+        <translation>Kiirklahv</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="293"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Käsk</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="373"/>
         <source>Bangs</source>
-        <translation type="unfinished"></translation>
+        <translation>Hüüumärgiga otsekäsud</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="450"/>
         <source>Select background color</source>
-        <translation type="unfinished"></translation>
+        <translation>Vali taustavärv</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="466"/>
         <source>Choose Startup Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Vali käivituskaust</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="137"/>
         <source>Number of thumbnail pages to read ahead:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ettevalmistatavate järgmiste pisipiltide lehtede arv:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="248"/>
         <source>Delay between slides in seconds:</source>
-        <translation type="unfinished"></translation>
+        <translation>Viivitus slaidide vahel sekundites:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="258"/>
@@ -1963,18 +1965,18 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="179"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaikimisi</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="181"/>
         <source>Specify:</source>
         <extracomment>specificy a startup directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Vali:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="173"/>
         <source>Delete confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Kustutamise kinnitus</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="342"/>
@@ -1989,7 +1991,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="357"/>
         <source>Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaatamisliides</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="361"/>
@@ -1999,7 +2001,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="365"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Üldised seadistused</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="472"/>
@@ -2017,12 +2019,12 @@
     <message>
         <location filename="../ShortcutsTable.cpp" line="86"/>
         <source>%1 is reserved for launching external applications.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 on reserveeritud väliste rakenduste käivitamiseks.</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="116"/>
         <source>%1 is already assigned to %2, reassign shortcut?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 on juba kasutusel %2 jaoks, kas muudame ümber?</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="117"/>
@@ -2168,32 +2170,32 @@
     <message>
         <location filename="../main.cpp" line="34"/>
         <source>files or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>failid või kaust</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="35"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
-        <translation type="unfinished"></translation>
+        <translation>avatavad failid või kaust, „-“ loeb nad standardsisesndist.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="36"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
-        <translation type="unfinished"></translation>
+        <translation>[FILE...] | [DIRECTORY] | [-]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="39"/>
         <source>start with a specific translation</source>
-        <translation type="unfinished"></translation>
+        <translation>käivita konkreetse tõlkega</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="40"/>
         <source>language</source>
-        <translation type="unfinished"></translation>
+        <translation>keel</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="44"/>
         <source>Copy all modified images into &lt;directory&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopeeri kõik muudetud pildid &lt;kausta&gt;.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="45"/>
@@ -2203,7 +2205,7 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
-        <translation type="unfinished"></translation>
+        <translation>Käivita Phototonicust vaid üks koopia või kui ta juba töötab, siis ava seal pildid.</translation>
     </message>
 </context>
 </TS>
