@@ -82,7 +82,7 @@
         <location filename="../ColorsDialog.cpp" line="89"/>
         <location filename="../ColorsDialog.cpp" line="93"/>
         <source>Negative</source>
-        <translation type="unfinished"></translation>
+        <translation>Негатив</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="99"/>
@@ -142,12 +142,12 @@
     <message>
         <location filename="../CopyMoveDialog.cpp" line="114"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Копирование &quot;%1&quot; в &quot;%2&quot;.</translation>
+        <translation>Копирование &quot;%1&quot; в &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="114"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Перемещение &quot;%1&quot; в &quot;%2&quot;.</translation>
+        <translation>Перемещение &quot;%1&quot; в &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -255,7 +255,7 @@
         <location filename="../CropDialog.cpp" line="31"/>
         <source>Letterbox</source>
         <extracomment>Like a bad dvd where you get a black frame around the image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>LetterBox</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="73"/>
@@ -304,7 +304,7 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="72"/>
         <source>Wallpaper command</source>
-        <translation type="unfinished"></translation>
+        <translation>Команда «Обои»</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="76"/>
@@ -316,7 +316,9 @@
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
 · %u and %tu with their respective URIs (file:///path/to/file)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f и %tf будут заменены на пути к одному изображению и миниатюре
+· %u и %tu на их соответствующие URIs (file:///path/to/file)
+· по умолчанию выбранные изображения добавляются по команде</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="128"/>
@@ -326,7 +328,7 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="139"/>
         <source>New Application</source>
-        <translation type="unfinished">Новое приложение</translation>
+        <translation>Новое приложение</translation>
     </message>
 </context>
 <context>
@@ -335,7 +337,7 @@
         <location filename="../GuideWidget.cpp" line="40"/>
         <source>Remove Guide</source>
         <extracomment>The guide is a visible line for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Удалить Guide</translation>
     </message>
 </context>
 <context>
@@ -343,7 +345,7 @@
     <message>
         <location filename="../Tags.cpp" line="50"/>
         <source>Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбор</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="98"/>
@@ -364,15 +366,15 @@
     <message>
         <location filename="../Tags.cpp" line="595"/>
         <source>Tag %1 already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Тег %1 уже существует</translation>
     </message>
     <message numerus="yes">
         <location filename="../Tags.cpp" line="611"/>
         <source>Delete %n selected tags(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Удалить %n выбранный тег?</numerusform>
+            <numerusform>Удалить %n выбранных тега?</numerusform>
+            <numerusform>Удалить %n выбранный тегов?</numerusform>
         </translation>
     </message>
     <message>
@@ -388,7 +390,7 @@
     <message>
         <location filename="../Tags.cpp" line="51"/>
         <source>Filter</source>
-        <translation type="unfinished">Фильтр</translation>
+        <translation>Фильтр</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="585"/>
@@ -405,17 +407,17 @@
         <location filename="../Tags.cpp" line="58"/>
         <location filename="../Tags.cpp" line="73"/>
         <source>Show only library tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать только теги библиотек</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="65"/>
         <source>Show only relevant tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать только релевантные теги</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать все теги</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="109"/>
@@ -435,17 +437,17 @@
     <message>
         <location filename="../Tags.cpp" line="170"/>
         <source>Invert filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Инвертировать фильтр</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="365"/>
         <source>Mandatory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Обязательно:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="366"/>
         <source>Sufficient:</source>
-        <translation type="unfinished">Достаточно:</translation>
+        <translation>Достаточно:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="367"/>
@@ -529,27 +531,27 @@
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished">Масштаб зафиксирован</translation>
+        <translation>Масштабирование заблокировано</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished">Масштаб разблокирован</translation>
+        <translation>Масштабирование разблокировано</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="202"/>
         <source>Fit View</source>
-        <translation type="unfinished"></translation>
+        <translation>Подогнать вид</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="207"/>
         <source>Fill View</source>
-        <translation type="unfinished"></translation>
+        <translation>Заполнить вид</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="209"/>
         <source>Original Size</source>
-        <translation type="unfinished">Исходный размер</translation>
+        <translation>Исходный размер</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="279"/>
@@ -561,12 +563,12 @@
         <location filename="../ImageViewer.cpp" line="649"/>
         <source>skipping animation in batch mode:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>пропуск анимации в пакетном режиме:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="695"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h1&gt;Предупреждение&lt;/h1&gt;Размер исходного изображения %1x%2 превышает ограничения&lt;br&gt;Уменьшено до %3x%4&lt;br&gt;&lt;h3&gt;Сохранение изменений сохранит уменьшенное изображение!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="961"/>
@@ -576,12 +578,12 @@
     <message>
         <location filename="../ImageViewer.cpp" line="971"/>
         <source>Doubleclick to crop, right click to abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Двойной щелчок, чтобы обрезать, щелчок правой кнопкой мыши, чтобы отменить</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1114"/>
         <source>Rotation %1°</source>
-        <translation type="unfinished">Поворот %1°</translation>
+        <translation>Поворот %1°</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1205"/>
@@ -649,7 +651,7 @@
     <message>
         <location filename="../InfoViewer.cpp" line="62"/>
         <source>Filter Items</source>
-        <translation type="unfinished"></translation>
+        <translation>Фильтровать элементы</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="173"/>
@@ -664,7 +666,7 @@
     <message>
         <location filename="../InfoViewer.cpp" line="175"/>
         <source>Location</source>
-        <translation type="unfinished">Местоположение</translation>
+        <translation>Расположение</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="176"/>
@@ -679,17 +681,17 @@
     <message>
         <location filename="../InfoViewer.cpp" line="181"/>
         <source>Format</source>
-        <translation type="unfinished">Формат</translation>
+        <translation>Формат</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="184"/>
         <source>Resolution</source>
-        <translation type="unfinished">Разрешение</translation>
+        <translation>Разрешение</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="185"/>
         <source>Megapixel</source>
-        <translation type="unfinished">Мегапикселей</translation>
+        <translation>Мегапикселей</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="191"/>
@@ -702,17 +704,17 @@
     <message>
         <location filename="../MessageBox.cpp" line="79"/>
         <source>Image Viewer and Organizer</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотрщик и органайзер изображений</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="80"/>
         <source>Home page and bug reports</source>
-        <translation type="unfinished"></translation>
+        <translation>Домашняя страница и отчеты об ошибках</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="86"/>
         <source>Special thanks to our contributers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Особая благодарность нашим авторам.</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="89"/>
@@ -790,13 +792,13 @@
     <message>
         <location filename="../Phototonic.cpp" line="896"/>
         <source>Rotate and Crop images</source>
-        <translation type="unfinished"></translation>
+        <translation>Поворот и обрезка изображений</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1123"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Фильтр - попробуйте &quot;/?&quot;...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
@@ -1059,53 +1061,53 @@
     <message>
         <location filename="../Phototonic.cpp" line="2917"/>
         <source>Can not move or copy images to this directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно переместить или скопировать изображения в этот каталог.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2923"/>
         <source>Destination directory is the same as the source directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Каталог назначения совпадает с исходным каталогом.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2936"/>
         <source>Move directory %1 to %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>Переместить каталог %1 в %2?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2937"/>
         <source>Move directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Переместить каталог</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2940"/>
         <source>Move Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Перемещение каталога</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2946"/>
         <source>Failed to move directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось переместить каталог.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2948"/>
         <source>Directory moved</source>
-        <translation type="unfinished"></translation>
+        <translation>Каталог перемещен</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3034"/>
         <source>Failed to open directory %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось открыть каталог %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3035"/>
         <source>No directory selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Каталог не выбран</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3067"/>
         <source>Searching duplicates: %v / %m</source>
         <extracomment>%v and %m are literal pattterns for QProgressBar (value and maximum)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Поиск дубликатов: %v / %m</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3107"/>
@@ -1408,12 +1410,12 @@
         <location filename="../Phototonic.cpp" line="1824"/>
         <location filename="../Phototonic.cpp" line="3444"/>
         <source>No images selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображения не выбраны</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1824"/>
         <source>Please select the images to transform.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, выберите изображения для преобразования.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1830"/>
@@ -1423,12 +1425,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="1937"/>
         <source>Can not copy or move to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно скопировать или переместить в %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1949"/>
         <source>Can not move to the same directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно перейти в тот же каталог</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1975"/>
@@ -1509,12 +1511,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="721"/>
         <source>Go Up</source>
-        <translation type="unfinished">Вверх</translation>
+        <translation>Вверх</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="761"/>
         <source>Load Clipboard</source>
-        <translation>Вставить изображение из буфера</translation>
+        <translation>Вставить изображение из буфера обмена</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="776"/>
@@ -1564,7 +1566,7 @@
         <location filename="../Phototonic.cpp" line="1318"/>
         <source>Tags</source>
         <extracomment>tags are image metadata</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Теги</translation>
     </message>
     <message>
         <source>Zoom Reset</source>
@@ -1587,23 +1589,23 @@
         <location filename="../Phototonic.cpp" line="120"/>
         <location filename="../Phototonic.cpp" line="329"/>
         <source>Average brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>Средняя яркость</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="254"/>
         <source>Failed to open file %1, file not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось открыть файл %1, файл не найден.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="284"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Список файлов</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="421"/>
         <source>Navigate</source>
-        <translation type="unfinished"></translation>
+        <translation>Навигация</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="439"/>
@@ -1789,7 +1791,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="780"/>
         <source>Delete Bookmark</source>
-        <translation type="unfinished">Удалить закладку</translation>
+        <translation>Удалить закладку</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="808"/>
@@ -2422,7 +2424,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Shortcut</source>
-        <translation type="unfinished">Сочетание клавиш</translation>
+        <translation>Сочетание клавиш</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="293"/>
@@ -2751,7 +2753,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="912"/>
         <source>Searching duplicate images...</source>
-        <translation type="unfinished">Поиск копий изображений...</translation>
+        <translation>Поиск копий изображений...</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1085"/>
@@ -2765,7 +2767,7 @@
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1087"/>
         <source>%n image(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n изображение</numerusform>
             <numerusform>%n изображения</numerusform>
             <numerusform>%n изображений</numerusform>
