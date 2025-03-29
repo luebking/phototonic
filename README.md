@@ -25,6 +25,17 @@ webcam shots and align them well enough to make a time-lapse video.
 <img src="https://translate.lxqt-project.org/widgets/luebking/-/phototonic/multi-blue.svg" align="right" alt="Translation status" />
 </a>
 
+##### 29. March 2025
+Second and final beta of 3.0
+
+Some small bugfixes
+- align collation between model and fs and preserve setting
+- account for rotation when sliding images around
+- upscale preview to match image
+- update image info overlay when loading image from thumbviewer
+- fix tag subset selection logic
+- lazy inode watching
+
 ##### 12. March 2025
 1st beta release
 
