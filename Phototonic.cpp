@@ -82,6 +82,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
 
     fileSystemModel = new QFileSystemModel(this);
     fileSystemModel->setFilter(QDir::AllDirs | QDir::Dirs | QDir::NoDotAndDotDot);
+    fileSystemModel->setOptions(QFileSystemModel::DontWatchForChanges);
     fileSystemModel->setIconProvider(new IconProvider);
 
     setDockOptions(QMainWindow::AllowNestedDocks);
@@ -1272,6 +1273,7 @@ void Phototonic::createFileSystemDock() {
     connect(fileSystemDock, &QDockWidget::visibilityChanged, [=](bool visible) {
         if (visible && !fileSystemTree->model()) {
             QTimer::singleShot(50, [=](){
+                fileSystemModel->setOptions(QFileSystemModel::Options());
                 fileSystemTree->setModel(fileSystemModel);
                 for (int i = 1; i < fileSystemModel->columnCount(); ++i) {
                     fileSystemTree->hideColumn(i);
