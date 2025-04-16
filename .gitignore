@@ -8,3 +8,5 @@ qrc_phototonic.cpp
 *.pro.user
 Makefile
 mingw
+build/
+CMakeLists.txt.user
