@@ -811,7 +811,7 @@ void Phototonic::createActions() {
     connect(resetZoomAction, &QAction::triggered, this, [=](){
         imageViewer->zoomTo(imageViewer->zoomMode() == ImageViewer::ZoomToFit ?
                                                                     ImageViewer::ZoomToFill :
-                                                                    ImageViewer::ZoomToFit); 
+                                                                    ImageViewer::ZoomToFit);
     });
 
     MAKE_ACTION(origZoomAction, tr("Original Size"), "origZoom", "/");
@@ -1895,7 +1895,7 @@ void Phototonic::batchTransform() {
                 MessageBox msgBox(this);
                 msgBox.critical(tr("Error"), tr("Failed to copy or move image."));
                 return;
-            } 
+            }
         }
     }
 
@@ -3091,7 +3091,7 @@ void Phototonic::reloadThumbs() {
     m_imageTags->removeTransientTags();
 
     if (findDupesAction->isChecked()) {
-        const bool actionEnabled[5] = { goBackAction->isEnabled(), goFrwdAction->isEnabled(), 
+        const bool actionEnabled[5] = { goBackAction->isEnabled(), goFrwdAction->isEnabled(),
                                         goUpAction->isEnabled(), goHomeAction->isEnabled(), refreshAction->isEnabled() };
         goBackAction->setEnabled(false);
         goFrwdAction->setEnabled(false);
@@ -3433,7 +3433,7 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
                 animator->setEasingCurve(QEasingCurve::InOutQuad);
             }
             const int grid = thumbsViewer->gridSize().height();
-            int v = (animator->state() == QAbstractAnimation::Running) ? animator->endValue().toInt() : 
+            int v = (animator->state() == QAbstractAnimation::Running) ? animator->endValue().toInt() :
                                                                          thumbsViewer->verticalScrollBar()->value();
             animator->setStartValue(v);
             if (qAbs(steps) == 1000) {
