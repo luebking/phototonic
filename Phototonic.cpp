@@ -2445,7 +2445,7 @@ void Phototonic::readSettings() {
     Settings::showHiddenFiles = Settings::value(Settings::optionShowHiddenFiles, false).toBool();
     Settings::wrapImageList = Settings::value(Settings::optionWrapImageList, false).toBool();
     Settings::defaultSaveQuality = Settings::value(Settings::optionDefaultSaveQuality, 90).toInt();
-    Settings::slideShowDelay = Settings::value(Settings::optionSlideShowDelay, 5).toInt();
+    Settings::slideShowDelay = Settings::value(Settings::optionSlideShowDelay, 5.0).toDouble();
     Settings::slideShowRandom = Settings::value(Settings::optionSlideShowRandom, false).toBool();
     Settings::showImageName = Settings::value(Settings::optionShowImageName, false).toBool();
     Settings::smallToolbarIcons = Settings::value(Settings::optionSmallToolbarIcons, true).toBool();
@@ -2745,7 +2745,7 @@ void Phototonic::toggleSlideShow() {
 
         SlideShowTimer = new QTimer(this);
         connect(SlideShowTimer, SIGNAL(timeout()), this, SLOT(slideShowHandler()));
-        SlideShowTimer->start(Settings::slideShowDelay * 1000);
+        SlideShowTimer->start(Settings::slideShowDelay * 1000.0);
 
         slideShowAction->setText(tr("Stop Slide Show"));
         imageViewer->setFeedback(tr("Slide show started"));

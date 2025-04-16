@@ -26,6 +26,7 @@ class QRadioButton;
 class QSpinBox;
 class QTableWidget;
 class QToolButton;
+class QDoubleSpinBox;
 #include <QDialog>
 
 class SettingsDialog : public QDialog {
@@ -69,7 +70,7 @@ private:
     QCheckBox *reverseMouseCheckBox;
     QCheckBox *scrollZoomCheckBox;
     QCheckBox *deleteConfirmCheckBox;
-    QSpinBox *slideDelaySpinBox;
+    QDoubleSpinBox *slideDelaySpinBox;
     QCheckBox *slideRandomCheckBox;
     QRadioButton *startupDirectoryRadioButtons[3];
     QLineEdit *startupDirLineEdit;
