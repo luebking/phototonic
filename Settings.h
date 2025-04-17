@@ -59,6 +59,7 @@ namespace Settings {
     extern const char optionDefaultSaveQuality[];
     extern const char optionSlideShowDelay[];
     extern const char optionSlideShowRandom[];
+    extern const char optionSlideShowCrossfade[];
     extern const char optionFileSystemDockVisible[];
     extern const char optionBookmarksDockVisible[];
     extern const char optionImagePreviewDockVisible[];
@@ -104,6 +105,7 @@ namespace Settings {
     extern int slideShowDelay;
     extern bool slideShowRandom;
     extern bool slideShowActive;
+    extern bool slideShowCrossfade;
     extern QMap<QString, QAction *> actionKeys;
     extern int hueVal;
     extern int saturationVal;
