@@ -36,6 +36,7 @@
 #include <QScrollBar>
 #include <QSignalBlocker>
 #include <QTableWidget>
+#include <QElapsedTimer>
 #include <QTableWidgetItem>
 
 #include "CopyMoveDialog.h"
