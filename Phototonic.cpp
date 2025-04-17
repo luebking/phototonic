@@ -2821,7 +2821,7 @@ void Phototonic::slideShowHandler() {
     }
 
     if (next < 0)
-        next = Settings::wrapImageList ? -1 : -2;
+        next = Settings::wrapImageList ? 0 : -2;
 
     if (next > -1 && next < thumbsViewer->model()->rowCount())
         QTimer::singleShot(500, this, [=]() {imageViewer->preload(thumbsViewer->fullPathOf(next));});
