@@ -40,6 +40,7 @@ namespace Settings {
     const char optionDefaultSaveQuality[] = "defaultSaveQuality";
     const char optionSlideShowDelay[] = "slideShowDelay";
     const char optionSlideShowRandom[] = "slideShowRandom";
+    const char optionSlideShowCrossfade[] = "slideShowCrossfade";
     const char optionFileSystemDockVisible[] = "fileSystemDockVisible";
     const char optionBookmarksDockVisible[] = "bookmarksDockVisible";
     const char optionImagePreviewDockVisible[] = "imagePreviewDockVisible";
@@ -85,6 +86,7 @@ namespace Settings {
     int slideShowDelay;
     bool slideShowRandom;
     bool slideShowActive;
+    bool slideShowCrossfade;
     QMap<QString, QAction *> actionKeys;
     int hueVal;
     int saturationVal;
