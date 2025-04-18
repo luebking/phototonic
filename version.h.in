@@ -1,0 +1,13 @@
+#ifndef VERSION_H
+#define VERSION_H
+
+namespace phototonic
+{
+    const char project_name[] = "@PROJECT_NAME@";
+    const char project_version[] = "@PROJECT_VERSION@";
+
+    const char git_branch[] = "@GIT_BRANCH@";
+    const char git_hash[] = "@GIT_HASH@";
+}
+
+#endif
