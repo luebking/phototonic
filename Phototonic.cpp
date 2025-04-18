@@ -2817,6 +2817,8 @@ void Phototonic::slideShowHandler() {
             }
         } else {
             next = thumbsViewer->nextRow();
+            if (next < 0 && Settings::wrapImageList)
+                next = 0;
         }
     }
 
