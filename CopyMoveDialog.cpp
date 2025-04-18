@@ -26,6 +26,7 @@
 #include <QPushButton>
 #include <QScrollBar>
 #include <QSignalBlocker>
+#include <QElapsedTimer>
 
 #include "CopyMoveDialog.h"
 #include "MetadataCache.h"
