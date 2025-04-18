@@ -2817,8 +2817,13 @@ void Phototonic::slideShowHandler() {
             }
         } else {
             next = thumbsViewer->nextRow();
-            if (next < 0 && Settings::wrapImageList)
+            if (next < 0 && Settings::wrapImageList) {
                 next = 0;
+                while (next < thumbsViewer->model()->rowCount() && thumbsViewer->isRowHidden(next))
+                    ++next;
+                if (next >= thumbsViewer->model()->rowCount())
+                    next = -1;
+            }
         }
     }
 
