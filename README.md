@@ -25,6 +25,9 @@ webcam shots and align them well enough to make a time-lapse video.
 <img src="https://translate.lxqt-project.org/widgets/luebking/-/phototonic/multi-blue.svg" align="right" alt="Translation status" />
 </a>
 
+##### 20. April 2025
+With the release of 3.0.0 the 3.1 cycle starts into the summer
+
 ##### 29. March 2025
 Second and final beta of 3.0
 
