@@ -25,6 +25,10 @@ webcam shots and align them well enough to make a time-lapse video.
 <img src="https://translate.lxqt-project.org/widgets/luebking/-/phototonic/multi-blue.svg" align="right" alt="Translation status" />
 </a>
 
+##### 20. April 2025
+Phototonic 3.0 is here
+It's almost equivalent to the final beta except a bug with wrapping slideshows and some translations.
+
 ##### 29. March 2025
 Second and final beta of 3.0
 
