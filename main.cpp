@@ -17,6 +17,7 @@
  */
 
 #include "Phototonic.h"
+#include "version.h"
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QDir>
@@ -48,10 +49,10 @@ static void sighandler(int signum) {
 int main(int argc, char *argv[]) {
     QApplication QApp(argc, argv);
     QLocale locale = QLocale::system();
-    QCoreApplication::setApplicationVersion(VERSION);
+    QCoreApplication::setApplicationVersion(phototonic::project_version);
 
     QCommandLineParser parser;
-    parser.setApplicationDescription(VERSION " image viewer.");
+    parser.setApplicationDescription("Phototonic " + QString(phototonic::project_version) + " image viewer.");
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument(QCoreApplication::translate("main", "files or directory"),

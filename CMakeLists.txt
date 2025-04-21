@@ -17,6 +17,8 @@ IF(MSVC)
     SET(OPTIONS WIN32)
 ENDIF(MSVC)
 
+include(version)
+
 add_executable(${PROJECT_NAME} ${OPTIONS}
     ShortcutsTable.cpp
     ThumbsViewer.h
