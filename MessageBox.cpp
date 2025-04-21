@@ -21,6 +21,7 @@
 #include <QTimer>
 #include "MessageBox.h"
 #include "Phototonic.h"
+#include "version.h"
 
 MessageBox::MessageBox(QWidget *parent) : QMessageBox(parent) {
     setWindowIcon(QIcon(":/images/phototonic.png"));
@@ -75,7 +76,7 @@ void MessageBox::about() {
                     << "Ukrainian: Ihor Hordiichuk" // <igor_ck@outlook.com>
                     << "Standreas and the entire LXQt weblate team"
                     ;
-    QString aboutString = "<h1>Phototonic 3.0</h1>" // + QString(VERSION)
+    QString aboutString = "<h1>Phototonic " + QString(phototonic::project_version) + "</h1>"
                           "<h4>" + tr("Image Viewer and Organizer") + "</h4>"
                           "<a href=\"https://github.com/luebking/phototonic\">" + tr("Home page and bug reports") + "</a>"
                           "<dl><dt>Copyright</dt><dd>"
