@@ -266,7 +266,11 @@
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
 · %u and %tu with their respective URIs (file:///path/to/file)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f та %tf буде замінено на шлях до зображення та його мініатюри відповідно.
+
+· %u та %tu — на відповідні URI (наприклад, file:///шлях/до/файлу).
+
+· Типово обрані зображення додаються до кінця команди.</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="128"/>
@@ -307,12 +311,12 @@
         <location filename="../Tags.cpp" line="58"/>
         <location filename="../Tags.cpp" line="73"/>
         <source>Show only library tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Показувати лише теґи бібліотеки</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="65"/>
         <source>Show only relevant tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Показувати лише відповідні теґи</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="69"/>
@@ -525,17 +529,17 @@
     <message>
         <location filename="../ImageViewer.cpp" line="695"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h1&gt;Попередження&lt;/h1&gt;Оригінальний розмір зображення %1x%2 перевищує ліміти&lt;br&gt;Зменшено до %3x%4&lt;br&gt;&lt;h3&gt;Збереження змін збереже менше зображення!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="961"/>
         <source>Selection: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вибір: </translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="971"/>
         <source>Doubleclick to crop, right click to abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Двічі клацніть, щоб обрізати, клацніть правою кнопкою, щоб скасувати</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1114"/>
@@ -2431,7 +2435,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="912"/>
         <source>Searching duplicate images...</source>
-        <translation type="unfinished"></translation>
+        <translation>Пошук дублікатів зображень...</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1087"/>
@@ -2469,7 +2473,7 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="1397"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Перервати</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1397"/>
