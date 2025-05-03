@@ -266,7 +266,9 @@
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
 · %u and %tu with their respective URIs (file:///path/to/file)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f en %tf worden vervangen door de afbeeldings- en miniatuurlocaties;
+· %u en %tu worden vervangen door de uri&apos;s in kwestie (file:///locatie/van/bestand);
+· standaard worden geselecteerde afbeeldingen toegevoegd aan de opdracht.</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="128"/>
@@ -331,17 +333,17 @@
         <location filename="../Tags.cpp" line="58"/>
         <location filename="../Tags.cpp" line="73"/>
         <source>Show only library tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Alleen verzamelingslabels tonen</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="65"/>
         <source>Show only relevant tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Relevante labels tonen</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle labels tonen</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="98"/>
@@ -361,47 +363,47 @@
     <message>
         <location filename="../Tags.cpp" line="109"/>
         <source>Add to library</source>
-        <translation type="unfinished"></translation>
+        <translation>Toevoegen aan verzameling</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="112"/>
         <source>Remove from library</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijderen uit verzameling</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="170"/>
         <source>Show untagged</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongelabelde foto&apos;s tonen</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="170"/>
         <source>Invert filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter omdraaien</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="365"/>
         <source>Mandatory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vereist:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="366"/>
         <source>Sufficient:</source>
-        <translation type="unfinished"></translation>
+        <translation>Afdoende:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="367"/>
         <source>The image must not have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>De foto moet dit label niet hebben</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="368"/>
         <source>The image must have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>De foto moet dit label hebben</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="369"/>
         <source>The image must have any of these tags</source>
-        <translation type="unfinished"></translation>
+        <translation>De foto moet een van deze labels hebben</translation>
     </message>
     <message>
         <source>Delete Tag</source>
@@ -551,7 +553,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="695"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h1&gt;Waarschuwing&lt;/h1&gt;De oorspronkelijke afmetingen van %1x%2 overschrijden het limiet.&lt;br&gt;De foto wordt verkleind naar %3x%4.&lt;br&gt;&lt;h3&gt;Door het opslaan van de bewerkingen, wordt de foto dus kleiner!&lt;/h3&gt;</translation>
     </message>
     <message>
         <source>Doubleclick to crop</source>
@@ -560,32 +562,32 @@
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished">Het zoomniveau is vergrendeld</translation>
+        <translation>Zoomniveau vergrendeld</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished">Het zoomniveau is ontgrendeld</translation>
+        <translation>Zoomniveau ontgrendeld</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="202"/>
         <source>Fit View</source>
-        <translation type="unfinished"></translation>
+        <translation>Inpassen</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="207"/>
         <source>Fill View</source>
-        <translation type="unfinished"></translation>
+        <translation>Uitrekken</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="209"/>
         <source>Original Size</source>
-        <translation type="unfinished">Ware grootte</translation>
+        <translation>Ware grootte</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="971"/>
         <source>Doubleclick to crop, right click to abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Dubbelklik om bij te snijden; rechtsklik om af te breken.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1114"/>
@@ -968,13 +970,13 @@
         <location filename="../Phototonic.cpp" line="1123"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Filter - probeer &quot;/?&quot;…</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for &lt;b&gt;black, white, dark, bright, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[subreeks] [/ beperking [/ meer beperkingen]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;komt overeen met foo, ouder dan 5 dagen, maar jonger dan een maand - of onder de 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Groter dan/Na: &amp;gt;&lt;/li&gt;&lt;li&gt;Kleiner dan/Vóór: &amp;lt;&lt;/li&gt;&lt;li&gt;de precieze leeftijd of (afgeronde) grootte kan worden opgegeven met =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Datums zijn precies (JJJJ-MM-DD) of relatief (5m:u:d:w:M:j)&lt;/li&gt;&lt;li&gt;Groottes zijn vaste waarden: 4kB:MB:GB of 4MP (megapixel)&lt;/li&gt;&lt;li&gt;Afmetingen worden voorzien van een ‘x’ ([breedte]x[hoogte])&lt;/li&gt;&lt;li&gt;Chromatische variantie wordt afgesloten met [0-255]cr (echte waarden zijn zelder &gt; 100)&lt;/li&gt;&lt;li&gt;Helderheid wordt afgesloten met [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Let op: alle achtervoegsels zijn hoofdletterongevoelig, behalve m|inuut en M|aand&lt;/i&gt;&lt;br&gt;Opeenvolgende ‘/’ duiden nieuwe groepen aan; de subreeksovereenkomst is optioneel.&lt;hr&gt;Verder kunt u filteren op &lt;b&gt;zwart, wit, donker, helder, monochroom, grijs&lt;/b&gt; en de kleuren&lt;br&gt;&lt;b&gt;rood, oranje, geel, limoen, groen, mint, cyaan, azuure, blauw, paars, magenta, roze&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1829"/>
@@ -1106,12 +1108,12 @@
         <location filename="../Phototonic.cpp" line="284"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished">Bestandslijst</translation>
+        <translation>Bestandslijst</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="618"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorteren op kleur</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="734"/>
@@ -1665,12 +1667,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="454"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Bijsnijden</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="455"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecteer een bijsnijdgebied met Ctrl+linkermuisknop</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="616"/>
@@ -1745,12 +1747,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="1076"/>
         <source>Accuracy: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nauwkeurigheid: </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1093"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Goed, dit wordt niet echt door AI aangedreven.&lt;p&gt;Duplicaten worden gedetecteerd door middel van een mozaïek met grijswaarden.&lt;br&gt;(&lt;i&gt;lijken de onverzadigde afbeeldingen hetzelfde van een afstand?&lt;/i&gt;)&lt;br&gt;en door het vergelijken van de kleurverspreiding&lt;br&gt;(&lt;i&gt;immuun voor spiegelen, draaien en anamorfisch schalen)&lt;/i&gt;).&lt;br&gt;Beide kunnen tot hilarische vals-positieven leiden.&lt;/p&gt;&lt;p&gt;De vereiste afstand van de kleurverspreiding kan hier worden ingesteld.&lt;br&gt;60% is een logische standaardwaarde, maar kan te laag zijn als u monochrome afbeeldingen bewerkt.&lt;br&gt;Lagere waarden kunnen echter tot meer vals-positieven leiden, dus zorg dat u in dat geval de nauwkeurigheid verhoogt.&lt;/p&gt;&lt;h3&gt;Let op: dit kan zorgen voor afwijkende overeenkomsten!&lt;/h3&gt;&lt;p&gt;[A] kan vergelijkbaar zijn met [B] en [C], terwijl [B] en [C] onvoldoende overeenkomen.&lt;br&gt;Hierdoor kan [A] &lt;b&gt;meermaals voorkomen!&lt;/b&gt;&lt;br&gt;Ga er dus niet blindelings vanuit dat ze duplicaten zijn&lt;br&gt;die verwijderd moeten worden. Ze zijn &lt;b&gt;gelijk&lt;/b&gt; en het verwijderen van eentje&lt;br&gt;verwijdert ze allemaal.&lt;/p&gt;&lt;h3&gt;Let goed op de bestandsnamen!&lt;/h3&gt;</translation>
     </message>
     <message>
         <source>Filter - try &quot;/&quot;...</source>
@@ -1801,7 +1803,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1830"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Kies een bijsnijdgebied&lt;/h3&gt;&lt;p&gt;Open een afbeelding en draai deze eventueel.&lt;br&gt;Houd vervolgens Ctrl ingedrukt om een rechthoekig bijsnijdgereedschap te tonen.&lt;br&gt;Let op: pas het bijsnijden &lt;b&gt;niet&lt;/b&gt; toe door buiten de selectie te dubbelklikken!&lt;br&gt;Als u geen gebruikmaakt van de voorvertoning, sluit dan de afbeeldingsweergave.&lt;/p&gt;U kunt de actie vervolgens op meerdere afbeeldingen toepassen.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1937"/>
@@ -1923,7 +1925,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3290"/>
         <source>Failed to move directory to the trash.</source>
-        <translation type="unfinished"></translation>
+        <translation>De map kan niet naar de prullenbak worden verplaatst.</translation>
     </message>
     <message>
         <source>Failed to move directory to the trash:</source>
@@ -2268,17 +2270,17 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="275"/>
         <source>&lt;p&gt;Bangs allow you to use external commands to generate the list of shown images.&lt;br&gt;The main purpose is to query databases like locate, baloo or tracker, but anything that can generate a list of image files is suitable&lt;/p&gt;&lt;p&gt;The token &lt;b&gt;%s&lt;/b&gt; in the command will be replaced with the parameter.&lt;/p&gt;&lt;p&gt;Eg. for plocate, using the shortcut &lt;i&gt;locate&lt;/i&gt; and the command&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;allows you to enter &lt;i&gt;locate:waldo&lt;/i&gt; to display indexed jpg&apos;s and png&apos;s of waldo.&lt;/p&gt;&lt;p&gt;Phototonic tests the files for existence and will remove duplicates (including file and directory symlinks.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Met behulp van bangs kunt u externe opdrachten aanroepen die een lijst met getoonde afbeeldingen genereren.&lt;br&gt;Het hoofddoel hiervan is om databanken als locate, baloo of tracker te raadplegen, maar andere hulpmiddelen die lijsten genereren kunnen eveneens worden gebruikt.&lt;/p&gt;&lt;p&gt;De toegangssleutel &lt;b&gt;%s&lt;/b&gt; in de opdracht wordt vervangen door de opdrachtregeloptie.&lt;/p&gt;&lt;p&gt;Voorbeeld: voor plocate kan gebruik worden gemaakt van &lt;i&gt;locate&lt;/i&gt; en met behulp van de opdracht&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;kunt u &lt;i&gt;locate:waldo&lt;/i&gt; gebruiken om geïndexeerde jpg- en png-bestanden van Waldo te tonen.&lt;/p&gt;&lt;p&gt;Phototonic zoekt uit of de bestanden aanwezig zijn en verwijdert zonodig duplicaten, inclusief bestands- en mapsnelkoppelingen.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Shortcut</source>
-        <translation type="unfinished">Sneltoets</translation>
+        <translation>Sneltoets</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="293"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Opdracht</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="92"/>
@@ -2418,7 +2420,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="373"/>
         <source>Bangs</source>
-        <translation type="unfinished"></translation>
+        <translation>Bangs</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="450"/>
@@ -2616,19 +2618,19 @@
     <message>
         <location filename="../ThumbsViewer.cpp" line="247"/>
         <source>Tagging %1</source>
-        <translation type="unfinished">‘%1’ wordt gelabeld</translation>
+        <translation>‘%1’ wordt gelabeld</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="255"/>
         <source>Failed to save tags to %1</source>
-        <translation type="unfinished">De labels kunnen niet worden bewaard in ‘%1’</translation>
+        <translation>De labels kunnen niet worden bewaard in ‘%1’</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1085"/>
         <source>%n of %1 image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n van %1 afbeelding</numerusform>
+            <numerusform>%n van %1 afbeeldingen</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -2681,12 +2683,12 @@
     <message>
         <location filename="../main.cpp" line="35"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
-        <translation type="unfinished"></translation>
+        <translation>de te openen map of bestanden - ‘-’ om stdin uit te lezen.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="36"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
-        <translation type="unfinished"></translation>
+        <translation>[BESTAND…] | [MAP] | [-]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="39"/>
@@ -2711,7 +2713,7 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
-        <translation type="unfinished"></translation>
+        <translation>Open één Phototonic-proces of open bestanden in een actief proces.</translation>
     </message>
 </context>
 </TS>
