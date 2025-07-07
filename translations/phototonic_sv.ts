@@ -250,7 +250,9 @@
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
 · %u and %tu with their respective URIs (file:///path/to/file)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f och %tf kommer att ersättas med sökvägarna för enskild bild och miniatyrbilder
+· %u och %tu med sina respektive URI:er (file:///sökväg/till/fil)
+· som standard läggs de markerade bilderna till i kommandot</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="128"/>
@@ -346,17 +348,17 @@
         <location filename="../Tags.cpp" line="58"/>
         <location filename="../Tags.cpp" line="73"/>
         <source>Show only library tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa endast bibliotekstaggar</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="65"/>
         <source>Show only relevant tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa endast relevanta taggar</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa alla taggar</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="109"/>
@@ -445,27 +447,27 @@
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished">Zoom låst</translation>
+        <translation>Zoom låst</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished">Zoom upplåst</translation>
+        <translation>Zoom upplåst</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="202"/>
         <source>Fit View</source>
-        <translation type="unfinished"></translation>
+        <translation>Passa vy</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="207"/>
         <source>Fill View</source>
-        <translation type="unfinished"></translation>
+        <translation>Fyll vy</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="209"/>
         <source>Original Size</source>
-        <translation type="unfinished">Originalstorlek</translation>
+        <translation>Originalstorlek</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="649"/>
@@ -652,7 +654,7 @@
         <location filename="../Phototonic.cpp" line="284"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished">Fil lista</translation>
+        <translation>Fil lista</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="470"/>
@@ -747,7 +749,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="618"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortera efter färg</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="650"/>
@@ -913,13 +915,13 @@
         <location filename="../Phototonic.cpp" line="1123"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Filter - prova &quot;/?&quot;...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for &lt;b&gt;black, white, dark, bright, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &lt;1M / &lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matchar foo, äldre än 5 dagar men yngre än en månad - eller under 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Större än/Efter: &amp;gt;&lt;/li&gt;&lt;li&gt;Mindre än/Före: &amp;lt;&lt;/li&gt;&lt;li&gt;Den exakta åldern eller (avrundad) storleken är annars underförstådd eller explicit med: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Datum är absoluta (ÅÅÅÅ-MM-DD) eller relativa (5m:h:d:v:M:å)&lt;/li&gt;&lt;li&gt;Storlekar har suffixet 4kB:MB:GB eller 4MP (megapixel)&lt;/li&gt;&lt;li&gt;Mått har suffixet &quot;x&quot; ([bredd]x[höjd])&lt;/li&gt;&lt;li&gt;Kromatisk varians har suffixet [0-255]cr (verkliga värden kommer sällan att vara &gt; 100)&lt;/li&gt;&lt;li&gt;Luminans har suffixet [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Alla suffix är skiftlägeskänsliga men m|minuter och M|månad&lt;/i&gt;&lt;br&gt;Efterföljande &quot;/&quot; startar en ny tillräcklig villkorsgrupp, delsträngsmatchningen är valfri.&lt;hr&gt;Dessutom kan du filtrera efter &lt;b&gt;svart, vit, mörk, ljus, monokrom, grå&lt;/b&gt; och färgerna&lt;br&gt;&lt;b&gt;röd, orange, gul, lime, grön, mint, cyan, azurblå, blå, lila, magenta, rosa&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1229"/>
@@ -1314,7 +1316,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1093"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Okej, det här är inte direkt AI-drivet.&lt;p&gt;Duplikat upptäcks via en gråskalemosaik&lt;br&gt;(&lt;i&gt;ser de desaturerade bilderna likadana ut på väldigt långt håll?&lt;/i&gt;)&lt;br&gt;och genom att jämföra färgfördelningen&lt;br&gt;(&lt;i&gt;immun mot speglar, rotation, anamorfiska skalor …&lt;/i&gt;)&lt;br&gt;Båda kan orsaka roliga falska positiva resultat.&lt;/p&gt;&lt;p&gt;Den erforderliga närheten för färgfördelningen kan konfigureras här&lt;br&gt;60 % är en rimlig standard, men kan vara för enkel om du har att göra med monokroma bilder&lt;br&gt;Att gå mycket lägre kommer att orsaka för många falska positiva resultat, öka noggrannheten för att bli av med sådana&lt;/p&gt;&lt;h3&gt;Observera att detta kan orsaka disjunkta matchningsgrupper!&lt;/h3&gt;&lt;p&gt;[A] kan likna [B] och [C], medan [B] och [C] inte är tillräckligt nära.&lt;br&gt;Resultatet är att [A] &lt;b&gt;samma bild kan dyka upp flera gånger!&lt;/b&gt;&lt;br&gt;Anta inte bara att sorteringen är fel, dessa är helt klart dubbletter&lt;br&gt;och tryck på delete. De är &lt;b&gt;samma bild&lt;/b&gt; och att om du tar bort en av dem innebär att&lt;br&gt;båda raderas.&lt;/p&gt;&lt;h3&gt;Var uppmärksam på filnamnen!&lt;/h3&gt;</translation>
     </message>
     <message>
         <source>Filter - try &quot;/&quot;...</source>
@@ -2005,22 +2007,22 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="275"/>
         <source>&lt;p&gt;Bangs allow you to use external commands to generate the list of shown images.&lt;br&gt;The main purpose is to query databases like locate, baloo or tracker, but anything that can generate a list of image files is suitable&lt;/p&gt;&lt;p&gt;The token &lt;b&gt;%s&lt;/b&gt; in the command will be replaced with the parameter.&lt;/p&gt;&lt;p&gt;Eg. for plocate, using the shortcut &lt;i&gt;locate&lt;/i&gt; and the command&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;allows you to enter &lt;i&gt;locate:waldo&lt;/i&gt; to display indexed jpg&apos;s and png&apos;s of waldo.&lt;/p&gt;&lt;p&gt;Phototonic tests the files for existence and will remove duplicates (including file and directory symlinks.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Med Bangs kan du använda externa kommandon för att generera en lista över visade bilder.&lt;br&gt;Huvudsyftet är att fråga databaser som locate, baloo eller tracker, men allt som kan generera en lista över bildfiler är lämpligt.&lt;/p&gt;&lt;p&gt;Token &lt;b&gt;%s&lt;/b&gt; i kommandot kommer att ersättas med parametern.&lt;/p&gt;&lt;p&gt;T.ex. för plocate, med hjälp av genvägen &lt;i&gt;locate&lt;/i&gt; och kommandot&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;kan du ange &lt;i&gt;locate:waldo&lt;/i&gt; för att visa indexerade jpg och png-filer av waldo.&lt;/p&gt;&lt;p&gt;Photononic testar filernas existens och tar bort dubbletter (inklusive symboliska länkar till filer och kataloger).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Shortcut</source>
-        <translation type="unfinished">Genväg</translation>
+        <translation>Genväg</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="293"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommando</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="373"/>
         <source>Bangs</source>
-        <translation type="unfinished"></translation>
+        <translation>Bangs</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="450"/>
@@ -2273,12 +2275,12 @@
     <message>
         <location filename="../main.cpp" line="35"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
-        <translation type="unfinished"></translation>
+        <translation>filer eller katalog att öppna, &quot;-&quot; för att läsa dem från stdin.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="36"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
-        <translation type="unfinished"></translation>
+        <translation>[FIL...]| [KATALOG] | [-]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="39"/>
@@ -2303,7 +2305,7 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kör en enskild instans av Phototonic eller öppna filer i sådana som redan körs.</translation>
     </message>
 </context>
 </TS>
