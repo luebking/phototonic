@@ -44,6 +44,7 @@ public:
 
     void clearImage();
     void configureLetterbox();
+    bool crossfade() const { return m_crossfade; }
     QSize currentImageSize() const;
     bool isNewImage();
     QRect lastCropGeometry() const { return m_isoCropRect; }
@@ -107,6 +108,8 @@ private:
     QImage viewerImage;
     QImage m_preloadedImage;
     QString m_preloadedPath;
+    QString m_preloadPath;
+    bool m_loading;
     bool m_crossfade;
     QTimer *mouseMovementTimer;
     QPointer<QMovie> animation;

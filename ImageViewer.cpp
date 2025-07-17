@@ -108,6 +108,7 @@ ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     imageWidget = new ImageWidget;
     imageWidget->setLetterbox(m_letterbox);
     m_crossfade = false;
+    m_loading = false;
     imageWidget->setCrossfade(m_crossfade);
     animation = nullptr;
     m_zoomMode = ZoomToFit;
@@ -825,13 +826,23 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
     }
 
     QApplication::processEvents();
+    m_loading = true;
     reload();
+    m_loading = false;
+    if (!m_preloadPath.isEmpty()) {
+        preload(m_preloadPath);
+    }
 }
 
 void ImageViewer::preload(QString imageFileName) {
     if (m_preloadedPath == imageFileName)
         return;
+    if (m_loading) {
+        m_preloadPath = imageFileName;
+        return;
+    }
 
+    m_preloadPath = QString();
     m_preloadedPath = imageFileName;
     // reload current one - maybe the file has changed on disk?
     /*if (m_preloadedPath == fullImagePath) {
