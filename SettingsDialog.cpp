@@ -19,6 +19,7 @@
 #include <QBoxLayout>
 #include <QCheckBox>
 #include <QColorDialog>
+#include <QDoubleSpinBox>
 #include <QFileDialog>
 #include <QGroupBox>
 #include <QHeaderView>
@@ -246,8 +247,8 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
 
     // Slide show delay
     QLabel *slideDelayLab = new QLabel(tr("Delay between slides in seconds:"));
-    slideDelaySpinBox = new QSpinBox;
-    slideDelaySpinBox->setRange(1, 3600);
+    slideDelaySpinBox = new QDoubleSpinBox;
+    slideDelaySpinBox->setRange(0.1, 3600.0);
     slideDelaySpinBox->setValue(Settings::slideShowDelay);
     QHBoxLayout *slideDelayLayout = new QHBoxLayout;
     slideDelayLayout->addWidget(slideDelayLab);
