@@ -144,7 +144,7 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="103"/>
         <source>Delete Bookmark</source>
-        <translation>Izbriši kraticu</translation>
+        <translation>Izbriši knjižnu oznaku</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="114"/>
@@ -154,12 +154,12 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Copy</source>
-        <translation type="unfinished">Kopiraj</translation>
+        <translation>Kopiraj</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomakni</translation>
     </message>
     <message>
         <source>OK</source>
@@ -239,7 +239,7 @@
         <location filename="../ExternalAppsDialog.cpp" line="56"/>
         <source>Pick Executable...</source>
         <extracomment>open an existing executable</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Odaberi izvršnu datoteku...</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="59"/>
@@ -254,7 +254,7 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="72"/>
         <source>Wallpaper command</source>
-        <translation type="unfinished"></translation>
+        <translation>Naredba za pozadinsku sliku</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="76"/>
@@ -266,7 +266,9 @@
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
 · %u and %tu with their respective URIs (file:///path/to/file)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f i %tf će se zamijeniti s putanjama slike i sličice
+· %u i %tu s njihovim odgovarajućim URI-jima (datoteka:///put/do/datoteke)
+· prema zadanim postavkama se odabrane slike dodaju naredbi</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="128"/>
@@ -285,7 +287,7 @@
         <location filename="../GuideWidget.cpp" line="40"/>
         <source>Remove Guide</source>
         <extracomment>The guide is a visible line for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Ukloni vodilicu</translation>
     </message>
 </context>
 <context>
@@ -299,17 +301,17 @@
         <location filename="../Tags.cpp" line="58"/>
         <location filename="../Tags.cpp" line="73"/>
         <source>Show only library tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaži samo oznake biblioteke</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="65"/>
         <source>Show only relevant tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaži samo relevantne oznake</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaži sve oznake</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="98"/>
@@ -329,47 +331,47 @@
     <message>
         <location filename="../Tags.cpp" line="109"/>
         <source>Add to library</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj u biblioteku</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="112"/>
         <source>Remove from library</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukloni iz biblioteke</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="170"/>
         <source>Show untagged</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaži slike bez oznaka</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="170"/>
         <source>Invert filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Invertiraj filtar</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="365"/>
         <source>Mandatory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Obavezno:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="366"/>
         <source>Sufficient:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dovoljno:</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="367"/>
         <source>The image must not have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Slika ne smije imati ovu oznaku</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="368"/>
         <source>The image must have this tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Slika mora imati ovu oznaku</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="369"/>
         <source>The image must have any of these tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Slika mora imati bilo koju od ovih oznaka</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="50"/>
@@ -399,15 +401,15 @@
     <message>
         <location filename="../Tags.cpp" line="595"/>
         <source>Tag %1 already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Oznaka %1 već postoji</translation>
     </message>
     <message numerus="yes">
         <location filename="../Tags.cpp" line="611"/>
         <source>Delete %n selected tags(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Izbrisati %n odabranu oznaku?</numerusform>
+            <numerusform>Izbrisati %n odabrane oznake?</numerusform>
+            <numerusform>Izbrisati %n odabranih oznaka?</numerusform>
         </translation>
     </message>
     <message>
@@ -480,59 +482,59 @@
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished">Zum zaključan</translation>
+        <translation>Zum zaključan</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished">Zum otključan</translation>
+        <translation>Zum otključan</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="202"/>
         <source>Fit View</source>
-        <translation type="unfinished"></translation>
+        <translation>Prilagodi prikaz</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="207"/>
         <source>Fill View</source>
-        <translation type="unfinished"></translation>
+        <translation>Popuni prikaz</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="209"/>
         <source>Original Size</source>
-        <translation type="unfinished">Originalna veličina</translation>
+        <translation>Originalna veličina</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="279"/>
         <location filename="../ImageViewer.cpp" line="1052"/>
         <source>New image size: %1x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Veličina nove slike: %1 × %2</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="649"/>
         <source>skipping animation in batch mode:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>preskakanje animacije u skupnom načinu rada:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="695"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h1&gt;Upozorenje&lt;/h1&gt;Veličina izvorne slike %1 × %2 premašuje ograničenja&lt;br&gt;Smanjena je na %3 × %4&lt;br&gt;&lt;h3&gt;Spremanjem uređivanja spremit će se manja slika!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="961"/>
         <source>Selection: </source>
-        <translation type="unfinished"></translation>
+        <translation>Odabir: </translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="971"/>
         <source>Doubleclick to crop, right click to abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Klikni dvaput za obrezivanje, desni klik za prekid</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1114"/>
         <source>Rotation %1°</source>
-        <translation type="unfinished">Rotacija %1°</translation>
+        <translation>Rotacija %1°</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1205"/>
@@ -555,7 +557,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="1262"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Ovu poruku više nemoj prikazati</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1264"/>
@@ -566,7 +568,7 @@
         <location filename="../ImageViewer.cpp" line="1268"/>
         <source>Failed to safe Exif metadata:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Neuspjelo spremanje Exif metapodataka:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1274"/>
@@ -587,7 +589,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="1374"/>
         <source>Clipboard</source>
-        <translation>Spisak isječaka</translation>
+        <translation>Međuspremnik</translation>
     </message>
 </context>
 <context>
@@ -605,47 +607,47 @@
     <message>
         <location filename="../InfoViewer.cpp" line="173"/>
         <source>Image</source>
-        <translation type="unfinished">Slika</translation>
+        <translation>Slika</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="174"/>
         <source>File name</source>
-        <translation type="unfinished">Ime fajla</translation>
+        <translation>Ime datoteke</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="175"/>
         <source>Location</source>
-        <translation type="unfinished">Lokacija</translation>
+        <translation>Mjesto</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="176"/>
         <source>Size</source>
-        <translation type="unfinished">Veličina</translation>
+        <translation>Veličina</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="177"/>
         <source>Modified</source>
-        <translation type="unfinished">Modificirano</translation>
+        <translation>Promijenjeno</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="181"/>
         <source>Format</source>
-        <translation type="unfinished">Format</translation>
+        <translation>Format</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="184"/>
         <source>Resolution</source>
-        <translation type="unfinished">Rezolucija</translation>
+        <translation>Rezolucija</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="185"/>
         <source>Megapixel</source>
-        <translation type="unfinished">Megapiksel</translation>
+        <translation>Megapiksel</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="191"/>
         <source>Error</source>
-        <translation type="unfinished">Greška</translation>
+        <translation>Greška</translation>
     </message>
 </context>
 <context>
@@ -661,17 +663,17 @@
     <message>
         <location filename="../MessageBox.cpp" line="79"/>
         <source>Image Viewer and Organizer</source>
-        <translation type="unfinished"></translation>
+        <translation>Preglednik i upravljač slika</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="80"/>
         <source>Home page and bug reports</source>
-        <translation type="unfinished"></translation>
+        <translation>Početna stranica i izvještaji o greškama</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="86"/>
         <source>Special thanks to our contributers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Posebna zahvala našim suradnicima.</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="89"/>
@@ -700,32 +702,32 @@
     <message>
         <location filename="../Phototonic.cpp" line="429"/>
         <source>Transform</source>
-        <translation>Transformiši</translation>
+        <translation>Transformiraj</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="439"/>
         <source>Flip and Flop and Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Okreni, preokreni i rotiraj</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="451"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Uredi</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="454"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Obreži</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="455"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Odaberi područje obrezivanja pomoću Ctrl + lijeva tipke miša</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="458"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteka</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="470"/>
@@ -736,17 +738,17 @@
         <location filename="../Phototonic.cpp" line="476"/>
         <source>Guides</source>
         <extracomment>The guides a lines across the image for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Vodilice</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="477"/>
         <source>Add vertical guide</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj okomitu vodilicu</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="480"/>
         <source>Add horizontal guide</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj vodoravnu vodilicu</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="512"/>
@@ -776,12 +778,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="534"/>
         <source>Enlarge Thumbnails</source>
-        <translation>Povećaj minijaturne prikaze</translation>
+        <translation>Povećaj minijature</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="541"/>
         <source>Shrink Thumbnails</source>
-        <translation>Umanji minijaturne prikaze</translation>
+        <translation>Smanji minijature</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="548"/>
@@ -796,17 +798,17 @@
     <message>
         <location filename="../Phototonic.cpp" line="558"/>
         <source>Show classic thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaži klasične minijature</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="563"/>
         <source>Show square thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaži kvadratične minijature</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="568"/>
         <source>Show compact thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaži kompaktne minijature</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="573"/>
@@ -858,22 +860,22 @@
     <message>
         <location filename="../Phototonic.cpp" line="616"/>
         <source>Sort by Similarity</source>
-        <translation type="unfinished"></translation>
+        <translation>Razvrstaj po sličnosti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="617"/>
         <source>Sort by Brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>Razvrstaj po svjetlini</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="618"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Razvrstaj po boji</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="619"/>
         <source>Reverse Sort Order</source>
-        <translation type="unfinished"></translation>
+        <translation>Preokreni redoslijed razvrstavanja</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="650"/>
@@ -903,12 +905,12 @@
     <message>
         <location filename="../Phototonic.cpp" line="692"/>
         <source>Set Save Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Postavi direktorij za spremanje</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="696"/>
         <source>Back</source>
-        <translation>Nazad</translation>
+        <translation>Natrag</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="709"/>
@@ -930,18 +932,18 @@
         <location filename="../Phototonic.cpp" line="284"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Popis datoteka</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="734"/>
         <location filename="../Phototonic.cpp" line="2690"/>
         <source>Slide Show</source>
-        <translation>Slajd prikaz</translation>
+        <translation>Prezentacija slajdova</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="761"/>
         <source>Load Clipboard</source>
-        <translation>Učitaj klipbord</translation>
+        <translation>Učitaj međuspremnik</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="765"/>
@@ -1268,7 +1270,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="2171"/>
         <source>Failed to delete image</source>
-        <translation>Neuspijelo brisanje slike</translation>
+        <translation>Neuspjelo brisanje slike</translation>
     </message>
     <message>
         <source>Permanently delete selected images?</source>
@@ -1374,7 +1376,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="780"/>
         <source>Delete Bookmark</source>
-        <translation>Obriši kraticu</translation>
+        <translation>Izbriši knjižnu oznaku</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="808"/>
@@ -1465,7 +1467,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="981"/>
         <source>Thumbnails Sorting</source>
-        <translation>Sortiranje minijaturnih slika</translation>
+        <translation>Razvrstavanje minijatura</translation>
     </message>
     <message>
         <source>Edit Toolbar</source>
@@ -1486,7 +1488,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1299"/>
         <source>Preview</source>
-        <translation>Predleg</translation>
+        <translation>Pregled</translation>
     </message>
     <message numerus="yes">
         <source>%n image(s) to clipboard</source>
@@ -1499,7 +1501,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1949"/>
         <source>Can not move to the same directory</source>
-        <translation>Nemoguće pomjeriti u isti direktorij</translation>
+        <translation>Ne može se pomaknuti u isti direktorij</translation>
     </message>
     <message>
         <source>Move selected images to the trash?</source>
@@ -1514,7 +1516,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="2097"/>
         <source>Failed to delete image.</source>
-        <translation>Neuspijelo brisanje slike.</translation>
+        <translation>Neuspjelo brisanje slike.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2097"/>
@@ -1612,7 +1614,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="2937"/>
         <source>Move directory</source>
-        <translation>Pomjeri  direktorij</translation>
+        <translation>Pomakni direktorij</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2940"/>
@@ -1671,7 +1673,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3270"/>
         <source>Permanently delete the directory %1 and all of its contents?</source>
-        <translation>Trajno izbriši direktorij %1 i njegov sadržaj?</translation>
+        <translation>Trajno izbrisati direktorij %1 i sav njegov sadržaj?</translation>
     </message>
     <message>
         <source>Delete directory</source>
@@ -1695,7 +1697,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3291"/>
         <source>Failed to delete directory.</source>
-        <translation>Neuspiješno brisanje direktorija.</translation>
+        <translation>Neuspješno brisanje direktorija.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3313"/>
@@ -1781,19 +1783,19 @@
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1604"/>
         <source>Copied %n image(s) to clipboard</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>U međuspremnik je kopirana %n slika</numerusform>
+            <numerusform>U međuspremnik su kopirane %n slike</numerusform>
+            <numerusform>U međuspremnik je kopirano %n slika</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1605"/>
         <source>Cut %n image(s) to clipboard</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>U međuspremnik je izrezana %n slika</numerusform>
+            <numerusform>U međuspremnik su izrezane %n slike</numerusform>
+            <numerusform>U međuspremnik je izrezano %n slika</numerusform>
         </translation>
     </message>
     <message>
@@ -1859,10 +1861,10 @@
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2022"/>
         <source>Permanently delete %n selected image(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Trajno izbrisati %n odabranu sliku?</numerusform>
+            <numerusform>Trajno izbrisati %n odabrane slike?</numerusform>
+            <numerusform>Trajno izbrisati %n odabranih slika?</numerusform>
         </translation>
     </message>
     <message>
@@ -1873,16 +1875,16 @@
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2118"/>
         <source>Deleted %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Izbrisana je %n slika</numerusform>
+            <numerusform>Izbrisane su %n slike</numerusform>
+            <numerusform>Izbrisano je %n slika</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2167"/>
         <source>Deleted %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 je izbrisana</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2250"/>
@@ -2136,7 +2138,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="137"/>
         <source>Number of thumbnail pages to read ahead:</source>
-        <translation>Broj stranica minijaturnih slika da se učita unaprijed:</translation>
+        <translation>Broj stranica minijaturna koje se unaprijed učitavaju:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="150"/>
@@ -2198,7 +2200,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="361"/>
         <source>Thumbnails</source>
-        <translation>Minijaturni prikaz</translation>
+        <translation>Minijature</translation>
     </message>
     <message>
         <source>Slide Show</source>
@@ -2217,12 +2219,12 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="92"/>
         <source>Thumbnails and Preview Background Color:</source>
-        <translation>Boja za minijaturne slike i pozadinu pregleda:</translation>
+        <translation>Boja minijatura i pozadine pregleda:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="146"/>
         <source>Rotate thumbnail according to Exif orientation value</source>
-        <translation>Rotiraj minijaturnu sliku prema Exif orijentaciji</translation>
+        <translation>Rotiraj minijaturu prema Exif orijentaciji</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="166"/>
@@ -2271,7 +2273,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Shortcut</source>
-        <translation type="unfinished">Prečice</translation>
+        <translation>Prečac</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="293"/>
