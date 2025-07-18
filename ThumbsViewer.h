@@ -133,7 +133,6 @@ public:
 
     QStringList selectedFiles() const;
 
-    QString getSingleSelectionFilename();
     QString fullPathOf(int idx);
     QIcon icon(int idx);
 

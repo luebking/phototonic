@@ -19,6 +19,7 @@
 #ifndef RENAME_DIALOG_H
 #define RENAME_DIALOG_H
 
+class QLabel;
 class QLineEdit;
 #include <QDialog>
 
@@ -29,18 +30,15 @@ public:
     RenameDialog(QWidget *parent);
 
     void setFileName(QString name);
-
-    QString getFileName();
+    QString fileName() const;
 
 public slots:
-
     void ok();
-
     void abort();
 
 private:
-
-    QLineEdit *fileNameLineEdit;
+    QLabel *m_patternHint;
+    QLineEdit *m_fileName;
 };
 
 #endif // RENAME_DIALOG_H

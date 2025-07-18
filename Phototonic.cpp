@@ -3205,10 +3205,17 @@ void Phototonic::rename() {
         }
     }
 
-    QString selectedImageFileName = thumbsViewer->getSingleSelectionFilename();
-    if (selectedImageFileName.isEmpty()) {
+    QModelIndexList selection = thumbsViewer->selectionModel()->selectedIndexes();
+    if (selection.size() < 1) {
         setStatus(tr("Invalid selection"));
         return;
+    }
+
+    RenameDialog *renameDialog = new RenameDialog(this);
+    if (selection.size() == 1) {
+        QFile file(thumbsViewer->fullPathOf(selection.first().row()));
+        QFileInfo fileInfo(file);
+        renameDialog->setFileName(fileInfo.fileName());
     }
 
     if (Settings::slideShowActive) {
@@ -3216,34 +3223,58 @@ void Phototonic::rename() {
     }
     imageViewer->setCursorHiding(false);
 
-    QFile file(selectedImageFileName);
-    QFileInfo fileInfo(file);
-
-    RenameDialog *renameDialog = new RenameDialog(this);
-    renameDialog->setFileName(fileInfo.fileName());
-    int renameConfirmed = renameDialog->exec();
-
-    QString newFileName = renameDialog->getFileName();
+    QString newNameOrPattern;
+    bool ack = renameDialog->exec();
+    if (ack)
+        newNameOrPattern = renameDialog->fileName();
     renameDialog->deleteLater();
 
-    if (renameConfirmed && newFileName.isEmpty()) {
+    if (ack && newNameOrPattern.isEmpty()) {
+        ack = false;
         MessageBox msgBox(this);
         msgBox.critical(tr("Error"), tr("No name entered."));
-        renameConfirmed = 0;
     }
 
-    if (renameConfirmed) {
+    if (!ack) {
+        if (isFullScreen())
+            imageViewer->setCursorHiding(true);
+        return;
+    }
+
+    int index = 0;
+    QString failures;
+    for (QModelIndex idx : selection) {
+        const QString oldPath = thumbsViewer->fullPathOf(idx.row());
+        QFile file(oldPath);
+        QFileInfo fileInfo(file);
+        QString newFileName = newNameOrPattern;
+        newFileName.replace("%index", QStringLiteral("%1").arg(++index, 1+log10(selection.size()), 10, QLatin1Char('0')));
+        if (newFileName.contains("%date"))
+            newFileName.replace("%date", fileInfo.lastModified().toString(Qt::ISODate));
+        if (newFileName.contains("%exifdate")) {
+            qint64 exifTime = Metadata::dateTimeOriginal(fileInfo.filePath());
+            if (!exifTime)
+                exifTime = fileInfo.birthTime().toSecsSinceEpoch();
+            newFileName.replace("%exifdate", QDateTime::fromSecsSinceEpoch(exifTime).toString(Qt::ISODate));
+        }
+        if (newFileName.contains("%size")) {
+            QSize res = QImageReader(fileInfo.filePath()).size();
+            newFileName.replace("%size", QString("%1x%2").arg(res.width()).arg(res.height()));
+        }
+        newFileName.append("." + oldPath.section('.', -1));
+
         QString newFullPath = fileInfo.absolutePath() + QDir::separator() + newFileName;
         if (file.rename(newFullPath)) {
-            ThumbsViewer::moveCache(selectedImageFileName, newFullPath);
-            Metadata::rename(selectedImageFileName, newFullPath);
+            ThumbsViewer::moveCache(oldPath, newFullPath);
+            Metadata::rename(oldPath, newFullPath);
             QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
-            QModelIndexList indexesList = thumbsViewer->selectionModel()->selectedIndexes();
-            thumbModel->item(indexesList.first().row())->setData(newFullPath, thumbsViewer->FileNameRole);
-            thumbModel->item(indexesList.first().row())->setData(newFileName, Qt::DisplayRole);
+            thumbModel->item(idx.row())->setData(newFullPath, thumbsViewer->FileNameRole);
+            thumbModel->item(idx.row())->setData(newFileName, Qt::DisplayRole);
 
-            imageViewer->setInfo(newFileName);
-            imageViewer->fullImagePath = newFullPath;
+            if (idx == thumbsViewer->currentIndex()) {
+                imageViewer->setInfo(newFileName);
+                imageViewer->fullImagePath = newFullPath;
+            }
 
             if (Settings::filesList.contains(fileInfo.absoluteFilePath())) {
                 Settings::filesList.replace(Settings::filesList.indexOf(fileInfo.absoluteFilePath()), newFullPath);
@@ -3253,14 +3284,20 @@ void Phototonic::rename() {
                 setImageViewerWindowTitle();
             }
         } else {
-            MessageBox msgBox(this);
-            msgBox.critical(tr("Error"), tr("Failed to rename image."));
+            failures += fileInfo.fileName() + " => " + newFileName + "\n";
         }
     }
-
-    if (isFullScreen()) {
-        imageViewer->setCursorHiding(true);
+    if (!failures.isEmpty()) {
+        MessageBox msgBox(this);
+        msgBox.setWindowTitle(tr("Error"));
+        msgBox.setText(tr("Failed to rename image."));
+        msgBox.setIcon(MessageBox::Critical);
+        msgBox.setDetailedText(failures);
+        msgBox.exec();
     }
+
+    if (isFullScreen())
+        imageViewer->setCursorHiding(true);
 }
 
 void Phototonic::removeMetadata() {

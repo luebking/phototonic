@@ -39,12 +39,19 @@ RenameDialog::RenameDialog(QWidget *parent) : QDialog(parent) {
 
     QHBoxLayout *renameLayout = new QHBoxLayout;
     QLabel *label = new QLabel(tr("New name: "));
-    fileNameLineEdit = new QLineEdit();
-    fileNameLineEdit->setMinimumWidth(200);
+    m_fileName = new QLineEdit();
+    m_fileName->setMinimumWidth(200);
     renameLayout->addWidget(label);
-    renameLayout->addWidget(fileNameLineEdit);
+    renameLayout->addWidget(m_fileName);
 
+    m_patternHint = new QLabel(tr("<h3>Rename files according to pattern</h3>"
+    "Supported placeholders:"
+    "<dl><dt>%index</dt><dd>0-padded index, based on selection order</dd>"
+    "<dt>%date</dt><dd>Date and time of last modification, ISO8601 format</dd>"
+    "<dt>%exifdate</dt><dd>Date and time of EXIF timestamp or file creation, ISO8601 format</dd>"
+    "<dt>%size</dt><dd>Image size, WxH</dd></dl>"), this);
     QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addWidget(m_patternHint);
     mainLayout->addLayout(renameLayout);
     mainLayout->addLayout(buttonsLayout);
     setLayout(mainLayout);
@@ -61,10 +68,11 @@ void RenameDialog::abort() {
 }
 
 void RenameDialog::setFileName(QString name) {
-    fileNameLineEdit->setText(name);
-    fileNameLineEdit->setSelection(0, name.lastIndexOf("."));
+    m_patternHint->setVisible(name.isEmpty());
+    m_fileName->setText(name);
+    m_fileName->setSelection(0, name.lastIndexOf("."));
 }
 
-QString RenameDialog::getFileName() {
-    return fileNameLineEdit->text();
+QString RenameDialog::fileName() const {
+    return m_fileName->text();
 }

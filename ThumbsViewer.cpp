@@ -137,13 +137,6 @@ void ThumbsViewer::setThumbColors() {
     setPalette(pal);
 }
 
-QString ThumbsViewer::getSingleSelectionFilename() {
-    if (selectionModel()->selectedIndexes().size() == 1)
-        return m_model->item(selectionModel()->selectedIndexes().first().row())->data(FileNameRole).toString();
-
-    return QString();
-}
-
 QString ThumbsViewer::fullPathOf(int idx)
 {
     QStandardItem *item = m_model->item(idx);
