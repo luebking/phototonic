@@ -3241,43 +3241,106 @@ void Phototonic::rename() {
         return;
     }
 
-    int index = 0;
     QString failures;
+    QStringList sources, destinations;
+    QList<int> rows;
+
     for (QModelIndex idx : selection) {
-        const QString oldPath = thumbsViewer->fullPathOf(idx.row());
+        sources << thumbsViewer->fullPathOf(idx.row());
+        rows << idx.row();
+    }
+
+    int index = 0;
+    bool needDualPass = false, needConflictResolution = false;
+    for (const QString &oldPath : sources) {
         QFile file(oldPath);
         QFileInfo fileInfo(file);
-        QString newFileName = newNameOrPattern;
-        newFileName.replace("%index", QStringLiteral("%1").arg(++index, 1+log10(selection.size()), 10, QLatin1Char('0')));
-        if (newFileName.contains("%date"))
-            newFileName.replace("%date", fileInfo.lastModified().toString(Qt::ISODate));
-        if (newFileName.contains("%exifdate")) {
+        QString newPath, mdate, exifdate, size;
+        if (newNameOrPattern.contains("%date"))
+            mdate = fileInfo.lastModified().toString(Qt::ISODate);
+        if (newNameOrPattern.contains("%exifdate")) {
             qint64 exifTime = Metadata::dateTimeOriginal(fileInfo.filePath());
             if (!exifTime)
                 exifTime = fileInfo.birthTime().toSecsSinceEpoch();
-            newFileName.replace("%exifdate", QDateTime::fromSecsSinceEpoch(exifTime).toString(Qt::ISODate));
+            exifdate = QDateTime::fromSecsSinceEpoch(exifTime).toString(Qt::ISODate);
         }
-        if (newFileName.contains("%size")) {
+        if (newNameOrPattern.contains("%size")) {
             QSize res = QImageReader(fileInfo.filePath()).size();
-            newFileName.replace("%size", QString("%1x%2").arg(res.width()).arg(res.height()));
+            size = QString("%1x%2").arg(res.width()).arg(res.height());
         }
-        newFileName.append("." + oldPath.section('.', -1));
+        while (true) {
+            QString newFileName = newNameOrPattern;
+            newFileName.replace("%index", QStringLiteral("%1").arg(++index, 1+log10(selection.size()), 10, QLatin1Char('0')));
+            newFileName.replace("%date", mdate);
+            newFileName.replace("%exifdate", exifdate);
+            newFileName.replace("%size", size);
+            newFileName.append("." + oldPath.section('.', -1));
+            newPath = fileInfo.absolutePath() + QDir::separator() + newFileName;
+            if (!QFileInfo::exists(newPath))
+                break;
+            // needs some conflict reolution
+            if (sources.contains(newPath)) {
+                needDualPass = true;
+                break;
+            } else if (newNameOrPattern.contains("%index")) {
+                needConflictResolution = true;
+                continue; // try again w/ increased index
+            } else { // cannot be resolved
+                MessageBox(this).critical(tr("File collision!"), tr("Existing files collide with the rename."));
+                return;
+            }
+        }
+        destinations << newPath;
+    }
 
-        QString newFullPath = fileInfo.absolutePath() + QDir::separator() + newFileName;
-        if (file.rename(newFullPath)) {
-            ThumbsViewer::moveCache(oldPath, newFullPath);
-            Metadata::rename(oldPath, newFullPath);
+    if (destinations.removeDuplicates()) {
+        // ambiguous destination pattern provided. ABORT
+        MessageBox(this).critical(tr("Error"), tr("Refusing ambigious rename pattern.\nMultiple files would get the same name."));
+        return;
+    }
+
+    if (needConflictResolution && newNameOrPattern.contains("%index")) {
+        if (MessageBox::question(this,  tr("File collision!"),
+                                        tr("Existing files collide with the rename.") + "\n" + tr("Do you want to incorporate them (ie. skip their indexes)?"),
+                                        QMessageBox::Yes|QMessageBox::Cancel, QMessageBox::Yes) == QMessageBox::Cancel)
+            return;
+    }
+
+    if (needDualPass) {
+//        qDebug() << "dual pass rename";
+        for (int i = sources.size() - 1; i >=0 ; --i) {
+            if (QFile(sources.at(i)).rename(sources.at(i) + ".ptt_helper"))
+                sources[i].append(".ptt_helper");
+            else {
+                failures += QFileInfo(sources.at(i)).fileName() + " => " + QFileInfo(destinations.at(i)).fileName() + "\n";
+                sources.remove(i);
+                destinations.remove(i);
+                rows.remove(i);
+            }
+        }
+    }
+
+    for (int i = 0; i < destinations.size(); ++i) {
+        const QString oldPath = sources.at(i);
+        const QString newPath = destinations.at(i);
+        const QString newFileName = QFileInfo(newPath).fileName();
+        QFile file(oldPath);
+        QFileInfo fileInfo(file);
+        if (file.rename(newPath)) {
+            ThumbsViewer::moveCache(oldPath, newPath);
+            Metadata::rename(oldPath, newPath);
             QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
-            thumbModel->item(idx.row())->setData(newFullPath, thumbsViewer->FileNameRole);
-            thumbModel->item(idx.row())->setData(newFileName, Qt::DisplayRole);
+            const int row = rows.at(i);
+            thumbModel->item(row)->setData(newPath, thumbsViewer->FileNameRole);
+            thumbModel->item(row)->setData(newFileName, Qt::DisplayRole);
 
-            if (idx == thumbsViewer->currentIndex()) {
+            if (row == thumbsViewer->currentIndex().row()) {
                 imageViewer->setInfo(newFileName);
-                imageViewer->fullImagePath = newFullPath;
+                imageViewer->fullImagePath = newPath;
             }
 
             if (Settings::filesList.contains(fileInfo.absoluteFilePath())) {
-                Settings::filesList.replace(Settings::filesList.indexOf(fileInfo.absoluteFilePath()), newFullPath);
+                Settings::filesList.replace(Settings::filesList.indexOf(fileInfo.absoluteFilePath()), newPath);
             }
 
             if (Settings::layoutMode == ImageViewWidget) {
