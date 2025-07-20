@@ -22,6 +22,7 @@
 class QLabel;
 class QLineEdit;
 class QMenu;
+class QPushButton;
 class QStandardItemModel;
 class QTableView;
 
@@ -40,10 +41,6 @@ public:
     QString html() const;
     void read(QString imageFullPath, const QImage &histogram = QImage());
 
-public slots:
-    void copyEntry();
-    void showInfoViewMenu(QPoint pt);
-
 signals:
     void histogramClicked();
 
@@ -51,10 +48,15 @@ protected:
     bool eventFilter(QObject *o, QEvent *e) override;
 
 private slots:
+    void copyEntry();
     void filterItems();
+    void removeEntry();
+    void saveExifChanges();
+    void showInfoViewMenu(QPoint pt);
+    void showSaveButton();
 
 private:
-    void addEntry(QString key, QString value);
+    void addEntry(QString key, QString value, bool editable = false);
     void addTitleEntry(QString title);
 
     QTableView *infoViewerTable;
@@ -65,6 +67,8 @@ private:
     QString m_currentFile;
     QMap<QString, QString> m_hints;
     QLabel *m_histogram;
+    QAction *m_removeAction;
+    QPushButton *m_saveExifButton;
 };
 
 #endif // INFO_VIEWER_H

@@ -22,9 +22,11 @@
 #include <QFileInfo>
 #include <QHeaderView>
 #include <QImageReader>
+#include <QKeyEvent>
 #include <QLabel>
 #include <QLineEdit>
 #include <QMenu>
+#include <QPushButton>
 #include <QStandardItem>
 #include <QStandardItemModel>
 #include <QTableView>
@@ -40,7 +42,7 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
     infoViewerTable->verticalHeader()->setVisible(false);
     infoViewerTable->verticalHeader()->setDefaultSectionSize(infoViewerTable->verticalHeader()->minimumSectionSize());
     infoViewerTable->horizontalHeader()->setVisible(false);
-    infoViewerTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    infoViewerTable->setEditTriggers(QAbstractItemView::DoubleClicked /* QAbstractItemView::NoEditTriggers */);
     infoViewerTable->setTabKeyNavigation(false);
     infoViewerTable->setShowGrid(false);
 
@@ -49,9 +51,12 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
 
     // Menu
     QAction *copyAction = new QAction(tr("Copy"), this);
-    infoViewerTable->connect(copyAction, SIGNAL(triggered()), this, SLOT(copyEntry()));
+    connect(copyAction, SIGNAL(triggered()), this, SLOT(copyEntry()));
+    m_removeAction = new QAction(tr("Remove"), this);
+    connect(m_removeAction, SIGNAL(triggered()), this, SLOT(removeEntry()));
     infoMenu = new QMenu("");
     infoMenu->addAction(copyAction);
+    infoMenu->addAction(m_removeAction);
     infoViewerTable->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(infoViewerTable, SIGNAL(customContextMenuRequested(QPoint)), SLOT(showInfoViewMenu(QPoint)));
 
@@ -61,6 +66,9 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
     filterLineEdit->setClearButtonEnabled(true);
     filterLineEdit->setPlaceholderText(tr("Filter Items"));
 
+    m_saveExifButton = new QPushButton(tr("Save EXIF changes"), this);
+    connect(m_saveExifButton, SIGNAL(clicked()), this, SLOT(saveExifChanges()));
+
     QVBoxLayout *infoViewerLayout = new QVBoxLayout(this);
     QHBoxLayout *histLayout = new QHBoxLayout;
     histLayout->addStretch();
@@ -68,15 +76,24 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
     histLayout->addStretch();
     infoViewerLayout->addLayout(histLayout);
     infoViewerLayout->addWidget(infoViewerTable);
+    infoViewerLayout->addWidget(m_saveExifButton);
     infoViewerLayout->addWidget(filterLineEdit);
 
     setLayout(infoViewerLayout);
     m_histogram->installEventFilter(this);
+    infoViewerTable->installEventFilter(this);
 }
 
 bool InfoView::eventFilter(QObject *o, QEvent *e) {
-    if (o == m_histogram && e->type() == QEvent::MouseButtonPress)
+    if (o == m_histogram && e->type() == QEvent::MouseButtonPress) {
         emit histogramClicked();
+    } else if (o == infoViewerTable && e->type() == QEvent::KeyPress && static_cast<QKeyEvent*>(e)->key() == Qt::Key_Delete) {
+        const QModelIndexList &selection = infoViewerTable->selectionModel()->selectedIndexes();
+        if (!selection.isEmpty()) {
+            selectedEntry = selection.first();
+            removeEntry();
+        }
+    }
     return QWidget::eventFilter(o, e);
 }
 
@@ -84,8 +101,12 @@ void InfoView::showInfoViewMenu(QPoint pt) {
     selectedEntry = infoViewerTable->indexAt(pt);
     if (selectedEntry.column() == 0)
         selectedEntry = selectedEntry.siblingAtColumn(1);
-    if (selectedEntry.isValid() && infoViewerTable->columnSpan(selectedEntry.row(), 0) == 1)
+    if (selectedEntry.isValid() && infoViewerTable->columnSpan(selectedEntry.row(), 0) == 1) {
+        QStandardItem *item = imageInfoModel->itemFromIndex(selectedEntry);
+        m_removeAction->setVisible(item && item->isEditable());
         infoMenu->popup(infoViewerTable->viewport()->mapToGlobal(pt));
+    }
+    selectedEntry = QModelIndex();
 }
 
 void InfoView::clear() {
@@ -93,13 +114,15 @@ void InfoView::clear() {
     imageInfoModel->clear();
 }
 
-void InfoView::addEntry(QString key, QString value) {
+void InfoView::addEntry(QString key, QString value, bool editable) {
     int atRow = imageInfoModel->rowCount();
     QStandardItem *itemKey = new QStandardItem(key);
+    itemKey->setEditable(false);
     imageInfoModel->insertRow(atRow, itemKey);
     if (!value.isEmpty()) {
         QStandardItem *itemVal = new QStandardItem(value);
         itemVal->setToolTip(value);
+        itemVal->setEditable(editable);
         imageInfoModel->setItem(atRow, 1, itemVal);
     }
 }
@@ -107,6 +130,7 @@ void InfoView::addEntry(QString key, QString value) {
 void InfoView::addTitleEntry(QString title) {
     int atRow = imageInfoModel->rowCount();
     QStandardItem *itemKey = new QStandardItem(title);
+    itemKey->setEditable(false);
     imageInfoModel->insertRow(atRow, itemKey);
 
     QFont boldFont;
@@ -119,6 +143,22 @@ void InfoView::copyEntry() {
     if (selectedEntry.isValid()) {
         QApplication::clipboard()->setText(imageInfoModel->itemFromIndex(selectedEntry)->toolTip());
     }
+}
+
+void InfoView::removeEntry() {
+    if (selectedEntry.isValid()) {
+        imageInfoModel->removeRows(selectedEntry.row(), 1);
+        m_saveExifButton->show();
+        selectedEntry = QModelIndex();
+    }
+}
+
+void InfoView::showSaveButton() {
+    m_saveExifButton->show();
+}
+
+void InfoView::saveExifChanges() {
+    m_saveExifButton->hide();
 }
 
 void InfoView::filterItems() {
@@ -161,6 +201,8 @@ void InfoView::read(QString imageFullPath, const QImage &histogram) {
     if (m_currentFile == imageFullPath)
         return;
 
+    m_saveExifButton->hide();
+    disconnect(imageInfoModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(showSaveButton()));
     clear();
     QFileInfo imageInfo = QFileInfo(imageFullPath);
     if (!imageInfo.exists())
@@ -199,20 +241,21 @@ void InfoView::read(QString imageFullPath, const QImage &histogram) {
     if (!EXIF.isEmpty()) {
         addTitleEntry("Exif");
         for (auto i = EXIF.cbegin(), end = EXIF.cend(); i != end; ++i)
-            addEntry(i.key(), i.value());
+            addEntry(i.key(), i.value(), true);
     }
     if (!IPTC.isEmpty()) {
         addTitleEntry("IPTC");
         for (auto i = IPTC.cbegin(), end = IPTC.cend(); i != end; ++i)
-            addEntry(i.key(), i.value());
+            addEntry(i.key(), i.value(), true);
     }
     if (!XMP.isEmpty()) {
         addTitleEntry("XMP");
         for (auto i = XMP.cbegin(), end = XMP.cend(); i != end; ++i)
-            addEntry(i.key(), i.value());
+            addEntry(i.key(), i.value(), true);
     }
 
     infoViewerTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     infoViewerTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     filterItems();
+    connect(imageInfoModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(showSaveButton()));
 }
