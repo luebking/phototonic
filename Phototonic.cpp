@@ -136,8 +136,6 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
         }, Qt::QueuedConnection);
     connect(qApp, SIGNAL(focusChanged(QWidget * , QWidget * )), this, SLOT(updateActions()));
 
-    restoreGeometry(Settings::value(Settings::optionGeometry, QByteArray()).toByteArray());
-    restoreState(Settings::value(Settings::optionWindowState, QByteArray()).toByteArray());
     QApplication::setWindowIcon(QIcon(":/images/phototonic.png"));
 
     stackedLayout = new QStackedLayout;
@@ -146,6 +144,10 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     stackedLayout->addWidget(imageViewer);
     stackedLayoutWidget->setLayout(stackedLayout);
     setCentralWidget(stackedLayoutWidget);
+
+    restoreGeometry(Settings::value(Settings::optionGeometry, QByteArray()).toByteArray());
+    restoreState(Settings::value(Settings::optionWindowState, QByteArray()).toByteArray());
+
     processStartupArguments(argumentsList, filesStartAt);
     if (Settings::currentDirectory.isEmpty())
         Settings::currentDirectory = QDir::currentPath();
