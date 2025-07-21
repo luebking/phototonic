@@ -1054,6 +1054,7 @@ void Phototonic::createToolBars() {
 
     myMainToolBar = addToolBar("Toolbar");
     myMainToolBar->setObjectName("MainBar");
+    myMainToolBar->setMovable(false);
 
     // edit
 //    myMainToolBar->addAction(cutAction);
