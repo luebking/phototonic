@@ -280,16 +280,6 @@ private:
     QList<QString> pathHistoryList;
     QTimer *SlideShowTimer;
     QPointer<CopyMoveToDialog> copyMoveToDialog;
-    QWidget *fileSystemDockOrigWidget;
-    QWidget *bookmarksDockOrigWidget;
-    QWidget *imagePreviewDockOrigWidget;
-    QWidget *tagsDockOrigWidget;
-    QWidget *imageInfoDockOrigWidget;
-    QWidget *fileSystemDockEmptyWidget;
-    QWidget *bookmarksDockEmptyWidget;
-    QWidget *imagePreviewDockEmptyWidget;
-    QWidget *tagsDockEmptyWidget;
-    QWidget *imageInfoDockEmptyWidget;
     QFileSystemModel *fileSystemModel;
     QStackedLayout *stackedLayout;
 

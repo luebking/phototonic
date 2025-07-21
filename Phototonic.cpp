@@ -1327,6 +1327,7 @@ void Phototonic::createImagePreviewDock() {
             if (visible) {
                 stackedLayout->takeAt(1);
                 imagePreviewDock->setWidget(imageViewer);
+                imagePreviewDock->setContentsMargins(0,0,0,0);
                 int currentRow = thumbsViewer->currentIndex().row();
                 if (currentRow > -1)
                     imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow), thumbsViewer->icon(currentRow).pixmap(THUMB_SIZE_MAX).toImage());
@@ -1596,14 +1597,24 @@ void Phototonic::showSettings() {
 void Phototonic::toggleFullScreen() {
     Settings::isFullScreen = fullScreenAction->isChecked();
     imageViewer->setCursorHiding(Settings::isFullScreen);
-    QWidget *win = this;
-    if (imagePreviewDock->isFloating())
-        win = imagePreviewDock;
-    if (fullScreenAction->isChecked())
-        win->setWindowState(win->windowState() | Qt::WindowFullScreen);
+    const bool useDock = imagePreviewDock->isFloating() && imagePreviewDock->isVisible();
+    if (fullScreenAction->isChecked()) {
+        if (useDock) {
+            delete imagePreviewDock->titleBarWidget();
+            imagePreviewDock->setTitleBarWidget(new QWidget(imagePreviewDock));
+            imagePreviewDock->setWindowState(imagePreviewDock->windowState() | Qt::WindowFullScreen);
+        } else {
+            setWindowState(windowState() | Qt::WindowFullScreen);
+        }
+    }
     else {
-        win->setWindowState(win->windowState() & ~Qt::WindowFullScreen);
-        setWindowState(win->windowState() & ~Qt::WindowFullScreen);
+        if (useDock) {
+            imagePreviewDock->setWindowState(imagePreviewDock->windowState() & ~Qt::WindowFullScreen);
+            delete imagePreviewDock->titleBarWidget();
+            imagePreviewDock->setTitleBarWidget(nullptr);
+        }
+        // unconditionally in case the dock state changed and we need to get out of the fullscreen
+        setWindowState(windowState() & ~Qt::WindowFullScreen);
     }
 }
 
@@ -2526,20 +2537,8 @@ void Phototonic::readSettings() {
 }
 
 void Phototonic::setupDocks() {
-
     addDockWidget(Qt::RightDockWidgetArea, imageInfoDock);
     addDockWidget(Qt::RightDockWidgetArea, tagsDock);
-
-    fileSystemDockOrigWidget = fileSystemDock->titleBarWidget();
-    bookmarksDockOrigWidget = bookmarksDock->titleBarWidget();
-    imagePreviewDockOrigWidget = imagePreviewDock->titleBarWidget();
-    tagsDockOrigWidget = tagsDock->titleBarWidget();
-    imageInfoDockOrigWidget = imageInfoDock->titleBarWidget();
-    fileSystemDockEmptyWidget = new QWidget;
-    bookmarksDockEmptyWidget = new QWidget;
-    imagePreviewDockEmptyWidget = new QWidget;
-    tagsDockEmptyWidget = new QWidget;
-    imageInfoDockEmptyWidget = new QWidget;
     lockDocks();
 }
 
@@ -2547,18 +2546,23 @@ void Phototonic::lockDocks() {
     if (initComplete)
         Settings::hideDockTitlebars = lockDocksAction->isChecked();
 
+    delete fileSystemDock->titleBarWidget();
+    delete bookmarksDock->titleBarWidget();
+    delete imagePreviewDock->titleBarWidget();
+    delete tagsDock->titleBarWidget();
+    delete imageInfoDock->titleBarWidget();
     if (Settings::hideDockTitlebars) {
-        fileSystemDock->setTitleBarWidget(fileSystemDockEmptyWidget);
-        bookmarksDock->setTitleBarWidget(bookmarksDockEmptyWidget);
-        imagePreviewDock->setTitleBarWidget(imagePreviewDockEmptyWidget);
-        tagsDock->setTitleBarWidget(tagsDockEmptyWidget);
-        imageInfoDock->setTitleBarWidget(imageInfoDockEmptyWidget);
+        fileSystemDock->setTitleBarWidget(new QWidget(fileSystemDock));
+        bookmarksDock->setTitleBarWidget(new QWidget(bookmarksDock));
+        imagePreviewDock->setTitleBarWidget(new QWidget(imagePreviewDock));
+        tagsDock->setTitleBarWidget(new QWidget(tagsDock));
+        imageInfoDock->setTitleBarWidget(new QWidget(imageInfoDock));
     } else {
-        fileSystemDock->setTitleBarWidget(fileSystemDockOrigWidget);
-        bookmarksDock->setTitleBarWidget(bookmarksDockOrigWidget);
-        imagePreviewDock->setTitleBarWidget(imagePreviewDockOrigWidget);
-        tagsDock->setTitleBarWidget(tagsDockOrigWidget);
-        imageInfoDock->setTitleBarWidget(imageInfoDockOrigWidget);
+        fileSystemDock->setTitleBarWidget(nullptr);
+        bookmarksDock->setTitleBarWidget(nullptr);
+        imagePreviewDock->setTitleBarWidget(nullptr);
+        tagsDock->setTitleBarWidget(nullptr);
+        imageInfoDock->setTitleBarWidget(nullptr);
     }
 }
 
