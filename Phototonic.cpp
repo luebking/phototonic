@@ -1596,10 +1596,15 @@ void Phototonic::showSettings() {
 void Phototonic::toggleFullScreen() {
     Settings::isFullScreen = fullScreenAction->isChecked();
     imageViewer->setCursorHiding(Settings::isFullScreen);
+    QWidget *win = this;
+    if (imagePreviewDock->isFloating())
+        win = imagePreviewDock;
     if (fullScreenAction->isChecked())
-        setWindowState(windowState() | Qt::WindowFullScreen);
-    else
-        setWindowState(windowState() & ~Qt::WindowFullScreen);
+        win->setWindowState(win->windowState() | Qt::WindowFullScreen);
+    else {
+        win->setWindowState(win->windowState() & ~Qt::WindowFullScreen);
+        setWindowState(win->windowState() & ~Qt::WindowFullScreen);
+    }
 }
 
 void Phototonic::selectAllThumbs() {
@@ -2324,7 +2329,7 @@ void Phototonic::updateActions() {
         if (QApplication::focusWidget() == imageViewer) {
             setViewerKeyEventsEnabled(true);
             feedbackImageInfoAction->setShortcuts(QList<QKeySequence>() << feedbackImageInfoAction->shortcut() << Qt::Key_I);
-            fullScreenAction->setEnabled(false);
+            fullScreenAction->setEnabled(imagePreviewDock->isFloating());
             CloseImageAction->setEnabled(false);
         } else {
             feedbackImageInfoAction->setShortcuts(QList<QKeySequence>() << feedbackImageInfoAction->shortcut());
@@ -2631,11 +2636,12 @@ void Phototonic::newImage() {
 
 void Phototonic::setDocksVisibility(bool visible) {
     layout()->setEnabled(false);
-    fileSystemDock->setVisible(visible && Settings::fileSystemDockVisible);
-    bookmarksDock->setVisible(visible && Settings::bookmarksDockVisible);
-    imagePreviewDock->setVisible(visible && Settings::imagePreviewDockVisible);
-    tagsDock->setVisible(visible && Settings::tagsDockVisible);
-    imageInfoDock->setVisible(visible && Settings::imageInfoDockVisible);
+    auto vis = [=](QDockWidget *d) { return visible || d->isFloating(); };
+    fileSystemDock->setVisible(vis(fileSystemDock) && Settings::fileSystemDockVisible);
+    bookmarksDock->setVisible(vis(bookmarksDock) && Settings::bookmarksDockVisible);
+    imagePreviewDock->setVisible(vis(imagePreviewDock) && Settings::imagePreviewDockVisible);
+    tagsDock->setVisible(vis(tagsDock) && Settings::tagsDockVisible);
+    imageInfoDock->setVisible(vis(imageInfoDock) && Settings::imageInfoDockVisible);
 
     myMainToolBar->setVisible(visible);
     imageToolBar->setVisible(!visible && Settings::showViewerToolbar);
@@ -2685,6 +2691,14 @@ void Phototonic::viewImage() {
 }
 
 void Phototonic::showViewer() {
+    if (imagePreviewDock->isFloating() && imagePreviewDock->isVisible()) {
+        if (Settings::isFullScreen) {
+            imagePreviewDock->setWindowState(imagePreviewDock->windowState() | Qt::WindowFullScreen);
+            imageViewer->setCursorHiding(true);
+        }
+        imagePreviewDock->raise();
+        return;
+    }
     if (Settings::layoutMode == ThumbViewWidget) {
         Settings::layoutMode = ImageViewWidget;
 //        Settings::setValue("Geometry", saveGeometry());
@@ -2895,6 +2909,9 @@ void Phototonic::setViewerKeyEventsEnabled(bool enabled) {
 }
 
 void Phototonic::hideViewer() {
+    if (imagePreviewDock->isFloating()) {
+        imagePreviewDock->setWindowState(imagePreviewDock->windowState() & ~Qt::WindowFullScreen);
+    }
     setWindowState(windowState() & ~Qt::WindowFullScreen);
     imageViewer->setCursorHiding(false);
 
