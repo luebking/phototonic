@@ -96,8 +96,9 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     createImagePreviewDock();
     createImageTagsDock();
     setupDocks();
-    createMenus();
-    createToolBars();
+    myMainToolBar = nullptr; // accessed but undesired by …
+    createMenus(); // createPopupMenu …
+    createToolBars(); // and created only here
     createImageViewer();
     updateExternalApps();
     loadShortcuts();
@@ -2557,6 +2558,8 @@ void Phototonic::lockDocks() {
 
 QMenu *Phototonic::createPopupMenu() {
     QMenu *extraActsMenu = QMainWindow::createPopupMenu();
+    if (myMainToolBar)
+        extraActsMenu->removeAction(myMainToolBar->toggleViewAction());
     extraActsMenu->addSeparator();
     extraActsMenu->addAction(smallToolbarIconsAction);
     extraActsMenu->addAction(lockDocksAction);
