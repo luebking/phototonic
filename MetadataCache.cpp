@@ -287,6 +287,11 @@ void data(const QString &imageFullPath, QMap<QString,QString> *EXIF, QMap<QStrin
     }
 }
 
+void setData(const QString &imageFullPath, QMap<QString,QString> EXIF, QMap<QString,QString> IPTC, QMap<QString,QString> XMP) {
+    qDebug() << "todo: write metadata to " << imageFullPath;
+    qDebug() << EXIF << IPTC << XMP;
+}
+
 bool wipeFrom(const QString &imageFileName) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"

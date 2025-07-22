@@ -158,6 +158,29 @@ void InfoView::showSaveButton() {
 }
 
 void InfoView::saveExifChanges() {
+    QMap<QString, QString> EXIF, IPTC, XMP;
+    QMap<QString, QString> *data = nullptr;
+    for (int i = 0; i < imageInfoModel->rowCount(); ++i) {
+        if (infoViewerTable->columnSpan(i, 0) > 1) { // title
+            if (imageInfoModel->item(i)->text() == "Exif")
+                data = &EXIF;
+            else if (imageInfoModel->item(i)->text() == "IPTC")
+                data = &IPTC;
+            else if (imageInfoModel->item(i)->text() == "XMP")
+                data = &XMP;
+            continue; // title
+        }
+        if (!imageInfoModel->item(i, 1) || imageInfoModel->item(i, 1)->text().isEmpty())
+            continue; // empty field
+        if (!imageInfoModel->item(i, 1)->isEditable())
+            continue; // static data, brightness, file stats - not metadata
+        if (!data) {
+            qDebug() << "WAHHHHHH! (headless metadata!)" << imageInfoModel->item(i)->text();
+            continue;
+        }
+        data->insert(imageInfoModel->item(i)->text(), imageInfoModel->item(i, 1)->text());
+    }
+    Metadata::setData(m_currentFile, EXIF, IPTC, XMP);
     m_saveExifButton->hide();
 }
 
