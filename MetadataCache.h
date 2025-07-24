@@ -26,7 +26,7 @@ namespace Metadata {
     void cache(const QString &imageFullPath);
     void data(const QString &imageFullPath, QMap<QString,QString> *EXIF = nullptr,
               QMap<QString,QString> *IPTC = nullptr, QMap<QString,QString> *XMP = nullptr);
-    void setData(const QString &imageFullPath, QMap<QString,QString> EXIF,
+    bool setData(const QString &imageFullPath, QMap<QString,QString> EXIF,
               QMap<QString,QString> IPTC, QMap<QString,QString> XMP);
     void dropCache();
     QTransform transformation(const QString &imageFullPath);

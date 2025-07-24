@@ -287,9 +287,93 @@ void data(const QString &imageFullPath, QMap<QString,QString> *EXIF, QMap<QStrin
     }
 }
 
-void setData(const QString &imageFullPath, QMap<QString,QString> EXIF, QMap<QString,QString> IPTC, QMap<QString,QString> XMP) {
-    qDebug() << "todo: write metadata to " << imageFullPath;
-    qDebug() << EXIF << IPTC << XMP;
+bool setData(const QString &imageFullPath, QMap<QString,QString> EXIF, QMap<QString,QString> IPTC, QMap<QString,QString> XMP) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#if EXIV2_TEST_VERSION(0,28,0)
+    Exiv2::Image::UniquePtr exifImage;
+#else
+    Exiv2::Image::AutoPtr exifImage;
+#endif
+#pragma clang diagnostic pop
+
+    try {
+        exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
+        exifImage->readMetadata();
+
+        // EXIF
+        Exiv2::ExifData &exifData = exifImage->exifData();
+        if (!exifData.empty()) {
+            if (EXIF.isEmpty()) {
+                exifData.clear();
+            } else {
+                Exiv2::ExifData::iterator md = exifData.begin(), end = exifData.end();
+                while (md != end) {
+                    QMap<QString,QString>::const_iterator cit = EXIF.constFind(QString::fromUtf8(md->tagName().c_str()));
+                    if (cit == EXIF.constEnd()) {
+                        md = exifData.erase(md);
+                    } else {
+                        if (QString::fromUtf8(md->print().c_str()) != *cit && md->setValue(cit->toStdString()))
+                            qWarning() << "could not set" << cit.key() << "from" << md->toString() << " to " << *cit;
+                        ++md;
+                    }
+                }
+            }
+        }
+
+        // IPTC
+        Exiv2::IptcData &iptcData = exifImage->iptcData();
+        if (!iptcData.empty()) {
+            if (IPTC.isEmpty()) {
+                iptcData.clear();
+            } else {
+                Exiv2::IptcData::iterator md = iptcData.begin(), end = iptcData.end();
+                while (md != end) {
+                    QMap<QString,QString>::const_iterator cit = IPTC.constFind(QString::fromUtf8(md->tagName().c_str()));
+                    if (cit == IPTC.constEnd()) {
+                        md = iptcData.erase(md);
+                    } else {
+                        if (QString::fromUtf8(md->print().c_str()) != *cit && md->setValue(cit->toStdString()))
+                            qWarning() << "could not set" << cit.key() << "from" << md->toString() << " to " << *cit;
+                        ++md;
+                    }
+                }
+            }
+        }
+
+        // XMP
+        #if 1
+        Exiv2::XmpData &xmpData = exifImage->xmpData();
+        if (!xmpData.empty()) {
+            if (XMP.isEmpty()) {
+                xmpData.clear();
+            } else {
+                Exiv2::XmpData::iterator md = xmpData.begin(), end = xmpData.end();
+                while (md != end) {
+                    QMap<QString,QString>::const_iterator cit = XMP.constFind(QString::fromUtf8(md->tagName().c_str()));
+                    if (cit == XMP.constEnd()) {
+                        md = xmpData.erase(md);
+                    } else {
+                        if (QString::fromUtf8(md->print().c_str()) != *cit && md->setValue(cit->toStdString()))
+                            qWarning() << "could not set" << cit.key() << "from" << md->toString() << " to " << *cit;
+                        ++md;
+                    }
+                }
+            }
+        }
+        #endif
+
+        // write data
+        exifImage->writeMetadata();
+        Metadata::forget(imageFullPath);
+        cache(imageFullPath);
+    }
+    catch (Exiv2::Error &error) {
+        qWarning() << "Failed to write metadata"  << error.what();
+        return false;
+    }
+
+    return true;
 }
 
 bool wipeFrom(const QString &imageFileName) {

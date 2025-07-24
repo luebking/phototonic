@@ -362,6 +362,10 @@ void Phototonic::createThumbsViewer() {
             m_infoViewer->read(filePath, thumbsViewer->renderHistogram(filePath, m_logHistogram));
         }
     });
+    connect(m_infoViewer, &InfoView::exifChanged, [=](const QString &fileName) {
+        thumbsViewer->updateThumbnail(fileName);
+        m_imageTags->setSelectedFiles(thumbsViewer->selectedFiles());
+    });
 }
 
 void Phototonic::createImageViewer() {
@@ -1353,7 +1357,11 @@ void Phototonic::createImageTagsDock() {
         [=](const QStringList &mandatory, const QStringList &sufficient, bool invert) {
             thumbsViewer->setTagFilters(mandatory, sufficient, invert);
     });
-    connect(m_imageTags, &ImageTags::tagRequest, thumbsViewer, &ThumbsViewer::tagSelected);
+    connect(m_imageTags, &ImageTags::tagRequest, [=](const QStringList &tagsAdded, const QStringList &tagsRemoved) {
+        thumbsViewer->tagSelected(tagsAdded, tagsRemoved);
+        if (m_infoViewer && m_infoViewer->isVisible())
+            m_infoViewer->reloadExifData();
+    });
 
     connect(thumbsViewer, &ThumbsViewer::filesHidden, m_imageTags, &ImageTags::removeTagsFor);
     connect(thumbsViewer, &ThumbsViewer::filesShown, m_imageTags, &ImageTags::addTagsFor);

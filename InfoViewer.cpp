@@ -182,6 +182,16 @@ void InfoView::saveExifChanges() {
     }
     Metadata::setData(m_currentFile, EXIF, IPTC, XMP);
     m_saveExifButton->hide();
+    reloadExifData();
+    emit exifChanged(m_currentFile);
+}
+
+void InfoView::reloadExifData() {
+    const QString currentFile = m_currentFile;
+    m_currentFile = QString();
+    const QPixmap histogram = m_histogram->pixmap();
+    read(currentFile, QImage());
+    m_histogram->setPixmap(histogram);
 }
 
 void InfoView::filterItems() {

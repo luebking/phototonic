@@ -40,9 +40,11 @@ public:
     void hint(QString key, QString value);
     QString html() const;
     void read(QString imageFullPath, const QImage &histogram = QImage());
+    void reloadExifData();
 
 signals:
     void histogramClicked();
+    void exifChanged(const QString &fileName);
 
 protected:
     bool eventFilter(QObject *o, QEvent *e) override;
