@@ -19,8 +19,8 @@
 #ifndef INFO_VIEWER_H
 #define INFO_VIEWER_H
 
+class QComboBox;
 class QLabel;
-class QLineEdit;
 class QMenu;
 class QPushButton;
 class QStandardItemModel;
@@ -65,7 +65,8 @@ private:
     QStandardItemModel *imageInfoModel;
     QModelIndex selectedEntry;
     QMenu *infoMenu;
-    QLineEdit *filterLineEdit;
+    QComboBox *m_filter;
+    QPushButton *m_manageFiltersButton;
     QString m_currentFile;
     QMap<QString, QString> m_hints;
     QLabel *m_histogram;

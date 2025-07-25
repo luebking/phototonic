@@ -19,20 +19,24 @@
 #include <QApplication>
 #include <QBoxLayout>
 #include <QClipboard>
+#include <QComboBox>
 #include <QFileInfo>
 #include <QHeaderView>
 #include <QImageReader>
+#include <QInputDialog>
 #include <QKeyEvent>
 #include <QLabel>
 #include <QLineEdit>
 #include <QMenu>
 #include <QPushButton>
+#include <QRegularExpression>
 #include <QStandardItem>
 #include <QStandardItemModel>
 #include <QTableView>
 
 #include "MetadataCache.h"
 #include "InfoViewer.h"
+#include "Settings.h"
 
 InfoView::InfoView(QWidget *parent) : QWidget(parent) {
 
@@ -48,6 +52,7 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
 
     imageInfoModel = new QStandardItemModel(this);
     infoViewerTable->setModel(imageInfoModel);
+    connect(imageInfoModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(showSaveButton()));
 
     // Menu
     QAction *copyAction = new QAction(tr("Copy"), this);
@@ -61,10 +66,32 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
     connect(infoViewerTable, SIGNAL(customContextMenuRequested(QPoint)), SLOT(showInfoViewMenu(QPoint)));
 
     // Filter items
-    filterLineEdit = new QLineEdit(this);
-    connect(filterLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(filterItems()));
-    filterLineEdit->setClearButtonEnabled(true);
-    filterLineEdit->setPlaceholderText(tr("Filter Items"));
+    m_filter = new QComboBox(this);
+    m_filter->setEditable(true);
+    m_filter->lineEdit()->setPlaceholderText(tr("Filter Items"));
+    m_filter->addItems(Settings::exifFilters.keys());
+    m_filter->setEditText(QString()); // start w/ empty filter
+
+    m_manageFiltersButton = new QPushButton("+", this);
+    connect(m_manageFiltersButton, &QPushButton::clicked, [=]() {
+        if (Settings::exifFilters.remove(m_filter->currentText())) {
+            m_filter->removeItem(m_filter->currentIndex());
+            m_filter->setEditText(QString());
+        } else {
+            bool ok;
+            QString n = QInputDialog::getText(this, tr("Enter filter name"),
+                                                tr("Enter a name (without leading \"$\") for this filter"),
+                                                QLineEdit::Normal, QString(), &ok);
+            if (ok && !n.isEmpty()) {
+                Settings::exifFilters.insert("$"+n, m_filter->currentText());
+                m_filter->addItem("$"+n);
+                m_filter->setEditText("$"+n);
+            } else {
+                return;
+            }
+        }
+    });
+    connect(m_filter, SIGNAL(currentTextChanged(const QString&)), this, SLOT(filterItems()));
 
     m_saveExifButton = new QPushButton(tr("Save EXIF changes"), this);
     connect(m_saveExifButton, SIGNAL(clicked()), this, SLOT(saveExifChanges()));
@@ -77,7 +104,10 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
     infoViewerLayout->addLayout(histLayout);
     infoViewerLayout->addWidget(infoViewerTable);
     infoViewerLayout->addWidget(m_saveExifButton);
-    infoViewerLayout->addWidget(filterLineEdit);
+    QHBoxLayout *filterLayout = new QHBoxLayout;
+    filterLayout->addWidget(m_filter, 100);
+    filterLayout->addWidget(m_manageFiltersButton);
+    infoViewerLayout->addLayout(filterLayout);
 
     setLayout(infoViewerLayout);
     m_histogram->installEventFilter(this);
@@ -195,12 +225,30 @@ void InfoView::reloadExifData() {
 }
 
 void InfoView::filterItems() {
-    const QString filter = filterLineEdit->text().toLower();
+    QString filter = Settings::exifFilters.value(m_filter->currentText());
+    if (filter.isEmpty()) {
+        m_manageFiltersButton->setText("+");
+        filter = m_filter->currentText();
+    } else {
+        m_manageFiltersButton->setText("-");
+    }
+
+    QRegularExpression re(filter, QRegularExpression::CaseInsensitiveOption);
+    if (!re.isValid()) {
+        m_manageFiltersButton->setEnabled(false);
+        QPalette pal = m_filter->palette();
+        pal.setColor(QPalette::Text, 0xd01717); // force my idea of Qt::red on everyone
+        m_filter->setPalette(pal);
+        return;
+    }
+    const bool hot = !filter.isEmpty();
+    m_manageFiltersButton->setEnabled(hot);
+    m_filter->setPalette(QPalette());
     for (int i = 0; i < imageInfoModel->rowCount(); ++i) {
         if (infoViewerTable->columnSpan(i, 0) > 1) { // title
             continue;
         }
-        infoViewerTable->setRowHidden(i, !filter.isEmpty() && !imageInfoModel->item(i)->text().toLower().contains(filter));
+        infoViewerTable->setRowHidden(i, hot && !imageInfoModel->item(i)->text().contains(re));
     }
 }
 
@@ -290,5 +338,4 @@ void InfoView::read(QString imageFullPath, const QImage &histogram) {
     infoViewerTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     infoViewerTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     filterItems();
-    connect(imageInfoModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(showSaveButton()));
 }

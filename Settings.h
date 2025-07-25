@@ -76,6 +76,7 @@ namespace Settings {
     extern const char optionShortcuts[];
     extern const char optionExternalApps[];
     extern const char optionBangs[];
+    extern const char optionExifFilters[];
     extern const char optionWallpaperCommand[];
     extern const char optionCopyMoveToPaths[];
     extern const char optionKnownTags[];
@@ -128,6 +129,7 @@ namespace Settings {
     extern bool showViewerToolbar;
     extern QMap<QString, QString> externalApps;
     extern QMap<QString, QString> bangs;
+    extern QMap<QString, QString> exifFilters;
     extern QString wallpaperCommand;
     extern QSet<QString> bookmarkPaths;
     extern QSet<QString> knownTags;

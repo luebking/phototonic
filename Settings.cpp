@@ -57,6 +57,7 @@ namespace Settings {
     const char optionShortcuts[] = "Shortcuts";
     const char optionExternalApps[] = "ExternalApps";
     const char optionBangs[] = "Bangs";
+    const char optionExifFilters[] = "ExifFilters";
     const char optionWallpaperCommand[] = "WallpaperCommand";
     const char optionCopyMoveToPaths[] = "CopyMoveToPaths";
     const char optionKnownTags[] = "KnownTags";
@@ -109,6 +110,7 @@ namespace Settings {
     bool showViewerToolbar;
     QMap<QString, QString> externalApps;
     QMap<QString, QString> bangs;
+    QMap<QString, QString> exifFilters;
     QString wallpaperCommand;
     QSet<QString> bookmarkPaths;
     QSet<QString> knownTags;

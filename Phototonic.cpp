@@ -2456,6 +2456,16 @@ void Phototonic::writeSettings() {
         Settings::appSettings->setValue("tag" + QString::number(++idx), tagsIter.next());
     }
     Settings::appSettings->endGroup();
+
+    /* save exif filters */
+    Settings::beginGroup(Settings::optionExifFilters);
+    Settings::appSettings->remove("");
+    QMapIterator<QString, QString> efIter(Settings::exifFilters);
+    while (efIter.hasNext()) {
+        efIter.next();
+        Settings::appSettings->setValue(efIter.key(), efIter.value());
+    }
+    Settings::appSettings->endGroup();
 }
 
 void Phototonic::readSettings() {
@@ -2538,6 +2548,14 @@ void Phototonic::readSettings() {
     QStringList tags = Settings::appSettings->childKeys();
     for (int i = 0; i < tags.size(); ++i) {
         Settings::knownTags.insert(Settings::appSettings->value(tags.at(i)).toString());
+    }
+    Settings::appSettings->endGroup();
+
+    /* read exif filters */
+    Settings::beginGroup(Settings::optionExifFilters);
+    QStringList eFilters = Settings::appSettings->childKeys();
+    for (int i = 0; i < eFilters.size(); ++i) {
+        Settings::exifFilters[eFilters.at(i)] = Settings::appSettings->value(eFilters.at(i)).toString();
     }
     Settings::appSettings->endGroup();
 
