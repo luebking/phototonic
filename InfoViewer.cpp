@@ -52,7 +52,6 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
 
     imageInfoModel = new QStandardItemModel(this);
     infoViewerTable->setModel(imageInfoModel);
-    connect(imageInfoModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(showSaveButton()));
 
     // Menu
     QAction *copyAction = new QAction(tr("Copy"), this);
@@ -348,4 +347,5 @@ void InfoView::read(QString imageFullPath, const QImage &histogram) {
     infoViewerTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     infoViewerTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     filterItems();
+    connect(imageInfoModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(showSaveButton()));
 }
