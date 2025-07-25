@@ -99,6 +99,7 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
     QHBoxLayout *histLayout = new QHBoxLayout;
     histLayout->addStretch();
     histLayout->addWidget(m_histogram = new QLabel(this));
+    m_histogram->setToolTip(tr("Left click: toggle logarithmic scale\nRight click: toggle size"));
     histLayout->addStretch();
     infoViewerLayout->addLayout(histLayout);
     infoViewerLayout->addWidget(infoViewerTable);
