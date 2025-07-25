@@ -352,7 +352,7 @@ bool setData(const QString &imageFullPath, QMap<QString,QString> EXIF, QMap<QStr
                 while (md != end) {
                     QMap<QString,QString>::const_iterator cit = XMP.constFind(QString::fromUtf8(md->tagName().c_str()));
                     if (cit == XMP.constEnd()) {
-                        md = xmpData.erase(md);
+                        xmpData.eraseFamily(md); // updates &md
                     } else {
                         if (QString::fromUtf8(md->print().c_str()) != *cit && md->setValue(cit->toStdString()))
                             qWarning() << "could not set" << cit.key() << "from" << md->toString() << " to " << *cit;
