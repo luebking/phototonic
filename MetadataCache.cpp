@@ -236,7 +236,7 @@ void cache(const QString &imageFullPath) {
     gs_cache.insert(imageFullPath, imageMetadata);
 }
 
-void data(const QString &imageFullPath, QMap<QString,QString> *EXIF, QMap<QString,QString> *IPTC, QMap<QString,QString> *XMP) {
+void data(const QString &imageFullPath, Metadata::DataTriple *EXIF, Metadata::DataTriple *IPTC, Metadata::DataTriple *XMP) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #if EXIV2_TEST_VERSION(0,28,0)
@@ -255,13 +255,15 @@ void data(const QString &imageFullPath, QMap<QString,QString> *EXIF, QMap<QStrin
         return;
     }
 
-#define EXIV2_ENTRY QString::fromUtf8(md->tagName().c_str()), QString::fromUtf8(md->print().c_str())
+//#define EXIV2_ENTRY QString::fromUtf8(md->tagName().c_str()), QString::fromUtf8(md->print().c_str())
+#define INSERT(_MAP_) const QString p = QString::fromUtf8(md->print().c_str()), r = QString::fromUtf8(md->toString().c_str()); \
+    _MAP_->insert(QString::fromUtf8(md->tagName().c_str()), QPair<QString,QString>(p, p == r ? p : r))
     if (EXIF) {
         Exiv2::ExifData &exifData = exifImage->exifData();
         if (!exifData.empty()) {
             Exiv2::ExifData::const_iterator end = exifData.end();
             for (Exiv2::ExifData::const_iterator md = exifData.begin(); md != end; ++md) {
-                EXIF->insert(EXIV2_ENTRY);
+                INSERT(EXIF);
             }
         }
     }
@@ -271,7 +273,7 @@ void data(const QString &imageFullPath, QMap<QString,QString> *EXIF, QMap<QStrin
         if (!iptcData.empty()) {
             Exiv2::IptcData::iterator end = iptcData.end();
             for (Exiv2::IptcData::iterator md = iptcData.begin(); md != end; ++md) {
-                IPTC->insert(EXIV2_ENTRY);
+                INSERT(IPTC);
             }
         }
     }
@@ -281,13 +283,13 @@ void data(const QString &imageFullPath, QMap<QString,QString> *EXIF, QMap<QStrin
         if (!xmpData.empty()) {
             Exiv2::XmpData::iterator end = xmpData.end();
             for (Exiv2::XmpData::iterator md = xmpData.begin(); md != end; ++md) {
-                XMP->insert(EXIV2_ENTRY);
+                INSERT(XMP);
             }
         }
     }
 }
 
-bool setData(const QString &imageFullPath, QMap<QString,QString> EXIF, QMap<QString,QString> IPTC, QMap<QString,QString> XMP) {
+bool setData(const QString &imageFullPath, Metadata::DataPair EXIF, Metadata::DataPair IPTC, Metadata::DataPair XMP) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #if EXIV2_TEST_VERSION(0,28,0)

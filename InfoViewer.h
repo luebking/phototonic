@@ -28,7 +28,15 @@ class QTableView;
 
 #include <QMap>
 #include <QModelIndex>
+#include <QStandardItem>
 #include <QWidget>
+
+class ExifItem : public QStandardItem {
+public:
+    using QStandardItem::QStandardItem;
+    void setData(const QVariant &value, int role = Qt::UserRole + 1) override;
+    QVariant data(int role = Qt::UserRole + 1) const override;
+};
 
 class InfoView : public QWidget {
 Q_OBJECT
@@ -55,10 +63,10 @@ private slots:
     void removeEntry();
     void saveExifChanges();
     void showInfoViewMenu(QPoint pt);
-    void showSaveButton();
+    void showSaveButton(QStandardItem *changedItem);
 
 private:
-    void addEntry(QString key, QString value, bool editable = false);
+    void addEntry(QString key, QString value, bool editable = false, QString editValue = QString());
     void addTitleEntry(QString title);
 
     QTableView *infoViewerTable;

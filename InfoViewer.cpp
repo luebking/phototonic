@@ -153,15 +153,30 @@ void InfoView::clear() {
     imageInfoModel->clear();
 }
 
-void InfoView::addEntry(QString key, QString value, bool editable) {
+void ExifItem::setData(const QVariant &value, int role) {
+    if (role == Qt::EditRole)
+        QStandardItem::setData(value, Qt::UserRole + 1);
+    else
+        QStandardItem::setData(value, role);
+}
+
+QVariant ExifItem::data(int role) const {
+    if (role == Qt::EditRole)
+        return QStandardItem::data(Qt::UserRole + 1);
+    else
+        return QStandardItem::data(role);
+}
+
+void InfoView::addEntry(QString key, QString value, bool editable, QString editValue) {
     int atRow = imageInfoModel->rowCount();
     QStandardItem *itemKey = new QStandardItem(key);
     itemKey->setEditable(false);
     imageInfoModel->insertRow(atRow, itemKey);
     if (!value.isEmpty()) {
-        QStandardItem *itemVal = new QStandardItem(value);
+        ExifItem *itemVal = new ExifItem(value);
         itemVal->setToolTip(value);
         itemVal->setEditable(editable);
+        itemVal->setData(editValue, Qt::EditRole);
         imageInfoModel->setItem(atRow, 1, itemVal);
     }
 }
@@ -192,13 +207,18 @@ void InfoView::removeEntry() {
     }
 }
 
-void InfoView::showSaveButton() {
+void InfoView::showSaveButton(QStandardItem *changedItem) {
+    if (changedItem) {
+        imageInfoModel->blockSignals(true);
+        changedItem->setData(changedItem->data(Qt::EditRole), Qt::DisplayRole);
+        imageInfoModel->blockSignals(false);
+    }
     m_saveExifButton->show();
 }
 
 void InfoView::saveExifChanges() {
-    QMap<QString, QString> EXIF, IPTC, XMP;
-    QMap<QString, QString> *data = nullptr;
+    Metadata::DataPair EXIF, IPTC, XMP;
+    Metadata::DataPair *data = nullptr;
     for (int i = 0; i < imageInfoModel->rowCount(); ++i) {
         if (infoViewerTable->columnSpan(i, 0) > 1) { // title
             if (imageInfoModel->item(i)->text() == "Exif")
@@ -292,7 +312,7 @@ void InfoView::read(QString imageFullPath, const QImage &histogram) {
         return;
 
     m_saveExifButton->hide();
-    disconnect(imageInfoModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(showSaveButton()));
+    disconnect(imageInfoModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(showSaveButton(QStandardItem*)));
     clear();
     QFileInfo imageInfo = QFileInfo(imageFullPath);
     if (!imageInfo.exists())
@@ -325,27 +345,27 @@ void InfoView::read(QString imageFullPath, const QImage &histogram) {
         addEntry(key, val);
     }
 
-    QMap<QString, QString> EXIF, IPTC, XMP;
+    Metadata::DataTriple EXIF, IPTC, XMP;
     Metadata::data(imageFullPath, &EXIF, &IPTC, &XMP);
 
     if (!EXIF.isEmpty()) {
         addTitleEntry("Exif");
         for (auto i = EXIF.cbegin(), end = EXIF.cend(); i != end; ++i)
-            addEntry(i.key(), i.value(), true);
+            addEntry(i.key(), i.value().first, true, i.value().second);
     }
     if (!IPTC.isEmpty()) {
         addTitleEntry("IPTC");
         for (auto i = IPTC.cbegin(), end = IPTC.cend(); i != end; ++i)
-            addEntry(i.key(), i.value(), true);
+            addEntry(i.key(), i.value().first, true, i.value().second);
     }
     if (!XMP.isEmpty()) {
         addTitleEntry("XMP");
         for (auto i = XMP.cbegin(), end = XMP.cend(); i != end; ++i)
-            addEntry(i.key(), i.value(), true);
+            addEntry(i.key(), i.value().first, true, i.value().second);
     }
 
     infoViewerTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     infoViewerTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     filterItems();
-    connect(imageInfoModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(showSaveButton()));
+    connect(imageInfoModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(showSaveButton(QStandardItem*)));
 }

@@ -22,12 +22,12 @@
 #include <QTransform>
 
 namespace Metadata {
+    typedef QMap<QString, QPair<QString,QString>> DataTriple;
+    typedef QMap<QString, QString> DataPair;
     bool addTag(const QString &imageFileName, const QString &tagName);
     void cache(const QString &imageFullPath);
-    void data(const QString &imageFullPath, QMap<QString,QString> *EXIF = nullptr,
-              QMap<QString,QString> *IPTC = nullptr, QMap<QString,QString> *XMP = nullptr);
-    bool setData(const QString &imageFullPath, QMap<QString,QString> EXIF,
-              QMap<QString,QString> IPTC, QMap<QString,QString> XMP);
+    void data(const QString &imageFullPath, DataTriple *EXIF = nullptr, DataTriple *IPTC = nullptr, DataTriple *XMP = nullptr);
+    bool setData(const QString &imageFullPath, DataPair EXIF, DataPair IPTC, DataPair XMP);
     void dropCache();
     QTransform transformation(const QString &imageFullPath);
     void forget(const QString &imageFileName);
