@@ -116,7 +116,17 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
 
 bool InfoView::eventFilter(QObject *o, QEvent *e) {
     if (o == m_histogram && e->type() == QEvent::MouseButtonPress) {
-        emit histogramClicked();
+        QMouseEvent *me = static_cast<QMouseEvent*>(e);
+        if (me->button() == Qt::LeftButton) {
+            emit histogramClicked();
+        } else if (me->button() == Qt::RightButton) {
+            m_histogram->setScaledContents(!m_histogram->hasScaledContents());
+            if (m_histogram->hasScaledContents()) {
+                m_histogram->setFixedSize(32,20);
+            } else {
+                m_histogram->setFixedSize(m_histogram->pixmap().size());
+            }
+        }
     } else if (o == infoViewerTable && e->type() == QEvent::KeyPress && static_cast<QKeyEvent*>(e)->key() == Qt::Key_Delete) {
         const QModelIndexList &selection = infoViewerTable->selectionModel()->selectedIndexes();
         if (!selection.isEmpty()) {
