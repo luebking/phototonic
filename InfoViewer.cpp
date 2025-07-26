@@ -290,7 +290,12 @@ QString InfoView::html() const {
     QString text = "<html><table>";
     for (int i = 0; i < imageInfoModel->rowCount(); ++i) {
         if (infoViewerTable->columnSpan(i, 0) == 1 && ( // don't skip headers
-               (imageInfoModel->item(i, 0) && imageInfoModel->item(i, 0)->text().startsWith("0x")) || // canon junk
+               (imageInfoModel->item(i, 0) && (imageInfoModel->item(i, 0)->text().startsWith("0x") || // canon junk
+                imageInfoModel->item(i, 0)->text().startsWith("Exif") || // nobody …
+                imageInfoModel->item(i, 0)->text().startsWith("JPEGInterchange") || // … cares
+                imageInfoModel->item(i, 0)->text().startsWith("CharacterSet") || // … about
+                imageInfoModel->item(i, 0)->text().endsWith("ID") || // … or this
+                imageInfoModel->item(i, 0)->text().startsWith("History"))) || // photoshop junk
                !imageInfoModel->item(i, 1) || // empty field
                 imageInfoModel->item(i, 1)->text().length() > 64) // some fields contain binaries, useless for human perception
             )
