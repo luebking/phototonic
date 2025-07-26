@@ -99,7 +99,7 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
     QHBoxLayout *histLayout = new QHBoxLayout;
     histLayout->addStretch();
     histLayout->addWidget(m_histogram = new QLabel(this));
-    m_histogram->setToolTip(tr("Left click: toggle logarithmic scale\nRight click: toggle size"));
+    m_histogram->setToolTip(tr("Left click: toggle logarithmic scale\nRight click: toggle size\nHide with filter: |nohistogram|"));
     histLayout->addStretch();
     infoViewerLayout->addLayout(histLayout);
     infoViewerLayout->addWidget(infoViewerTable);
@@ -262,6 +262,11 @@ void InfoView::filterItems() {
     } else {
         m_manageFiltersButton->setText("-");
     }
+
+    const bool nohistogram = filter.contains("|nohistogram|");
+    if (nohistogram)
+        filter.remove("|nohistogram|");
+    m_histogram->setVisible(!nohistogram);
 
     QRegularExpression re(filter, QRegularExpression::CaseInsensitiveOption);
     if (!re.isValid()) {
