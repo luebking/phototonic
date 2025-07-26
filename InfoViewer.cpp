@@ -274,12 +274,24 @@ void InfoView::filterItems() {
     const bool hot = !filter.isEmpty();
     m_manageFiltersButton->setEnabled(hot);
     m_filter->setPalette(QPalette());
+    int lastHeader = -1;
+    bool allHidden = true;
     for (int i = 0; i < imageInfoModel->rowCount(); ++i) {
         if (infoViewerTable->columnSpan(i, 0) > 1) { // title
+            infoViewerTable->setRowHidden(i, false);
+            if (allHidden && lastHeader > -1)
+                infoViewerTable->setRowHidden(lastHeader, true);
+            lastHeader = i;
+            allHidden = true;
+            infoViewerTable->setRowHidden(i, false);
             continue;
         }
-        infoViewerTable->setRowHidden(i, hot && !imageInfoModel->item(i)->text().contains(re));
+        const bool hidden = hot && !imageInfoModel->item(i)->text().contains(re);
+        infoViewerTable->setRowHidden(i, hidden);
+        allHidden = allHidden && hidden;
     }
+    if (allHidden && lastHeader > -1)
+        infoViewerTable->setRowHidden(lastHeader, true);
 }
 
 void InfoView::hint(QString key, QString value) {
