@@ -80,6 +80,7 @@ CopyMoveToDialog::CopyMoveToDialog(QWidget *parent, QString thumbsPath, bool cop
     pathsTable->horizontalHeader()->setVisible(false);
     pathsTable->verticalHeader()->setDefaultSectionSize(pathsTable->verticalHeader()->minimumSectionSize());
     pathsTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    pathsTable->horizontalHeader()->setStretchLastSection(true);
     pathsTable->setShowGrid(false);
 
     connect(pathsTable->selectionModel(), &QItemSelectionModel::selectionChanged, [=](){
