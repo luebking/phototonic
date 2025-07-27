@@ -3327,7 +3327,8 @@ void Phototonic::rename() {
             newFileName.replace("%date", mdate);
             newFileName.replace("%exifdate", exifdate);
             newFileName.replace("%size", size);
-            newFileName.append("." + oldPath.section('.', -1));
+            if (sources.size() > 1)
+                newFileName.append("." + oldPath.section('.', -1));
             newPath = fileInfo.absolutePath() + QDir::separator() + newFileName;
             if (!QFileInfo::exists(newPath))
                 break;
