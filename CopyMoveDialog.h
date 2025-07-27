@@ -36,6 +36,7 @@ public:
         return copyOrMoveFile(srcPath, dstPath, false);
     }
     static int copyOrMoveFile(const QString &srcPath, QString &dstPath, bool copy);
+    static QDialog::DialogCode resolveConflicts(QMap<QString,QString> &collisions);
 
     void execute(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurrDir);
     int latestRow;
