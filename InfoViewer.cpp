@@ -79,7 +79,7 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
         } else {
             bool ok;
             QString n = QInputDialog::getText(this, tr("Enter filter name"),
-                                                tr("Enter a name (without leading \"$\") for this filter"),
+                                                tr("Enter a name (without leading \"$\") for this filter.\nThe special name\"preview\" is used for the filter in the viewer."),
                                                 QLineEdit::Normal, QString(), &ok);
             if (ok && !n.isEmpty()) {
                 Settings::exifFilters.insert("$"+n, m_filter->currentText());
@@ -304,25 +304,41 @@ void InfoView::hint(QString key, QString value) {
 }
 
 QString InfoView::html() const {
+    QRegularExpression re;
+    bool showFileStats = false;
+    QString filter = Settings::exifFilters.value("$preview");
+    if (!filter.isEmpty()) {
+        re = QRegularExpression(filter, QRegularExpression::CaseInsensitiveOption);
+        if (!re.isValid()) {
+            qWarning() << "invalid custom preview filter" << filter;
+            filter = QString();
+        }
+    }
+    if (filter.isEmpty()) {
+        showFileStats = true;
+        filter = "^(make|model|isospeedratings|fnumber|exposuretime|focallength|datetime|lensmodel|isospeedratings|flash|exposureprogram|artist|copyright|software)$";
+        re = QRegularExpression(filter, QRegularExpression::CaseInsensitiveOption);
+    }
+
     QString text = "<html><table>";
+    QString lastHeader;
     for (int i = 0; i < imageInfoModel->rowCount(); ++i) {
-        if (infoViewerTable->columnSpan(i, 0) == 1 && ( // don't skip headers
-               (imageInfoModel->item(i, 0) && (imageInfoModel->item(i, 0)->text().startsWith("0x") || // canon junk
-                imageInfoModel->item(i, 0)->text().startsWith("Exif") || // nobody …
-                imageInfoModel->item(i, 0)->text().startsWith("JPEGInterchange") || // … cares
-                imageInfoModel->item(i, 0)->text().startsWith("CharacterSet") || // … about
-                imageInfoModel->item(i, 0)->text().endsWith("ID") || // … or this
-                imageInfoModel->item(i, 0)->text().startsWith("History"))) || // photoshop junk
-               !imageInfoModel->item(i, 1) || // empty field
-                imageInfoModel->item(i, 1)->text().length() > 64) // some fields contain binaries, useless for human perception
-            )
+        if (infoViewerTable->columnSpan(i, 0) > 1) {
+            showFileStats = showFileStats && !i; // file stats header is on 0
+            lastHeader = imageInfoModel->item(i)->text();
             continue;
-        text += "<tr>";
-        if (infoViewerTable->columnSpan(i, 0) > 1)
-            text += "<th>" + imageInfoModel->item(i)->text() + "</th>";
-        else
-            text += "<td>" + imageInfoModel->item(i)->text() + "</td><td>" + imageInfoModel->item(i, 1)->text() + "</td>";
-        text += "</tr>";
+        }
+        const QString &tag = imageInfoModel->item(i)->text();
+        if ((showFileStats || tag.contains(re)) && imageInfoModel->item(i, 1)) {
+            if (!lastHeader.isNull()) {
+                text += "<tr><th>" + lastHeader + "</th></tr>";
+                lastHeader = QString();
+            }
+            static const QRegularExpression newline("[\r\n]+");
+            QString value = imageInfoModel->item(i, 1)->text();
+            value.replace(newline, "<br>");
+            text += "<tr><td>" + tag + "</td><td style='word-wrap: break-word; max-width: 48em;'>" + value + "</td></tr>";
+        }
     }
     text += "</table></html>";
     return text;
