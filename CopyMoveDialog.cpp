@@ -28,6 +28,7 @@
 #include <QGraphicsOpacityEffect>
 #include <QHeaderView>
 #include <QImageReader>
+#include <QKeyEvent>
 #include <QLabel>
 #include <QLineEdit>
 #include <QProgressDialog>
@@ -105,6 +106,25 @@ struct ImagePrint {
     QString stats;
 };
 
+class EnterGuard : public QObject {
+    public:
+        EnterGuard(QWidget *guarded) : QObject(guarded), watch(false), m_guarded(guarded) {}
+        bool watch;
+    protected:
+        bool eventFilter(QObject *o, QEvent *e) {
+            if (o == m_guarded && (e->type() == QEvent::KeyPress || e->type() == QEvent::KeyRelease)) {
+                int key = static_cast<QKeyEvent*>(e)->key();
+                if (key == Qt::Key_Enter || key == Qt::Key_Return) {
+                    e->accept();
+                    return watch;
+                }
+            }
+            return false;
+        }
+    private:
+        QWidget *m_guarded;
+};
+
 QDialog::DialogCode CopyOrMove::resolveConflicts(QMap<QString,QString> &collisions, QWidget *parent) {
     QDialog *dlg = new QDialog(parent);
     QLabel *srcPreview = new QLabel, *dstPreview = new QLabel, *srcStats = new QLabel, *dstStats = new QLabel;
@@ -140,6 +160,8 @@ QDialog::DialogCode CopyOrMove::resolveConflicts(QMap<QString,QString> &collisio
     table->setShowGrid(false);
     table->setSelectionBehavior(QAbstractItemView::SelectRows);
     table->setSelectionMode(QAbstractItemView::SingleSelection);
+    EnterGuard *enterGuard = new EnterGuard(table);
+    table->installEventFilter(enterGuard);
     auto setArrow = [=](int col) {
     if (col == 0) {
             arrow->setText("><<");
@@ -181,6 +203,7 @@ QDialog::DialogCode CopyOrMove::resolveConflicts(QMap<QString,QString> &collisio
                     dit->setText("0_0 " + dit->text());
                     table->setCurrentItem(dit);
                     table->setFocus();
+                    enterGuard->watch = true;
                     table->editItem(dit);
                 }
             }
@@ -199,6 +222,7 @@ QDialog::DialogCode CopyOrMove::resolveConflicts(QMap<QString,QString> &collisio
     });
     static QMap<QString, ImagePrint> pixMap;
     QObject::connect(table, &QTableWidget::currentCellChanged, [=](int row, int /* column */, int prevR, int /* prevC */) {
+        enterGuard->watch = false;
         if (row != prevR) {
             for (int i = 0; i < 4; ++i) {
                 if (table->item(row, i)->checkState() == Qt::Checked) {
