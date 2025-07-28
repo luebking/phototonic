@@ -28,6 +28,8 @@
 #include "CopyMoveToDialog.h"
 #include "Settings.h"
 
+static QStringList gs_tmpPaths;
+
 void CopyMoveToDialog::savePaths() {
     Settings::bookmarkPaths.clear();
     for (int i = 0; i < pathsTableModel->rowCount(); ++i) {
@@ -44,7 +46,9 @@ void CopyMoveToDialog::add() {
         return;
     }
 
-    QStandardItem *item = new QStandardItem(QIcon(":/images/bookmarks.png"), dirName);
+    if (!gs_tmpPaths.contains(dirName))
+        gs_tmpPaths << dirName;
+    QStandardItem *item = new QStandardItem(QIcon::fromTheme("folder"), dirName);
     pathsTableModel->insertRow(pathsTableModel->rowCount(), item);
 
     pathsTable->selectionModel()->clearSelection();
@@ -117,6 +121,7 @@ CopyMoveToDialog::CopyMoveToDialog(QWidget *parent, QString thumbsPath, bool cop
 
     QPushButton *okButton = new QPushButton(copyOp ? tr("Copy") : tr("Move"));
     okButton->setDefault(true);
+    connect(addButton, SIGNAL(clicked()), okButton, SLOT(setFocus()));
 
     connect(okButton, &QPushButton::clicked, this, [=](){ m_destination.isEmpty() ? reject() : accept(); });
 
@@ -144,10 +149,9 @@ CopyMoveToDialog::CopyMoveToDialog(QWidget *parent, QString thumbsPath, bool cop
     setLayout(mainVbox);
 
     // Load paths list
-    QSetIterator<QString> it(Settings::bookmarkPaths);
-    while (it.hasNext()) {
-        QStandardItem *item = new QStandardItem(QIcon(":/images/bookmarks.png"), it.next());
-        pathsTableModel->insertRow(pathsTableModel->rowCount(), item);
-    }
+    for (const QString &s : Settings::bookmarkPaths)
+        pathsTableModel->insertRow(pathsTableModel->rowCount(), new QStandardItem(QIcon(":/images/bookmarks.png"), s));
+    for (const QString &s : gs_tmpPaths)
+        pathsTableModel->insertRow(pathsTableModel->rowCount(), new QStandardItem(QIcon::fromTheme("folder"), s));
     pathsTableModel->sort(0);
 }
