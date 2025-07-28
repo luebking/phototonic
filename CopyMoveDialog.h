@@ -20,28 +20,19 @@
 #define COPY_MOVE_DIALOG_H
 
 class ThumbsViewer;
-class QLabel;
-#include <QProgressDialog>
 
-class CopyMoveDialog : public QProgressDialog {
-Q_OBJECT
-
-public:
-    CopyMoveDialog(QWidget *parent);
-
-    static int copyFile(const QString &srcPath, QString &dstPath) {
-        return copyOrMoveFile(srcPath, dstPath, true);
+namespace CopyOrMove {
+    int file(const QString &srcPath, QString &dstPath, bool copy);
+    inline int copyFile(const QString &srcPath, QString &dstPath) {
+        return CopyOrMove::file(srcPath, dstPath, true);
     }
-    static int moveFile(const QString &srcPath, QString &dstPath) {
-        return copyOrMoveFile(srcPath, dstPath, false);
+    inline int moveFile(const QString &srcPath, QString &dstPath) {
+        return CopyOrMove::file(srcPath, dstPath, false);
     }
-    static int copyOrMoveFile(const QString &srcPath, QString &dstPath, bool copy);
-    static QDialog::DialogCode resolveConflicts(QMap<QString,QString> &collisions);
+    QDialog::DialogCode resolveConflicts(QMap<QString,QString> &collisions, QWidget *parent = nullptr);
 
-    void execute(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurrDir);
-    int latestRow;
-private:
-    QLabel *m_label;
-};
+    /** @return latestRow **/
+    int list(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurrDir, QWidget *parent = nullptr);
+}
 
 #endif // COPY_MOVE_DIALOG_H

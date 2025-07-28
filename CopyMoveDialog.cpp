@@ -25,9 +25,12 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QFontMetrics>
+#include <QGraphicsOpacityEffect>
 #include <QHeaderView>
 #include <QImageReader>
 #include <QLabel>
+#include <QLineEdit>
+#include <QProgressDialog>
 #include <QPushButton>
 #include <QScrollBar>
 #include <QSignalBlocker>
@@ -55,7 +58,7 @@ static QString autoRename(const QString &destDir, const QString &currFile) {
     return newFile;
 }
 
-int CopyMoveDialog::copyOrMoveFile(const QString &srcPath, QString &dstPath, bool copy) {
+int CopyOrMove::file(const QString &srcPath, QString &dstPath, bool copy) {
     int res = 0;
 
     if (copy) {
@@ -85,13 +88,6 @@ int CopyMoveDialog::copyOrMoveFile(const QString &srcPath, QString &dstPath, boo
     return res;
 }
 
-CopyMoveDialog::CopyMoveDialog(QWidget *parent) : QProgressDialog(parent) {
-    m_label = new QLabel("");
-    m_label->setWordWrap(true);
-    m_label->setFixedWidth(QFontMetrics(m_label->font()).averageCharWidth()*80);
-    setLabel(m_label);
-}
-
 static QPixmap loadPreview(QString path, QSize &realSize) {
     QImageReader reader;
     reader.setQuality(50);
@@ -109,10 +105,17 @@ struct ImagePrint {
     QString stats;
 };
 
-QDialog::DialogCode CopyMoveDialog::resolveConflicts(QMap<QString,QString> &collisions) {
+QDialog::DialogCode CopyOrMove::resolveConflicts(QMap<QString,QString> &collisions, QWidget *parent) {
+    QDialog *dlg = new QDialog(parent);
     QLabel *srcPreview = new QLabel, *dstPreview = new QLabel, *srcStats = new QLabel, *dstStats = new QLabel;
+    QLabel *arrow = new QLabel("</>");
+    arrow->setAlignment(Qt::AlignCenter);
+    QFont fnt = arrow->font();
+    fnt.setBold(true);
+    fnt.setPointSize(fnt.pointSize()*4);
+    arrow->setFont(fnt);
     srcStats->setAlignment(Qt::AlignRight);
-    QStringList headers = tr("Skip,Overwrite,Auto-Name,Rename,Filename").split(',');
+    QStringList headers = QObject::tr("Skip,Replace,Index,Rename,Filename").split(',');
     QTableWidget *table = new QTableWidget(collisions.size(), headers.size()); // skip, overwrite, autoRename, rename, src, dst
     table->setHorizontalHeaderLabels(headers);
     table->setVerticalHeader(nullptr);
@@ -120,7 +123,7 @@ QDialog::DialogCode CopyMoveDialog::resolveConflicts(QMap<QString,QString> &coll
     for (auto c = collisions.cbegin(), end = collisions.cend(); c != end; ++c, ++i) {
         for (int j = 0; j < table->columnCount() - 1; ++j) {
             QTableWidgetItem *item = new QTableWidgetItem;
-            item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsUserCheckable);
+            item->setFlags(j ? Qt::ItemIsEnabled|Qt::ItemIsUserCheckable : Qt::ItemIsEnabled);
             item->setCheckState(j ? Qt::Unchecked : Qt::Checked);
             if (!j)
                 item->setToolTip(c.key());
@@ -135,33 +138,74 @@ QDialog::DialogCode CopyMoveDialog::resolveConflicts(QMap<QString,QString> &coll
     table->horizontalHeader()->setStretchLastSection(true);
     table->resizeColumnsToContents();
     table->setShowGrid(false);
-    connect(table, &QTableWidget::cellChanged, [=](int row, int column) {
+    table->setSelectionBehavior(QAbstractItemView::SelectRows);
+    table->setSelectionMode(QAbstractItemView::SingleSelection);
+    auto setArrow = [=](int col) {
+    if (col == 0) {
+            arrow->setText("><<");
+            dstPreview->setGraphicsEffect(nullptr);
+        } else if (col == 1) {
+            QGraphicsOpacityEffect *magic = new QGraphicsOpacityEffect(dstPreview);
+            dstPreview->setGraphicsEffect(magic);
+            magic->setOpacity(0.5);
+            arrow->setText("<<<");
+        } else {
+            arrow->setText("^_^");
+            dstPreview->setGraphicsEffect(nullptr);
+        }
+    };
+    QObject::connect(table, &QTableWidget::cellChanged, [=](int row, int column) {
         QTableWidgetItem *it = table->item(row, column);
-        if (it->flags() & Qt::ItemIsUserCheckable) {
+        if (column == table->columnCount() - 1) {
+            // name changed, toggle rename
+            QFileInfo info(table->item(row, column)->toolTip());
+            if (QFileInfo::exists(info.absolutePath() + QDir::separator() + table->item(row, column)->text())) {
+                MessageBox(dlg).warning(QObject::tr("New file also exists"),
+                                        QObject::tr("The new filename also conflicts with an existing file.\n"
+                                                    "The existing file would be overwritten!"));
+                table->item(row, 0)->setCheckState(Qt::Checked);
+            } else {
+                table->item(row, column - 1)->setCheckState(Qt::Checked);
+            }
+        } else {
             // radio feature
+            if (it->checkState() != Qt::Checked)
+                return;
             table->blockSignals(true);
-            Qt::CheckState state = it->checkState() == Qt::Checked ? Qt::Unchecked : Qt::Checked;
-            for (int j = 0; j < table->columnCount(); ++j) {
+            if (column == table->columnCount()-2) {
+                int dst = table->columnCount()-1;
+                QTableWidgetItem *dit = table->item(row, dst);
+                QFileInfo info(dit->toolTip());
+                // allow user to fix the destination
+                if (QFileInfo::exists(info.absolutePath() + QDir::separator() + dit->text())) {
+                    dit->setText("0_0 " + dit->text());
+                    table->setCurrentItem(dit);
+                    table->setFocus();
+                    table->editItem(dit);
+                }
+            }
+            it->setFlags((it->flags() & ~Qt::ItemIsUserCheckable));
+            for (int j = 0; j < table->columnCount() - 1; ++j) {
                 if (j == column)
                     continue;
                 it = table->item(row, j);
-                if (it->flags() & Qt::ItemIsUserCheckable)
-                    it->setCheckState(state);
+                it->setCheckState(Qt::Unchecked);
+                it->setFlags((it->flags() | Qt::ItemIsUserCheckable));
             }
+            if (row == table->currentRow())
+                setArrow(column);
             table->blockSignals(false);
-        } else {
-            // name changed, toggle rename
-            table->item(row, 3)->setCheckState(Qt::Checked);
-            QFileInfo info(table->item(row, 4)->toolTip());
-            if (QFileInfo::exists(info.absolutePath() + QDir::separator() + table->item(row, 4)->text()))
-                MessageBox(nullptr).warning(tr("New file also exists"),
-                            tr("The new filename also conflicts with an existing file.\n"
-                                "The existing file would be overwritten!"));
         }
     });
     static QMap<QString, ImagePrint> pixMap;
-    connect(table, &QTableWidget::currentCellChanged, [=](int row, int /* column */, int prevR, int /* prevC */) {
+    QObject::connect(table, &QTableWidget::currentCellChanged, [=](int row, int /* column */, int prevR, int /* prevC */) {
         if (row != prevR) {
+            for (int i = 0; i < 4; ++i) {
+                if (table->item(row, i)->checkState() == Qt::Checked) {
+                    setArrow(i);
+                    break;
+                }
+            }
             for (int i : { 0, 4 }) {
                 QString path = table->item(row, i)->toolTip();
                 ImagePrint ip = pixMap.value(path);
@@ -182,40 +226,36 @@ QDialog::DialogCode CopyMoveDialog::resolveConflicts(QMap<QString,QString> &coll
                 }
                 i ? dstPreview->setPixmap(ip.pix) : srcPreview->setPixmap(ip.pix);
                 i ? dstStats->setText(ip.stats) : srcStats->setText(ip.stats);
-                QApplication::processEvents();
+                QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
             }
         }
     });
-    QDialog dlg;
-    dlg.setModal(true);
-    dlg.setWindowTitle(tr("File collision resolver"));
-    QVBoxLayout *vl = new QVBoxLayout(&dlg);
-    vl->addWidget(new QLabel("Abort, Retry, Ignore?", &dlg));
+    dlg->setModal(true);
+    dlg->setWindowTitle(QObject::tr("File collision resolver"));
+    QVBoxLayout *vl = new QVBoxLayout(dlg);
+    vl->addWidget(new QLabel(QObject::tr("<h3>Some of the destination files already exist</h3>"
+                             "You can resolve the conflicts here or abort the entire copy/move operation.<br>"
+                             "<b>By default, the conflicting files will be skipped.</b><br>"
+                             "You can also replace or rename the destination, or automatically add a counter for a conflict-free filename."), dlg));
     vl->addWidget(table);
     QGridLayout *glt = new QGridLayout;
-    glt->addWidget(srcPreview, 0, 0);
-    QLabel *arrow = new QLabel(">>>");
-    arrow->setAlignment(Qt::AlignCenter);
-    QFont fnt = arrow->font();
-    fnt.setBold(true);
-    fnt.setPointSize(fnt.pointSize()*4);
-    arrow->setFont(fnt);
+    glt->addWidget(dstPreview, 0, 0);
     glt->addWidget(arrow, 0, 1, Qt::AlignCenter);
-    glt->addWidget(dstPreview, 0, 2);
-    glt->addWidget(srcStats, 1, 0);
-    QLabel *legend = new QLabel(tr("Size") + "\n" + tr("Modified") + "\n" + tr("Resolution") + "\n" + tr("MD5"));
+    glt->addWidget(srcPreview, 0, 2);
+    glt->addWidget(dstStats, 1, 0);
+    QLabel *legend = new QLabel(QObject::tr("Size") + "\n" + QObject::tr("Modified") + "\n" + QObject::tr("Resolution") + "\n" + QObject::tr("MD5"));
     legend->setAlignment(Qt::AlignHCenter);
     glt->addWidget(legend, 1, 1);
-    glt->addWidget(dstStats, 1, 2);
+    glt->addWidget(srcStats, 1, 2);
     vl->addLayout(glt);
-    QDialogButtonBox *btns = new QDialogButtonBox(QDialogButtonBox::Abort|QDialogButtonBox::Ok, &dlg);
+    QDialogButtonBox *btns = new QDialogButtonBox(QDialogButtonBox::Abort|QDialogButtonBox::Ok, dlg);
     vl->addWidget(btns);
-    connect(btns, &QDialogButtonBox::accepted, &dlg, &QDialog::accept);
-    connect(btns, &QDialogButtonBox::rejected, &dlg, &QDialog::reject);
+    QObject::connect(btns, &QDialogButtonBox::accepted, dlg, &QDialog::accept);
+    QObject::connect(btns, &QDialogButtonBox::rejected, dlg, &QDialog::reject);
 
-    const QSizeF sz = QFontMetrics(dlg.font()).boundingRect('o').size();
-    dlg.resize(sz.width() * 100, sz.width() * 100);
-    int ret = dlg.exec();
+    const QSizeF sz = QFontMetrics(dlg->font()).boundingRect('o').size();
+    dlg->resize(sz.width() * 100, sz.width() * 100);
+    int ret = dlg->exec();
     pixMap.clear();
     // fix collisions regardless of return, nobody knows what the client code wants with this
     i = 0;
@@ -232,21 +272,22 @@ QDialog::DialogCode CopyMoveDialog::resolveConflicts(QMap<QString,QString> &coll
         }
         ++c;
     }
+    dlg->deleteLater();
     return QDialog::DialogCode(ret);
 }
 
-void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurrDir) {
+int CopyOrMove::list(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurrDir, QWidget *parent) {
 
     QList<int> rowList; // Only for !pasteInCurrDir
-    QFontMetrics fm(m_label->font());
 
     QElapsedTimer duration;
     int totalTime = 0;
     duration.start();
     int cycle = 1;
+    QProgressDialog *pdlg = nullptr;
+    QLabel *pdlg_label = nullptr;
 
     int n = pasteInCurrDir ? Settings::copyCutFileList.size() : Settings::copyCutIndexList.size();
-    setMaximum(n);
 
     QMap<QString, QString> collisions;
     for (int i = 0; i < n; ++i) {
@@ -257,8 +298,8 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
             collisions[sourceFile] = destFile;
     }
     if (!collisions.isEmpty()) {
-        if (resolveConflicts(collisions) == QDialog::Rejected)
-            return;
+        if (resolveConflicts(collisions, parent) == QDialog::Rejected)
+            return -1;
     }
     for (int i = pasteInCurrDir ? 0 : n-1; pasteInCurrDir ? i < n : i >= 0; pasteInCurrDir ? ++i : --i) {
         QString sourceFile = pasteInCurrDir ? Settings::copyCutFileList.at(i)
@@ -269,17 +310,28 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
             const int count = pasteInCurrDir ? i : n - i;
             if ((totalTime += duration.elapsed()) > 250) {
                 totalTime = 0;
-                if (float(count)/n < 1.0f-1.0f/++cycle)
-                    show();
+                if (float(count)/n < 1.0f-1.0f/++cycle) {
+                    if (!pdlg) {
+                        pdlg = new QProgressDialog(parent);
+                        pdlg->setMaximum(n);
+                        QLabel *l = new QLabel(pdlg);
+                        pdlg_label = l;
+                        l->setWordWrap(true);
+                        l->setFixedWidth(QFontMetrics(l->font()).averageCharWidth()*80);
+                        pdlg->setLabel(l);
+                    }
+                    pdlg->show();
+                }
             }
-            if (isVisible()) {
-                setValue(count);
+            if (pdlg && pdlg->isVisible()) {
+                pdlg->setValue(count);
+                QFontMetrics fm(pdlg_label->font());
                 QString text =
-                    (Settings::isCopyOperation ? tr("Copying \"%1\" to \"%2\".") : tr("Moving \"%1\" to \"%2\"."))
-                    .arg(fm.elidedText(sourceFile, Qt::ElideMiddle, m_label->width(), Qt::TextWordWrap))
-                    .arg(fm.elidedText(destFile, Qt::ElideMiddle, m_label->width(), Qt::TextWordWrap));
+                    (Settings::isCopyOperation ? QObject::tr("Copying \"%1\" to \"%2\".") : QObject::tr("Moving \"%1\" to \"%2\"."))
+                    .arg(fm.elidedText(sourceFile, Qt::ElideMiddle, pdlg_label->width(), Qt::TextWordWrap))
+                    .arg(fm.elidedText(destFile, Qt::ElideMiddle, pdlg_label->width(), Qt::TextWordWrap));
 
-                setLabelText(text);
+                pdlg->setLabelText(text);
             }
             QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
             duration.restart();
@@ -299,8 +351,8 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
                 QFile::remove(destFile); // prevent subsequent autorename by copyOrMoveFile
             }
         }
-        int res = copyOrMoveFile(sourceFile, destFile, Settings::isCopyOperation);
-        if (!res || wasCanceled())
+        int res = CopyOrMove::file(sourceFile, destFile, Settings::isCopyOperation);
+        if (!res || (pdlg && pdlg->wasCanceled()))
             break;
 
         if (pasteInCurrDir)
@@ -309,6 +361,7 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
             rowList.append(Settings::copyCutIndexList.at(i).row());
     }
 
+    int latestRow = -1;
     if (!pasteInCurrDir) {
         if (!Settings::isCopyOperation) {
             std::sort(rowList.begin(), rowList.end());
@@ -318,5 +371,8 @@ void CopyMoveDialog::execute(ThumbsViewer *thumbView, QString &destDir, bool pas
         }
         latestRow = rowList.size() ? rowList.at(0) : -1;
     }
-    close();
+    if (pdlg)
+        pdlg->deleteLater();
+    pdlg = nullptr;
+    return latestRow;
 }
