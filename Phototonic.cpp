@@ -116,6 +116,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, this, [=](const QModelIndex &current) {
         if (!current.isValid())
             return;
+        bool hintedBrightness = false;
         if (m_infoViewer->isVisible()) {
             QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
             if (QStandardItem *citem = thumbModel->item(current.row()))
@@ -127,7 +128,12 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
             const QString &imagePath = thumbsViewer->fullPathOf(current.row());
             if (feedbackImageInfoAction->isChecked()) {
                 QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-                m_infoViewer->read(imagePath);
+                if (!m_infoViewer->isVisible()) {
+                    QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
+                    if (QStandardItem *citem = thumbModel->item(current.row()))
+                        m_infoViewer->hint(tr("Average brightness"), QString::number(citem->data(ThumbsViewer::BrightnessRole).toInt()/255.0f, 'f', 2));
+                    m_infoViewer->read(imagePath);
+                }
                 imageViewer->setFeedback(m_infoViewer->html(), false);
             }
             if (Settings::layoutMode == ImageViewWidget)
