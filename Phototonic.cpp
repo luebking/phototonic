@@ -116,7 +116,6 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, this, [=](const QModelIndex &current) {
         if (!current.isValid())
             return;
-        bool hintedBrightness = false;
         if (m_infoViewer->isVisible()) {
             QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
             if (QStandardItem *citem = thumbModel->item(current.row()))
