@@ -19,11 +19,12 @@
 #ifndef META_DATA_CACHE_H
 #define META_DATA_CACHE_H
 
+#include <QMultiMap>
 #include <QTransform>
 
 namespace Metadata {
-    typedef QMap<QString, QPair<QString,QString>> DataTriple;
-    typedef QMap<QString, QString> DataPair;
+    typedef QMultiMap<QString, QPair<QString,QString>> DataTriple;
+    typedef QMultiMap<QString, QString> DataPair;
     bool addTag(const QString &imageFileName, const QString &tagName);
     void cache(const QString &imageFullPath);
     void data(const QString &imageFullPath, DataTriple *EXIF = nullptr, DataTriple *IPTC = nullptr, DataTriple *XMP = nullptr);

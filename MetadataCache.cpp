@@ -289,6 +289,56 @@ void data(const QString &imageFullPath, Metadata::DataTriple *EXIF, Metadata::Da
     }
 }
 
+template <typename Ev2D> static void writeBack(Ev2D &data, Metadata::DataPair newData) {
+    if (data.empty())
+        return;
+    if (newData.isEmpty()) {
+        data.clear();
+        return;
+    }
+    DataPair phase2;
+    typename Ev2D::iterator md = data.begin();
+    while (md != data.end()) {
+        const QString tagName = QString::fromUtf8(md->tagName().c_str());
+        const QString value = QString::fromUtf8(md->print().c_str());
+        DataPair::const_iterator cit = newData.constFind(tagName, value);
+        if (cit != newData.constEnd()) {
+            newData.erase(cit); // the tag exists in its current form, keep
+            ++md;
+        } else if (newData.constFind(tagName) == newData.constEnd()) {
+            md = data.erase(md); // there's no such tag left, delete
+        } else {
+            phase2.insert(tagName, value); // edit in second pass
+            ++md;
+        }
+    }
+    if (phase2.isEmpty())
+        return;
+    md = data.begin();
+    while (md != data.end()) {
+        const QString tagName = QString::fromUtf8(md->tagName().c_str());
+        const QString value = QString::fromUtf8(md->print().c_str());
+        DataPair::const_iterator cit = phase2.constFind(tagName, value);
+        if (cit == phase2.constEnd()) {
+            ++md; continue; // not a concern anyway
+        }
+        phase2.erase(cit); // we're gonna handle this pair now:
+        cit = newData.constFind(tagName); // do we still have such tag (w/ different value)
+        if (cit == newData.constEnd()) {
+            md = data.erase(md); // ultimately stale
+        } else {
+            if (value == *cit) // this is not supposed to happen
+                qWarning() << "errr… WHAT?!";
+            if (md->setValue(cit->toStdString()))
+                qWarning() << "could not set" << cit.key() << "from" << md->toString() << " to " << *cit;
+            newData.erase(cit); // we've stored this pair now - or ultimately failed because of invalid form…
+            ++md;
+        }
+        if (phase2.isEmpty())
+            return;
+    }
+}
+
 bool setData(const QString &imageFullPath, Metadata::DataPair EXIF, Metadata::DataPair IPTC, Metadata::DataPair XMP) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -302,70 +352,9 @@ bool setData(const QString &imageFullPath, Metadata::DataPair EXIF, Metadata::Da
     try {
         exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
         exifImage->readMetadata();
-
-        // EXIF
-        Exiv2::ExifData &exifData = exifImage->exifData();
-        if (!exifData.empty()) {
-            if (EXIF.isEmpty()) {
-                exifData.clear();
-            } else {
-                Exiv2::ExifData::iterator md = exifData.begin(), end = exifData.end();
-                while (md != end) {
-                    QMap<QString,QString>::const_iterator cit = EXIF.constFind(QString::fromUtf8(md->tagName().c_str()));
-                    if (cit == EXIF.constEnd()) {
-                        md = exifData.erase(md);
-                    } else {
-                        if (QString::fromUtf8(md->print().c_str()) != *cit && md->setValue(cit->toStdString()))
-                            qWarning() << "could not set" << cit.key() << "from" << md->toString() << " to " << *cit;
-                        ++md;
-                    }
-                }
-            }
-        }
-
-        // IPTC
-        Exiv2::IptcData &iptcData = exifImage->iptcData();
-        if (!iptcData.empty()) {
-            if (IPTC.isEmpty()) {
-                iptcData.clear();
-            } else {
-                Exiv2::IptcData::iterator md = iptcData.begin(), end = iptcData.end();
-                while (md != end) {
-                    QMap<QString,QString>::const_iterator cit = IPTC.constFind(QString::fromUtf8(md->tagName().c_str()));
-                    if (cit == IPTC.constEnd()) {
-                        md = iptcData.erase(md);
-                    } else {
-                        if (QString::fromUtf8(md->print().c_str()) != *cit && md->setValue(cit->toStdString()))
-                            qWarning() << "could not set" << cit.key() << "from" << md->toString() << " to " << *cit;
-                        ++md;
-                    }
-                }
-            }
-        }
-
-        // XMP
-        #if 1
-        Exiv2::XmpData &xmpData = exifImage->xmpData();
-        if (!xmpData.empty()) {
-            if (XMP.isEmpty()) {
-                xmpData.clear();
-            } else {
-                Exiv2::XmpData::iterator md = xmpData.begin(), end = xmpData.end();
-                while (md != end) {
-                    QMap<QString,QString>::const_iterator cit = XMP.constFind(QString::fromUtf8(md->tagName().c_str()));
-                    if (cit == XMP.constEnd()) {
-                        xmpData.eraseFamily(md); // updates &md
-                    } else {
-                        if (QString::fromUtf8(md->print().c_str()) != *cit && md->setValue(cit->toStdString()))
-                            qWarning() << "could not set" << cit.key() << "from" << md->toString() << " to " << *cit;
-                        ++md;
-                    }
-                }
-            }
-        }
-        #endif
-
-        // write data
+        writeBack<Exiv2::ExifData>(exifImage->exifData(), EXIF);
+        writeBack<Exiv2::IptcData>(exifImage->iptcData(), IPTC);
+        writeBack<Exiv2::XmpData>(exifImage->xmpData(), XMP);
         exifImage->writeMetadata();
         Metadata::forget(imageFullPath);
         cache(imageFullPath);
