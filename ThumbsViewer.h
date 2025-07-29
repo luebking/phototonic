@@ -179,7 +179,7 @@ private:
 
     void updateImageInfoViewer(int row);
 
-    QSize itemSizeHint() const;
+    QSize itemSizeHint(const QImage *img = nullptr) const;
 
     static QString thumbnailFileName(const QString &path);
     void storeThumbnail(const QString &originalPath, QImage thumbnail, const QSize &originalSize) const;

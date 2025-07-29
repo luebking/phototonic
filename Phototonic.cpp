@@ -3587,7 +3587,9 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
                 animator->setDuration(150); // default is 250
                 animator->setEasingCurve(QEasingCurve::InOutQuad);
             }
-            const int grid = thumbsViewer->gridSize().height();
+            int grid = thumbsViewer->gridSize().height();
+            if (grid < 1)
+                grid = thumbsViewer->thumbSize;
             int v = (animator->state() == QAbstractAnimation::Running) ? animator->endValue().toInt() :
                                                                          thumbsViewer->verticalScrollBar()->value();
             animator->setStartValue(v);

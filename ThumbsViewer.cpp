@@ -838,13 +838,16 @@ void ThumbsViewer::filterRows(int first, int last) {
     m_filterDirty = false;
 }
 
-QSize ThumbsViewer::itemSizeHint() const
+QSize ThumbsViewer::itemSizeHint(const QImage *img) const
 {
     switch(Settings::thumbsLayout) {
     case Squares:
         return QSize(thumbSize, thumbSize);
     case Compact:
-        return QSize(thumbSize, thumbSize + int(2.5*gs_fontHeight));
+        if (img)
+            return img->size() + QSize(0, 2*gs_fontHeight);
+        else
+            return QSize(thumbSize, thumbSize);
     case Classic:
         return QSize(thumbSize, thumbSize + int(1.5*gs_fontHeight));
     default:
@@ -893,11 +896,11 @@ void ThumbsViewer::refreshThumbs() {
         setUniformItemSizes(true);
         setGridSize(itemSizeHint());
     } else if (Settings::thumbsLayout == Compact) {
-        setSpacing(0);
+        setSpacing(gs_fontHeight);
         setUniformItemSizes(false);
-        setGridSize(itemSizeHint());
+        setGridSize(QSize());
     } else {
-        setUniformItemSizes(false);
+        setUniformItemSizes(true);
         setGridSize(QSize(dynamicGridWidth(), itemSizeHint().height() + gs_fontHeight));
     }
     thumbsRangeFirst = -1;
@@ -1779,7 +1782,7 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
                         currentThumbSize.width() > thumbSize ||
                         currentThumbSize.height() > thumbSize;
         if (scaleMe && currentThumbSize != thumbSizeQ) {
-            currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
+            currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout == Squares ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
         }
 
         thumbReader.setScaledSize(currentThumbSize);
@@ -1829,16 +1832,16 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
         if (Settings::exifThumbRotationEnabled) {
             thumb = thumb.transformed(Metadata::transformation(imageFileName), Qt::SmoothTransformation);
             currentThumbSize = thumb.size();
-            currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout != Classic ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
+            currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout == Squares ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
         }
 
-        if (Settings::thumbsLayout != Classic) {
+        if (Settings::thumbsLayout == Squares) {
             thumb = SmartCrop::crop(thumb, thumbSizeQ);
         }
 
         m_model->item(currThumb)->setIcon(QPixmap::fromImage(thumb));
         m_model->item(currThumb)->setData(true, LoadedRole);
-        m_model->item(currThumb)->setSizeHint(itemSizeHint());
+        m_model->item(currThumb)->setSizeHint(itemSizeHint(&thumb));
     } else {
         m_model->item(currThumb)->setIcon(QIcon(":/images/error_image.png"));
         currentThumbSize.setHeight(BAD_IMAGE_SIZE);
