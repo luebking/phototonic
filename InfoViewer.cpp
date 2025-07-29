@@ -316,19 +316,19 @@ QString InfoView::html() const {
     }
     if (filter.isEmpty()) {
         showFileStats = true;
-        filter = "^(make|model|isospeedratings|fnumber|exposuretime|focallength|datetime|lensmodel|isospeedratings|flash|exposureprogram|artist|copyright|software)$";
+        filter = "^(make|model|isospeedratings|fnumber|exposuretime|focallength|datetime|lensmodel|isospeedratings|flash|exposureprogram|artist|copyright|software|keywords)$";
         re = QRegularExpression(filter, QRegularExpression::CaseInsensitiveOption);
     }
 
     QString text = "<html><table>";
-    QString lastHeader;
+    QString lastHeader, lastTag;
     for (int i = 0; i < imageInfoModel->rowCount(); ++i) {
         if (infoViewerTable->columnSpan(i, 0) > 1) {
             showFileStats = showFileStats && !i; // file stats header is on 0
             lastHeader = imageInfoModel->item(i)->text();
             continue;
         }
-        const QString &tag = imageInfoModel->item(i)->text();
+        QString tag = imageInfoModel->item(i)->text();
         if ((showFileStats || tag.contains(re)) && imageInfoModel->item(i, 1)) {
             if (!lastHeader.isNull()) {
                 text += "<tr><th>" + lastHeader + "</th></tr>";
@@ -337,6 +337,10 @@ QString InfoView::html() const {
             static const QRegularExpression newline("[\r\n]+");
             QString value = imageInfoModel->item(i, 1)->text();
             value.replace(newline, "<br>");
+            if (lastTag == tag)
+                tag = QString();
+            else
+                lastTag = tag;
             text += "<tr><td>" + tag + "</td><td style='word-wrap: break-word; max-width: 48em;'>" + value + "</td></tr>";
         }
     }
