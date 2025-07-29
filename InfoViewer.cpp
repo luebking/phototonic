@@ -316,7 +316,11 @@ QString InfoView::html() const {
     }
     if (filter.isEmpty()) {
         showFileStats = true;
-        filter = "^(make|model|isospeedratings|fnumber|exposuretime|focallength|datetime|lensmodel|isospeedratings|flash|exposureprogram|artist|copyright|software|keywords)$";
+        filter ="^("
+                "lensmodel|make|model"
+                "|exposuretime|exposureprogram|flash|fnumber|focallength|isospeedratings"
+                "|artist|copyright|datetime|keywords|software"
+                ")$";
         re = QRegularExpression(filter, QRegularExpression::CaseInsensitiveOption);
     }
 
