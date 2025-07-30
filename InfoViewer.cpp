@@ -73,21 +73,34 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
 
     m_manageFiltersButton = new QPushButton("+", this);
     connect(m_manageFiltersButton, &QPushButton::clicked, [=]() {
-        if (Settings::exifFilters.remove(m_filter->currentText())) {
+        bool ok;
+        QString filter = Settings::exifFilters.value(m_filter->currentText());
+        QString dlgTitle, dlgText;
+        if (filter.isEmpty()) {
+            dlgTitle = tr("Enter filter name");
+            dlgText  = tr("Enter a name (without leading \"$\") for this filter.\n"
+                          "The special name\"preview\" is used for the filter in the viewer.");
+        } else {
+            dlgTitle = tr("Edit filter: %1").arg(filter);
+            dlgText  = tr("Clearing the filter will delete it.");
+        }
+        QString n = QInputDialog::getText(this, dlgTitle, dlgText, QLineEdit::Normal, filter, &ok);
+        ok = ok && !(filter.isEmpty() && n.isEmpty()); // no filter name given
+        if (!ok)
+            return;
+        if (filter.isEmpty()) { // save new variable
+            Settings::exifFilters.insert("$"+n, m_filter->currentText());
+            m_filter->addItem("$"+n);
+            m_filter->setEditText("$"+n);
+            return;
+        }
+        if (n.isEmpty()) { // filter deleted
             m_filter->removeItem(m_filter->currentIndex());
             m_filter->setEditText(QString());
-        } else {
-            bool ok;
-            QString n = QInputDialog::getText(this, tr("Enter filter name"),
-                                                tr("Enter a name (without leading \"$\") for this filter.\nThe special name\"preview\" is used for the filter in the viewer."),
-                                                QLineEdit::Normal, QString(), &ok);
-            if (ok && !n.isEmpty()) {
-                Settings::exifFilters.insert("$"+n, m_filter->currentText());
-                m_filter->addItem("$"+n);
-                m_filter->setEditText("$"+n);
-            } else {
-                return;
-            }
+        } else { // store new filter
+            Settings::exifFilters.insert(m_filter->currentText(), n);
+            if (n != filter)
+                filterItems(); // filter changed, update
         }
     });
     connect(m_filter, SIGNAL(currentTextChanged(const QString&)), this, SLOT(filterItems()));
@@ -260,7 +273,7 @@ void InfoView::filterItems() {
         m_manageFiltersButton->setText("+");
         filter = m_filter->currentText();
     } else {
-        m_manageFiltersButton->setText("-");
+        m_manageFiltersButton->setText("=");
     }
 
     const bool nohistogram = filter.contains("|nohistogram|");
