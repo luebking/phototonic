@@ -45,11 +45,11 @@ RenameDialog::RenameDialog(QWidget *parent) : QDialog(parent) {
     renameLayout->addWidget(m_fileName);
 
     m_patternHint = new QLabel(tr("<h3>Rename files according to pattern</h3>"
-    "Supported placeholders:"
-    "<dl><dt>%index</dt><dd>0-padded index, based on selection order</dd>"
-    "<dt>%date</dt><dd>Date and time of last modification, ISO8601 format</dd>"
-    "<dt>%exifdate</dt><dd>Date and time of EXIF timestamp or file creation, ISO8601 format</dd>"
-    "<dt>%size</dt><dd>Image size, WxH</dd></dl>"), this);
+    "Supported placeholders:<hr>"
+    "<table><tr><th align=right>%index :</th><td>0-padded index, based on selection order</td></tr>"
+    "<tr><th align=right>%date :</th><td>Date and time of last modification, ISO8601 format</td></tr>"
+    "<tr><th align=right>%exifdate :</th><td>Date and time of EXIF timestamp or file creation, ISO8601 format</td></tr>"
+    "<tr><th align=right>%size :</th><td>Image size, WxH</td></tr></table>"), this);
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addWidget(m_patternHint);
     mainLayout->addLayout(renameLayout);
