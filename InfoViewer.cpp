@@ -95,6 +95,7 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
             return;
         }
         if (n.isEmpty()) { // filter deleted
+            Settings::exifFilters.remove(m_filter->currentText());
             m_filter->removeItem(m_filter->currentIndex());
             m_filter->setEditText(QString());
         } else { // store new filter
