@@ -159,7 +159,6 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
         Settings::currentDirectory = QDir::currentPath();
 
     m_thumbSizeDelta = 0;
-    copyMoveToDialog = nullptr;
     colorsDialog = nullptr;
     initComplete = true;
     m_deleteInProgress = false;
@@ -1678,49 +1677,54 @@ void Phototonic::copyOrMoveImages(bool isCopyOperation) {
     if (Settings::slideShowActive) {
         toggleSlideShow();
     }
-    imageViewer->setCursorHiding(false);
 
     if (!isCopyOperation && thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
         QTimer::singleShot(100, this, [=](){copyOrMoveImages(isCopyOperation);});
         return;
     }
 
-    copyMoveToDialog = new CopyMoveToDialog(this, getSelectedPath(), isCopyOperation);
-    if (copyMoveToDialog->exec()) {
-        if (Settings::layoutMode == ThumbViewWidget) {
-            copyOrCutThumbs(isCopyOperation);
-            pasteThumbs();
-        } else {
-            if (imageViewer->isNewImage()) {
-                showNewImageWarning();
-                if (isFullScreen()) {
-                    imageViewer->setCursorHiding(true);
-                }
-                return;
-            }
+    imageViewer->setCursorHiding(false);
 
-            QString destFile = copyMoveToDialog->destination() + QDir::separator() + QFileInfo(imageViewer->fullImagePath).fileName();
-            int result = CopyOrMove::file(imageViewer->fullImagePath, destFile, isCopyOperation);
+    auto cleanup = [=]() { if (isFullScreen()) imageViewer->setCursorHiding(true); };
 
-            if (!result) {
-                MessageBox msgBox(this);
-                msgBox.critical(tr("Error"), tr("Failed to copy or move image."));
-            } else {
-                if (!isCopyOperation) {
-                    int currentRow = thumbsViewer->currentIndex().row();
-                    thumbsViewer->model()->removeRow(currentRow);
-                    loadCurrentImage(currentRow);
-                }
-            }
-        }
-    }
+    CopyMoveToDialog copyMoveToDialog(this, getSelectedPath(), isCopyOperation);
+    if (!copyMoveToDialog.exec())
+        return cleanup();
 
     bookmarks->reloadBookmarks();
-    copyMoveToDialog->deleteLater();
-    copyMoveToDialog = nullptr;
+    if (Settings::layoutMode == ThumbViewWidget) {
+        copyOrCutThumbs(isCopyOperation);
+        pasteThumbs(copyMoveToDialog.destination());
+        return cleanup();
+    }
+    if (imageViewer->isNewImage()) {
+        showNewImageWarning();
+        return cleanup();
+    }
 
-    if (isFullScreen()) {
-        imageViewer->setCursorHiding(true);
+    QString destFile = copyMoveToDialog.destination() + QDir::separator() + QFileInfo(imageViewer->fullImagePath).fileName();
+    if (QFileInfo::exists(destFile)) {
+        QMap<QString,QString> conflict;
+        conflict[imageViewer->fullImagePath] = destFile;
+
+        if (CopyOrMove::resolveConflicts(conflict, this) != QDialog::Accepted)
+            return cleanup();
+
+        destFile = conflict.value(imageViewer->fullImagePath);
+        if (destFile.isEmpty())
+            return cleanup();
+    }
+
+    int result = CopyOrMove::file(imageViewer->fullImagePath, destFile, isCopyOperation);
+    if (!result) {
+        MessageBox msgBox(this);
+        msgBox.critical(tr("Error"), tr("Failed to copy or move image."));
+    } else {
+        if (!isCopyOperation) {
+            int currentRow = thumbsViewer->currentIndex().row();
+            thumbsViewer->model()->removeRow(currentRow);
+            loadCurrentImage(currentRow);
+        }
     }
 }
 
@@ -1983,19 +1987,18 @@ static bool isReadableDir(const QString &path) {
     return checkPath.exists() && checkPath.isReadable();
 }
 
-void Phototonic::pasteThumbs() {
+void Phototonic::pasteThumbs(QString destDir) {
     static bool pasteInProgress = false;
     if (!copyCutThumbsCount) {
         return;
     }
 
-    QString destDir;
-    if (copyMoveToDialog) {
-        destDir = copyMoveToDialog->destination();
-    } else if (QApplication::focusWidget() != bookmarks) {
-        destDir = getSelectedPath();
-    } else if (bookmarks->currentItem()) {
-        destDir = bookmarks->currentItem()->toolTip(0);
+    if (destDir.isNull()) {
+        if (QApplication::focusWidget() != bookmarks) {
+            destDir = getSelectedPath();
+        } else if (bookmarks->currentItem()) {
+            destDir = bookmarks->currentItem()->toolTip(0);
+        }
     }
 
     if (!isWritableDir(destDir)) {

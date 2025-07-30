@@ -21,7 +21,6 @@
 
 class BookMarks;
 class ColorsDialog;
-class CopyMoveToDialog;
 class FileSystemTree;
 class ImageTags;
 class ImageViewer;
@@ -115,7 +114,7 @@ private slots:
 
     void deletePermanentlyOperation();
 
-    void pasteThumbs();
+    void pasteThumbs(QString destDir = QString());
 
     void resizeThumbs();
 
@@ -279,7 +278,6 @@ private:
     ImageViewer *imageViewer;
     QList<QString> pathHistoryList;
     QTimer *SlideShowTimer;
-    QPointer<CopyMoveToDialog> copyMoveToDialog;
     QFileSystemModel *fileSystemModel;
     QStackedLayout *stackedLayout;
 
