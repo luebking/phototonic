@@ -280,6 +280,9 @@ void InfoView::filterItems() {
     if (nohistogram)
         filter.remove("|nohistogram|");
     m_histogram->setVisible(!nohistogram);
+    const bool showFileStats = filter.contains("|filestats|");
+    if (showFileStats)
+        filter.remove("|filestats|");
 
     QRegularExpression re(filter, QRegularExpression::CaseInsensitiveOption);
     if (!re.isValid()) {
@@ -304,7 +307,7 @@ void InfoView::filterItems() {
             infoViewerTable->setRowHidden(i, false);
             continue;
         }
-        const bool hidden = hot && !imageInfoModel->item(i)->text().contains(re);
+        const bool hidden = hot && (!showFileStats || lastHeader > 0) && !imageInfoModel->item(i)->text().contains(re);
         infoViewerTable->setRowHidden(i, hidden);
         allHidden = allHidden && hidden;
     }
@@ -321,6 +324,10 @@ QString InfoView::html() const {
     bool showFileStats = false;
     QString filter = Settings::exifFilters.value("$preview");
     if (!filter.isEmpty()) {
+        if (filter.contains("|filestats|")) {
+            showFileStats = true;
+            filter.remove("|filestats|");
+        }
         re = QRegularExpression(filter, QRegularExpression::CaseInsensitiveOption);
         if (!re.isValid()) {
             qWarning() << "invalid custom preview filter" << filter;
