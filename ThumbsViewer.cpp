@@ -634,6 +634,11 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 m_constraints.last().maxSaturation = 15;
                 m_constraints.last().maxChroma = 3; continue;
             }
+            if (t.startsWith(":")) {
+                t.remove(0,1);
+                if (!t.isEmpty()) m_constraints.last().tags << t;
+                continue;
+            }
             if (t.startsWith("<")) {
                 side = side ? -1 : 1; t.remove(0,1);
             } else if (t.startsWith("=")) {
@@ -990,6 +995,11 @@ bool ThumbsViewer::isConstrained(const QFileInfo &fileInfo) {
             CONSTRAIN_COLOR(saturation, >=, maxSaturation);
             CONSTRAIN_COLOR(chromaVariance, <=, minChroma);
             CONSTRAIN_COLOR(chromaVariance, >=, maxChroma);
+        }
+        if (!c.tags.isEmpty()) {
+            const QSet<QString> itags = Metadata::tags(fileInfo.absoluteFilePath());
+            for (const QString &tag  : c.tags)
+                if ((constrained = !itags.contains(tag))) continue;
         }
         break; // this constraint is sufficient
     }

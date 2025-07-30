@@ -1169,7 +1169,7 @@ void Phototonic::createToolBars() {
         "Subsequent \"/\" start a new sufficient condition group, the substring match is optional."
         "<hr>In addition you can filter for <b>black, white, dark, bright, monochrome, gray</b> and the colors<br>"
         "<b>red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink</b>"
-    );
+    ) + "<hr>" + tr("Leading colons <b>match tags</b>, so '/<b>:foo</b>' finds all images with the tag 'foo'");
 
     QTimer *filterBouncer = new QTimer(this);
     filterBouncer->setSingleShot(true);

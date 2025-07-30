@@ -62,6 +62,7 @@ Q_DECLARE_METATYPE(Histogram);
 
 struct Constraint
 {
+    QStringList tags;
     qint64 younger = 0;
     qint64 older = 0;
     qint64 bigger = 0;
