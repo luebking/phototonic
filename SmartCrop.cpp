@@ -14,13 +14,15 @@ static inline qreal sample(const uchar *id, int p) {
 }
 
 static void edgeDetect(const QImage &i, QImage &o) {
-    const int bpl = i.bytesPerLine();//: width();
-    const uchar *id = i.scanLine(0);
+    const int obpl = o.bytesPerLine();
+    const int bpl = i.bytesPerLine();
+    const uchar *id = i.constBits();
+    uchar *obits = const_cast<uchar*>(o.constBits());
     const int h = i.height();
 
-    for (int y = 0; y < h; y++) {
-        uchar *od = o.scanLine(y);
-        for (int x = 0; x < i.width(); x++) {
+    for (int y = 0; y < h; ++y) {
+        uchar *od = obits + (y * obpl);
+        for (int x = 0; x < i.width(); ++x) {
             int p = y * bpl + x * 4;
             qreal lightness;
 
@@ -54,11 +56,14 @@ static qreal skinColor(const CropOptions &options, qreal r,qreal g, qreal b) {
 static void skinDetect(const CropOptions &options, const QImage &i, QImage &o) {
     int w = i.width();
     int h = i.height();
-
-    for (int y = 0; y < h; y++) {
-        uchar *od = o.scanLine(y);
-        const uchar *id = i.scanLine(y) ;
-        for (int x = 0; x < w; x++) {
+    const int ibpl = i.bytesPerLine();
+    const int obpl = o.bytesPerLine();
+    const uchar *ibits = i.constBits();
+    uchar *obits = const_cast<uchar*>(o.constBits());
+    for (int y = 0; y < h; ++y) {
+        const uchar *id = ibits + (y * ibpl);
+        uchar *od = obits + (y * obpl);
+        for (int x = 0; x < w; ++x) {
             int p = x * 4;
             qreal lightness = cie(id[p], id[p + 1], id[p + 2]) / 255.;
             qreal skin = skinColor(options, id[p], id[p + 1], id[p + 2]);
@@ -92,10 +97,14 @@ static qreal saturation(qreal r, qreal g, qreal b) {
 static void saturationDetect(const CropOptions &options, const QImage &i, QImage &o) {
     int w = i.width();
     int h = i.height();
-    for (int y = 0; y < h; y++) {
-        uchar *od = o.scanLine(y);
-        const uchar *id = i.scanLine(y);
-        for (int x = 0; x < w; x++) {
+    const int ibpl = i.bytesPerLine();
+    const int obpl = o.bytesPerLine();
+    const uchar *ibits = i.constBits();
+    uchar *obits = const_cast<uchar*>(o.constBits());
+    for (int y = 0; y < h; ++y) {
+        const uchar *id = ibits + (y * ibpl);
+        uchar *od = obits + (y * obpl);
+        for (int x = 0; x < w; ++x) {
             int p = x * 4;
 
             qreal lightness = cie(id[p], id[p + 1], id[p + 2]) / 255.;
@@ -121,9 +130,13 @@ static QImage downSample(QImage &input, qreal factor) {
     int height = qFloor(input.height() / factor);
     QImage output(width, height, QImage::Format_RGBA8888);
     qreal ifactor2 = 1. / (factor * factor);
-    for (int y = 0; y < height; y++) {
-        uchar *data = output.scanLine(y);
-        for (int x = 0; x < width; x++) {
+    const int ibpl = input.bytesPerLine();
+    const int obpl = output.bytesPerLine();
+    const uchar *ibits = input.constBits();
+    uchar *obits = const_cast<uchar*>(output.constBits());
+    for (int y = 0; y < height; ++y) {
+        uchar *data = obits + (y * obpl);
+        for (int x = 0; x < width; ++x) {
             int i = x * 4;
 
             qreal r = 0;
@@ -134,9 +147,9 @@ static QImage downSample(QImage &input, qreal factor) {
             qreal mr = 0;
             qreal mg = 0;
 
-            for (int v = 0; v < factor; v++) {
-                uchar *idata = input.scanLine(y * factor + v);
-                for (int u = 0; u < factor; u++) {
+            for (int v = 0; v < factor; ++v) {
+                const uchar *idata = ibits + ibpl*(int(y * factor) + v);
+                for (int u = 0; u < factor; ++u) {
                     int j = (x * factor + u) * 4;
                     r += idata[j];
                     g += idata[j + 1];
@@ -219,9 +232,10 @@ static float score(const CropOptions &options, const QImage &output, const QRect
     qreal invDownSample = 1. / downSample;
     qreal outputHeightDownSample = output.height() * downSample;
     qreal outputWidthDownSample = output.width() * downSample;
-
+    const int bpl = output.bytesPerLine();
+    const uchar *bits = output.constBits();
     for (int y = 0; y < outputHeightDownSample; y += downSample) {
-        const uchar *od = output.scanLine(qFloor(y * invDownSample));
+        const uchar *od = bits + (qFloor(y * invDownSample) * bpl);
         for (int x = 0; x < outputWidthDownSample; x += downSample) {
             int p = (qFloor(x * invDownSample)) * 4;
             qreal i = importance(options, crop, x, y);
