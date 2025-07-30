@@ -19,10 +19,12 @@
 #include <QApplication>
 #include <QCheckBox>
 #include <QClipboard>
+#include <QColorDialog>
 #include <QDir>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QImageReader>
+#include <QInputDialog>
 #include <QLabel>
 #include <QLoggingCategory>
 #include <QMenu>
@@ -989,7 +991,86 @@ void ImageViewer::updateRubberBandFeedback(QRect geom) {
     doubleclickhint->start();
 }
 
+void ImageViewer::setEditMode(Edit mode) {
+    m_editMode = mode;
+    QString msg;
+    switch (m_editMode) {
+    case Crop:
+        msg = tr("Select the crop area with Ctrl + left mouse button"); break;
+    case Blackout:
+        msg = tr("Select the blackout area with Ctrl + left mouse button"); break;
+    case Cartouche:
+        msg = tr("Select the cartouche area with Ctrl + left mouse button"); break;
+    case Annotate:
+        msg = tr("Select the annotation area with Ctrl + left mouse button"); break;
+    default:
+        qDebug() << "wtf";
+        break;
+    }
+    setFeedback(msg, 5000);
+}
+
+void ImageViewer::edit() {
+    if (!imageWidget || ! cropRubberBand)
+        return;
+    cropRubberBand->hide();
+    bool ok;
+    QTransform matrix = imageWidget->transformation().inverted(&ok);
+    if (!ok) {
+        qDebug() << "something's fucked up about the transformation matrix! Not cropping";
+        return;
+    }
+    QPainter p(&origImage);
+    p.setTransform(matrix);
+    p.setRenderHint(QPainter::Antialiasing);
+    QColor c = QColorDialog::getColor(Qt::black, this, tr("Pick a color"));
+    const QRect rect = cropRubberBand->geometry();
+    switch (m_editMode) {
+    case Blackout:
+    case Cartouche: {
+        if (m_editMode == Blackout) {
+            p.setPen(Qt::transparent);
+            p.setBrush(c);
+        } else {
+            p.setBrush(Qt::transparent);
+            p.setPen(QPen(c, 4));
+        }
+        const int radius = qMin(rect.width(), rect.height())/2;
+        p.drawRoundedRect(rect, radius, radius);
+        break;
+    }
+    case Annotate: {
+        p.setPen(c);
+        const QString text = QInputDialog::getMultiLineText(this, tr("Enter text"), tr("Enter text"), QString(), &ok);
+        if (!ok)
+            break;
+        QSize ts = p.fontMetrics().size(0, text);
+        qreal factor = 1.0;
+        if (rect.width() < ts.width())
+            factor = rect.width() / qreal(ts.width());
+        if (rect.height() < ts.height())
+            factor = qMin(factor, rect.height() / qreal(ts.height()));
+//        qDebug() << ts << rect.size() << matrix.m11() << matrix.m22() << factor;
+        if (factor != 1.0) {
+            QFont fnt = p.font();
+            fnt.setPointSize(fnt.pointSize()*factor);
+            p.setFont(fnt);
+        }
+        p.drawText(rect, Qt::AlignCenter, text);
+        break;
+    }
+    default:
+        break;
+    }
+    p.end();
+    refresh();
+    setFeedback("", false);
+    emit imageEdited(true);
+}
+
 void ImageViewer::applyCropAndRotation() {
+    if (m_editMode != Crop)
+        return edit();
     if (!imageWidget || ! cropRubberBand)
         return;
 

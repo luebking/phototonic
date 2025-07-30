@@ -482,7 +482,17 @@ void Phototonic::createImageViewer() {
     menu->addAction(resizeAction);
     menu->addAction(colorsAction);
     connect (menu->addAction(tr("Crop")), &QAction::triggered, [=](){
-        imageViewer->setFeedback(tr("Select the crop area with Ctrl + left mouse button"), 5000);
+        imageViewer->setEditMode(ImageViewer::Crop);
+        });
+    menu->addSeparator();
+    connect (menu->addAction(tr("Blackout")), &QAction::triggered, [=](){
+        imageViewer->setEditMode(ImageViewer::Blackout);
+        });
+    connect (menu->addAction(tr("Cartouche")), &QAction::triggered, [=](){
+        imageViewer->setEditMode(ImageViewer::Cartouche);
+        });
+    connect (menu->addAction(tr("Annotate")), &QAction::triggered, [=](){
+        imageViewer->setEditMode(ImageViewer::Annotate);
         });
 
     menu = contextMenu->addMenu(tr("File"));

@@ -41,11 +41,18 @@ public:
         ZoomToFit,
         ZoomToFill
     };
+    enum Edit {
+        Crop = 0,
+        Blackout,
+        Cartouche,
+        Annotate
+    };
 
     void clearImage();
     void configureLetterbox();
     bool crossfade() const { return m_crossfade; }
     QSize currentImageSize() const;
+    void edit();
     bool isNewImage();
     QRect lastCropGeometry() const { return m_isoCropRect; }
     void loadImage(QString imageFileName, const QImage &preview = QImage());
@@ -57,6 +64,7 @@ public:
     void setContextMenu(QMenu *);
     void setCrossfade(bool yesno);
     void setCursorHiding(bool hide);
+    void setEditMode(Edit mode);
     void setFeedback(QString feedbackString, int timeLimited = 3000);
     void setInfo(QString infoString);
     void showFileName(bool yesno) { myFilenameLabel->setVisible(yesno); }
@@ -132,6 +140,7 @@ private:
     ZoomMode m_zoomMode;
     float m_zoom;
     bool m_lockZoom;
+    Edit m_editMode;
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 
