@@ -116,6 +116,8 @@ ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
     m_zoomMode = ZoomToFit;
     m_zoom = 1.0;
     m_lockZoom = false;
+    m_edited = false;
+    m_editMode = Crop;
 
     setContentsMargins(0, 0, 0, 0);
     setAlignment(Qt::AlignCenter);
@@ -799,6 +801,14 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
     if (fullImagePath == imageFileName)
         return;
 
+    if (m_edited) {
+        if (QMessageBox::question(this, tr("Save edits?"),
+                                        tr("The image was edited.\nDo you want to save a copy?"),
+                                    QMessageBox::Save|QMessageBox::Discard, QMessageBox::Save) == QMessageBox::Save)
+            saveImageAs();
+    }
+
+    m_edited = false;
     unsetFeedback();
     newImage = false;
     fullImagePath = imageFileName;
@@ -1065,6 +1075,7 @@ void ImageViewer::edit() {
     p.end();
     refresh();
     setFeedback("", false);
+    m_edited = true;
     emit imageEdited(true);
 }
 
@@ -1146,6 +1157,7 @@ void ImageViewer::applyCropAndRotation() {
     refresh();
     setFeedback("", false);
     setFeedback(tr("New image size: %1x%2").arg(origImage.width()).arg(origImage.height()));
+    m_edited = true;
     emit imageEdited(true);
 }
 

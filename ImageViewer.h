@@ -141,6 +141,7 @@ private:
     float m_zoom;
     bool m_lockZoom;
     Edit m_editMode;
+    bool m_edited;
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 
