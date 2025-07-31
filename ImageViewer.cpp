@@ -17,12 +17,14 @@
  */
 
 #include <QApplication>
+#include <QBoxLayout>
 #include <QCheckBox>
 #include <QClipboard>
 #include <QColorDialog>
 #include <QDir>
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QFontComboBox>
 #include <QImageReader>
 #include <QInputDialog>
 #include <QLabel>
@@ -31,7 +33,9 @@
 #include <QMouseEvent>
 #include <QMovie>
 #include <QPainter>
+#include <QPushButton>
 #include <QScrollBar>
+#include <QTextEdit>
 #include <QThread>
 #include <QTimer>
 #include <QWheelEvent>
@@ -1033,11 +1037,11 @@ void ImageViewer::edit() {
     QPainter p(&origImage);
     p.setTransform(matrix);
     p.setRenderHint(QPainter::Antialiasing);
-    QColor c = QColorDialog::getColor(Qt::black, this, tr("Pick a color"));
     const QRect rect = cropRubberBand->geometry();
     switch (m_editMode) {
     case Blackout:
     case Cartouche: {
+        QColor c = QColorDialog::getColor(Qt::black, this, tr("Pick a color"));
         if (m_editMode == Blackout) {
             p.setPen(Qt::transparent);
             p.setBrush(c);
@@ -1050,22 +1054,35 @@ void ImageViewer::edit() {
         break;
     }
     case Annotate: {
-        p.setPen(c);
-        const QString text = QInputDialog::getMultiLineText(this, tr("Enter text"), tr("Enter text"), QString(), &ok);
-        if (!ok)
+        QDialog dlg(this);
+        QColor c = Qt::black;
+        QVBoxLayout *vl = new QVBoxLayout(&dlg);
+        QHBoxLayout *hl = new QHBoxLayout;
+        QFontComboBox *fonts = new QFontComboBox(&dlg);
+        hl->addWidget(fonts);
+        QPushButton *cb = new QPushButton(tr("Color"), &dlg);
+        connect(cb, &QPushButton::clicked, [=,&c]() { c = QColorDialog::getColor(Qt::black, this, tr("Pick a color")); });
+        hl->addWidget(cb);
+        vl->addLayout(hl);
+        QTextEdit *te = new QTextEdit(&dlg);
+        vl->addWidget(te);
+        QDialogButtonBox *btns = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel, &dlg);
+        connect(btns, &QDialogButtonBox::accepted, &dlg, &QDialog::accept);
+        connect(btns, &QDialogButtonBox::rejected, &dlg, &QDialog::reject);
+        vl->addWidget(btns);
+        dlg.setLayout(vl);
+        if (dlg.exec() == QDialog::Rejected)
             break;
-        QSize ts = p.fontMetrics().size(0, text);
-        qreal factor = 1.0;
-        if (rect.width() < ts.width())
-            factor = rect.width() / qreal(ts.width());
-        if (rect.height() < ts.height())
-            factor = qMin(factor, rect.height() / qreal(ts.height()));
-//        qDebug() << ts << rect.size() << matrix.m11() << matrix.m22() << factor;
-        if (factor != 1.0) {
-            QFont fnt = p.font();
+        QString text = te->toPlainText();
+        if (text.isEmpty())
+            break;
+        QFont fnt = fonts->currentFont();
+        QSize ts = QFontMetrics(fnt).size(0, text);
+        qreal factor = qMin(rect.width() / qreal(ts.width()), rect.height() / qreal(ts.height()));
+        if (factor != 1.0)
             fnt.setPointSize(fnt.pointSize()*factor);
-            p.setFont(fnt);
-        }
+        p.setPen(c);
+        p.setFont(fnt);
         p.drawText(rect, Qt::AlignCenter, text);
         break;
     }
