@@ -609,6 +609,8 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
             if (setHue("purple", 192, 214)) continue;
             if (setHue("magenta", 213, 235)) continue;
             if (setHue("pink", 234, 255)) continue;
+            if (setHue("warm", 0, 75)) continue;
+            if (setHue("cold", 101, 175)) continue;
             if (!t.compare("dark", Qt::CaseInsensitive)) {
                 needHistogram = true;
                 m_constraints.last().maxBright = 64; continue; // is 25% good?
@@ -633,6 +635,16 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 needHistogram = true;
                 m_constraints.last().maxSaturation = 15;
                 m_constraints.last().maxChroma = 3; continue;
+            }
+            if (!t.compare("brown", Qt::CaseInsensitive)) {
+                m_constraints.last().minHue = 0;
+                m_constraints.last().maxHue = 64;
+                m_constraints.last().minBright = 25;
+                m_constraints.last().maxBright = 112;
+                m_constraints.last().minSaturation = 60;
+                m_constraints.last().maxSaturation = 160;
+                needHistogram = true;
+                continue;
             }
             if (t.startsWith(":")) {
                 t.remove(0,1);

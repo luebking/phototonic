@@ -1176,9 +1176,10 @@ void Phototonic::createToolBars() {
         "<li>Luminance is suffixed [0.0-1.0]|[0-255]lm</li></ul>"
         "<i>All suffixes are case-insensitive but m|inute and M|onth</i><br>"
         "Subsequent \"/\" start a new sufficient condition group, the substring match is optional."
-        "<hr>In addition you can filter for <b>black, white, dark, bright, monochrome, gray</b> and the colors<br>"
+        "<hr>In addition you can filter for<br>"
+        "<b>black, white, brown, dark, bright, warm, cold, monochrome, gray</b> and the colors<br>"
         "<b>red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink</b>"
-    ) + "<hr>" + tr("Leading colons <b>match tags</b>, so '/<b>:foo</b>' finds all images with the tag 'foo'");
+        "<hr>Leading colons <b>match tags</b>, so '/<b>:foo</b>' finds all images with the tag 'foo'");
 
     QTimer *filterBouncer = new QTimer(this);
     filterBouncer->setSingleShot(true);
