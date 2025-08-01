@@ -51,23 +51,5 @@
         <file>images/tag_filter_negate.png</file>
         <file>images/tag_filter_off.png</file>
         <file>images/duplicates.png</file>
-        <file>translations/phototonic_pl.qm</file>
-        <file>translations/phototonic_de.qm</file>
-        <file>translations/phototonic_ru.qm</file>
-        <file>translations/phototonic_cs.qm</file>
-        <file>translations/phototonic_fr.qm</file>
-        <file>translations/phototonic_bs.qm</file>
-        <file>translations/phototonic_hr.qm</file>
-        <file>translations/phototonic_sr.qm</file>
-        <file>translations/phototonic_pt.qm</file>
-        <file>translations/phototonic_it.qm</file>
-        <file>translations/phototonic_sv.qm</file>
-        <file>translations/phototonic_fi.qm</file>
-        <file>translations/phototonic_es.qm</file>
-        <file>translations/phototonic_et.qm</file>
-        <file>translations/phototonic_uk.qm</file>
-        <file>translations/phototonic_ka.qm</file>
-        <file>translations/phototonic_zh.qm</file>
-        <file>translations/phototonic_zh_TW.qm</file>
     </qresource>
 </RCC>

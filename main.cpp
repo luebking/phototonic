@@ -125,8 +125,16 @@ int main(int argc, char *argv[]) {
         QApp.installTranslator(&qTranslator);
 
     QTranslator qTranslatorPhototonic;
-    if (qTranslatorPhototonic.load(locale, "phototonic", "_", ":/translations"))
+    if (qTranslatorPhototonic.load(locale, "phototonic", "_", QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
         QApp.installTranslator(&qTranslatorPhototonic);
+    } else if (qTranslatorPhototonic.load(locale, "phototonic", "_", ":/translations")) {
+        QApp.installTranslator(&qTranslatorPhototonic);
+    } else {
+        qWarning("No translation module found for your locale.\nPlace a phototonic_%s.tm or phototonic_%s.tm module into %s",
+                    qUtf8Printable(locale.bcp47Name()),
+                    qUtf8Printable(locale.name()),
+                    qUtf8Printable(QLibraryInfo::path(QLibraryInfo::TranslationsPath)));
+    }
 
     Phototonic phototonic(parser.positionalArguments(), 0);
     futuretonic = &phototonic;
