@@ -2213,7 +2213,7 @@ void Phototonic::deleteFromViewer(bool trash) {
     const QString fileName = QFileInfo(fullPath).fileName();
 
     if (Settings::deleteConfirm) {
-        MessageBox msgBox(this);
+        MessageBox msgBox(imageViewer);
         msgBox.setText(trash ? tr("Move %1 to the trash").arg(fileName) : tr("Permanently delete %1").arg(fileName));
         msgBox.setWindowTitle(trash ? tr("Move to Trash") : tr("Delete images"));
         msgBox.setIcon(MessageBox::Warning);
@@ -2237,7 +2237,7 @@ void Phototonic::deleteFromViewer(bool trash) {
         imageViewer->setFeedback(tr("Deleted %1").arg(fileName));
         m_deleteInProgress = false;
     } else {
-        MessageBox msgBox(this);
+        MessageBox msgBox(imageViewer);
         msgBox.critical(tr("Error"), tr("Failed to delete image"));
     }
     Metadata::forget(fullPath);
@@ -2260,7 +2260,8 @@ void Phototonic::deleteOperation() {
         return;
     }
 
-    if (Settings::layoutMode == ImageViewWidget) {
+    if (Settings::layoutMode == ImageViewWidget ||
+            (imagePreviewDock->isFloating() && QApplication::focusWidget() == imageViewer)) {
         deleteFromViewer(true);
         return;
     }
@@ -2274,7 +2275,8 @@ void Phototonic::deletePermanentlyOperation() {
         return;
     }
 
-    if (Settings::layoutMode == ImageViewWidget) {
+    if (Settings::layoutMode == ImageViewWidget ||
+            (imagePreviewDock->isFloating() && QApplication::focusWidget() == imageViewer)) {
         deleteFromViewer(false);
         return;
     }
