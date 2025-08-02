@@ -883,6 +883,12 @@ void ImageViewer::preload(QString imageFileName) {
 }
 
 void ImageViewer::clearImage() {
+    if (m_edited) {
+        if (MessageBox(this, MessageBox::Save|MessageBox::Discard, MessageBox::Save).ask(
+                tr("Save edits?"),tr("The image was edited.\nDo you want to save a copy?"))
+                == MessageBox::Save)
+            saveImageAs();
+    }
     fullImagePath.clear();
     origImage.load(":/images/no_image.png");
     viewerImage = origImage;
