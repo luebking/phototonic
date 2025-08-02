@@ -2811,8 +2811,9 @@ void Phototonic::toggleSlideShow() {
         slideShowHandler(); // init/preload
 
         SlideShowTimer = new QTimer(this);
+        const int ssTimeout = Settings::slideShowDelay * 1000.0;
         connect(SlideShowTimer, SIGNAL(timeout()), this, SLOT(slideShowHandler()));
-        SlideShowTimer->start(Settings::slideShowDelay * 1000.0);
+        SlideShowTimer->start(ssTimeout);
 
         slideShowAction->setText(tr("Stop Slide Show"));
         imageViewer->setFeedback(tr("Slide show started"));
@@ -2821,7 +2822,7 @@ void Phototonic::toggleSlideShow() {
         const int currentRow = thumbsViewer->currentIndex().row();
         imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow),
                                thumbsViewer->icon(currentRow).pixmap(THUMB_SIZE_MAX).toImage());
-        imageViewer->setCrossfade(true);
+        imageViewer->setCrossfade(ssTimeout >= 1000);
     }
 }
 
