@@ -888,6 +888,7 @@ void ImageViewer::clearImage() {
                 tr("Save edits?"),tr("The image was edited.\nDo you want to save a copy?"))
                 == MessageBox::Save)
             saveImageAs();
+        m_edited = false;
     }
     fullImagePath.clear();
     origImage.load(":/images/no_image.png");
