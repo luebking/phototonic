@@ -259,10 +259,15 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     slideRandomCheckBox = new QCheckBox(tr("Show random images"), this);
     slideRandomCheckBox->setChecked(Settings::slideShowRandom);
 
+    // Slide show random
+    slideCrossfadeCheckBox = new QCheckBox(tr("Crossfade images"), this);
+    slideCrossfadeCheckBox->setChecked(Settings::slideShowCrossfade);
+
     // Slide show options
     QVBoxLayout *slideshowLayout = new QVBoxLayout;
     slideshowLayout->addLayout(slideDelayLayout);
     slideshowLayout->addWidget(slideRandomCheckBox);
+    slideshowLayout->addWidget(slideCrossfadeCheckBox);
     slideshowLayout->addStretch(1);
 
     QGroupBox *slideshowGroupBox = new QGroupBox(tr("Slideshow"));
@@ -389,6 +394,7 @@ void SettingsDialog::saveSettings() {
     Settings::defaultSaveQuality = saveQualitySpinBox->value();
     Settings::slideShowDelay = slideDelaySpinBox->value();
     Settings::slideShowRandom = slideRandomCheckBox->isChecked();
+    Settings::slideShowCrossfade = slideCrossfadeCheckBox->isChecked();
     Settings::enableAnimations = enableAnimCheckBox->isChecked();
     Settings::exifRotationEnabled = enableExifCheckBox->isChecked();
     Settings::exifThumbRotationEnabled = enableThumbExifCheckBox->isChecked();
