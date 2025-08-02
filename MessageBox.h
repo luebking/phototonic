@@ -25,14 +25,11 @@ class MessageBox : public QMessageBox {
 Q_OBJECT
 
 public:
-    MessageBox(QWidget *parent);
-
-    void critical(const QString &title, const QString &message);
-
-    void warning(const QString &title, const QString &message);
-
+    MessageBox(QWidget *parent, StandardButtons buttons = NoButton, StandardButton defaultButton = NoButton);
     void about();
-
+    int ask(const QString &title, const QString &message);
+    void critical(const QString &title, const QString &message);
+    int warning(const QString &title, const QString &message);
 };
 
 #endif // MESSAGE_BOX_H

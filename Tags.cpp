@@ -588,9 +588,7 @@ void ImageTags::addNewTag() {
     }
 
     if (newTagName.isEmpty()) {
-        MessageBox msgBox(this);
-        msgBox.critical(tr("Error"), tr("No name entered"));
-        return;
+        return MessageBox(this).critical(tr("Error"), tr("No name entered"));
     }
 
     BLOCK_RECURSION
@@ -598,9 +596,7 @@ void ImageTags::addNewTag() {
     while (knownTagsIt.hasNext()) {
         QString tag = knownTagsIt.next();
         if (newTagName == tag) {
-            MessageBox msgBox(this);
-            msgBox.critical(tr("Error"), tr("Tag %1 already exists").arg(newTagName));
-            return;
+            return MessageBox(this).critical(tr("Error"), tr("Tag %1 already exists").arg(newTagName));
         }
     }
 
@@ -614,14 +610,9 @@ void ImageTags::removeTags() {
         return;
     }
 
-    MessageBox msgBox(this);
-    msgBox.setText(tr("Delete %n selected tags(s)?", "", tagsTree->selectedItems().size()));
-    msgBox.setWindowTitle(tr("Delete tag"));
-    msgBox.setIcon(MessageBox::Warning);
-    msgBox.setStandardButtons(MessageBox::Yes | MessageBox::Cancel);
-    msgBox.setDefaultButton(MessageBox::Cancel);
-
-    if (msgBox.exec() != MessageBox::Yes) {
+    if (MessageBox(this, MessageBox::Yes|MessageBox::Cancel, MessageBox::Cancel).warning(
+                tr("Delete tag"), tr("Delete %n selected tags(s)?", "", tagsTree->selectedItems().size()))
+            != MessageBox::Yes) {
         return;
     }
 

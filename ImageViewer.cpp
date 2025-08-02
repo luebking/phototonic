@@ -806,9 +806,9 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
         return;
 
     if (m_edited) {
-        if (QMessageBox::question(this, tr("Save edits?"),
-                                        tr("The image was edited.\nDo you want to save a copy?"),
-                                    QMessageBox::Save|QMessageBox::Discard, QMessageBox::Save) == QMessageBox::Save)
+        if (MessageBox(this, MessageBox::Save|MessageBox::Discard, MessageBox::Save).ask(
+                tr("Save edits?"),tr("The image was edited.\nDo you want to save a copy?"))
+                == MessageBox::Save)
             saveImageAs();
     }
 
@@ -1378,9 +1378,7 @@ void ImageViewer::saveImage() {
         viewerImage = viewerImage.transformed(matrix);
     }
     if (!viewerImage.save(savePath, imageReader.format().toUpper(), Settings::defaultSaveQuality)) {
-        MessageBox msgBox(this);
-        msgBox.critical(tr("Error"), tr("Failed to save image."));
-        return;
+        return MessageBox(this).critical(tr("Error"), tr("Failed to save image."));
     }
 
     if (!exifError) {
@@ -1464,8 +1462,7 @@ void ImageViewer::saveImageAs() {
             viewerImage = viewerImage.transformed(matrix);
         }
         if (!viewerImage.save(fileName, 0, Settings::defaultSaveQuality)) {
-            MessageBox msgBox(this);
-            msgBox.critical(tr("Error"), tr("Failed to save image."));
+            MessageBox(this).critical(tr("Error"), tr("Failed to save image."));
         } else {
             if (!exifError) {
                 try {

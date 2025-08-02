@@ -22,8 +22,20 @@
 #include "MessageBox.h"
 #include "Phototonic.h"
 
-MessageBox::MessageBox(QWidget *parent) : QMessageBox(parent) {
+MessageBox::MessageBox(QWidget *parent, StandardButtons buttons, StandardButton defaultButton) : QMessageBox(parent) {
     setWindowIcon(QIcon(":/images/phototonic.png"));
+    if (buttons != NoButton) {
+        setStandardButtons(buttons);
+        if (defaultButton != NoButton)
+            setDefaultButton(defaultButton);
+    }
+}
+
+int MessageBox::ask(const QString &title, const QString &message) {
+    setWindowTitle(title);
+    setText(message);
+    setIcon(MessageBox::Question);
+    return exec();
 }
 
 void MessageBox::critical(const QString &title, const QString &message) {
@@ -33,11 +45,11 @@ void MessageBox::critical(const QString &title, const QString &message) {
     exec();
 }
 
-void MessageBox::warning(const QString &title, const QString &message) {
+int MessageBox::warning(const QString &title, const QString &message) {
     setWindowTitle(title);
     setText(message);
     setIcon(MessageBox::Warning);
-    exec();
+    return exec();
 }
 
 void MessageBox::about() {
