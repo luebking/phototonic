@@ -965,9 +965,11 @@ QAction *Phototonic::action(const QString name, bool dropCache) const {
     static QHash<QString,QAction*> actions;
     if (name.isEmpty()) {
         actions.clear();
+//        qDebug() << "drop cache";
         return nullptr;
     }
     if (actions.isEmpty()) {
+//        qDebug() << "build cache";
         QList<QAction*> actionlist = findChildren<QAction*>(Qt::FindDirectChildrenOnly);
         for (QAction *action : actionlist)
             actions[action->objectName()] = action;
@@ -975,8 +977,10 @@ QAction *Phototonic::action(const QString name, bool dropCache) const {
     QAction *act = actions.value(name);
     if (!act)
         qWarning() << "NO SUCH ACTION" << name;
-    if (dropCache)
+    if (dropCache) {
+//        qDebug() << "drop cache";
         actions.clear();
+    }
     return act;
 }
 
@@ -1713,7 +1717,7 @@ void Phototonic::copyOrCutThumbs(bool isCopyOperation) {
     QGuiApplication::clipboard()->setMimeData(mimedata);
 
     Settings::isCopyOperation = isCopyOperation;
-    action("paste")->setEnabled(true);
+    action("paste", true)->setEnabled(true);
 
     QString state = Settings::isCopyOperation ? tr("Copied %n image(s) to clipboard", "", copyCutThumbsCount)
                                               : tr("Cut %n image(s) to clipboard", "", copyCutThumbsCount);
@@ -2082,7 +2086,7 @@ void Phototonic::pasteThumbs(QString destDir) {
 
     Settings::copyCutIndexList.clear();
     Settings::copyCutFileList.clear();
-    action("paste")->setEnabled(false);
+    action("paste", true)->setEnabled(false);
 
     thumbsViewer->loadVisibleThumbs();
     pasteInProgress = false;
@@ -2804,7 +2808,7 @@ void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
 }
 
 void Phototonic::toggleSlideShow() {
-    QAction *toggle = action("toggleSlideShow");
+    QAction *toggle = action("toggleSlideShow", true);
     if (Settings::slideShowActive) {
         Settings::slideShowActive = false;
         imageViewer->setCrossfade(false);
