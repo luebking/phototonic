@@ -1049,6 +1049,8 @@ void ImageViewer::edit() {
     case Blackout:
     case Cartouche: {
         QColor c = QColorDialog::getColor(Qt::black, this, tr("Pick a color"));
+        if (!c.isValid())
+            return setFeedback("", false);
         if (m_editMode == Blackout) {
             p.setPen(Qt::transparent);
             p.setBrush(c);
@@ -1079,10 +1081,10 @@ void ImageViewer::edit() {
         vl->addWidget(btns);
         dlg.setLayout(vl);
         if (dlg.exec() == QDialog::Rejected)
-            break;
+            return setFeedback("", false);
         QString text = te->toPlainText();
         if (text.isEmpty())
-            break;
+            return setFeedback("", false);
         QFont fnt = fonts->currentFont();
         QSize ts = QFontMetrics(fnt).size(0, text);
         qreal factor = qMin(rect.width() / qreal(ts.width()), rect.height() / qreal(ts.height()));
