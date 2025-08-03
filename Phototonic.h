@@ -164,108 +164,30 @@ private:
     QToolBar *myMainToolBar;
     QToolBar *m_imageToolBar;
 
-    QAction *exitAction;
-    QAction *cutAction;
-    QAction *copyAction;
-    QAction *copyToAction;
-    QAction *moveToAction;
-    QAction *deleteAction;
-    QAction *deletePermanentlyAction;
-    QAction *saveAction;
-    QAction *saveAsAction;
-    QAction *renameAction;
-    QAction *removeMetadataAction;
-    QAction *selectAllAction;
-    QAction *copyImageAction;
-    QAction *pasteImageAction;
-    QAction *showClipboardAction;
-    QAction *addBookmarkAction;
-    QAction *removeBookmarkAction;
+    // used frequently in ::updateActions, m_imageInfoAction on every tumbnail change
+    QAction *m_cutAction, *m_copyAction, *m_copyToAction, *m_moveToAction, *m_deleteAction,
+            *m_trashAction, *m_viewImageAction, *m_openWithMenuAction, *m_fullScreenAction,
+            *m_closeImageAction, *m_imageInfoAction, *m_batchTransformAction, *m_wallpaperAction;
+    // dto. via ::setViewerKeyEventsEnabled
+    QAction *m_nextImageAction,  *m_prevImageAction, *m_moveLeftAction,
+            *m_moveRightAction, *m_moveUpAction, *m_moveDownAction;
 
-    QAction *setClassicThumbsAction;
-    QAction *setSquareThumbsAction;
-    QAction *setCompactThumbsAction;
+    // setFileListMode, called on path changes - maybe drop
+    QAction *m_includeSubDirsAction, *m_findDupesAction;
+    // dto.
+    QAction *m_refreshAction, *m_goBackAction, *m_goFrwdAction, *m_goUpAction, *m_goHomeAction;
 
-    QAction *sortMenuAction;
-    QAction *sortByNameAction;
-    QAction *sortByTimeAction;
-    QAction *sortByExifTimeAction;
-    QAction *sortBySizeAction;
-    QAction *sortByTypeAction;
-    QAction *sortBySimilarityAction;
-    QAction *sortByBrightnessAction;
-    QAction *sortByColorAction;
-    QAction *sortReverseAction;
-    QAction *refreshAction;
-    QAction *includeSubDirectoriesAction;
-    QAction *fullScreenAction;
-    QAction *thumbsGoToTopAction;
-    QAction *thumbsGoToBottomAction;
-    QAction *CloseImageAction;
-    QAction *settingsAction;
-    QAction *thumbsZoomInAction;
-    QAction *thumbsZoomOutAction;
-    QAction *zoomInAction;
-    QAction *zoomOutAction;
-    QAction *resetZoomAction;
-    QAction *origZoomAction;
-    QAction *keepZoomAction;
-    QAction *keepTransformAction;
-    QAction *transformSubMenuAction;
-    QAction *batchSubMenuAction;
-    QAction *rotateLeftAction;
-    QAction *rotateRightAction;
-    QAction *rotateToolAction;
-    QAction *flipHorizontalAction;
-    QAction *flipVerticalAction;
-    QAction *cropAction;
-    QAction *applyCropAndRotationAction;
-    QAction *resizeAction;
-    QAction *freeRotateLeftAction;
-    QAction *freeRotateRightAction;
-    QAction *colorsAction;
-    QAction *moveLeftAction;
-    QAction *moveRightAction;
-    QAction *moveUpAction;
-    QAction *moveDownAction;
+    // updated on edits, rotations, etc.
+    QAction *m_saveAction, *m_saveAsAction;
 
-    QAction *aboutAction;
-    QAction *showHiddenFilesAction;
-    QAction *smallToolbarIconsAction;
-    QAction *lockDocksAction;
-    QAction *showViewerToolbarAction;
-
-    QAction *pasteAction;
-    QAction *createDirectoryAction;
-    QAction *setSaveDirectoryAction;
-
-    QAction *goBackAction;
-    QAction *goFrwdAction;
-    QAction *goUpAction;
-    QAction *goHomeAction;
-
-    QAction *slideShowAction;
-    QAction *nextImageAction;
-    QAction *prevImageAction;
-    QAction *firstImageAction;
-    QAction *lastImageAction;
-    QAction *randomImageAction;
-    QAction *viewImageAction;
-    QAction *filterImagesFocusAction;
-    QAction *setPathFocusAction;
-    QAction *findDupesAction;
-
-    QAction *openWithMenuAction;
-    QAction *externalAppsAction;
-    QAction *m_wallpaperAction;
-    QAction *invertSelectionAction;
-    QAction *batchTransformAction;
-    QAction *feedbackImageInfoAction;
+    // not a child of ours
+    QAction *m_sortMenuAction;
 
     QProgressBar *m_progressBar;
     QAction *m_progressBarAction;
     QLineEdit *pathLineEdit;
     QAction *m_pathLineEditAction;
+
     QLineEdit *filterLineEdit;
     QDockWidget *fileSystemDock;
     QDockWidget *bookmarksDock;
@@ -357,6 +279,7 @@ private:
     int copyCutThumbsCount;
     void setStatus(QString state);
     void positionImageToolbar();
+    QAction *action(const QString name, bool dropHash = false) const;
 };
 
 #endif // PHOTOTONIC_H
