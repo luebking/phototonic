@@ -162,7 +162,7 @@ private:
     QMenu *openWithSubMenu;
 
     QToolBar *myMainToolBar;
-    QToolBar *imageToolBar;
+    QToolBar *m_imageToolBar;
 
     QAction *exitAction;
     QAction *cutAction;
@@ -356,6 +356,7 @@ private:
     void zoom(float multiplier = 1., QPoint focus = QPoint(-1, -1));
     int copyCutThumbsCount;
     void setStatus(QString state);
+    void positionImageToolbar();
 };
 
 #endif // PHOTOTONIC_H

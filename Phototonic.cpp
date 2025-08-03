@@ -78,6 +78,7 @@
 #include "ThumbsViewer.h"
 
 Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *parent) : QMainWindow(parent) {
+    imageViewer = nullptr;
     Settings::appSettings = new QSettings("phototonic", "phototonic");
 
     fileSystemModel = new QFileSystemModel(this);
@@ -100,6 +101,9 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     createMenus(); // createPopupMenu …
     createToolBars(); // and created only here
     createImageViewer();
+    m_imageToolBar->setParent(imageViewer);
+    m_imageToolBar->setVisible(Settings::showViewerToolbar);
+    positionImageToolbar();
     updateExternalApps();
     loadShortcuts();
 
@@ -111,7 +115,6 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     QPalette pal = m_statusLabel->palette();
     pal.setColor(m_statusLabel->backgroundRole(), QColor(0,0,0,192));
     pal.setColor(m_statusLabel->foregroundRole(), QColor(255,255,255,192));
-    m_statusLabel->setPalette(pal);
 
     connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, this, [=](const QModelIndex &current) {
         if (!current.isValid())
@@ -446,6 +449,7 @@ void Phototonic::createImageViewer() {
     contextMenu->addAction(openWithMenuAction);
     contextMenu->addAction(feedbackImageInfoAction);
     contextMenu->addSeparator();
+    contextMenu->addAction(showViewerToolbarAction);
 
     QMenu *menu = contextMenu->addMenu(tr("Navigate"));
     menu->addAction(nextImageAction);
@@ -521,7 +525,6 @@ void Phototonic::createImageViewer() {
     submenu->addAction(act);
 
     menu->addSeparator();
-    menu->addAction(showViewerToolbarAction);
     menu->addAction(showClipboardAction);
     menu->addSeparator();
     menu->addAction(refreshAction);
@@ -706,8 +709,8 @@ void Phototonic::createActions() {
     showViewerToolbarAction->setChecked(Settings::showViewerToolbar);
     connect(showViewerToolbarAction, &QAction::triggered, [=]() {
         Settings::showViewerToolbar = showViewerToolbarAction->isChecked();
-        imageToolBar->setVisible(Settings::showViewerToolbar);
-        addToolBar(imageToolBar);
+        m_imageToolBar->setVisible(Settings::showViewerToolbar);
+        positionImageToolbar();
     });
 
     MAKE_ACTION(refreshAction, tr("Reload"), "refresh", "F5");
@@ -1224,33 +1227,41 @@ void Phototonic::createToolBars() {
     m_menuButton->installEventFilter(this);
 
     /* image */
-    imageToolBar = new QToolBar(tr("Viewer Toolbar"));
-    imageToolBar->setObjectName("Image");
-    imageToolBar->addAction(prevImageAction);
-    imageToolBar->addAction(nextImageAction);
-    imageToolBar->addAction(firstImageAction);
-    imageToolBar->addAction(lastImageAction);
-    imageToolBar->addAction(slideShowAction);
-    imageToolBar->addSeparator();
-    imageToolBar->addAction(saveAction);
-    imageToolBar->addAction(saveAsAction);
-    imageToolBar->addAction(deleteAction);
-    imageToolBar->addAction(deletePermanentlyAction);
-    imageToolBar->addSeparator();
-    imageToolBar->addAction(zoomInAction);
-    imageToolBar->addAction(zoomOutAction);
-    imageToolBar->addAction(resetZoomAction);
-    imageToolBar->addAction(origZoomAction);
-    imageToolBar->addSeparator();
-    imageToolBar->addAction(resizeAction);
-    imageToolBar->addAction(rotateRightAction);
-    imageToolBar->addAction(rotateLeftAction);
-    imageToolBar->addAction(rotateToolAction);
-    imageToolBar->addAction(flipHorizontalAction);
-    imageToolBar->addAction(flipVerticalAction);
-    imageToolBar->addAction(cropAction);
-    imageToolBar->addAction(colorsAction);
-    imageToolBar->setVisible(false);
+    m_imageToolBar = new QToolBar(tr("Viewer Toolbar"));
+    m_imageToolBar->setObjectName("m_imageToolBar");
+    m_imageToolBar->addAction(prevImageAction);
+    m_imageToolBar->addAction(nextImageAction);
+    m_imageToolBar->addAction(firstImageAction);
+    m_imageToolBar->addAction(lastImageAction);
+    m_imageToolBar->addAction(slideShowAction);
+    m_imageToolBar->addSeparator();
+    m_imageToolBar->addAction(saveAction);
+    m_imageToolBar->addAction(saveAsAction);
+    m_imageToolBar->addAction(deleteAction);
+    m_imageToolBar->addAction(deletePermanentlyAction);
+    m_imageToolBar->addSeparator();
+    m_imageToolBar->addAction(zoomInAction);
+    m_imageToolBar->addAction(zoomOutAction);
+    m_imageToolBar->addAction(resetZoomAction);
+    m_imageToolBar->addAction(origZoomAction);
+    m_imageToolBar->addSeparator();
+    m_imageToolBar->addAction(resizeAction);
+    m_imageToolBar->addAction(rotateRightAction);
+    m_imageToolBar->addAction(rotateLeftAction);
+    m_imageToolBar->addAction(rotateToolAction);
+    m_imageToolBar->addAction(flipHorizontalAction);
+    m_imageToolBar->addAction(flipVerticalAction);
+    m_imageToolBar->addAction(cropAction);
+    m_imageToolBar->addAction(colorsAction);
+    m_imageToolBar->setOrientation(Qt::Vertical);
+
+    QPalette pal = m_imageToolBar->palette();
+    pal.setColor(m_imageToolBar->backgroundRole(), QColor(0,0,0,128));
+    pal.setColor(m_imageToolBar->foregroundRole(), QColor(255,255,255,192));
+    m_imageToolBar->setPalette(pal);
+    m_imageToolBar->setAutoFillBackground(true);
+    m_imageToolBar->setPalette(pal);
+    m_imageToolBar->setIconSize(QSize(24,24));
 
     setToolbarIconSize();
 }
@@ -1260,10 +1271,7 @@ void Phototonic::setToolbarIconSize() {
         Settings::smallToolbarIcons = smallToolbarIconsAction->isChecked();
     }
     int iconSize = Settings::smallToolbarIcons ? 16 : 24;
-    QSize iconQSize(iconSize, iconSize);
-
-    myMainToolBar->setIconSize(iconQSize);
-    imageToolBar->setIconSize(iconQSize);
+    myMainToolBar->setIconSize(QSize(iconSize, iconSize));
 }
 
 void Phototonic::createFileSystemDock() {
@@ -2666,10 +2674,7 @@ void Phototonic::setDocksVisibility(bool visible) {
     imagePreviewDock->setVisible(vis(imagePreviewDock) && Settings::imagePreviewDockVisible);
     tagsDock->setVisible(vis(tagsDock) && Settings::tagsDockVisible);
     imageInfoDock->setVisible(vis(imageInfoDock) && Settings::imageInfoDockVisible);
-
     myMainToolBar->setVisible(visible);
-    imageToolBar->setVisible(!visible && Settings::showViewerToolbar);
-    addToolBar(imageToolBar);
 
     setContextMenuPolicy(Qt::PreventContextMenu);
     layout()->setEnabled(true);
@@ -2740,6 +2745,8 @@ void Phototonic::showViewer() {
         imageViewer->setFocus(Qt::OtherFocusReason);
         setImageViewerWindowTitle();
         QApplication::processEvents(); /// @todo why?
+        if (m_imageToolBar->isVisible())
+            positionImageToolbar();
     }
 }
 /// @todo looks like redundant calls?
@@ -3500,6 +3507,53 @@ QString Phototonic::getSelectedPath() {
         return "";
 }
 
+void Phototonic::positionImageToolbar() {
+    const QSize s16(16,16);
+    if (m_imageToolBar->orientation() == Qt::Horizontal) {
+        // can we get this back to vertical?
+        if (m_imageToolBar->width() < imageViewer->height()) {
+            m_imageToolBar->setOrientation(Qt::Vertical); // yay
+            m_imageToolBar->adjustSize();
+        } else if (m_imageToolBar->iconSize() != s16 && 17*m_imageToolBar->width()/24 < imageViewer->height()) {
+            m_imageToolBar->setIconSize(s16);
+            m_imageToolBar->setOrientation(Qt::Vertical); // yay
+            m_imageToolBar->adjustSize();
+        }
+    }
+    int tl = m_imageToolBar->height();
+    int vl = imageViewer->height();
+    if (m_imageToolBar->orientation() == Qt::Horizontal) {
+        tl = m_imageToolBar->width();
+        vl = imageViewer->width();
+    }
+    if (tl > vl) {
+        // shrink
+        if (m_imageToolBar->iconSize() != s16) {
+            m_imageToolBar->setIconSize(s16);
+            m_imageToolBar->adjustSize();
+        }
+        if (m_imageToolBar->orientation() == Qt::Vertical &&
+                    m_imageToolBar->height() > imageViewer->height() &&
+                    imageViewer->width() > 4*imageViewer->height()/3) {
+            m_imageToolBar->setOrientation(Qt::Horizontal); // sacrifice position
+            m_imageToolBar->adjustSize();
+        }
+    } else if (m_imageToolBar->iconSize() == s16) {
+        // can we upscale this?
+        if (tl < 17*vl/24) {
+            m_imageToolBar->setIconSize(QSize(24,24));
+            m_imageToolBar->adjustSize();
+        }
+    }
+
+    if (m_imageToolBar->orientation() == Qt::Horizontal)
+        m_imageToolBar->move((imageViewer->width() - m_imageToolBar->width())/2,
+                              imageViewer->height() - 2*m_imageToolBar->height());
+    else
+        m_imageToolBar->move(imageViewer->width() - 2*m_imageToolBar->width(),
+                            (imageViewer->height() - m_imageToolBar->height())/2);
+}
+
 bool Phototonic::eventFilter(QObject *o, QEvent *e)
 {
     if (o == m_menuButton) {
@@ -3588,6 +3642,12 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
                    cutAction->shortcut() == ke->keyCombination()) { // issue a warning for the disabled one
             setStatus(tr("No images selected"));
         }
+        return QMainWindow::eventFilter(o, e);
+    }
+
+    if (e->type() == QEvent::Resize && imageViewer && o == imageViewer->viewport()) {
+        if (m_imageToolBar->isVisible())
+            positionImageToolbar();
         return QMainWindow::eventFilter(o, e);
     }
 
