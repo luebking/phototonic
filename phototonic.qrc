@@ -51,5 +51,8 @@
         <file>images/tag_filter_negate.png</file>
         <file>images/tag_filter_off.png</file>
         <file>images/duplicates.png</file>
+        <file>images/blackout.png</file>
+        <file>images/cartouche.png</file>
+        <file>images/annotate.png</file>
     </qresource>
 </RCC>

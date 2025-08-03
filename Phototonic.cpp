@@ -485,19 +485,12 @@ void Phototonic::createImageViewer() {
     menu = contextMenu->addMenu(tr("Edit"));
     menu->addAction(action("resize"));
     menu->addAction(action("colors"));
-    connect (menu->addAction(tr("Crop")), &QAction::triggered, [=](){
-        imageViewer->setEditMode(ImageViewer::Crop);
-        });
+    menu->addAction(action("crop"));
     menu->addSeparator();
-    connect (menu->addAction(tr("Blackout")), &QAction::triggered, [=](){
-        imageViewer->setEditMode(ImageViewer::Blackout);
-        });
-    connect (menu->addAction(tr("Cartouche")), &QAction::triggered, [=](){
-        imageViewer->setEditMode(ImageViewer::Cartouche);
-        });
-    connect (menu->addAction(tr("Annotate")), &QAction::triggered, [=](){
-        imageViewer->setEditMode(ImageViewer::Annotate);
-        });
+    menu->addAction(action("blackout"));
+    menu->addAction(action("cartouche"));
+    menu->addAction(action("annotate"));
+
 
     menu = contextMenu->addMenu(tr("File"));
     menu->addAction(action("copyTo"));
@@ -884,6 +877,22 @@ void Phototonic::createActions() {
     connect(action, SIGNAL(triggered()), this, SLOT(showColorsDialog()));
     action->setIcon(QIcon(":/images/colors.png"));
 
+    MAKE_ACTION_NOSC(tr("Crop"), "crop");
+    action->setIcon(QIcon(":/images/crop.png"));
+    connect(action, &QAction::triggered, [=](){ imageViewer->setEditMode(ImageViewer::Crop); });
+
+    MAKE_ACTION_NOSC(tr("Blackout"), "blackout");
+    action->setIcon(QIcon(":/images/blackout.png"));
+    connect(action, &QAction::triggered, [=](){ imageViewer->setEditMode(ImageViewer::Blackout); });
+
+    MAKE_ACTION_NOSC(tr("Cartouche"), "cartouche");
+    action->setIcon(QIcon(":/images/cartouche.png"));
+    connect(action, &QAction::triggered, [=](){ imageViewer->setEditMode(ImageViewer::Cartouche);  });
+
+    MAKE_ACTION_NOSC(tr("Annotate"), "annotate");
+    action->setIcon(QIcon(":/images/annotate.png"));
+    connect(action, &QAction::triggered, [=](){ imageViewer->setEditMode(ImageViewer::Annotate); });
+
     m_findDupesAction = MAKE_ACTION_NOSC(tr("Find Duplicate Images"), "findDupes");
     action->setIcon(QIcon(":/images/duplicates.png"));
     action->setCheckable(true);
@@ -1266,7 +1275,10 @@ void Phototonic::createToolBars() {
     m_imageToolBar->addAction(action("rotateMouse"));
     m_imageToolBar->addAction(action("flipH"));
     m_imageToolBar->addAction(action("flipV"));
-//    m_imageToolBar->addAction(action("crop"));
+    m_imageToolBar->addAction(action("crop"));
+    m_imageToolBar->addAction(action("blackout"));
+    m_imageToolBar->addAction(action("cartouche"));
+    m_imageToolBar->addAction(action("annotate"));
     m_imageToolBar->addAction(action("colors"));
     m_imageToolBar->setOrientation(Qt::Vertical);
 
