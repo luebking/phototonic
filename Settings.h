@@ -161,6 +161,7 @@ namespace Settings {
     extern bool upscalePreview;
     extern bool scrollZooms;
     extern int dupeAccuracy;
+    extern QStringList imageToolActions;
 }
 
 #endif // SETTINGS_H

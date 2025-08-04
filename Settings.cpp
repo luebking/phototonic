@@ -141,5 +141,6 @@ namespace Settings {
     bool upscalePreview;
     bool scrollZooms;
     int dupeAccuracy;
+    QStringList imageToolActions;
 }
 

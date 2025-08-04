@@ -1257,33 +1257,13 @@ void Phototonic::createToolBars() {
     /* image */
     m_imageToolBar = new QToolBar(tr("Viewer Toolbar"));
     m_imageToolBar->setObjectName("m_imageToolBar");
-    m_imageToolBar->addAction(action("prevImage"));
-    m_imageToolBar->addAction(action("nextImage"));
-    m_imageToolBar->addAction(action("firstImage"));
-    m_imageToolBar->addAction(action("lastImage"));
-    m_imageToolBar->addAction(action("toggleSlideShow"));
-    m_imageToolBar->addSeparator();
-    m_imageToolBar->addAction(action("save"));
-    m_imageToolBar->addAction(action("saveAs"));
-    m_imageToolBar->addAction(action("moveToTrash"));
-    m_imageToolBar->addAction(action("delete"));
-    m_imageToolBar->addSeparator();
-    m_imageToolBar->addAction(action("zoomIn"));
-    m_imageToolBar->addAction(action("zoomOut"));
-    m_imageToolBar->addAction(action("resetZoom"));
-    m_imageToolBar->addAction(action("origZoom"));
-    m_imageToolBar->addSeparator();
-    m_imageToolBar->addAction(action("resize"));
-    m_imageToolBar->addAction(action("rotateRight"));
-    m_imageToolBar->addAction(action("rotateLeft"));
-    m_imageToolBar->addAction(action("rotateMouse"));
-    m_imageToolBar->addAction(action("flipH"));
-    m_imageToolBar->addAction(action("flipV"));
-    m_imageToolBar->addAction(action("crop"));
-    m_imageToolBar->addAction(action("blackout"));
-    m_imageToolBar->addAction(action("cartouche"));
-    m_imageToolBar->addAction(action("annotate"));
-    m_imageToolBar->addAction(action("colors"));
+    for (const QString &s : Settings::imageToolActions) {
+        const QString ts = s.trimmed();
+        if (ts == "|")
+            m_imageToolBar->addSeparator();
+        else
+            m_imageToolBar->addAction(action(ts));
+    }
     m_imageToolBar->setOrientation(Qt::Vertical);
 
     QPalette pal = m_imageToolBar->palette();
@@ -2537,6 +2517,11 @@ void Phototonic::readSettings() {
     Settings::setWindowIcon = Settings::value(Settings::optionSetWindowIcon, false).toBool();
     Settings::upscalePreview = Settings::value(Settings::optionUpscalePreview, false).toBool();
     Settings::dupeAccuracy = Settings::value("DuplicateHistogramProximity", 60).toInt();
+    const QString defaultTools(
+        "prevImage,nextImage,firstImage,lastImage,toggleSlideShow,|,save,saveAs,moveToTrash,delete,"
+        "|,zoomIn,zoomOut,resetZoom,origZoom,rotateRight,rotateLeft,rotateMouse,flipH,flipV,|,"
+        "resize,crop,blackout,cartouche,annotate,colors");
+    Settings::imageToolActions = Settings::value("ImageToolActions", defaultTools.split(',')).toStringList();
 
     // meehh
     Settings::fileSystemDockVisible = Settings::value(Settings::optionFileSystemDockVisible, true).toBool();
