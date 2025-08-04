@@ -804,15 +804,7 @@ void ImageViewer::setFeedback(QString feedbackString, int timeLimited) {
 void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
     if (fullImagePath == imageFileName)
         return;
-
-    if (m_edited) {
-        if (MessageBox(this, MessageBox::Save|MessageBox::Discard, MessageBox::Save).ask(
-                tr("Save edits?"),tr("The image was edited.\nDo you want to save a copy?"))
-                == MessageBox::Save)
-            saveImageAs();
-    }
-
-    m_edited = false;
+    secureEdits();
     unsetFeedback();
     newImage = false;
     fullImagePath = imageFileName;
@@ -882,7 +874,7 @@ void ImageViewer::preload(QString imageFileName) {
     }
 }
 
-void ImageViewer::clearImage() {
+void ImageViewer::secureEdits() {
     if (m_edited) {
         if (MessageBox(this, MessageBox::Save|MessageBox::Discard, MessageBox::Save).ask(
                 tr("Save edits?"),tr("The image was edited.\nDo you want to save a copy?"))
@@ -890,6 +882,10 @@ void ImageViewer::clearImage() {
             saveImageAs();
         m_edited = false;
     }
+}
+
+void ImageViewer::clearImage() {
+    secureEdits();
     fullImagePath.clear();
     origImage.load(":/images/no_image.png");
     viewerImage = origImage;

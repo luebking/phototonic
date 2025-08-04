@@ -60,6 +60,7 @@ public:
     void refresh();
     void resizeImage(QPoint focus = QPoint(-1, -1));
     void scaleImage(QSize newSize);
+    void secureEdits();
     void setBackgroundColor();
     void setContextMenu(QMenu *);
     void setCrossfade(bool yesno);

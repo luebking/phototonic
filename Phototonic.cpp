@@ -1369,6 +1369,8 @@ void Phototonic::createImagePreviewDock() {
                 int currentRow = thumbsViewer->currentIndex().row();
                 if (currentRow > -1)
                     imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow), thumbsViewer->icon(currentRow).pixmap(THUMB_SIZE_MAX).toImage());
+            } else {
+                QTimer::singleShot(100, this, [=](){if (!imageViewer->isVisible()) imageViewer->clearImage();});
             }
         }
     });
@@ -2974,6 +2976,9 @@ void Phototonic::hideViewer() {
     if (imagePreviewDock->isFloating()) {
         imagePreviewDock->setWindowState(imagePreviewDock->windowState() & ~Qt::WindowFullScreen);
     }
+    if (!Settings::imagePreviewDockVisible)
+        imageViewer->secureEdits();
+
     setWindowState(windowState() & ~Qt::WindowFullScreen);
     imageViewer->setCursorHiding(false);
 
