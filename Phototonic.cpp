@@ -2052,13 +2052,7 @@ void Phototonic::pasteThumbs(QString destDir) {
     copyCutThumbsCount = 0; // setting this here avoids nested pastes
     int latestRow = CopyOrMove::list(thumbsViewer, destDir, pasteInCurrDir, this);
     int n = 0;
-    if (pasteInCurrDir) {
-        n = Settings::copyCutFileList.size();
-        QFileInfoList infos;
-        for (const QString &path : Settings::copyCutFileList)
-            infos << QFileInfo(path);
-        thumbsViewer->addThumbs(infos);
-    } else if (thumbsViewer->model()->rowCount()) {
+    if (!pasteInCurrDir && thumbsViewer->model()->rowCount()) {
         n = Settings::copyCutIndexList.size();
         thumbsViewer->setCurrentIndex(qMin(latestRow, thumbsViewer->model()->rowCount() - 1));
     }

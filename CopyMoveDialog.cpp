@@ -325,6 +325,7 @@ int CopyOrMove::list(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurr
         if (resolveConflicts(collisions, parent) == QDialog::Rejected)
             return -1;
     }
+    QFileInfoList newThumbs;
     for (int i = pasteInCurrDir ? 0 : n-1; pasteInCurrDir ? i < n : i >= 0; pasteInCurrDir ? ++i : --i) {
         QString sourceFile = pasteInCurrDir ? Settings::copyCutFileList.at(i)
                                             : thumbView->fullPathOf(Settings::copyCutIndexList.at(i).row());
@@ -357,18 +358,19 @@ int CopyOrMove::list(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurr
 
                 pdlg->setLabelText(text);
             }
+            thumbView->addThumbs(newThumbs);
+            newThumbs.clear();
             QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
             duration.restart();
         }
 
         if (QFileInfo::exists(destFile)) {
             destFile = collisions.value(sourceFile);
-            if (destFile.isEmpty())
+            if (destFile.isEmpty() || sourceFile == destFile)
                 continue; // skipped
             if (QFileInfo::exists(destFile)) { // overwrite
                 if (pasteInCurrDir) {
                     QModelIndexList indexList = thumbView->model()->match(thumbView->model()->index(0, 0), ThumbsViewer::FileNameRole, destFile);
-                    qDebug() << "pasteInCurrDir" << indexList.size();
                     if (indexList.size())
                         thumbView->model()->removeRow(indexList.at(0).row());
                 }
@@ -379,11 +381,14 @@ int CopyOrMove::list(ThumbsViewer *thumbView, QString &destDir, bool pasteInCurr
         if (!res || (pdlg && pdlg->wasCanceled()))
             break;
 
-        if (pasteInCurrDir)
+        if (pasteInCurrDir) {
             Settings::copyCutFileList[i] = destFile;
-        else
+            newThumbs << QFileInfo(destFile);
+        } else {
             rowList.append(Settings::copyCutIndexList.at(i).row());
+        }
     }
+    thumbView->addThumbs(newThumbs);
 
     int latestRow = -1;
     if (!pasteInCurrDir) {
