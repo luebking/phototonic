@@ -177,14 +177,15 @@ void ImageViewer::lockZoom(bool locked) {
     setFeedback(locked ? tr("Zoom Locked") : tr("Zoom Unlocked"));
 }
 
-void ImageViewer::zoomTo(float goal, QPoint focus) {
+void ImageViewer::zoomTo(float goal, QPoint focus, int duration) {
+    static QVariantAnimation *zoominator = nullptr;
+    if (goal == m_zoom && (!zoominator || zoominator->state() != QAbstractAnimation::Running))
+        return; // idempotent
     if (focus.x() < 0)
         focus = rect().center();
     m_zoomMode = ZoomOriginal;
-    static QVariantAnimation *zoominator = nullptr;
     if (!zoominator) {
         zoominator = new QVariantAnimation(this);
-        zoominator->setDuration(125);
         connect(zoominator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
             if (zoominator->state() != QAbstractAnimation::Running)
                 return;
@@ -193,13 +194,14 @@ void ImageViewer::zoomTo(float goal, QPoint focus) {
         });
         connect(zoominator, &QObject::destroyed, [=]() {zoominator = nullptr;});
     }
+    zoominator->setDuration(duration);
     zoominator->setProperty("zoomfocus", focus);
     zoominator->setStartValue(m_zoom);
     zoominator->setEndValue(goal);
     zoominator->start();
 }
 
-void ImageViewer::zoomTo(ImageViewer::ZoomMode mode, QPoint focus) {
+void ImageViewer::zoomTo(ImageViewer::ZoomMode mode, QPoint focus, int duration) {
     QSize imageSize = animation ? animation->currentPixmap().size() : imageWidget->image().size();
     if (imageSize.isEmpty())
         return;
@@ -217,8 +219,8 @@ void ImageViewer::zoomTo(ImageViewer::ZoomMode mode, QPoint focus) {
     } else {
         setFeedback(tr("Original Size"));
     }
-    zoomTo(factor, focus);
-    QTimer::singleShot(125, this, [=]() {m_zoomMode = mode;});
+    zoomTo(factor, focus, duration);
+    QTimer::singleShot(duration, this, [=]() {m_zoomMode = mode;});
 }
 
 void ImageViewer::resizeImage(QPoint focus) {
@@ -864,7 +866,16 @@ void ImageViewer::preload(QString imageFileName) {
         m_preloadedPath.clear();
         return; // no preloading animations
     }
-    if (imageReader.size().isValid() && imageReader.read(&m_preloadedImage)) {
+    bool imageOk = false;
+    if (imageReader.size().isValid()) {
+        QThread *thread = QThread::create([&](){imageOk = imageReader.read(&m_preloadedImage);});
+        thread->start();
+        while (!thread->wait(15)) {
+            QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+        }
+        thread->deleteLater();
+    }
+    if (imageOk) {
         if (Settings::exifRotationEnabled) {
             m_preloadedImage = m_preloadedImage.transformed(Metadata::transformation(fullImagePath), Qt::SmoothTransformation);
         }

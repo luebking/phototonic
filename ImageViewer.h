@@ -72,8 +72,8 @@ public:
     void slideImage(QPoint delta);
     float zoom() const { return m_zoom; }
     ZoomMode zoomMode() const { return m_zoomMode; }
-    void zoomTo(ZoomMode mode, QPoint focus = QPoint(-1,-1));
-    void zoomTo(float percent, QPoint focus = QPoint(-1,-1));
+    void zoomTo(ZoomMode mode, QPoint focus = QPoint(-1,-1), int duration = 125);
+    void zoomTo(float percent, QPoint focus = QPoint(-1,-1), int duration = 125);
 
     QPoint contextSpot();
 

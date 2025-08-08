@@ -2861,6 +2861,10 @@ void Phototonic::slideShowHandler() {
         } else {
             thumbsViewer->setCurrentIndex(next);
         }
+#if 0 // poor man's ken burns - disabled for now
+        if (imageViewer->crossfade() && !action("keepZoom")->isChecked())
+            QTimer::singleShot(300, this, [=]() {imageViewer->zoomTo(ImageViewer::ZoomToFill, QPoint(-1,-1), Settings::slideShowDelay * 1000.0 - 500);});
+#endif
     }
     last = thumbsViewer->currentIndex().row();
 
@@ -2909,7 +2913,7 @@ void Phototonic::slideShowHandler() {
         next = Settings::wrapImageList ? -1 : -2;
 
     if (next > -1 && next < thumbsViewer->model()->rowCount())
-        QTimer::singleShot(imageViewer->crossfade() ? 500 : 0, this, [=]() {imageViewer->preload(thumbsViewer->fullPathOf(next));});
+        QTimer::singleShot(0, this, [=]() {imageViewer->preload(thumbsViewer->fullPathOf(next));});
 }
 
 void Phototonic::loadImage(SpecialImageIndex idx) {
