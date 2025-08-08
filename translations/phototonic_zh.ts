@@ -164,7 +164,7 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="117"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>移动</translation>
     </message>
     <message>
         <source>OK</source>
@@ -239,7 +239,7 @@
         <location filename="../ExternalAppsDialog.cpp" line="56"/>
         <source>Pick Executable...</source>
         <extracomment>open an existing executable</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>选择可执行程序...</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="59"/>
@@ -408,8 +408,9 @@
     <message numerus="yes">
         <location filename="../Tags.cpp" line="611"/>
         <source>Delete %n selected tags(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>是否删除%n个选中的标记？</numerusform>
+            <numerusform>是否删除%n个选中的标记？</numerusform>
         </translation>
     </message>
     <message>
@@ -515,17 +516,17 @@
         <location filename="../ImageViewer.cpp" line="279"/>
         <location filename="../ImageViewer.cpp" line="1052"/>
         <source>New image size: %1x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>新的图像大小: %1x%2</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="695"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h1&gt;警告&lt;/h1&gt;原始图像大小 %1x%2 超出限制&lt;br&gt;缩减到 %3x%4&lt;br&gt;&lt;h3&gt;保存时会保留较小的图像!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="971"/>
         <source>Doubleclick to crop, right click to abort</source>
-        <translation type="unfinished"></translation>
+        <translation>双击确认裁剪，右键取消</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1114"/>
@@ -659,17 +660,17 @@
     <message>
         <location filename="../MessageBox.cpp" line="79"/>
         <source>Image Viewer and Organizer</source>
-        <translation type="unfinished"></translation>
+        <translation>图像浏览器</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="80"/>
         <source>Home page and bug reports</source>
-        <translation type="unfinished"></translation>
+        <translation>首页和BUG报告</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="86"/>
         <source>Special thanks to our contributers.</source>
-        <translation type="unfinished"></translation>
+        <translation>特别感谢我们的贡献者。</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="89"/>
@@ -725,27 +726,27 @@
         <location filename="../Phototonic.cpp" line="284"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>文件列表</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="421"/>
         <source>Navigate</source>
-        <translation type="unfinished"></translation>
+        <translation>导航</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="439"/>
         <source>Flip and Flop and Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>垂直翻转、水平翻转和旋转</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="451"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="458"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>文件</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="470"/>
@@ -910,7 +911,7 @@
         <location filename="../Phototonic.cpp" line="1123"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>过滤 - 试一试&quot;/?&quot;...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
@@ -921,17 +922,17 @@
     <message>
         <location filename="../Phototonic.cpp" line="1829"/>
         <source>No crop area defined</source>
-        <translation type="unfinished"></translation>
+        <translation>未指定裁剪区域</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1841"/>
         <source>Create backups?</source>
-        <translation type="unfinished"></translation>
+        <translation>创建备份？</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1842"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>未定义全局保存目录，图片将会被覆盖.&lt;h3&gt;是否创建备份?&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1847"/>
@@ -941,22 +942,22 @@
     <message>
         <location filename="../Phototonic.cpp" line="1847"/>
         <source>Overwrite the original files</source>
-        <translation type="unfinished"></translation>
+        <translation>覆盖原有文件</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1850"/>
         <source>Save the transformed images to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>保存转换后的图像到%1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1853"/>
         <source>&lt;h3&gt;Perform batch transformation?&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;进行批量转换?&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1854"/>
         <source>&lt;ul&gt;&lt;li&gt;Rotate %1 images by %2°&lt;/li&gt;&lt;li&gt;Crop them to %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;ul&gt;&lt;li&gt;把%1个图像旋转%2°&lt;/li&gt;&lt;li&gt;裁剪到%3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <source>Reverse Order</source>
@@ -1031,7 +1032,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="618"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>按颜色排序</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="734"/>
@@ -1077,7 +1078,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="765"/>
         <source>Set Wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>设置墙纸</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="768"/>
@@ -1584,22 +1585,22 @@
     <message>
         <location filename="../Phototonic.cpp" line="454"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>裁剪</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="455"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>使用Ctrl+鼠标左键选定裁剪区域</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="617"/>
         <source>Sort by Brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>按亮度排序</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="619"/>
         <source>Reverse Sort Order</source>
-        <translation type="unfinished"></translation>
+        <translation>排序反转</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="808"/>
@@ -2434,8 +2435,9 @@
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1085"/>
         <source>%n of %1 image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n/%l张图片</numerusform>
+            <numerusform>%n/%l张图片</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -2455,14 +2457,16 @@
         <location filename="../ThumbsViewer.cpp" line="1087"/>
         <source>%n image(s)</source>
         <translation>
-            <numerusform>%n 图像</numerusform>
+            <numerusform>%n 张图片</numerusform>
+            <numerusform>%n 张图片</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="224"/>
         <source>Selected %1 of %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>已选%1/%n张图片</numerusform>
+            <numerusform>已选%1/%n张图片</numerusform>
         </translation>
     </message>
     <message>
