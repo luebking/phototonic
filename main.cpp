@@ -28,7 +28,7 @@
 #include <signal.h>
 
 
-static const QString singletonPath = QDir::tempPath() + QDir::separator() + ".singleton.Phototonic";
+static QString singletonPath = QDir::tempPath() + QDir::separator() + ".singleton.Phototonic.";
 
 #ifndef Q_OS_WIN
 static void sighandler(int signum) {
@@ -36,6 +36,7 @@ static void sighandler(int signum) {
         case SIGABRT:
         case SIGINT:
         case SIGSEGV:
+        case SIGTERM:
             QFile::remove(singletonPath);
             break;
         default:
@@ -77,15 +78,33 @@ int main(int argc, char *argv[]) {
     Phototonic *futuretonic = nullptr;
     bool isSingleton = false;
     if (parser.isSet(singletonOption)) {
-        QFile singleton(singletonPath);
-        if (singleton.exists()) { // slave mode
+        QStringList singletons = QDir::temp().entryList(QStringList() << ".singleton.Phototonic.*", QDir::Files|QDir::Hidden|QDir::Writable);
+#ifndef Q_OS_WIN
+        for (QStringList::iterator it = singletons.begin(); it != singletons.end();) {
+            bool ok;
+            qint64 pid = it->section('.', -1).toLongLong(&ok, 10);
+            if (!ok || kill(pid, 0)) {
+                qWarning() << "removing stale" << *it;
+                QFile::remove(QDir::tempPath() + QDir::separator() + *it);
+                it = singletons.erase(it);
+            } else {
+                ++it;
+            }
+        }
+#endif
+        if (!singletons.isEmpty()) { // slave mode
+            QFile singleton(QDir::tempPath() + QDir::separator() + singletons.first());
             if (singleton.open(QIODevice::WriteOnly | QIODevice::Text)) {
                 QStringList args = parser.positionalArguments();
                 singleton.write(args.size() ? args.at(0).toUtf8() : "activate");
                 singleton.close();
                 return 0;
             }
-        } else if (singleton.open(QIODevice::WriteOnly)) { // master mode
+            return 1;
+        }
+        singletonPath += QString::number(QCoreApplication::applicationPid());
+        QFile singleton(singletonPath);
+        if (singleton.open(QIODevice::WriteOnly)) { // master mode
             singleton.close(); // created file
             isSingleton = true;
             QFileSystemWatcher *watcher = new QFileSystemWatcher(QStringList() << singletonPath, &QApp);
@@ -107,7 +126,7 @@ int main(int argc, char *argv[]) {
             sa.sa_handler = sighandler;
             sigemptyset(&sa.sa_mask);
             sa.sa_flags = SA_RESTART|SA_RESETHAND;
-            for (int signum : {SIGABRT,SIGINT,SIGSEGV}) {
+            for (int signum : {SIGABRT,SIGINT,SIGSEGV,SIGTERM}) {
                 if (sigaction(signum, &sa, NULL) == -1)
                     qDebug() << "no signal handling for" << signum;
             }
