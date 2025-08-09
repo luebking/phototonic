@@ -22,6 +22,7 @@
 class CropRubberBand;
 class ImageWidget;
 class QMovie;
+class QThread;
 #include <QLabel>
 #include <QPointer>
 #include <QScrollArea>
@@ -118,6 +119,7 @@ private:
     QImage m_preloadedImage;
     QString m_preloadedPath;
     QString m_preloadPath;
+    QThread *m_preloadThread;
     bool m_loading;
     bool m_crossfade;
     QTimer *mouseMovementTimer;

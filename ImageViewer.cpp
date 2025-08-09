@@ -41,6 +41,8 @@
 #include <QWheelEvent>
 #include <QVariantAnimation>
 
+#include <unistd.h>
+
 #include "CropDialog.h"
 #include "CropRubberband.h"
 #include "ImageWidget.h"
@@ -170,6 +172,7 @@ ImageViewer::ImageViewer(QWidget *parent) : QScrollArea(parent) {
 
     newImage = false;
     cropRubberBand = 0;
+    m_preloadThread = nullptr;
 }
 
 void ImageViewer::lockZoom(bool locked) {
@@ -686,11 +689,38 @@ void ImageViewer::reload() {
     delete animation;
     animation = nullptr;
 
+    auto loadThreaded = [=](QThread *thread) {
+        s_busy = true;
+        while (!thread->wait(30)) {
+            QApplication::processEvents();
+            if (s_abort) {
+                thread->terminate();
+                thread->wait();
+                break;
+            }
+        }
+        s_busy = false;
+        thread->deleteLater();
+        if (s_abort) {
+            s_abort = false;
+            return false;
+        }
+        return true;
+    };
+
     // It's not a movie
     if (fullImagePath == m_preloadedPath) {
-        viewerImage = origImage = m_preloadedImage;
+        bool ok = true;
+        if (m_preloadThread) {
+            ok = loadThreaded(m_preloadThread);
+            m_preloadThread = nullptr; // clean up
+        }
+        if (ok)
+            viewerImage = origImage = m_preloadedImage;
         m_preloadedImage = QImage();
         m_preloadedPath.clear();
+        if (!ok)
+            return;
     } else if (imageReader.size().isValid()) {
         QSize sz = imageReader.size();
         if (sz.width() * sz.height() > 8192*8192) { // allocation limit
@@ -714,21 +744,8 @@ void ImageViewer::reload() {
         } else {
             QThread *thread = QThread::create([&](){imageOk = imageReader.read(&origImage);});
             thread->start();
-            s_busy = true;
-            while (!thread->wait(30)) {
-                QApplication::processEvents();
-                if (s_abort) {
-                    thread->terminate();
-                    thread->wait();
-                    break;
-                }
-            }
-            s_busy = false;
-            thread->deleteLater();
-            if (s_abort) {
-                s_abort = false;
+            if (!loadThreaded(thread))
                 return;
-            }
         }
 
         if (imageOk) {
@@ -851,6 +868,15 @@ void ImageViewer::preload(QString imageFileName) {
         m_preloadPath = imageFileName;
         return;
     }
+    if (m_preloadThread) {
+        while (!m_preloadThread->wait(15)) { // we're already preloading stuff, so maybe wait a moment…
+            QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+            if (!m_preloadThread)
+                break; // we've lost this to the main loader or below
+        }
+        QTimer::singleShot(0, this, [=](){ preload(imageFileName); }); // allow event processing, notably reload
+        return;
+    }
 
     m_preloadPath = QString();
     m_preloadedPath = imageFileName;
@@ -861,25 +887,29 @@ void ImageViewer::preload(QString imageFileName) {
     }*/
 
     QImageReader imageReader(m_preloadedPath);
-    if (imageReader.supportsAnimation()) {
+    if (m_preloadedPath.isEmpty() || imageReader.supportsAnimation()) {
         m_preloadedImage = QImage();
         m_preloadedPath.clear();
-        return; // no preloading animations
+        return; // no preloading of animations
     }
     bool imageOk = false;
     if (imageReader.size().isValid()) {
-        QThread *thread = QThread::create([&](){imageOk = imageReader.read(&m_preloadedImage);});
-        thread->start();
-        while (!thread->wait(15)) {
+        m_preloadThread = QThread::create([&](){
+//            usleep(8000000);
+            imageOk = imageReader.read(&m_preloadedImage);
+            if (imageOk && Settings::exifRotationEnabled)
+                m_preloadedImage = m_preloadedImage.transformed(Metadata::transformation(fullImagePath), Qt::SmoothTransformation);
+            });
+        m_preloadThread->start();
+        while (!m_preloadThread->wait(15)) {
             QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+            if (!m_preloadThread)
+                return; // we've been taken over by the main loader
         }
-        thread->deleteLater();
+        m_preloadThread->deleteLater();
+        m_preloadThread = nullptr;
     }
-    if (imageOk) {
-        if (Settings::exifRotationEnabled) {
-            m_preloadedImage = m_preloadedImage.transformed(Metadata::transformation(fullImagePath), Qt::SmoothTransformation);
-        }
-    } else {
+    if (!imageOk) {
         m_preloadedImage = QImage();
         m_preloadedPath.clear();
     }
