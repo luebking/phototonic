@@ -352,7 +352,9 @@
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
 · %u and %tu with their respective URIs (file:///path/to/file)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f et %tf seront remplacés par le chemin de l&apos;image unique et celui de sa miniature
+· %u et %tu seront remplacés par leurs URI respectifs (file:///chemin/vers/fichier)
+· par défaut, les images sélectionnées sont ajoutés à la fin de la commande</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="128"/>
@@ -393,17 +395,17 @@
         <location filename="../Tags.cpp" line="58"/>
         <location filename="../Tags.cpp" line="73"/>
         <source>Show only library tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher uniquement les tags de la photothèque</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="65"/>
         <source>Show only relevant tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher uniquement les tags pertinents</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher tous les tags</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="98"/>
@@ -698,27 +700,27 @@
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished">Zoom verrouillé</translation>
+        <translation>Zoom verrouillé</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="168"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished">Zoom déverrouillé</translation>
+        <translation>Zoom déverrouillé</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="202"/>
         <source>Fit View</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajuster à la vue</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="207"/>
         <source>Fill View</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplir la vue</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="209"/>
         <source>Original Size</source>
-        <translation type="unfinished">Taille d&apos;origine</translation>
+        <translation>Taille originale</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="971"/>
@@ -1505,7 +1507,7 @@
         <location filename="../Phototonic.cpp" line="284"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished">Liste de fichiers</translation>
+        <translation>Liste de fichiers</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="421"/>
@@ -1624,7 +1626,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="618"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Trier par couleur</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="619"/>
@@ -1745,13 +1747,13 @@
         <location filename="../Phototonic.cpp" line="1123"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Filtrer - essayez &quot;/?&quot;...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1126"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for &lt;b&gt;black, white, dark, bright, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[sous-chaîne] [/ contrainte [/ autres contraintes]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5j &amp;lt; 1M / &amp;lt; 10ko&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, plus vieux que 5 jours mais plus jeune qu’un mois – ou inférieur à 10 ko&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus grand que/Après : &amp;gt;&lt;/li&gt;&lt;li&gt;Plus petit que/Avant : &amp;lt;&lt;/li&gt;&lt;li&gt;L’âge exact ou la taille (arrondie) est autrement implicite ou explicite avec : =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (AAAA-MM-JJ) ou relatives (5m:h:j:s:M:a)&lt;/li&gt;&lt;li&gt;Les tailles ont des suffixes 4ko:Mo:Go ou 4MP (méga-pixels)&lt;/li&gt;&lt;li&gt;Les dimensions ont un &quot;x&quot; préfixé, infixé ou suffixé ([largeur]x[hauteur])&lt;/li&gt;&lt;li&gt;La variance chromatique est suffixée [0-255]cr (les valeurs réelles dépassent rarement 100)&lt;/li&gt;&lt;li&gt;La luminance est suffixée [0,0-1,0] ou [0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Tous les suffixes ne tiennent pas compte de la casse, sauf m|minute et M|mois&lt;/i&gt;&lt;br&gt;Les &quot;/&quot; suivants démarrent un nouveau groupe de conditions suffisantes, la correspondance de la sous-chaîne est optionnelle.&lt;hr&gt;En plus, vous pouvez filtrer par &lt;b&gt;noir, blanc, sombre, clair, monochrome, gris&lt;/b&gt; ainsi que par les couleurs&lt;br&gt;&lt;b&gt;rouge, orange, jaune, lime, vert, menthe, cyan, azur, bleu, violet, magenta, rose&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3290"/>
@@ -2294,7 +2296,7 @@
     <message>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="vanished">&lt;h2&gt;[sous-chaînes] [/ critère [/ autre critère]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt&#x202f;; 5d &amp;lt&#x202f;; 1M / &amp;lt&#x202f;; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, remonte à 5 jours de plus mais est plus récent qu&apos;un mois - ou moins de 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus gros que/Après&#x202f;: &amp;gt&#x202f;;&lt;/li&gt;&lt;li&gt;Plus léger que/Avant&#x202f;: &amp;lt&#x202f;;&lt;/li&gt;&lt;li&gt;L&apos;âge exact ou le poids (arrondi) est sinon implicite ou explicite avec&#x202f;: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (YYYY-MM-DD) ou relatives (5m&#x202f;:h&#x202f;:d&#x202f;:w&#x202f;:M&#x202f;:y)&lt;/li&gt;&lt;li&gt;Les poids sont définis avec 4kB&#x202f;:MB&#x202f;:GB ou 4MP (méga-pixel)&lt;/li&gt;&lt;li&gt;Les dimensions utilisent le séparateur &quot;x&quot; ([largeur]x[hauteur])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Toutes les unités ignorent la casse sauf m|inute et M|ois&lt;/i&gt;&lt;br&gt;&quot;/&quot; démarre un nouveau groupe de critères, la correspondance de sous-chaînes est facultative.</translation>
+        <translation type="vanished">&lt;h2&gt;[sous-chaînes] [/ critère [/ autre critère]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt ; 5d &amp;lt ; 1M / &amp;lt ; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, remonte à 5 jours de plus mais est plus récent qu&apos;un mois - ou moins de 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus gros que/Après : &amp;gt ;&lt;/li&gt;&lt;li&gt;Plus léger que/Avant : &amp;lt ;&lt;/li&gt;&lt;li&gt;L&apos;âge exact ou le poids (arrondi) est sinon implicite ou explicite avec : =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (YYYY-MM-DD) ou relatives (5m :h :d :w :M :y)&lt;/li&gt;&lt;li&gt;Les poids sont définis avec 4kB :MB :GB ou 4MP (méga-pixel)&lt;/li&gt;&lt;li&gt;Les dimensions utilisent le séparateur &quot;x&quot; ([largeur]x[hauteur])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Toutes les unités ignorent la casse sauf m|inute et M|ois&lt;/i&gt;&lt;br&gt;&quot;/&quot; démarre un nouveau groupe de critères, la correspondance de sous-chaînes est facultative.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1824"/>
@@ -2893,22 +2895,22 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="275"/>
         <source>&lt;p&gt;Bangs allow you to use external commands to generate the list of shown images.&lt;br&gt;The main purpose is to query databases like locate, baloo or tracker, but anything that can generate a list of image files is suitable&lt;/p&gt;&lt;p&gt;The token &lt;b&gt;%s&lt;/b&gt; in the command will be replaced with the parameter.&lt;/p&gt;&lt;p&gt;Eg. for plocate, using the shortcut &lt;i&gt;locate&lt;/i&gt; and the command&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;allows you to enter &lt;i&gt;locate:waldo&lt;/i&gt; to display indexed jpg&apos;s and png&apos;s of waldo.&lt;/p&gt;&lt;p&gt;Phototonic tests the files for existence and will remove duplicates (including file and directory symlinks.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Les bangs vous permettent d’utiliser des commandes externes pour générer la liste des images affichées.&lt;br&gt;Le but principal est d’interroger des bases de données comme locate, baloo ou tracker, mais toute commande pouvant générer une liste de fichiers image convient&lt;/p&gt;&lt;p&gt;Le jeton &lt;b&gt;%s&lt;/b&gt; dans la commande sera remplacé par le paramètre.&lt;/p&gt;&lt;p&gt;Par exemple, pour plocate, en utilisant le raccourci &lt;i&gt;locate&lt;/i&gt; et la commande&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;vous pouvez entrer &lt;i&gt;locate:waldo&lt;/i&gt; pour afficher les jpg et png indexés contenant &quot;waldo&quot;.&lt;/p&gt;&lt;p&gt;Phototonic vérifie l’existence des fichiers et supprimera les doublons (y compris les liens symboliques vers fichiers et répertoires).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Shortcut</source>
-        <translation type="unfinished">Raccourci</translation>
+        <translation>Raccourci</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="293"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Commande</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="373"/>
         <source>Bangs</source>
-        <translation type="unfinished"></translation>
+        <translation>Bangs</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="450"/>
@@ -3343,12 +3345,12 @@
     <message>
         <location filename="../main.cpp" line="35"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers ou répertoire à ouvrir, &quot;-&quot; pour les lire depuis stdin.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="36"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
-        <translation type="unfinished"></translation>
+        <translation>[FICHIER...] | [DOSSIER] | [-]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="39"/>
@@ -3373,7 +3375,7 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancer une seule instance de Phototonic ou ouvrir des fichiers dans une instance déjà en cours d’exécution.</translation>
     </message>
 </context>
 </TS>

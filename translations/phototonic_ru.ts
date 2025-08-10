@@ -1420,7 +1420,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="1830"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Задайте зону кадрирования&lt;/h3&gt;&lt;p&gt;Откройте изображение, возможно даже при наклоне.&lt;br&gt;Потом нажмите и удерживайте Ctrl чтобы выделить зону кадрирования.&lt;br&gt; &lt;b&gt;Не&lt;/b&gt; применяйте кадрирование двойным щелчком мыши!&lt;br&gt;Если вы не используйте предпросмотр, выйдите из просмотрщика.&lt;/p&gt;Теперь вы можете повторить данное действие на нескольких изображениях.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1937"/>
@@ -1501,7 +1501,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="660"/>
         <source>Hide Dock Title Bars</source>
-        <translation type="unfinished"></translation>
+        <translation>Скрыть заголовки доков</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="665"/>
@@ -1610,22 +1610,22 @@
     <message>
         <location filename="../Phototonic.cpp" line="439"/>
         <source>Flip and Flop and Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Отразить и повернуть</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="454"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Кадрировать</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="455"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите зону кадрирования используя Ctrl + левую кнопку мыши</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="458"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="476"/>
@@ -1646,147 +1646,147 @@
     <message>
         <location filename="../Phototonic.cpp" line="520"/>
         <source>Close Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть просмотрщик</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="558"/>
         <source>Show classic thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать классические миниатюры</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="563"/>
         <source>Show square thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать квадратные миниатюры</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="568"/>
         <source>Show compact thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать компактные миниатюры</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="579"/>
         <location filename="../Phototonic.cpp" line="2027"/>
         <location filename="../Phototonic.cpp" line="2148"/>
         <source>Move to Trash</source>
-        <translation type="unfinished"></translation>
+        <translation>Переместить в корзину</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="595"/>
         <source>Copy Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Копировать изображение</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="596"/>
         <source>Paste Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Вставить изображение</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="601"/>
         <location filename="../Phototonic.cpp" line="3244"/>
         <location filename="../Phototonic.cpp" line="3247"/>
         <source>Remove Metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>Убрать метаданные</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="611"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировать по имени</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="612"/>
         <location filename="../Phototonic.cpp" line="613"/>
         <source>Sort by Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировать по времени</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="614"/>
         <source>Sort by Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировать по размеру</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="615"/>
         <source>Sort by Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировать по типу</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="616"/>
         <source>Sort by Similarity</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировать по схожести</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="617"/>
         <source>Sort by Brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировать по яркости</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="618"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировать по цвету</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="619"/>
         <source>Reverse Sort Order</source>
-        <translation type="unfinished"></translation>
+        <translation>Обратный порядок сортировки</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="655"/>
         <source>Small Toolbar Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Маленькие значки панели инструментов</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="678"/>
         <source>Include Sub-directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Включать подпапки</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="688"/>
         <source>New Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая папка</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="692"/>
         <source>Set Save Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить папку сохранения</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="738"/>
         <source>Next Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Следующее изображение</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="742"/>
         <source>Previous Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Предыдущее изображение</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="746"/>
         <source>First Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Первое изображение</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="750"/>
         <source>Last Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Последнее изображение</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="754"/>
         <source>Random Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Случайное изображение</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="757"/>
         <source>View Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Просмотреть изображение</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="765"/>
         <source>Set Wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить обои</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="772"/>
         <source>External Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Внешние приложения</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="780"/>
@@ -1796,22 +1796,22 @@
     <message>
         <location filename="../Phototonic.cpp" line="808"/>
         <source>Rotate 90° CCW</source>
-        <translation type="unfinished"></translation>
+        <translation>Повернуть на 90° влево</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="812"/>
         <source>Rotate 90° CW</source>
-        <translation type="unfinished"></translation>
+        <translation>Повернуть на 90° вправо</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="816"/>
         <source>Rotate with mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>Повернуть мышкой</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="821"/>
         <source>Or try holding Shift</source>
-        <translation type="unfinished"></translation>
+        <translation>Или попробуйте задержать Shift</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="832"/>
@@ -1821,17 +1821,17 @@
     <message>
         <location filename="../Phototonic.cpp" line="840"/>
         <source>Rotate 1° CCW</source>
-        <translation type="unfinished"></translation>
+        <translation>Повернуть на 1° влево</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="843"/>
         <source>Rotate 1° CW</source>
-        <translation type="unfinished"></translation>
+        <translation>Повернуть на 1° вправо</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="872"/>
         <source>Keep Transformations</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить преобразования</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="876"/>
