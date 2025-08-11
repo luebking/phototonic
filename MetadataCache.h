@@ -30,6 +30,7 @@ namespace Metadata {
     void data(const QString &imageFullPath, DataTriple *EXIF = nullptr, DataTriple *IPTC = nullptr, DataTriple *XMP = nullptr);
     bool setData(const QString &imageFullPath, DataPair EXIF, DataPair IPTC, DataPair XMP);
     void dropCache();
+    bool gpsData(const QString &imageFullPath, double &lat, double &lon, double &alt);
     QTransform transformation(const QString &imageFullPath);
     void forget(const QString &imageFileName);
     void rename(const QString &oldImageFileName, const QString &newImageFileName);

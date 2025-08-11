@@ -1519,8 +1519,17 @@ void Phototonic::runExternalApp() {
             execCommand.replace("%tf", thumbsViewer->locateThumbnail(path), Qt::CaseInsensitive);
         else if (execCommand.contains("%tu", Qt::CaseInsensitive))
             execCommand.replace("%tu", QUrl::fromLocalFile(thumbsViewer->locateThumbnail(path)).url(), Qt::CaseInsensitive);
-        else
+        else if (execCommand.contains("%lat", Qt::CaseInsensitive) ||
+                 execCommand.contains("%lon", Qt::CaseInsensitive) ||
+                 execCommand.contains("%alt", Qt::CaseInsensitive)) {
+            double lat, lon, alt;
+            Metadata::gpsData(path, lat, lon, alt);
+            execCommand.replace("%lat", QString::number(lat), Qt::CaseInsensitive);
+            execCommand.replace("%lon", QString::number(lon), Qt::CaseInsensitive);
+            execCommand.replace("%alt", QString::number(alt), Qt::CaseInsensitive);
+        } else {
             --parameter;
+        }
         if (!parameter)
             execCommand += " \"" + path + "\"";
     };

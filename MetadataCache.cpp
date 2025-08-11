@@ -286,6 +286,80 @@ void data(const QString &imageFullPath, Metadata::DataTriple *EXIF, Metadata::Da
     }
 }
 
+bool gpsData(const QString &imageFullPath, double &lat, double &lon, double &alt) {
+    lat = lon = alt = 0.0;
+    Exiv2ImagePtr exifImage;
+    try {
+        exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
+        exifImage->readMetadata();
+    }
+    catch (const Exiv2::Error &error) {
+        qWarning() << "EXIV2:" << error.what();
+        return false;
+    }
+    Exiv2::ExifData &exifData = exifImage->exifData();
+    if (exifData.empty())
+        return false;
+
+    auto rat2dec = [=](const QString s) {
+        QStringList t = s.split("/", Qt::SkipEmptyParts);
+        if (t.size() != 2)
+            return 0.0; // wtf
+        const double c = t.at(0).toDouble();
+        const double d = t.at(1).toDouble();
+        if (d != 0.0)
+            return c/d;
+        return 0.0; // nan
+    };
+    auto ratarc2dec = [=](const QString s) {
+        QStringList t = s.split(" ", Qt::SkipEmptyParts);
+        double val = 0.0;
+        if (t.size() > 0)
+            val = rat2dec(t.at(0));
+        if (t.size() > 1)
+            val += rat2dec(t.at(1))/60.0;
+        if (t.size() > 2)
+            val += rat2dec(t.at(2))/3600.0;
+        return val;
+    };
+
+    bool south(false), west(false), nautilus(false);
+    int flags = (1|2|4|8|16|32);
+    Exiv2::ExifData::const_iterator end = exifData.end();
+    for (Exiv2::ExifData::const_iterator md = exifData.begin(); md != end; ++md) {
+        const QString key = QString::fromUtf8(md->tagName().c_str());
+        if (key == "GPSLatitude") {
+            flags &= ~1;
+            lat = ratarc2dec(QString::fromUtf8(md->toString().c_str()));
+        } else if (key == "GPSLatitudeRef") {
+            flags &= ~2;
+            south = QString::fromUtf8(md->toString().c_str()).toLower() == "s";
+        } else if (key == "GPSLongitude") {
+            flags &= ~4;
+            lon = ratarc2dec(QString::fromUtf8(md->toString().c_str()));
+        } else if (key == "GPSLongitudeRef") {
+            flags &= ~8;
+            west = QString::fromUtf8(md->toString().c_str()).toLower() == "w";
+        } else if (key == "GPSAltitude") {
+            flags &= ~16;
+            alt = QString::fromUtf8(md->toString().c_str()).toDouble();
+        } else if (key == "GPSAltitudeRef") {
+            flags &= ~32;
+            nautilus = QString::fromUtf8(md->toString().c_str()) == "1";
+        }
+        if (!flags)
+            break;
+    }
+    if (south)
+        lat = -lat;
+    if (west)
+        lon = -lon;
+    if (nautilus)
+        alt = -alt;
+
+    return flags != (1|2|4|8|16|32);
+}
+
 template <typename Ev2D> static void writeBack(Ev2D &data, Metadata::DataPair newData) {
     if (data.empty())
         return;
