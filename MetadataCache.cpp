@@ -26,6 +26,17 @@
 
 namespace Metadata {
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#if EXIV2_TEST_VERSION(0,28,0)
+    #define Exiv2ImagePtr Exiv2::Image::UniquePtr
+    #define Exiv2ValuePtr Exiv2::Value::UniquePtr
+#else
+    #define Exiv2ImagePtr Exiv2::Image::AutoPtr
+    #define Exiv2ValuePtr Exiv2::Value::AutoPtr
+#endif
+#pragma clang diagnostic pop
+
 class ImageMetadata {
 public:
     QSet<QString> tags;
@@ -162,15 +173,8 @@ QTransform transformation(const QString &imageFullPath) {
 void cache(const QString &imageFullPath) {
     if (gs_cache.contains(imageFullPath))
         return;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-    Exiv2::Image::UniquePtr exifImage;
-#else
-    Exiv2::Image::AutoPtr exifImage;
-#endif
-#pragma clang diagnostic pop
 
+    Exiv2ImagePtr exifImage;
     ImageMetadata imageMetadata;
     imageMetadata.orientation = 0;
     imageMetadata.date = 0;
@@ -237,15 +241,8 @@ void cache(const QString &imageFullPath) {
 }
 
 void data(const QString &imageFullPath, Metadata::DataTriple *EXIF, Metadata::DataTriple *IPTC, Metadata::DataTriple *XMP) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-    Exiv2::Image::UniquePtr exifImage;
-#else
-    Exiv2::Image::AutoPtr exifImage;
-#endif
-#pragma clang diagnostic pop
 
+    Exiv2ImagePtr exifImage;
     try {
         exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
         exifImage->readMetadata();
@@ -340,15 +337,8 @@ template <typename Ev2D> static void writeBack(Ev2D &data, Metadata::DataPair ne
 }
 
 bool setData(const QString &imageFullPath, Metadata::DataPair EXIF, Metadata::DataPair IPTC, Metadata::DataPair XMP) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-    Exiv2::Image::UniquePtr exifImage;
-#else
-    Exiv2::Image::AutoPtr exifImage;
-#endif
-#pragma clang diagnostic pop
 
+    Exiv2ImagePtr exifImage;
     try {
         exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
         exifImage->readMetadata();
@@ -368,15 +358,8 @@ bool setData(const QString &imageFullPath, Metadata::DataPair EXIF, Metadata::Da
 }
 
 bool wipeFrom(const QString &imageFileName) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-    Exiv2::Image::UniquePtr image;
-#else
-    Exiv2::Image::AutoPtr image;
-#endif
-#pragma clang diagnostic pop
 
+    Exiv2ImagePtr image;
     try {
         image = Exiv2::ImageFactory::open(imageFileName.toStdString());
         image->clearMetadata();
@@ -392,15 +375,7 @@ bool wipeFrom(const QString &imageFileName) {
 bool write(const QString &imageFileName) {
     const QSet<QString> &newTags = tags(imageFileName);
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-    Exiv2::Image::UniquePtr exifImage;
-#else
-    Exiv2::Image::AutoPtr exifImage;
-#endif
-#pragma clang diagnostic pop
-
+    Exiv2ImagePtr exifImage;
     try {
         exifImage = Exiv2::ImageFactory::open(imageFileName.toStdString());
         exifImage->readMetadata();
@@ -423,16 +398,7 @@ bool write(const QString &imageFileName) {
         QSetIterator<QString> newTagsIt(newTags);
         while (newTagsIt.hasNext()) {
             QString tag = newTagsIt.next();
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-            Exiv2::Value::UniquePtr value = Exiv2::Value::create(Exiv2::string);
-#else
-            Exiv2::Value::AutoPtr value = Exiv2::Value::create(Exiv2::string);
-#endif
-#pragma clang diagnostic pop
-
+            Exiv2ValuePtr value = Exiv2::Value::create(Exiv2::string);
             value->read(tag.toStdString());
             Exiv2::IptcKey key("Iptc.Application2.Keywords");
             newIptcData.add(key, value.get());
