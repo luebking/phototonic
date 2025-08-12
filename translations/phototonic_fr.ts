@@ -148,14 +148,12 @@
         <translation type="vanished">Annuler</translation>
     </message>
     <message>
-        <location filename="../CopyMoveDialog.cpp" line="114"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Copie de &quot;%1&quot; vers &quot;%2&quot;.</translation>
+        <translation type="vanished">Copie de &quot;%1&quot; vers &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../CopyMoveDialog.cpp" line="114"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Déplacement de &quot;%1&quot; vers &quot;%2&quot;.</translation>
+        <translation type="vanished">Déplacement de &quot;%1&quot; vers &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -169,27 +167,27 @@
         <translation type="vanished">Ajouter</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="41"/>
+        <location filename="../CopyMoveToDialog.cpp" line="43"/>
         <source>Choose Directory</source>
         <translation>Sélectionner un répertoire</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="65"/>
+        <location filename="../CopyMoveToDialog.cpp" line="69"/>
         <source>Move to...</source>
         <translation>Déplacer vers...</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="62"/>
+        <location filename="../CopyMoveToDialog.cpp" line="66"/>
         <source>Copy to...</source>
         <translation>Copier vers...</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="99"/>
+        <location filename="../CopyMoveToDialog.cpp" line="104"/>
         <source>Browse...</source>
         <translation>Parcourir...</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="103"/>
+        <location filename="../CopyMoveToDialog.cpp" line="108"/>
         <source>Delete Bookmark</source>
         <translation>Supprimer le marque page</translation>
     </message>
@@ -198,7 +196,7 @@
         <translation type="vanished">Supprimer</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="114"/>
+        <location filename="../CopyMoveToDialog.cpp" line="119"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -207,7 +205,7 @@
         <translation type="vanished">OK</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="140"/>
+        <location filename="../CopyMoveToDialog.cpp" line="146"/>
         <source>Destination:</source>
         <translation>Destination :</translation>
     </message>
@@ -220,12 +218,12 @@
         <translation type="vanished">Fermer</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="117"/>
+        <location filename="../CopyMoveToDialog.cpp" line="122"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="117"/>
+        <location filename="../CopyMoveToDialog.cpp" line="122"/>
         <source>Move</source>
         <translation>Déplacer</translation>
     </message>
@@ -351,18 +349,25 @@
         <location filename="../ExternalAppsDialog.cpp" line="83"/>
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
 · %u and %tu with their respective URIs (file:///path/to/file)
+· %lat %lon and %alt with the GPS location in signed decimals (&quot;altitude&quot;…)
 · by default the selected images are appended to the command</source>
-        <translation>· %f et %tf seront remplacés par le chemin de l&apos;image unique et celui de sa miniature
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>· %f and %tf will be substituted with the single image and thumbnail paths
+· %u and %tu with their respective URIs (file:///path/to/file)
+· by default the selected images are appended to the command</source>
+        <translation type="vanished">· %f et %tf seront remplacés par le chemin de l&apos;image unique et celui de sa miniature
 · %u et %tu seront remplacés par leurs URI respectifs (file:///chemin/vers/fichier)
 · par défaut, les images sélectionnées sont ajoutés à la fin de la commande</translation>
     </message>
     <message>
-        <location filename="../ExternalAppsDialog.cpp" line="128"/>
+        <location filename="../ExternalAppsDialog.cpp" line="129"/>
         <source>Choose Application</source>
         <translation>Choisir l&apos;application</translation>
     </message>
     <message>
-        <location filename="../ExternalAppsDialog.cpp" line="139"/>
+        <location filename="../ExternalAppsDialog.cpp" line="140"/>
         <source>New Application</source>
         <translation>Nouvelle Application</translation>
     </message>
@@ -438,27 +443,27 @@
         <translation>Inverser le filtre</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="365"/>
+        <location filename="../Tags.cpp" line="372"/>
         <source>Mandatory:</source>
         <translation>Obligatoire :</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="366"/>
+        <location filename="../Tags.cpp" line="373"/>
         <source>Sufficient:</source>
         <translation>Suffisant :</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="367"/>
+        <location filename="../Tags.cpp" line="374"/>
         <source>The image must not have this tag</source>
         <translation>L&apos;image ne doit pas avoir ce tag</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="368"/>
+        <location filename="../Tags.cpp" line="375"/>
         <source>The image must have this tag</source>
         <translation>L&apos;image doit avoir ce tag</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="369"/>
+        <location filename="../Tags.cpp" line="376"/>
         <source>The image must have any of these tags</source>
         <translation>L&apos;image ne doit avoir aucun de ces tags</translation>
     </message>
@@ -485,12 +490,12 @@
         <translation type="vanished">Détague %1</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="595"/>
+        <location filename="../Tags.cpp" line="599"/>
         <source>Tag %1 already exists</source>
         <translation>Tag %1 déjà existant</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Tags.cpp" line="611"/>
+        <location filename="../Tags.cpp" line="614"/>
         <source>Delete %n selected tags(s)?</source>
         <translation>
             <numerusform>Supprimer le tag %n sélectionné ?</numerusform>
@@ -498,7 +503,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="612"/>
+        <location filename="../Tags.cpp" line="614"/>
         <source>Delete tag</source>
         <translation>Supprimer le tag</translation>
     </message>
@@ -525,8 +530,8 @@
         <translation type="vanished">Annuler</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="585"/>
-        <location filename="../Tags.cpp" line="595"/>
+        <location filename="../Tags.cpp" line="591"/>
+        <location filename="../Tags.cpp" line="599"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -543,17 +548,17 @@
         <translation type="vanished">Détague </translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="576"/>
+        <location filename="../Tags.cpp" line="583"/>
         <source>Add a new tag</source>
         <translation>Ajouter un nouveau tag</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="577"/>
+        <location filename="../Tags.cpp" line="584"/>
         <source>Enter new tag name</source>
         <translation>Nommer le nouveau tag</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="585"/>
+        <location filename="../Tags.cpp" line="591"/>
         <source>No name entered</source>
         <translation>Aucun nom saisi</translation>
     </message>
@@ -652,8 +657,8 @@
 <context>
     <name>ImageViewer</name>
     <message>
-        <location filename="../ImageViewer.cpp" line="279"/>
-        <location filename="../ImageViewer.cpp" line="1052"/>
+        <location filename="../ImageViewer.cpp" line="293"/>
+        <location filename="../ImageViewer.cpp" line="1222"/>
         <source>New image size: %1x%2</source>
         <translation>Nouvelle taille d&apos;image : %1x%2</translation>
     </message>
@@ -678,18 +683,18 @@
         <translation type="vanished">Miroir : double vertical</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="649"/>
+        <location filename="../ImageViewer.cpp" line="663"/>
         <source>skipping animation in batch mode:</source>
         <extracomment>this is a warning on the console</extracomment>
         <translation>passer l&apos;animation en mode console :</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="695"/>
+        <location filename="../ImageViewer.cpp" line="736"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
         <translation>&lt;h1&gt;Avertissement&lt;/h1&gt;Les dimensions de l&apos;image %1x%2 dépassent les limites&lt;br&gt;Image redimensionnée à %3x%4&lt;br&gt;&lt;h3&gt;L&apos;application des modifications entraînera la sauvegarde de l&apos;image redimensionnée!&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="961"/>
+        <location filename="../ImageViewer.cpp" line="1036"/>
         <source>Selection: </source>
         <translation>Sélection : </translation>
     </message>
@@ -698,92 +703,134 @@
         <translation type="vanished">Double-clic pour recadrer</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="168"/>
+        <location filename="../ImageViewer.cpp" line="180"/>
         <source>Zoom Locked</source>
         <translation>Zoom verrouillé</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="168"/>
+        <location filename="../ImageViewer.cpp" line="180"/>
         <source>Zoom Unlocked</source>
         <translation>Zoom déverrouillé</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="202"/>
+        <location filename="../ImageViewer.cpp" line="216"/>
         <source>Fit View</source>
         <translation>Ajuster à la vue</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="207"/>
+        <location filename="../ImageViewer.cpp" line="221"/>
         <source>Fill View</source>
         <translation>Remplir la vue</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="209"/>
+        <location filename="../ImageViewer.cpp" line="223"/>
         <source>Original Size</source>
         <translation>Taille originale</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="971"/>
+        <location filename="../ImageViewer.cpp" line="921"/>
+        <source>Save edits?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="921"/>
+        <source>The image was edited.
+Do you want to save a copy?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="1046"/>
         <source>Doubleclick to crop, right click to abort</source>
         <translation>Double-clic pour recadrer, clic-droit pour annuler</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1114"/>
+        <location filename="../ImageViewer.cpp" line="1057"/>
+        <source>Select the crop area with Ctrl + left mouse button</source>
+        <translation type="unfinished">Sélectionner la zone à recadrer avec Ctrl + clic gauche</translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="1059"/>
+        <source>Select the blackout area with Ctrl + left mouse button</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="1061"/>
+        <source>Select the cartouche area with Ctrl + left mouse button</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="1063"/>
+        <source>Select the annotation area with Ctrl + left mouse button</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="1088"/>
+        <location filename="../ImageViewer.cpp" line="1110"/>
+        <source>Pick a color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="1109"/>
+        <source>Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="1285"/>
         <source>Rotation %1°</source>
         <translation>Rotation de %1°</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1205"/>
+        <location filename="../ImageViewer.cpp" line="1399"/>
         <source>Saving...</source>
         <translation>Sauvegarde en cours...</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1234"/>
-        <location filename="../ImageViewer.cpp" line="1264"/>
-        <location filename="../ImageViewer.cpp" line="1320"/>
+        <location filename="../ImageViewer.cpp" line="1427"/>
+        <location filename="../ImageViewer.cpp" line="1456"/>
+        <location filename="../ImageViewer.cpp" line="1511"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1234"/>
-        <location filename="../ImageViewer.cpp" line="1320"/>
+        <location filename="../ImageViewer.cpp" line="1427"/>
+        <location filename="../ImageViewer.cpp" line="1511"/>
         <source>Failed to save image.</source>
         <translation>Impossible d&apos;enregistrer l&apos;image.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1262"/>
+        <location filename="../ImageViewer.cpp" line="1454"/>
         <source>Don&apos;t show this message again</source>
         <translation>Ne plus montrer ce message</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1264"/>
+        <location filename="../ImageViewer.cpp" line="1456"/>
         <source>Failed to save Exif metadata.</source>
         <translation>Impossible d&apos;enregistrer les méta-données Exif.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1268"/>
+        <location filename="../ImageViewer.cpp" line="1460"/>
         <source>Failed to safe Exif metadata:</source>
         <extracomment>this is a warning on the console</extracomment>
         <translation>Echec de la sauvegarde des meta-données Exif :</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1274"/>
-        <location filename="../ImageViewer.cpp" line="1333"/>
+        <location filename="../ImageViewer.cpp" line="1466"/>
+        <location filename="../ImageViewer.cpp" line="1524"/>
         <source>Image saved.</source>
         <translation>Image enregistrée.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1295"/>
+        <location filename="../ImageViewer.cpp" line="1487"/>
         <source>Save image as</source>
         <translation>Enregistrer l&apos;image sous</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1297"/>
+        <location filename="../ImageViewer.cpp" line="1489"/>
         <source>Images</source>
         <translation>Images</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1374"/>
+        <location filename="../ImageViewer.cpp" line="1565"/>
         <source>Clipboard</source>
         <translation>Presse-papier</translation>
     </message>
@@ -791,57 +838,95 @@
 <context>
     <name>InfoView</name>
     <message>
-        <location filename="../InfoViewer.cpp" line="51"/>
+        <location filename="../InfoViewer.cpp" line="57"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="62"/>
+        <location filename="../InfoViewer.cpp" line="59"/>
+        <source>Remove</source>
+        <translation type="unfinished">Supprimer</translation>
+    </message>
+    <message>
+        <location filename="../InfoViewer.cpp" line="70"/>
         <source>Filter Items</source>
         <translation>Filtrer les éléments</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="173"/>
+        <location filename="../InfoViewer.cpp" line="80"/>
+        <source>Enter filter name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../InfoViewer.cpp" line="81"/>
+        <source>Enter a name (without leading &quot;$&quot;) for this filter.
+The special name&quot;preview&quot; is used for the filter in the viewer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../InfoViewer.cpp" line="84"/>
+        <source>Edit filter: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../InfoViewer.cpp" line="85"/>
+        <source>Clearing the filter will delete it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../InfoViewer.cpp" line="109"/>
+        <source>Save EXIF changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../InfoViewer.cpp" line="116"/>
+        <source>Left click: toggle logarithmic scale
+Right click: toggle size
+Hide with filter: |nohistogram|</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../InfoViewer.cpp" line="393"/>
         <source>Image</source>
         <translation>Image</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="174"/>
+        <location filename="../InfoViewer.cpp" line="394"/>
         <source>File name</source>
         <translation>Nom du fichier</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="175"/>
+        <location filename="../InfoViewer.cpp" line="395"/>
         <source>Location</source>
         <translation>Emplacement</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="176"/>
+        <location filename="../InfoViewer.cpp" line="396"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="177"/>
+        <location filename="../InfoViewer.cpp" line="397"/>
         <source>Modified</source>
         <translation>Modifié</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="181"/>
+        <location filename="../InfoViewer.cpp" line="401"/>
         <source>Format</source>
         <translation>Format</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="184"/>
+        <location filename="../InfoViewer.cpp" line="404"/>
         <source>Resolution</source>
         <translation>Résolution</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="185"/>
+        <location filename="../InfoViewer.cpp" line="405"/>
         <source>Megapixel</source>
         <translation>Mégapixel</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="191"/>
+        <location filename="../InfoViewer.cpp" line="411"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -868,22 +953,22 @@
 <context>
     <name>MessageBox</name>
     <message>
-        <location filename="../MessageBox.cpp" line="79"/>
+        <location filename="../MessageBox.cpp" line="91"/>
         <source>Image Viewer and Organizer</source>
         <translation>Visionneuse d&apos;images et gestionnaire</translation>
     </message>
     <message>
-        <location filename="../MessageBox.cpp" line="80"/>
+        <location filename="../MessageBox.cpp" line="92"/>
         <source>Home page and bug reports</source>
         <translation>Page d&apos;accueil et rapport de bug</translation>
     </message>
     <message>
-        <location filename="../MessageBox.cpp" line="86"/>
+        <location filename="../MessageBox.cpp" line="98"/>
         <source>Special thanks to our contributers.</source>
         <translation>Remerciements particuliers aux contributeurs.</translation>
     </message>
     <message>
-        <location filename="../MessageBox.cpp" line="89"/>
+        <location filename="../MessageBox.cpp" line="101"/>
         <source>About</source>
         <translation>À propos de</translation>
     </message>
@@ -895,18 +980,18 @@
         <translation type="vanished">Docks et Barres d&apos;outils</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="316"/>
-        <location filename="../Phototonic.cpp" line="905"/>
+        <location filename="../Phototonic.cpp" line="345"/>
+        <location filename="../Phototonic.cpp" line="951"/>
         <source>Image Info</source>
         <translation>Information Image</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="431"/>
+        <location filename="../Phototonic.cpp" line="465"/>
         <source>Zoom</source>
         <translation>Zoom</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="429"/>
+        <location filename="../Phototonic.cpp" line="463"/>
         <source>Transform</source>
         <translation>Transformer</translation>
     </message>
@@ -915,12 +1000,12 @@
         <translation type="vanished">Effet miroir</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="512"/>
+        <location filename="../Phototonic.cpp" line="548"/>
         <source>Top</source>
         <translation>Haut</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="516"/>
+        <location filename="../Phototonic.cpp" line="552"/>
         <source>Bottom</source>
         <translation>Bas</translation>
     </message>
@@ -929,37 +1014,37 @@
         <translation type="vanished">Fermer l&apos;image</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="523"/>
+        <location filename="../Phototonic.cpp" line="559"/>
         <source>Full Screen</source>
         <translation>Plein écran</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="527"/>
+        <location filename="../Phototonic.cpp" line="563"/>
         <source>Preferences</source>
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="531"/>
+        <location filename="../Phototonic.cpp" line="567"/>
         <source>Exit</source>
         <translation>Quitter</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="534"/>
+        <location filename="../Phototonic.cpp" line="570"/>
         <source>Enlarge Thumbnails</source>
         <translation>Agrandir les vignettes</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="541"/>
+        <location filename="../Phototonic.cpp" line="577"/>
         <source>Shrink Thumbnails</source>
         <translation>Rétrécir les vignettes</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="548"/>
+        <location filename="../Phototonic.cpp" line="584"/>
         <source>Cut</source>
         <translation>Couper</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="553"/>
+        <location filename="../Phototonic.cpp" line="589"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
@@ -968,42 +1053,42 @@
         <translation type="vanished">Copier ou Déplacer vers...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="583"/>
+        <location filename="../Phototonic.cpp" line="619"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="587"/>
+        <location filename="../Phototonic.cpp" line="623"/>
         <source>Save</source>
         <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="591"/>
+        <location filename="../Phototonic.cpp" line="627"/>
         <source>Save As</source>
         <translation>Enregistrer sous</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="595"/>
+        <location filename="../Phototonic.cpp" line="631"/>
         <source>Copy Image</source>
         <translation>Copier l&apos;image</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="596"/>
+        <location filename="../Phototonic.cpp" line="632"/>
         <source>Paste Image</source>
         <translation>Coller l&apos;image</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="598"/>
+        <location filename="../Phototonic.cpp" line="634"/>
         <source>Rename</source>
         <translation>Renommer</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="604"/>
+        <location filename="../Phototonic.cpp" line="640"/>
         <source>Select All</source>
         <translation>Tout sélectionner</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="607"/>
+        <location filename="../Phototonic.cpp" line="643"/>
         <source>About</source>
         <translation>À propos de</translation>
     </message>
@@ -1028,7 +1113,7 @@
         <translation type="vanished">Inverser</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="650"/>
+        <location filename="../Phototonic.cpp" line="681"/>
         <source>Show Hidden Files</source>
         <translation>Afficher les fichiers cachés</translation>
     </message>
@@ -1045,7 +1130,7 @@
         <translation type="vanished">Masquer la barre de titre des Docks</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="665"/>
+        <location filename="../Phototonic.cpp" line="696"/>
         <source>Show Toolbar</source>
         <translation>Afficher la barre d&apos;outils</translation>
     </message>
@@ -1062,7 +1147,7 @@
         <translation type="vanished">Carré</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="674"/>
+        <location filename="../Phototonic.cpp" line="705"/>
         <source>Reload</source>
         <translation>Recharger</translation>
     </message>
@@ -1071,7 +1156,7 @@
         <translation type="vanished">Inclure les sous-dossiers</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="683"/>
+        <location filename="../Phototonic.cpp" line="714"/>
         <source>Paste Here</source>
         <translation>Coller ici</translation>
     </message>
@@ -1084,12 +1169,12 @@
         <translation type="obsolete">Gérer</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="696"/>
+        <location filename="../Phototonic.cpp" line="727"/>
         <source>Back</source>
         <translation>Retour</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="709"/>
+        <location filename="../Phototonic.cpp" line="740"/>
         <source>Forward</source>
         <translation>Avancer</translation>
     </message>
@@ -1098,14 +1183,14 @@
         <translation type="vanished">Monter</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="281"/>
-        <location filename="../Phototonic.cpp" line="725"/>
+        <location filename="../Phototonic.cpp" line="311"/>
+        <location filename="../Phototonic.cpp" line="756"/>
         <source>Home</source>
         <translation>Début</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="734"/>
-        <location filename="../Phototonic.cpp" line="2690"/>
+        <location filename="../Phototonic.cpp" line="765"/>
+        <location filename="../Phototonic.cpp" line="2806"/>
         <source>Slide Show</source>
         <translation>Diaporama</translation>
     </message>
@@ -1146,7 +1231,7 @@
         <translation type="vanished">Gérer les applications externes</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="776"/>
+        <location filename="../Phototonic.cpp" line="807"/>
         <source>Add Bookmark</source>
         <translation>Ajouter aux marques pages</translation>
     </message>
@@ -1155,27 +1240,27 @@
         <translation type="vanished">Retirer des signets</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="783"/>
+        <location filename="../Phototonic.cpp" line="814"/>
         <source>Zoom Out</source>
         <translation>Zoom arrière</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="787"/>
+        <location filename="../Phototonic.cpp" line="818"/>
         <source>Zoom In</source>
         <translation>Zoom avant</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="791"/>
+        <location filename="../Phototonic.cpp" line="822"/>
         <source>Reset Zoom</source>
         <translation>Réinitialiser le zoom</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="799"/>
+        <location filename="../Phototonic.cpp" line="830"/>
         <source>Original Size</source>
         <translation>Taille d&apos;origine</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="803"/>
+        <location filename="../Phototonic.cpp" line="834"/>
         <source>Keep Zoom</source>
         <translation>Conserver le zoom</translation>
     </message>
@@ -1188,12 +1273,12 @@
         <translation type="vanished">Rotation de 90° sens horaire</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="824"/>
+        <location filename="../Phototonic.cpp" line="854"/>
         <source>Flip Horizontally</source>
         <translation>Miroir horizontal</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="828"/>
+        <location filename="../Phototonic.cpp" line="858"/>
         <source>Flip Vertically</source>
         <translation>Miroir vertical</translation>
     </message>
@@ -1206,7 +1291,7 @@
         <translation type="vanished">Rogner jusqu&apos;à la sélection</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="836"/>
+        <location filename="../Phototonic.cpp" line="866"/>
         <source>Scale Image</source>
         <translation>Redimensionner l&apos;image</translation>
     </message>
@@ -1219,12 +1304,12 @@
         <translation type="vanished">Rotation de 1° sens horaire</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="846"/>
+        <location filename="../Phototonic.cpp" line="876"/>
         <source>Colors</source>
         <translation>Couleurs</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="850"/>
+        <location filename="../Phototonic.cpp" line="896"/>
         <source>Find Duplicate Images</source>
         <translation>Rechercher des doublons</translation>
     </message>
@@ -1249,7 +1334,7 @@
         <translation type="vanished">Quadruple</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1318"/>
+        <location filename="../Phototonic.cpp" line="1382"/>
         <source>Tags</source>
         <extracomment>tags are image metadata</extracomment>
         <translation>Tags</translation>
@@ -1263,8 +1348,8 @@
         <translation type="vanished">Zoom maximum</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1758"/>
-        <location filename="../Phototonic.cpp" line="1817"/>
+        <location filename="../Phototonic.cpp" line="1871"/>
+        <location filename="../Phototonic.cpp" line="1930"/>
         <source>Rotation %1°</source>
         <translation>Rotation de %1°</translation>
     </message>
@@ -1297,23 +1382,23 @@
         <translation type="vanished">Échec de l&apos;ouverture du dossier :</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3107"/>
+        <location filename="../Phototonic.cpp" line="3228"/>
         <source>Duplicate images in %1</source>
         <translation>Dupliquer les images dans %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3109"/>
+        <location filename="../Phototonic.cpp" line="3230"/>
         <source>Files List</source>
         <translation>Liste de fichiers</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3120"/>
+        <location filename="../Phototonic.cpp" line="3241"/>
         <source>Rename %1</source>
         <translation>Renommer %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3132"/>
-        <location filename="../Phototonic.cpp" line="3323"/>
+        <location filename="../Phototonic.cpp" line="3251"/>
+        <location filename="../Phototonic.cpp" line="3518"/>
         <source>Invalid name entered.</source>
         <translation>Nom saisi invalide.</translation>
     </message>
@@ -1326,12 +1411,12 @@
         <translation type="vanished">Saisir un nouveau nom pour &quot;%1&quot; :</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3194"/>
+        <location filename="../Phototonic.cpp" line="3313"/>
         <source>No name entered.</source>
         <translation>Aucun nom saisi.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3220"/>
+        <location filename="../Phototonic.cpp" line="3433"/>
         <source>Failed to rename image.</source>
         <translation>Échec du renommage de l&apos;image.</translation>
     </message>
@@ -1344,7 +1429,7 @@
         <translation type="vanished">Échec de la suppression du dossier.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3296"/>
+        <location filename="../Phototonic.cpp" line="3493"/>
         <source>Removed &quot;%1&quot;</source>
         <translation>Supprimé &quot;%1&quot;</translation>
     </message>
@@ -1357,12 +1442,12 @@
         <translation type="vanished">Créé &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3520"/>
+        <location filename="../Phototonic.cpp" line="3766"/>
         <source>Cannot perform action with temporary image.</source>
         <translation>Impossible d&apos;exécuter cette action avec l&apos;image temporaire.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="872"/>
+        <location filename="../Phototonic.cpp" line="918"/>
         <source>Keep Transformations</source>
         <translation>Conserver les transformations</translation>
     </message>
@@ -1383,17 +1468,17 @@
         <translation type="vanished">Déplacer vers le bas</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="889"/>
+        <location filename="../Phototonic.cpp" line="935"/>
         <source>Invert Selection</source>
         <translation>Inverser la sélection</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="896"/>
+        <location filename="../Phototonic.cpp" line="942"/>
         <source>Rotate and Crop images</source>
         <translation>Tourner et recadrer les images</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="900"/>
+        <location filename="../Phototonic.cpp" line="946"/>
         <source>Filter by Name</source>
         <translation>Filtrer par nom</translation>
     </message>
@@ -1402,23 +1487,23 @@
         <translation type="vanished">Définir le chemin</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="920"/>
+        <location filename="../Phototonic.cpp" line="990"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="931"/>
+        <location filename="../Phototonic.cpp" line="1001"/>
         <source>&amp;Edit</source>
         <translation>&amp;Édition</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="953"/>
+        <location filename="../Phototonic.cpp" line="1023"/>
         <source>&amp;Go</source>
         <extracomment>&quot;go&quot; like in go forward, backward, etc</extracomment>
         <translation>A&amp;ller à</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="968"/>
+        <location filename="../Phototonic.cpp" line="1038"/>
         <source>&amp;View</source>
         <extracomment>configure visual features of the app</extracomment>
         <translation>Afficha&amp;ge</translation>
@@ -1436,7 +1521,7 @@
         <translation type="vanished">&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="451"/>
+        <location filename="../Phototonic.cpp" line="485"/>
         <source>Edit</source>
         <translation>Edition</translation>
     </message>
@@ -1445,7 +1530,7 @@
         <translation type="vanished">Navigation</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="470"/>
+        <location filename="../Phototonic.cpp" line="507"/>
         <source>View</source>
         <translation>Affichage</translation>
     </message>
@@ -1458,7 +1543,7 @@
         <translation type="vanished">Initialisation...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1229"/>
+        <location filename="../Phototonic.cpp" line="1289"/>
         <source>File System</source>
         <translation>Système de fichiers</translation>
     </message>
@@ -1483,108 +1568,108 @@
         <translation type="vanished">Rapports de bogue</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1474"/>
+        <location filename="../Phototonic.cpp" line="1568"/>
         <source>Failed to start external application.</source>
         <translation>Échec du lancement de l&apos;application externe.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1454"/>
+        <location filename="../Phototonic.cpp" line="1549"/>
         <source>Invalid selection.</source>
         <translation>Sélection invalide.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="120"/>
-        <location filename="../Phototonic.cpp" line="329"/>
+        <location filename="../Phototonic.cpp" line="125"/>
+        <location filename="../Phototonic.cpp" line="136"/>
+        <location filename="../Phototonic.cpp" line="358"/>
         <source>Average brightness</source>
         <translation>Luminosité moyenne</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="254"/>
+        <location filename="../Phototonic.cpp" line="266"/>
         <source>Failed to open file %1, file not found.</source>
         <translation>Echec de l&apos;ouverture du fichier %1, fichier non trouvé.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="284"/>
+        <location filename="../Phototonic.cpp" line="314"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
         <translation>Liste de fichiers</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="421"/>
+        <location filename="../Phototonic.cpp" line="455"/>
         <source>Navigate</source>
         <translation>Naviguer</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="439"/>
+        <location filename="../Phototonic.cpp" line="473"/>
         <source>Flip and Flop and Rotate</source>
         <translation>Image reflet</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="454"/>
+        <location filename="../Phototonic.cpp" line="880"/>
         <source>Crop</source>
         <translation>Recadrer</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="455"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Sélectionner la zone à recadrer avec Ctrl + clic gauche</translation>
+        <translation type="vanished">Sélectionner la zone à recadrer avec Ctrl + clic gauche</translation>
     </message>
     <message>
         <source>Mirror</source>
         <translation type="vanished">Miroir</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="458"/>
+        <location filename="../Phototonic.cpp" line="495"/>
         <source>File</source>
         <translation>Fichier</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="476"/>
+        <location filename="../Phototonic.cpp" line="513"/>
         <source>Guides</source>
         <extracomment>The guides a lines across the image for orientation</extracomment>
         <translation>Guides</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="477"/>
+        <location filename="../Phototonic.cpp" line="514"/>
         <source>Add vertical guide</source>
         <translation>Ajouter un guide vertical</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="480"/>
+        <location filename="../Phototonic.cpp" line="517"/>
         <source>Add horizontal guide</source>
         <translation>Ajouter un guide horizontal</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="520"/>
+        <location filename="../Phototonic.cpp" line="556"/>
         <source>Close Viewer</source>
         <translation>Fermer la visionneuse</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="558"/>
+        <location filename="../Phototonic.cpp" line="594"/>
         <source>Show classic thumbnails</source>
         <translation>Afficher des vignettes classiques</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="563"/>
+        <location filename="../Phototonic.cpp" line="599"/>
         <source>Show square thumbnails</source>
         <translation>Afficher des vignettes carrées</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="568"/>
+        <location filename="../Phototonic.cpp" line="604"/>
         <source>Show compact thumbnails</source>
         <translation>Afficher des vignettes compactes</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="579"/>
-        <location filename="../Phototonic.cpp" line="2027"/>
-        <location filename="../Phototonic.cpp" line="2148"/>
+        <location filename="../Phototonic.cpp" line="615"/>
+        <location filename="../Phototonic.cpp" line="2113"/>
+        <location filename="../Phototonic.cpp" line="2233"/>
         <source>Move to Trash</source>
         <translation>Déplacer dans la corbeille</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="601"/>
-        <location filename="../Phototonic.cpp" line="3244"/>
-        <location filename="../Phototonic.cpp" line="3247"/>
+        <location filename="../Phototonic.cpp" line="637"/>
+        <location filename="../Phototonic.cpp" line="3454"/>
+        <location filename="../Phototonic.cpp" line="3456"/>
         <source>Remove Metadata</source>
         <translation>Supprimer les méta-données</translation>
     </message>
@@ -1593,170 +1678,184 @@
         <translation type="vanished">Sélectionner par luminosité</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="611"/>
+        <location filename="../Phototonic.cpp" line="651"/>
         <source>Sort by Name</source>
         <translation>Trier par nom</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="612"/>
-        <location filename="../Phototonic.cpp" line="613"/>
+        <location filename="../Phototonic.cpp" line="653"/>
+        <location filename="../Phototonic.cpp" line="655"/>
         <source>Sort by Time</source>
         <translation>Trier par date</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="614"/>
+        <location filename="../Phototonic.cpp" line="657"/>
         <source>Sort by Size</source>
         <translation>Trier par taille</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="615"/>
+        <location filename="../Phototonic.cpp" line="659"/>
         <source>Sort by Type</source>
         <translation>Trier par type</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="616"/>
+        <location filename="../Phototonic.cpp" line="661"/>
         <source>Sort by Similarity</source>
         <translation>Trier par ressemblance</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="617"/>
+        <location filename="../Phototonic.cpp" line="663"/>
         <source>Sort by Brightness</source>
         <translation>Trier par luminosité</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="618"/>
+        <location filename="../Phototonic.cpp" line="665"/>
         <source>Sort by Color</source>
         <translation>Trier par couleur</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="619"/>
+        <location filename="../Phototonic.cpp" line="677"/>
         <source>Reverse Sort Order</source>
         <translation>Inverser le tri</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="655"/>
+        <location filename="../Phototonic.cpp" line="686"/>
         <source>Small Toolbar Icons</source>
         <translation>Réduire les icônes dans la barre d&apos;outils</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="678"/>
+        <location filename="../Phototonic.cpp" line="709"/>
         <source>Include Sub-directories</source>
         <translation>Inclure les sous-répertoires</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="688"/>
+        <location filename="../Phototonic.cpp" line="719"/>
         <source>New Directory</source>
         <translation>Nouveau répertoire</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="692"/>
+        <location filename="../Phototonic.cpp" line="723"/>
         <source>Set Save Directory</source>
         <translation>Répertoire de sauvegarde</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="738"/>
+        <location filename="../Phototonic.cpp" line="769"/>
         <source>Next Image</source>
         <translation>Image suivante</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="742"/>
+        <location filename="../Phototonic.cpp" line="773"/>
         <source>Previous Image</source>
         <translation>Image précédente</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="746"/>
+        <location filename="../Phototonic.cpp" line="777"/>
         <source>First Image</source>
         <translation>Première image</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="750"/>
+        <location filename="../Phototonic.cpp" line="781"/>
         <source>Last Image</source>
         <translation>Dernière image</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="754"/>
+        <location filename="../Phototonic.cpp" line="785"/>
         <source>Random Image</source>
         <translation>Image aléatoire</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="757"/>
+        <location filename="../Phototonic.cpp" line="788"/>
         <source>View Image</source>
         <translation>Voir l&apos;image</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="765"/>
+        <location filename="../Phototonic.cpp" line="796"/>
         <source>Set Wallpaper</source>
         <translation>Définir le fond d&apos;écran</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="772"/>
+        <location filename="../Phototonic.cpp" line="803"/>
         <source>External Applications</source>
         <translation>Outils externes</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="780"/>
+        <location filename="../Phototonic.cpp" line="811"/>
         <source>Delete Bookmark</source>
         <translation>Supprimer le marque page</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="808"/>
+        <location filename="../Phototonic.cpp" line="838"/>
         <source>Rotate 90° CCW</source>
         <translation>Rotation antihoraire de 90°</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="812"/>
+        <location filename="../Phototonic.cpp" line="842"/>
         <source>Rotate 90° CW</source>
         <translation>Rotation horaire de 90°</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="816"/>
+        <location filename="../Phototonic.cpp" line="846"/>
         <source>Rotate with mouse</source>
         <translation>Rotation avec la souris</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="821"/>
+        <location filename="../Phototonic.cpp" line="851"/>
         <source>Or try holding Shift</source>
         <translation>Ou essayer de maintenir pressée la touche Shift</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="832"/>
+        <location filename="../Phototonic.cpp" line="862"/>
         <source>Letterbox</source>
         <translation>Avec bandeaux</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="840"/>
+        <location filename="../Phototonic.cpp" line="870"/>
         <source>Rotate 1° CCW</source>
         <translation>Rotation antihoraire d&apos;1°</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="843"/>
+        <location filename="../Phototonic.cpp" line="873"/>
         <source>Rotate 1° CW</source>
         <translation>Rotation horaire d&apos;1°</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1076"/>
+        <location filename="../Phototonic.cpp" line="884"/>
+        <source>Blackout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="888"/>
+        <source>Cartouche</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="892"/>
+        <source>Annotate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="1147"/>
         <source>Accuracy: </source>
         <translation>Précision : </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1093"/>
+        <location filename="../Phototonic.cpp" line="1164"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
         <translation>Ce n&apos;est pas exactement de l&apos;IA.&lt;p&gt;Les doublons sont détectés par une mosaïque de niveau de gris&lt;br&gt;(&lt;i&gt;les image désaturées semblent identique de loin ?&lt;/i&gt;)&lt;br&gt;en comparant la répartition des couleurs&lt;br&gt;(&lt;i&gt;non affecté par les miroirs, rotations, ratio ...&lt;/i&gt;)&lt;br&gt;Des faux-positifs sont possibles.&lt;/p&gt;&lt;p&gt;La sensibilité à la répartition des couleurs peut être configurée&lt;br&gt;60% par défaut, mais cette valeur est à modifier, notamment pour les images monochromes&lt;br&gt;Une valeur plus basse augmente le risque de faux-positifs&lt;/p&gt;&lt;h3&gt;Cela peut affecter les correspondances de groupes !&lt;/h3&gt;&lt;p&gt;[A] est similaire à [B] et [C], alors que [B] et [C] sont trop différentes.&lt;br&gt;Il en résulte pour [A] &lt;b&gt;qu&apos;une image peut être affichée plusieurs fois !&lt;/b&gt;&lt;br&gt;Ne pas conclure qu&apos;il s&apos;agit de doublons&lt;br&gt;à effacer. Il s&apos;agit en fait&lt;b&gt;d&apos;une seule et même image&lt;/b&gt;et en effacer une &lt;br&gt;les supprimera toutes.&lt;/p&gt;&lt;h3&gt;Bien vérifier les noms de fichiers !&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1123"/>
+        <location filename="../Phototonic.cpp" line="1194"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
         <translation>Filtrer - essayez &quot;/?&quot;...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1126"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for &lt;b&gt;black, white, dark, bright, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation>&lt;h2&gt;[sous-chaîne] [/ contrainte [/ autres contraintes]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5j &amp;lt; 1M / &amp;lt; 10ko&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, plus vieux que 5 jours mais plus jeune qu’un mois – ou inférieur à 10 ko&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus grand que/Après : &amp;gt;&lt;/li&gt;&lt;li&gt;Plus petit que/Avant : &amp;lt;&lt;/li&gt;&lt;li&gt;L’âge exact ou la taille (arrondie) est autrement implicite ou explicite avec : =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (AAAA-MM-JJ) ou relatives (5m:h:j:s:M:a)&lt;/li&gt;&lt;li&gt;Les tailles ont des suffixes 4ko:Mo:Go ou 4MP (méga-pixels)&lt;/li&gt;&lt;li&gt;Les dimensions ont un &quot;x&quot; préfixé, infixé ou suffixé ([largeur]x[hauteur])&lt;/li&gt;&lt;li&gt;La variance chromatique est suffixée [0-255]cr (les valeurs réelles dépassent rarement 100)&lt;/li&gt;&lt;li&gt;La luminance est suffixée [0,0-1,0] ou [0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Tous les suffixes ne tiennent pas compte de la casse, sauf m|minute et M|mois&lt;/i&gt;&lt;br&gt;Les &quot;/&quot; suivants démarrent un nouveau groupe de conditions suffisantes, la correspondance de la sous-chaîne est optionnelle.&lt;hr&gt;En plus, vous pouvez filtrer par &lt;b&gt;noir, blanc, sombre, clair, monochrome, gris&lt;/b&gt; ainsi que par les couleurs&lt;br&gt;&lt;b&gt;rouge, orange, jaune, lime, vert, menthe, cyan, azur, bleu, violet, magenta, rose&lt;/b&gt;</translation>
+        <translation type="vanished">&lt;h2&gt;[sous-chaîne] [/ contrainte [/ autres contraintes]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5j &amp;lt; 1M / &amp;lt; 10ko&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, plus vieux que 5 jours mais plus jeune qu’un mois – ou inférieur à 10 ko&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus grand que/Après : &amp;gt;&lt;/li&gt;&lt;li&gt;Plus petit que/Avant : &amp;lt;&lt;/li&gt;&lt;li&gt;L’âge exact ou la taille (arrondie) est autrement implicite ou explicite avec : =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (AAAA-MM-JJ) ou relatives (5m:h:j:s:M:a)&lt;/li&gt;&lt;li&gt;Les tailles ont des suffixes 4ko:Mo:Go ou 4MP (méga-pixels)&lt;/li&gt;&lt;li&gt;Les dimensions ont un &quot;x&quot; préfixé, infixé ou suffixé ([largeur]x[hauteur])&lt;/li&gt;&lt;li&gt;La variance chromatique est suffixée [0-255]cr (les valeurs réelles dépassent rarement 100)&lt;/li&gt;&lt;li&gt;La luminance est suffixée [0,0-1,0] ou [0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Tous les suffixes ne tiennent pas compte de la casse, sauf m|minute et M|mois&lt;/i&gt;&lt;br&gt;Les &quot;/&quot; suivants démarrent un nouveau groupe de conditions suffisantes, la correspondance de la sous-chaîne est optionnelle.&lt;hr&gt;En plus, vous pouvez filtrer par &lt;b&gt;noir, blanc, sombre, clair, monochrome, gris&lt;/b&gt; ainsi que par les couleurs&lt;br&gt;&lt;b&gt;rouge, orange, jaune, lime, vert, menthe, cyan, azur, bleu, violet, magenta, rose&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3290"/>
+        <location filename="../Phototonic.cpp" line="3488"/>
         <source>Failed to move directory to the trash.</source>
         <translation>Echec du déplacement du répertoire vers la corbeille.</translation>
     </message>
@@ -1781,37 +1880,37 @@
         <translation type="vanished">Quadruple miroir</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="880"/>
+        <location filename="../Phototonic.cpp" line="926"/>
         <source>Slide Image Left</source>
         <translation>Diaporama gauche</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="882"/>
+        <location filename="../Phototonic.cpp" line="928"/>
         <source>Slide Image Right</source>
         <translation>Diaporama droite</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="884"/>
+        <location filename="../Phototonic.cpp" line="930"/>
         <source>Slide Image Up</source>
         <translation>Diaporama haut</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="886"/>
+        <location filename="../Phototonic.cpp" line="932"/>
         <source>Slide Image Down</source>
         <translation>Diaporama bas</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="902"/>
+        <location filename="../Phototonic.cpp" line="948"/>
         <source>Edit Current Path</source>
         <translation>Modifier le répertoire courant</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="969"/>
+        <location filename="../Phototonic.cpp" line="1039"/>
         <source>Window</source>
         <translation>Fenêtre</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="981"/>
+        <location filename="../Phototonic.cpp" line="1051"/>
         <source>Thumbnails Sorting</source>
         <translation>Tri des vignettes</translation>
     </message>
@@ -1821,22 +1920,22 @@
         <translation type="vanished">Filtrer - trier &quot;/&quot;...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1177"/>
+        <location filename="../Phototonic.cpp" line="1249"/>
         <source>Menu</source>
         <translation>Menu</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1186"/>
+        <location filename="../Phototonic.cpp" line="1258"/>
         <source>Viewer Toolbar</source>
         <translation>Afficher la barre d&apos;outils</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1462"/>
+        <location filename="../Phototonic.cpp" line="1557"/>
         <source>Commands using %f or %u cannot be used with multiple files.</source>
         <translation>Les commandes avec %f ou %u ne s&apos;appliquent pas aux sélections multiples.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1604"/>
+        <location filename="../Phototonic.cpp" line="1713"/>
         <source>Copied %n image(s) to clipboard</source>
         <translation>
             <numerusform>%n image copiée dans le presse-papier</numerusform>
@@ -1844,7 +1943,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1605"/>
+        <location filename="../Phototonic.cpp" line="1714"/>
         <source>Cut %n image(s) to clipboard</source>
         <translation>
             <numerusform>Couper %n image vers le presse-papier</numerusform>
@@ -1852,29 +1951,29 @@
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1639"/>
-        <location filename="../Phototonic.cpp" line="1871"/>
+        <location filename="../Phototonic.cpp" line="1762"/>
+        <location filename="../Phototonic.cpp" line="1977"/>
         <source>Failed to copy or move image.</source>
         <translation>Échec de la copie ou du déplacement de l&apos;image.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1681"/>
+        <location filename="../Phototonic.cpp" line="1794"/>
         <source>Maximum Zoom</source>
         <translation>Zoom maximum</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1685"/>
+        <location filename="../Phototonic.cpp" line="1798"/>
         <source>Minimum Zoom</source>
         <translation>Zoom minimum</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1713"/>
+        <location filename="../Phototonic.cpp" line="1826"/>
         <source>Zoom %1%</source>
         <extracomment>nb the trailing &quot;%&quot; for eg. 80%</extracomment>
         <translation>Zoom à %1%</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1829"/>
+        <location filename="../Phototonic.cpp" line="1940"/>
         <source>No crop area defined</source>
         <translation>Zone de recadrage non définie</translation>
     </message>
@@ -1883,129 +1982,163 @@
         <translation type="vanished">&lt;h3&gt;Définir une zone de recadrage&lt;/h3&gt;&lt;p&gt;Ouvrir une image et éventuellement appliquer une rotation.&lt;br&gt;Puis maintenir pressée la touche ctrl pour sélection la zone à recadrer.&lt;br&gt;Ne&lt;b&gt;pas&lt;/b&gt; appliquer le recadrage par double-clic sur la sélection !&lt;br&gt;Quitter la visionneuse.&lt;/p&gt;Effectuer la manipulation sur d&apos;autres images si nécessaire.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1841"/>
+        <location filename="../Phototonic.cpp" line="1953"/>
         <source>Create backups?</source>
         <translation>Créer une sauvegarde ?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1842"/>
+        <location filename="../Phototonic.cpp" line="1953"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
         <translation>Aucun répertoire de sauvegarde n&apos;est défini, les images seront écrasées.&lt;h3&gt;Créer une sauvegarde ?&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1847"/>
+        <location filename="../Phototonic.cpp" line="1957"/>
         <source>Create backups and overwrite the original files</source>
         <translation>Créer une sauvegarde et écraser les fichiers existants</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1847"/>
+        <location filename="../Phototonic.cpp" line="1957"/>
         <source>Overwrite the original files</source>
         <translation>Ecraser les fichiers existants</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1850"/>
+        <location filename="../Phototonic.cpp" line="1960"/>
         <source>Save the transformed images to %1</source>
         <translation>Enregistrer les images transformées dans %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1853"/>
+        <location filename="../Phototonic.cpp" line="1969"/>
         <source>&lt;h3&gt;Perform batch transformation?&lt;/h3&gt;</source>
         <translation>&lt;h3&gt;Appliquer une transformation à un lot ?&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1854"/>
+        <location filename="../Phototonic.cpp" line="1963"/>
         <source>&lt;ul&gt;&lt;li&gt;Rotate %1 images by %2°&lt;/li&gt;&lt;li&gt;Crop them to %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;ul&gt;&lt;li&gt;Tourner %1 images de %2°&lt;/li&gt;&lt;li&gt;Les recadrer à %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2917"/>
+        <location filename="../Phototonic.cpp" line="3050"/>
         <source>Can not move or copy images to this directory.</source>
         <translation>Les images ne peuvent être déplacées ou copiées dans ce répertoire.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2923"/>
+        <location filename="../Phototonic.cpp" line="3055"/>
         <source>Destination directory is the same as the source directory.</source>
         <translation>Le répertoire de destination est identique au répertoire source.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2936"/>
+        <location filename="../Phototonic.cpp" line="3068"/>
         <source>Move directory %1 to %2?</source>
         <translation>Déplacer le répertoire %1 dans %2 ?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2937"/>
+        <location filename="../Phototonic.cpp" line="3068"/>
         <source>Move directory</source>
         <translation>Déplacer le répertoire</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2940"/>
+        <location filename="../Phototonic.cpp" line="3067"/>
         <source>Move Directory</source>
         <translation>Déplacer le répertoire</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2946"/>
+        <location filename="../Phototonic.cpp" line="3071"/>
         <source>Failed to move directory.</source>
         <translation>Le déplacement du répertoire a échoué.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2948"/>
+        <location filename="../Phototonic.cpp" line="3073"/>
         <source>Directory moved</source>
         <translation>Répertoire déplacé</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3034"/>
+        <location filename="../Phototonic.cpp" line="3157"/>
         <source>Failed to open directory %1</source>
         <translation>L&apos;ouverture du répertoire %1 a échoué</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3035"/>
+        <location filename="../Phototonic.cpp" line="3156"/>
         <source>No directory selected</source>
         <translation>Aucun répertoire sélectionné</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3067"/>
+        <location filename="../Phototonic.cpp" line="1197"/>
+        <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
+        <extracomment>This is a tooltip explaining extended filter features</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="1969"/>
+        <source>Batch transformation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="3188"/>
         <source>Searching duplicates: %v / %m</source>
         <extracomment>%v and %m are literal pattterns for QProgressBar (value and maximum)</extracomment>
         <translation>Recherche des doublons : %v / %m</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3142"/>
+        <location filename="../Phototonic.cpp" line="3259"/>
         <source>Failed to rename directory.</source>
         <translation>Impossible de renommer le répertoire.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3243"/>
+        <location filename="../Phototonic.cpp" line="3368"/>
+        <location filename="../Phototonic.cpp" line="3381"/>
+        <source>File collision!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="3368"/>
+        <location filename="../Phototonic.cpp" line="3381"/>
+        <source>Existing files collide with the rename.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="3376"/>
+        <source>Refusing ambigious rename pattern.
+Multiple files would get the same name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="3382"/>
+        <source>Do you want to incorporate them (ie. skip their indexes)?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="3456"/>
         <source>Permanently remove all Exif metadata from selected images?</source>
         <translation>Supprimer définitivement toutes les méta-données Exif des images sélectionnées ?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3254"/>
+        <location filename="../Phototonic.cpp" line="3459"/>
         <source>Failed to remove Exif metadata.</source>
         <translation>Impossible de supprimer les méta-données Exif.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3259"/>
+        <location filename="../Phototonic.cpp" line="3464"/>
         <source>Metadata removed from selected images</source>
         <translation>Les méta-données des images sélectionnées sont supprimées</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3269"/>
+        <location filename="../Phototonic.cpp" line="3474"/>
         <source>Move directory %1 to the trash?</source>
         <translation>Déplacer le répertoire %1 dans la corbeille ?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3270"/>
+        <location filename="../Phototonic.cpp" line="3475"/>
         <source>Permanently delete the directory %1 and all of its contents?</source>
         <translation>Supprimer définitivement le répertoire %1 et son contenu ?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3275"/>
-        <location filename="../Phototonic.cpp" line="3278"/>
+        <location filename="../Phototonic.cpp" line="3479"/>
+        <location filename="../Phototonic.cpp" line="3481"/>
         <source>Delete Directory</source>
         <translation>Supprimer le répertoire</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3278"/>
+        <location filename="../Phototonic.cpp" line="3479"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -2014,32 +2147,32 @@
         <translation type="vanished">Impossible de déplacer le répertoire dans la corbeille :</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3291"/>
+        <location filename="../Phototonic.cpp" line="3489"/>
         <source>Failed to delete directory.</source>
         <translation>Impossible de supprimer le répertoire.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3313"/>
+        <location filename="../Phototonic.cpp" line="3510"/>
         <source>New Sub directory</source>
         <translation>Nouveau sous-répertoire</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3314"/>
+        <location filename="../Phototonic.cpp" line="3511"/>
         <source>New directory name:</source>
         <translation>Nom du sous-répertoire :</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3333"/>
+        <location filename="../Phototonic.cpp" line="3526"/>
         <source>Failed to create new directory.</source>
         <translation>Impossible de créer un nouveau répertoire.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3338"/>
+        <location filename="../Phototonic.cpp" line="3530"/>
         <source>Created %1</source>
         <translation>%1 créé</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3344"/>
+        <location filename="../Phototonic.cpp" line="3536"/>
         <source>Directory to save images into:</source>
         <translation>Enregistrer les images sous :</translation>
     </message>
@@ -2067,7 +2200,7 @@
         <translation type="vanished">Supprimer définitivement</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2097"/>
+        <location filename="../Phototonic.cpp" line="2184"/>
         <source>Failed to delete image.</source>
         <translation>Impossible de supprimer l&apos;image.</translation>
     </message>
@@ -2092,43 +2225,44 @@
         <translation type="obsolete">Contributeurs / Traductions:&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3173"/>
-        <location filename="../Phototonic.cpp" line="3234"/>
+        <location filename="../Phototonic.cpp" line="3289"/>
+        <location filename="../Phototonic.cpp" line="3445"/>
         <source>Invalid selection</source>
         <translation>Sélection invalide</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="254"/>
-        <location filename="../Phototonic.cpp" line="1474"/>
-        <location filename="../Phototonic.cpp" line="1639"/>
-        <location filename="../Phototonic.cpp" line="1871"/>
-        <location filename="../Phototonic.cpp" line="1937"/>
-        <location filename="../Phototonic.cpp" line="1949"/>
-        <location filename="../Phototonic.cpp" line="2096"/>
-        <location filename="../Phototonic.cpp" line="2171"/>
-        <location filename="../Phototonic.cpp" line="2250"/>
-        <location filename="../Phototonic.cpp" line="2917"/>
-        <location filename="../Phototonic.cpp" line="2923"/>
-        <location filename="../Phototonic.cpp" line="2946"/>
-        <location filename="../Phototonic.cpp" line="3034"/>
-        <location filename="../Phototonic.cpp" line="3132"/>
-        <location filename="../Phototonic.cpp" line="3142"/>
-        <location filename="../Phototonic.cpp" line="3194"/>
-        <location filename="../Phototonic.cpp" line="3220"/>
-        <location filename="../Phototonic.cpp" line="3254"/>
-        <location filename="../Phototonic.cpp" line="3290"/>
-        <location filename="../Phototonic.cpp" line="3323"/>
-        <location filename="../Phototonic.cpp" line="3333"/>
+        <location filename="../Phototonic.cpp" line="266"/>
+        <location filename="../Phototonic.cpp" line="1568"/>
+        <location filename="../Phototonic.cpp" line="1762"/>
+        <location filename="../Phototonic.cpp" line="1977"/>
+        <location filename="../Phototonic.cpp" line="2040"/>
+        <location filename="../Phototonic.cpp" line="2050"/>
+        <location filename="../Phototonic.cpp" line="2183"/>
+        <location filename="../Phototonic.cpp" line="2253"/>
+        <location filename="../Phototonic.cpp" line="2333"/>
+        <location filename="../Phototonic.cpp" line="3050"/>
+        <location filename="../Phototonic.cpp" line="3055"/>
+        <location filename="../Phototonic.cpp" line="3071"/>
+        <location filename="../Phototonic.cpp" line="3157"/>
+        <location filename="../Phototonic.cpp" line="3251"/>
+        <location filename="../Phototonic.cpp" line="3259"/>
+        <location filename="../Phototonic.cpp" line="3313"/>
+        <location filename="../Phototonic.cpp" line="3376"/>
+        <location filename="../Phototonic.cpp" line="3433"/>
+        <location filename="../Phototonic.cpp" line="3459"/>
+        <location filename="../Phototonic.cpp" line="3488"/>
+        <location filename="../Phototonic.cpp" line="3518"/>
+        <location filename="../Phototonic.cpp" line="3526"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="573"/>
+        <location filename="../Phototonic.cpp" line="609"/>
         <source>Copy to...</source>
         <translation>Copier vers...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="576"/>
+        <location filename="../Phototonic.cpp" line="612"/>
         <source>Move to...</source>
         <translation>Déplacer vers...</translation>
     </message>
@@ -2141,23 +2275,23 @@
         <translation type="vanished">Coller le contenu de l&apos;image</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="660"/>
+        <location filename="../Phototonic.cpp" line="691"/>
         <source>Hide Dock Title Bars</source>
         <translation>Masquer les barres de titre du dock</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="721"/>
+        <location filename="../Phototonic.cpp" line="752"/>
         <source>Go Up</source>
         <translation>Monter</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="761"/>
+        <location filename="../Phototonic.cpp" line="792"/>
         <source>Load Clipboard</source>
         <translation>Charger le presse-papier</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="768"/>
-        <location filename="../Phototonic.cpp" line="769"/>
+        <location filename="../Phototonic.cpp" line="799"/>
+        <location filename="../Phototonic.cpp" line="800"/>
         <source>Open With...</source>
         <translation>Ouvrir avec...</translation>
     </message>
@@ -2170,7 +2304,7 @@
         <translation type="vanished">Image</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1276"/>
+        <location filename="../Phototonic.cpp" line="1337"/>
         <source>Bookmarks</source>
         <translation>Marques pages</translation>
     </message>
@@ -2203,12 +2337,12 @@
         <translation type="vanished">Zoom déverrouillé</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="876"/>
+        <location filename="../Phototonic.cpp" line="922"/>
         <source>Transformations Locked</source>
         <translation>Transformations verrouillées</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="876"/>
+        <location filename="../Phototonic.cpp" line="922"/>
         <source>Transformations Unlocked</source>
         <translation>Transformations déverrouillées</translation>
     </message>
@@ -2217,22 +2351,22 @@
         <translation type="vanished">Rotation de </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1767"/>
+        <location filename="../Phototonic.cpp" line="1880"/>
         <source>Flipped Vertically</source>
         <translation>Retourné verticalement</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1767"/>
+        <location filename="../Phototonic.cpp" line="1880"/>
         <source>Unflipped Vertically</source>
         <translation>Rétabli verticalement</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1776"/>
+        <location filename="../Phototonic.cpp" line="1889"/>
         <source>Flipped Horizontally</source>
         <translation>Retourné horizontalement</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1776"/>
+        <location filename="../Phototonic.cpp" line="1889"/>
         <source>Unflipped Horizontally</source>
         <translation>Rétabli horizontalement</translation>
     </message>
@@ -2285,7 +2419,7 @@
         <translation type="vanished">Supprimer définitivement </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2171"/>
+        <location filename="../Phototonic.cpp" line="2253"/>
         <source>Failed to delete image</source>
         <translation>Impossible de supprimer l&apos;image</translation>
     </message>
@@ -2296,37 +2430,37 @@
     <message>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="vanished">&lt;h2&gt;[sous-chaînes] [/ critère [/ autre critère]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt ; 5d &amp;lt ; 1M / &amp;lt ; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, remonte à 5 jours de plus mais est plus récent qu&apos;un mois - ou moins de 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus gros que/Après : &amp;gt ;&lt;/li&gt;&lt;li&gt;Plus léger que/Avant : &amp;lt ;&lt;/li&gt;&lt;li&gt;L&apos;âge exact ou le poids (arrondi) est sinon implicite ou explicite avec : =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (YYYY-MM-DD) ou relatives (5m :h :d :w :M :y)&lt;/li&gt;&lt;li&gt;Les poids sont définis avec 4kB :MB :GB ou 4MP (méga-pixel)&lt;/li&gt;&lt;li&gt;Les dimensions utilisent le séparateur &quot;x&quot; ([largeur]x[hauteur])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Toutes les unités ignorent la casse sauf m|inute et M|ois&lt;/i&gt;&lt;br&gt;&quot;/&quot; démarre un nouveau groupe de critères, la correspondance de sous-chaînes est facultative.</translation>
+        <translation type="vanished">&lt;h2&gt;[sous-chaînes] [/ critère [/ autre critère]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt&#x202f;; 5d &amp;lt&#x202f;; 1M / &amp;lt&#x202f;; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, remonte à 5 jours de plus mais est plus récent qu&apos;un mois - ou moins de 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus gros que/Après&#x202f;: &amp;gt&#x202f;;&lt;/li&gt;&lt;li&gt;Plus léger que/Avant&#x202f;: &amp;lt&#x202f;;&lt;/li&gt;&lt;li&gt;L&apos;âge exact ou le poids (arrondi) est sinon implicite ou explicite avec&#x202f;: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (YYYY-MM-DD) ou relatives (5m&#x202f;:h&#x202f;:d&#x202f;:w&#x202f;:M&#x202f;:y)&lt;/li&gt;&lt;li&gt;Les poids sont définis avec 4kB&#x202f;:MB&#x202f;:GB ou 4MP (méga-pixel)&lt;/li&gt;&lt;li&gt;Les dimensions utilisent le séparateur &quot;x&quot; ([largeur]x[hauteur])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Toutes les unités ignorent la casse sauf m|inute et M|ois&lt;/i&gt;&lt;br&gt;&quot;/&quot; démarre un nouveau groupe de critères, la correspondance de sous-chaînes est facultative.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1824"/>
-        <location filename="../Phototonic.cpp" line="3444"/>
+        <location filename="../Phototonic.cpp" line="1936"/>
+        <location filename="../Phototonic.cpp" line="3685"/>
         <source>No images selected</source>
         <translation>Aucune image sélectionnée</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1824"/>
+        <location filename="../Phototonic.cpp" line="1936"/>
         <source>Please select the images to transform.</source>
         <translation>Il faut sélectionner les images à transformer.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1830"/>
+        <location filename="../Phototonic.cpp" line="1941"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation>&lt;h3&gt;Définir la zone à recadrer&lt;/h3&gt;&lt;p&gt;Ouvrir une image, la pivoter si besoin.&lt;br&gt;Puis maintenir pressée la touche Ctrl pour sélectionner la zone à recadrer.&lt;br&gt;Ne &lt;b&gt;pas&lt;/b&gt; utiliser le double-clic pour confirmer la zone à recadrer!&lt;br&gt;Si l&apos;aperçu activé, quitter la visionneuse.&lt;/p&gt;Si nécessaire, renouveler la manipulation.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1937"/>
+        <location filename="../Phototonic.cpp" line="2040"/>
         <source>Can not copy or move to %1</source>
         <translation>Impossible de copier ou déplacer dans %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1949"/>
+        <location filename="../Phototonic.cpp" line="2050"/>
         <source>Can not move to the same directory</source>
         <translation>Impossible de déplacer dans le même répertoire</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1975"/>
-        <location filename="../Phototonic.cpp" line="2963"/>
+        <location filename="../Phototonic.cpp" line="2068"/>
+        <location filename="../Phototonic.cpp" line="3087"/>
         <source>Copied %n image(s)</source>
         <translation>
             <numerusform>%n image copiée</numerusform>
@@ -2334,8 +2468,8 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1975"/>
-        <location filename="../Phototonic.cpp" line="2964"/>
+        <location filename="../Phototonic.cpp" line="2068"/>
+        <location filename="../Phototonic.cpp" line="3088"/>
         <source>Moved %n image(s)</source>
         <translation>
             <numerusform>%n image déplacée</numerusform>
@@ -2343,7 +2477,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2021"/>
+        <location filename="../Phototonic.cpp" line="2114"/>
         <source>Move %n selected image(s) to the trash?</source>
         <translation>
             <numerusform>Déplacer %n image sélectionnée dans la corbeille ?</numerusform>
@@ -2351,7 +2485,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2022"/>
+        <location filename="../Phototonic.cpp" line="2115"/>
         <source>Permanently delete %n selected image(s)?</source>
         <translation>
             <numerusform>Supprimer définitivement %n image sélectionnée ?</numerusform>
@@ -2359,8 +2493,8 @@
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2027"/>
-        <location filename="../Phototonic.cpp" line="2148"/>
+        <location filename="../Phototonic.cpp" line="2113"/>
+        <location filename="../Phototonic.cpp" line="2233"/>
         <source>Delete images</source>
         <translation>Supprimer les images</translation>
     </message>
@@ -2405,22 +2539,22 @@
         <translation type="vanished">Emplacement invalide : </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1299"/>
+        <location filename="../Phototonic.cpp" line="1360"/>
         <source>Preview</source>
         <translation>Aperçu</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2073"/>
+        <location filename="../Phototonic.cpp" line="2161"/>
         <source>Deleting %1</source>
         <translation>Suppression %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2097"/>
+        <location filename="../Phototonic.cpp" line="2183"/>
         <source>Failed to move image to the trash.</source>
         <translation>Impossible de déplacer l&apos;image dans la corbeille.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2118"/>
+        <location filename="../Phototonic.cpp" line="2204"/>
         <source>Deleted %n image(s)</source>
         <translation>
             <numerusform>%n image supprimée</numerusform>
@@ -2428,27 +2562,27 @@
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2147"/>
+        <location filename="../Phototonic.cpp" line="2234"/>
         <source>Move %1 to the trash</source>
         <translation>Déplacer %1 dans la corbeille</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2147"/>
+        <location filename="../Phototonic.cpp" line="2234"/>
         <source>Permanently delete %1</source>
         <translation>Supprimer définitivement %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2167"/>
+        <location filename="../Phototonic.cpp" line="2250"/>
         <source>Deleted %1</source>
         <translation>%1 supprimé</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2250"/>
+        <location filename="../Phototonic.cpp" line="2333"/>
         <source>Invalid Path: %1</source>
         <translation>Chemin invalide : %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2633"/>
+        <location filename="../Phototonic.cpp" line="2733"/>
         <source>No images</source>
         <translation>Aucune image</translation>
     </message>
@@ -2461,17 +2595,17 @@
         <translation type="vanished">, fichier introuvable</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2691"/>
+        <location filename="../Phototonic.cpp" line="2807"/>
         <source>Slide show stopped</source>
         <translation>Diaporama stoppé</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2720"/>
+        <location filename="../Phototonic.cpp" line="2837"/>
         <source>Stop Slide Show</source>
         <translation>Arrêter le diaporama</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2721"/>
+        <location filename="../Phototonic.cpp" line="2838"/>
         <source>Slide show started</source>
         <translation>Diaporama démarré</translation>
     </message>
@@ -2512,7 +2646,7 @@
         <translation type="vanished">Renommer </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3122"/>
+        <location filename="../Phototonic.cpp" line="3243"/>
         <source>New name:</source>
         <translation>Nouveau nom :</translation>
     </message>
@@ -2577,7 +2711,7 @@
         <translation type="obsolete">Exécution du gestionnaire de fichiers...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3520"/>
+        <location filename="../Phototonic.cpp" line="3766"/>
         <source>Warning</source>
         <translation>Avertissement</translation>
     </message>
@@ -2598,6 +2732,62 @@
     <message>
         <source>Usage: phototonic [FILE or DIRECTORY]...</source>
         <translation type="vanished">Utilisation : phototonic [FICHIER ou REPERTOIRE]...</translation>
+    </message>
+    <message>
+        <location filename="../CopyMoveDialog.cpp" line="138"/>
+        <source>Skip,Replace,Index,Rename,Filename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../CopyMoveDialog.cpp" line="185"/>
+        <source>New file also exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../CopyMoveDialog.cpp" line="186"/>
+        <source>The new filename also conflicts with an existing file.
+The existing file would be overwritten!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../CopyMoveDialog.cpp" line="258"/>
+        <source>File collision resolver</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../CopyMoveDialog.cpp" line="260"/>
+        <source>&lt;h3&gt;Some of the destination files already exist&lt;/h3&gt;You can resolve the conflicts here or abort the entire copy/move operation.&lt;br&gt;&lt;b&gt;By default, the conflicting files will be skipped.&lt;/b&gt;&lt;br&gt;You can also replace or rename the destination, or automatically add a counter for a conflict-free filename.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../CopyMoveDialog.cpp" line="270"/>
+        <source>Size</source>
+        <translation type="unfinished">Taille</translation>
+    </message>
+    <message>
+        <location filename="../CopyMoveDialog.cpp" line="270"/>
+        <source>Modified</source>
+        <translation type="unfinished">Modifié</translation>
+    </message>
+    <message>
+        <location filename="../CopyMoveDialog.cpp" line="270"/>
+        <source>Resolution</source>
+        <translation type="unfinished">Résolution</translation>
+    </message>
+    <message>
+        <location filename="../CopyMoveDialog.cpp" line="270"/>
+        <source>MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../CopyMoveDialog.cpp" line="355"/>
+        <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
+        <translation type="unfinished">Copie de &quot;%1&quot; vers &quot;%2&quot;.</translation>
+    </message>
+    <message>
+        <location filename="../CopyMoveDialog.cpp" line="355"/>
+        <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
+        <translation type="unfinished">Déplacement de &quot;%1&quot; vers &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -2636,6 +2826,11 @@
         <location filename="../RenameDialog.cpp" line="41"/>
         <source>New name: </source>
         <translation>Nouveau nom : </translation>
+    </message>
+    <message>
+        <location filename="../RenameDialog.cpp" line="47"/>
+        <source>&lt;h3&gt;Rename files according to pattern&lt;/h3&gt;Supported placeholders:&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;th align=right&gt;%index :&lt;/th&gt;&lt;td&gt;0-padded index, based on selection order&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%date :&lt;/th&gt;&lt;td&gt;Date and time of last modification, ISO8601 format&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%exifdate :&lt;/th&gt;&lt;td&gt;Date and time of EXIF timestamp or file creation, ISO8601 format&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%size :&lt;/th&gt;&lt;td&gt;Image size, WxH&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2735,7 +2930,7 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../SettingsDialog.cpp" line="40"/>
+        <location filename="../SettingsDialog.cpp" line="41"/>
         <source>Preferences</source>
         <translation>Préférences</translation>
     </message>
@@ -2776,7 +2971,7 @@
         <translation type="vanished">Quitter au lieu de fermer, quand l&apos;image est chargée depuis la ligne de commande</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="56"/>
+        <location filename="../SettingsDialog.cpp" line="57"/>
         <source>Wrap image list when reaching last or first image</source>
         <translation>Revenir à la liste d&apos;image en arrivant à la dernière ou à la première image</translation>
     </message>
@@ -2785,7 +2980,7 @@
         <translation type="vanished">Qualité par défaut lors de la sauvegarde des images :</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="44"/>
+        <location filename="../SettingsDialog.cpp" line="45"/>
         <source>Background color:</source>
         <translation>Couleur de fond :</translation>
     </message>
@@ -2798,27 +2993,27 @@
         <translation type="vanished">Non</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="60"/>
+        <location filename="../SettingsDialog.cpp" line="61"/>
         <source>Default quality when saving:</source>
         <translation>Qualité d&apos;enregistrement par défaut :</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="74"/>
+        <location filename="../SettingsDialog.cpp" line="75"/>
         <source>Rotate image according to Exif orientation value</source>
         <translation>Tourner l&apos;image à partir des données Exif</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="78"/>
+        <location filename="../SettingsDialog.cpp" line="79"/>
         <source>Show image file name in viewer</source>
         <translation>Afficher le nom de l&apos;image dans la visionneuse</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="92"/>
+        <location filename="../SettingsDialog.cpp" line="93"/>
         <source>Thumbnails and Preview Background Color:</source>
         <translation>Couleur de fonds pour les vignettes et aperçus :</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="116"/>
+        <location filename="../SettingsDialog.cpp" line="117"/>
         <source>Background image:</source>
         <translation>Image de fond :</translation>
     </message>
@@ -2827,98 +3022,98 @@
         <translation type="vanished">Ajouter un espace entre les vignettes :</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="137"/>
+        <location filename="../SettingsDialog.cpp" line="138"/>
         <source>Number of thumbnail pages to read ahead:</source>
         <translation>Nombre de pages de vignettes à parcourir :</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="146"/>
+        <location filename="../SettingsDialog.cpp" line="147"/>
         <source>Rotate thumbnail according to Exif orientation value</source>
         <translation>Tourner la vignette à partir des données Exif</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="150"/>
+        <location filename="../SettingsDialog.cpp" line="151"/>
         <source>Scale up small images in preview</source>
         <translation>Agrandir l&apos;aperçu des petites images</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="166"/>
+        <location filename="../SettingsDialog.cpp" line="167"/>
         <source>Swap mouse double-click and middle-click actions</source>
         <translation>Inverser le double-clic et le clic du milieu</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="169"/>
+        <location filename="../SettingsDialog.cpp" line="170"/>
         <source>Use scroll wheel for zooming in image viewer</source>
         <translation>Utiliser la molette pour zoomer dans la visionneuse</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="177"/>
+        <location filename="../SettingsDialog.cpp" line="178"/>
         <source>Startup directory if not specified by command line</source>
         <translation>Répertoire de démarrage si non précisé par la ligne de commande</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="179"/>
+        <location filename="../SettingsDialog.cpp" line="180"/>
         <source>Default</source>
         <translation>Défaut</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="221"/>
-        <location filename="../SettingsDialog.cpp" line="369"/>
+        <location filename="../SettingsDialog.cpp" line="222"/>
+        <location filename="../SettingsDialog.cpp" line="370"/>
         <source>Shortcuts</source>
         <translation>Raccourcis</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="227"/>
+        <location filename="../SettingsDialog.cpp" line="228"/>
         <source>Filter Items</source>
         <translation>Filtrer les éléments</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="231"/>
+        <location filename="../SettingsDialog.cpp" line="232"/>
         <source>Select an entry and press a key to set a new shortcut</source>
         <translation>Sélectionner une action et maintenir presser la touche à affecter au nouveau raccourci</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="238"/>
+        <location filename="../SettingsDialog.cpp" line="239"/>
         <source>Set the application icon according to the current image</source>
         <translation>Définir l&apos;image courante comme icône de l&apos;application</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="248"/>
+        <location filename="../SettingsDialog.cpp" line="249"/>
         <source>Delay between slides in seconds:</source>
         <translation>Temps en secondes entre les diapositives :</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="267"/>
+        <location filename="../SettingsDialog.cpp" line="268"/>
         <source>Slideshow</source>
         <translation>Diaporama</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="275"/>
+        <location filename="../SettingsDialog.cpp" line="276"/>
         <source>&lt;p&gt;Bangs allow you to use external commands to generate the list of shown images.&lt;br&gt;The main purpose is to query databases like locate, baloo or tracker, but anything that can generate a list of image files is suitable&lt;/p&gt;&lt;p&gt;The token &lt;b&gt;%s&lt;/b&gt; in the command will be replaced with the parameter.&lt;/p&gt;&lt;p&gt;Eg. for plocate, using the shortcut &lt;i&gt;locate&lt;/i&gt; and the command&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;allows you to enter &lt;i&gt;locate:waldo&lt;/i&gt; to display indexed jpg&apos;s and png&apos;s of waldo.&lt;/p&gt;&lt;p&gt;Phototonic tests the files for existence and will remove duplicates (including file and directory symlinks.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Les bangs vous permettent d’utiliser des commandes externes pour générer la liste des images affichées.&lt;br&gt;Le but principal est d’interroger des bases de données comme locate, baloo ou tracker, mais toute commande pouvant générer une liste de fichiers image convient&lt;/p&gt;&lt;p&gt;Le jeton &lt;b&gt;%s&lt;/b&gt; dans la commande sera remplacé par le paramètre.&lt;/p&gt;&lt;p&gt;Par exemple, pour plocate, en utilisant le raccourci &lt;i&gt;locate&lt;/i&gt; et la commande&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;vous pouvez entrer &lt;i&gt;locate:waldo&lt;/i&gt; pour afficher les jpg et png indexés contenant &quot;waldo&quot;.&lt;/p&gt;&lt;p&gt;Phototonic vérifie l’existence des fichiers et supprimera les doublons (y compris les liens symboliques vers fichiers et répertoires).&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="292"/>
+        <location filename="../SettingsDialog.cpp" line="293"/>
         <source>Shortcut</source>
         <translation>Raccourci</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="293"/>
+        <location filename="../SettingsDialog.cpp" line="294"/>
         <source>Command</source>
         <translation>Commande</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="373"/>
+        <location filename="../SettingsDialog.cpp" line="374"/>
         <source>Bangs</source>
         <translation>Bangs</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="450"/>
+        <location filename="../SettingsDialog.cpp" line="451"/>
         <source>Select background color</source>
         <translation>Sélectionner une couleur de fond</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="466"/>
+        <location filename="../SettingsDialog.cpp" line="467"/>
         <source>Choose Startup Directory</source>
         <translation>Choisir un répertoire de démarrage</translation>
     </message>
@@ -2927,7 +3122,7 @@
         <translation type="vanished">Qualité par défaut lors de la sauvegarde des images : </translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="70"/>
+        <location filename="../SettingsDialog.cpp" line="71"/>
         <source>Enable GIF animation</source>
         <translation>Activer l&apos;animation GIF</translation>
     </message>
@@ -2968,12 +3163,12 @@
         <translation type="vanished">Temps entre les diapositives en secondes : </translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="104"/>
+        <location filename="../SettingsDialog.cpp" line="105"/>
         <source>Label color:</source>
         <translation>Couleur du label :</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="258"/>
+        <location filename="../SettingsDialog.cpp" line="259"/>
         <source>Show random images</source>
         <translation>Afficher des images aléatoires</translation>
     </message>
@@ -2986,12 +3181,12 @@
         <translation type="vanished">Par défaut, ou spécifié par l&apos;argument de la ligne de commande</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="178"/>
+        <location filename="../SettingsDialog.cpp" line="179"/>
         <source>Remember last</source>
         <translation>Se souvenir du dernier</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="181"/>
+        <location filename="../SettingsDialog.cpp" line="182"/>
         <source>Specify:</source>
         <extracomment>specificy a startup directory</extracomment>
         <translation>Définir :</translation>
@@ -3001,7 +3196,7 @@
         <translation type="vanished">Permuter les actions des clic gauche et clic du milieu de la souris</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="173"/>
+        <location filename="../SettingsDialog.cpp" line="174"/>
         <source>Delete confirmation</source>
         <translation>Supprimer la confirmation</translation>
     </message>
@@ -3010,12 +3205,12 @@
         <translation type="vanished">Raccourcis clavier</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="472"/>
+        <location filename="../SettingsDialog.cpp" line="473"/>
         <source>Open File</source>
         <translation>Ouvrir un fichier</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="473"/>
+        <location filename="../SettingsDialog.cpp" line="474"/>
         <source>Images</source>
         <translation>Images</translation>
     </message>
@@ -3024,22 +3219,22 @@
         <translation type="obsolete">Raccourcis clavier</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="342"/>
+        <location filename="../SettingsDialog.cpp" line="343"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="346"/>
+        <location filename="../SettingsDialog.cpp" line="347"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="357"/>
+        <location filename="../SettingsDialog.cpp" line="358"/>
         <source>Viewer</source>
         <translation>Visionneuse</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="361"/>
+        <location filename="../SettingsDialog.cpp" line="362"/>
         <source>Thumbnails</source>
         <translation>Vignettes</translation>
     </message>
@@ -3048,7 +3243,7 @@
         <translation type="vanished">Diaporama</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="365"/>
+        <location filename="../SettingsDialog.cpp" line="366"/>
         <source>General</source>
         <translation>Général</translation>
     </message>
@@ -3060,27 +3255,27 @@
 <context>
     <name>ShortcutsTable</name>
     <message>
-        <location filename="../ShortcutsTable.cpp" line="86"/>
+        <location filename="../ShortcutsTable.cpp" line="85"/>
         <source>%1 is reserved for launching external applications.</source>
         <translation>%1 est réservé pour le lancement des outils externes.</translation>
     </message>
     <message>
-        <location filename="../ShortcutsTable.cpp" line="116"/>
+        <location filename="../ShortcutsTable.cpp" line="114"/>
         <source>%1 is already assigned to %2, reassign shortcut?</source>
         <translation>%1 est déjà affecté à %2, réaffecter le raccourci ?</translation>
     </message>
     <message>
-        <location filename="../ShortcutsTable.cpp" line="117"/>
+        <location filename="../ShortcutsTable.cpp" line="114"/>
         <source>Overwrite Shortcut</source>
         <translation>Ecraser le raccourci</translation>
     </message>
     <message>
-        <location filename="../ShortcutsTable.cpp" line="147"/>
+        <location filename="../ShortcutsTable.cpp" line="140"/>
         <source>Action</source>
         <translation>Action</translation>
     </message>
     <message>
-        <location filename="../ShortcutsTable.cpp" line="148"/>
+        <location filename="../ShortcutsTable.cpp" line="141"/>
         <source>Shortcut</source>
         <translation>Raccourci</translation>
     </message>
@@ -3090,7 +3285,7 @@
         <translation>Supprimer le raccourci</translation>
     </message>
     <message>
-        <location filename="../ShortcutsTable.cpp" line="86"/>
+        <location filename="../ShortcutsTable.cpp" line="85"/>
         <source>Set shortcut</source>
         <translation>Définir un raccourci</translation>
     </message>
@@ -3249,7 +3444,7 @@
 <context>
     <name>ThumbsViewer</name>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="224"/>
+        <location filename="../ThumbsViewer.cpp" line="232"/>
         <source>Selected %1 of %n image(s)</source>
         <translation>
             <numerusform>%1 sélectionnée de %n image</numerusform>
@@ -3257,27 +3452,27 @@
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="247"/>
+        <location filename="../ThumbsViewer.cpp" line="255"/>
         <source>Tagging %1</source>
         <translation>Tague %1</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="255"/>
+        <location filename="../ThumbsViewer.cpp" line="263"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="255"/>
+        <location filename="../ThumbsViewer.cpp" line="263"/>
         <source>Failed to save tags to %1</source>
         <translation>Échec de la sauvegarde du tag dans %1</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="912"/>
+        <location filename="../ThumbsViewer.cpp" line="940"/>
         <source>Searching duplicate images...</source>
         <translation>Recherche de doublons...</translation>
     </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="1085"/>
+        <location filename="../ThumbsViewer.cpp" line="1111"/>
         <source>%n of %1 image(s)</source>
         <translation>
             <numerusform>%n de %1 image</numerusform>
@@ -3285,7 +3480,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="1087"/>
+        <location filename="../ThumbsViewer.cpp" line="1113"/>
         <source>%n image(s)</source>
         <translation>
             <numerusform>%n image</numerusform>
@@ -3293,13 +3488,13 @@
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1083"/>
+        <location filename="../ThumbsViewer.cpp" line="1109"/>
         <source>No images</source>
         <translation>Aucune image</translation>
     </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="1203"/>
-        <location filename="../ThumbsViewer.cpp" line="1316"/>
+        <location filename="../ThumbsViewer.cpp" line="1229"/>
+        <location filename="../ThumbsViewer.cpp" line="1342"/>
         <source>Found %n duplicate(s) among %1 files</source>
         <translation>
             <numerusform>%n doublon trouvé sur %1 fichiers</numerusform>
@@ -3307,22 +3502,22 @@
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1397"/>
+        <location filename="../ThumbsViewer.cpp" line="1423"/>
         <source>Abort</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1397"/>
+        <location filename="../ThumbsViewer.cpp" line="1423"/>
         <source>Loading...</source>
         <translation>Chargement...</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1437"/>
+        <location filename="../ThumbsViewer.cpp" line="1463"/>
         <source>Comparing...</source>
         <translation>Comparer...</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1470"/>
+        <location filename="../ThumbsViewer.cpp" line="1496"/>
         <source>Sorting...</source>
         <translation>Tri...</translation>
     </message>
@@ -3330,7 +3525,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.cpp" line="34"/>
+        <location filename="../main.cpp" line="58"/>
         <source>files or directory</source>
         <translation>fichiers ou répertoire</translation>
     </message>
@@ -3343,37 +3538,37 @@
         <translation type="vanished">[FICHIER...] | [REPERTOIRE]</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="35"/>
+        <location filename="../main.cpp" line="59"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
         <translation>Fichiers ou répertoire à ouvrir, &quot;-&quot; pour les lire depuis stdin.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="36"/>
+        <location filename="../main.cpp" line="60"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
         <translation>[FICHIER...] | [DOSSIER] | [-]</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="39"/>
+        <location filename="../main.cpp" line="63"/>
         <source>start with a specific translation</source>
         <translation>démarrer avec une traduction définie</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="40"/>
+        <location filename="../main.cpp" line="64"/>
         <source>language</source>
         <translation>langue</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="44"/>
+        <location filename="../main.cpp" line="68"/>
         <source>Copy all modified images into &lt;directory&gt;.</source>
         <translation>Copier toutes les images dans &lt;répertoire&gt;.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="45"/>
+        <location filename="../main.cpp" line="69"/>
         <source>directory</source>
         <translation>répertoire</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="49"/>
+        <location filename="../main.cpp" line="73"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
         <translation>Lancer une seule instance de Phototonic ou ouvrir des fichiers dans une instance déjà en cours d’exécution.</translation>
     </message>
