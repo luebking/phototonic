@@ -234,7 +234,7 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="62"/>
         <source>Delete</source>
-        <translation>Cancella</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="72"/>
@@ -805,7 +805,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="583"/>
         <source>Delete</source>
-        <translation>Cancella</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="587"/>
@@ -1148,7 +1148,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="2171"/>
         <source>Failed to delete image</source>
-        <translation>Impossibile cancellare immagine</translation>
+        <translation>Impossibile eliminare l&apos; immagine</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="520"/>
@@ -1353,12 +1353,12 @@
         <location filename="../Phototonic.cpp" line="2027"/>
         <location filename="../Phototonic.cpp" line="2148"/>
         <source>Delete images</source>
-        <translation>Cancella immagini</translation>
+        <translation>Elimina immagini</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2097"/>
         <source>Failed to delete image.</source>
-        <translation>Impossible cancellare immagine.</translation>
+        <translation>Impossibile eliminare l&apos;immagine.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2097"/>
@@ -1373,7 +1373,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="2147"/>
         <source>Permanently delete %1</source>
-        <translation>Cancella permanente %1</translation>
+        <translation>Elimina permanente %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="969"/>
@@ -1438,7 +1438,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3243"/>
         <source>Permanently remove all Exif metadata from selected images?</source>
-        <translation>Cancellare in modo permanente tutti dati Exif dalle immagini selezionate?</translation>
+        <translation>Eliminare in modo permanente tutti dati Exif dalle immagini selezionate?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3254"/>
@@ -1458,7 +1458,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3270"/>
         <source>Permanently delete the directory %1 and all of its contents?</source>
-        <translation>Cancellare in modo permanente la cartella %1 e il suo contenuto?</translation>
+        <translation>Eliminare in modo permanente la cartella %1 e il suo contenuto?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3278"/>
@@ -1469,7 +1469,7 @@
         <location filename="../Phototonic.cpp" line="3275"/>
         <location filename="../Phototonic.cpp" line="3278"/>
         <source>Delete Directory</source>
-        <translation>Cancella cartella</translation>
+        <translation>Elimina cartella</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3290"/>
@@ -1479,7 +1479,7 @@
     <message>
         <location filename="../Phototonic.cpp" line="3291"/>
         <source>Failed to delete directory.</source>
-        <translation>Impossibile cancellare la cartella.</translation>
+        <translation>Impossibile eliminare la cartella.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3313"/>
@@ -1684,27 +1684,27 @@
         <location filename="../Phototonic.cpp" line="2022"/>
         <source>Permanently delete %n selected image(s)?</source>
         <translation>
-            <numerusform>Cancellare in modo permanente l&apos; immagine selezionata?</numerusform>
-            <numerusform>Cancellare in modo permanente le %n immagini selezionate?</numerusform>
+            <numerusform>Eliminare in modo permanente l&apos; immagine selezionata?</numerusform>
+            <numerusform>Eliminare in modo permanente le %n immagini selezionate?</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2073"/>
         <source>Deleting %1</source>
-        <translation>Cancellando %1</translation>
+        <translation>Eliminando %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2118"/>
         <source>Deleted %n image(s)</source>
         <translation>
-            <numerusform>Cancellata %n immagine</numerusform>
-            <numerusform>Cancellate %n immagini</numerusform>
+            <numerusform>Immagine eliminato</numerusform>
+            <numerusform>Eliminate %n immagini</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2167"/>
         <source>Deleted %1</source>
-        <translation>Cancellato %1</translation>
+        <translation>Eliminato %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2250"/>
@@ -2010,7 +2010,7 @@
     <message>
         <location filename="../SettingsDialog.cpp" line="173"/>
         <source>Delete confirmation</source>
-        <translation>Conferma cancellazione</translation>
+        <translation>Conferma eliminazione</translation>
     </message>
     <message>
         <source>No</source>
