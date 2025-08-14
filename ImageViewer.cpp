@@ -1205,7 +1205,13 @@ void ImageViewer::applyCropAndRotation() {
     }
 
     // apply flip-flop
+#if QT_VERSION < QT_VERSION_CHECK(6, 9, 0)
     origImage.mirror(Settings::flipH, Settings::flipV);
+#else
+    const Qt::Orientations orientations((Settings::flipH ? Qt::Horizontal : 0) |
+                                        (Settings::flipV ? Qt::Vertical : 0));
+    origImage.flip(orientations);
+#endif
 
     // reset transformations for the new image
     if (!batchMode) {
