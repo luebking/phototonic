@@ -72,6 +72,7 @@ private:
     QCheckBox *deleteConfirmCheckBox;
     QDoubleSpinBox *slideDelaySpinBox;
     QCheckBox *slideRandomCheckBox;
+    QCheckBox *slideCrossfadeCheckBox;
     QRadioButton *startupDirectoryRadioButtons[3];
     QLineEdit *startupDirLineEdit;
     QLineEdit *thumbsBackgroundImageLineEdit;

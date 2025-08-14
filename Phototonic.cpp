@@ -2419,6 +2419,7 @@ void Phototonic::writeSettings() {
     Settings::setValue(Settings::optionDefaultSaveQuality, Settings::defaultSaveQuality);
     Settings::setValue(Settings::optionSlideShowDelay, Settings::slideShowDelay);
     Settings::setValue(Settings::optionSlideShowRandom, (bool) Settings::slideShowRandom);
+    Settings::setValue(Settings::optionSlideShowCrossfade, (bool) Settings::slideShowCrossfade);
     Settings::setValue(Settings::optionFileSystemDockVisible, (bool) Settings::fileSystemDockVisible);
     Settings::setValue(Settings::optionImageInfoDockVisible, (bool) Settings::imageInfoDockVisible);
     Settings::setValue(Settings::optionBookmarksDockVisible, (bool) Settings::bookmarksDockVisible);
@@ -2515,6 +2516,7 @@ void Phototonic::readSettings() {
     Settings::defaultSaveQuality = Settings::value(Settings::optionDefaultSaveQuality, 90).toInt();
     Settings::slideShowDelay = Settings::value(Settings::optionSlideShowDelay, 5.0).toDouble();
     Settings::slideShowRandom = Settings::value(Settings::optionSlideShowRandom, false).toBool();
+    Settings::slideShowCrossfade = Settings::value(Settings::optionSlideShowCrossfade, true).toBool();
     Settings::showImageName = Settings::value(Settings::optionShowImageName, false).toBool();
     Settings::smallToolbarIcons = Settings::value(Settings::optionSmallToolbarIcons, true).toBool();
     Settings::hideDockTitlebars = Settings::value(Settings::optionHideDockTitlebars, false).toBool();
@@ -2841,7 +2843,7 @@ void Phototonic::toggleSlideShow() {
         const int currentRow = thumbsViewer->currentIndex().row();
         imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow),
                                thumbsViewer->icon(currentRow).pixmap(THUMB_SIZE_MAX).toImage());
-        imageViewer->setCrossfade(ssTimeout >= 1000);
+        imageViewer->setCrossfade(Settings::slideShowCrossfade && ssTimeout >= 1000);
     }
 }
 
