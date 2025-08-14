@@ -468,13 +468,14 @@
     <message>
         <location filename="../ImageViewer.cpp" line="921"/>
         <source>Save edits?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kas salvestame muudatused?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="921"/>
         <source>The image was edited.
 Do you want to save a copy?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pilt on muudetud.
+Kas soovid salvestada uue failina?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1036"/>
@@ -489,7 +490,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1057"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished">Vali kadreeritav ala Ctrl klahvi ja hiire vasaku nupuga</translation>
+        <translation>Vali kadreeritav ala Ctrl klahvi ja hiire vasaku nupuga</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1059"/>
@@ -510,12 +511,12 @@ Do you want to save a copy?</source>
         <location filename="../ImageViewer.cpp" line="1088"/>
         <location filename="../ImageViewer.cpp" line="1110"/>
         <source>Pick a color</source>
-        <translation type="unfinished"></translation>
+        <translation>Vali värv</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1109"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Värv</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1285"/>
@@ -588,7 +589,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="59"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Eemalda</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="70"/>
@@ -598,7 +599,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="80"/>
         <source>Enter filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Sisesta filtri nimi</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="81"/>
@@ -1888,17 +1889,17 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Kopeerime „%1“ -&gt; „%2“.</translation>
+        <translation>Kopeerin „%1“ -&gt; „%2“.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Teisaldame „%1“ -&gt; „%2“.</translation>
+        <translation>Teisaldan „%1“ -&gt; „%2“.</translation>
     </message>
 </context>
 <context>
