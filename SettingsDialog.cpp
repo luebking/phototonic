@@ -79,14 +79,46 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     showImageNameCheckBox = new QCheckBox(tr("Show image file name in viewer"), this);
     showImageNameCheckBox->setChecked(Settings::showImageName);
 
+    scrollZoomCheckBox = new QCheckBox(tr("Use scroll wheel for zooming"), this);
+    scrollZoomCheckBox->setChecked(Settings::scrollZooms);
+
+    // Slide show delay
+    QLabel *slideDelayLab = new QLabel(tr("Delay between slides in seconds:"));
+    slideDelaySpinBox = new QDoubleSpinBox;
+    slideDelaySpinBox->setRange(0.1, 3600.0);
+    slideDelaySpinBox->setValue(Settings::slideShowDelay);
+    QHBoxLayout *slideDelayLayout = new QHBoxLayout;
+    slideDelayLayout->addWidget(slideDelayLab);
+    slideDelayLayout->addWidget(slideDelaySpinBox);
+    slideDelayLayout->addStretch(1);
+
+    // Slide show random
+    slideRandomCheckBox = new QCheckBox(tr("Show random images"), this);
+    slideRandomCheckBox->setChecked(Settings::slideShowRandom);
+
+    // Slide show random
+    slideCrossfadeCheckBox = new QCheckBox(tr("Crossfade images"), this);
+    slideCrossfadeCheckBox->setChecked(Settings::slideShowCrossfade);
+    connect(slideDelaySpinBox, &QDoubleSpinBox::valueChanged, [=](double d){ slideCrossfadeCheckBox->setEnabled(d >= 1.0);});
+
+    // Slide show options
+    QGroupBox *slideshowGroupBox = new QGroupBox(tr("Slideshow"));
+    QVBoxLayout *slideshowLayout = new QVBoxLayout(slideshowGroupBox);
+    slideshowLayout->addLayout(slideDelayLayout);
+    slideshowLayout->addWidget(slideRandomCheckBox);
+    slideshowLayout->addWidget(slideCrossfadeCheckBox);
+    slideshowLayout->addStretch(1);
+
     // Viewer options
     QVBoxLayout *viewerOptsBox = new QVBoxLayout;
     viewerOptsBox->addLayout(backgroundColorHBox);
     viewerOptsBox->addWidget(enableExifCheckBox);
-    viewerOptsBox->addWidget(showImageNameCheckBox);
-    viewerOptsBox->addWidget(wrapListCheckBox);
     viewerOptsBox->addWidget(enableAnimCheckBox);
+    viewerOptsBox->addWidget(showImageNameCheckBox);
+    viewerOptsBox->addWidget(scrollZoomCheckBox);
+    viewerOptsBox->addWidget(wrapListCheckBox);
     viewerOptsBox->addLayout(saveQualityHbox);
+    viewerOptsBox->addWidget(slideshowGroupBox);
     viewerOptsBox->addStretch(1);
 
     // thumbsViewer background color
@@ -159,16 +191,13 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
 
     thumbsOptsBox->addLayout(thumbsLabelColorLayout);
     thumbsOptsBox->addWidget(enableThumbExifCheckBox);
-    thumbsOptsBox->addLayout(thumbPagesReadLayout);
     thumbsOptsBox->addWidget(upscalePreviewCheckBox);
+    thumbsOptsBox->addLayout(thumbPagesReadLayout);
     thumbsOptsBox->addStretch(1);
 
     // Mouse settings
     reverseMouseCheckBox = new QCheckBox(tr("Swap mouse double-click and middle-click actions"), this);
     reverseMouseCheckBox->setChecked(Settings::reverseMouseBehavior);
-
-    scrollZoomCheckBox = new QCheckBox(tr("Use scroll wheel for zooming in image viewer"), this);
-    scrollZoomCheckBox->setChecked(Settings::scrollZooms);
 
     // Delete confirmation setting
     deleteConfirmCheckBox = new QCheckBox(tr("Delete confirmation"), this);
@@ -243,36 +272,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     generalSettingsLayout->addWidget(reverseMouseCheckBox);
     generalSettingsLayout->addWidget(deleteConfirmCheckBox);
     generalSettingsLayout->addWidget(startupDirGroupBox);
-    generalSettingsLayout->addWidget(scrollZoomCheckBox);
 
-    // Slide show delay
-    QLabel *slideDelayLab = new QLabel(tr("Delay between slides in seconds:"));
-    slideDelaySpinBox = new QDoubleSpinBox;
-    slideDelaySpinBox->setRange(0.1, 3600.0);
-    slideDelaySpinBox->setValue(Settings::slideShowDelay);
-    QHBoxLayout *slideDelayLayout = new QHBoxLayout;
-    slideDelayLayout->addWidget(slideDelayLab);
-    slideDelayLayout->addWidget(slideDelaySpinBox);
-    slideDelayLayout->addStretch(1);
-
-    // Slide show random
-    slideRandomCheckBox = new QCheckBox(tr("Show random images"), this);
-    slideRandomCheckBox->setChecked(Settings::slideShowRandom);
-
-    // Slide show random
-    slideCrossfadeCheckBox = new QCheckBox(tr("Crossfade images"), this);
-    slideCrossfadeCheckBox->setChecked(Settings::slideShowCrossfade);
-
-    // Slide show options
-    QVBoxLayout *slideshowLayout = new QVBoxLayout;
-    slideshowLayout->addLayout(slideDelayLayout);
-    slideshowLayout->addWidget(slideRandomCheckBox);
-    slideshowLayout->addWidget(slideCrossfadeCheckBox);
-    slideshowLayout->addStretch(1);
-
-    QGroupBox *slideshowGroupBox = new QGroupBox(tr("Slideshow"));
-    slideshowGroupBox->setLayout(slideshowLayout);
-    generalSettingsLayout->addWidget(slideshowGroupBox);
     generalSettingsLayout->addWidget(setWindowIconCheckBox);
     generalSettingsLayout->addStretch(1);
 
