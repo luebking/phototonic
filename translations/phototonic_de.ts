@@ -702,13 +702,14 @@
     <message>
         <location filename="../ImageViewer.cpp" line="921"/>
         <source>Save edits?</source>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen speichern?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="921"/>
         <source>The image was edited.
 Do you want to save a copy?</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Bild wurde bearbeitet.
+Möchtest du eine Kopie speichern?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1046"/>
@@ -718,12 +719,12 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1057"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished">Wähle den Zuschnitt mit Strg + linker Maustaste aus</translation>
+        <translation>Wähle den Zuschnittbereich mit Strg + linke Maustaste aus</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1059"/>
         <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle den zu schwärzenden Bereich mit Strg + linke Maustaste aus</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1061"/>
@@ -739,12 +740,12 @@ Do you want to save a copy?</source>
         <location filename="../ImageViewer.cpp" line="1088"/>
         <location filename="../ImageViewer.cpp" line="1110"/>
         <source>Pick a color</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle eine Farbe aus</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1109"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbe</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1285"/>
@@ -783,7 +784,7 @@ Do you want to save a copy?</source>
         <location filename="../ImageViewer.cpp" line="1460"/>
         <source>Failed to safe Exif metadata:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Exif-Metadaten konnten nicht gespeichert werden:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1466"/>
@@ -817,7 +818,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="59"/>
         <source>Remove</source>
-        <translation type="unfinished">Entfernen</translation>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="70"/>
@@ -827,7 +828,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="80"/>
         <source>Enter filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Filternamen eingeben</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="81"/>
@@ -838,17 +839,17 @@ The special name&quot;preview&quot; is used for the filter in the viewer.</sourc
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
         <source>Edit filter: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter bearbeiten: %1</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="85"/>
         <source>Clearing the filter will delete it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Leeren des Filters löscht ihn.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="109"/>
         <source>Save EXIF changes</source>
-        <translation type="unfinished"></translation>
+        <translation>EXIF-Änderungen speichern</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="116"/>
@@ -2152,7 +2153,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="884"/>
         <source>Blackout</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwärzen</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="888"/>
@@ -2403,13 +2404,13 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="3368"/>
         <location filename="../Phototonic.cpp" line="3381"/>
         <source>File collision!</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateikollision!</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3368"/>
         <location filename="../Phototonic.cpp" line="3381"/>
         <source>Existing files collide with the rename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorhandene Dateien kollidieren mit der Umbenennung.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3376"/>
@@ -2712,18 +2713,19 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="138"/>
         <source>Skip,Replace,Index,Rename,Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Überspringen,Ersetzen,Indizieren,Umbenennen,Dateiname</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="185"/>
         <source>New file also exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Datei existiert ebenfalls</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="186"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation type="unfinished"></translation>
+        <translation>Der neue Dateiname steht ebenfalls in Konflikt mit einer vorhandenen Datei.
+Die vorhandene Datei würde überschrieben werden!</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="258"/>
@@ -2738,32 +2740,32 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Size</source>
-        <translation type="unfinished">Größe</translation>
+        <translation>Größe</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Modified</source>
-        <translation type="unfinished">Geändert</translation>
+        <translation>Geändert</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Resolution</source>
-        <translation type="unfinished">Auflösung</translation>
+        <translation>Auflösung</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Kopiere &quot;%1&quot; nach &quot;%2&quot;.</translation>
+        <translation>„%1“ wird nach „%2“ kopiert.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Verschiebe &quot;%1&quot; nach &quot;%2&quot;.</translation>
+        <translation>„%1“ wird nach „%2“ verschoben.</translation>
     </message>
 </context>
 <context>

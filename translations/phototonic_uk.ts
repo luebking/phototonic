@@ -539,18 +539,19 @@
     <message>
         <location filename="../ImageViewer.cpp" line="921"/>
         <source>Save edits?</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти зміни?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="921"/>
         <source>The image was edited.
 Do you want to save a copy?</source>
-        <translation type="unfinished"></translation>
+        <translation>Зображення змінено.
+Зберегти копію?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1036"/>
         <source>Selection: </source>
-        <translation type="unfinished">Вибір: </translation>
+        <translation>Вибрано: </translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1046"/>
@@ -581,12 +582,12 @@ Do you want to save a copy?</source>
         <location filename="../ImageViewer.cpp" line="1088"/>
         <location filename="../ImageViewer.cpp" line="1110"/>
         <source>Pick a color</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибрати колір</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1109"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Колір</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1285"/>
@@ -659,7 +660,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="59"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Вилучити</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="70"/>
@@ -669,7 +670,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="80"/>
         <source>Enter filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Введіть назву фільтра</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="81"/>
@@ -680,17 +681,17 @@ The special name&quot;preview&quot; is used for the filter in the viewer.</sourc
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
         <source>Edit filter: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Змінити фільтр: %1</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="85"/>
         <source>Clearing the filter will delete it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Очищення фільтра видалить його.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="109"/>
         <source>Save EXIF changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти зміни EXIF</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="116"/>
@@ -1642,7 +1643,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1953"/>
         <source>Create backups?</source>
-        <translation type="unfinished"></translation>
+        <translation>Створити резервні копії?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1953"/>
