@@ -1473,6 +1473,7 @@ void ImageViewer::saveImage() {
         }
     }
 
+    m_edited = false;
     reload();
     setFeedback(tr("Image saved."));
     emit imageSaved(savePath);
@@ -1531,7 +1532,7 @@ void ImageViewer::saveImageAs() {
                     exifError = true;
                 }
             }
-
+            m_edited = false;
             setFeedback(tr("Image saved."));
         }
     }
