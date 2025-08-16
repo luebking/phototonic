@@ -54,6 +54,8 @@ public:
     bool crossfade() const { return m_crossfade; }
     QSize currentImageSize() const;
     void edit();
+    bool flip(Qt::Orientations o);
+    Qt::Orientations flipping() const { return m_flip; }
     bool isNewImage();
     QRect lastCropGeometry() const { return m_isoCropRect; }
     void loadImage(QString imageFileName, const QImage &preview = QImage());
@@ -145,6 +147,7 @@ private:
     bool m_lockZoom;
     Edit m_editMode;
     bool m_edited;
+    Qt::Orientations m_flip;
 
     void setMouseMoveData(bool lockMove, int lMouseX, int lMouseY);
 

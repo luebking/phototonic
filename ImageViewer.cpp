@@ -246,10 +246,7 @@ void ImageViewer::resizeImage(QPoint focus) {
     }
 
     if (imageWidget) {
-        Qt::Orientations orient;
-        if (Settings::flipH) orient |= Qt::Horizontal;
-        if (Settings::flipV) orient |= Qt::Vertical;
-        imageWidget->setFlip(orient);
+        imageWidget->setFlip(m_flip);
         imageWidget->setRotation(Settings::rotation);
         imageWidget->setFixedSize(size());
         if (imageSize.width() < width() || imageSize.height() < height()) {
@@ -638,7 +635,7 @@ void ImageViewer::reload() {
 
     if (!Settings::keepTransform) {
         Settings::rotation = 0;
-        Settings::flipH = Settings::flipV = false;
+        m_flip = Qt::Orientations();
     }
 
     if (!batchMode) {
@@ -768,10 +765,7 @@ void ImageViewer::reload() {
     resizeImage();
     centerImage(imageWidget->imageSize());
     if (Settings::keepTransform) {
-        Qt::Orientations orient;
-        if (Settings::flipH) orient |= Qt::Horizontal;
-        if (Settings::flipV) orient |= Qt::Vertical;
-        imageWidget->setFlip(orient);
+        imageWidget->setFlip(m_flip);
         imageWidget->setRotation(Settings::rotation);
     }
     if (Settings::setWindowIcon) {
@@ -1189,7 +1183,7 @@ void ImageViewer::applyCropAndRotation() {
         QPoint center(target.width() / 2, target.height() / 2);
         painter.translate(center);
         // onedirectional flipping inverts the rotation
-        if (Settings::flipH xor Settings::flipV)
+        if (m_flip == Qt::Horizontal || m_flip == Qt::Vertical)
             painter.rotate(360.0 - imageWidget->rotation());
         else
             painter.rotate(imageWidget->rotation());
@@ -1205,11 +1199,15 @@ void ImageViewer::applyCropAndRotation() {
     }
 
     // apply flip-flop
-    origImage.mirror(Settings::flipH, Settings::flipV);
+#if QT_VERSION < QT_VERSION_CHECK(6, 9, 0)
+    origImage.mirror(m_flip & Qt::Horizontal, m_flip & Qt::Vertical);
+#else
+    origImage.flip(m_flip);
+#endif
 
     // reset transformations for the new image
     if (!batchMode) {
-        Settings::flipH = Settings::flipV = false;
+        m_flip = Qt::Orientations();
         Settings::rotation = 0;
         imageWidget->setRotation(Settings::rotation);
         if (!m_lockZoom) {
@@ -1222,6 +1220,19 @@ void ImageViewer::applyCropAndRotation() {
     setFeedback(tr("New image size: %1x%2").arg(origImage.width()).arg(origImage.height()));
     m_edited = true;
     emit imageEdited(true);
+}
+
+bool ImageViewer::flip(Qt::Orientations o) {
+    m_flip ^= o;
+    if (imageWidget)
+        imageWidget->setFlip(m_flip);
+    QStringList feedback;
+    if (o & Qt::Horizontal)
+        feedback << ((m_flip & Qt::Horizontal) ? tr("Flipped Horizontally") : tr("Unflipped Horizontally"));
+    if (o & Qt::Vertical)
+        feedback << ((m_flip & Qt::Vertical) ? tr("Flipped Vertically") : tr("Unflipped Vertically"));
+    setFeedback(feedback.join("\n"));
+    return (m_flip & o) == o;
 }
 
 void ImageViewer::configureLetterbox() {
@@ -1417,10 +1428,10 @@ void ImageViewer::saveImage() {
     if (Settings::exifRotationEnabled) // undo previous exif rotation for saving
         matrix = Metadata::transformation(fullImagePath).inverted();
     int rotation = qRound(Settings::rotation);
-    if (!batchMode && (Settings::flipH || Settings::flipV || !(rotation % 90))) {
-        matrix.scale(Settings::flipH ? -1 : 1, Settings::flipV ? -1 : 1);
+    if (!batchMode && (m_flip || !(rotation % 90))) {
+        matrix.scale(m_flip & Qt::Horizontal ? -1 : 1, m_flip & Qt::Vertical ? -1 : 1);
         if (!(rotation % 90))
-            matrix.rotate((Settings::flipH xor Settings::flipV) ? 360-rotation : rotation);
+            matrix.rotate((m_flip == Qt::Horizontal || m_flip == Qt::Vertical) ? 360-rotation : rotation);
         viewerImage = viewerImage.transformed(matrix);
     }
     if (!viewerImage.save(savePath, imageReader.format().toUpper(), Settings::defaultSaveQuality)) {
@@ -1500,11 +1511,11 @@ void ImageViewer::saveImageAs() {
         }
 
         int rotation = qRound(Settings::rotation);
-        if (!batchMode && (Settings::flipH || Settings::flipV || !(rotation % 90))) {
+        if (!batchMode && (m_flip || !(rotation % 90))) {
             QTransform matrix;
-            matrix.scale(Settings::flipH ? -1 : 1, Settings::flipV ? -1 : 1);
+            matrix.scale(m_flip & Qt::Horizontal ? -1 : 1, m_flip & Qt::Vertical ? -1 : 1);
             if (!(rotation % 90))
-                matrix.rotate((Settings::flipH xor Settings::flipV) ? 360-rotation : rotation);
+                matrix.rotate((m_flip == Qt::Horizontal || m_flip == Qt::Vertical) ? 360-rotation : rotation);
             viewerImage = viewerImage.transformed(matrix);
         }
         if (!viewerImage.save(fileName, 0, Settings::defaultSaveQuality)) {

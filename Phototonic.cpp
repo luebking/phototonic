@@ -1875,19 +1875,15 @@ void Phototonic::rotate(int deg) {
 }
 
 void Phototonic::flipVertical() {
-    Settings::flipV = !Settings::flipV;
-    imageViewer->resizeImage();
-    imageViewer->setFeedback(Settings::flipV ? tr("Flipped Vertically") : tr("Unflipped Vertically"));
-    m_editSteps = qMax(0, m_editSteps + (Settings::flipV ? 1 : -1));
+    const bool flips = imageViewer->flip(Qt::Vertical);
+    m_editSteps = qMax(0, m_editSteps + (flips ? 1 : -1));
     m_saveAction->setEnabled(m_editSteps);
     m_saveAsAction->setEnabled(m_editSteps);
 }
 
 void Phototonic::flipHorizontal() {
-    Settings::flipH = !Settings::flipH;
-    imageViewer->resizeImage();
-    imageViewer->setFeedback(Settings::flipH ? tr("Flipped Horizontally") : tr("Unflipped Horizontally"));
-    m_editSteps = qMax(0, m_editSteps + (Settings::flipH ? 1 : -1));
+    const bool flips = imageViewer->flip(Qt::Horizontal);
+    m_editSteps = qMax(0, m_editSteps + (flips ? 1 : -1));
     m_saveAction->setEnabled(m_editSteps);
     m_saveAsAction->setEnabled(m_editSteps);
 }
@@ -2545,8 +2541,6 @@ void Phototonic::readSettings() {
     /// @todo, these are not settings, the namespace is abused as transactional global object
     Settings::rotation = 0;
     Settings::keepTransform = false;
-    Settings::flipH = false;
-    Settings::flipV = false;
     Settings::slideShowActive = false;
 
     /* read external apps */

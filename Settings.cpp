@@ -81,8 +81,6 @@ namespace Settings {
     qreal rotation;
     bool mouseRotateEnabled = false;
     bool keepTransform;
-    bool flipH;
-    bool flipV;
     int defaultSaveQuality;
     double slideShowDelay;
     bool slideShowRandom;

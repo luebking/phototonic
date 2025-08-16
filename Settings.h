@@ -100,8 +100,6 @@ namespace Settings {
     extern qreal rotation;
     extern bool mouseRotateEnabled;
     extern bool keepTransform;
-    extern bool flipH;
-    extern bool flipV;
     extern int defaultSaveQuality;
     extern double slideShowDelay;
     extern bool slideShowRandom;
