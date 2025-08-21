@@ -16,7 +16,7 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="45"/>
         <source>OK</source>
-        <translation>Uredu</translation>
+        <translation>U redu</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="76"/>
@@ -71,7 +71,7 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="132"/>
         <source>Affected Channels</source>
-        <translation>Pogođeni kanali</translation>
+        <translation>Obuhvaćeni kanali</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="136"/>
@@ -127,7 +127,7 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="69"/>
         <source>Move to...</source>
-        <translation>Pomjeri u...</translation>
+        <translation>Premjesti u...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="66"/>
@@ -209,7 +209,7 @@
     <message>
         <location filename="../CropDialog.cpp" line="81"/>
         <source>Bottom</source>
-        <translation>Dole</translation>
+        <translation>Dolje</translation>
     </message>
 </context>
 <context>
@@ -513,7 +513,7 @@
         <location filename="../ImageViewer.cpp" line="293"/>
         <location filename="../ImageViewer.cpp" line="1222"/>
         <source>New image size: %1x%2</source>
-        <translation>Veličina nove slike: %1&#xa0;×&#xa0;%2</translation>
+        <translation>Veličina nove slike: %1 × %2</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="663"/>
@@ -524,18 +524,19 @@
     <message>
         <location filename="../ImageViewer.cpp" line="736"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation>&lt;h1&gt;Upozorenje&lt;/h1&gt;Veličina izvorne slike %1&#xa0;×&#xa0;%2 premašuje ograničenja&lt;br&gt;Smanjena je na %3&#xa0;×&#xa0;%4&lt;br&gt;&lt;h3&gt;Spremanjem uređivanja spremit će se manja slika!&lt;/h3&gt;</translation>
+        <translation>&lt;h1&gt;Upozorenje&lt;/h1&gt;Veličina izvorne slike %1 × %2 premašuje ograničenja&lt;br&gt;Smanjena je na %3 × %4&lt;br&gt;&lt;h3&gt;Spremanjem uređivanja spremit će se manja slika!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="921"/>
         <source>Save edits?</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremiti promjene?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="921"/>
         <source>The image was edited.
 Do you want to save a copy?</source>
-        <translation type="unfinished"></translation>
+        <translation>Slika je promijenjena.
+Želiš li spremiti kopiju?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1036"/>
@@ -550,7 +551,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1057"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished">Odaberi područje obrezivanja pomoću Ctrl + lijeva tipke miša</translation>
+        <translation>Odaberi područje obrezivanja pomoću Ctrl + lijeva tipka miša</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1059"/>
@@ -571,12 +572,12 @@ Do you want to save a copy?</source>
         <location filename="../ImageViewer.cpp" line="1088"/>
         <location filename="../ImageViewer.cpp" line="1110"/>
         <source>Pick a color</source>
-        <translation type="unfinished"></translation>
+        <translation>Odaberi boju</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1109"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Boja</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1285"/>
@@ -599,7 +600,7 @@ Do you want to save a copy?</source>
         <location filename="../ImageViewer.cpp" line="1427"/>
         <location filename="../ImageViewer.cpp" line="1511"/>
         <source>Failed to save image.</source>
-        <translation>Greška pri snimanju slike.</translation>
+        <translation>Neuspjelo spremanje slike.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1454"/>
@@ -609,7 +610,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1456"/>
         <source>Failed to save Exif metadata.</source>
-        <translation>Greška pri snimanju Exif podataka.</translation>
+        <translation>Neuspjelo spremanje Exif podataka.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1460"/>
@@ -621,12 +622,12 @@ Do you want to save a copy?</source>
         <location filename="../ImageViewer.cpp" line="1466"/>
         <location filename="../ImageViewer.cpp" line="1524"/>
         <source>Image saved.</source>
-        <translation>Slika snimljena.</translation>
+        <translation>Slika spremljena.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1487"/>
         <source>Save image as</source>
-        <translation>Snimi sliku kao</translation>
+        <translation>Spremi sliku kao</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1489"/>
@@ -649,7 +650,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="59"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukloni</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="70"/>
@@ -659,7 +660,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="80"/>
         <source>Enter filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Unesi ime filtra</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="81"/>
@@ -670,17 +671,17 @@ The special name&quot;preview&quot; is used for the filter in the viewer.</sourc
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
         <source>Edit filter: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Uredi filtar: %1</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="85"/>
         <source>Clearing the filter will delete it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Brisanjem opcija filtra će se on izbrisati.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="109"/>
         <source>Save EXIF changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremi EXIF promjene</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="116"/>
@@ -777,7 +778,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="465"/>
         <source>Zoom</source>
-        <translation>Ubliži</translation>
+        <translation>Zum</translation>
     </message>
     <message>
         <source>Mirroring</source>
@@ -902,14 +903,14 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="612"/>
         <source>Move to...</source>
-        <translation>Pomjeri u...</translation>
+        <translation>Premjesti u...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="615"/>
         <location filename="../Phototonic.cpp" line="2113"/>
         <location filename="../Phototonic.cpp" line="2233"/>
         <source>Move to Trash</source>
-        <translation>Pomjeri u otpad</translation>
+        <translation>Premjesti u smeće</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="619"/>
@@ -919,12 +920,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="623"/>
         <source>Save</source>
-        <translation>Snimi</translation>
+        <translation>Spremi</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="627"/>
         <source>Save As</source>
-        <translation>Snimi kao</translation>
+        <translation>Spremi kao</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="634"/>
@@ -1032,7 +1033,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="796"/>
         <source>Set Wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>Postavi sliku pozadine</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="799"/>
@@ -1048,17 +1049,17 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="814"/>
         <source>Zoom Out</source>
-        <translation>Udalji</translation>
+        <translation>Uvećaj prikaz</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="818"/>
         <source>Zoom In</source>
-        <translation>Ubliži</translation>
+        <translation>Umanji prikaz</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="822"/>
         <source>Reset Zoom</source>
-        <translation>Povrati zum</translation>
+        <translation>Resetiraj zum</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="830"/>
@@ -1127,7 +1128,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="990"/>
         <source>&amp;File</source>
-        <translation>&amp;Fajl</translation>
+        <translation>&amp;Datoteka</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1001"/>
@@ -1161,7 +1162,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1289"/>
         <source>File System</source>
-        <translation>Fajl sistem</translation>
+        <translation>Datotečni sustav</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1337"/>
@@ -1203,7 +1204,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1568"/>
         <source>Failed to start external application.</source>
-        <translation>Greška pri pokretanju eksterne aplikacije.</translation>
+        <translation>Neuspjelo pokretanje eksterne aplikacije.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1549"/>
@@ -1214,7 +1215,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="1762"/>
         <location filename="../Phototonic.cpp" line="1977"/>
         <source>Failed to copy or move image.</source>
-        <translation>Neuspijelo kopiranje ili pomjeranje slike.</translation>
+        <translation>Neuspjelo kopiranje ili premještanje slike.</translation>
     </message>
     <message>
         <source>Minimum zoom</source>
@@ -1224,7 +1225,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="1826"/>
         <source>Zoom %1%</source>
         <extracomment>nb the trailing &quot;%&quot; for eg. 80%</extracomment>
-        <translation>Ubliži %1%</translation>
+        <translation>Zumiranje %1%</translation>
     </message>
     <message>
         <source>Maximum zoom</source>
@@ -1456,22 +1457,22 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="838"/>
         <source>Rotate 90° CCW</source>
-        <translation type="unfinished"></translation>
+        <translation>Okreni za 90° ulijevo</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="842"/>
         <source>Rotate 90° CW</source>
-        <translation type="unfinished"></translation>
+        <translation>Okreni za 90° udesno</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="846"/>
         <source>Rotate with mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>Okreni pomoću miša</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="851"/>
         <source>Or try holding Shift</source>
-        <translation type="unfinished"></translation>
+        <translation>Ili pokušaj držati tipku Shift</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="862"/>
@@ -1481,17 +1482,17 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="870"/>
         <source>Rotate 1° CCW</source>
-        <translation type="unfinished"></translation>
+        <translation>Okreni za 1° ulijevo</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="873"/>
         <source>Rotate 1° CW</source>
-        <translation type="unfinished"></translation>
+        <translation>Okreni za 1° udesno</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="896"/>
         <source>Find Duplicate Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pronađi duple slike</translation>
     </message>
     <message>
         <source>Disable Mirror</source>
@@ -1596,7 +1597,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="2183"/>
         <source>Failed to move image to the trash.</source>
-        <translation>Neuspiješno prebacivanje slike u otpad.</translation>
+        <translation>Neuspjelo premještanje slike u smeće.</translation>
     </message>
     <message>
         <source>Deleted</source>
@@ -1605,7 +1606,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="2234"/>
         <source>Move %1 to the trash</source>
-        <translation>Pomjeri %1 u otpad</translation>
+        <translation>Premjesti %1 u smeće</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2234"/>
@@ -1624,57 +1625,57 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="266"/>
         <source>Failed to open file %1, file not found.</source>
-        <translation>Neuspiješno otvaranje fajla %1, fajl nije pronađen.</translation>
+        <translation>Neuspjelo otvaranje datoteke %1, datoteka nije pronađena.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="942"/>
         <source>Rotate and Crop images</source>
-        <translation type="unfinished"></translation>
+        <translation>Okreni i obreži slike</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1940"/>
         <source>No crop area defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Područje obrezivanja nije definirano</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1953"/>
         <source>Create backups?</source>
-        <translation type="unfinished"></translation>
+        <translation>Stvoriti sigurnosnu kopiju?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1953"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Nije definiran globalni direktorij za spremanje, slike će se prepisati. &lt;h3&gt;Želiš li stvoriti sigurnosne kopije?&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1957"/>
         <source>Create backups and overwrite the original files</source>
-        <translation type="unfinished"></translation>
+        <translation>Stvori sigurnosne kopije i prepiši izvorne datoteke</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1957"/>
         <source>Overwrite the original files</source>
-        <translation type="unfinished"></translation>
+        <translation>Prepiši izvorne datoteke</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1960"/>
         <source>Save the transformed images to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremi transformirane slike u %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1969"/>
         <source>&lt;h3&gt;Perform batch transformation?&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Izvršiti grupnu transformaciju?&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1963"/>
         <source>&lt;ul&gt;&lt;li&gt;Rotate %1 images by %2°&lt;/li&gt;&lt;li&gt;Crop them to %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;ul&gt;&lt;li&gt;Okreni %1 slika za %2°&lt;/li&gt;&lt;li&gt;Obreži ih na %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3050"/>
         <source>Can not move or copy images to this directory.</source>
-        <translation>Nemoguće pomjeriti ili kopirati slike u ovaj direktorij.</translation>
+        <translation>Nije moguće premjestiti ili kopirati slike u ovaj direktorij.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3055"/>
@@ -1684,7 +1685,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3068"/>
         <source>Move directory %1 to %2?</source>
-        <translation>Pomjeri direktorij %1 u %2?</translation>
+        <translation>Premjestiti direktorij %1 u %2?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3068"/>
@@ -1694,17 +1695,17 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3067"/>
         <source>Move Directory</source>
-        <translation>Pomjeri direktorij</translation>
+        <translation>Premjesti direktorij</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3071"/>
         <source>Failed to move directory.</source>
-        <translation>Neuspijelo pomjeranje direktorija.</translation>
+        <translation>Neuspjelo premještanje direktorija.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3073"/>
         <source>Directory moved</source>
-        <translation>Direktorij pomjeren</translation>
+        <translation>Direktorij premješten</translation>
     </message>
     <message>
         <source>Failed to open directory </source>
@@ -1718,12 +1719,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3230"/>
         <source>Files List</source>
-        <translation>Lista fajlova</translation>
+        <translation>Lista datoteka</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3259"/>
         <source>Failed to rename directory.</source>
-        <translation>Neuspijelo preimenovanje direktorija.</translation>
+        <translation>Neuspjelo preimenovanje direktorija.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3456"/>
@@ -1733,7 +1734,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3459"/>
         <source>Failed to remove Exif metadata.</source>
-        <translation>Neuspiješno brisanje Exif podataka.</translation>
+        <translation>Neuspjelo brisanje Exif podataka.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3464"/>
@@ -1743,7 +1744,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3474"/>
         <source>Move directory %1 to the trash?</source>
-        <translation>Pomjeri direktorij %1 u otpad?</translation>
+        <translation>Premjestiti direktorij %1 u smeće?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3475"/>
@@ -1772,7 +1773,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3489"/>
         <source>Failed to delete directory.</source>
-        <translation>Neuspješno brisanje direktorija.</translation>
+        <translation>Neuspjelo brisanje direktorija.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3510"/>
@@ -1787,7 +1788,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3526"/>
         <source>Failed to create new directory.</source>
-        <translation>Neuspiješno pravljenje novog direktorija.</translation>
+        <translation>Neuspjelo stvaranje novog direktorija.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3530"/>
@@ -1804,7 +1805,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="136"/>
         <location filename="../Phototonic.cpp" line="358"/>
         <source>Average brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosječna svjetlina</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="455"/>
@@ -1829,27 +1830,27 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="926"/>
         <source>Slide Image Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomakni sliku lijevo</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="928"/>
         <source>Slide Image Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomakni sliku desno</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="930"/>
         <source>Slide Image Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomakni sliku gore</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="932"/>
         <source>Slide Image Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomakni sliku dolje</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1147"/>
         <source>Accuracy: </source>
-        <translation type="unfinished"></translation>
+        <translation>Preciznost: </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1164"/>
@@ -1865,17 +1866,17 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1249"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Izbornik</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1258"/>
         <source>Viewer Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Alatna traka preglednika</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1557"/>
         <source>Commands using %f or %u cannot be used with multiple files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Naredbe koje koriste %f ili %u ne mogu se koristiti s više datoteka.</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1713"/>
@@ -1898,23 +1899,23 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1794"/>
         <source>Maximum Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Najveće zumiranje</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1798"/>
         <source>Minimum Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Najmanje zumiranje</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1936"/>
         <location filename="../Phototonic.cpp" line="3685"/>
         <source>No images selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Nijedna slika nije odabrana</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1936"/>
         <source>Please select the images to transform.</source>
-        <translation type="unfinished"></translation>
+        <translation>Odaberi slike za transformaciju.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1941"/>
@@ -1924,40 +1925,40 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1969"/>
         <source>Batch transformation</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupna transformacija</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2040"/>
         <source>Can not copy or move to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne može se kopirati ili premjestiti u %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2068"/>
         <location filename="../Phototonic.cpp" line="3087"/>
         <source>Copied %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Kopirana je %n slika</numerusform>
+            <numerusform>Kopirane su %n slike</numerusform>
+            <numerusform>Kopirano je %n slika</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2068"/>
         <location filename="../Phototonic.cpp" line="3088"/>
         <source>Moved %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Premještena je %n slika</numerusform>
+            <numerusform>Premještene su %n slike</numerusform>
+            <numerusform>Premješteno je %n slika</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2114"/>
         <source>Move %n selected image(s) to the trash?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Premjestiti %n odabranu sliku u smeće?</numerusform>
+            <numerusform>Premjestiti %n odabrane slike u smeće?</numerusform>
+            <numerusform>Premjestiti %n odabranih slika u smeće?</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -1991,7 +1992,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="2333"/>
         <source>Invalid Path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neispravna putanja: %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2807"/>
@@ -2011,7 +2012,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3157"/>
         <source>Failed to open directory %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuspjelo otvaranje direktorija %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3188"/>
@@ -2077,12 +2078,12 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../Phototonic.cpp" line="3433"/>
         <source>Failed to rename image.</source>
-        <translation>Neuspijelo preimenovanje slike.</translation>
+        <translation>Neuspjelo preimenovanje slike.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3488"/>
         <source>Failed to move directory to the trash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuspjelo premještanje direktorija u smeće.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3493"/>
@@ -2092,7 +2093,7 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../Phototonic.cpp" line="3536"/>
         <source>Directory to save images into:</source>
-        <translation type="unfinished"></translation>
+        <translation>Direktorij za spremanje slika:</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3766"/>
@@ -2143,7 +2144,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Size</source>
-        <translation type="unfinished">Veličina</translation>
+        <translation>Veličina</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
@@ -2153,7 +2154,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Resolution</source>
-        <translation type="unfinished">Rezolucija</translation>
+        <translation>Rezolucija</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
@@ -2163,12 +2164,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Kopiranje &quot;%1&quot; u &quot;%2&quot;.</translation>
+        <translation>„%1” se kopira u „%2”.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Prebacuje &quot;%1&quot; u &quot;%2&quot;.</translation>
+        <translation>„%1” se premješta u „%2”.</translation>
     </message>
 </context>
 <context>
@@ -2337,7 +2338,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="170"/>
         <source>Use scroll wheel for zooming in image viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Koristi kotačić miša za zumiranje u pregledniku slika</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="222"/>
@@ -2492,7 +2493,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="473"/>
         <source>Open File</source>
-        <translation>Otvori fajl</translation>
+        <translation>Otvori datoteku</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="474"/>
@@ -2614,7 +2615,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ThumbsViewer.cpp" line="263"/>
         <source>Failed to save tags to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuspjelo spremanje oznaka u %1</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="940"/>

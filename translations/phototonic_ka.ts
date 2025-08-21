@@ -484,13 +484,14 @@
     <message>
         <location filename="../ImageViewer.cpp" line="921"/>
         <source>Save edits?</source>
-        <translation type="unfinished"></translation>
+        <translation>შევინახო ჩასწორებები?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="921"/>
         <source>The image was edited.
 Do you want to save a copy?</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულება ჩასწორდა.
+გნებავთ ასლის შენახვა?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1036"/>
@@ -505,12 +506,12 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1057"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished">აირჩიეთ ამოსაჭრელი ალაგი Ctrl + თაგუნას მარცხენა ღილაკით</translation>
+        <translation>აირჩიეთ ამოსაჭრელი ალაგი Ctrl + თაგუნას მარცხენა ღილაკით</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1059"/>
         <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>მონიშნეთ გასაშავებელი ადგილი Ctrl + თაგუნას მარცხენა ღილაკით</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1061"/>
@@ -1926,17 +1927,17 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Size</source>
-        <translation type="unfinished">ზომა</translation>
+        <translation>ზომა</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Modified</source>
-        <translation type="unfinished">შეიცვალა</translation>
+        <translation>შეიცვალა</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Resolution</source>
-        <translation type="unfinished">გარჩევადობა</translation>
+        <translation>გაფართოება</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
@@ -1946,12 +1947,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">&quot;%1&quot;-ის კოპირება &quot;%2&quot;-ში.</translation>
+        <translation>&quot;%1&quot;-ის კოპირება &quot;%2&quot;-ში.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">&quot;%1&quot;-ის გადატანა &quot;%2&quot;-ში.</translation>
+        <translation>&quot;%1&quot;-ის გადატანა &quot;%2&quot;-ში.</translation>
     </message>
 </context>
 <context>
