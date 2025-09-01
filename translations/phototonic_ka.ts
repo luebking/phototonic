@@ -424,8 +424,8 @@
 <context>
     <name>ImageViewer</name>
     <message>
-        <location filename="../ImageViewer.cpp" line="293"/>
-        <location filename="../ImageViewer.cpp" line="1222"/>
+        <location filename="../ImageViewer.cpp" line="290"/>
+        <location filename="../ImageViewer.cpp" line="1220"/>
         <source>New image size: %1x%2</source>
         <translation>ახალი გამოსახულების ზომა: %1x%2</translation>
     </message>
@@ -471,126 +471,146 @@
         <translation>საწყისი ზომა</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="663"/>
+        <location filename="../ImageViewer.cpp" line="660"/>
         <source>skipping animation in batch mode:</source>
         <extracomment>this is a warning on the console</extracomment>
         <translation>ანიმაციის გამოტოვება ერთზე მეტზე მუშაობისას:</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="736"/>
+        <location filename="../ImageViewer.cpp" line="733"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
         <translation>&lt;h1&gt;გაფრთხილება&lt;/h1&gt;გამოსახულების ორიგინალი ზომა %1x%2 საზღვრებს სცდება &lt;br&gt;დაპატარავდა ზომებამდე %3x%4&lt;br&gt;&lt;h3&gt;ჩასწორებების შენახვა უფრო პატარა გამოსახულებას შეინახავს!&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="921"/>
+        <location filename="../ImageViewer.cpp" line="915"/>
         <source>Save edits?</source>
         <translation>შევინახო ჩასწორებები?</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="921"/>
+        <location filename="../ImageViewer.cpp" line="915"/>
         <source>The image was edited.
 Do you want to save a copy?</source>
         <translation>გამოსახულება ჩასწორდა.
 გნებავთ ასლის შენახვა?</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1036"/>
+        <location filename="../ImageViewer.cpp" line="1030"/>
         <source>Selection: </source>
         <translation>არჩევანი: </translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1046"/>
+        <location filename="../ImageViewer.cpp" line="1040"/>
         <source>Doubleclick to crop, right click to abort</source>
         <translation>ორმაგი წკაპი ამოსაჭრელად, მარჯვენა წკაპი გასაუქმებლად</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1057"/>
+        <location filename="../ImageViewer.cpp" line="1051"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
         <translation>აირჩიეთ ამოსაჭრელი ალაგი Ctrl + თაგუნას მარცხენა ღილაკით</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1059"/>
+        <location filename="../ImageViewer.cpp" line="1053"/>
         <source>Select the blackout area with Ctrl + left mouse button</source>
         <translation>მონიშნეთ გასაშავებელი ადგილი Ctrl + თაგუნას მარცხენა ღილაკით</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1061"/>
+        <location filename="../ImageViewer.cpp" line="1055"/>
         <source>Select the cartouche area with Ctrl + left mouse button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1063"/>
+        <location filename="../ImageViewer.cpp" line="1057"/>
         <source>Select the annotation area with Ctrl + left mouse button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1088"/>
-        <location filename="../ImageViewer.cpp" line="1110"/>
+        <location filename="../ImageViewer.cpp" line="1082"/>
+        <location filename="../ImageViewer.cpp" line="1104"/>
         <source>Pick a color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1109"/>
+        <location filename="../ImageViewer.cpp" line="1103"/>
         <source>Color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1285"/>
+        <location filename="../ImageViewer.cpp" line="1231"/>
+        <source>Flipped Horizontally</source>
+        <translation type="unfinished">ჰორიზონტალურად გადატრიალებული</translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="1231"/>
+        <source>Unflipped Horizontally</source>
+        <translation type="unfinished">გადმობრუნდა ჰორიზონტალურად</translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="1233"/>
+        <source>Flipped Vertically</source>
+        <translation type="unfinished">ვერტიკალურად გადატრიალებული</translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="1233"/>
+        <source>Unflipped Vertically</source>
+        <translation type="unfinished">გადმობრუნდა ვერტიკალურად</translation>
+    </message>
+    <message>
+        <location filename="../ImageViewer.cpp" line="1296"/>
         <source>Rotation %1°</source>
         <translation>შებრუნება კუთხით %1°</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1399"/>
+        <location filename="../ImageViewer.cpp" line="1410"/>
         <source>Saving...</source>
         <translation>Შენახვა...</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1427"/>
-        <location filename="../ImageViewer.cpp" line="1456"/>
-        <location filename="../ImageViewer.cpp" line="1511"/>
+        <location filename="../ImageViewer.cpp" line="1438"/>
+        <location filename="../ImageViewer.cpp" line="1467"/>
+        <location filename="../ImageViewer.cpp" line="1523"/>
         <source>Error</source>
         <translation>შეცდომა</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1427"/>
-        <location filename="../ImageViewer.cpp" line="1511"/>
+        <location filename="../ImageViewer.cpp" line="1438"/>
+        <location filename="../ImageViewer.cpp" line="1523"/>
         <source>Failed to save image.</source>
         <translation>ფაილის შენახვის შეცდომა.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1454"/>
+        <location filename="../ImageViewer.cpp" line="1465"/>
         <source>Don&apos;t show this message again</source>
         <translation>ეს შეტყობინება აღარ მაჩვენო</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1456"/>
+        <location filename="../ImageViewer.cpp" line="1467"/>
         <source>Failed to save Exif metadata.</source>
         <translation>Exif-ის მეტამონაცემების შენახვა ჩავარდა.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1460"/>
+        <location filename="../ImageViewer.cpp" line="1471"/>
         <source>Failed to safe Exif metadata:</source>
         <extracomment>this is a warning on the console</extracomment>
         <translation>Exif მეტამონაცემების შენახვა ჩავარდა:</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1466"/>
-        <location filename="../ImageViewer.cpp" line="1524"/>
+        <location filename="../ImageViewer.cpp" line="1478"/>
+        <location filename="../ImageViewer.cpp" line="1536"/>
         <source>Image saved.</source>
         <translation>გამოსახულება შენახულია.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1487"/>
+        <location filename="../ImageViewer.cpp" line="1499"/>
         <source>Save image as</source>
         <translation>გამოსახულების შენახვა, როგორც</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1489"/>
+        <location filename="../ImageViewer.cpp" line="1501"/>
         <source>Images</source>
         <translation>გამოსახულებები</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1565"/>
+        <location filename="../ImageViewer.cpp" line="1577"/>
         <source>Clipboard</source>
         <translation>გაცვლის ბუფერი</translation>
     </message>
@@ -876,7 +896,7 @@ Hide with filter: |nohistogram|</source>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="765"/>
-        <location filename="../Phototonic.cpp" line="2806"/>
+        <location filename="../Phototonic.cpp" line="2802"/>
         <source>Slide Show</source>
         <translation>სლაიდების ჩვენება</translation>
     </message>
@@ -1034,25 +1054,25 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="266"/>
         <location filename="../Phototonic.cpp" line="1568"/>
         <location filename="../Phototonic.cpp" line="1762"/>
-        <location filename="../Phototonic.cpp" line="1977"/>
-        <location filename="../Phototonic.cpp" line="2040"/>
-        <location filename="../Phototonic.cpp" line="2050"/>
-        <location filename="../Phototonic.cpp" line="2183"/>
-        <location filename="../Phototonic.cpp" line="2253"/>
-        <location filename="../Phototonic.cpp" line="2333"/>
-        <location filename="../Phototonic.cpp" line="3050"/>
-        <location filename="../Phototonic.cpp" line="3055"/>
-        <location filename="../Phototonic.cpp" line="3071"/>
-        <location filename="../Phototonic.cpp" line="3157"/>
-        <location filename="../Phototonic.cpp" line="3251"/>
-        <location filename="../Phototonic.cpp" line="3259"/>
-        <location filename="../Phototonic.cpp" line="3313"/>
-        <location filename="../Phototonic.cpp" line="3376"/>
-        <location filename="../Phototonic.cpp" line="3433"/>
-        <location filename="../Phototonic.cpp" line="3459"/>
-        <location filename="../Phototonic.cpp" line="3488"/>
-        <location filename="../Phototonic.cpp" line="3518"/>
-        <location filename="../Phototonic.cpp" line="3526"/>
+        <location filename="../Phototonic.cpp" line="1973"/>
+        <location filename="../Phototonic.cpp" line="2036"/>
+        <location filename="../Phototonic.cpp" line="2046"/>
+        <location filename="../Phototonic.cpp" line="2179"/>
+        <location filename="../Phototonic.cpp" line="2249"/>
+        <location filename="../Phototonic.cpp" line="2329"/>
+        <location filename="../Phototonic.cpp" line="3046"/>
+        <location filename="../Phototonic.cpp" line="3051"/>
+        <location filename="../Phototonic.cpp" line="3067"/>
+        <location filename="../Phototonic.cpp" line="3153"/>
+        <location filename="../Phototonic.cpp" line="3247"/>
+        <location filename="../Phototonic.cpp" line="3255"/>
+        <location filename="../Phototonic.cpp" line="3309"/>
+        <location filename="../Phototonic.cpp" line="3372"/>
+        <location filename="../Phototonic.cpp" line="3429"/>
+        <location filename="../Phototonic.cpp" line="3455"/>
+        <location filename="../Phototonic.cpp" line="3484"/>
+        <location filename="../Phototonic.cpp" line="3514"/>
+        <location filename="../Phototonic.cpp" line="3522"/>
         <source>Error</source>
         <translation>შეცდომა</translation>
     </message>
@@ -1068,7 +1088,7 @@ Hide with filter: |nohistogram|</source>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1762"/>
-        <location filename="../Phototonic.cpp" line="1977"/>
+        <location filename="../Phototonic.cpp" line="1973"/>
         <source>Failed to copy or move image.</source>
         <translation>გამოსახულების კოპირება ან გადატანა ჩავარდა.</translation>
     </message>
@@ -1173,8 +1193,8 @@ Hide with filter: |nohistogram|</source>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="615"/>
-        <location filename="../Phototonic.cpp" line="2113"/>
-        <location filename="../Phototonic.cpp" line="2233"/>
+        <location filename="../Phototonic.cpp" line="2109"/>
+        <location filename="../Phototonic.cpp" line="2229"/>
         <source>Move to Trash</source>
         <translation>ნაგვის ყუთში გადატანა</translation>
     </message>
@@ -1190,8 +1210,8 @@ Hide with filter: |nohistogram|</source>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="637"/>
-        <location filename="../Phototonic.cpp" line="3454"/>
-        <location filename="../Phototonic.cpp" line="3456"/>
+        <location filename="../Phototonic.cpp" line="3450"/>
+        <location filename="../Phototonic.cpp" line="3452"/>
         <source>Remove Metadata</source>
         <translation>მეტამონაცემების მოცილება</translation>
     </message>
@@ -1460,64 +1480,60 @@ Hide with filter: |nohistogram|</source>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1871"/>
-        <location filename="../Phototonic.cpp" line="1930"/>
+        <location filename="../Phototonic.cpp" line="1926"/>
         <source>Rotation %1°</source>
         <translation>შებრუნების კუთხე %1°</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1880"/>
         <source>Flipped Vertically</source>
-        <translation>ვერტიკალურად გადატრიალებული</translation>
+        <translation type="vanished">ვერტიკალურად გადატრიალებული</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1880"/>
         <source>Unflipped Vertically</source>
-        <translation>გადმობრუნდა ვერტიკალურად</translation>
+        <translation type="vanished">გადმობრუნდა ვერტიკალურად</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1889"/>
         <source>Flipped Horizontally</source>
-        <translation>ჰორიზონტალურად გადატრიალებული</translation>
+        <translation type="vanished">ჰორიზონტალურად გადატრიალებული</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1889"/>
         <source>Unflipped Horizontally</source>
-        <translation>გადმობრუნდა ჰორიზონტალურად</translation>
+        <translation type="vanished">გადმობრუნდა ჰორიზონტალურად</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1936"/>
-        <location filename="../Phototonic.cpp" line="3685"/>
+        <location filename="../Phototonic.cpp" line="1932"/>
+        <location filename="../Phototonic.cpp" line="3681"/>
         <source>No images selected</source>
         <translation>გამოსახულება არჩეული არაა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1936"/>
+        <location filename="../Phototonic.cpp" line="1932"/>
         <source>Please select the images to transform.</source>
         <translation>აირჩიეთ გარდასაქმნელი გამოსახულებები.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1941"/>
+        <location filename="../Phototonic.cpp" line="1937"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation>&lt;h3&gt;აღწერეთ ამოსაჭრელი ალაგი&lt;/h3&gt;&lt;p&gt;გახსენით გამოსახულება, სურვილის შემთხვევაში შემოაბრუნეთ.&lt;br&gt;შემდეგ დააჭირეთ და გეჭიროთ ღილაკზე Ctrl და მორნიშნეთ ამოსაჭრელი მართკუთხედი.&lt;br&gt;&lt;b&gt;არ&lt;/b&gt; გადაატაროთ ამოჭრა მონიშნულზე ორმაგი წკაპით!&lt;br&gt;თუ მინიატურას არ იყენებთ, გადით დამთვალიერებლიდან.&lt;/p&gt;ახლა შეგიძლიათ, ეს ქმედება ერთზე მეტ გამოსახულებაზე შეასრულოთ.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1969"/>
+        <location filename="../Phototonic.cpp" line="1965"/>
         <source>Batch transformation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2040"/>
+        <location filename="../Phototonic.cpp" line="2036"/>
         <source>Can not copy or move to %1</source>
         <translation>ვერ დავაკოპირე ან გადავიტანე %1-ში</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2050"/>
+        <location filename="../Phototonic.cpp" line="2046"/>
         <source>Can not move to the same directory</source>
         <translation>იგივე საქაღალდეში გადატანა შეუძლებელია</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2068"/>
-        <location filename="../Phototonic.cpp" line="3087"/>
+        <location filename="../Phototonic.cpp" line="2064"/>
+        <location filename="../Phototonic.cpp" line="3083"/>
         <source>Copied %n image(s)</source>
         <translation>
             <numerusform>დაკოპირებულია %n გამოსახულება</numerusform>
@@ -1525,8 +1541,8 @@ Hide with filter: |nohistogram|</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2068"/>
-        <location filename="../Phototonic.cpp" line="3088"/>
+        <location filename="../Phototonic.cpp" line="2064"/>
+        <location filename="../Phototonic.cpp" line="3084"/>
         <source>Moved %n image(s)</source>
         <translation>
             <numerusform>გადატანილია %n გამოსახულება</numerusform>
@@ -1534,7 +1550,7 @@ Hide with filter: |nohistogram|</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2114"/>
+        <location filename="../Phototonic.cpp" line="2110"/>
         <source>Move %n selected image(s) to the trash?</source>
         <translation>
             <numerusform>გადავიტანო %n მონიშნული გამოსახულება ნაგვის ყუთში?</numerusform>
@@ -1542,7 +1558,7 @@ Hide with filter: |nohistogram|</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2115"/>
+        <location filename="../Phototonic.cpp" line="2111"/>
         <source>Permanently delete %n selected image(s)?</source>
         <translation>
             <numerusform>წავშალო შეუქცევადად %n გამოსახულება?</numerusform>
@@ -1550,12 +1566,12 @@ Hide with filter: |nohistogram|</source>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2183"/>
+        <location filename="../Phototonic.cpp" line="2179"/>
         <source>Failed to move image to the trash.</source>
         <translation>გამოსახულების ნაგვის ყუთში გადატანა ჩავარდა.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2204"/>
+        <location filename="../Phototonic.cpp" line="2200"/>
         <source>Deleted %n image(s)</source>
         <translation>
             <numerusform>წაშლილია %n გამოსახულება</numerusform>
@@ -1563,144 +1579,144 @@ Hide with filter: |nohistogram|</source>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2234"/>
+        <location filename="../Phototonic.cpp" line="2230"/>
         <source>Move %1 to the trash</source>
         <translation>%1-ის გადატანა ნაგვის ყუთში</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2234"/>
+        <location filename="../Phototonic.cpp" line="2230"/>
         <source>Permanently delete %1</source>
         <translation>სამუდამოდ წაიშალოს %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2250"/>
+        <location filename="../Phototonic.cpp" line="2246"/>
         <source>Deleted %1</source>
         <translation>%1 წაშლილია</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2333"/>
+        <location filename="../Phototonic.cpp" line="2329"/>
         <source>Invalid Path: %1</source>
         <translation>არასწორი ბილიკი: %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3050"/>
+        <location filename="../Phototonic.cpp" line="3046"/>
         <source>Can not move or copy images to this directory.</source>
         <translation>გამოსახულებების ამ საქაღალდეში კოპირება ან გადმოტანა შეუძლებელია.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3055"/>
+        <location filename="../Phototonic.cpp" line="3051"/>
         <source>Destination directory is the same as the source directory.</source>
         <translation>სამიზნე საქაღალდე იგივეა, რაც წყარო საქაღალდე.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3068"/>
+        <location filename="../Phototonic.cpp" line="3064"/>
         <source>Move directory %1 to %2?</source>
         <translation>გადავიტანო საქაღალდე %1 %2-ში?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3068"/>
+        <location filename="../Phototonic.cpp" line="3064"/>
         <source>Move directory</source>
         <translation>საქაღალდის გადატანა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3067"/>
+        <location filename="../Phototonic.cpp" line="3063"/>
         <source>Move Directory</source>
         <translation>საქაღალდის გადატანა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3071"/>
+        <location filename="../Phototonic.cpp" line="3067"/>
         <source>Failed to move directory.</source>
         <translation>საქაღალდის გადატანა ჩავარდა.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3073"/>
+        <location filename="../Phototonic.cpp" line="3069"/>
         <source>Directory moved</source>
         <translation>საქაღალდე გადატანილია</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3157"/>
+        <location filename="../Phototonic.cpp" line="3153"/>
         <source>Failed to open directory %1</source>
         <translation>საქაღალდის %1 გახსნა ჩავარდა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3156"/>
+        <location filename="../Phototonic.cpp" line="3152"/>
         <source>No directory selected</source>
         <translation>საქაღალდე არჩეული არაა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3188"/>
+        <location filename="../Phototonic.cpp" line="3184"/>
         <source>Searching duplicates: %v / %m</source>
         <extracomment>%v and %m are literal pattterns for QProgressBar (value and maximum)</extracomment>
         <translation>გამეორებების ძებნა: %v / %m</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3259"/>
+        <location filename="../Phototonic.cpp" line="3255"/>
         <source>Failed to rename directory.</source>
         <translation>საქაღალდის სახელის გადარქმევა ჩავარდა.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3456"/>
+        <location filename="../Phototonic.cpp" line="3452"/>
         <source>Permanently remove all Exif metadata from selected images?</source>
         <translation>წავშალო შეუქცევადად ყველა Exif მეტამონაცემი მონიშნული გამოსახულებებიდან?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3459"/>
+        <location filename="../Phototonic.cpp" line="3455"/>
         <source>Failed to remove Exif metadata.</source>
         <translation>Exif მეტამონაცემების წაშლა ჩავარდა.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3464"/>
+        <location filename="../Phototonic.cpp" line="3460"/>
         <source>Metadata removed from selected images</source>
         <translation>მეტამონაცემები წაიშალა მონიშნული გამოსახულებებიდან</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3474"/>
+        <location filename="../Phototonic.cpp" line="3470"/>
         <source>Move directory %1 to the trash?</source>
         <translation>გადავიტანო საქაღალდე %1 ნაგვის ყუთში?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3475"/>
+        <location filename="../Phototonic.cpp" line="3471"/>
         <source>Permanently delete the directory %1 and all of its contents?</source>
         <translation>წავშალო შეუქცევადად საქაღალდე %1 და მისი შემცველობა?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3479"/>
-        <location filename="../Phototonic.cpp" line="3481"/>
+        <location filename="../Phototonic.cpp" line="3475"/>
+        <location filename="../Phototonic.cpp" line="3477"/>
         <source>Delete Directory</source>
         <translation>საქაღალდის წაშლა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3479"/>
+        <location filename="../Phototonic.cpp" line="3475"/>
         <source>OK</source>
         <translation>დიახ</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3489"/>
+        <location filename="../Phototonic.cpp" line="3485"/>
         <source>Failed to delete directory.</source>
         <translation>საქაღალდის წაშლა ჩავარდა.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3510"/>
+        <location filename="../Phototonic.cpp" line="3506"/>
         <source>New Sub directory</source>
         <translation>ახალი ქვესაქაღალდე</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3511"/>
+        <location filename="../Phototonic.cpp" line="3507"/>
         <source>New directory name:</source>
         <translation>ახალი საქაღალდის სახელი:</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3526"/>
+        <location filename="../Phototonic.cpp" line="3522"/>
         <source>Failed to create new directory.</source>
         <translation>ახალი საქაღალდის შექმნა ჩავარდა.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3530"/>
+        <location filename="../Phototonic.cpp" line="3526"/>
         <source>Created %1</source>
         <translation>%1 შეიქმნა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3536"/>
+        <location filename="../Phototonic.cpp" line="3532"/>
         <source>Directory to save images into:</source>
         <translation>საქაღალდე გამოსახულებების შესანახად:</translation>
     </message>
@@ -1712,13 +1728,13 @@ Hide with filter: |nohistogram|</source>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2253"/>
+        <location filename="../Phototonic.cpp" line="2249"/>
         <source>Failed to delete image</source>
         <translation>გამოსახულების წაშლის შეცდომა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2113"/>
-        <location filename="../Phototonic.cpp" line="2233"/>
+        <location filename="../Phototonic.cpp" line="2109"/>
+        <location filename="../Phototonic.cpp" line="2229"/>
         <source>Delete images</source>
         <translation>ასლების წაშლა</translation>
     </message>
@@ -1728,42 +1744,42 @@ Hide with filter: |nohistogram|</source>
         <translation type="vanished">&lt;h2&gt;[ქვესტრიქონი] [/ შეზღუდვა [/ სხვა შეზღუდვები]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1 მ / &amp;lt; 10 კბ&lt;/tt&gt;&lt;br&gt;&lt;i&gt;ემთხვევა, 5 დღეზე უფროსი, მაგრამ თვეზე ნაკლები - ან 10 კბ-ზე ნაკლები&lt;/i&gt;&lt;ul&gt;&lt;li&gt;უფრო დიდი ვიდრე/შემდეგ: &amp;gt;&lt;/li&gt;&lt;li&gt;პატარა ვიდრე/ადრე: &amp;lt;&lt;/li&gt;&lt;li&gt;ზუსტი ასაკი ან (დამრგვალებული) ზომა სხვაგვარად იგულისხმება: (YYYY-MM-DD) ან ნათესავი (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;ზომები არის სუფიქსი 4kB:MB:GB ან 4MP (მეგა-პიქსელი)&lt;/li&gt;&lt;li&gt;ზომები არის წინასწარ/in/სუფიქსით „x“ ([სიგანე]x[სიმაღლე])&lt;/li&gt;&lt;-ulens aresbut. M|onth&lt;/i&gt;&lt;br&gt;შემდეგი &quot;/&quot; დაიწყება ახალი საკმარისი პირობების ჯგუფი, ქვესტრიქონის დამთხვევა არჩევითია.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1940"/>
+        <location filename="../Phototonic.cpp" line="1936"/>
         <source>No crop area defined</source>
         <translation>ამოსაჭრელი ალაგი მონიშნული არაა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1953"/>
+        <location filename="../Phototonic.cpp" line="1949"/>
         <source>Create backups?</source>
         <translation>შევქმნა მარქაფები?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1953"/>
+        <location filename="../Phototonic.cpp" line="1949"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
         <translation>გლობალური შენახვის საქაღალდე აღწერილი არაა. მოხდება გამოსახულებების თავზე გადაწერა.&lt;h3&gt;გნებავთ მარქაფების შექმნა?&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1957"/>
+        <location filename="../Phototonic.cpp" line="1953"/>
         <source>Create backups and overwrite the original files</source>
         <translation>მარქაფების შექმნა და ორიგინალი ფაილების თავზე გადაწერა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1957"/>
+        <location filename="../Phototonic.cpp" line="1953"/>
         <source>Overwrite the original files</source>
         <translation>ორიგინალი ფაილების თავზე გადაწერა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1960"/>
+        <location filename="../Phototonic.cpp" line="1956"/>
         <source>Save the transformed images to %1</source>
         <translation>გადაყვანილი გამოსახულებების შენახვა %1-ში</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1969"/>
+        <location filename="../Phototonic.cpp" line="1965"/>
         <source>&lt;h3&gt;Perform batch transformation?&lt;/h3&gt;</source>
         <translation>&lt;h3&gt;გადავიყვანო ბევრი ერთად?&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1963"/>
+        <location filename="../Phototonic.cpp" line="1959"/>
         <source>&lt;ul&gt;&lt;li&gt;Rotate %1 images by %2°&lt;/li&gt;&lt;li&gt;Crop them to %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;ul&gt;&lt;li&gt;%1 გამოსახულების მობრუნება კუთხით %2°&lt;/li&gt;&lt;li&gt;მათი ამოჭრა ზომებზე %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -1774,117 +1790,117 @@ Hide with filter: |nohistogram|</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2161"/>
+        <location filename="../Phototonic.cpp" line="2157"/>
         <source>Deleting %1</source>
         <translation>%1-ის წაშლა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2184"/>
+        <location filename="../Phototonic.cpp" line="2180"/>
         <source>Failed to delete image.</source>
         <translation>გამოსახულების წაშლა ჩავარდა.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2733"/>
+        <location filename="../Phototonic.cpp" line="2729"/>
         <source>No images</source>
         <translation>გამოსახულებების გარეშე</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2807"/>
+        <location filename="../Phototonic.cpp" line="2803"/>
         <source>Slide show stopped</source>
         <translation>სლაიდშოუ გაჩერდა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2837"/>
+        <location filename="../Phototonic.cpp" line="2833"/>
         <source>Stop Slide Show</source>
         <translation>სლაიდშოუს გაჩერება</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2838"/>
+        <location filename="../Phototonic.cpp" line="2834"/>
         <source>Slide show started</source>
         <translation>სლაიდშოუ დაიწყო</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3228"/>
+        <location filename="../Phototonic.cpp" line="3224"/>
         <source>Duplicate images in %1</source>
         <translation>გამეორებული გამოსახულებები საქაღალდეში %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3230"/>
+        <location filename="../Phototonic.cpp" line="3226"/>
         <source>Files List</source>
         <translation>ფაილების სია</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3241"/>
+        <location filename="../Phototonic.cpp" line="3237"/>
         <source>Rename %1</source>
         <translation>%1-ის გადარქმევა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3243"/>
+        <location filename="../Phototonic.cpp" line="3239"/>
         <source>New name:</source>
         <translation>ახალი სახელი:</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3251"/>
-        <location filename="../Phototonic.cpp" line="3518"/>
+        <location filename="../Phototonic.cpp" line="3247"/>
+        <location filename="../Phototonic.cpp" line="3514"/>
         <source>Invalid name entered.</source>
         <translation>შეყვანილი სახელი არასწორია.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3289"/>
-        <location filename="../Phototonic.cpp" line="3445"/>
+        <location filename="../Phototonic.cpp" line="3285"/>
+        <location filename="../Phototonic.cpp" line="3441"/>
         <source>Invalid selection</source>
         <translation>არასწორი მონიშნული</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3313"/>
+        <location filename="../Phototonic.cpp" line="3309"/>
         <source>No name entered.</source>
         <translation>სახელი შეყვანილი არაა.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3368"/>
-        <location filename="../Phototonic.cpp" line="3381"/>
+        <location filename="../Phototonic.cpp" line="3364"/>
+        <location filename="../Phototonic.cpp" line="3377"/>
         <source>File collision!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3368"/>
-        <location filename="../Phototonic.cpp" line="3381"/>
+        <location filename="../Phototonic.cpp" line="3364"/>
+        <location filename="../Phototonic.cpp" line="3377"/>
         <source>Existing files collide with the rename.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3376"/>
+        <location filename="../Phototonic.cpp" line="3372"/>
         <source>Refusing ambigious rename pattern.
 Multiple files would get the same name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3382"/>
+        <location filename="../Phototonic.cpp" line="3378"/>
         <source>Do you want to incorporate them (ie. skip their indexes)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3433"/>
+        <location filename="../Phototonic.cpp" line="3429"/>
         <source>Failed to rename image.</source>
         <translation>გამოსახულების სახელის გადარქმევა ჩავარდა.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3488"/>
+        <location filename="../Phototonic.cpp" line="3484"/>
         <source>Failed to move directory to the trash.</source>
         <translation>საქაღალდის ნაგვის ყუთში გადატანა ჩავარდა.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3493"/>
+        <location filename="../Phototonic.cpp" line="3489"/>
         <source>Removed &quot;%1&quot;</source>
         <translation>&quot;%1&quot; წაიშალა</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3766"/>
+        <location filename="../Phototonic.cpp" line="3762"/>
         <source>Warning</source>
         <translation>გაფრთხილება</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3766"/>
+        <location filename="../Phototonic.cpp" line="3762"/>
         <source>Cannot perform action with temporary image.</source>
         <translation>დროებით გამოსახულებებზე ქმედებას ვერ შეასრულებთ.</translation>
     </message>
@@ -2118,169 +2134,178 @@ The existing file would be overwritten!</source>
         <translation>გამოსახულების ფაილის სახელის ჩვენება დამთვალიერებელში</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="93"/>
+        <location filename="../SettingsDialog.cpp" line="82"/>
+        <source>Use scroll wheel for zooming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../SettingsDialog.cpp" line="100"/>
+        <source>Crossfade images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../SettingsDialog.cpp" line="125"/>
         <source>Thumbnails and Preview Background Color:</source>
         <translation>მინიატურის და გადახედვის ფონის ფერი:</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="105"/>
+        <location filename="../SettingsDialog.cpp" line="137"/>
         <source>Label color:</source>
         <translation>ჭდის ფერი:</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="117"/>
+        <location filename="../SettingsDialog.cpp" line="149"/>
         <source>Background image:</source>
         <translation>ფონის გამოსახულება:</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="147"/>
+        <location filename="../SettingsDialog.cpp" line="179"/>
         <source>Rotate thumbnail according to Exif orientation value</source>
         <translation>მინიატურის შებრუნება Exif ორიენტაციის მნიშვნელობის მიხედვით</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="151"/>
+        <location filename="../SettingsDialog.cpp" line="183"/>
         <source>Scale up small images in preview</source>
         <translation>პატარა გამოსახულებების გადიდება მინიატურაში</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="167"/>
+        <location filename="../SettingsDialog.cpp" line="199"/>
         <source>Swap mouse double-click and middle-click actions</source>
         <translation>თაგუნას ორმაგი წკაპის და შუა წკაპის ქმედებების მიმოცვლა</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="170"/>
         <source>Use scroll wheel for zooming in image viewer</source>
-        <translation>თაგუნას ბორბლის გამოყენება გასადიდებლად გამოსახულებების დამთვალიერებელში</translation>
+        <translation type="vanished">თაგუნას ბორბლის გამოყენება გასადიდებლად გამოსახულებების დამთვალიერებელში</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="178"/>
+        <location filename="../SettingsDialog.cpp" line="207"/>
         <source>Startup directory if not specified by command line</source>
         <translation>საწყისი საქაღალდე, თუ მითითებული არაა ბრძანების სტრიქონიდან</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="222"/>
-        <location filename="../SettingsDialog.cpp" line="370"/>
+        <location filename="../SettingsDialog.cpp" line="251"/>
+        <location filename="../SettingsDialog.cpp" line="375"/>
         <source>Shortcuts</source>
         <translation>მალსახმობი</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="228"/>
+        <location filename="../SettingsDialog.cpp" line="257"/>
         <source>Filter Items</source>
         <translation>ელემენტების გაფილტვრა</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="232"/>
+        <location filename="../SettingsDialog.cpp" line="261"/>
         <source>Select an entry and press a key to set a new shortcut</source>
         <translation>აირჩიეთ ჩანაწერი და დააწექით ღილაკს, რომ დააყენოთ ახალი მალსახმობი</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="239"/>
+        <location filename="../SettingsDialog.cpp" line="268"/>
         <source>Set the application icon according to the current image</source>
         <translation>აპლიკაციის ხატულას დაყენება მიმდინარე გამოსახულების მიხედვით</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="268"/>
+        <location filename="../SettingsDialog.cpp" line="105"/>
         <source>Slideshow</source>
         <translation>სლაიდშოუ</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="276"/>
+        <location filename="../SettingsDialog.cpp" line="281"/>
         <source>&lt;p&gt;Bangs allow you to use external commands to generate the list of shown images.&lt;br&gt;The main purpose is to query databases like locate, baloo or tracker, but anything that can generate a list of image files is suitable&lt;/p&gt;&lt;p&gt;The token &lt;b&gt;%s&lt;/b&gt; in the command will be replaced with the parameter.&lt;/p&gt;&lt;p&gt;Eg. for plocate, using the shortcut &lt;i&gt;locate&lt;/i&gt; and the command&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;allows you to enter &lt;i&gt;locate:waldo&lt;/i&gt; to display indexed jpg&apos;s and png&apos;s of waldo.&lt;/p&gt;&lt;p&gt;Phototonic tests the files for existence and will remove duplicates (including file and directory symlinks.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Bangs allow you to use external commands to generate the list of shown images.&lt;br&gt;The main purpose is to query databases like locate, baloo or tracker, but anything that can generate a list of image files is suitable&lt;/p&gt;&lt;p&gt;The token &lt;b&gt;%s&lt;/b&gt; in the command will be replaced with the parameter.&lt;/p&gt;&lt;p&gt;Eg. for plocate, using the shortcut &lt;i&gt;locate&lt;/i&gt; and the command&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;allows you to enter &lt;i&gt;locate:waldo&lt;/i&gt; to display indexed jpg&apos;s and png&apos;s of waldo.&lt;/p&gt;&lt;p&gt;Phototonic tests the files for existence and will remove duplicates (ფაილსი და საქაღალდის სიმბმულების ჩათვლით.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="293"/>
+        <location filename="../SettingsDialog.cpp" line="298"/>
         <source>Shortcut</source>
         <translation>მალსახმობი</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="294"/>
+        <location filename="../SettingsDialog.cpp" line="299"/>
         <source>Command</source>
         <translation>ბრძანება</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="374"/>
+        <location filename="../SettingsDialog.cpp" line="379"/>
         <source>Bangs</source>
         <translation>დარტყმა</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="451"/>
+        <location filename="../SettingsDialog.cpp" line="457"/>
         <source>Select background color</source>
         <translation>აირჩიეთ ფონის ფერი</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="467"/>
+        <location filename="../SettingsDialog.cpp" line="473"/>
         <source>Choose Startup Directory</source>
         <translation>აირჩიეთ გაშვების საქაღალდე</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="138"/>
+        <location filename="../SettingsDialog.cpp" line="170"/>
         <source>Number of thumbnail pages to read ahead:</source>
         <translation>მინიატურების გვერდების რაოდენობა წინასწარ წასაკითხად:</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="249"/>
+        <location filename="../SettingsDialog.cpp" line="86"/>
         <source>Delay between slides in seconds:</source>
         <translation>დაყოვნება სლაიდებს შორის წამებში:</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="259"/>
+        <location filename="../SettingsDialog.cpp" line="96"/>
         <source>Show random images</source>
         <translation>შემთხვევითი გამოსახულებების ჩვენება</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="179"/>
+        <location filename="../SettingsDialog.cpp" line="208"/>
         <source>Remember last</source>
         <translation>ბოლოს დამახსოვრება</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="180"/>
+        <location filename="../SettingsDialog.cpp" line="209"/>
         <source>Default</source>
         <translation>ნაგულისხმევი</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="182"/>
+        <location filename="../SettingsDialog.cpp" line="211"/>
         <source>Specify:</source>
         <extracomment>specificy a startup directory</extracomment>
         <translation>მიუთითეთ:</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="174"/>
+        <location filename="../SettingsDialog.cpp" line="203"/>
         <source>Delete confirmation</source>
         <translation>წაშლის დადასტურება</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="343"/>
+        <location filename="../SettingsDialog.cpp" line="348"/>
         <source>OK</source>
         <translation>დიახ</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="347"/>
+        <location filename="../SettingsDialog.cpp" line="352"/>
         <source>Cancel</source>
         <translation>გაუქმება</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="358"/>
+        <location filename="../SettingsDialog.cpp" line="363"/>
         <source>Viewer</source>
         <translation>მაყურებელი</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="362"/>
+        <location filename="../SettingsDialog.cpp" line="367"/>
         <source>Thumbnails</source>
         <translation>ესკიზები</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="366"/>
+        <location filename="../SettingsDialog.cpp" line="371"/>
         <source>General</source>
         <translation>ზოგადი</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="473"/>
+        <location filename="../SettingsDialog.cpp" line="479"/>
         <source>Open File</source>
         <translation>ფაილის გახსნა</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="474"/>
+        <location filename="../SettingsDialog.cpp" line="480"/>
         <source>Images</source>
         <translation>გამოსახულებები</translation>
     </message>
