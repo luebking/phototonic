@@ -762,22 +762,22 @@ Czy chcesz zapisać kopię?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Flipped Horizontally</source>
-        <translation type="unfinished">Odwrócenie w poziomie</translation>
+        <translation>Odwrócony poziomo</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Unflipped Horizontally</source>
-        <translation type="unfinished">Cofnij odwrócenie w poziomie</translation>
+        <translation>Nieodwrócony poziomo</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Flipped Vertically</source>
-        <translation type="unfinished">Odwrócenie w pionie</translation>
+        <translation>Odwrócony pionowo</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Unflipped Vertically</source>
-        <translation type="unfinished">Cofnij odwrócenie w pionie</translation>
+        <translation>Nieodwrócony pionowo</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1296"/>
@@ -867,7 +867,7 @@ Czy chcesz zapisać kopię?</translation>
         <source>Enter a name (without leading &quot;$&quot;) for this filter.
 The special name&quot;preview&quot; is used for the filter in the viewer.</source>
         <translation>Wpisz nazwę (bez znaku „$”) tego filtra.
-W&#xa0;przeglądarce używana jest specjalna nazwa „podgląd”.</translation>
+W przeglądarce używana jest specjalna nazwa „podgląd”.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
@@ -2748,7 +2748,7 @@ Wiele plików otrzymałoby tę samą nazwę.</translation>
         <location filename="../CopyMoveDialog.cpp" line="186"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation>Nowa nazwa pliku koliduje również z&#xa0;istniejącym plikiem.
+        <translation>Nowa nazwa pliku koliduje również z istniejącym plikiem.
 Istniejący plik zostałby nadpisany!</translation>
     </message>
     <message>
@@ -3015,12 +3015,12 @@ Istniejący plik zostałby nadpisany!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="82"/>
         <source>Use scroll wheel for zooming</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj kółka przewijania do powiększania</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="100"/>
         <source>Crossfade images</source>
-        <translation type="unfinished"></translation>
+        <translation>Przenikanie obrazów</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="281"/>
