@@ -521,22 +521,22 @@ Kas soovid salvestada uue failina?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Flipped Horizontally</source>
-        <translation type="unfinished">Pööratud ümber rõhtloodi</translation>
+        <translation>Pööratud ümber rõhtloodi</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Unflipped Horizontally</source>
-        <translation type="unfinished">Ümber rõhtloodi pööramine on tagasi võetud</translation>
+        <translation>Ümber rõhtloodi pööramine on tagasi võetud</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Flipped Vertically</source>
-        <translation type="unfinished">Pööratud ümber püstloodi</translation>
+        <translation>Pööratud ümber püstloodi</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Unflipped Vertically</source>
-        <translation type="unfinished">Ümber püstloodi pööramine on tagasi võetud</translation>
+        <translation>Ümber püstloodi pööramine on tagasi võetud</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1296"/>
@@ -635,7 +635,7 @@ The special name&quot;preview&quot; is used for the filter in the viewer.</sourc
     <message>
         <location filename="../InfoViewer.cpp" line="85"/>
         <source>Clearing the filter will delete it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtri tühjendamine ka kustutab ta.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="109"/>
@@ -1484,7 +1484,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1965"/>
         <source>Batch transformation</source>
-        <translation type="unfinished"></translation>
+        <translation>Muutmine pakktöötlusena</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2036"/>
@@ -2064,12 +2064,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="82"/>
         <source>Use scroll wheel for zooming</source>
-        <translation type="unfinished"></translation>
+        <translation>Kasuta kerimisratast suumimiseks</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="100"/>
         <source>Crossfade images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ristsulata pildid</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="125"/>
