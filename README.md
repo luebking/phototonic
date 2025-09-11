@@ -25,6 +25,23 @@ webcam shots and align them well enough to make a time-lapse video.
 <img src="https://translate.lxqt-project.org/widgets/luebking/-/phototonic/multi-blue.svg" align="right" alt="Translation status" />
 </a>
 
+#### 11. September 2025
+First 3.1 alpha
+* Basic Exif editing
+* Enhanced Exif filtering
+* Mass/auto renaming
+* Interactive file collision resolution on copy/move
+* Filter images by tags
+* New image filters for "warm", "cold" and brown
+* Much better support for external viewer window (starting with "it no longer crashes")
+* Modular translation files
+* Bring back the irregular grid for the compact mode (instead of two square displays)
+* Nicer viewer toolbar (secretly also configurable)
+* Basic screenshot editing (annotate, blackout and encircle)
+* Code cleanup
+* Fixed some bugs
+* Probably added new ones instead
+
 ##### 20. April 2025
 With the release of 3.0.0 the 3.1 cycle starts into the summer
 
