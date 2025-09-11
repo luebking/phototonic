@@ -569,22 +569,22 @@ Vuoi salvarne una copia?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Flipped Horizontally</source>
-        <translation type="unfinished">Rispecchiato orizzontalmente</translation>
+        <translation>Ribaltato orizzontalmente</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Unflipped Horizontally</source>
-        <translation type="unfinished">Non ribaltato orizzontalmente</translation>
+        <translation>Non ribaltato orizzontalmente</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Flipped Vertically</source>
-        <translation type="unfinished">Rispecchiato verticalmente</translation>
+        <translation>Capovolto verticalmente</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Unflipped Vertically</source>
-        <translation type="unfinished">Non ribaltato verticalmente</translation>
+        <translation>Non capovolto verticalmente</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1296"/>
@@ -1395,7 +1395,7 @@ Nascondi con filtro: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="884"/>
         <source>Blackout</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Oscura</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="888"/>
