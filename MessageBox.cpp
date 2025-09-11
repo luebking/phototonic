@@ -64,15 +64,19 @@ void MessageBox::about() {
                     << "Code: Thomas Lübking - some patches in 2015 ;)" // thomas.luebking@gmail.com
                     << "Bosnian: Dino Duratović" // dinomol@mail.com
                     << "Chinese: BigELK176 ≡" // <BigELK176@gmail.com>
+                    << "Chinese: wenchao-cui" // <cuzz@qq.com>
                     << "Croatian: Dino Duratović" // dinomol@mail.com
+                    << "Croatian: milotype" // <mail@milotype.de>
                     << "Czech: Pavel Fric" // pavelfric@seznam.cz
                     << "Dutch: Heimen Stoffels" // <vistausss@fastmail.com>
                     << "Estonian: Priit Jõerüüt" //<lxqtwlate@joeruut.com>
                     << "French: Adrien Daugabel" // adrien.d@mageialinux-online.org
                     << "French: David Geiger" // david.david@mageialinux-online.org
                     << "French: Nicolas PARLANT" // <nicolas.parlant@parhuet.fr>
+                    << "French: Oliver Chiasson" // <olivierchiasson@hotmail.fr>
                     << "French: Rémi Verschelde" // akien@mageia.org
                     << "Georgian: NorwayFun" //  <temuri.doghonadze@gmail.com>
+                    << "German: EttoreAtalan" // <atalanttore@googlemail.com>
                     << "German: Jonathan Hooverman" // jonathan.hooverman@gmail.com
                     << "German: Some wordstumbling fool" // thomas.luebking@gmail.com
                     << "Italian: Standreas (stefonarch)" // github.com/stefonarch
@@ -81,9 +85,14 @@ void MessageBox::about() {
                     << "Polish: Robert Wojewódzki" // robwoj44@poczta.onet.pl
                     << "Portuguese: Hugo Carvalho" // <hugokarvalho@hotmail.com>
                     << "Portuguese: Marcos M. Nascimento" // wstlmn@uol.com.br
+                    << "Russian: Azasis" // <lionovdmitrij386@gmail.com>
+                    << "Russian: Dmitry" // <dmitrydmitry761@gmail.com>
                     << "Russian: Ilya Alexandrovich" // yast4ik@gmail.com
+                    << "Russian: Valera" // <ValeraDX@yandex.ru>
                     << "Serbian: Dino Duratović" // dinomol@mail.com
-                    << "Swedish: Luna Jernberg" // <droidbittin@gmail.com>
+                    << "Spanish: Roberalz" // <lumintnian@outlook.com>
+//                    << "Swedish: Luna Jernberg" // <droidbittin@gmail.com>
+                    << "Swedish: bittin" // <bittin@reimu.nl>
                     << "Ukrainian: Ihor Hordiichuk" // <igor_ck@outlook.com>
                     << "Standreas and the entire LXQt weblate team"
                     ;
