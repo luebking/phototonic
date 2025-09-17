@@ -1,0 +1,73 @@
+name: phototonic build
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - 'v*.*.*'
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install and cache packages (inkl. fix 4 install-qt-action (vulkan headers / workaround 4 Qt (fixme)))
+      uses: awalsh128/cache-apt-pkgs-action@v1
+      with:
+        packages: libvulkan-dev ccache build-essential libgl1-mesa-dev libgstreamer-gl1.0-0 libpulse-dev libxcb-glx0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-render0 libxcb-shape0 libxcb-shm0 libxcb-sync1 libxcb-util1 libxcb-xfixes0 libxcb-xinerama0 libxcb1 libxkbcommon-dev libxkbcommon-x11-0 libxcb-xkb-dev libxcb-cursor0 exiv2 libexiv2-dev
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '6.5.*'
+        cache: true
+        cache-key-prefix: 'qt6'
+
+    - name: Install LinuxDeploy
+      id: installLinuxDeploy
+      uses: miurahr/install-linuxdeploy-action@v1
+      with:
+        plugins: qt appimage
+        dir: ${{github.workspace}}
+
+    - name: Use ccache
+      uses: hendrikmuhs/ccache-action@v1.2
+
+    - name: Run qmake
+      run: qmake6 . QMAKE_CXX="ccache g++"
+
+    - name: Build
+      run: make -j $(nproc)
+
+    - name: Update and create translations
+      run: |
+        lupdate phototonic.pro
+        lrelease phototonic.pro
+
+    - name: Install into AppDir
+      run: INSTALL_ROOT=AppDir make install
+    
+    - name: HACK - symlink translation files (linuxdeploy fails to do so)
+      run : |
+        pushd . > /dev/null
+        mkdir -p AppDir/usr/translations
+        cd AppDir/usr/translations
+        ln -s ../share/qt6/translations/*.qm .
+        popd > /dev/null
+
+    - name: Create AppImage
+      run: LDAI_NO_APPSTREAM=1 ${{github.workspace}}/linuxdeploy-x86_64.AppImage --plugin=qt --output=appimage --appdir AppDir --icon-file=${{github.workspace}}/images/icon16/phototonic.png
+
+    - name: Release when tag
+      uses: softprops/action-gh-release@v2
+      if: github.ref_type == 'tag'
+      with:
+        files: |
+          Phototonic*.AppImage
+
