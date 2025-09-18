@@ -65,6 +65,7 @@ namespace Settings {
     const char optionSetWindowIcon[] = "setWindowIcon";
     const char optionUpscalePreview[] = "upscalePreview";
     const char optionScrollZooms[] = "scrollZooms";
+    const char optionMenuBar[] = "MenuBar";
 
     QSettings *appSettings;
     QVariant value(const char *c, const QVariant &defaultValue) { return appSettings->value(QByteArray(c), defaultValue); }
@@ -142,5 +143,6 @@ namespace Settings {
     bool scrollZooms;
     int dupeAccuracy;
     QStringList imageToolActions;
+    bool menubar;
 }
 

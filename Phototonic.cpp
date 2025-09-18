@@ -28,6 +28,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QMenu>
+#include <QMenuBar>
 #include <QMimeData>
 #include <QMouseEvent>
 #include <QMovie>
@@ -693,6 +694,15 @@ void Phototonic::createActions() {
     action->setChecked(Settings::hideDockTitlebars);
     connect(action, SIGNAL(triggered()), this, SLOT(lockDocks()));
 
+    MAKE_ACTION_NOSC(tr("Show Menubar"), "menuBar");
+    action->setCheckable(true);
+    action->setChecked(Settings::menubar);
+    connect(action, &QAction::triggered, [=](bool visible) {
+        Settings::menubar = visible;
+        menuBar()->setVisible(visible);
+//        myMainMenu->menuAction()->setVisible(!visible); // serves as status label tooltip base
+    });
+
     MAKE_ACTION_NOSC(tr("Show Toolbar"), "showViewerToolbar");
     action->setCheckable(true);
     action->setChecked(Settings::showViewerToolbar);
@@ -1069,6 +1079,12 @@ void Phototonic::createMenus() {
     menu->addSeparator();
     menu->addAction(action("refresh"));
     menu->addSeparator();
+
+    QMenuBar *mb = new QMenuBar;
+    mb->addActions(myMainMenu->actions());
+    mb->addAction(action("about"));
+    setMenuBar(mb);
+    mb->setVisible(Settings::menubar);
 
     myMainMenu->addAction(action("settings"));
     myMainMenu->addAction(action("about"));
@@ -2445,6 +2461,7 @@ void Phototonic::writeSettings() {
     Settings::appSettings->endGroup();
 
     Settings::setValue(Settings::optionWallpaperCommand, Settings::wallpaperCommand);
+    Settings::setValue(Settings::optionMenuBar, Settings::menubar);
     /* External apps */
     Settings::beginGroup(Settings::optionExternalApps);
     Settings::appSettings->remove("");
@@ -2537,6 +2554,8 @@ void Phototonic::readSettings() {
     Settings::specifiedStartDir = Settings::value(Settings::optionSpecifiedStartDir, QString()).toString();
     Settings::thumbsBackgroundImage = Settings::value(Settings::optionThumbsBackgroundImage, QString()).toString();
     Settings::wallpaperCommand = Settings::value(Settings::optionWallpaperCommand, QString()).toString();
+
+    Settings::menubar = Settings::value(Settings::optionMenuBar, false).toBool();
 
     /// @todo, these are not settings, the namespace is abused as transactional global object
     Settings::rotation = 0;
@@ -2631,6 +2650,8 @@ QMenu *Phototonic::createPopupMenu() {
     extraActsMenu->addSeparator();
     extraActsMenu->addAction(action("smallToolbarIcons"));
     extraActsMenu->addAction(action("lockDocks"));
+    extraActsMenu->addSeparator();
+    extraActsMenu->addAction(action("menuBar"));
     return extraActsMenu;
 }
 
