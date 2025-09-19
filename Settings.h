@@ -84,7 +84,6 @@ namespace Settings {
     extern const char optionSetWindowIcon[];
     extern const char optionUpscalePreview[];
     extern const char optionScrollZooms[];
-    extern const char optionMenuBar[];
 
     extern QSettings *appSettings;
     QVariant value(const char *c, const QVariant &defaultValue);
@@ -163,7 +162,6 @@ namespace Settings {
     extern bool scrollZooms;
     extern int dupeAccuracy;
     extern QStringList imageToolActions;
-    extern bool menubar;
 }
 
 #endif // SETTINGS_H
