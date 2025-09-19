@@ -28,6 +28,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QMenu>
+#include <QMenuBar>
 #include <QMimeData>
 #include <QMouseEvent>
 #include <QMovie>
@@ -1069,6 +1070,12 @@ void Phototonic::createMenus() {
     menu->addSeparator();
     menu->addAction(action("refresh"));
     menu->addSeparator();
+
+    QMenuBar *mb = new QMenuBar;
+    mb->addActions(myMainMenu->actions());
+    mb->addMenu(tr("About"))->addAction(action("about"));
+    setMenuBar(mb);
+    mb->setVisible(false);
 
     myMainMenu->addAction(action("settings"));
     myMainMenu->addAction(action("about"));
