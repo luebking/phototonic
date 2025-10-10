@@ -1793,6 +1793,10 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
         thread->start();
         while (!thread->wait(30)) {
             QApplication::processEvents();
+            if (isAbortThumbsLoading) {
+                thread->deleteLater();
+                return false;
+            }
         }
         thread->deleteLater();
         return wentOk;
@@ -1809,6 +1813,8 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
 
         thumbReader.setScaledSize(currentThumbSize);
         imageReadOk = shouldStoreThumbnail ? readThreaded() : thumbReader.read(&thumb);
+        if (isAbortThumbsLoading)
+            return false;
 
         if (imageReadOk && !shouldStoreThumbnail) {
             int w = thumb.text("Thumb::Image::Width").toInt();
@@ -1824,6 +1830,8 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
             shouldStoreThumbnail = true;
             thumbReader.setFileName(imageFileName);
             imageReadOk = readThreaded();
+            if (isAbortThumbsLoading)
+                return false;
         }
     }
 
