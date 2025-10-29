@@ -351,7 +351,10 @@
 · %u and %tu with their respective URIs (file:///path/to/file)
 · %lat %lon and %alt with the GPS location in signed decimals (&quot;altitude&quot;…)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f et %tf seront remplacés par le chemin de l’image unique et de la vignette
+· %u et %tu par leurs URI respectifs (file:///chemin/vers/fichier)
+· %lat %lon et %alt par la position GPS en décimaux signés (&quot;altitude&quot;…)
+· par défaut, les images sélectionnées sont ajoutées à la commande</translation>
     </message>
     <message>
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
@@ -730,13 +733,14 @@
     <message>
         <location filename="../ImageViewer.cpp" line="915"/>
         <source>Save edits?</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer les modifications ?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="915"/>
         <source>The image was edited.
 Do you want to save a copy?</source>
-        <translation type="unfinished"></translation>
+        <translation>L’image a été modifiée.
+Voulez-vous enregistrer une copie ?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1040"/>
@@ -746,53 +750,53 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1051"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished">Sélectionner la zone à recadrer avec Ctrl + clic gauche</translation>
+        <translation>Sélectionnez la zone de recadrage avec Ctrl + bouton gauche de la souris</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1053"/>
         <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionnez la zone de masquage avec Ctrl + bouton gauche de la souris</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1055"/>
         <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionnez la zone de la cartouche avec Ctrl + bouton gauche de la souris</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1057"/>
         <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionnez la zone d’annotation avec Ctrl + bouton gauche de la souris</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1082"/>
         <location filename="../ImageViewer.cpp" line="1104"/>
         <source>Pick a color</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir une couleur</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1103"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Flipped Horizontally</source>
-        <translation type="unfinished">Retourné horizontalement</translation>
+        <translation>Retourné horizontalement</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Unflipped Horizontally</source>
-        <translation type="unfinished">Rétabli horizontalement</translation>
+        <translation>Rétabli horizontalement</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Flipped Vertically</source>
-        <translation type="unfinished">Retourné verticalement</translation>
+        <translation>Retourné verticalement</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Unflipped Vertically</source>
-        <translation type="unfinished">Rétabli verticalement</translation>
+        <translation>Rétabli verticalement</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1296"/>
@@ -865,7 +869,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="59"/>
         <source>Remove</source>
-        <translation type="unfinished">Supprimer</translation>
+        <translation>Supprimer</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="70"/>
@@ -875,35 +879,38 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="80"/>
         <source>Enter filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Saisissez le nom du filtre</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="81"/>
         <source>Enter a name (without leading &quot;$&quot;) for this filter.
 The special name&quot;preview&quot; is used for the filter in the viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrez un nom (sans le caractère « $ » au début) pour ce filtre.
+Le nom spécial « preview » est utilisé pour le filtre dans le visualiseur.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
         <source>Edit filter: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifier le filtre : %1</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="85"/>
         <source>Clearing the filter will delete it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer le filtre le supprimera.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="109"/>
         <source>Save EXIF changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer les modifications EXIF</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="116"/>
         <source>Left click: toggle logarithmic scale
 Right click: toggle size
 Hide with filter: |nohistogram|</source>
-        <translation type="unfinished"></translation>
+        <translation>Clic gauche : activer/désactiver l’échelle logarithmique
+Clic droit : activer/désactiver la taille
+Masquer avec filtre : |nohistogram|</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="393"/>
@@ -1841,7 +1848,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="884"/>
         <source>Blackout</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Masquage</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="888"/>
@@ -2446,7 +2453,7 @@ Multiple files would get the same name.</source>
     <message>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="vanished">&lt;h2&gt;[sous-chaînes] [/ critère [/ autre critère]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt&#x202f;; 5d &amp;lt&#x202f;; 1M / &amp;lt&#x202f;; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, remonte à 5 jours de plus mais est plus récent qu&apos;un mois - ou moins de 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus gros que/Après&#x202f;: &amp;gt&#x202f;;&lt;/li&gt;&lt;li&gt;Plus léger que/Avant&#x202f;: &amp;lt&#x202f;;&lt;/li&gt;&lt;li&gt;L&apos;âge exact ou le poids (arrondi) est sinon implicite ou explicite avec&#x202f;: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (YYYY-MM-DD) ou relatives (5m&#x202f;:h&#x202f;:d&#x202f;:w&#x202f;:M&#x202f;:y)&lt;/li&gt;&lt;li&gt;Les poids sont définis avec 4kB&#x202f;:MB&#x202f;:GB ou 4MP (méga-pixel)&lt;/li&gt;&lt;li&gt;Les dimensions utilisent le séparateur &quot;x&quot; ([largeur]x[hauteur])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Toutes les unités ignorent la casse sauf m|inute et M|ois&lt;/i&gt;&lt;br&gt;&quot;/&quot; démarre un nouveau groupe de critères, la correspondance de sous-chaînes est facultative.</translation>
+        <translation type="vanished">&lt;h2&gt;[sous-chaînes] [/ critère [/ autre critère]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt ; 5d &amp;lt ; 1M / &amp;lt ; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, remonte à 5 jours de plus mais est plus récent qu&apos;un mois - ou moins de 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus gros que/Après : &amp;gt ;&lt;/li&gt;&lt;li&gt;Plus léger que/Avant : &amp;lt ;&lt;/li&gt;&lt;li&gt;L&apos;âge exact ou le poids (arrondi) est sinon implicite ou explicite avec : =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont absolues (YYYY-MM-DD) ou relatives (5m :h :d :w :M :y)&lt;/li&gt;&lt;li&gt;Les poids sont définis avec 4kB :MB :GB ou 4MP (méga-pixel)&lt;/li&gt;&lt;li&gt;Les dimensions utilisent le séparateur &quot;x&quot; ([largeur]x[hauteur])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Toutes les unités ignorent la casse sauf m|inute et M|ois&lt;/i&gt;&lt;br&gt;&quot;/&quot; démarre un nouveau groupe de critères, la correspondance de sous-chaînes est facultative.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1932"/>

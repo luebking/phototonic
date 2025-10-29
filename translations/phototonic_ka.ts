@@ -537,22 +537,22 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Flipped Horizontally</source>
-        <translation type="unfinished">ჰორიზონტალურად გადატრიალებული</translation>
+        <translation>ჰორიზონტალურად გადატრიალებული</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Unflipped Horizontally</source>
-        <translation type="unfinished">გადმობრუნდა ჰორიზონტალურად</translation>
+        <translation>გადმობრუნდა ჰორიზონტალურად</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Flipped Vertically</source>
-        <translation type="unfinished">ვერტიკალურად გადატრიალებული</translation>
+        <translation>ვერტიკალურად გადატრიალებული</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Unflipped Vertically</source>
-        <translation type="unfinished">გადმობრუნდა ვერტიკალურად</translation>
+        <translation>გადმობრუნდა ვერტიკალურად</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1296"/>
