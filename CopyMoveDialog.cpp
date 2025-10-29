@@ -23,6 +23,7 @@
 #include <QDialogButtonBox>
 #include <QDir>
 #include <QFile>
+#include <QElapsedTimer>
 #include <QFileInfo>
 #include <QFontMetrics>
 #include <QGraphicsOpacityEffect>

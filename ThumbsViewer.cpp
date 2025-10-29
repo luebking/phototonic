@@ -22,6 +22,7 @@
 #include <QDirIterator>
 #include <QCryptographicHash>
 #include <QDrag>
+#include <QElapsedTimer>
 #include <QFileSystemWatcher>
 #include <QImageReader>
 #include <QLabel>

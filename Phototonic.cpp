@@ -21,6 +21,7 @@
 #include <QClipboard>
 #include <QCloseEvent>
 #include <QDockWidget>
+#include <QElapsedTimer>
 #include <QFileDialog>
 #include <QFileSystemModel>
 #include <QInputDialog>
