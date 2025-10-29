@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fi">
+<TS version="2.1" language="lt">
 <context>
     <name>ColorsDialog</name>
     <message>
         <location filename="../ColorsDialog.cpp" line="35"/>
         <source>Colors</source>
-        <translation>Värit</translation>
+        <translation>Spalvos</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="41"/>
         <source>Reset</source>
-        <translation>Palauta</translation>
+        <translation>Atstatyti</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="45"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Gerai</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="76"/>
         <source>Hue</source>
-        <translation>Sävy</translation>
+        <translation>Atspalvis</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="77"/>
         <source>Saturation</source>
-        <translation>Kylläisyys</translation>
+        <translation>Grynis</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="78"/>
         <source>Lightness</source>
-        <translation type="unfinished">Valoisuus</translation>
+        <translation>Šviesumas</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="81"/>
         <source>Colorize</source>
-        <translation type="unfinished">Väritä</translation>
+        <translation>Spalvinti</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="85"/>
         <location filename="../ColorsDialog.cpp" line="89"/>
         <location filename="../ColorsDialog.cpp" line="93"/>
         <source>Negative</source>
-        <translation type="unfinished">Negatiivinen</translation>
+        <translation>Negatyvas</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="99"/>
         <location filename="../ColorsDialog.cpp" line="152"/>
         <source>Red</source>
-        <translation>Punainen</translation>
+        <translation>Raudona</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="104"/>
         <location filename="../ColorsDialog.cpp" line="153"/>
         <source>Green</source>
-        <translation>Vihreä</translation>
+        <translation>Žalia</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="109"/>
         <location filename="../ColorsDialog.cpp" line="154"/>
         <source>Blue</source>
-        <translation>Sininen</translation>
+        <translation>Mėlyna</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="126"/>
         <source>Hue and Saturation</source>
-        <translation>Sävy ja kylläisyys</translation>
+        <translation>Atspalvis ir grynis</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="132"/>
         <source>Affected Channels</source>
-        <translation>Vaikuttavat kanavat</translation>
+        <translation>Paveikti kanalai</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="136"/>
         <source>Brightness</source>
-        <translation>Kirkkaus</translation>
+        <translation>Ryškumas</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="137"/>
         <source>Contrast</source>
-        <translation>Kontrasti</translation>
+        <translation>Kontrastas</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="148"/>
         <source>Brightness and Contrast</source>
-        <translation>Kirkkaus ja kontrasti</translation>
+        <translation>Ryškumas ir kontrastas</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="168"/>
         <source>Color Balance</source>
-        <translation>Väritasapaino</translation>
+        <translation>Spalvų balansas</translation>
     </message>
 </context>
 <context>
@@ -99,47 +99,47 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="43"/>
         <source>Choose Directory</source>
-        <translation>Valitse hakemisto</translation>
+        <translation>Pasirinkti katalogą</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="69"/>
         <source>Move to...</source>
-        <translation type="unfinished">Siirrä...</translation>
+        <translation>Perkelti į...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="66"/>
         <source>Copy to...</source>
-        <translation type="unfinished">Kopioi...</translation>
+        <translation>Kopijuoti į...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="104"/>
         <source>Browse...</source>
-        <translation>Selaa...</translation>
+        <translation>Naršyti...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="108"/>
         <source>Delete Bookmark</source>
-        <translation>Poista kirjanmerkki</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="119"/>
         <source>Cancel</source>
-        <translation>Peruuta</translation>
+        <translation>Atsisakyti</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="122"/>
         <source>Copy</source>
-        <translation>Kopioi</translation>
+        <translation>Kopijuoti</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="122"/>
         <source>Move</source>
-        <translation>SIirrä</translation>
+        <translation>Perkelti</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="146"/>
         <source>Destination:</source>
-        <translation>Kohde:</translation>
+        <translation>Paskirtis:</translation>
     </message>
 </context>
 <context>
@@ -153,22 +153,22 @@
     <message>
         <location filename="../CropDialog.cpp" line="38"/>
         <source>Reset</source>
-        <translation>Palauta</translation>
+        <translation>Atstatyti</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="40"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Gerai</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="69"/>
         <source>Left</source>
-        <translation>Vasen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="73"/>
         <source>Right</source>
-        <translation>Oikea</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="77"/>
@@ -186,43 +186,43 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="35"/>
         <source>Manage External Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Tvarkyti išorines programas</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="47"/>
         <source>Name</source>
-        <translation>Nimi</translation>
+        <translation>Pavadinimas</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="49"/>
         <source>Application path and arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Programos kelias ir argumentai</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="56"/>
         <source>Pick Executable...</source>
         <extracomment>open an existing executable</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Pasirinkti vykdomąjį...</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="59"/>
         <source>Add manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridėti rankiniu būdu</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="62"/>
         <source>Delete</source>
-        <translation>Poista</translation>
+        <translation>Ištrinti</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="72"/>
         <source>Wallpaper command</source>
-        <translation type="unfinished"></translation>
+        <translation>Darbalaukio fono komanda</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="76"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Gerai</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="83"/>
@@ -235,12 +235,12 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="129"/>
         <source>Choose Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasirinkti programą</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="140"/>
         <source>New Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Nauja programa</translation>
     </message>
 </context>
 <context>
@@ -257,7 +257,7 @@
     <message>
         <location filename="../Tags.cpp" line="50"/>
         <source>Selection</source>
-        <translation>Valinta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="98"/>
@@ -273,7 +273,7 @@
         <location filename="../Tags.cpp" line="81"/>
         <location filename="../Tags.cpp" line="116"/>
         <source>Clear Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Išvalyti filtrus</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="599"/>
@@ -307,7 +307,7 @@
         <location filename="../Tags.cpp" line="591"/>
         <location filename="../Tags.cpp" line="599"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Klaida</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="583"/>
@@ -411,7 +411,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="223"/>
         <source>Original Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Pradinis dydis</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="290"/>
@@ -433,13 +433,14 @@
     <message>
         <location filename="../ImageViewer.cpp" line="915"/>
         <source>Save edits?</source>
-        <translation type="unfinished"></translation>
+        <translation>Įrašyti taisymus?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="915"/>
         <source>The image was edited.
 Do you want to save a copy?</source>
-        <translation type="unfinished"></translation>
+        <translation>Paveikslas buvo taisytas.
+Ar norite įrašyti kopiją?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1030"/>
@@ -480,7 +481,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1103"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalva</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
@@ -505,62 +506,62 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1296"/>
         <source>Rotation %1°</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasukimas %1°</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1410"/>
         <source>Saving...</source>
-        <translation type="unfinished"></translation>
+        <translation>Įrašoma...</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1438"/>
         <location filename="../ImageViewer.cpp" line="1467"/>
         <location filename="../ImageViewer.cpp" line="1523"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Klaida</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1438"/>
         <location filename="../ImageViewer.cpp" line="1523"/>
         <source>Failed to save image.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko įrašyti paveikslo.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1465"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Daugiau neberodyti šio pranešimo</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1467"/>
         <source>Failed to save Exif metadata.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko įrašyti Exif metaduomenų.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1471"/>
         <source>Failed to safe Exif metadata:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko įrašyti Exif metaduomenų:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1478"/>
         <location filename="../ImageViewer.cpp" line="1536"/>
         <source>Image saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Paveikslas įrašytas.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1499"/>
         <source>Save image as</source>
-        <translation type="unfinished"></translation>
+        <translation>Įrašyti paveikslą kaip</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1501"/>
         <source>Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Paveikslai</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1577"/>
         <source>Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Iškarpinė</translation>
     </message>
 </context>
 <context>
@@ -568,12 +569,12 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="57"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopijuoti</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="59"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Šalinti</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="70"/>
@@ -604,7 +605,7 @@ The special name&quot;preview&quot; is used for the filter in the viewer.</sourc
     <message>
         <location filename="../InfoViewer.cpp" line="109"/>
         <source>Save EXIF changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Įrašyti EXIF pakeitimus</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="116"/>
@@ -616,47 +617,47 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../InfoViewer.cpp" line="393"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Paveikslas</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="394"/>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Failo pavadinimas</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="395"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Vieta</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="396"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Dydis</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="397"/>
         <source>Modified</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifikuotas</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="401"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formatas</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="404"/>
         <source>Resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Raiška</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="405"/>
         <source>Megapixel</source>
-        <translation type="unfinished"></translation>
+        <translation>Megapikselių</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="411"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Klaida</translation>
     </message>
 </context>
 <context>
@@ -674,12 +675,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../MessageBox.cpp" line="98"/>
         <source>Special thanks to our contributers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ypatinga padėka mūsų talkininkams.</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="101"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Apie</translation>
     </message>
 </context>
 <context>
@@ -688,7 +689,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="345"/>
         <location filename="../Phototonic.cpp" line="951"/>
         <source>Image Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacija apie paveikslą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="465"/>
@@ -703,7 +704,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="507"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodinys</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="548"/>
@@ -718,67 +719,67 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="559"/>
         <source>Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Visas ekranas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="563"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuostatos</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="567"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Išeiti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="570"/>
         <source>Enlarge Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Padidinti miniatiūras</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="577"/>
         <source>Shrink Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Sumažinti miniatiūras</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="584"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Iškirpti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="589"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopijuoti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="609"/>
         <source>Copy to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopijuoti į...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="612"/>
         <source>Move to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Perkelti į...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="619"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištrinti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="623"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Įrašyti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="627"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>Įrašyti kaip</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="634"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Pervadinti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="640"/>
@@ -788,12 +789,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="643"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Apie</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="681"/>
         <source>Show Hidden Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti paslėptus failus</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="691"/>
@@ -803,27 +804,27 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="696"/>
         <source>Show Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti įrankių juostą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="705"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Įkelti iš naujo</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="714"/>
         <source>Paste Here</source>
-        <translation type="unfinished"></translation>
+        <translation>Įdėti čia</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="727"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Atgal</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="740"/>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Pirmyn</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="752"/>
@@ -840,7 +841,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="765"/>
         <location filename="../Phototonic.cpp" line="2802"/>
         <source>Slide Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Skaidrių rodymas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="792"/>
@@ -851,7 +852,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="799"/>
         <location filename="../Phototonic.cpp" line="800"/>
         <source>Open With...</source>
-        <translation type="unfinished"></translation>
+        <translation>Atverti naudojant...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="807"/>
@@ -861,22 +862,22 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="814"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Mažinti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="818"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>Didinti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="822"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Atstatyti mastelį</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="830"/>
         <source>Original Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Pradinis dydis</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="834"/>
@@ -886,12 +887,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="854"/>
         <source>Flip Horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Apversti horizontaliai</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="858"/>
         <source>Flip Vertically</source>
-        <translation type="unfinished"></translation>
+        <translation>Apversti vertikaliai</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="866"/>
@@ -901,7 +902,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="876"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalvos</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="896"/>
@@ -911,39 +912,39 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="935"/>
         <source>Invert Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Invertuoti žymėjimą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="942"/>
         <source>Rotate and Crop images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasukti ir apkirpti paveikslus</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="946"/>
         <source>Filter by Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtruoti pagal pavadinimą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="990"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Failas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1001"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Taisa</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1023"/>
         <source>&amp;Go</source>
         <extracomment>&quot;go&quot; like in go forward, backward, etc</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Eiti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1038"/>
         <source>&amp;View</source>
         <extracomment>configure visual features of the app</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rodinys</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="485"/>
@@ -959,7 +960,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1289"/>
         <source>File System</source>
-        <translation type="unfinished"></translation>
+        <translation>Failų sistema</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1337"/>
@@ -996,12 +997,12 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="3514"/>
         <location filename="../Phototonic.cpp" line="3522"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Klaida</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1568"/>
         <source>Failed to start external application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko paleisti išorinės programos.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1549"/>
@@ -1012,13 +1013,13 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="1762"/>
         <location filename="../Phototonic.cpp" line="1973"/>
         <source>Failed to copy or move image.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko kopijuoti ar perkelti paveikslą.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1826"/>
         <source>Zoom %1%</source>
         <extracomment>nb the trailing &quot;%&quot; for eg. 80%</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Mastelis %1%</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="922"/>
@@ -1030,23 +1031,23 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="136"/>
         <location filename="../Phototonic.cpp" line="358"/>
         <source>Average brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>Vidutinis ryškumas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="266"/>
         <source>Failed to open file %1, file not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko atverti failo %1, failas nerastas.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="314"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Failų sąrašas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="455"/>
         <source>Navigate</source>
-        <translation type="unfinished"></translation>
+        <translation>Naršyti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="473"/>
@@ -1056,43 +1057,43 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="880"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Apkirpti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="495"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Failas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="513"/>
         <source>Guides</source>
         <extracomment>The guides a lines across the image for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Gairės</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="514"/>
         <source>Add vertical guide</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridėti vertikalią gairę</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="517"/>
         <source>Add horizontal guide</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridėti horizontalią gairę</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="556"/>
         <source>Close Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Užverti žiūryklę</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="594"/>
         <source>Show classic thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti klasikines miniatiūras</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="599"/>
         <source>Show square thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti kvadratines miniatiūras</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="604"/>
@@ -1104,80 +1105,80 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="2109"/>
         <location filename="../Phototonic.cpp" line="2229"/>
         <source>Move to Trash</source>
-        <translation type="unfinished"></translation>
+        <translation>Perkelti į šiukšlinę</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="631"/>
         <source>Copy Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopijuoti paveikslą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="632"/>
         <source>Paste Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Įdėti paveikslą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="637"/>
         <location filename="../Phototonic.cpp" line="3450"/>
         <location filename="../Phototonic.cpp" line="3452"/>
         <source>Remove Metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>Šalinti metaduomenis</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="651"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Rikiuoti pagal pavadinimą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="653"/>
         <location filename="../Phototonic.cpp" line="655"/>
         <source>Sort by Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Rikiuoti pagal laiką</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="657"/>
         <source>Sort by Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Rikiuoti pagal dydį</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="659"/>
         <source>Sort by Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Rikiuoti pagal tipą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="661"/>
         <source>Sort by Similarity</source>
-        <translation type="unfinished"></translation>
+        <translation>Rikiuoti pagal panašumą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="663"/>
         <source>Sort by Brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>Rikiuoti pagal ryškumą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="665"/>
         <source>Sort by Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Rikiuoti pagal spalvą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="677"/>
         <source>Reverse Sort Order</source>
-        <translation type="unfinished"></translation>
+        <translation>Atvirkštinė rikiavimo tvarka</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="686"/>
         <source>Small Toolbar Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Mažos įrankių juostos piktogramos</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="709"/>
         <source>Include Sub-directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Įtraukti pakatalogius</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="719"/>
         <source>New Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Naujas katalogas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="723"/>
@@ -1187,27 +1188,27 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="769"/>
         <source>Next Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Kitas paveikslas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="773"/>
         <source>Previous Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Ankstesnis paveikslas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="777"/>
         <source>First Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Pirmas paveikslas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="781"/>
         <source>Last Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Paskutinis paveikslas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="785"/>
         <source>Random Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Atsitiktinis paveikslas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="788"/>
@@ -1217,12 +1218,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="796"/>
         <source>Set Wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>Nustatyti darbalaukio foną</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="803"/>
         <source>External Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Išorinės programos</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="811"/>
@@ -1232,17 +1233,17 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="838"/>
         <source>Rotate 90° CCW</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasukti 90° kairėn</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="842"/>
         <source>Rotate 90° CW</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasukti 90° dešinėn</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="846"/>
         <source>Rotate with mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasukti naudojant pelę</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="851"/>
@@ -1257,12 +1258,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="870"/>
         <source>Rotate 1° CCW</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasukti 1° kairėn</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="873"/>
         <source>Rotate 1° CW</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasukti 1° dešinėn</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="884"/>
@@ -2253,8 +2254,9 @@ The existing file would be overwritten!</source>
         <location filename="../ThumbsViewer.cpp" line="1113"/>
         <source>%n image(s)</source>
         <translation type="unfinished">
-            <numerusform>%n image</numerusform>
-            <numerusform>%n images</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>

@@ -249,7 +249,10 @@
 · %u and %tu with their respective URIs (file:///path/to/file)
 · %lat %lon and %alt with the GPS location in signed decimals (&quot;altitude&quot;…)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f och %tf ersätts med sökvägarna till den enskilda bilden och miniatyrbilden
+· %u och %tu ersätts med respektive URI (file:///sökväg/till/fil)
+· %lat %lon och %alt ersätts med GPS-positionen i tecknade decimaler (”altitude”…)
+· som standard läggs de valda bilderna till kommandot</translation>
     </message>
     <message>
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
@@ -488,7 +491,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="915"/>
         <source>Save edits?</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara redigeringar?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="915"/>
