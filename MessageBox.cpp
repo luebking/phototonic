@@ -68,8 +68,10 @@ void MessageBox::about() {
                     << "Croatian: Dino Duratović" // dinomol@mail.com
                     << "Croatian: milotype" // <mail@milotype.de>
                     << "Czech: Pavel Fric" // pavelfric@seznam.cz
+                    << "Czech: p-bo" // <pavel.borecki@gmail.com>
                     << "Dutch: Heimen Stoffels" // <vistausss@fastmail.com>
                     << "Estonian: Priit Jõerüüt" //<lxqtwlate@joeruut.com>
+                    << "Finnish: sudoasd" // <asdwasd@meiliboxi.fi>
                     << "French: Adrien Daugabel" // adrien.d@mageialinux-online.org
                     << "French: David Geiger" // david.david@mageialinux-online.org
                     << "French: Nicolas PARLANT" // <nicolas.parlant@parhuet.fr>
@@ -79,7 +81,9 @@ void MessageBox::about() {
                     << "German: EttoreAtalan" // <atalanttore@googlemail.com>
                     << "German: Jonathan Hooverman" // jonathan.hooverman@gmail.com
                     << "German: Some wordstumbling fool" // thomas.luebking@gmail.com
+                    << "Hebrew: Yaron Shahrabani" // <sh.yaron@gmail.com>
                     << "Italian: Standreas (stefonarch)" // github.com/stefonarch
+                    << "Lithuanian: Moo" // <hazap@hotmail.com>
                     << "Polish: Jan Rolski" // <wbcwknvstb@proton.me>
                     << "Polish: Krzysztof Pyrkosz" // pyrkosz@o2.pl
                     << "Polish: Robert Wojewódzki" // robwoj44@poczta.onet.pl
@@ -91,8 +95,10 @@ void MessageBox::about() {
                     << "Russian: Valera" // <ValeraDX@yandex.ru>
                     << "Serbian: Dino Duratović" // dinomol@mail.com
                     << "Spanish: Roberalz" // <lumintnian@outlook.com>
+                    << "Spanish: Megido" // <hibarioath@proton.me>
 //                    << "Swedish: Luna Jernberg" // <droidbittin@gmail.com>
                     << "Swedish: bittin" // <bittin@reimu.nl>
+                    << "Swedish: Daniel Nylander" // <po@danielnylander.se>
                     << "Ukrainian: Ihor Hordiichuk" // <igor_ck@outlook.com>
                     << "Standreas and the entire LXQt weblate team"
                     ;
