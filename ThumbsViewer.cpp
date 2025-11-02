@@ -105,7 +105,7 @@ ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
 
     m_loadThumbTimer.setInterval(250);
     m_loadThumbTimer.setSingleShot(true);
-    connect(&m_loadThumbTimer, &QTimer::timeout, [=](){ loadVisibleThumbs(verticalScrollBar()->value()); });
+    connect(&m_loadThumbTimer, &QTimer::timeout, [=](){ loadVisibleThumbs(verticalScrollBar()->value(), true); });
 
     QTimer *fsUpdateDelay = new QTimer(this);
     fsUpdateDelay->setSingleShot(true);
@@ -337,7 +337,7 @@ void ThumbsViewer::abort(bool permanent) {
     }
 }
 
-void ThumbsViewer::loadVisibleThumbs(int scrollBarValue) {
+void ThumbsViewer::loadVisibleThumbs(int scrollBarValue, bool guarded) {
 
     // Hack:
     // when a paint even is requested Qt first calls updateGeometry() on
@@ -345,7 +345,7 @@ void ThumbsViewer::loadVisibleThumbs(int scrollBarValue) {
     // qscrollbar emits valueChanged() in its updateGeometry(), leading to us
     // possibly recursing when calling processEvents.
     static bool processing = false;
-    if (processing) {
+    if (processing && guarded) {
         return;
     }
     processing = true;
@@ -468,7 +468,7 @@ void ThumbsViewer::reload(bool iterative) {
         scrollDelay = new QTimer(this);
         scrollDelay->setInterval(150);
         scrollDelay->setSingleShot(true);
-        connect(scrollDelay, &QTimer::timeout, [=]() { loadVisibleThumbs(verticalScrollBar()->value()); });
+        connect(scrollDelay, &QTimer::timeout, [=]() { loadVisibleThumbs(verticalScrollBar()->value(), true); });
     }
     scrollDelay->stop();
     disconnect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
@@ -1795,6 +1795,9 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
         while (!thread->wait(30)) {
             QApplication::processEvents();
             if (isAbortThumbsLoading) {
+                thread->terminate();
+                while (!thread->wait(30))
+                    QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
                 thread->deleteLater();
                 return false;
             }

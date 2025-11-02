@@ -219,7 +219,7 @@ private:
 public slots:
     void invertSelection();
     void filterRows(int first = -1, int last = -1);
-    void loadVisibleThumbs(int scrollBarValue = 0);
+    void loadVisibleThumbs(int scrollBarValue = 0, bool guarded = false);
     void promoteSelectionChange();
     void tagSelected(const QStringList &tagsAdded, const QStringList &tagsRemoved) const;
     void updateThumbnail(const QString &fileName);
