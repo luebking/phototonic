@@ -249,7 +249,10 @@
 · %u and %tu with their respective URIs (file:///path/to/file)
 · %lat %lon and %alt with the GPS location in signed decimals (&quot;altitude&quot;…)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f ja %tf asendatakse üksikpildi ja pisipildi teedega
+· %u ja %tu vastavate URI-dega (file:///selle/faili/asukoht)
+· %lat %lon ja %alt GPS-asukohaga märgiga kümnendmurrudes („altitude“…)
+· vaikimisi lisatakse valitud pildid käsule</translation>
     </message>
     <message>
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
@@ -495,17 +498,17 @@ Kas soovid salvestada uue failina?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1053"/>
         <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Vali pimendatud ala klahvikombinatsiooniga Ctrl + hiire vasak nupp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1055"/>
         <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Vali kartušši ehk märkenurga ala klahvikombinatsiooniga Ctrl + hiire vasak nupp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1057"/>
         <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Vali märkuste ala klahvikombinatsiooniga Ctrl + hiire vasak nupp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1082"/>
@@ -625,12 +628,13 @@ Kas soovid salvestada uue failina?</translation>
         <location filename="../InfoViewer.cpp" line="81"/>
         <source>Enter a name (without leading &quot;$&quot;) for this filter.
 The special name&quot;preview&quot; is used for the filter in the viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Selle filtri jaoks sisesta nimi (nii, et „$“ jääb algusest ära).
+Vaaterežiimis kuvatakse filtri jaoks erinime „eelvaade“.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
         <source>Edit filter: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Muuda filtrit: %1</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="85"/>
@@ -1329,12 +1333,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="888"/>
         <source>Cartouche</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartušš ehk märkenurk</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="892"/>
         <source>Annotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommenteeri</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="918"/>
@@ -1814,7 +1818,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="3364"/>
         <location filename="../Phototonic.cpp" line="3377"/>
         <source>File collision!</source>
-        <translation type="unfinished"></translation>
+        <translation>Sarnased failid!</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3364"/>
@@ -1826,7 +1830,8 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="3372"/>
         <source>Refusing ambigious rename pattern.
 Multiple files would get the same name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keeldun korduva failinime mustri kasutamisest.
+Selle tulemusel oleks mitmel failil sama nimi.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3378"/>
@@ -1869,7 +1874,7 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="185"/>
         <source>New file also exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Ka uus fail on olemas</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="186"/>
@@ -1880,7 +1885,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="258"/>
         <source>File collision resolver</source>
-        <translation type="unfinished"></translation>
+        <translation>Failikonflikti lahendaja</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="260"/>

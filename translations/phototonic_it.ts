@@ -543,7 +543,7 @@ Vuoi salvarne una copia?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1053"/>
         <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation type="unfinished">Seleziona l&apos;area oscurata con Ctrl + tasto sinistro del mouse</translation>
+        <translation>Seleziona l&apos;area da oscurare con Ctrl + tasto sinistro del mouse</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1055"/>
@@ -2262,12 +2262,12 @@ Il file esistente verrebbe sovrascritto!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="82"/>
         <source>Use scroll wheel for zooming</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zoom con la rotellina</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="100"/>
         <source>Crossfade images</source>
-        <translation type="unfinished"></translation>
+        <translation>Dissolvi immagini</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="125"/>
