@@ -75,24 +75,25 @@ translation.path = /usr/share/qt6/translations
 
 INSTALLS += target icon icon16 iconPixmaps desktop metainfo translation
 
-TRANSLATIONS = 	translations/phototonic_en.ts \
-		translations/phototonic_pl.ts \
-		translations/phototonic_de.ts \
-		translations/phototonic_ru.ts \
-		translations/phototonic_cs.ts \
-		translations/phototonic_fr.ts \
-        translations/phototonic_nl.ts \
-		translations/phototonic_bs.ts \
-		translations/phototonic_hr.ts \
-		translations/phototonic_sr.ts \
-		translations/phototonic_pt.ts \
-        translations/phototonic_it.ts \
-        translations/phototonic_sv.ts \
-        translations/phototonic_fi.ts \
-        translations/phototonic_uk.ts \
-        translations/phototonic_es.ts \
-        translations/phototonic_et.ts \
-        translations/phototonic_ka.ts \
-		translations/phototonic_zh.ts \
-        translations/phototonic_zh_TW.ts
-
+TRANSLATIONS =  translations/phototonic.ts \
+                translations/phototonic_bs.ts \
+                translations/phototonic_cs.ts \
+                translations/phototonic_de.ts \
+                translations/phototonic_es.ts \
+                translations/phototonic_et.ts \
+                translations/phototonic_fi.ts \
+                translations/phototonic_fr.ts \
+                translations/phototonic_he.ts \
+                translations/phototonic_hr.ts \
+                translations/phototonic_it.ts \
+                translations/phototonic_ka.ts \
+                translations/phototonic_lt.ts \
+                translations/phototonic_nl.ts \
+                translations/phototonic_pl.ts \
+                translations/phototonic_pt.ts \
+                translations/phototonic_ru.ts \
+                translations/phototonic_sr.ts \
+                translations/phototonic_sv.ts \
+                translations/phototonic_uk.ts \
+                translations/phototonic_zh.ts \
+                translations/phototonic_zh_TW.ts
