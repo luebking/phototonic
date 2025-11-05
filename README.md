@@ -25,6 +25,10 @@ webcam shots and align them well enough to make a time-lapse video.
 <img src="https://translate.lxqt-project.org/widgets/luebking/-/phototonic/multi-blue.svg" align="right" alt="Translation status" />
 </a>
 
+#### 2. November 2025
+Release 3.1.0
+* Fixes a race condition on slow thumbnail loading over the alpha release and has more translations.
+
 #### 11. September 2025
 First 3.1 alpha
 * Basic Exif editing
