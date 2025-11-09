@@ -1880,7 +1880,8 @@ Selle tulemusel oleks mitmel failil sama nimi.</translation>
         <location filename="../CopyMoveDialog.cpp" line="186"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation type="unfinished"></translation>
+        <translation>Samuti on uue faili nimi vastuolus olemasoleva failiga.
+Olemasolev fail saab olema üle kirjutatud!</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="258"/>

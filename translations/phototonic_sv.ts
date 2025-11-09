@@ -497,7 +497,8 @@
         <location filename="../ImageViewer.cpp" line="915"/>
         <source>The image was edited.
 Do you want to save a copy?</source>
-        <translation type="unfinished"></translation>
+        <translation>Denna bilden redigerades.
+Vill du spara en kopia?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1030"/>
@@ -512,53 +513,53 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1051"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished">Välj beskärningsområdet med Ctrl + vänster musknapp</translation>
+        <translation>Välj beskärningsområdet med Ctrl + vänster musknapp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1053"/>
         <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj det mörka området med Ctrl + vänster musknapp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1055"/>
         <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj kartuschområdet med Ctrl + vänster musknapp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1057"/>
         <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj anteckningsområdet med Ctrl + vänster musknapp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1082"/>
         <location filename="../ImageViewer.cpp" line="1104"/>
         <source>Pick a color</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj en färg</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1103"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Färg</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Flipped Horizontally</source>
-        <translation type="unfinished">Vänd horisontellt</translation>
+        <translation>Vänd horisontellt</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Unflipped Horizontally</source>
-        <translation type="unfinished">Uppfälld horisontellt</translation>
+        <translation>Uppfälld horisontellt</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Flipped Vertically</source>
-        <translation type="unfinished">Vänd vertikalt</translation>
+        <translation>Vänd vertikalt</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Unflipped Vertically</source>
-        <translation type="unfinished">Uppfälld vertikalt</translation>
+        <translation>Uppfälld vertikalt</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1296"/>
@@ -631,7 +632,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="59"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="70"/>
@@ -641,35 +642,38 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="80"/>
         <source>Enter filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange filter namn</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="81"/>
         <source>Enter a name (without leading &quot;$&quot;) for this filter.
 The special name&quot;preview&quot; is used for the filter in the viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange ett namn (utan inledande &quot;$&quot;) för det här filtret.
+Det speciella namnet &quot;förhandsgranskning&quot; används för filtret i visningsprogrammet.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
         <source>Edit filter: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Redigera filter: %1</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="85"/>
         <source>Clearing the filter will delete it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Om du rensar filtret tas det bort.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="109"/>
         <source>Save EXIF changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara EXIF-ändringar</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="116"/>
         <source>Left click: toggle logarithmic scale
 Right click: toggle size
 Hide with filter: |nohistogram|</source>
-        <translation type="unfinished"></translation>
+        <translation>Vänsterklick: växla logaritmisk skala
+Högerklick: växla storlek
+Dölj med filter: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="393"/>
@@ -975,17 +979,17 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="884"/>
         <source>Blackout</source>
-        <translation type="unfinished"></translation>
+        <translation>Mörka området</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="888"/>
         <source>Cartouche</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartusch</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="892"/>
         <source>Annotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Annotera</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="896"/>
@@ -1533,7 +1537,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1965"/>
         <source>Batch transformation</source>
-        <translation type="unfinished"></translation>
+        <translation>Batchtransformation</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2036"/>
@@ -1878,24 +1882,25 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="3364"/>
         <location filename="../Phototonic.cpp" line="3377"/>
         <source>File collision!</source>
-        <translation type="unfinished"></translation>
+        <translation>Filkollision!</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3364"/>
         <location filename="../Phototonic.cpp" line="3377"/>
         <source>Existing files collide with the rename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Befintliga filer kolliderar med namnbyte.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3372"/>
         <source>Refusing ambigious rename pattern.
 Multiple files would get the same name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vägrar tvetydigt namnbytesmönster.
+Flera filer skulle få samma namn.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3378"/>
         <source>Do you want to incorporate them (ie. skip their indexes)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du införliva dem (dvs. hoppa över deras index)?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3429"/>
@@ -1935,23 +1940,24 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="138"/>
         <source>Skip,Replace,Index,Rename,Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoppa över, Ersätt, Indexera, Byt namn, Filnamn</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="185"/>
         <source>New file also exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny fil finns också</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="186"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation type="unfinished"></translation>
+        <translation>Det nya filnamnet står också i konflikt med en befintlig fil.
+Den befintliga filen skulle skrivas över!</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="258"/>
         <source>File collision resolver</source>
-        <translation type="unfinished"></translation>
+        <translation>Filkollisionslösare</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="260"/>
@@ -1961,32 +1967,32 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Size</source>
-        <translation type="unfinished">Storlek</translation>
+        <translation>Storlek</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Modified</source>
-        <translation type="unfinished">Modifierad</translation>
+        <translation>Modifierad</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Resolution</source>
-        <translation type="unfinished">Upplösning</translation>
+        <translation>Upplösning</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Kopierar &quot;%1&quot; till &quot;%2&quot;.</translation>
+        <translation>Kopierar &quot;%1&quot; till &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Flyttar &quot;%1&quot; till &quot;%2&quot;.</translation>
+        <translation>Flyttar &quot;%1&quot; till &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
