@@ -40,6 +40,7 @@
 #include <QTimer>
 #include <QWheelEvent>
 #include <QVariantAnimation>
+#include <QDialogButtonBox>
 
 #include <unistd.h>
 
