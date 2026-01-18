@@ -651,7 +651,9 @@ Vaaterežiimis kuvatakse filtri jaoks erinime „eelvaade“.</translation>
         <source>Left click: toggle logarithmic scale
 Right click: toggle size
 Hide with filter: |nohistogram|</source>
-        <translation type="unfinished"></translation>
+        <translation>Vasak klõps: logaritmilise skaala muutmine
+Parem klõps: suuruse muutmine
+Filtriga peitmine: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="393"/>
@@ -1328,7 +1330,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="884"/>
         <source>Blackout</source>
-        <translation type="unfinished"></translation>
+        <translation>Pimendus</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="888"/>
@@ -1473,7 +1475,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="1932"/>
         <location filename="../Phototonic.cpp" line="3681"/>
         <source>No images selected</source>
-        <translation>Ühtehi pilti pole valitud</translation>
+        <translation>Ühtegi pilti pole valitud</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1932"/>
@@ -1836,7 +1838,7 @@ Selle tulemusel oleks mitmel failil sama nimi.</translation>
     <message>
         <location filename="../Phototonic.cpp" line="3378"/>
         <source>Do you want to incorporate them (ie. skip their indexes)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kas sa tahad nad kaasata (ehk nende indeksid vahele jätta)?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3429"/>
@@ -1869,7 +1871,7 @@ Selle tulemusel oleks mitmel failil sama nimi.</translation>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="138"/>
         <source>Skip,Replace,Index,Rename,Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Skip,Replace,Index,Rename,Filename,asenda,muud,nime,indeks,fail,failinimi</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="185"/>
@@ -1880,7 +1882,8 @@ Selle tulemusel oleks mitmel failil sama nimi.</translation>
         <location filename="../CopyMoveDialog.cpp" line="186"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation type="unfinished"></translation>
+        <translation>Samuti on uue faili nimi vastuolus olemasoleva failiga.
+Olemasolev fail saab olema üle kirjutatud!</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="258"/>
@@ -1890,7 +1893,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="260"/>
         <source>&lt;h3&gt;Some of the destination files already exist&lt;/h3&gt;You can resolve the conflicts here or abort the entire copy/move operation.&lt;br&gt;&lt;b&gt;By default, the conflicting files will be skipped.&lt;/b&gt;&lt;br&gt;You can also replace or rename the destination, or automatically add a counter for a conflict-free filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Mõned sihtfailid on juba olemas&lt;/h3&gt;Sa võid failikonfliktid lahendada kohe siin või katkestada kogu kopeerimise/teisaldamise.&lt;br&gt;&lt;b&gt;Vaikimisi jäetakse konfliktsed failid vahele.&lt;/b&gt;&lt;br&gt;Lisaks saad sa sihtfaili muuta või kasutada teist nime, aga ka lisada faili lõppu automaatse loenduri.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
