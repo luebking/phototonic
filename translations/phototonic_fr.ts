@@ -1848,17 +1848,17 @@ Masquer avec filtre : |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="884"/>
         <source>Blackout</source>
-        <translation type="unfinished">Masquage</translation>
+        <translation>Masquage</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="888"/>
         <source>Cartouche</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartouche</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="892"/>
         <source>Annotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Annoter</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1147"/>
@@ -2097,7 +2097,7 @@ Masquer avec filtre : |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="1965"/>
         <source>Batch transformation</source>
-        <translation type="unfinished"></translation>
+        <translation>Transformation par lots</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3184"/>
@@ -2114,24 +2114,25 @@ Masquer avec filtre : |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="3364"/>
         <location filename="../Phototonic.cpp" line="3377"/>
         <source>File collision!</source>
-        <translation type="unfinished"></translation>
+        <translation>Conflit de fichiers !</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3364"/>
         <location filename="../Phototonic.cpp" line="3377"/>
         <source>Existing files collide with the rename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Les fichiers existants entrent en conflit avec le changement de nom.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3372"/>
         <source>Refusing ambigious rename pattern.
 Multiple files would get the same name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Refus du modèle de renommage ambigu.
+Plusieurs fichiers obtiendraient le même nom.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3378"/>
         <source>Do you want to incorporate them (ie. skip their indexes)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous les intégrer (c&apos;est-à-dire ignorer leurs index) ?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3452"/>
@@ -2759,23 +2760,24 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="138"/>
         <source>Skip,Replace,Index,Rename,Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauter, Remplacer, Indexer, Renommer, Nom de fichier</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="185"/>
         <source>New file also exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Un nouveau fichier existe également</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="186"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation type="unfinished"></translation>
+        <translation>Le nouveau nom de fichier entre également en conflit avec un fichier existant.
+Le fichier existant serait écrasé !</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="258"/>
         <source>File collision resolver</source>
-        <translation type="unfinished"></translation>
+        <translation>Résolveur de conflits de fichiers</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="260"/>
@@ -2785,32 +2787,32 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Size</source>
-        <translation type="unfinished">Taille</translation>
+        <translation>Taille</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Modified</source>
-        <translation type="unfinished">Modifié</translation>
+        <translation>Modifié</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Resolution</source>
-        <translation type="unfinished">Résolution</translation>
+        <translation>Résolution</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Copie de &quot;%1&quot; vers &quot;%2&quot;.</translation>
+        <translation>Copie de &quot;%1&quot; vers &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Déplacement de &quot;%1&quot; vers &quot;%2&quot;.</translation>
+        <translation>Déplacement de &quot;%1&quot; vers &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -3107,12 +3109,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="82"/>
         <source>Use scroll wheel for zooming</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisez la molette de la souris pour zoomer</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="100"/>
         <source>Crossfade images</source>
-        <translation type="unfinished"></translation>
+        <translation>Images en fondu enchaîné</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="105"/>
