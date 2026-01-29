@@ -192,6 +192,7 @@ private:
     QDockWidget *fileSystemDock;
     QDockWidget *bookmarksDock;
     QDockWidget *imagePreviewDock;
+    QDockWidget *m_thumbViewDock;
     QDockWidget *tagsDock;
     FileSystemTree *fileSystemTree;
     BookMarks *bookmarks;
@@ -254,6 +255,8 @@ private:
     void createBookmarksDock();
 
     void createImagePreviewDock();
+
+    void createThumbviewDock();
 
     void createImageTagsDock();
 

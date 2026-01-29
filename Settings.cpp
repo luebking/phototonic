@@ -44,6 +44,7 @@ namespace Settings {
     const char optionFileSystemDockVisible[] = "fileSystemDockVisible";
     const char optionBookmarksDockVisible[] = "bookmarksDockVisible";
     const char optionImagePreviewDockVisible[] = "imagePreviewDockVisible";
+    const char optionThumbViewDockVisible[] = "thumbViewDockVisible";
     const char optionTagsDockVisible[] = "tagsDockVisible";
     const char optionImageInfoDockVisible[] = "imageInfoDockVisible";
     const char optionSmallToolbarIcons[] = "smallToolbarIcons";
@@ -130,6 +131,7 @@ namespace Settings {
     bool fileSystemDockVisible;
     bool bookmarksDockVisible;
     bool imagePreviewDockVisible;
+    bool thumbViewDockVisible;
     bool imageInfoDockVisible;
     QString currentDirectory;
     QString saveDirectory;

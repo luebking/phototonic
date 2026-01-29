@@ -63,6 +63,7 @@ namespace Settings {
     extern const char optionFileSystemDockVisible[];
     extern const char optionBookmarksDockVisible[];
     extern const char optionImagePreviewDockVisible[];
+    extern const char optionThumbViewDockVisible[];
     extern const char optionTagsDockVisible[];
     extern const char optionImageInfoDockVisible[];
     extern const char optionSmallToolbarIcons[];
@@ -148,6 +149,7 @@ namespace Settings {
     extern bool fileSystemDockVisible;
     extern bool bookmarksDockVisible;
     extern bool imagePreviewDockVisible;
+    extern bool thumbViewDockVisible;
     extern bool tagsDockVisible;
     extern bool imageInfoDockVisible;
     extern QString currentDirectory;

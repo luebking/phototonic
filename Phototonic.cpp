@@ -98,6 +98,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     createFileSystemDock();
     createBookmarksDock();
     createImagePreviewDock();
+    createThumbviewDock();
     createImageTagsDock();
     setupDocks();
     myMainToolBar = nullptr; // accessed but undesired by …
@@ -1376,9 +1377,10 @@ void Phototonic::createImagePreviewDock() {
         if (!m_presentationMode) {
             Settings::imagePreviewDockVisible = visible;
             if (visible) {
-                m_centralLayout->takeAt(1);
+                m_centralLayout->removeWidget(imageViewer);
                 imagePreviewDock->setWidget(imageViewer);
                 imagePreviewDock->setContentsMargins(0,0,0,0);
+                m_thumbViewDock->hide();
                 int currentRow = thumbsViewer->currentIndex().row();
                 if (currentRow > -1)
                     imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow), thumbsViewer->icon(currentRow).pixmap(THUMB_SIZE_MAX).toImage());
@@ -1388,6 +1390,28 @@ void Phototonic::createImagePreviewDock() {
         }
     });
     addDockWidget(Qt::RightDockWidgetArea, imagePreviewDock);
+}
+
+void Phototonic::createThumbviewDock() {
+    m_thumbViewDock = new QDockWidget(tr("Thumbs"), this);
+    m_thumbViewDock->setObjectName("ThumbView");
+    connect(m_thumbViewDock, &QDockWidget::visibilityChanged, [=](bool visible) {
+        if (!m_presentationMode) {
+            Settings::thumbViewDockVisible = visible;
+            if (visible) {
+                m_centralLayout->removeWidget(thumbsViewer);
+                m_thumbViewDock->setWidget(thumbsViewer);
+                m_thumbViewDock->setContentsMargins(0,0,0,0);
+                imagePreviewDock->hide();
+                m_centralLayout->addWidget(imageViewer);
+                m_centralLayout->setCurrentWidget(imageViewer);
+            } else {
+                m_centralLayout->addWidget(thumbsViewer);
+                m_centralLayout->setCurrentWidget(thumbsViewer);
+            }
+        }
+    });
+    addDockWidget(Qt::RightDockWidgetArea, m_thumbViewDock);
 }
 
 void Phototonic::createImageTagsDock() {
@@ -2434,6 +2458,7 @@ void Phototonic::writeSettings() {
     Settings::setValue(Settings::optionBookmarksDockVisible, (bool) Settings::bookmarksDockVisible);
     Settings::setValue(Settings::optionTagsDockVisible, (bool) Settings::tagsDockVisible);
     Settings::setValue(Settings::optionImagePreviewDockVisible, (bool) Settings::imagePreviewDockVisible);
+    Settings::setValue(Settings::optionThumbViewDockVisible, (bool) Settings::thumbViewDockVisible);
     Settings::setValue(Settings::optionStartupDir, (int) Settings::startupDir);
     Settings::setValue(Settings::optionSpecifiedStartDir, Settings::specifiedStartDir);
     Settings::setValue(Settings::optionThumbsBackgroundImage, Settings::thumbsBackgroundImage);
@@ -2544,6 +2569,7 @@ void Phototonic::readSettings() {
     Settings::bookmarksDockVisible = Settings::value(Settings::optionBookmarksDockVisible, true).toBool();
     Settings::tagsDockVisible = Settings::value(Settings::optionTagsDockVisible, true).toBool();
     Settings::imagePreviewDockVisible = Settings::value(Settings::optionImagePreviewDockVisible, true).toBool();
+    Settings::thumbViewDockVisible = Settings::value(Settings::optionThumbViewDockVisible, true).toBool();
     Settings::imageInfoDockVisible = Settings::value(Settings::optionImageInfoDockVisible, true).toBool();
 
     Settings::startupDir = (Settings::StartupDir) Settings::value(Settings::optionStartupDir, Settings::RememberLastDir).toInt();
@@ -2715,6 +2741,7 @@ void Phototonic::setDocksVisibility(bool visible) {
     fileSystemDock->setVisible(vis(fileSystemDock) && Settings::fileSystemDockVisible);
     bookmarksDock->setVisible(vis(bookmarksDock) && Settings::bookmarksDockVisible);
     imagePreviewDock->setVisible(vis(imagePreviewDock) && Settings::imagePreviewDockVisible);
+    m_thumbViewDock->setVisible(vis(m_thumbViewDock) && Settings::thumbViewDockVisible);
     tagsDock->setVisible(vis(tagsDock) && Settings::tagsDockVisible);
     imageInfoDock->setVisible(vis(imageInfoDock) && Settings::imageInfoDockVisible);
     myMainToolBar->setVisible(visible);
