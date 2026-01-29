@@ -70,7 +70,6 @@ namespace Settings {
     QVariant value(const char *c, const QVariant &defaultValue) { return appSettings->value(QByteArray(c), defaultValue); }
     void setValue(const char *c, const QVariant &value) { appSettings->setValue(QByteArray(c), value); }
     void beginGroup(const char *c) { appSettings->beginGroup(QByteArray(c)); }
-    unsigned int layoutMode;
     QColor viewerBackgroundColor;
     QColor thumbsBackgroundColor;
     QColor thumbsTextColor;

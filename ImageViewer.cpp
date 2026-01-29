@@ -796,7 +796,7 @@ void ImageViewer::setFeedback(QString feedbackString, int timeLimited) {
         return;
     }
     feedbackLabel->setText(feedbackString);
-    feedbackLabel->setVisible(true/* Settings::layoutMode == Phototonic::ImageViewWidget */);
+    feedbackLabel->setVisible(true);
 
     int margin = myFilenameLabel->isVisible() ? (myFilenameLabel->height() + 15) : 10;
     feedbackLabel->move(10, margin);

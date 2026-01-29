@@ -81,6 +81,7 @@
 
 Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *parent) : QMainWindow(parent) {
     imageViewer = nullptr;
+    m_presentationMode = false;
     Settings::appSettings = new QSettings("phototonic", "phototonic");
 
     fileSystemModel = new QFileSystemModel(this);
@@ -140,7 +141,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
                 }
                 imageViewer->setFeedback(m_infoViewer->html(), false);
             }
-            if (Settings::layoutMode == ImageViewWidget)
+            if (!thumbsViewer->isVisible())
                 setImageViewerWindowTitle();
             imageViewer->loadImage(imagePath, Settings::slideShowActive ? QImage() : thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
         }
@@ -149,11 +150,11 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
 
     QApplication::setWindowIcon(QIcon(":/images/phototonic.png"));
 
-    stackedLayout = new QStackedLayout;
+    m_centralLayout = new QStackedLayout;
     QWidget *stackedLayoutWidget = new QWidget;
-    stackedLayout->addWidget(thumbsViewer);
-    stackedLayout->addWidget(imageViewer);
-    stackedLayoutWidget->setLayout(stackedLayout);
+    m_centralLayout->addWidget(thumbsViewer);
+    m_centralLayout->addWidget(imageViewer);
+    stackedLayoutWidget->setLayout(m_centralLayout);
     setCentralWidget(stackedLayoutWidget);
 
     restoreGeometry(Settings::value(Settings::optionGeometry, QByteArray()).toByteArray());
@@ -172,7 +173,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     m_reloadPending = false;
 
     refreshThumbs(true);
-    if (Settings::layoutMode == ThumbViewWidget) {
+    if (m_centralLayout->currentWidget() == thumbsViewer) {
         thumbsViewer->setFocus(Qt::OtherFocusReason);
     }
     action(QString()); // clear hash
@@ -350,7 +351,7 @@ void Phototonic::createThumbsViewer() {
     imageInfoDock->setWidget(m_infoViewer);
     m_logHistogram = false;
     connect(imageInfoDock, &QDockWidget::visibilityChanged, [=](bool visible) {
-        if (Settings::layoutMode != ImageViewWidget) {
+        if (!m_presentationMode) {
             Settings::imageInfoDockVisible = visible;
         }
         if (visible) {
@@ -986,6 +987,10 @@ QAction *Phototonic::action(const QString name, bool dropCache) const {
     return act;
 }
 
+bool Phototonic::focusIsOnBrowsing() const {
+    return thumbsViewer->hasFocus() || (m_centralLayout->currentWidget() == thumbsViewer && !imageViewer->hasFocus());
+}
+
 void Phototonic::createMenus() {
 
     QMenu *menu;
@@ -1334,7 +1339,7 @@ void Phototonic::createFileSystemDock() {
                 connect(fileSystemTree->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(updateActions()) );
             });
         }
-        if (Settings::layoutMode != ImageViewWidget) {
+        if (!m_presentationMode) {
             Settings::fileSystemDockVisible = visible;
         }
     });
@@ -1348,7 +1353,7 @@ void Phototonic::createBookmarksDock() {
     bookmarksDock->setWidget(bookmarks);
 
     connect(bookmarksDock, &QDockWidget::visibilityChanged, [=](bool visible) {
-        if (Settings::layoutMode != ImageViewWidget) {
+        if (!m_presentationMode) {
             Settings::bookmarksDockVisible = visible;
         }
     });
@@ -1368,10 +1373,10 @@ void Phototonic::createImagePreviewDock() {
     imagePreviewDock = new QDockWidget(tr("Preview"), this);
     imagePreviewDock->setObjectName("ImagePreview");
     connect(imagePreviewDock, &QDockWidget::visibilityChanged, [=](bool visible) {
-        if (Settings::layoutMode != ImageViewWidget) {
+        if (!m_presentationMode) {
             Settings::imagePreviewDockVisible = visible;
             if (visible) {
-                stackedLayout->takeAt(1);
+                m_centralLayout->takeAt(1);
                 imagePreviewDock->setWidget(imageViewer);
                 imagePreviewDock->setContentsMargins(0,0,0,0);
                 int currentRow = thumbsViewer->currentIndex().row();
@@ -1393,7 +1398,7 @@ void Phototonic::createImageTagsDock() {
     tagsDock->setWidget(m_imageTags);
 
     connect(tagsDock, &QDockWidget::visibilityChanged, [=](bool visible) {
-        if (Settings::layoutMode != ImageViewWidget) {
+        if (!m_presentationMode) {
             Settings::tagsDockVisible = visible;
         }
     });
@@ -1460,7 +1465,7 @@ void Phototonic::sortThumbnails() {
 
 void Phototonic::reload() {
     m_findDupesAction->setChecked(false);
-    if (Settings::layoutMode == ThumbViewWidget) {
+    if (focusIsOnBrowsing()) {
         refreshThumbs(false);
     } else {
         imageViewer->reload();
@@ -1496,7 +1501,7 @@ void Phototonic::showHiddenFiles() {
 }
 
 void Phototonic::filterImagesFocus() {
-    if (Settings::layoutMode == ThumbViewWidget) {
+    if (thumbsViewer->isVisible()) {
         myMainToolBar->show();
         filterLineEdit->setFocus(Qt::OtherFocusReason);
         filterLineEdit->selectAll();
@@ -1504,7 +1509,7 @@ void Phototonic::filterImagesFocus() {
 }
 
 void Phototonic::setPathFocus() {
-    if (Settings::layoutMode == ThumbViewWidget) {
+    if (thumbsViewer->isVisible()) {
         myMainToolBar->show();
         pathLineEdit->setFocus(Qt::OtherFocusReason);
         pathLineEdit->selectAll();
@@ -1541,7 +1546,7 @@ void Phototonic::runExternalApp() {
         if (!parameter)
             execCommand += " \"" + path + "\"";
     };
-    if (Settings::layoutMode == ImageViewWidget) {
+    if (!focusIsOnBrowsing()) {
         if (imageViewer->isNewImage()) {
             showNewImageWarning();
             return;
@@ -1646,11 +1651,13 @@ void Phototonic::showSettings() {
         thumbsViewer->setThumbColors();
         imageViewer->showFileName(Settings::showImageName);
 
-        if (Settings::layoutMode == ImageViewWidget) {
+        if (imageViewer->isVisible()) {
             imageViewer->reload();
-            needThumbsRefresh = true;
             action("rotateMouse", true)->setChecked(Settings::mouseRotateEnabled);
-        } else {
+        }
+        needThumbsRefresh = true;
+        if (thumbsViewer->isVisible()) {
+            needThumbsRefresh = false;
             thumbsViewer->refreshThumbs();
         }
 
@@ -1742,7 +1749,7 @@ void Phototonic::copyOrMoveImages(bool isCopyOperation) {
         return cleanup();
 
     bookmarks->reloadBookmarks();
-    if (Settings::layoutMode == ThumbViewWidget) {
+    if (focusIsOnBrowsing()) {
         copyOrCutThumbs(isCopyOperation);
         pasteThumbs(copyMoveToDialog.destination());
         return cleanup();
@@ -1911,7 +1918,7 @@ void Phototonic::scaleImage() {
         toggleSlideShow();
 
     imageViewer->setCursorHiding(false);
-//    if (Settings::layoutMode == ImageViewWidget) {
+//    if (m_presentationMode) {
         ResizeDialog dlg(imageViewer->currentImageSize(), imageViewer);
         if (dlg.exec() == QDialog::Accepted) {
             imageViewer->scaleImage(dlg.newSize());
@@ -2276,7 +2283,7 @@ void Phototonic::deleteOperation() {
         return;
     }
 
-    if (Settings::layoutMode == ImageViewWidget ||
+    if (!thumbsViewer->isVisible() ||
             (imagePreviewDock->isFloating() && QApplication::focusWidget() == imageViewer)) {
         deleteFromViewer(true);
         return;
@@ -2291,7 +2298,7 @@ void Phototonic::deletePermanentlyOperation() {
         return;
     }
 
-    if (Settings::layoutMode == ImageViewWidget ||
+    if (!thumbsViewer->isVisible() ||
             (imagePreviewDock->isFloating() && QApplication::focusWidget() == imageViewer)) {
         deleteFromViewer(false);
         return;
@@ -2367,13 +2374,11 @@ void Phototonic::updateActions() {
         toggleFileSpecificActions(false);
         m_deleteAction->setEnabled(true); // also used for the filesystem tree
         m_trashAction->setEnabled(true);
-    } else if (Settings::layoutMode == ImageViewWidget || QApplication::focusWidget() == imageViewer) {
-        toggleFileSpecificActions(true);
     } else {
-        toggleFileSpecificActions(false);
+        toggleFileSpecificActions(!focusIsOnBrowsing());
     }
 
-    if (Settings::layoutMode == ImageViewWidget) {
+    if (m_centralLayout->currentWidget() == imageViewer) {
         setViewerKeyEventsEnabled(true);
         m_fullScreenAction->setEnabled(true);
         m_closeImageAction->setEnabled(true);
@@ -2394,7 +2399,7 @@ void Phototonic::updateActions() {
 }
 
 void Phototonic::writeSettings() {
-    if (Settings::layoutMode == ThumbViewWidget) {
+    if (!m_presentationMode) {
         // withdraw the max/fullscreen states - Qt sucks at tracking them
         // the (then to be restored size) more or less encodes the state and we rely on the WM
         // to make the best out of what will look like a clumsy maximization attempt *shrug*
@@ -2678,7 +2683,7 @@ void Phototonic::closeEvent(QCloseEvent *event) {
 }
 
 void Phototonic::setStatus(QString state) {
-    if (Settings::layoutMode == ImageViewWidget) {
+    if (m_presentationMode) {
         return; // use feedback still?
     }
     m_statusLabel->setText(state);
@@ -2697,7 +2702,7 @@ void Phototonic::setStatus(QString state) {
 }
 
 void Phototonic::newImage() {
-    if (Settings::layoutMode == ThumbViewWidget) {
+    if (focusIsOnBrowsing()) {
         showViewer();
     }
 
@@ -2719,7 +2724,7 @@ void Phototonic::setDocksVisibility(bool visible) {
 }
 
 void Phototonic::viewImage() {
-    if (Settings::layoutMode == ImageViewWidget) {
+    if (m_presentationMode) {
         hideViewer();
         return;
     }
@@ -2766,13 +2771,13 @@ void Phototonic::showViewer() {
         imagePreviewDock->raise();
         return;
     }
-    if (Settings::layoutMode == ThumbViewWidget) {
-        Settings::layoutMode = ImageViewWidget;
+    if (!m_presentationMode) {
+        m_presentationMode = true;
 //        Settings::setValue("Geometry", saveGeometry());
 //        Settings::setValue("WindowState", saveState());
         thumbsViewer->setResizeEnabled(false);
-        stackedLayout->addWidget(imageViewer);
-        stackedLayout->setCurrentWidget(imageViewer);
+        m_centralLayout->addWidget(imageViewer);
+        m_centralLayout->setCurrentWidget(imageViewer);
         setDocksVisibility(false);
         m_statusLabel->hide();
 
@@ -2818,7 +2823,7 @@ void Phototonic::toggleSlideShow() {
             return;
         }
 
-        if (Settings::layoutMode == ThumbViewWidget) {
+        if (!m_presentationMode) {
             QModelIndexList selection = thumbsViewer->selectionModel()->selectedIndexes();
             if (selection.size() < 2) {
                 loadImage(Phototonic::First);
@@ -2996,8 +3001,8 @@ void Phototonic::hideViewer() {
 //    restoreGeometry(Settings::value(Settings::optionGeometry).toByteArray());
 //    restoreState(Settings::value(Settings::optionWindowState).toByteArray());
 
-    Settings::layoutMode = ThumbViewWidget;
-    stackedLayout->setCurrentWidget(thumbsViewer);
+    m_presentationMode = false;
+    m_centralLayout->setCurrentWidget(thumbsViewer);
 
     setDocksVisibility(true);
     thumbsViewer->setResizeEnabled(true);
@@ -3162,7 +3167,7 @@ void Phototonic::reloadThumbs() {
         }
 
         m_infoViewer->clear();
-        if (Settings::setWindowIcon && Settings::layoutMode == Phototonic::ThumbViewWidget) {
+        if (Settings::setWindowIcon && !m_presentationMode) {
             setWindowIcon(QApplication::windowIcon());
         }
         pathLineEdit->setText(Settings::currentDirectory);
@@ -3172,7 +3177,7 @@ void Phototonic::reloadThumbs() {
         }
     }
 
-    if (Settings::layoutMode == ThumbViewWidget) {
+    if (!m_presentationMode) {
         setThumbsViewerWindowTitle();
     }
 
@@ -3277,7 +3282,7 @@ void Phototonic::rename() {
         return;
     }
 
-    if (Settings::layoutMode == ImageViewWidget) {
+    if (!focusIsOnBrowsing()) {
         if (imageViewer->isNewImage()) {
             showNewImageWarning();
             return;
@@ -3424,7 +3429,7 @@ void Phototonic::rename() {
                 Settings::filesList.replace(Settings::filesList.indexOf(fileInfo.absoluteFilePath()), newPath);
             }
 
-            if (Settings::layoutMode == ImageViewWidget) {
+            if (m_presentationMode) {
                 setImageViewerWindowTitle();
             }
         } else {
@@ -3709,7 +3714,7 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
                 imageViewer->zoomTo(imageViewer->zoom() == 1.0 ?
                                                     ImageViewer::ZoomToFit :
                                                     ImageViewer::ZoomOriginal, me->position().toPoint());
-            } else if (Settings::layoutMode == ImageViewWidget) {
+            } else if (m_presentationMode) {
                 if (me->modifiers() == Qt::ShiftModifier) {
                     m_fullScreenAction->trigger();
                 } else

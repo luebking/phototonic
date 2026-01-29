@@ -201,7 +201,8 @@ private:
     QList<QString> pathHistoryList;
     QTimer *SlideShowTimer;
     QFileSystemModel *fileSystemModel;
-    QStackedLayout *stackedLayout;
+    QStackedLayout *m_centralLayout;
+    bool m_presentationMode;
 
     int currentHistoryIdx;
     bool needHistoryRecord;
@@ -280,6 +281,7 @@ private:
     void setStatus(QString state);
     void positionImageToolbar();
     QAction *action(const QString name, bool dropHash = false) const;
+    bool focusIsOnBrowsing() const;
 };
 
 #endif // PHOTOTONIC_H

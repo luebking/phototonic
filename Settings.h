@@ -89,7 +89,6 @@ namespace Settings {
     QVariant value(const char *c, const QVariant &defaultValue);
     void setValue(const char *c, const QVariant &value);
     void beginGroup(const char *c);
-    extern unsigned int layoutMode;
     extern QColor viewerBackgroundColor;
     extern QColor thumbsBackgroundColor;
     extern QColor thumbsTextColor;
