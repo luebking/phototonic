@@ -115,7 +115,6 @@ protected:
 private:
     QMenu *myContextMenu;
     QLabel *myFilenameLabel;
-    QLabel *movieWidget = nullptr;
     ImageWidget *imageWidget = nullptr;
     QImage origImage;
     QImage viewerImage;

@@ -47,7 +47,7 @@ void ImageWidget::setCrossfade(bool yesno)
         m_prevImage = QImage();
 }
 
-void ImageWidget::setImage(const QImage &i, QTransform matrix)
+void ImageWidget::setImage(const QImage &i, QTransform matrix, bool resetTransform)
 {
     if (m_crossfade) {
         m_prevImage = m_image;
@@ -55,8 +55,10 @@ void ImageWidget::setImage(const QImage &i, QTransform matrix)
         m_prevImageSize = m_imageSize;
     }
     m_image = i;
-    m_imageSize = i.size();
-    m_rotation = 0;
+    if (resetTransform) {
+        m_imageSize = i.size();
+        m_rotation = 0;
+    }
     m_exifTransformation = matrix;
     if (m_crossfade) {
         m_fadeout = 1.0;

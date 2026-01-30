@@ -606,15 +606,6 @@ void ImageViewer::refresh() {
 }
 
 void ImageViewer::setImage(const QImage &image) {
-    if (movieWidget) {
-        delete movieWidget;
-        movieWidget = nullptr;
-        imageWidget = new ImageWidget;
-        imageWidget->setLetterbox(m_letterbox);
-        imageWidget->setCrossfade(m_crossfade);
-        setWidget(imageWidget);
-    }
-
     imageWidget->setImage(image, m_exifTransformation);
 }
 
@@ -665,6 +656,8 @@ void ImageViewer::reload() {
         qWarning() << tr("skipping animation in batch mode:") << fullImagePath;
         return;
     }
+
+    imageWidget->setCrossfade(m_crossfade);
     if (Settings::enableAnimations && imageReader.supportsAnimation()) {
         if (animation) {
             delete animation;
@@ -673,16 +666,21 @@ void ImageViewer::reload() {
         animation = new QMovie(fullImagePath);
 
         if (animation->frameCount() > 1) {
-            if (!movieWidget) {
-                movieWidget = new QLabel();
-                movieWidget->setScaledContents(true);
-                setWidget(movieWidget); // deletes imageWidget
-                imageWidget = nullptr;
-            }
-            movieWidget->setMovie(animation);
-            animation->setParent(movieWidget);
+            viewerImage = QImage();
+            animation->setParent(imageWidget);
+            connect(animation, &QMovie::updated, this, [=]() {
+                imageWidget->setCrossfade(false);
+                imageWidget->setImage(animation->currentImage(), m_exifTransformation, false);
+                imageWidget->setFlip(m_flip);
+                imageWidget->setRotation(Settings::rotation);
+            });
             animation->start();
             resizeImage();
+            centerImage(imageWidget->imageSize());
+            if (Settings::keepTransform) {
+                imageWidget->setFlip(m_flip);
+                imageWidget->setRotation(Settings::rotation);
+            }
             return;
         }
     }

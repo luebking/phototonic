@@ -33,7 +33,7 @@ public:
     const QPoint &imagePosition() const { return m_imagePos; }
     const QSize &imageSize() const { return m_imageSize; }
     void setCrossfade(bool yesno);
-    void setImage(const QImage &i, QTransform matrix);
+    void setImage(const QImage &i, QTransform matrix, bool resetTransform = true);
     void setImagePosition(const QPoint &p);
     void setImageSize(const QSize &s);
     void setLetterbox(const QRect &letterbox);
