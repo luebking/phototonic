@@ -37,6 +37,7 @@ public:
     void setImagePosition(const QPoint &p);
     void setImageSize(const QSize &s);
     void setLetterbox(const QRect &letterbox);
+    void showGrid(bool show) { m_showGrid = show; update(); }
     qreal rotation() const { return m_rotation; }
     void setRotation(qreal r);
     QTransform transformation() const;
@@ -61,6 +62,7 @@ private:
     QRect m_letterBox;
     float m_fadeout;
     bool m_crossfade;
+    bool m_showGrid;
 };
 
 #endif // IMAGEWIDGET_H

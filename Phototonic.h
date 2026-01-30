@@ -167,7 +167,8 @@ private:
     // used frequently in ::updateActions, m_imageInfoAction on every tumbnail change
     QAction *m_cutAction, *m_copyAction, *m_copyToAction, *m_moveToAction, *m_deleteAction,
             *m_trashAction, *m_viewImageAction, *m_openWithMenuAction, *m_fullScreenAction,
-            *m_closeImageAction, *m_imageInfoAction, *m_batchTransformAction, *m_wallpaperAction;
+            *m_closeImageAction, *m_imageInfoAction, *m_batchTransformAction, *m_wallpaperAction,
+            *m_showGridAction;
     // dto. via ::setViewerKeyEventsEnabled
     QAction *m_nextImageAction,  *m_prevImageAction, *m_moveLeftAction,
             *m_moveRightAction, *m_moveUpAction, *m_moveDownAction;

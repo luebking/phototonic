@@ -72,6 +72,7 @@ public:
     void setFeedback(QString feedbackString, int timeLimited = 3000);
     void setInfo(QString infoString);
     void showFileName(bool yesno) { myFilenameLabel->setVisible(yesno); }
+    void showGrid(bool show);
     void slideImage(QPoint delta);
     float zoom() const { return m_zoom; }
     ZoomMode zoomMode() const { return m_zoomMode; }

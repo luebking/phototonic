@@ -26,6 +26,7 @@ ImageWidget::ImageWidget(QWidget *parent) : QOpenGLWidget(parent)
 {
     m_fadeout = 0.0;
     m_crossfade = false;
+    m_showGrid= false;
     setAutoFillBackground(true);
 }
 
@@ -177,5 +178,15 @@ void ImageWidget::paintEvent(QPaintEvent *ev)
         painter.setTransform(transformation(m_prevImage, m_prevImageSize, m_prevImagePos));
         painter.setOpacity(m_fadeout);
         painter.drawImage(0,0, m_prevImage);
+    }
+    if (m_showGrid) {
+        painter.setTransform(QTransform());
+        painter.setCompositionMode(QPainter::CompositionMode_Exclusion);
+        painter.setPen(Qt::white);
+        const int d = qMax(10, qMax(height()/100, width()/100));
+        for (int x = d; x < width(); x += d)
+            painter.drawLine(x, 0, x, height());
+        for (int y = d; y < height(); y += d)
+            painter.drawLine(0, y, width(), y);
     }
 }

@@ -448,12 +448,14 @@ void Phototonic::createImageViewer() {
     imageViewer->addAction(action("showViewerToolbar"));
     imageViewer->addAction(action("chooseApp"));
     imageViewer->addAction(action("imageinfo"));
+    imageViewer->addAction(action("showgrid"));
 
     // Actions
     contextMenu->addAction(action("setwallpaper"));
     contextMenu->addAction(action("openWithMenu"));
     contextMenu->addAction(action("imageinfo"));
     contextMenu->addSeparator();
+    contextMenu->addAction(action("showgrid"));
     contextMenu->addAction(action("showViewerToolbar"));
 
     QMenu *menu = contextMenu->addMenu(tr("Navigate"));
@@ -962,7 +964,9 @@ void Phototonic::createActions() {
             imageViewer->setFeedback("", false);
         }
     });
-
+    m_showGridAction =  MAKE_ACTION_NOSC(tr("Show Grid"), "showgrid");
+    action->setCheckable(true);
+    connect(action, &QAction::triggered, [=]() { imageViewer->showGrid(action->isChecked()); });
 }
 
 QAction *Phototonic::action(const QString name, bool dropCache) const {
@@ -2407,14 +2411,17 @@ void Phototonic::updateActions() {
         m_fullScreenAction->setEnabled(true);
         m_closeImageAction->setEnabled(true);
         m_imageInfoAction->setShortcuts(QList<QKeySequence>() << m_imageInfoAction->shortcut() << Qt::Key_I);
+        m_showGridAction->setShortcuts(QList<QKeySequence>() << m_showGridAction->shortcut() << Qt::Key_G);
     } else {
         if (QApplication::focusWidget() == imageViewer) {
             setViewerKeyEventsEnabled(true);
             m_imageInfoAction->setShortcuts(QList<QKeySequence>() << m_imageInfoAction->shortcut() << Qt::Key_I);
+            m_showGridAction->setShortcuts(QList<QKeySequence>() << m_showGridAction->shortcut() << Qt::Key_G);
             m_fullScreenAction->setEnabled(imagePreviewDock->isFloating());
             m_closeImageAction->setEnabled(false);
         } else {
             m_imageInfoAction->setShortcuts(QList<QKeySequence>() << m_imageInfoAction->shortcut());
+            m_showGridAction->setShortcuts(QList<QKeySequence>() << m_showGridAction->shortcut());
             setViewerKeyEventsEnabled(false);
             m_fullScreenAction->setEnabled(false);
             m_closeImageAction->setEnabled(false);

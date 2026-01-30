@@ -311,6 +311,11 @@ void ImageViewer::showEvent(QShowEvent *event) {
     resizeImage();
 }
 
+void ImageViewer::showGrid(bool show) {
+    if (imageWidget)
+        imageWidget->showGrid(show);
+}
+
 void ImageViewer::centerImage(QSize imgSize) {
     if (imageWidget) {
         imageWidget->setImagePosition(QPoint((imageWidget->width() - imgSize.width())/2, (imageWidget->height() - imgSize.height())/2));
