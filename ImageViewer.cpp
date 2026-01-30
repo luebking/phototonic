@@ -205,7 +205,7 @@ void ImageViewer::zoomTo(float goal, QPoint focus, int duration) {
 }
 
 void ImageViewer::zoomTo(ImageViewer::ZoomMode mode, QPoint focus, int duration) {
-    QSize imageSize = animation ? animation->currentPixmap().size() : imageWidget->image().size();
+    QSize imageSize = imageWidget->image().size();
     if (imageSize.isEmpty())
         return;
 
@@ -227,7 +227,7 @@ void ImageViewer::zoomTo(ImageViewer::ZoomMode mode, QPoint focus, int duration)
 }
 
 void ImageViewer::resizeImage(QPoint focus) {
-    QSize imageSize = animation ? animation->currentPixmap().size() : imageWidget->image().size();
+    QSize imageSize = imageWidget->image().size();
     if (imageSize.isEmpty())
         return;
 
@@ -245,43 +245,30 @@ void ImageViewer::resizeImage(QPoint focus) {
                           qRound(imageSize.height() * m_zoom));
     }
 
-    if (imageWidget) {
-        imageWidget->setFlip(m_flip);
-        imageWidget->setRotation(Settings::rotation);
-        imageWidget->setFixedSize(size());
-        if (imageSize.width() < width() || imageSize.height() < height()) {
-            centerImage(imageSize);
-        } else {
-            const double fx = double(imageSize.width())/imageWidget->imageSize().width(),
-                         fy = double(imageSize.height())/imageWidget->imageSize().height();
-            int x,y;
-            if (focus.x() > -1 && focus.y() > -1) {
-                x = qRound(fx*(imageWidget->imagePosition().x() - focus.x()) + focus.x());
-                y = qRound(fy*(imageWidget->imagePosition().y() - focus.y()) + focus.y());
-            } else {
-                x = qRound(imageWidget->imagePosition().x()*fx);
-                y = qRound(imageWidget->imagePosition().y()*fy);
-            }
-
-            if (imageSize.width() >= width())
-                x = qMax(qMin(x, 0),  width() - imageSize.width());
-            if (imageSize.height() >= height())
-                y = qMax(qMin(y, 0), height() - imageSize.height());
-            imageWidget->setImagePosition(QPoint(x,y));
-        }
-        imageWidget->setImageSize(imageSize);
+    imageWidget->setFlip(m_flip);
+    imageWidget->setRotation(Settings::rotation);
+    imageWidget->setFixedSize(size());
+    if (imageSize.width() < width() || imageSize.height() < height()) {
+        centerImage(imageSize);
     } else {
-        widget()->setFixedSize(imageSize);
-//        widget()->adjustSize();
-        if (imageSize.width() < width() + 100 || imageSize.height() < height() + 100) {
-            centerImage(imageSize);
+        const double fx = double(imageSize.width())/imageWidget->imageSize().width(),
+                     fy = double(imageSize.height())/imageWidget->imageSize().height();
+        int x,y;
+        if (focus.x() > -1 && focus.y() > -1) {
+            x = qRound(fx*(imageWidget->imagePosition().x() - focus.x()) + focus.x());
+            y = qRound(fy*(imageWidget->imagePosition().y() - focus.y()) + focus.y());
         } else {
-            float positionY = verticalScrollBar()->value() > 0 ? verticalScrollBar()->value() / float(verticalScrollBar()->maximum()) : 0;
-            float positionX = horizontalScrollBar()->value() > 0 ? horizontalScrollBar()->value() / float(horizontalScrollBar()->maximum()) : 0;
-            horizontalScrollBar()->setValue(horizontalScrollBar()->maximum() * positionX);
-            verticalScrollBar()->setValue(verticalScrollBar()->maximum() * positionY);
+            x = qRound(imageWidget->imagePosition().x()*fx);
+            y = qRound(imageWidget->imagePosition().y()*fy);
         }
+
+        if (imageSize.width() >= width())
+            x = qMax(qMin(x, 0),  width() - imageSize.width());
+        if (imageSize.height() >= height())
+            y = qMax(qMin(y, 0), height() - imageSize.height());
+        imageWidget->setImagePosition(QPoint(x,y));
     }
+    imageWidget->setImageSize(imageSize);
 }
 
 void ImageViewer::scaleImage(QSize newSize) {
@@ -312,16 +299,11 @@ void ImageViewer::showEvent(QShowEvent *event) {
 }
 
 void ImageViewer::showGrid(bool show) {
-    if (imageWidget)
-        imageWidget->showGrid(show);
+    imageWidget->showGrid(show);
 }
 
 void ImageViewer::centerImage(QSize imgSize) {
-    if (imageWidget) {
-        imageWidget->setImagePosition(QPoint((imageWidget->width() - imgSize.width())/2, (imageWidget->height() - imgSize.height())/2));
-    } else {
-        ensureVisible(imgSize.width()/2, imgSize.height()/2, width()/2, height()/2);
-    }
+    imageWidget->setImagePosition(QPoint((imageWidget->width() - imgSize.width())/2, (imageWidget->height() - imgSize.height())/2));
 }
 
 static inline int bound0To255(int val) {
@@ -591,9 +573,8 @@ void ImageViewer::colorize() {
 }
 
 void ImageViewer::refresh() {
-    if (!imageWidget) {
+    if (animation)
         return;
-    }
 
     viewerImage = origImage;
 
@@ -659,10 +640,7 @@ void ImageViewer::reload() {
 
     imageWidget->setCrossfade(m_crossfade);
     if (Settings::enableAnimations && imageReader.supportsAnimation()) {
-        if (animation) {
-            delete animation;
-            animation = nullptr;
-        }
+        delete animation;
         animation = new QMovie(fullImagePath);
 
         if (animation->frameCount() > 1) {
@@ -938,8 +916,7 @@ void ImageViewer::setContextMenu(QMenu *menu) {
 
 void ImageViewer::setCrossfade(bool yesno) {
     m_crossfade = yesno;
-    if (imageWidget)
-        imageWidget->setCrossfade(m_crossfade);
+    imageWidget->setCrossfade(m_crossfade);
 }
 
 void ImageViewer::monitorCursorState() {
@@ -979,9 +956,6 @@ void ImageViewer::mouseDoubleClickEvent(QMouseEvent *event) {
 }
 
 void ImageViewer::mousePressEvent(QMouseEvent *event) {
-    if (!imageWidget) {
-        return;
-    }
     if (event->button() == Qt::LeftButton) {
         if (event->modifiers() == Qt::ControlModifier) {
             cropOrigin = event->pos();
@@ -1022,9 +996,9 @@ void ImageViewer::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 void ImageViewer::updateRubberBandFeedback(QRect geom) {
-    if (!imageWidget) {
+    if (animation)
         return;
-    }
+
     bool ok;
     QTransform matrix = imageWidget->transformation().inverted(&ok);
     if (!ok)
@@ -1066,8 +1040,9 @@ void ImageViewer::setEditMode(Edit mode) {
 }
 
 void ImageViewer::edit() {
-    if (!imageWidget || ! cropRubberBand)
+    if (animation || !cropRubberBand)
         return;
+
     cropRubberBand->hide();
     bool ok;
     QTransform matrix = imageWidget->transformation().inverted(&ok);
@@ -1142,7 +1117,7 @@ void ImageViewer::edit() {
 void ImageViewer::applyCropAndRotation() {
     if (m_editMode != Crop)
         return edit();
-    if (!imageWidget || ! cropRubberBand)
+    if (animation || !cropRubberBand)
         return;
 
     cropRubberBand->hide();
@@ -1227,8 +1202,7 @@ void ImageViewer::applyCropAndRotation() {
 
 bool ImageViewer::flip(Qt::Orientations o) {
     m_flip ^= o;
-    if (imageWidget)
-        imageWidget->setFlip(m_flip);
+    imageWidget->setFlip(m_flip);
     QStringList feedback;
     if (o & Qt::Horizontal)
         feedback << ((m_flip & Qt::Horizontal) ? tr("Flipped Horizontally") : tr("Unflipped Horizontally"));
@@ -1255,9 +1229,6 @@ QSize ImageViewer::currentImageSize() const {
 }
 
 void ImageViewer::setMouseMoveData(bool lockMove, int lMouseX, int lMouseY) {
-    if (!imageWidget) {
-        return;
-    }
     moveImageLocked = lockMove;
     mouseX = lMouseX;
     mouseY = lMouseY;
@@ -1266,10 +1237,6 @@ void ImageViewer::setMouseMoveData(bool lockMove, int lMouseX, int lMouseY) {
 }
 
 void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
-    if (!imageWidget) {
-        return;
-    }
-
     if (event->modifiers() == Qt::ControlModifier) {
         if (!cropRubberBand || !cropRubberBand->isVisible()) {
             return;
@@ -1349,10 +1316,6 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
 }
 
 void ImageViewer::slideImage(QPoint delta) {
-    if (!imageWidget) {
-        return;
-    }
-
     QPoint newPos = imageWidget->imagePosition() + delta;
     layoutX = newPos.x();
     layoutY = newPos.y();
@@ -1569,9 +1532,8 @@ void ImageViewer::copyImage() {
 }
 
 void ImageViewer::pasteImage() {
-    if (!imageWidget) {
-        return;
-    }
+    delete animation;
+    animation = nullptr;
 
     if (!QApplication::clipboard()->image().isNull()) {
         origImage = QApplication::clipboard()->image();
