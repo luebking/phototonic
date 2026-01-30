@@ -666,7 +666,7 @@ void ImageViewer::reload() {
         animation = new QMovie(fullImagePath);
 
         if (animation->frameCount() > 1) {
-            viewerImage = QImage();
+            viewerImage = origImage = QImage();
             animation->setParent(imageWidget);
             connect(animation, &QMovie::updated, this, [=]() {
                 imageWidget->setCrossfade(false);
