@@ -20,16 +20,15 @@
 #define IMAGE_VIEWER_H
 
 class CropRubberBand;
-class ImageWidget;
 class QMovie;
 class QThread;
 #include <QLabel>
+#include <QOpenGLWidget>
 #include <QPointer>
-#include <QScrollArea>
 #include <QTransform>
 #include <exiv2/exiv2.hpp>
 
-class ImageViewer : public QScrollArea {
+class ImageViewer : public QOpenGLWidget {
 Q_OBJECT
 
 public:
@@ -72,7 +71,7 @@ public:
     void setFeedback(QString feedbackString, int timeLimited = 3000);
     void setInfo(QString infoString);
     void showFileName(bool yesno) { myFilenameLabel->setVisible(yesno); }
-    void showGrid(bool show);
+    void showGrid(bool show) { m_showGrid = show; update(); }
     void slideImage(QPoint delta);
     float zoom() const { return m_zoom; }
     ZoomMode zoomMode() const { return m_zoomMode; }
@@ -109,16 +108,19 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
+    void paintEvent(QPaintEvent *event) override;
     void resizeEvent(QResizeEvent *event);
     void showEvent(QShowEvent *event);
+    QSize sizeHint() const override;
 
 private:
     QMenu *myContextMenu;
     QLabel *myFilenameLabel;
-    ImageWidget *imageWidget = nullptr;
     QImage origImage;
     QImage viewerImage;
     QImage m_preloadedImage;
+    QImage m_currentImage;
+    QImage m_prevImage;
     QString m_preloadedPath;
     QString m_preloadPath;
     QThread *m_preloadThread;
@@ -155,7 +157,22 @@ private:
 
     void colorize();
     void colorize(uchar*, int, int, int, const unsigned char(*)[256], const unsigned char(*)[256]); // thread helper
-    void setImage(const QImage &image);
+    void setImage(const QImage &i, bool resetTransform = true);
+    QTransform transformation(const QImage &img, const QSize &sz, const QPoint &pos) const;
+    QTransform transformation() const;
+    const QPoint &imagePosition() const;
+    const QSize &imageSize() const;
+    void setImagePosition(const QPoint &p);
+    void setRotation(qreal r) { m_rotation = r; update(); }
+    void setFlip(Qt::Orientations o);
+
+    qreal m_rotation = 0; //???
+    QSize m_currentImageSize;
+    QPoint m_currentImagePos;
+    QSize m_prevImageSize;
+    QPoint m_prevImagePos;
+    float m_fadeout;
+    bool m_showGrid;
 };
 
 #endif // IMAGE_VIEWER_H

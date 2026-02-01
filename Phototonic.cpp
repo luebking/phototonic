@@ -382,7 +382,7 @@ void Phototonic::createThumbsViewer() {
 
 void Phototonic::createImageViewer() {
     imageViewer = new ImageViewer(this);
-    imageViewer->viewport()->installEventFilter(this);
+    imageViewer->installEventFilter(this);
     connect(m_saveAction, SIGNAL(triggered()), imageViewer, SLOT(saveImage()));
     connect(m_saveAsAction, SIGNAL(triggered()), imageViewer, SLOT(saveImageAs()));
     connect(action("copyImage"), SIGNAL(triggered()), imageViewer, SLOT(copyImage()));
@@ -3730,14 +3730,14 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
         return QMainWindow::eventFilter(o, e);
     }
 
-    if (e->type() == QEvent::Resize && imageViewer && o == imageViewer->viewport()) {
+    if (e->type() == QEvent::Resize && imageViewer && o == imageViewer) {
         if (m_imageToolBar->isVisible())
             positionImageToolbar();
         return QMainWindow::eventFilter(o, e);
     }
 
     if ((e->type() == QEvent::MouseButtonDblClick ||
-         e->type() == QEvent::MouseButtonPress)         && o == imageViewer->viewport()) {
+         e->type() == QEvent::MouseButtonPress)         && o == imageViewer) {
         QMouseEvent *me = static_cast<QMouseEvent*>(e);
         bool dblclk = (me->button() == Qt::LeftButton && e->type() == QEvent::MouseButtonDblClick);
         if (Settings::reverseMouseBehavior)
@@ -3772,7 +3772,7 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
         return QMainWindow::eventFilter(o, e);
     }
 
-    if (o == imageViewer->viewport()) {
+    if (o == imageViewer) {
         if (we->modifiers() == Qt::ControlModifier || Settings::scrollZooms) {
             zoom(scrollDelta / 120.0, we->position().toPoint());
         } else if (m_nextImageAction->isEnabled()) {
