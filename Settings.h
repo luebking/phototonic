@@ -97,7 +97,6 @@ namespace Settings {
     extern unsigned int thumbsPagesReadCount;
     extern bool wrapImageList;
     extern bool enableAnimations;
-    extern qreal rotation;
     extern bool mouseRotateEnabled;
     extern bool keepTransform;
     extern int defaultSaveQuality;

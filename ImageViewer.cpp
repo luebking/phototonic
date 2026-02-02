@@ -220,6 +220,35 @@ void ImageViewer::zoomTo(ImageViewer::ZoomMode mode, QPoint focus, int duration)
     QTimer::singleShot(duration, this, [=]() {m_zoomMode = mode;});
 }
 
+void ImageViewer::rotateTo(qreal r, Rotate direction) {
+    if (direction == Direct) {
+        m_rotation = r;
+        update();
+        return;
+    }
+    // wrap the starting angle for the animation, so we don't rotate backwards
+    if (direction == CW && r < m_rotation)
+        m_rotation -= 360.0;
+    if (direction == CCW && r > m_rotation)
+        m_rotation += 360.0;
+    static QVariantAnimation *rotator = nullptr;
+    if (!rotator) {
+        rotator = new QVariantAnimation(this);
+        rotator->setEasingCurve(QEasingCurve::InOutCubic);
+        connect(rotator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
+            if (rotator->state() != QAbstractAnimation::Running)
+                    return;
+            m_rotation = value.toReal();
+            update();
+        });
+        connect(rotator, &QObject::destroyed, [=]() {rotator = nullptr;});
+    }
+    rotator->setDuration(2*qAbs(r - m_rotation));
+    rotator->setStartValue(m_rotation);
+    rotator->setEndValue(r);
+    rotator->start();
+}
+
 void ImageViewer::resizeImage(QPoint focus) {
     QSize imageSize = m_currentImage.size();
     if (imageSize.isEmpty())
@@ -238,8 +267,6 @@ void ImageViewer::resizeImage(QPoint focus) {
         imageSize = QSize(qRound(imageSize.width() * m_zoom),
                           qRound(imageSize.height() * m_zoom));
     }
-
-    setRotation(Settings::rotation);
 
     if (imageSize.width() < width() || imageSize.height() < height()) {
         centerImage(imageSize);
@@ -672,7 +699,7 @@ void ImageViewer::reload() {
     }
 
     if (!Settings::keepTransform) {
-        Settings::rotation = 0;
+        m_rotation = 0;
         m_flip = Qt::Orientations();
     }
 
@@ -710,7 +737,6 @@ void ImageViewer::reload() {
                 const bool crossfade = m_crossfade;
                 m_crossfade = false;
                 setImage(animation->currentImage(), false);
-                setRotation(Settings::rotation);
                 m_crossfade = crossfade;
             });
             animation->start();
@@ -1234,8 +1260,7 @@ void ImageViewer::applyCropAndRotation() {
     // reset transformations for the new image
     if (!batchMode) {
         m_flip = Qt::Orientations();
-        Settings::rotation = 0;
-        setRotation(Settings::rotation);
+        m_rotation = 0;
         if (!m_lockZoom) {
             m_zoomMode = ZoomToFit;
         }
@@ -1305,26 +1330,26 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
     } else if (Settings::mouseRotateEnabled || event->modifiers() == Qt::ShiftModifier) {
         QPointF fulcrum(QPointF(width() / 2.0, height() / 2.0));
         QLineF vector(fulcrum, event->position());
-        Settings::rotation = initialRotation - vector.angle();
-        if (qAbs(Settings::rotation) > 360.0)
-            Settings::rotation -= int(360*Settings::rotation)/360;
-        if (Settings::rotation < 0)
-            Settings::rotation += 360.0;
-        setRotation(Settings::rotation);
-        setFeedback(tr("Rotation %1°").arg(Settings::rotation));
+        m_rotation = initialRotation - vector.angle();
+        if (qAbs(m_rotation) > 360.0)
+            m_rotation -= int(360*m_rotation)/360;
+        if (m_rotation < 0)
+            m_rotation += 360.0;
+        update();
+        setFeedback(tr("Rotation %1°").arg(qRound(m_rotation)));
         // qDebug() << "image center" << fulcrum << "line" << vector << "angle" << vector.angle() << "geom" << geometry();
 
     } else if (moveImageLocked) {
         int newX = layoutX;
         int newY = layoutY;
-        if (Settings::rotation != 0) {
+        if (m_rotation != 0) {
             QPointF fulcrum(QPointF(width() / 2.0, height() / 2.0));
             QLineF vector(fulcrum, event->pos());
-            vector.setAngle(vector.angle() + Settings::rotation);
+            vector.setAngle(vector.angle() + m_rotation);
             newX += qRound(vector.x2());
             newY += qRound(vector.y2());
             vector.setP2(QPoint(mouseX, mouseY));
-            vector.setAngle(vector.angle() + Settings::rotation);
+            vector.setAngle(vector.angle() + m_rotation);
             newX -= qRound(vector.x2());
             newY -= qRound(vector.y2());
         } else {
@@ -1332,7 +1357,7 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
             newY += event->pos().y() - mouseY;
         }
 
-        bool needToMove = Settings::rotation != 0;
+        bool needToMove = m_rotation != 0;
         if (!needToMove) {
             if (m_currentImageSize.width() > size().width()) {
                 if (newX > 0) {
@@ -1367,13 +1392,13 @@ void ImageViewer::slideImage(QPoint delta) {
     QPoint newPos = m_currentImagePos + delta;
     layoutX = newPos.x();
     layoutY = newPos.y();
-    if (Settings::rotation != 0) {
+    if (m_rotation != 0) {
         QPointF fulcrum(QPointF(width() / 2.0, height() / 2.0));
         QLineF vector(QPoint(0,0), delta);
-        vector.setAngle(vector.angle() + Settings::rotation);
+        vector.setAngle(vector.angle() + m_rotation);
         newPos = m_currentImagePos + vector.p2().toPoint();
     }
-    bool needToMove = Settings::rotation != 0;
+    bool needToMove = m_rotation != 0;
     if (!needToMove) {
         if (m_currentImageSize.width() > size().width()) {
             if (newPos.x() > 0) {
@@ -1441,7 +1466,7 @@ void ImageViewer::saveImage() {
     QTransform matrix;
     if (Settings::exifRotationEnabled) // undo previous exif rotation for saving
         matrix = Metadata::transformation(fullImagePath).inverted();
-    int rotation = qRound(Settings::rotation);
+    int rotation = qRound(m_rotation);
     if (!batchMode && (m_flip || !(rotation % 90))) {
         matrix.scale(m_flip & Qt::Horizontal ? -1 : 1, m_flip & Qt::Vertical ? -1 : 1);
         if (!(rotation % 90))
@@ -1525,7 +1550,7 @@ void ImageViewer::saveImageAs() {
             exifError = true;
         }
 
-        int rotation = qRound(Settings::rotation);
+        int rotation = qRound(m_rotation);
         if (!batchMode && (m_flip || !(rotation % 90))) {
             QTransform matrix;
             matrix.scale(m_flip & Qt::Horizontal ? -1 : 1, m_flip & Qt::Vertical ? -1 : 1);

@@ -47,6 +47,9 @@ public:
         Cartouche,
         Annotate
     };
+    enum Rotate {
+        Direct = 0, CW, CCW
+    };
 
     void clearImage();
     void configureLetterbox();
@@ -61,6 +64,8 @@ public:
     void preload(QString imageFileName);
     void refresh();
     void resizeImage(QPoint focus = QPoint(-1, -1));
+    void rotateTo(qreal r, Rotate direction);
+    qreal rotation() const { return m_rotation; }
     void scaleImage(QSize newSize);
     void secureEdits();
     void setBackgroundColor();
@@ -163,10 +168,9 @@ private:
     const QPoint &imagePosition() const;
     const QSize &imageSize() const;
     void setImagePosition(const QPoint &p);
-    void setRotation(qreal r) { m_rotation = r; update(); }
     void setFlip(Qt::Orientations o);
 
-    qreal m_rotation = 0; //???
+    qreal m_rotation = 0;
     QSize m_currentImageSize;
     QPoint m_currentImagePos;
     QSize m_prevImageSize;

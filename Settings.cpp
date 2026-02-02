@@ -78,7 +78,6 @@ namespace Settings {
     unsigned int thumbsPagesReadCount;
     bool wrapImageList;
     bool enableAnimations;
-    qreal rotation;
     bool mouseRotateEnabled = false;
     bool keepTransform;
     int defaultSaveQuality;

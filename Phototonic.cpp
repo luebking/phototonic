@@ -52,7 +52,6 @@
 #include <QToolBar>
 #include <QToolButton>
 #include <QToolTip>
-#include <QVariantAnimation>
 #include <QWheelEvent>
 #include <QWidgetAction>
 
@@ -1873,7 +1872,7 @@ void Phototonic::rotate(int deg) {
     if (!deg)
         return;
 
-    qreal rotation = Settings::rotation + deg;
+    qreal rotation = imageViewer->rotation() + deg;
     if (qAbs(rotation) > 360.0)
         rotation -= int(360*rotation)/360;
     if (deg > 0) {
@@ -1885,32 +1884,7 @@ void Phototonic::rotate(int deg) {
         if (rotation < 0)
             rotation += 360;
     }
-    // wrap the starting angle for the animation, so we don't rotate backwards
-    if (deg > 0 && rotation < Settings::rotation)
-        Settings::rotation -= 360.0;
-    if (deg < 0 && rotation > Settings::rotation)
-        Settings::rotation += 360.0;
-#if 1
-    static QVariantAnimation *rotator = nullptr;
-    if (!rotator) {
-        rotator = new QVariantAnimation(this);
-        rotator->setEasingCurve(QEasingCurve::InOutCubic);
-        connect(rotator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
-            if (rotator->state() != QAbstractAnimation::Running)
-                    return;
-            Settings::rotation = value.toReal();
-            imageViewer->resizeImage();
-        });
-        connect(rotator, &QObject::destroyed, [=]() {rotator = nullptr;});
-    }
-    rotator->setDuration(2*qAbs(rotation-Settings::rotation));
-    rotator->setStartValue(Settings::rotation);
-    rotator->setEndValue(rotation);
-    rotator->start();
-#else
-    Settings::rotation = rotation;
-    imageViewer->resizeImage();
-#endif
+    imageViewer->rotateTo(rotation, deg > 0 ? ImageViewer::CW : ImageViewer::CCW);
     imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(rotation)));
     m_editSteps = qMax(0, m_editSteps + (rotation ? 1 : -1));
     m_saveAction->setEnabled(m_editSteps);
@@ -1960,13 +1934,13 @@ void Phototonic::scaleImage() {
 }
 
 void Phototonic::freeRotate(int deg) {
-    Settings::rotation += deg;
-    if (Settings::rotation < 0)
-        Settings::rotation = 359;
-    if (Settings::rotation > 360)
-        Settings::rotation = 1;
-    imageViewer->resizeImage();
-    imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(Settings::rotation)));
+    qreal r = imageViewer->rotation() + deg;
+    if (r < 0)
+        r = 359;
+    if (r > 360)
+        r = 1;
+    imageViewer->rotateTo(r, ImageViewer::Direct);
+    imageViewer->setFeedback(tr("Rotation %1°").arg(QString::number(qRound(r))));
 }
 
 void Phototonic::batchTransform() {
@@ -2001,7 +1975,7 @@ void Phototonic::batchTransform() {
     MessageBox msgBox(this, MessageBox::Ok | MessageBox::Cancel, MessageBox::Ok);
     msgBox.setInformativeText(tr("<ul><li>Rotate %1 images by %2°</li>"
                                  "<li>Crop them to %3+%4+%5x%6</li>"
-                                 "<li>%7</li></ul>").arg(idxs.count()).arg(Settings::rotation, 0, 'f', 1)
+                                 "<li>%7</li></ul>").arg(idxs.count()).arg(imageViewer->rotation(), 0, 'f', 1)
                                                     .arg(cropRect.x()).arg(cropRect.y())
                                                     .arg(cropRect.width()).arg(cropRect.height())
                                                     .arg(message));
@@ -2585,7 +2559,6 @@ void Phototonic::readSettings() {
     Settings::wallpaperCommand = Settings::value(Settings::optionWallpaperCommand, QString()).toString();
 
     /// @todo, these are not settings, the namespace is abused as transactional global object
-    Settings::rotation = 0;
     Settings::keepTransform = false;
     Settings::slideShowActive = false;
 
