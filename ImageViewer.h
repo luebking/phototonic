@@ -162,7 +162,7 @@ private:
 
     void colorize();
     void colorize(uchar*, int, int, int, const unsigned char(*)[256], const unsigned char(*)[256]); // thread helper
-    void setImage(const QImage &i, bool resetTransform = true);
+    void setImage(const QImage &i);
     QTransform transformation(const QImage &img, const QSize &sz, const QPoint &pos) const;
     QTransform transformation() const;
     const QPoint &imagePosition() const;

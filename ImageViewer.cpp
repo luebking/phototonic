@@ -611,7 +611,7 @@ void ImageViewer::setCrossfade(bool yesno)
 }
 
 
-void ImageViewer::setImage(const QImage &i, bool resetTransform)
+void ImageViewer::setImage(const QImage &i)
 {
     if (m_crossfade) {
         m_prevImage = m_currentImage;
@@ -619,10 +619,6 @@ void ImageViewer::setImage(const QImage &i, bool resetTransform)
         m_prevImageSize = m_currentImageSize;
     }
     m_currentImage = i;
-    if (resetTransform) {
-        m_currentImageSize = i.size();
-        m_rotation = 0;
-    }
     if (m_crossfade) {
         m_fadeout = 1.0;
         static QVariantAnimation *fadeAnimator = nullptr;
@@ -736,7 +732,7 @@ void ImageViewer::reload() {
             connect(animation, &QMovie::updated, this, [=]() {
                 const bool crossfade = m_crossfade;
                 m_crossfade = false;
-                setImage(animation->currentImage(), false);
+                setImage(animation->currentImage());
                 m_crossfade = crossfade;
             });
             animation->start();
@@ -896,6 +892,10 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
         // don't preview small images w/ a huge thumbnail upscale
         // it's pointless and causes ugly flicker
         if (largeImage) {
+            if (!Settings::keepTransform) {
+                m_rotation = 0;
+                m_flip = Qt::Orientations();
+            }
             setImage(preview);
             const float o_zoom = m_zoom;
             if (m_zoomMode == ZoomOriginal && fullSize.isValid())
