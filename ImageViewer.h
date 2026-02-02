@@ -59,6 +59,7 @@ public:
     bool flip(Qt::Orientations o);
     Qt::Orientations flipping() const { return m_flip; }
     bool isNewImage();
+    void keepTransformation(bool yesno);
     QRect lastCropGeometry() const { return m_isoCropRect; }
     void loadImage(QString imageFileName, const QImage &preview = QImage());
     void preload(QString imageFileName);
@@ -177,6 +178,7 @@ private:
     QPoint m_prevImagePos;
     float m_fadeout;
     bool m_showGrid;
+    bool m_keepTransform;
 };
 
 #endif // IMAGE_VIEWER_H

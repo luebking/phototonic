@@ -922,11 +922,7 @@ void Phototonic::createActions() {
 
     MAKE_ACTION(tr("Keep Transformations"), "keepTransform", "Ctrl+K");
     action->setCheckable(true);
-    connect(action, &QAction::triggered, [=](){
-        Settings::keepTransform = action->isChecked();
-        imageViewer->setFeedback(Settings::keepTransform ? tr("Transformations Locked") : tr("Transformations Unlocked"));
-//        imageViewer->refresh();
-        });
+    connect(action, &QAction::triggered, [=](){ imageViewer->keepTransformation(action->isChecked()); });
 
     m_moveLeftAction = MAKE_ACTION(tr("Slide Image Left"), "moveLeft", "Left");
     connect(action, &QAction::triggered, [=](){ imageViewer->slideImage(QPoint(50, 0)); });
@@ -1992,15 +1988,13 @@ void Phototonic::batchTransform() {
         }
     }
 
-    bool keepTransformWas = Settings::keepTransform;
-    Settings::keepTransform = imageViewer->batchMode = true;
+    imageViewer->batchMode = true;
     setUpdatesEnabled(false);
     for (QModelIndex i : idxs) {
         loadSelectedThumbImage(i);
         imageViewer->applyCropAndRotation();
         imageViewer->saveImage();
     }
-    Settings::keepTransform = keepTransformWas;
     imageViewer->batchMode = false;
     setUpdatesEnabled(true);
     thumbsViewer->refreshThumbs();
@@ -2559,7 +2553,6 @@ void Phototonic::readSettings() {
     Settings::wallpaperCommand = Settings::value(Settings::optionWallpaperCommand, QString()).toString();
 
     /// @todo, these are not settings, the namespace is abused as transactional global object
-    Settings::keepTransform = false;
     Settings::slideShowActive = false;
 
     /* read external apps */

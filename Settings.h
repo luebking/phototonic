@@ -98,7 +98,6 @@ namespace Settings {
     extern bool wrapImageList;
     extern bool enableAnimations;
     extern bool mouseRotateEnabled;
-    extern bool keepTransform;
     extern int defaultSaveQuality;
     extern double slideShowDelay;
     extern bool slideShowRandom;

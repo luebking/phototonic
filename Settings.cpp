@@ -79,7 +79,6 @@ namespace Settings {
     bool wrapImageList;
     bool enableAnimations;
     bool mouseRotateEnabled = false;
-    bool keepTransform;
     int defaultSaveQuality;
     double slideShowDelay;
     bool slideShowRandom;

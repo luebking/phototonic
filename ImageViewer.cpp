@@ -124,6 +124,7 @@ ImageViewer::ImageViewer(QWidget *parent) : QOpenGLWidget(parent) {
     m_fadeout = 0.0;
     m_crossfade = false;
     m_showGrid = false;
+    m_keepTransform = false;
     setAutoFillBackground(true);
 
     setBackgroundColor();
@@ -694,7 +695,7 @@ void ImageViewer::reload() {
         }
     }
 
-    if (!Settings::keepTransform) {
+    if (!batchMode && !m_keepTransform) {
         m_rotation = 0;
         m_flip = Qt::Orientations();
     }
@@ -892,7 +893,7 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
         // don't preview small images w/ a huge thumbnail upscale
         // it's pointless and causes ugly flicker
         if (largeImage) {
-            if (!Settings::keepTransform) {
+            if (!m_keepTransform) {
                 m_rotation = 0;
                 m_flip = Qt::Orientations();
             }
@@ -1598,6 +1599,11 @@ void ImageViewer::focusInEvent(QFocusEvent *event) {
 
 bool ImageViewer::isNewImage() {
     return newImage;
+}
+
+void ImageViewer::keepTransformation(bool yesno) {
+    m_keepTransform = yesno;
+    setFeedback(yesno ? tr("Transformations Locked") : tr("Transformations Unlocked"));
 }
 
 void ImageViewer::copyImage() {
