@@ -175,14 +175,17 @@ int ThumbsViewer::previousRow() {
     return prev > -1 ? prev : -1;
 }
 
-bool ThumbsViewer::setCurrentIndex(const QString &fileName) {
+bool ThumbsViewer::setCurrentIndex(const QString &fileName, bool updateSelection) {
     if (!m_model->rowCount()) {
         m_desiredThumbPath = fileName;
         return true;
     }
     QModelIndexList indexList = m_model->match(m_model->index(0, 0), FileNameRole, fileName);
     if (indexList.size()) {
-        setCurrentIndex(indexList.at(0));
+        if (updateSelection)
+            setCurrentIndex(indexList.at(0));
+        else
+            selectionModel()->setCurrentIndex(indexList.at(0), QItemSelectionModel::NoUpdate);
         return true;
     }
     return false;
@@ -200,10 +203,13 @@ void ThumbsViewer::updateThumbnail(const QString &fileName) {
         loadThumb(idx.row());
 }
 
-bool ThumbsViewer::setCurrentIndex(int row) {
+bool ThumbsViewer::setCurrentIndex(int row, bool updateSelection) {
     QModelIndex idx = m_model->indexFromItem(m_model->item(row));
     if (idx.isValid()) {
-        setCurrentIndex(idx);
+        if (updateSelection)
+            setCurrentIndex(idx);
+        else
+            selectionModel()->setCurrentIndex(idx, QItemSelectionModel::NoUpdate);
         return true;
     }
     return false;

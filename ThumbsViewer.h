@@ -114,8 +114,8 @@ public:
     void setThumbColors();
 
     using QListView::setCurrentIndex;
-    bool setCurrentIndex(const QString &fileName);
-    bool setCurrentIndex(int row);
+    bool setCurrentIndex(const QString &fileName, bool updateSelection = true);
+    bool setCurrentIndex(int row, bool updateSelection = true);
 
     void setNeedToScroll(bool needToScroll);
     void setResizeEnabled(bool resize) { m_resize = resize; }

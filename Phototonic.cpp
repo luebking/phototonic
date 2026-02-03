@@ -2859,13 +2859,7 @@ void Phototonic::slideShowHandler() {
     QModelIndexList selection = thumbsViewer->selectionModel()->selectedIndexes();
     QStandardItemModel *thumbModel = static_cast<QStandardItemModel*>(thumbsViewer->model());
     if (next > -1 && next < thumbModel->rowCount() && last == thumbsViewer->currentIndex().row()) {
-        if (selection.size() > 1) {
-            QModelIndex idx = thumbModel->indexFromItem(thumbModel->item(next));
-            if (idx.isValid())
-                thumbsViewer->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::NoUpdate);
-        } else {
-            thumbsViewer->setCurrentIndex(next);
-        }
+        thumbsViewer->setCurrentIndex(next, false);
 #if 0 // poor man's ken burns - disabled for now
         if (imageViewer->crossfade() && !action("keepZoom")->isChecked())
             QTimer::singleShot(300, this, [=]() {imageViewer->zoomTo(ImageViewer::ZoomToFill, QPoint(-1,-1), Settings::slideShowDelay * 1000.0 - 500);});
@@ -2962,8 +2956,7 @@ void Phototonic::loadImage(SpecialImageIndex idx) {
 
 //    if (imageViewer->isVisible())
 //        imageViewer->loadImage(thumbsViewer->fullPathOf(thumb), thumbsViewer->icon(thumb).pixmap(THUMB_SIZE_MAX).toImage());
-
-    thumbsViewer->setCurrentIndex(thumb);
+    thumbsViewer->setCurrentIndex(thumb, !m_slideShowActive);
 }
 
 void Phototonic::setViewerKeyEventsEnabled(bool enabled) {
@@ -3008,7 +3001,7 @@ void Phototonic::hideViewer() {
         thumbsViewer->refreshThumbs();
     } else {
         if (thumbsViewer->model()->rowCount() > 0) {
-            thumbsViewer->setCurrentIndex(imageViewer->fullImagePath);
+            thumbsViewer->setCurrentIndex(imageViewer->fullImagePath, false);
         }
         thumbsViewer->scrollTo(thumbsViewer->currentIndex());
         thumbsViewer->loadVisibleThumbs();
