@@ -1033,7 +1033,7 @@ void ImageViewer::mouseDoubleClickEvent(QMouseEvent *event) {
 
 void ImageViewer::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
-        if (event->modifiers() == Qt::ControlModifier) {
+        if (event->modifiers() == Qt::ControlModifier && !animation) {
             cropOrigin = event->pos();
             if (!cropRubberBand) {
                 cropRubberBand = new CropRubberBand(this);
@@ -1586,6 +1586,8 @@ void ImageViewer::contextMenuEvent(QContextMenuEvent *) {
 //    if (Settings::layoutMode != Phototonic::ImageViewWidget)
 //        return;
 
+    if (QMenu *em = myContextMenu->findChild<QMenu*>("image_edit_menu"))
+        em->setEnabled(!animation);
     while (QApplication::overrideCursor()) {
         QApplication::restoreOverrideCursor();
     }

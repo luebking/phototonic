@@ -489,6 +489,7 @@ void Phototonic::createImageViewer() {
 
 
     menu = contextMenu->addMenu(tr("Edit"));
+    menu->setObjectName("image_edit_menu");
     menu->addAction(action("resize"));
     menu->addAction(action("colors"));
     menu->addAction(action("crop"));
