@@ -730,10 +730,16 @@ void ImageViewer::reload() {
         if (animation->frameCount() > 1) {
             viewerImage = origImage = QImage();
             animation->setParent(this);
+//            animation->start();
+//            setImage(animation->currentImage());
             connect(animation, &QMovie::updated, this, [=]() {
+//                QImage preImg = m_prevImage;
+//                m_prevImage = QImage();
                 const bool crossfade = m_crossfade;
-                m_crossfade = false;
+//                if (preImg.isNull())
+                    m_crossfade = false;
                 setImage(animation->currentImage());
+//                m_prevImage = preImg;
                 m_crossfade = crossfade;
             });
             animation->start();
