@@ -225,7 +225,7 @@ void ThumbsViewer::promoteSelectionChange() {
             window()->setWindowIcon(QApplication::windowIcon());
     }
 
-    emit selectionChanged(indexesList.size());
+    emit lazySelectionChanged(indexesList.size());
 
     if (!selectedThumbs)
         promoteThumbsCount();

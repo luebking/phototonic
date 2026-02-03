@@ -159,7 +159,7 @@ signals:
     void filesShown(const QStringList &files);
     void progress(unsigned int current, unsigned int total);
     void status(QString s);
-    void selectionChanged(int count);
+    void lazySelectionChanged(int count);
 
 protected:
     void startDrag(Qt::DropActions) override;

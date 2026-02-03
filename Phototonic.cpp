@@ -1439,7 +1439,7 @@ void Phototonic::createImageTagsDock() {
     connect(thumbsViewer, &ThumbsViewer::filesHidden, m_imageTags, &ImageTags::removeTagsFor);
     connect(thumbsViewer, &ThumbsViewer::filesShown, m_imageTags, &ImageTags::addTagsFor);
 
-    connect(thumbsViewer, &ThumbsViewer::selectionChanged, m_imageTags, [=]() {
+    connect(thumbsViewer, &ThumbsViewer::lazySelectionChanged, m_imageTags, [=]() {
         m_imageTags->setSelectedFiles(thumbsViewer->selectedFiles());
     });
 
