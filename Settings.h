@@ -101,7 +101,6 @@ namespace Settings {
     extern int defaultSaveQuality;
     extern double slideShowDelay;
     extern bool slideShowRandom;
-    extern bool slideShowActive;
     extern bool slideShowCrossfade;
     extern QMap<QString, QAction *> actionKeys;
     extern int hueVal;

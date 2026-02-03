@@ -104,7 +104,7 @@ private slots:
 
     void goTo(QString path);
 
-    void toggleSlideShow();
+    void setSlideShow(bool active);
 
     void slideShowHandler();
 
@@ -220,6 +220,7 @@ private:
     bool m_reloadPending;
     int m_editSteps;
     ImageTags *m_imageTags;
+    bool m_slideShowActive;
 
     QPointer<ColorsDialog> colorsDialog;
 

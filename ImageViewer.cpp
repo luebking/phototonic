@@ -797,7 +797,7 @@ void ImageViewer::reload() {
                             .arg(sz.width()).arg(sz.height()), 10000);
         }
         bool imageOk = false;
-        if (batchMode || Settings::slideShowActive) {
+        if (batchMode) {
             imageOk = imageReader.read(&origImage);
         } else {
             QThread *thread = QThread::create([&](){imageOk = imageReader.read(&origImage);});
@@ -914,6 +914,7 @@ void ImageViewer::loadImage(QString imageFileName, const QImage &preview) {
     if (!m_preloadPath.isEmpty()) {
         preload(m_preloadPath);
     }
+    emit imageLoaded();
 }
 
 void ImageViewer::preload(QString imageFileName) {

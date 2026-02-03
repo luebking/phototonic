@@ -82,7 +82,6 @@ namespace Settings {
     int defaultSaveQuality;
     double slideShowDelay;
     bool slideShowRandom;
-    bool slideShowActive;
     bool slideShowCrossfade;
     QMap<QString, QAction *> actionKeys;
     int hueVal;

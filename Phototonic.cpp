@@ -143,7 +143,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
             }
             if (!thumbsViewer->isVisible())
                 setImageViewerWindowTitle();
-            imageViewer->loadImage(imagePath, Settings::slideShowActive ? QImage() : thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
+            imageViewer->loadImage(imagePath, m_slideShowActive ? QImage() : thumbsViewer->icon(current.row()).pixmap(THUMB_SIZE_MAX).toImage());
         }
         }, Qt::QueuedConnection);
     connect(qApp, SIGNAL(focusChanged(QWidget * , QWidget * )), this, SLOT(updateActions()));
@@ -171,6 +171,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     currentHistoryIdx = -1;
     needHistoryRecord = true;
     m_reloadPending = false;
+    m_slideShowActive = false;
 
     refreshThumbs(true);
     if (m_centralLayout->currentWidget() == thumbsViewer) {
@@ -768,7 +769,7 @@ void Phototonic::createActions() {
     action->setIcon(QIcon::fromTheme("go-home", QIcon(":/images/home.png")));
 
     MAKE_ACTION(tr("Slide Show"), "toggleSlideShow", "Ctrl+W");
-    connect(action, SIGNAL(triggered()), this, SLOT(toggleSlideShow()));
+    connect(action, &QAction::triggered, this, [=]() { setSlideShow(!m_slideShowActive); });
     action->setIcon(QIcon::fromTheme("media-playback-start", QIcon(":/images/play.png")));
 
     m_nextImageAction = MAKE_ACTION(tr("Next Image"), "nextImage", "PgDown");
@@ -1647,9 +1648,7 @@ void Phototonic::updateExternalApps() {
 void Phototonic::chooseExternalApp() {
     ExternalAppsDialog *externalAppsDialog = new ExternalAppsDialog(this);
 
-    if (Settings::slideShowActive) {
-        toggleSlideShow();
-    }
+    setSlideShow(false);
     imageViewer->setCursorHiding(false);
 
     externalAppsDialog->exec();
@@ -1662,9 +1661,7 @@ void Phototonic::chooseExternalApp() {
 }
 
 void Phototonic::showSettings() {
-    if (Settings::slideShowActive) {
-        toggleSlideShow();
-    }
+    setSlideShow(false);
 
     imageViewer->setCursorHiding(false);
 
@@ -1754,9 +1751,7 @@ void Phototonic::copyOrCutThumbs(bool isCopyOperation) {
 }
 
 void Phototonic::copyOrMoveImages(bool isCopyOperation) {
-    if (Settings::slideShowActive) {
-        toggleSlideShow();
-    }
+    setSlideShow(false);
 
     if (!isCopyOperation && thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
         QTimer::singleShot(100, this, [=](){copyOrMoveImages(isCopyOperation);});
@@ -1902,8 +1897,7 @@ void Phototonic::flipHorizontal() {
 }
 
 void Phototonic::cropImage() {
-    if (Settings::slideShowActive)
-        toggleSlideShow();
+    setSlideShow(false);
 
     imageViewer->setCursorHiding(false);
     imageViewer->configureLetterbox();
@@ -1912,8 +1906,7 @@ void Phototonic::cropImage() {
 }
 
 void Phototonic::scaleImage() {
-    if (Settings::slideShowActive)
-        toggleSlideShow();
+    setSlideShow(false);
 
     imageViewer->setCursorHiding(false);
 //    if (m_presentationMode) {
@@ -2001,9 +1994,7 @@ void Phototonic::batchTransform() {
 }
 
 void Phototonic::showColorsDialog() {
-    if (Settings::slideShowActive) {
-        toggleSlideShow();
-    }
+    setSlideShow(false);
 
     if (!colorsDialog) {
         colorsDialog = new ColorsDialog(this, imageViewer);
@@ -2222,9 +2213,7 @@ void Phototonic::deleteFromViewer(bool trash) {
         return;
     }
 
-    if (Settings::slideShowActive) { // needs to happen now
-        toggleSlideShow();
-    }
+    setSlideShow(false); // needs to happen now
     imageViewer->setCursorHiding(false); // tells that sth. is happening
 
     if (thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
@@ -2552,9 +2541,6 @@ void Phototonic::readSettings() {
     Settings::thumbsBackgroundImage = Settings::value(Settings::optionThumbsBackgroundImage, QString()).toString();
     Settings::wallpaperCommand = Settings::value(Settings::optionWallpaperCommand, QString()).toString();
 
-    /// @todo, these are not settings, the namespace is abused as transactional global object
-    Settings::slideShowActive = false;
-
     /* read external apps */
     Settings::beginGroup(Settings::optionExternalApps);
     QStringList extApps = Settings::appSettings->childKeys();
@@ -2806,10 +2792,12 @@ void Phototonic::loadSelectedThumbImage(const QModelIndex &idx) {
     setImageViewerWindowTitle();
 }
 
-void Phototonic::toggleSlideShow() {
+void Phototonic::setSlideShow(bool active) {
+    if (m_slideShowActive == active)
+        return; // idempotent
     QAction *toggle = action("toggleSlideShow", true);
-    if (Settings::slideShowActive) {
-        Settings::slideShowActive = false;
+    m_slideShowActive = active;
+    if (!m_slideShowActive) {
         imageViewer->setCrossfade(false);
         slideShowHandler(); // reset
         toggle->setText(tr("Slide Show"));
@@ -2820,6 +2808,7 @@ void Phototonic::toggleSlideShow() {
         toggle->setIcon(QIcon::fromTheme("media-playback-start", QIcon(":/images/play.png")));
     } else {
         if (thumbsViewer->model()->rowCount() <= 0) {
+            m_slideShowActive = false;
             return;
         }
 
@@ -2831,11 +2820,9 @@ void Phototonic::toggleSlideShow() {
                 thumbsViewer->selectionModel()->setCurrentIndex(selection.first(), QItemSelectionModel::NoUpdate);
 //                thumbsViewer->setCurrentIndex(selection.first());
             }
-
             showViewer();
         }
 
-        Settings::slideShowActive = true;
         slideShowHandler(); // init/preload
 
         SlideShowTimer = new QTimer(this);
@@ -2857,7 +2844,7 @@ void Phototonic::toggleSlideShow() {
 void Phototonic::slideShowHandler() {
     static int next = -1;
     static int last = -1;
-    if (!Settings::slideShowActive) {
+    if (!m_slideShowActive) {
         next = -1;
         last = -1;
         imageViewer->preload("");
@@ -2865,7 +2852,7 @@ void Phototonic::slideShowHandler() {
     }
 
     if (next < -1) {
-        toggleSlideShow();
+        setSlideShow(false);
         return;
     }
 
@@ -2931,7 +2918,7 @@ void Phototonic::slideShowHandler() {
         next = Settings::wrapImageList ? -1 : -2;
 
     if (next > -1 && next < thumbsViewer->model()->rowCount())
-        QTimer::singleShot(0, this, [=]() {imageViewer->preload(thumbsViewer->fullPathOf(next));});
+        connect (imageViewer, &ImageViewer::imageLoaded, this, [=]() { imageViewer->preload(thumbsViewer->fullPathOf(next));}, Qt::SingleShotConnection);
 }
 
 void Phototonic::loadImage(SpecialImageIndex idx) {
@@ -3011,10 +2998,7 @@ void Phototonic::hideViewer() {
         QApplication::restoreOverrideCursor();
     }
 
-    if (Settings::slideShowActive) {
-        toggleSlideShow();
-    }
-
+    setSlideShow(false);
     setThumbsViewerWindowTitle();
 
     QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
@@ -3306,9 +3290,7 @@ void Phototonic::rename() {
         renameDialog->setFileName(fileInfo.fileName());
     }
 
-    if (Settings::slideShowActive) {
-        toggleSlideShow();
-    }
+    setSlideShow(false);
     imageViewer->setCursorHiding(false);
 
     QString newNameOrPattern;
@@ -3455,9 +3437,7 @@ void Phototonic::removeMetadata() {
         return;
     }
 
-    if (Settings::slideShowActive) {
-        toggleSlideShow();
-    }
+    setSlideShow(false);
 
     MessageBox msgBox(this, MessageBox::Yes|MessageBox::Cancel, MessageBox::Cancel);
     msgBox.button(MessageBox::Yes)->setText(tr("Remove Metadata"));

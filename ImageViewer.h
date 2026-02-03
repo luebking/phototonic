@@ -91,6 +91,7 @@ signals:
     void toolsUpdated();
     void imageEdited(bool);
     void imageSaved(const QString &imageFileName);
+    void imageLoaded();
 
 public slots:
     void applyCropAndRotation();
