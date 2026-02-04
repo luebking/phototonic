@@ -19,6 +19,7 @@
 #include <QBoxLayout>
 #include <QCheckBox>
 #include <QColorDialog>
+#include <QCompleter>
 #include <QDoubleSpinBox>
 #include <QFileDialog>
 #include <QGroupBox>
@@ -36,6 +37,15 @@
 #include "Settings.h"
 #include "SettingsDialog.h"
 #include "ShortcutsTable.h"
+
+
+QStringList SettingsDialog::defaultImageToolActions() {
+    const QString defaultTools(
+        "prevImage,nextImage,firstImage,lastImage,toggleSlideShow,|,save,saveAs,moveToTrash,delete,"
+        "|,zoomIn,zoomOut,resetZoom,origZoom,rotateRight,rotateLeft,rotateMouse,flipH,flipV,|,"
+        "resize,crop,blackout,cartouche,annotate,colors");
+    return defaultTools.split(',');
+}
 
 SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     setWindowTitle(tr("Preferences"));
@@ -109,6 +119,25 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     slideshowLayout->addWidget(slideCrossfadeCheckBox);
     slideshowLayout->addStretch(1);
 
+    QHBoxLayout *toolbarItems = new QHBoxLayout;
+    toolbarItems->addWidget(new QLabel(tr("Viewer toolbar items:")));
+    toolbarItemActions = new QLineEdit;
+    QStringList list = defaultImageToolActions();
+    list.removeDuplicates();
+    list.sort();
+    QCompleter *completer = new QCompleter(list, this);
+    completer->setWidget(toolbarItemActions);
+    connect(toolbarItemActions, &QLineEdit::textEdited, [=](const QString &text) {
+        completer->setCompletionPrefix(text.section(',',-1));
+        completer->complete();
+    });
+    connect(completer, qOverload<const QString &>(&QCompleter::highlighted), [=](const QString &text) {
+        toolbarItemActions->setText(toolbarItemActions->text().section(',',0,-2) + ',' + text);
+    });
+    toolbarItemActions->setText(Settings::imageToolActions.join(','));
+    toolbarItemActions->setClearButtonEnabled(true);
+    toolbarItems->addWidget(toolbarItemActions);
+
     // Viewer options
     QVBoxLayout *viewerOptsBox = new QVBoxLayout;
     viewerOptsBox->addLayout(backgroundColorHBox);
@@ -119,6 +148,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     viewerOptsBox->addWidget(wrapListCheckBox);
     viewerOptsBox->addLayout(saveQualityHbox);
     viewerOptsBox->addWidget(slideshowGroupBox);
+    viewerOptsBox->addLayout(toolbarItems);
     viewerOptsBox->addStretch(1);
 
     // thumbsViewer background color
@@ -395,6 +425,9 @@ void SettingsDialog::saveSettings() {
     Settings::slideShowDelay = slideDelaySpinBox->value();
     Settings::slideShowRandom = slideRandomCheckBox->isChecked();
     Settings::slideShowCrossfade = slideCrossfadeCheckBox->isChecked();
+    Settings::imageToolActions =  toolbarItemActions->text().split(',', Qt::SkipEmptyParts);
+    if (Settings::imageToolActions.isEmpty())
+        Settings::imageToolActions = defaultImageToolActions();
     Settings::enableAnimations = enableAnimCheckBox->isChecked();
     Settings::exifRotationEnabled = enableExifCheckBox->isChecked();
     Settings::exifThumbRotationEnabled = enableThumbExifCheckBox->isChecked();

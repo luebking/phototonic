@@ -34,6 +34,7 @@ Q_OBJECT
 
 public:
     SettingsDialog(QWidget *parent);
+    static QStringList defaultImageToolActions();
 
 private slots:
 
@@ -80,6 +81,7 @@ private:
     QCheckBox *setWindowIconCheckBox;
     QCheckBox *upscalePreviewCheckBox;
     QTableWidget *bangTable;
+    QLineEdit *toolbarItemActions;
 
     void setButtonBgColor(QColor &color, QAbstractButton *button);
 };

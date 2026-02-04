@@ -1685,6 +1685,15 @@ void Phototonic::showSettings() {
         if (!Settings::setWindowIcon) {
             setWindowIcon(QApplication::windowIcon());
         }
+        m_imageToolBar->clear();
+        for (const QString &s : Settings::imageToolActions) {
+            const QString ts = s.trimmed();
+            if (ts == "|")
+                m_imageToolBar->addSeparator();
+            else
+                m_imageToolBar->addAction(action(ts));
+            m_imageToolBar->adjustSize();
+        }
         writeSettings();
     }
 
@@ -2437,6 +2446,7 @@ void Phototonic::writeSettings() {
     Settings::setValue(Settings::optionSetWindowIcon, (bool) Settings::setWindowIcon);
     Settings::setValue(Settings::optionUpscalePreview, (bool) Settings::upscalePreview);
     Settings::setValue("DuplicateHistogramProximity", (int) Settings::dupeAccuracy);
+    Settings::setValue("ImageToolActions", Settings::imageToolActions);
 
     /* Action shortcuts */
     Settings::beginGroup(Settings::optionShortcuts);
@@ -2523,11 +2533,7 @@ void Phototonic::readSettings() {
     Settings::setWindowIcon = Settings::value(Settings::optionSetWindowIcon, false).toBool();
     Settings::upscalePreview = Settings::value(Settings::optionUpscalePreview, false).toBool();
     Settings::dupeAccuracy = Settings::value("DuplicateHistogramProximity", 60).toInt();
-    const QString defaultTools(
-        "prevImage,nextImage,firstImage,lastImage,toggleSlideShow,|,save,saveAs,moveToTrash,delete,"
-        "|,zoomIn,zoomOut,resetZoom,origZoom,rotateRight,rotateLeft,rotateMouse,flipH,flipV,|,"
-        "resize,crop,blackout,cartouche,annotate,colors");
-    Settings::imageToolActions = Settings::value("ImageToolActions", defaultTools.split(',')).toStringList();
+    Settings::imageToolActions = Settings::value("ImageToolActions", SettingsDialog::defaultImageToolActions()).toStringList();
 
     // meehh
     Settings::fileSystemDockVisible = Settings::value(Settings::optionFileSystemDockVisible, true).toBool();
