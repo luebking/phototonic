@@ -35,7 +35,6 @@
 #include <QPainter>
 #include <QPaintEvent>
 #include <QPushButton>
-#include <QScrollBar>
 #include <QTextEdit>
 #include <QThread>
 #include <QTimer>
