@@ -289,7 +289,7 @@
         <location filename="../CropDialog.cpp" line="31"/>
         <source>Letterbox</source>
         <extracomment>Like a bad dvd where you get a black frame around the image</extracomment>
-        <translation></translation>
+        <translation>Schwarze Ränder</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="73"/>
@@ -423,7 +423,7 @@
     <message>
         <location filename="../Tags.cpp" line="102"/>
         <source>Untag</source>
-        <translation>Untag</translation>
+        <translation>Etikett entfernen</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="109"/>
@@ -661,7 +661,7 @@
         <location filename="../ImageViewer.cpp" line="660"/>
         <source>skipping animation in batch mode:</source>
         <extracomment>this is a warning on the console</extracomment>
-        <translation></translation>
+        <translation>Animation im Batch-Modus überspringen:</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="733"/>
@@ -964,7 +964,7 @@ Mit Filter deaktivieren: |nohistogram|</translation>
     <message>
         <location filename="../MessageBox.cpp" line="98"/>
         <source>Special thanks to our contributers.</source>
-        <translation>Besonderen Dank für die Mitarbeit an</translation>
+        <translation>Besonderer Dank gilt unseren Mitwirkenden.</translation>
     </message>
     <message>
         <location filename="../MessageBox.cpp" line="101"/>
@@ -2160,7 +2160,7 @@ Mit Filter deaktivieren: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="862"/>
         <source>Letterbox</source>
-        <translation></translation>
+        <translation>Schwarze Balken</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="870"/>
@@ -2271,7 +2271,7 @@ Mit Filter deaktivieren: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="1557"/>
         <source>Commands using %f or %u cannot be used with multiple files.</source>
-        <translation>Kommandos mit %f oder %u können nicht mit mehreren Bildern benutzt werden</translation>
+        <translation>Befehle mit %f oder %u können nicht mit mehreren Dateien benutzt werden.</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1713"/>
@@ -2444,8 +2444,7 @@ Mehrere Dateien würden den selben Namen erhalten.</translation>
     <message>
         <location filename="../Phototonic.cpp" line="3378"/>
         <source>Do you want to incorporate them (ie. skip their indexes)?</source>
-        <translation>Sollen sie eingegliedert werden?
-Die Indizes werden dann übersprungen und die Dateien behalten ihren Namen.</translation>
+        <translation>Möchten Sie sie einbinden (d. h. ihre Indizes überspringen und sie behalten ihre Namen)?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3452"/>
@@ -2460,7 +2459,7 @@ Die Indizes werden dann übersprungen und die Dateien behalten ihren Namen.</tra
     <message>
         <location filename="../Phototonic.cpp" line="3460"/>
         <source>Metadata removed from selected images</source>
-        <translation>Metadaten von den ausgewählten Bildern entfernt.</translation>
+        <translation>Metadaten wurden aus ausgewählten Bildern entfernt</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3470"/>
@@ -2986,7 +2985,7 @@ Die vorhandene Datei würde überschrieben werden!</translation>
         <location filename="../SettingsDialog.cpp" line="251"/>
         <location filename="../SettingsDialog.cpp" line="375"/>
         <source>Shortcuts</source>
-        <translation></translation>
+        <translation>Tastenkombinationen</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="257"/>
@@ -3026,7 +3025,7 @@ Die vorhandene Datei würde überschrieben werden!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="298"/>
         <source>Shortcut</source>
-        <translation>Shortcut</translation>
+        <translation>Tastenkombinationen</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="299"/>
@@ -3280,7 +3279,7 @@ Die vorhandene Datei würde überschrieben werden!</translation>
     <message>
         <location filename="../ShortcutsTable.cpp" line="85"/>
         <source>%1 is reserved for launching external applications.</source>
-        <translation>%1 ist für das Starten externer Anwendungen reserviert</translation>
+        <translation>%1 ist für das Starten externer Anwendungen reserviert.</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="114"/>
@@ -3300,7 +3299,7 @@ Die vorhandene Datei würde überschrieben werden!</translation>
     <message>
         <location filename="../ShortcutsTable.cpp" line="141"/>
         <source>Shortcut</source>
-        <translation>Shortcut</translation>
+        <translation>Tastenkombinationen</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="44"/>
@@ -3477,7 +3476,7 @@ Die vorhandene Datei würde überschrieben werden!</translation>
     <message>
         <location filename="../ThumbsViewer.cpp" line="255"/>
         <source>Tagging %1</source>
-        <translation></translation>
+        <translation>Beschrifte %1</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="263"/>

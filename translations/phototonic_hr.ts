@@ -11,7 +11,7 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="41"/>
         <source>Reset</source>
-        <translation>Povrati</translation>
+        <translation>Resetiraj</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="45"/>
@@ -122,7 +122,7 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="43"/>
         <source>Choose Directory</source>
-        <translation>Izaberi direktorij</translation>
+        <translation>Odaberi direktorij</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="69"/>
@@ -179,17 +179,17 @@
         <location filename="../CropDialog.cpp" line="31"/>
         <source>Letterbox</source>
         <extracomment>Like a bad dvd where you get a black frame around the image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Crni rubovi</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="38"/>
         <source>Reset</source>
-        <translation>Povrati</translation>
+        <translation>Resetiraj</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="40"/>
         <source>OK</source>
-        <translation>Uredu</translation>
+        <translation>U redu</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="69"/>
@@ -265,7 +265,10 @@
 · %u and %tu with their respective URIs (file:///path/to/file)
 · %lat %lon and %alt with the GPS location in signed decimals (&quot;altitude&quot;…)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f i %tf će se zamijeniti putanjama pojedinačne slike i minijature
+· %u i %tu s njihovim odgovarajućim URI-jevima (file:///put/do/datoteke)
+· %lat, %lon i %alt s GPS koordinatama u potpisanim decimalama („visina“ …)
+· odabrane slike se standardno dodavaju naredbi</translation>
     </message>
     <message>
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
@@ -278,7 +281,7 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="129"/>
         <source>Choose Application</source>
-        <translation>Izaberi aplikaciju</translation>
+        <translation>Odaberi aplikaciju</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="140"/>
@@ -381,7 +384,7 @@
     <message>
         <location filename="../Tags.cpp" line="50"/>
         <source>Selection</source>
-        <translation>Selekcija</translation>
+        <translation>Odabir</translation>
     </message>
     <message>
         <source>Delete Tag</source>
@@ -513,7 +516,7 @@
         <location filename="../ImageViewer.cpp" line="290"/>
         <location filename="../ImageViewer.cpp" line="1220"/>
         <source>New image size: %1x%2</source>
-        <translation>Veličina nove slike: %1&#xa0;×&#xa0;%2</translation>
+        <translation>Veličina nove slike: %1x%2</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="660"/>
@@ -524,7 +527,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="733"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
-        <translation>&lt;h1&gt;Upozorenje&lt;/h1&gt;Veličina izvorne slike %1&#xa0;×&#xa0;%2 premašuje ograničenja&lt;br&gt;Smanjena je na %3&#xa0;×&#xa0;%4&lt;br&gt;&lt;h3&gt;Spremanjem uređivanja spremit će se manja slika!&lt;/h3&gt;</translation>
+        <translation>&lt;h1&gt;Upozorenje&lt;/h1&gt;Veličina izvorne slike %1x%2 premašuje ograničenja&lt;br&gt;Smanjena je na %3x%4&lt;br&gt;&lt;h3&gt;Spremanjem uređivanja spremit će se manja slika!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="915"/>
@@ -556,17 +559,17 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1053"/>
         <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Odaberi područje zacrnjenja pomoću Ctrl + lijeva tipka miša</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1055"/>
         <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Odaberi područje za uokvirivanje pomoću Ctrl + lijeva tipka miša</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1057"/>
         <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Odaberi područje za zabilješke pomoću Ctrl + lijeve tipke miša</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1082"/>
@@ -582,22 +585,22 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Flipped Horizontally</source>
-        <translation type="unfinished">Obrnuto horizontalno</translation>
+        <translation>Vodoravno preokrenuto</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Unflipped Horizontally</source>
-        <translation type="unfinished">Neobrnuto horizontalno</translation>
+        <translation>Vodoravno nepreokrenuto</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Flipped Vertically</source>
-        <translation type="unfinished">Obrnuto vertikalno</translation>
+        <translation>Okomito preokrenuto</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Unflipped Vertically</source>
-        <translation type="unfinished">Neobrnuto vertikalno</translation>
+        <translation>Okomito nepreokrenuto</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1296"/>
@@ -607,7 +610,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1410"/>
         <source>Saving...</source>
-        <translation>Snimam...</translation>
+        <translation>Spremanje...</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1438"/>
@@ -630,7 +633,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1467"/>
         <source>Failed to save Exif metadata.</source>
-        <translation>Neuspjelo spremanje Exif podataka.</translation>
+        <translation>Neuspjelo spremanje Exif metapodataka.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1471"/>
@@ -642,7 +645,7 @@ Do you want to save a copy?</source>
         <location filename="../ImageViewer.cpp" line="1478"/>
         <location filename="../ImageViewer.cpp" line="1536"/>
         <source>Image saved.</source>
-        <translation>Slika spremljena.</translation>
+        <translation>Slika je spremljena.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1499"/>
@@ -686,7 +689,8 @@ Do you want to save a copy?</source>
         <location filename="../InfoViewer.cpp" line="81"/>
         <source>Enter a name (without leading &quot;$&quot;) for this filter.
 The special name&quot;preview&quot; is used for the filter in the viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Unesi ime (bez početnog znaka &quot;$&quot;) za ovaj filtar.
+Posebno ime &quot;pregled&quot; se koristi za filtar u pregledniku.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
@@ -708,7 +712,9 @@ The special name&quot;preview&quot; is used for the filter in the viewer.</sourc
         <source>Left click: toggle logarithmic scale
 Right click: toggle size
 Hide with filter: |nohistogram|</source>
-        <translation type="unfinished"></translation>
+        <translation>Lijevi klik: prebacivanje na logaritamsku skalu
+Desni klik: prebacivanje veličine
+Sakrij pomoću filtra: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="393"/>
@@ -813,7 +819,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="473"/>
         <source>Flip and Flop and Rotate</source>
-        <translation>Okreni, preokreni i rotiraj</translation>
+        <translation>Preokreni i okreni</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="485"/>
@@ -1043,7 +1049,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="765"/>
         <location filename="../Phototonic.cpp" line="2802"/>
         <source>Slide Show</source>
-        <translation>Prezentacija slajdova</translation>
+        <translation>Slideshow</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="792"/>
@@ -1064,7 +1070,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="807"/>
         <source>Add Bookmark</source>
-        <translation>Dodaj kraticu</translation>
+        <translation>Dodaj knjižnu oznaku</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="814"/>
@@ -1102,12 +1108,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="854"/>
         <source>Flip Horizontally</source>
-        <translation>Obrni horizontalno</translation>
+        <translation>Preokreni vodoravno</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="858"/>
         <source>Flip Vertically</source>
-        <translation>Obrni vertikalno</translation>
+        <translation>Preokreni okomito</translation>
     </message>
     <message>
         <source>Cropping</source>
@@ -1138,7 +1144,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="935"/>
         <source>Invert Selection</source>
-        <translation>Obrni selekciju</translation>
+        <translation>Invertiraj odabir</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="946"/>
@@ -1187,7 +1193,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1337"/>
         <source>Bookmarks</source>
-        <translation>Kartice</translation>
+        <translation>Knjižne oznake</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1382"/>
@@ -1229,7 +1235,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1549"/>
         <source>Invalid selection.</source>
-        <translation>Nevaljala selekcija.</translation>
+        <translation>Nevaljan odabir.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1762"/>
@@ -1277,7 +1283,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="1194"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Filtar – probaj „/?” …</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1871"/>
@@ -1393,23 +1399,23 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="651"/>
         <source>Sort by Name</source>
-        <translation>Sortiraj po imenu</translation>
+        <translation>Razvrstaj po imenu</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="653"/>
         <location filename="../Phototonic.cpp" line="655"/>
         <source>Sort by Time</source>
-        <translation>Sortiraj po vremenu</translation>
+        <translation>Razvrstaj po vremenu</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="657"/>
         <source>Sort by Size</source>
-        <translation>Sortiraj po veličini</translation>
+        <translation>Razvrstaj po veličini</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="659"/>
         <source>Sort by Type</source>
-        <translation>Sortiraj po tipu</translation>
+        <translation>Razvrstaj po vrsti</translation>
     </message>
     <message>
         <source>Reverse Order</source>
@@ -1493,7 +1499,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="862"/>
         <source>Letterbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Crni rubovi</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="870"/>
@@ -1554,7 +1560,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="948"/>
         <source>Edit Current Path</source>
-        <translation>Uredi trenutnu putanju</translation>
+        <translation>Uredi trenutačnu putanju</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1051"/>
@@ -1774,7 +1780,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3475"/>
         <source>OK</source>
-        <translation>Uredu</translation>
+        <translation>U redu</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3475"/>
@@ -1826,22 +1832,22 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="455"/>
         <source>Navigate</source>
-        <translation type="unfinished"></translation>
+        <translation>Navigacija</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="884"/>
         <source>Blackout</source>
-        <translation type="unfinished"></translation>
+        <translation>Zacrnjenje</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="888"/>
         <source>Cartouche</source>
-        <translation type="unfinished"></translation>
+        <translation>Uokvirivanje</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="892"/>
         <source>Annotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Zabilješka</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="926"/>
@@ -1871,13 +1877,13 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1164"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok, ovo nije baš vođeno umjetnom inteligencijom.&lt;p&gt;Duplikati se otkrivaju pomoću sivog mozaika&lt;br&gt;(&lt;i&gt;izgledaju li slike s hladnijim bojama jednako kada se gledaju s velike udaljenosti?&lt;/i&gt;)&lt;br&gt;i usporedbom raspodjele boja&lt;br&gt;(&lt;i&gt;otporno na zrcaljenje, rotaciju, anamorfno skaliranje …&lt;/i&gt;)&lt;br&gt;Obje metode mogu prouzročiti smiješne lažno pozitivne rezultate.&lt;/p&gt;&lt;p&gt;Potrebna sličnost raspodjele boja može se ovdje podesiti.&lt;br&gt;60 % je razumna zadana vrijednost, ali može biti premalo ako radiš s jednobojnim slikama.&lt;br&gt;Preveliko smanjenje vrijednosti će prouzročiti previše lažno pozitivnih rezultata; povećaj točnost za smanjivanje broja rezultata.&lt;/p&gt; &lt;h3&gt;Napomena: ovo može prouzročiti nepovezane grupe podudaranja!&lt;/h3&gt; &lt;p&gt;[A] može biti slično s [B] i [C], dok [B] i [C] nisu dovoljno slični.&lt;br&gt;Rezultat je da se &lt;b&gt;ista slika može pojaviti više puta!&lt;/b&gt;&lt;br&gt;Nemoj jednostavno pretpostaviti da je razvrstavanje pogrešno – to su doista duplikati&lt;br&gt;i pritiskom na brisanje brišeš &lt;b&gt;istu sliku&lt;/b&gt;.&lt;br&gt;Brisanjem jedne slike brišeš obje.&lt;/p&gt; &lt;h3&gt;Obrati pažnju na imena datoteka!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1197"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[podniz] [/ ograničenje [/ dodatna ograničenja]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;odgovara „foo”, starije od 5 dana, ali mlađe od mjesec dana – ili manje od 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Veće od/nakon: &amp;gt;&lt;/li&gt;&lt;li&gt;Manje od/prije: &amp;lt;&lt;/li&gt;&lt;li&gt;Točna starost ili (zaokružena) veličina se inače implicira ili se eksplicitno navodi s: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Datumi su apsolutni (YYYY-MM-DD) ili relativni (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Veličine imaju sufikse 4kB:MB:GB ili 4MP (megapiksela)&lt;/li&gt;&lt;li&gt;Veličine dimenzija se razdvajaju znakom „x” ([širina]x[visina])&lt;/li&gt;&lt;li&gt;Kromatska varijanca ima sufiks [0–255]cr (stvarne vrijednosti su rijetko &amp;gt; 100)&lt;/li&gt;&lt;li&gt;Luminancija ima sufiks [0.0–1.0][0–255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Sufiksi ne razlikuju velika i mala slova, osim m|inuta i M|jesec&lt;/i&gt;&lt;br&gt;Naknadni znakovi „/” započinju novu dovoljnu grupu uvjeta; podudaranje podniza je opcionalno.&lt;hr&gt;Dodatno se može filtrirati po&lt;br&gt;&lt;b&gt;crna, bijela, smeđa, tamna, svijetla, topla, hladna, monokromatska, siva&lt;/b&gt; i po bojama&lt;br&gt;&lt;b&gt;crvena, narančasta, žuta, limeta, zelena, mint, cijan, azurna, plava, ljubičasta, magenta, ružičasta&lt;/b&gt;&lt;hr&gt;Početne dvotočke &lt;b&gt;označavaju podudaranje oznaka&lt;/b&gt;, tako da „/&lt;b&gt;:foo&lt;/b&gt;” pronalazi sve slike s oznakom „foo”</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1249"/>
@@ -1936,7 +1942,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1937"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Definiraj područje za obrezivanje&lt;/h3&gt;&lt;p&gt;Otvori sliku, po potrebi je okreni.&lt;br&gt;Zatim pritisni i drži tipku **Ctrl** pritisnutom za biranje pravokutnika za ogrezivanje.&lt;br&gt;**Nemoj** primijeniti obrezivanje dvostrukim klikom na odabrano područje!&lt;br&gt;Ako ne koristiš pregled, izađi iz Preglednika.&lt;/p&gt;Sada možeš ponovo primijeniti ovu radnju na više slika.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1965"/>
@@ -1989,7 +1995,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="2157"/>
         <source>Deleting %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Briše se %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2200"/>
@@ -2003,7 +2009,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="2246"/>
         <source>Deleted %1</source>
-        <translation>%1 je izbrisana</translation>
+        <translation>Izbrisano %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2329"/>
@@ -2013,17 +2019,17 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="2803"/>
         <source>Slide show stopped</source>
-        <translation>Slajd prikaz obustavljen</translation>
+        <translation>Slideshow prekinut</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2833"/>
         <source>Stop Slide Show</source>
-        <translation>Obustani slajd prikaz</translation>
+        <translation>Prekini slideshow</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2834"/>
         <source>Slide show started</source>
-        <translation>Slajd prikaz počet</translation>
+        <translation>Slideshow započet</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3153"/>
@@ -2034,17 +2040,17 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="3184"/>
         <source>Searching duplicates: %v / %m</source>
         <extracomment>%v and %m are literal pattterns for QProgressBar (value and maximum)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Traženje duplikata: %v / %m</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3224"/>
         <source>Duplicate images in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Duple slike u %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3237"/>
         <source>Rename %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Preimenuj %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3239"/>
@@ -2061,7 +2067,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="3285"/>
         <location filename="../Phototonic.cpp" line="3441"/>
         <source>Invalid selection</source>
-        <translation>Nevaljala selekcija</translation>
+        <translation>Nevaljan odabir</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3309"/>
@@ -2072,24 +2078,25 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="3364"/>
         <location filename="../Phototonic.cpp" line="3377"/>
         <source>File collision!</source>
-        <translation type="unfinished"></translation>
+        <translation>Konflikt s imenima datoteka!</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3364"/>
         <location filename="../Phototonic.cpp" line="3377"/>
         <source>Existing files collide with the rename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Postojeće datoteke kolidiraju s preimenovanjem.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3372"/>
         <source>Refusing ambigious rename pattern.
 Multiple files would get the same name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Odbijanje nejdnoznačnog uzorka preimenovanja.
+Više datoteka bi dobile isto ime.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3378"/>
         <source>Do you want to incorporate them (ie. skip their indexes)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Želiš li ih uključiti (tj. preskočiti njihove indekse)?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3429"/>
@@ -2119,7 +2126,7 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../Phototonic.cpp" line="3762"/>
         <source>Cannot perform action with temporary image.</source>
-        <translation>Nemoguće izvesti akciju sa primvremenom slikom.</translation>
+        <translation>Nije moguće izvesti radnju s primvremenom slikom.</translation>
     </message>
 </context>
 <context>
@@ -2134,28 +2141,29 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="138"/>
         <source>Skip,Replace,Index,Rename,Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Preskoči,Zamijeni,Indeks,Preimenuj,Ime datoteke</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="185"/>
         <source>New file also exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova datoteka također postoji</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="186"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo ime datoteke je također u konfliktu s postojećom datotekom.
+Postojeća datoteka bi se prepisala!</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="258"/>
         <source>File collision resolver</source>
-        <translation type="unfinished"></translation>
+        <translation>Rješavanje konflikata datoteka</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="260"/>
         <source>&lt;h3&gt;Some of the destination files already exist&lt;/h3&gt;You can resolve the conflicts here or abort the entire copy/move operation.&lt;br&gt;&lt;b&gt;By default, the conflicting files will be skipped.&lt;/b&gt;&lt;br&gt;You can also replace or rename the destination, or automatically add a counter for a conflict-free filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Neke od odredišnih datoteka već postoje&lt;/h3&gt;Ovdje možeš riješiti konflikte ili prekinuti cijelu operaciju kopiranja/premještanja.&lt;br&gt;&lt;b&gt;Konfliktne datoteke će se preskočiti.&lt;/b&gt;&lt;br&gt;Također može zamijeniti ili preimenovati odredište ili automatski dodati brojač za sprečavanje konflikata za imena datoteka.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
@@ -2165,7 +2173,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Modified</source>
-        <translation type="unfinished"></translation>
+        <translation>Promijenjeno</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
@@ -2175,7 +2183,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
@@ -2213,7 +2221,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../RenameDialog.cpp" line="47"/>
         <source>&lt;h3&gt;Rename files according to pattern&lt;/h3&gt;Supported placeholders:&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;th align=right&gt;%index :&lt;/th&gt;&lt;td&gt;0-padded index, based on selection order&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%date :&lt;/th&gt;&lt;td&gt;Date and time of last modification, ISO8601 format&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%exifdate :&lt;/th&gt;&lt;td&gt;Date and time of EXIF timestamp or file creation, ISO8601 format&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%size :&lt;/th&gt;&lt;td&gt;Image size, WxH&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Preimenuj datoteke prema uzorku&lt;/h3&gt;Podržani rezervirani znakovi:&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;th align=right&gt;%index :&lt;/th&gt;&lt;td&gt;Indeks s vodećim nulama, prema redoslijedu odabira&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%date :&lt;/th&gt;&lt;td&gt;Datum i vrijeme zadnje promjene, u ISO8601 formatu&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%exifdate :&lt;/th&gt;&lt;td&gt;Datum i vrijeme EXIF vremenske oznake ili stvaranja datoteke, u ISO8601 formatu&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%size :&lt;/th&gt;&lt;td&gt;Veličina slike, ŠxV&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</translation>
     </message>
 </context>
 <context>
@@ -2237,7 +2245,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ResizeDialog.cpp" line="51"/>
         <source>Current size:</source>
-        <translation>Trenutna veličina:</translation>
+        <translation>Trenutačna veličina:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="54"/>
@@ -2349,7 +2357,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="183"/>
         <source>Scale up small images in preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Povećaj male slike u pregledu</translation>
     </message>
     <message>
         <source>Use scroll wheel for zooming in image viewer</source>
@@ -2359,7 +2367,7 @@ The existing file would be overwritten!</source>
         <location filename="../SettingsDialog.cpp" line="251"/>
         <location filename="../SettingsDialog.cpp" line="375"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Prečaci</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="86"/>
@@ -2390,7 +2398,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="348"/>
         <source>OK</source>
-        <translation>Uredu</translation>
+        <translation>U redu</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="352"/>
@@ -2414,27 +2422,27 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="61"/>
         <source>Default quality when saving:</source>
-        <translation>Zadana kvaliteta pri snimanju:</translation>
+        <translation>Zadana kvaliteta pri spremanju:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="75"/>
         <source>Rotate image according to Exif orientation value</source>
-        <translation>Rotiraj sliku prema Exif orijetantciji</translation>
+        <translation>Okreni sliku prema vrijednosti Exif orijetantcije</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="125"/>
         <source>Thumbnails and Preview Background Color:</source>
-        <translation>Boja minijatura i pozadine pregleda:</translation>
+        <translation>Minijature i boja pozadine pregleda:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="179"/>
         <source>Rotate thumbnail according to Exif orientation value</source>
-        <translation>Rotiraj minijaturu prema Exif orijentaciji</translation>
+        <translation>Okreni minijaturu prema vrijednosti Exif orijentacije</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="199"/>
         <source>Swap mouse double-click and middle-click actions</source>
-        <translation>Zamjeni dvoklik i srednji klik miša</translation>
+        <translation>Zamjeni radnje dvoklika i srednjeg klika miša</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="207"/>
@@ -2458,32 +2466,32 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="261"/>
         <source>Select an entry and press a key to set a new shortcut</source>
-        <translation>Izaberite stavku i pritisnite dugme da postavite novu prečicu</translation>
+        <translation>Odaberi unos i pritisni gumb za postavljanje novog prečaca</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="268"/>
         <source>Set the application icon according to the current image</source>
-        <translation>Postavi trenutnu sliku kao ikonu aplikacije</translation>
+        <translation>Postavi trenutačnu sliku kao ikonu aplikacije</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="105"/>
         <source>Slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation>Slideshow</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="82"/>
         <source>Use scroll wheel for zooming</source>
-        <translation type="unfinished"></translation>
+        <translation>Koristi kotačić miša za zumiranje</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="100"/>
         <source>Crossfade images</source>
-        <translation type="unfinished"></translation>
+        <translation>Stapanje slika</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="281"/>
         <source>&lt;p&gt;Bangs allow you to use external commands to generate the list of shown images.&lt;br&gt;The main purpose is to query databases like locate, baloo or tracker, but anything that can generate a list of image files is suitable&lt;/p&gt;&lt;p&gt;The token &lt;b&gt;%s&lt;/b&gt; in the command will be replaced with the parameter.&lt;/p&gt;&lt;p&gt;Eg. for plocate, using the shortcut &lt;i&gt;locate&lt;/i&gt; and the command&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;allows you to enter &lt;i&gt;locate:waldo&lt;/i&gt; to display indexed jpg&apos;s and png&apos;s of waldo.&lt;/p&gt;&lt;p&gt;Phototonic tests the files for existence and will remove duplicates (including file and directory symlinks.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;&lt;b&gt;Bangs&lt;/b&gt; omogućuje korištenje ekstarnih naredbi za generiranje popisa prikazanih slika.&lt;br&gt;Glavna namjena je upit prema bazama podataka poput &lt;i&gt;locate&lt;/i&gt;, &lt;i&gt;baloo&lt;/i&gt; ili &lt;i&gt;tracker&lt;/i&gt;, ali prikladno je sve što može generirati popis slikovnih datoteka.&lt;/p&gt; &lt;p&gt;Token &lt;b&gt;%s&lt;/b&gt; u naredbi će se zamijeniti parametrom.&lt;/p&gt; &lt;p&gt;Npr. za &lt;i&gt;plocate&lt;/i&gt;, korištenjem prečaca &lt;i&gt;locate&lt;/i&gt; i naredbe&lt;br&gt; &lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt; možeš upisati &lt;i&gt;locate:waldo&lt;/i&gt; za prikaz indeksiranih JPG i PNG datoteka s pojmom waldo.&lt;/p&gt; &lt;p&gt;Phototonic provjerava postojanje datoteka i uklanja duplikate (uključujući simboličke poveznice na datoteke i direktorije).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="298"/>
@@ -2493,7 +2501,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="299"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Naredba</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="371"/>
@@ -2503,17 +2511,17 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="379"/>
         <source>Bangs</source>
-        <translation type="unfinished"></translation>
+        <translation>Bangs</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="457"/>
         <source>Select background color</source>
-        <translation type="unfinished"></translation>
+        <translation>Odaberi boju pozadine</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="473"/>
         <source>Choose Startup Directory</source>
-        <translation>Izaberi početni direktorij</translation>
+        <translation>Odaberi početni direktorij</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="479"/>
@@ -2531,17 +2539,17 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ShortcutsTable.cpp" line="85"/>
         <source>%1 is reserved for launching external applications.</source>
-        <translation>%1 je rezervisano za pokretanje eksternih aplikacija.</translation>
+        <translation>Prečac %1 je rezerviran za pokretanje eksternih aplikacija.</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="114"/>
         <source>%1 is already assigned to %2, reassign shortcut?</source>
-        <translation>%1 je već dodijeljeno za %2, dodijeli ipak?</translation>
+        <translation>Prečac %1 je već dodijeljen za %2, svejedno dodijeliti?</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="114"/>
         <source>Overwrite Shortcut</source>
-        <translation>Presnimi prečicu</translation>
+        <translation>Prepiši prečac</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -2554,22 +2562,22 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ShortcutsTable.cpp" line="140"/>
         <source>Action</source>
-        <translation>Akcija</translation>
+        <translation>Radnja</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="141"/>
         <source>Shortcut</source>
-        <translation>Prečice</translation>
+        <translation>Prečac</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="44"/>
         <source>Delete shortcut</source>
-        <translation>Izbriši prečicu</translation>
+        <translation>Izbriši prečac</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="85"/>
         <source>Set shortcut</source>
-        <translation>Postavi prečicu</translation>
+        <translation>Postavi prečac</translation>
     </message>
 </context>
 <context>
@@ -2626,16 +2634,16 @@ The existing file would be overwritten!</source>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="232"/>
         <source>Selected %1 of %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Odabrana je %1 od %n slike</numerusform>
+            <numerusform>Odabrane su %1 od %n slika</numerusform>
+            <numerusform>Odabrano je %1 od %n slika</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="255"/>
         <source>Tagging %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Označavanje %1</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="263"/>
@@ -2645,7 +2653,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ThumbsViewer.cpp" line="940"/>
         <source>Searching duplicate images...</source>
-        <translation type="unfinished"></translation>
+        <translation>Traženje duplih slika …</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1113"/>
@@ -2664,41 +2672,41 @@ The existing file would be overwritten!</source>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1111"/>
         <source>%n of %1 image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n od %1 slike</numerusform>
+            <numerusform>%n od %1 slike</numerusform>
+            <numerusform>%n od %1 slika</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1229"/>
         <location filename="../ThumbsViewer.cpp" line="1342"/>
         <source>Found %n duplicate(s) among %1 files</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Pronađen je %n duplikat u %1 datotekama</numerusform>
+            <numerusform>Pronađena su %n duplikata u %1 datotekama</numerusform>
+            <numerusform>Pronađeno je %n duplikata u %1 datotekama</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1423"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Prekini</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1423"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Učitavanje …</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1463"/>
         <source>Comparing...</source>
-        <translation type="unfinished"></translation>
+        <translation>Uspoređivanje …</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1496"/>
         <source>Sorting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Razvrstavanje …</translation>
     </message>
 </context>
 <context>
@@ -2706,42 +2714,42 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../main.cpp" line="58"/>
         <source>files or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>datoteke ili direktoriji</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="59"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
-        <translation type="unfinished"></translation>
+        <translation>datoteke ili direktorij za otvaranje, „-” za čitanje iz stdin-a.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="60"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
-        <translation type="unfinished"></translation>
+        <translation>[DATOTEKA...] | [DIREKTORIJ] | [-]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="63"/>
         <source>start with a specific translation</source>
-        <translation type="unfinished"></translation>
+        <translation>započni s određenim prijevodom</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="64"/>
         <source>language</source>
-        <translation type="unfinished"></translation>
+        <translation>jezik</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="68"/>
         <source>Copy all modified images into &lt;directory&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiraj sve promijenjene slike u &lt;direktorij&gt;.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="69"/>
         <source>directory</source>
-        <translation type="unfinished"></translation>
+        <translation>direktorij</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="73"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokreni jednu instancu Phototonica ili otvori datoteke u već pokrenutoj.</translation>
     </message>
 </context>
 </TS>
