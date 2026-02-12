@@ -1360,6 +1360,9 @@ bool ThumbsViewer::cacheSignatures(const QString &imagePath, bool overwrite, con
     if (image && !image->isNull()) {
         thumb = *image;
     } else {
+        thumb = Metadata::thumbnail(imagePath);
+    }
+    if (thumb.isNull()) {
         static QSize size256(qMax(256,thumbSize),qMax(256,thumbSize));
         QImageReader imageReader;
         imageReader.setFileName(imagePath);
@@ -1769,79 +1772,89 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
     if (m_model->item(currThumb)->data(LoadedRole).toBool())
         return true;
 
-    QImageReader thumbReader;
-    QString imageFileName = m_model->item(currThumb)->data(FileNameRole).toString();
-    QImage thumb;
-    bool imageReadOk = false;
+    QSize thumbSizeQ(thumbSize,thumbSize);
+    bool imageReadOk = true;
     bool shouldStoreThumbnail = false;
-
-    thumbReader.setFileName(imageFileName);
-    thumbReader.setQuality(50); // 50 is the threshold where Qt does fast decoding, but still good scaling
-    const QSize origThumbSize = thumbReader.size();
+    QString imageFileName = m_model->item(currThumb)->data(FileNameRole).toString();
+    QImage thumb = Metadata::thumbnail(imageFileName);
+    if (!Settings::alwaysUseExifThumb && qMax(thumb.width(),thumb.height()) < thumbSize/2) {
+        thumb = QImage();
+    } else if (!thumb.isNull()) {
+        thumb = thumb.scaled(thumbSizeQ, Settings::thumbsLayout == Squares ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    }
+    QSize origThumbSize = thumb.size();
     QSize currentThumbSize = origThumbSize;
 
-    QString thumbnailPath = locateThumbnail(imageFileName);
-    if (!thumbnailPath.isEmpty()) {
-        if (QImageReader(thumbnailPath).canRead()) {
-            thumbReader.setFileName(thumbnailPath);
+    if (thumb.isNull()) {
+        imageReadOk = false;
+        QImageReader thumbReader;
+        thumbReader.setFileName(imageFileName);
+        thumbReader.setQuality(50); // 50 is the threshold where Qt does fast decoding, but still good scaling
+        origThumbSize = thumbReader.size();
+        currentThumbSize = origThumbSize;
+
+        QString thumbnailPath = locateThumbnail(imageFileName);
+        if (!thumbnailPath.isEmpty()) {
+            if (QImageReader(thumbnailPath).canRead()) {
+                thumbReader.setFileName(thumbnailPath);
+            } else {
+                qWarning() << "Invalid thumbnail" << thumbnailPath;
+                shouldStoreThumbnail = true;
+            }
         } else {
-            qWarning() << "Invalid thumbnail" << thumbnailPath;
             shouldStoreThumbnail = true;
         }
-    } else {
-        shouldStoreThumbnail = true;
-    }
-    if (fastOnly && shouldStoreThumbnail)
-        return false;
-
-    auto readThreaded = [&]() {
-        bool wentOk = false;
-        QThread *thread = QThread::create([&](){wentOk = thumbReader.read(&thumb);});
-        thread->start();
-        while (!thread->wait(30)) {
-            QApplication::processEvents();
-            if (isAbortThumbsLoading) {
-                thread->terminate();
-                while (!thread->wait(30))
-                    QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-                thread->deleteLater();
-                return false;
-            }
-        }
-        thread->deleteLater();
-        return wentOk;
-    };
-
-    QSize thumbSizeQ(thumbSize,thumbSize);
-    if (currentThumbSize.isValid()) {
-        bool scaleMe =  Settings::upscalePreview ||
-                        currentThumbSize.width() > thumbSize ||
-                        currentThumbSize.height() > thumbSize;
-        if (scaleMe && currentThumbSize != thumbSizeQ) {
-            currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout == Squares ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
-        }
-
-        thumbReader.setScaledSize(currentThumbSize);
-        imageReadOk = shouldStoreThumbnail ? readThreaded() : thumbReader.read(&thumb);
-        if (isAbortThumbsLoading)
+        if (fastOnly && shouldStoreThumbnail)
             return false;
 
-        if (imageReadOk && !shouldStoreThumbnail) {
-            int w = thumb.text("Thumb::Image::Width").toInt();
-            int h = thumb.text("Thumb::Image::Height").toInt();
-            if (origThumbSize != QSize(w, h)) {
-                if (fastOnly)
+        auto readThreaded = [&]() {
+            bool wentOk = false;
+            QThread *thread = QThread::create([&](){wentOk = thumbReader.read(&thumb);});
+            thread->start();
+            while (!thread->wait(30)) {
+                QApplication::processEvents();
+                if (isAbortThumbsLoading) {
+                    thread->terminate();
+                    while (!thread->wait(30))
+                        QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+                    thread->deleteLater();
                     return false;
-                qWarning() << "Invalid size in stored thumbnail" << w << h << "vs" << origThumbSize;
-                imageReadOk = false;
+                }
             }
-        }
-        if (!imageReadOk && !shouldStoreThumbnail) { // tried thumbnail but somehow failed, sanitize it
-            shouldStoreThumbnail = true;
-            thumbReader.setFileName(imageFileName);
-            imageReadOk = readThreaded();
+            thread->deleteLater();
+            return wentOk;
+        };
+
+        if (currentThumbSize.isValid()) {
+            bool scaleMe =  Settings::upscalePreview ||
+                            currentThumbSize.width() > thumbSize ||
+                            currentThumbSize.height() > thumbSize;
+            if (scaleMe && currentThumbSize != thumbSizeQ) {
+                currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout == Squares ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
+            }
+
+            thumbReader.setScaledSize(currentThumbSize);
+            imageReadOk = shouldStoreThumbnail ? readThreaded() : thumbReader.read(&thumb);
             if (isAbortThumbsLoading)
                 return false;
+
+            if (imageReadOk && !shouldStoreThumbnail) {
+                int w = thumb.text("Thumb::Image::Width").toInt();
+                int h = thumb.text("Thumb::Image::Height").toInt();
+                if (origThumbSize != QSize(w, h)) {
+                    if (fastOnly)
+                        return false;
+                    qWarning() << "Invalid size in stored thumbnail" << w << h << "vs" << origThumbSize;
+                    imageReadOk = false;
+                }
+            }
+            if (!imageReadOk && !shouldStoreThumbnail) { // tried thumbnail but somehow failed, sanitize it
+                shouldStoreThumbnail = true;
+                thumbReader.setFileName(imageFileName);
+                imageReadOk = readThreaded();
+                if (isAbortThumbsLoading)
+                    return false;
+            }
         }
     }
 

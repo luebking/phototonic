@@ -140,5 +140,6 @@ namespace Settings {
     bool scrollZooms;
     int dupeAccuracy;
     QStringList imageToolActions;
+    bool alwaysUseExifThumb;
 }
 

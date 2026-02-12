@@ -2447,6 +2447,7 @@ void Phototonic::writeSettings() {
     Settings::setValue(Settings::optionUpscalePreview, (bool) Settings::upscalePreview);
     Settings::setValue("DuplicateHistogramProximity", (int) Settings::dupeAccuracy);
     Settings::setValue("ImageToolActions", Settings::imageToolActions);
+    Settings::setValue("AlwaysUseExifThumb", Settings::alwaysUseExifThumb);
 
     /* Action shortcuts */
     Settings::beginGroup(Settings::optionShortcuts);
@@ -2534,6 +2535,7 @@ void Phototonic::readSettings() {
     Settings::upscalePreview = Settings::value(Settings::optionUpscalePreview, false).toBool();
     Settings::dupeAccuracy = Settings::value("DuplicateHistogramProximity", 60).toInt();
     Settings::imageToolActions = Settings::value("ImageToolActions", SettingsDialog::defaultImageToolActions()).toStringList();
+    Settings::alwaysUseExifThumb = Settings::value("AlwaysUseExifThumb", false).toBool();
 
     // meehh
     Settings::fileSystemDockVisible = Settings::value(Settings::optionFileSystemDockVisible, true).toBool();

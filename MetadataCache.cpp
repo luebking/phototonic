@@ -16,8 +16,9 @@
  *  along with Phototonic.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QBuffer>
 #include <QDateTime>
-#include <QImage>
+#include <QImageReader>
 #include <QMap>
 #include <QSet>
 #include <exiv2/exiv2.hpp>
@@ -79,6 +80,22 @@ const QSet<QString> &tags(const QString &imageFileName) {
     if (it == gs_cache.end())
         return dummy;
     return it->tags;
+}
+
+QImage thumbnail(const QString &imageFullPath) {
+    Exiv2ImagePtr exifImage;
+    try {
+        exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
+        exifImage->readMetadata();
+    } catch (Exiv2::Error &error) {
+        qWarning() << "Error loading image for reading metadata" << error.what();
+        return QImage();
+    }
+    Exiv2::ExifThumbC thumbc(exifImage->exifData());
+    Exiv2::DataBuf dbuf = thumbc.copy();
+    QBuffer qbuf;
+    qbuf.setData(dbuf.c_str(), dbuf.size());
+    return QImageReader(&qbuf).read();
 }
 
 // getImageOrientation

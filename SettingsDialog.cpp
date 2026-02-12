@@ -213,6 +213,10 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     upscalePreviewCheckBox = new QCheckBox(tr("Scale up small images in preview"), this);
     upscalePreviewCheckBox->setChecked(Settings::upscalePreview);
 
+    alwaysExifThumbs = new QCheckBox(tr("Always use the thumbnail embedded in the image"), this);
+    alwaysExifThumbs->setToolTip(tr("Othwise it will only be used and upscaled if its at least half the required size"));
+    alwaysExifThumbs->setChecked(Settings::alwaysUseExifThumb);
+
     // Thumbnail options
     QVBoxLayout *thumbsOptsBox = new QVBoxLayout;
     thumbsOptsBox->addLayout(thumbsBackgroundColorLayout);
@@ -222,6 +226,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     thumbsOptsBox->addLayout(thumbsLabelColorLayout);
     thumbsOptsBox->addWidget(enableThumbExifCheckBox);
     thumbsOptsBox->addWidget(upscalePreviewCheckBox);
+    thumbsOptsBox->addWidget(alwaysExifThumbs);
     thumbsOptsBox->addLayout(thumbPagesReadLayout);
     thumbsOptsBox->addStretch(1);
 
@@ -437,6 +442,7 @@ void SettingsDialog::saveSettings() {
     Settings::deleteConfirm = deleteConfirmCheckBox->isChecked();
     Settings::setWindowIcon = setWindowIconCheckBox->isChecked();
     Settings::upscalePreview = upscalePreviewCheckBox->isChecked();
+    Settings::alwaysUseExifThumb = alwaysExifThumbs->isChecked();
 
     if (startupDirectoryRadioButtons[Settings::RememberLastDir]->isChecked()) {
         Settings::startupDir = Settings::RememberLastDir;

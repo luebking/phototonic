@@ -160,6 +160,7 @@ namespace Settings {
     extern bool scrollZooms;
     extern int dupeAccuracy;
     extern QStringList imageToolActions;
+    extern bool alwaysUseExifThumb;
 }
 
 #endif // SETTINGS_H

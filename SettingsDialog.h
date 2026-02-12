@@ -82,6 +82,7 @@ private:
     QCheckBox *upscalePreviewCheckBox;
     QTableWidget *bangTable;
     QLineEdit *toolbarItemActions;
+    QCheckBox *alwaysExifThumbs;
 
     void setButtonBgColor(QColor &color, QAbstractButton *button);
 };

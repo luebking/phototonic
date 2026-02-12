@@ -19,6 +19,7 @@
 #ifndef META_DATA_CACHE_H
 #define META_DATA_CACHE_H
 
+#include <QImage>
 #include <QMultiMap>
 #include <QTransform>
 
@@ -39,6 +40,7 @@ namespace Metadata {
     bool removeTag(const QString &imageFileName, const QString &tagName);
     void setTags(const QString &imageFileName, QSet<QString> tags);
     const QSet<QString> &tags(const QString &imageFileName);
+    QImage thumbnail(const QString &imageFullPath);
     bool updateTags(const QString &imageFileName, QSet<QString> tags);
     bool wipeFrom(const QString &imageFileName);
     bool write(const QString &imageFileName);
