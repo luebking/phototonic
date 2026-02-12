@@ -643,22 +643,22 @@ Wilt u een kopie opslaan?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Flipped Horizontally</source>
-        <translation type="unfinished">Horizontaal gespiegeld</translation>
+        <translation>Horizontaal gespiegeld</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
         <source>Unflipped Horizontally</source>
-        <translation type="unfinished">Horizontaal ontspiegeld</translation>
+        <translation>Horizontaal ontspiegeld</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Flipped Vertically</source>
-        <translation type="unfinished">Verticaal gespiegeld</translation>
+        <translation>Verticaal gespiegeld</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1233"/>
         <source>Unflipped Vertically</source>
-        <translation type="unfinished">Verticaal ontspiegeld</translation>
+        <translation>Verticaal ontspiegeld</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1296"/>
@@ -2280,32 +2280,32 @@ Het bestaande bestand zou overschreven worden!</translation>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Size</source>
-        <translation type="unfinished">Afmetingen</translation>
+        <translation>Afmetingen</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Modified</source>
-        <translation type="unfinished">Bewerkt</translation>
+        <translation>Bewerkt</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Resolution</source>
-        <translation type="unfinished">Resolutie</translation>
+        <translation>Resolutie</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Bezig met kopiëren van ‘%1’ naar ‘%2’…</translation>
+        <translation>Bezig met kopiëren van ‘%1’ naar ‘%2’…</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Bezig met verplaatsen van ‘%1’ naar ‘%2’…</translation>
+        <translation>Bezig met verplaatsen van ‘%1’ naar ‘%2’…</translation>
     </message>
 </context>
 <context>
@@ -2492,12 +2492,12 @@ Het bestaande bestand zou overschreven worden!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="82"/>
         <source>Use scroll wheel for zooming</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrolwiel gebruiken om te zoomen</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="100"/>
         <source>Crossfade images</source>
-        <translation type="unfinished"></translation>
+        <translation>Vloeiende overgang tussen afbeeldingen</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="281"/>

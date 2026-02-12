@@ -457,12 +457,12 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1051"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>נא לבחור את אזור החיתוך עם Ctrl + לחצן העכבר השמאלי</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1053"/>
         <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>לבחור את אזור ההחשכה עם Ctrl + לחצן העכבר השמאלי</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1055"/>
@@ -531,7 +531,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1465"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>לא להציג את ההודעה הזאת שוב</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1467"/>
@@ -2175,7 +2175,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ShortcutsTable.cpp" line="141"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>קיצור דרך</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="44"/>
@@ -2225,9 +2225,11 @@ The existing file would be overwritten!</source>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="232"/>
         <source>Selected %1 of %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>נבחרה %1</numerusform>
+            <numerusform>נבחרו %1 מתוך שתי תמונות</numerusform>
+            <numerusform>נבחרו %1 מתוך %n תמונות</numerusform>
+            <numerusform>נבחרו %1 מתוך %n תמונות</numerusform>
         </translation>
     </message>
     <message>
@@ -2238,12 +2240,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ThumbsViewer.cpp" line="263"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>שגיאה</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="263"/>
         <source>Failed to save tags to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>שמירת התגיות אל %1 נכשלה</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="940"/>
@@ -2253,9 +2255,11 @@ The existing file would be overwritten!</source>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1111"/>
         <source>%n of %1 image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n מתוך תמונה</numerusform>
+            <numerusform>%n מתוך שתי תמונות</numerusform>
+            <numerusform>%n מתוך %1 תמונות</numerusform>
+            <numerusform>%n מתוך %1 תמונות</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -2277,9 +2281,11 @@ The existing file would be overwritten!</source>
         <location filename="../ThumbsViewer.cpp" line="1229"/>
         <location filename="../ThumbsViewer.cpp" line="1342"/>
         <source>Found %n duplicate(s) among %1 files</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>נמצאה כפילות אחת מבין %1 קבצים</numerusform>
+            <numerusform>נמצאו שתי כפילויות מבין %1 קבצים</numerusform>
+            <numerusform>נמצאו %n כפילויות מבין %1 קבצים</numerusform>
+            <numerusform>נמצאו %n כפילויות מבין %1 קבצים</numerusform>
         </translation>
     </message>
     <message>
@@ -2313,7 +2319,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../main.cpp" line="59"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
-        <translation type="unfinished"></translation>
+        <translation>קבצים או תיקייה לפתיחה, „-” יוביל לקריאתם מהקלט התקני (stdin).</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="60"/>
@@ -2323,7 +2329,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../main.cpp" line="63"/>
         <source>start with a specific translation</source>
-        <translation type="unfinished"></translation>
+        <translation>להתחיל עם תרגום קיים</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="64"/>
@@ -2333,7 +2339,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../main.cpp" line="68"/>
         <source>Copy all modified images into &lt;directory&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>להעתיק את כל התמונות שהשתנו אל &lt;תיקייה&gt;.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="69"/>
@@ -2343,7 +2349,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../main.cpp" line="73"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
-        <translation type="unfinished"></translation>
+        <translation>להריץ עותק בודד של Phototonic או לפתוח קבצים בעותק פעיל.</translation>
     </message>
 </context>
 </TS>

@@ -516,23 +516,23 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1055"/>
         <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>აირჩიეთ კარტუშის არე Ctrl + თაგუნას მარცხენა ღილაკით</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1057"/>
         <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>აირჩიეთ ანოტაციის არე Ctrl + თაგუნას მარცხენა ღილაკით</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1082"/>
         <location filename="../ImageViewer.cpp" line="1104"/>
         <source>Pick a color</source>
-        <translation type="unfinished"></translation>
+        <translation>აირჩიეთ ფერი</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1103"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>ფერი</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1231"/>
@@ -625,7 +625,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="59"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>წაშლა</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="70"/>
@@ -635,35 +635,38 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="80"/>
         <source>Enter filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>შეიყვანეთ ფილტრის სახელი</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="81"/>
         <source>Enter a name (without leading &quot;$&quot;) for this filter.
 The special name&quot;preview&quot; is used for the filter in the viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation>შეიყვანეთ სახელი (საწყისი &quot;$&quot;-ის გარეშე) ამ ფილტრისთვის.
+სპეციალური სახელი &quot;preview&quot; გამოიყენება ფილტრისთვის დამთვალიერებელში.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
         <source>Edit filter: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ფილტრის ჩასწორება: %1</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="85"/>
         <source>Clearing the filter will delete it.</source>
-        <translation type="unfinished"></translation>
+        <translation>ფილტრის გასუფთავება წაშლის მას.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="109"/>
         <source>Save EXIF changes</source>
-        <translation type="unfinished"></translation>
+        <translation>EXIF-ის ცვლილებების შენახვა</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="116"/>
         <source>Left click: toggle logarithmic scale
 Right click: toggle size
 Hide with filter: |nohistogram|</source>
-        <translation type="unfinished"></translation>
+        <translation>მარცხენა წკაპი: ლოგარითმული მასშტაბის გადართვა
+მარჯვენა წკაპი: ზომის გადართვა
+დამალვა ფილტრით: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="393"/>
@@ -964,17 +967,17 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="884"/>
         <source>Blackout</source>
-        <translation type="unfinished"></translation>
+        <translation>ჩაბნელება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="888"/>
         <source>Cartouche</source>
-        <translation type="unfinished"></translation>
+        <translation>კარტუში</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="892"/>
         <source>Annotate</source>
-        <translation type="unfinished"></translation>
+        <translation>ანოტაცია</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="896"/>
@@ -1519,7 +1522,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1965"/>
         <source>Batch transformation</source>
-        <translation type="unfinished"></translation>
+        <translation>პაკეტური გარდაქმნა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2036"/>
@@ -1860,24 +1863,25 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="3364"/>
         <location filename="../Phototonic.cpp" line="3377"/>
         <source>File collision!</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილის კოლიზია!</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3364"/>
         <location filename="../Phototonic.cpp" line="3377"/>
         <source>Existing files collide with the rename.</source>
-        <translation type="unfinished"></translation>
+        <translation>არსებული ფაილები ხელს უშლიან სახელის გადარქმევას.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3372"/>
         <source>Refusing ambigious rename pattern.
 Multiple files would get the same name.</source>
-        <translation type="unfinished"></translation>
+        <translation>ბუნდოვანი სახელის გადარქმევის ნიმუში უარყოფილია.
+ბევრი ფაილი მიიღებდა იგივე სახელს.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3378"/>
         <source>Do you want to incorporate them (ie. skip their indexes)?</source>
-        <translation type="unfinished"></translation>
+        <translation>გნებავთ მათი ჩაშენება (ანუ, მათი ინდექსების გამოტოვება)?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3429"/>
@@ -1917,23 +1921,24 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="138"/>
         <source>Skip,Replace,Index,Rename,Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოტოვება,ჩანაცვლება,ინდექსი,სახელისგადართქმევა,ფაილისსახელი</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="185"/>
         <source>New file also exists</source>
-        <translation type="unfinished"></translation>
+        <translation>ახალი ფაილი უკვე არსებობს</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="186"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation type="unfinished"></translation>
+        <translation>ახალი ფაილის სახელი ასევე კონფლიქტშია არსებულ ფაილთან.
+არსებულ ფაილებს თავზე გადააწერდით!</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="258"/>
         <source>File collision resolver</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილების კოლიზიის ამომხსნელი</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="260"/>
@@ -1958,7 +1963,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
@@ -2136,12 +2141,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="82"/>
         <source>Use scroll wheel for zooming</source>
-        <translation type="unfinished"></translation>
+        <translation>თაგუნას ბორბლის გამოყენება გადიდებისას</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="100"/>
         <source>Crossfade images</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულებების ჯვარედინი მინავლება</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="125"/>
