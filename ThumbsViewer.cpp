@@ -1764,19 +1764,19 @@ void ThumbsViewer::storeThumbnail(const QString &originalPath, QImage thumbnail,
     thumbnail.save(fullPath);
 }
 
-bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
+bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly, bool ignoreExisting, bool updateExif) {
     if (!m_model->item(currThumb)) {
         qDebug() << "meeek: loadThumb for invalid row" << currThumb;
         return false;
     }
-    if (m_model->item(currThumb)->data(LoadedRole).toBool())
+    if (!ignoreExisting && m_model->item(currThumb)->data(LoadedRole).toBool())
         return true;
 
     QSize thumbSizeQ(thumbSize,thumbSize);
     bool imageReadOk = true;
-    bool shouldStoreThumbnail = false;
+    bool shouldStoreThumbnail = ignoreExisting;
     QString imageFileName = m_model->item(currThumb)->data(FileNameRole).toString();
-    QImage thumb = Metadata::thumbnail(imageFileName);
+    QImage thumb = ignoreExisting ? QImage() : Metadata::thumbnail(imageFileName);
     if (!Settings::alwaysUseExifThumb && qMax(thumb.width(),thumb.height()) < thumbSize/2) {
         thumb = QImage();
     } else if (!thumb.isNull()) {
@@ -1793,7 +1793,7 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
         origThumbSize = thumbReader.size();
         currentThumbSize = origThumbSize;
 
-        QString thumbnailPath = locateThumbnail(imageFileName);
+        QString thumbnailPath = ignoreExisting ? QString() : locateThumbnail(imageFileName);
         if (!thumbnailPath.isEmpty()) {
             if (QImageReader(thumbnailPath).canRead()) {
                 thumbReader.setFileName(thumbnailPath);
@@ -1829,7 +1829,10 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
             bool scaleMe =  Settings::upscalePreview ||
                             currentThumbSize.width() > thumbSize ||
                             currentThumbSize.height() > thumbSize;
-            if (scaleMe && currentThumbSize != thumbSizeQ) {
+            if (updateExif) {
+                QSize size256(qMax(256,thumbSize),qMax(256,thumbSize));
+                currentThumbSize.scale(size256, Settings::thumbsLayout == Squares ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
+            } else if (scaleMe && currentThumbSize != thumbSizeQ) {
                 currentThumbSize.scale(thumbSizeQ, Settings::thumbsLayout == Squares ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio);
             }
 
@@ -1860,7 +1863,9 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly) {
 
     if (imageReadOk) {
         if (shouldStoreThumbnail) {
-            if (!origThumbSize.isValid() || qMax(origThumbSize.width(), origThumbSize.height()) > 1024)
+            if (updateExif)
+                Metadata::setThumbnail(imageFileName, thumb);
+            else if (!origThumbSize.isValid() || qMax(origThumbSize.width(), origThumbSize.height()) > 1024)
                 storeThumbnail(imageFileName, thumb, origThumbSize);
 //            else
 //                qDebug() << "not storing thumb for pathetically small image" << origThumbSize;

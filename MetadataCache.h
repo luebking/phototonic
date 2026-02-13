@@ -39,6 +39,7 @@ namespace Metadata {
     qint64 dateTimeOriginal(const QString &imageFileName);
     bool removeTag(const QString &imageFileName, const QString &tagName);
     void setTags(const QString &imageFileName, QSet<QString> tags);
+    bool setThumbnail(const QString &imageFullPath, QImage thumbnail);
     const QSet<QString> &tags(const QString &imageFileName);
     QImage thumbnail(const QString &imageFullPath);
     bool updateTags(const QString &imageFileName, QSet<QString> tags);

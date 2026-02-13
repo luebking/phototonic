@@ -143,6 +143,7 @@ public:
     void scanForSort(UserRoles role);
     int firstVisibleThumb();
     int lastVisibleThumb();
+    bool regenerateThumb(int currThumb, bool updateExif) { return loadThumb(currThumb, false, true, updateExif); }
     QImage renderHistogram(const QString &imagePath, bool logarithmic = false);
     QString locateThumbnail(const QString &path, int minSize = -1) const;
     bool isBusy() { return m_busy; }
@@ -172,7 +173,7 @@ private:
     bool matchesTagFilter(const QString &path) const;
 
     void initThumbs(bool iterative);
-    bool loadThumb(int row, bool fastOnly = false);
+    bool loadThumb(int row, bool fastOnly = false, bool ignoreExisting = false, bool updateExif = false);
     void promoteThumbsCount();
 
     void findDupes(bool resetCounters);

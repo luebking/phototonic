@@ -152,6 +152,7 @@ private slots:
 
     void setPathFocus();
 
+    void regenerateThumbnails();
 
 
 private:

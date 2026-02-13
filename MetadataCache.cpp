@@ -19,6 +19,7 @@
 #include <QBuffer>
 #include <QDateTime>
 #include <QImageReader>
+#include <QImageWriter>
 #include <QMap>
 #include <QSet>
 #include <exiv2/exiv2.hpp>
@@ -96,6 +97,33 @@ QImage thumbnail(const QString &imageFullPath) {
     QBuffer qbuf;
     qbuf.setData(dbuf.c_str(), dbuf.size());
     return QImageReader(&qbuf).read();
+}
+
+bool setThumbnail(const QString &imageFullPath, QImage thumbnail) {
+    if (thumbnail.width() < 64 && thumbnail.height() < 64) {
+        qWarning() << "Not writing tiny thumbnail" << thumbnail.size() << imageFullPath;
+        return false;
+    }
+    Exiv2ImagePtr exifImage;
+    try {
+        exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
+        exifImage->readMetadata();
+    } catch (Exiv2::Error &error) {
+        qWarning() << "Error loading image for reading metadata" << error.what();
+        return false;
+    }
+    if (thumbnail.width() > 256 || thumbnail.height() > 256)
+        thumbnail = thumbnail.scaled(256, 256, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QBuffer qbuf;
+    QImageWriter writer(&qbuf, "jpeg");
+    writer.setOptimizedWrite(true);
+    writer.setProgressiveScanWrite(true);
+    writer.setQuality(50);
+    writer.write(thumbnail);
+    Exiv2::ExifThumb image(exifImage->exifData());
+    image.setJpegThumbnail(reinterpret_cast<const Exiv2::byte*>(qbuf.data().constData()), qbuf.size());
+    exifImage->writeMetadata();
+    return true;
 }
 
 // getImageOrientation

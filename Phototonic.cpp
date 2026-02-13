@@ -644,6 +644,9 @@ void Phototonic::createActions() {
     MAKE_ACTION_NOSC(tr("Remove Metadata"), "removeMetadata");
     connect(action, SIGNAL(triggered()), this, SLOT(removeMetadata()));
 
+    MAKE_ACTION_NOSC(tr("Regenerate Thumbnail"), "regenerateThumbnail");
+    connect(action, SIGNAL(triggered()), this, SLOT(regenerateThumbnails()));
+
     MAKE_ACTION_NOSC(tr("Select All"), "selectAll");
     connect(action, SIGNAL(triggered()), this, SLOT(selectAllThumbs()));
 
@@ -1107,6 +1110,7 @@ void Phototonic::createMenus() {
     thumbsViewer->addAction("")->setSeparator(true);
     thumbsViewer->addAction(action("batchTransform"));
 //    thumbsViewer->addAction(batchSubMenuAction);
+    thumbsViewer->addAction(action("regenerateThumbnail"));
     thumbsViewer->addAction("")->setSeparator(true);
     thumbsViewer->addAction(action("removeMetadata"));
     thumbsViewer->addAction(action("moveToTrash"));
@@ -3453,6 +3457,30 @@ void Phototonic::removeMetadata() {
         if (m_imageTags->currentDisplayMode == SelectionTagsDisplay)
             m_imageTags->showSelectedImagesTags();
         setStatus(tr("Metadata removed from selected images"));
+    }
+}
+
+void Phototonic::regenerateThumbnails() {
+
+    QModelIndexList selection = thumbsViewer->selectionModel()->selectedIndexes();
+
+    if (selection.isEmpty()) {
+        setStatus(tr("Invalid selection"));
+        return;
+    }
+
+    setSlideShow(false);
+
+    MessageBox msgBox(this, MessageBox::Yes|MessageBox::No|MessageBox::Cancel, MessageBox::Cancel);
+    msgBox.button(MessageBox::Yes)->setText(tr("Write Exif Thumbnail"));
+
+    int ret = msgBox.warning(tr("Regenerate Thumbnail"), tr("Do you also want to write the thumbnail to the images metadata?"));
+    if (ret == MessageBox::Cancel)
+        return;
+
+    const bool writeExif = ret == MessageBox::Yes;
+    for (QModelIndex idx : selection) {
+        thumbsViewer->regenerateThumb(idx.row(), writeExif);
     }
 }
 
