@@ -239,7 +239,7 @@ QDialog::DialogCode CopyOrMove::resolveConflicts(QMap<QString,QString> &collisio
                     ip.pix = loadPreview(path, sz);
                     QFileInfo info(path);
                     QFile f(path);
-                    f.open(QFile::ReadOnly);
+                    Q_UNUSED(f.open(QFile::ReadOnly));
                     QCryptographicHash md5(QCryptographicHash::Md5);
                     md5.addData(&f);
                     ip.stats = QString::number(info.size() / 1024.0, 'f', 2) + "K\n"
