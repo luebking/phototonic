@@ -27,7 +27,9 @@ namespace Metadata {
     typedef QMultiMap<QString, QPair<QString,QString>> DataTriple;
     typedef QMultiMap<QString, QString> DataPair;
     bool addTag(const QString &imageFileName, const QString &tagName);
+    bool buffer(const QString &imageFileName);
     void cache(const QString &imageFullPath);
+    bool copy(const QString &from, const QString &to, QImage thumbnail = QImage());
     void data(const QString &imageFullPath, DataTriple *EXIF = nullptr, DataTriple *IPTC = nullptr, DataTriple *XMP = nullptr);
     bool setData(const QString &imageFullPath, DataPair EXIF, DataPair IPTC, DataPair XMP);
     void dropCache();
@@ -45,6 +47,7 @@ namespace Metadata {
     bool updateTags(const QString &imageFileName, QSet<QString> tags);
     bool wipeFrom(const QString &imageFileName);
     bool write(const QString &imageFileName);
+    bool writeBuffer(QImage thumbnail = QImage());
 };
 
 #endif // META_DATA_CACHE_H

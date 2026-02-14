@@ -26,7 +26,6 @@ class QThread;
 #include <QOpenGLWidget>
 #include <QPointer>
 #include <QTransform>
-#include <exiv2/exiv2.hpp>
 
 class ImageViewer : public QOpenGLWidget {
 Q_OBJECT

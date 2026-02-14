@@ -28,7 +28,6 @@
 #include <QImageReader>
 #include <QInputDialog>
 #include <QLabel>
-#include <QLoggingCategory>
 #include <QMenu>
 #include <QMouseEvent>
 #include <QMovie>
@@ -57,34 +56,6 @@
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
 namespace { // anonymous, not visible outside of this file
-Q_DECLARE_LOGGING_CATEGORY(PHOTOTONIC_EXIV2_LOG)
-Q_LOGGING_CATEGORY(PHOTOTONIC_EXIV2_LOG, "phototonic.exif", QtCriticalMsg)
-
-struct Exiv2LogHandler {
-    static void handleMessage(int level, const char *message) {
-        switch(level) {
-            case Exiv2::LogMsg::debug:
-                qCDebug(PHOTOTONIC_EXIV2_LOG) << message;
-                break;
-            case Exiv2::LogMsg::info:
-                qCInfo(PHOTOTONIC_EXIV2_LOG) << message;
-                break;
-            case Exiv2::LogMsg::warn:
-            case Exiv2::LogMsg::error:
-            case Exiv2::LogMsg::mute:
-                qCWarning(PHOTOTONIC_EXIV2_LOG) << message;
-                break;
-            default:
-                qCWarning(PHOTOTONIC_EXIV2_LOG) << "unhandled log level" << level << message;
-                break;
-        }
-    }
-
-    Exiv2LogHandler() {
-        Exiv2::LogMsg::setHandler(&Exiv2LogHandler::handleMessage);
-    }
-};
-
 class ClickToClose : public QObject {
     public:
         ClickToClose() : QObject() {}
@@ -95,15 +66,12 @@ class ClickToClose : public QObject {
             return false;
         }
 };
-
 } // anonymous namespace
 
 ClickToClose *gs_clickToClose = nullptr;
 
 
 ImageViewer::ImageViewer(QWidget *parent) : QOpenGLWidget(parent) {
-    // This is a threadsafe way to ensure that we only register it once
-    static Exiv2LogHandler handler;
 
     if (!gs_clickToClose)
         gs_clickToClose = new ClickToClose;
@@ -1432,22 +1400,6 @@ void ImageViewer::slideImage(QPoint delta) {
 }
 
 void ImageViewer::saveImage() {
-#if __clang__
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-#if EXIV2_TEST_VERSION(0,28,0)
-    Exiv2::Image::UniquePtr image;
-#else
-    Exiv2::Image::AutoPtr image;
-#endif
-#if __clang__
-#pragma GCC diagnostic pop
-#endif
-
-    bool exifError = false;
-    static bool showExifError = true;
-
     if (newImage) {
         saveImageAs();
         return;
@@ -1455,21 +1407,15 @@ void ImageViewer::saveImage() {
 
     setFeedback(tr("Saving..."));
 
-    try {
-        image = Exiv2::ImageFactory::open(fullImagePath.toStdString());
-        image->readMetadata();
-    }
-    catch (const Exiv2::Error &error) {
-        qWarning() << "EXIV2:" << error.what();
-        exifError = true;
-    }
-
     QImageReader imageReader(fullImagePath);
     QString savePath = fullImagePath;
     if (!Settings::saveDirectory.isEmpty()) {
         QDir saveDir(Settings::saveDirectory);
         savePath = saveDir.filePath(QFileInfo(fullImagePath).fileName());
     }
+    bool exifError = false;
+    if (savePath == fullImagePath)
+        exifError = !Metadata::buffer(fullImagePath);
     QTransform matrix;
     if (Settings::exifRotationEnabled) // undo previous exif rotation for saving
         matrix = Metadata::transformation(fullImagePath).inverted();
@@ -1485,37 +1431,14 @@ void ImageViewer::saveImage() {
     }
 
     if (!exifError) {
-        try {
-            if (Settings::saveDirectory.isEmpty()) {
-                image->writeMetadata();
-            } else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-                Exiv2::Image::UniquePtr imageOut = Exiv2::ImageFactory::open(savePath.toStdString());
-#else
-                Exiv2::Image::AutoPtr imageOut = Exiv2::ImageFactory::open(savePath.toStdString());
-#endif
-#pragma clang diagnostic pop
-
-                imageOut->setMetadata(*image);
-                Exiv2::ExifThumb thumb(imageOut->exifData());
-                thumb.erase();
-                // TODO: thumb.setJpegThumbnail(thumbnailPath);
-                imageOut->writeMetadata();
-            }
-        }
-        catch (Exiv2::Error &error) {
-            if (showExifError) {
-                MessageBox msgBox(this);
-                QCheckBox cb(tr("Don't show this message again"));
-                msgBox.setCheckBox(&cb);
-                msgBox.critical(tr("Error"), tr("Failed to save Exif metadata."));
-                showExifError = !(cb.isChecked());
-            } else {
-                //: this is a warning on the console
-                qWarning() << tr("Failed to safe Exif metadata:") << error.what();
-            }
+        exifError = !(savePath == fullImagePath ? Metadata::writeBuffer(viewerImage) : Metadata::copy(fullImagePath, savePath, viewerImage));
+        static bool showExifError = true;
+        if (exifError && showExifError) {
+            MessageBox msgBox(this);
+            QCheckBox cb(tr("Don't show this message again"));
+            msgBox.setCheckBox(&cb);
+            msgBox.critical(tr("Error"), tr("Failed to save Exif metadata."));
+            showExifError = !(cb.isChecked());
         }
     }
 
@@ -1526,19 +1449,6 @@ void ImageViewer::saveImage() {
 }
 
 void ImageViewer::saveImageAs() {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#if EXIV2_TEST_VERSION(0,28,0)
-    Exiv2::Image::UniquePtr exifImage;
-    Exiv2::Image::UniquePtr newExifImage;
-#else
-    Exiv2::Image::AutoPtr exifImage;
-    Exiv2::Image::AutoPtr newExifImage;
-#endif
-#pragma clang diagnostic pop
-
-    bool exifError = false;
-
     setCursorHiding(false);
 
     QString fileName = QFileDialog::getSaveFileName(this,
@@ -1548,15 +1458,6 @@ void ImageViewer::saveImageAs() {
                                                     " (*.jpg *.jpeg *.png *.bmp *.tif *.tiff *.ppm *.pgm *.pbm *.xbm *.xpm *.cur *.ico *.icns *.wbmp *.webp)");
 
     if (!fileName.isEmpty()) {
-        try {
-            exifImage = Exiv2::ImageFactory::open(fullImagePath.toStdString());
-            exifImage->readMetadata();
-        }
-        catch (const Exiv2::Error &error) {
-            qWarning() << "EXIV2" << error.what();
-            exifError = true;
-        }
-
         int rotation = qRound(m_rotation);
         if (!batchMode && (m_flip || !(rotation % 90))) {
             QTransform matrix;
@@ -1568,16 +1469,7 @@ void ImageViewer::saveImageAs() {
         if (!viewerImage.save(fileName, 0, Settings::defaultSaveQuality)) {
             MessageBox(this).critical(tr("Error"), tr("Failed to save image."));
         } else {
-            if (!exifError) {
-                try {
-                    newExifImage = Exiv2::ImageFactory::open(fileName.toStdString());
-                    newExifImage->setMetadata(*exifImage);
-                    newExifImage->writeMetadata();
-                }
-                catch (Exiv2::Error &error) {
-                    exifError = true;
-                }
-            }
+            Metadata::copy(fullImagePath, fileName, viewerImage);
             m_edited = false;
             setFeedback(tr("Image saved."));
         }

@@ -20,16 +20,55 @@
 #include <QDateTime>
 #include <QImageReader>
 #include <QImageWriter>
+#include <QLoggingCategory>
 #include <QMap>
 #include <QSet>
 #include <exiv2/exiv2.hpp>
 #include "Settings.h"
 #include "MetadataCache.h"
 
-namespace Metadata {
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+namespace { // anonymous, not visible outside of this file
+Q_DECLARE_LOGGING_CATEGORY(PHOTOTONIC_EXIV2_LOG)
+Q_LOGGING_CATEGORY(PHOTOTONIC_EXIV2_LOG, "phototonic.exif", QtCriticalMsg)
+
+struct Exiv2LogHandler {
+    static void handleMessage(int level, const char *message) {
+        switch(level) {
+            case Exiv2::LogMsg::debug:
+                qCDebug(PHOTOTONIC_EXIV2_LOG) << message;
+                break;
+            case Exiv2::LogMsg::info:
+                qCInfo(PHOTOTONIC_EXIV2_LOG) << message;
+                break;
+            case Exiv2::LogMsg::warn:
+            case Exiv2::LogMsg::error:
+            case Exiv2::LogMsg::mute:
+                qCWarning(PHOTOTONIC_EXIV2_LOG) << message;
+                break;
+            default:
+                qCWarning(PHOTOTONIC_EXIV2_LOG) << "unhandled log level" << level << message;
+                break;
+        }
+    }
+
+    Exiv2LogHandler() {
+        Exiv2::LogMsg::setHandler(&Exiv2LogHandler::handleMessage);
+    }
+};
+} // anonymous namespace
+
+static Exiv2LogHandler gs_errorHandler;
+
+namespace Metadata {
+#if __clang__
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#else
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
 #if EXIV2_TEST_VERSION(0,28,0)
     #define Exiv2ImagePtr Exiv2::Image::UniquePtr
     #define Exiv2ValuePtr Exiv2::Value::UniquePtr
@@ -37,7 +76,12 @@ namespace Metadata {
     #define Exiv2ImagePtr Exiv2::Image::AutoPtr
     #define Exiv2ValuePtr Exiv2::Value::AutoPtr
 #endif
-#pragma clang diagnostic pop
+
+#if __clang__
+    #pragma clang diagnostic pop
+#else
+    #pragma GCC diagnostic pop
+#endif
 
 class ImageMetadata {
 public:
@@ -83,13 +127,16 @@ const QSet<QString> &tags(const QString &imageFileName) {
     return it->tags;
 }
 
+#define WARN_LOAD "Error loading image for reading metadata"
+#define WARN_WRITE "Error writing metadata to image"
+
 QImage thumbnail(const QString &imageFullPath) {
     Exiv2ImagePtr exifImage;
     try {
         exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
         exifImage->readMetadata();
     } catch (Exiv2::Error &error) {
-        qWarning() << "Error loading image for reading metadata" << error.what();
+        qWarning() << WARN_LOAD << error.what();
         return QImage();
     }
     Exiv2::ExifThumbC thumbc(exifImage->exifData());
@@ -97,6 +144,19 @@ QImage thumbnail(const QString &imageFullPath) {
     QBuffer qbuf;
     qbuf.setData(dbuf.c_str(), dbuf.size());
     return QImageReader(&qbuf).read();
+}
+
+static void setThumbnail(Exiv2ImagePtr &exifImage, QImage thumbnail) {
+    if (thumbnail.width() > 256 || thumbnail.height() > 256)
+        thumbnail = thumbnail.scaled(256, 256, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QBuffer qbuf;
+    QImageWriter writer(&qbuf, "jpeg");
+    writer.setOptimizedWrite(true);
+    writer.setProgressiveScanWrite(true);
+    writer.setQuality(50);
+    writer.write(thumbnail);
+    Exiv2::ExifThumb image(exifImage->exifData());
+    image.setJpegThumbnail(reinterpret_cast<const Exiv2::byte*>(qbuf.data().constData()), qbuf.size());
 }
 
 bool setThumbnail(const QString &imageFullPath, QImage thumbnail) {
@@ -109,20 +169,69 @@ bool setThumbnail(const QString &imageFullPath, QImage thumbnail) {
         exifImage = Exiv2::ImageFactory::open(imageFullPath.toStdString());
         exifImage->readMetadata();
     } catch (Exiv2::Error &error) {
-        qWarning() << "Error loading image for reading metadata" << error.what();
+        qWarning() << WARN_LOAD << error.what();
         return false;
     }
-    if (thumbnail.width() > 256 || thumbnail.height() > 256)
-        thumbnail = thumbnail.scaled(256, 256, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    QBuffer qbuf;
-    QImageWriter writer(&qbuf, "jpeg");
-    writer.setOptimizedWrite(true);
-    writer.setProgressiveScanWrite(true);
-    writer.setQuality(50);
-    writer.write(thumbnail);
-    Exiv2::ExifThumb image(exifImage->exifData());
-    image.setJpegThumbnail(reinterpret_cast<const Exiv2::byte*>(qbuf.data().constData()), qbuf.size());
+    setThumbnail(exifImage, thumbnail);
     exifImage->writeMetadata();
+    return true;
+}
+
+
+static Exiv2ImagePtr gs_exifBuffer;
+bool buffer(const QString &imageFileName) {
+    if (gs_exifBuffer) {
+        qDebug() << "MEEK, buffer already in use!!!";
+        return false;
+    }
+    try {
+        gs_exifBuffer = Exiv2::ImageFactory::open(imageFileName.toStdString());
+        gs_exifBuffer->readMetadata();
+    } catch (Exiv2::Error &error) {
+        qWarning() << WARN_LOAD << error.what();
+        return false;
+    }
+    return true;
+}
+
+bool writeBuffer(QImage thumbnail) {
+    if (!gs_exifBuffer) {
+        qDebug() << "MEEK, no buffer available!!!";
+        return false;
+    }
+    if (!thumbnail.isNull())
+        setThumbnail(gs_exifBuffer, thumbnail);
+    bool ok = true;
+    try {
+        gs_exifBuffer->writeMetadata();
+    } catch (Exiv2::Error &error) {
+        qWarning() << WARN_WRITE << error.what();
+        ok = false;
+    }
+    gs_exifBuffer.reset(nullptr);
+    return ok;
+}
+
+bool copy(const QString &from, const QString &to, QImage thumbnail) {
+    Exiv2ImagePtr exifFrom, exifTo;
+    try {
+        exifFrom = Exiv2::ImageFactory::open(from.toStdString());
+        exifFrom->readMetadata();
+        exifTo = Exiv2::ImageFactory::open(to.toStdString());
+        exifTo->readMetadata();
+    } catch (Exiv2::Error &error) {
+        qWarning() << WARN_LOAD << error.what();
+        return false;
+    }
+    exifTo->setMetadata(*exifFrom);
+    if (!thumbnail.isNull())
+        setThumbnail(exifTo, thumbnail);
+    try {
+        exifTo->writeMetadata();
+    } catch (Exiv2::Error &error) {
+        qWarning() << WARN_WRITE << error.what();
+        return false;
+    }
     return true;
 }
 
