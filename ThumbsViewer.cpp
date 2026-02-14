@@ -1700,6 +1700,12 @@ QString ThumbsViewer::locateThumbnail(const QString &originalPath, int minSize) 
         }
         return info.absoluteFilePath();
     }
+    QImage exifThumb = Metadata::thumbnail(originalPath);
+    if (!exifThumb.isNull()) {
+        const QString tmpfile = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + QDir::separator() + filename;
+        exifThumb.save(tmpfile);
+        return tmpfile;
+    }
     return QString();
 }
 
