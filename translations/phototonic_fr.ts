@@ -1848,17 +1848,17 @@ Masquer avec filtre : |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="884"/>
         <source>Blackout</source>
-        <translation type="unfinished">Masquage</translation>
+        <translation>Masquage</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="888"/>
         <source>Cartouche</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartouche</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="892"/>
         <source>Annotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Annoter</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1147"/>
@@ -2092,12 +2092,12 @@ Masquer avec filtre : |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="1197"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt ; 5j &amp;lt ; 1M / &amp;lt ; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;correspond à foo, plus ancien que 5 jours mais plus récent qu&apos;un mois - ou inférieur à 10kb&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Plus grand que/Après : &amp;gt ;&lt;/li&gt;&lt;li&gt;Plus petit que/Avant : &amp;lt ;&lt;/li&gt;&lt;li&gt;L&apos;âge exact ou la taille (arrondie) est sinon implicite ou explicite avec : =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Les dates sont abosules (AAAA-MM-JJ) ou relatives (5m :h :j :s :M :a)&lt;/li&gt;&lt;li&gt;Les tailles utilisent les suffixes 4kB :MB :GB ou 4MP (méga-pixels)&lt;/li&gt;&lt;li&gt;Les dimensions sont pré/in/suffixées avec « x » ([largeur]x[hauteur])&lt;/li&gt;&lt;li&gt;La variance chromatique urilise le suffixe [0-255]cr (les valeurs réelles dépassent rarement 100)&lt;/li&gt;&lt;li&gt;La luminance utilise le suffixe [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Tout les suffixes sont insensibles à la casse sauf m|inute et M|ois&lt;/i&gt;&lt;br&gt;Les &quot;/&quot; suivants commencent un nouveau groupe de conditions suffisantes, la correspondance de sous-chaîne est optionelle.&lt;hr&gt;Vous pouvez également filtrer par&lt;br&gt;&lt;b&gt;noir, blanc, brun, sombre, clair, chaud, froid, monochrome, gris&lt;/b&gt; et les couleurs&lt;br&gt;&lt;b&gt;rouge, orange, jaune, lime, vert, menthe, cyan, azur, bleu, violet, magenta, rose&lt;/b&gt;&lt;hr&gt;Les deux-points en début &lt;b&gt;correspondent aux étiquettes&lt;/b&gt;, ainsi &apos;/&lt;b&gt; :foo&lt;/b&gt;&apos; trouve toutes les images avec l&apos;étiquette &apos;foo&apos;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1965"/>
         <source>Batch transformation</source>
-        <translation type="unfinished"></translation>
+        <translation>Transformation par lots</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3184"/>
@@ -2114,24 +2114,25 @@ Masquer avec filtre : |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="3364"/>
         <location filename="../Phototonic.cpp" line="3377"/>
         <source>File collision!</source>
-        <translation type="unfinished"></translation>
+        <translation>Conflit de fichiers !</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3364"/>
         <location filename="../Phototonic.cpp" line="3377"/>
         <source>Existing files collide with the rename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Les fichiers existants entrent en conflit avec le changement de nom.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3372"/>
         <source>Refusing ambigious rename pattern.
 Multiple files would get the same name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Refus du modèle de renommage ambigu.
+Plusieurs fichiers obtiendraient le même nom.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3378"/>
         <source>Do you want to incorporate them (ie. skip their indexes)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous les intégrer (c&apos;est-à-dire ignorer leurs index) ?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3452"/>
@@ -2759,58 +2760,59 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="138"/>
         <source>Skip,Replace,Index,Rename,Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauter, Remplacer, Indexer, Renommer, Nom de fichier</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="185"/>
         <source>New file also exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Un nouveau fichier existe également</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="186"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation type="unfinished"></translation>
+        <translation>Le nouveau nom de fichier entre également en conflit avec un fichier existant.
+Le fichier existant serait écrasé !</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="258"/>
         <source>File collision resolver</source>
-        <translation type="unfinished"></translation>
+        <translation>Résolveur de conflits de fichiers</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="260"/>
         <source>&lt;h3&gt;Some of the destination files already exist&lt;/h3&gt;You can resolve the conflicts here or abort the entire copy/move operation.&lt;br&gt;&lt;b&gt;By default, the conflicting files will be skipped.&lt;/b&gt;&lt;br&gt;You can also replace or rename the destination, or automatically add a counter for a conflict-free filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Certains fichiers de destination existent déjà&lt;/h3&gt; Vous pouvez résoudre les conflits ici ou annuler entièrement l’opération de copie/déplacement.&lt;br&gt; &lt;b&gt;Par défaut, les fichiers en conflit seront ignorés.&lt;/b&gt;&lt;br&gt; Vous pouvez également remplacer ou renommer la destination, ou ajouter automatiquement un compteur pour obtenir un nom de fichier sans conflit.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Size</source>
-        <translation type="unfinished">Taille</translation>
+        <translation>Taille</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Modified</source>
-        <translation type="unfinished">Modifié</translation>
+        <translation>Modifié</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>Resolution</source>
-        <translation type="unfinished">Résolution</translation>
+        <translation>Résolution</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="270"/>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Copie de &quot;%1&quot; vers &quot;%2&quot;.</translation>
+        <translation>Copie de &quot;%1&quot; vers &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="355"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Déplacement de &quot;%1&quot; vers &quot;%2&quot;.</translation>
+        <translation>Déplacement de &quot;%1&quot; vers &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -2853,7 +2855,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../RenameDialog.cpp" line="47"/>
         <source>&lt;h3&gt;Rename files according to pattern&lt;/h3&gt;Supported placeholders:&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;th align=right&gt;%index :&lt;/th&gt;&lt;td&gt;0-padded index, based on selection order&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%date :&lt;/th&gt;&lt;td&gt;Date and time of last modification, ISO8601 format&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%exifdate :&lt;/th&gt;&lt;td&gt;Date and time of EXIF timestamp or file creation, ISO8601 format&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%size :&lt;/th&gt;&lt;td&gt;Image size, WxH&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Renommer les fichiers selon un modèle&lt;/h3&gt; Espaces réservés pris en charge : &lt;hr&gt; &lt;table&gt; &lt;tr&gt;&lt;th align=right&gt;%index :&lt;/th&gt;&lt;td&gt;Index avec zéros en tête, basé sur l’ordre de sélection&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;th align=right&gt;%date :&lt;/th&gt;&lt;td&gt;Date et heure de la dernière modification, format ISO8601&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;th align=right&gt;%exifdate :&lt;/th&gt;&lt;td&gt;Date et heure de l’horodatage EXIF ou de création du fichier, format ISO8601&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;th align=right&gt;%size :&lt;/th&gt;&lt;td&gt;Taille de l’image, LxH&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt;</translation>
     </message>
 </context>
 <context>
@@ -3107,12 +3109,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="82"/>
         <source>Use scroll wheel for zooming</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisez la molette de la souris pour zoomer</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="100"/>
         <source>Crossfade images</source>
-        <translation type="unfinished"></translation>
+        <translation>Images en fondu enchaîné</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="105"/>
