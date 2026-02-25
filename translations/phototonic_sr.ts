@@ -158,7 +158,7 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="122"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Помери</translation>
     </message>
     <message>
         <source>OK</source>
@@ -180,7 +180,7 @@
         <location filename="../CropDialog.cpp" line="31"/>
         <source>Letterbox</source>
         <extracomment>Like a bad dvd where you get a black frame around the image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Поштанско сандуче</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="38"/>
@@ -253,7 +253,7 @@
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="72"/>
         <source>Wallpaper command</source>
-        <translation type="unfinished"></translation>
+        <translation>Команда за позадину</translation>
     </message>
     <message>
         <location filename="../ExternalAppsDialog.cpp" line="76"/>
@@ -285,7 +285,7 @@
         <location filename="../GuideWidget.cpp" line="40"/>
         <source>Remove Guide</source>
         <extracomment>The guide is a visible line for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Уклони водич</translation>
     </message>
 </context>
 <context>
@@ -329,12 +329,12 @@
     <message>
         <location filename="../Tags.cpp" line="109"/>
         <source>Add to library</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај у библиотеку</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="112"/>
         <source>Remove from library</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклони из библиотеке</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="170"/>
