@@ -827,12 +827,12 @@ Möchtest du eine Kopie speichern?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Locked</source>
-        <translation type="unfinished">Transformationen beibehalten</translation>
+        <translation>Transformationen beibehalten</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Unlocked</source>
-        <translation type="unfinished">Transformationen entsperrt</translation>
+        <translation>Transformationen entsperrt</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1521"/>
@@ -2044,7 +2044,7 @@ Mit Filter deaktivieren: |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="647"/>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Regenerate Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniaturansicht neu generieren</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="661"/>
@@ -2205,7 +2205,7 @@ Mit Filter deaktivieren: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="967"/>
         <source>Show Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Gitter zeigen</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1166"/>
@@ -2429,7 +2429,7 @@ Mit Filter deaktivieren: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="1401"/>
         <source>Thumbs</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniaturansichten</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1985"/>
@@ -2489,12 +2489,12 @@ Mehrere Dateien würden den selben Namen erhalten.</translation>
     <message>
         <location filename="../Phototonic.cpp" line="3475"/>
         <source>Write Exif Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Exif Vorschau schreiben</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Do you also want to write the thumbnail to the images metadata?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten sie die Miniaturansicht auch in der Bilddatei speichern?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3493"/>
@@ -3055,17 +3055,17 @@ Die vorhandene Datei würde überschrieben werden!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="123"/>
         <source>Viewer toolbar items:</source>
-        <translation type="unfinished"></translation>
+        <translation>Elemente der Betrachterwerkzeugleiste:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="216"/>
         <source>Always use the thumbnail embedded in the image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immer die im Bild eingebetteten Miniaturansichten benutzen</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="217"/>
         <source>Othwise it will only be used and upscaled if its at least half the required size</source>
-        <translation type="unfinished"></translation>
+        <translation>Ansonsten werden sie nur verwendet und vergrößert wenn sie mindestens die halbe Vorschaugröße haben</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="316"/>
