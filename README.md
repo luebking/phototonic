@@ -25,6 +25,17 @@ webcam shots and align them well enough to make a time-lapse video.
 <img src="https://translate.lxqt-project.org/widgets/luebking/-/phototonic/multi-blue.svg" align="right" alt="Translation status" />
 </a>
 
+#### 4. April 2025
+Release 3.2.0
+* Support embedded thumbnails (use for preview, update and write back)
+* Allow to either dock thumbnails or preview
+* add toggleabble ("g") grid to viewer to check for horizont, falling lines and warping
+* AI support for better AI display (**A**nimated **I**mages use the same acclerated viewer )
+* Code streamlining and cleanup
+* Add "GUI" to cofigure the viewer toolbar
+* Fixed some bugs ()
+* Added entirely new bugs
+
 #### 2. November 2025
 Release 3.1.0
 * Fixes a race condition on slow thumbnail loading over the alpha release and has more translations.
