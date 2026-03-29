@@ -78,6 +78,7 @@ void MessageBox::about() {
                     << "French: Oliver Chiasson" // <olivierchiasson@hotmail.fr>
                     << "French: Rémi Verschelde" // akien@mageia.org
                     << "Georgian: NorwayFun" //  <temuri.doghonadze@gmail.com>
+                    << "German: Damir Perisa" // <damir.perisa@gmail.com>
                     << "German: EttoreAtalan" // <atalanttore@googlemail.com>
                     << "German: Jonathan Hooverman" // jonathan.hooverman@gmail.com
                     << "German: Some wordstumbling fool" // thomas.luebking@gmail.com
