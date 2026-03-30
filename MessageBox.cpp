@@ -84,6 +84,7 @@ void MessageBox::about() {
                     << "German: Some wordstumbling fool" // thomas.luebking@gmail.com
                     << "Hebrew: Yaron Shahrabani" // <sh.yaron@gmail.com>
                     << "Italian: Standreas (stefonarch)" // github.com/stefonarch
+                    << "Kabyle: ButterflyOfFire" // <butterflyoffire@protonmail.com>
                     << "Lithuanian: Moo" // <hazap@hotmail.com>
                     << "Polish: Jan Rolski" // <wbcwknvstb@proton.me>
                     << "Polish: Krzysztof Pyrkosz" // pyrkosz@o2.pl
