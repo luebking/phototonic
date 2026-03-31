@@ -109,7 +109,7 @@ void MessageBox::about() {
                           "<a href=\"https://github.com/luebking/phototonic\">" + tr("Home page and bug reports") + "</a>"
                           "<dl><dt>Copyright</dt><dd>"
                           "&copy;2013-2018 Ofer Kashayov<br>"
-                          "&copy;2024-2025 Thomas Lübking</dd></dl>"
+                          "&copy;2024-2026 Thomas Lübking</dd></dl>"
                         + "<br><p>Using Qt v" + QT_VERSION_STR
                         + "<hr>Phototonic is licensed under the GNU General Public License v3&nbsp;</p>"
                         + tr("Special thanks to our contributers.");
