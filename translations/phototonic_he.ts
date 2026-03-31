@@ -2184,7 +2184,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="519"/>
         <source>Images</source>
-        <translation type="unfinished">תמונות</translation>
+        <translation>תמונות</translation>
     </message>
 </context>
 <context>
@@ -2192,7 +2192,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ShortcutsTable.cpp" line="85"/>
         <source>%1 is reserved for launching external applications.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 שמור להפעלת יישומים חיצוניים.</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="114"/>
@@ -2207,7 +2207,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ShortcutsTable.cpp" line="140"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>פעולה</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="141"/>
