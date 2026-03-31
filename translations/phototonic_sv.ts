@@ -618,12 +618,12 @@ Vill du spara en kopia?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Locked</source>
-        <translation type="unfinished">Transformationer låsta</translation>
+        <translation>Transformationer låsta</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Unlocked</source>
-        <translation type="unfinished">Transformationer upplåsta</translation>
+        <translation>Transformationer upplåsta</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1521"/>
@@ -861,7 +861,7 @@ Dölj med filter: |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="647"/>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Regenerate Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Regenerera tumnaglar</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="650"/>
@@ -1030,7 +1030,7 @@ Dölj med filter: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="967"/>
         <source>Show Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa rutnät</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1002"/>
@@ -1833,7 +1833,7 @@ Dölj med filter: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="1401"/>
         <source>Thumbs</source>
-        <translation type="unfinished"></translation>
+        <translation>Tumnaglar</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2173"/>
@@ -1935,12 +1935,12 @@ Flera filer skulle få samma namn.</translation>
     <message>
         <location filename="../Phototonic.cpp" line="3475"/>
         <source>Write Exif Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Skriv Exif tumnaglar</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Do you also want to write the thumbnail to the images metadata?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du också skriva tumnagel till bildernas metadata?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3507"/>
@@ -2209,7 +2209,7 @@ Den befintliga filen skulle skrivas över!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="123"/>
         <source>Viewer toolbar items:</source>
-        <translation type="unfinished"></translation>
+        <translation>Visningsverktygsfält objekt:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="155"/>
@@ -2239,12 +2239,12 @@ Den befintliga filen skulle skrivas över!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="216"/>
         <source>Always use the thumbnail embedded in the image</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd alltid tumnaglar inbäddade i bild</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="217"/>
         <source>Othwise it will only be used and upscaled if its at least half the required size</source>
-        <translation type="unfinished"></translation>
+        <translation>Annars kommer den bara att användas och skalas upp om den är minst hälften av den erforderliga storleken</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="234"/>

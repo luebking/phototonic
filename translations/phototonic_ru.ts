@@ -315,7 +315,10 @@
 · %u and %tu with their respective URIs (file:///path/to/file)
 · %lat %lon and %alt with the GPS location in signed decimals (&quot;altitude&quot;…)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f и %tf будут заменены путями к отдельному изображению и миниатюре
+· %u и %tu на соответствующие URI (file:///путь/к/файлу)
+· %lat %lon и %alt на GPS-координаты в десятичных числах со знаком («высота»…)
+· по умолчанию выбранные изображения добавляются в конец команды</translation>
     </message>
     <message>
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
@@ -578,13 +581,14 @@
     <message>
         <location filename="../ImageViewer.cpp" line="950"/>
         <source>Save edits?</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить правки?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="950"/>
         <source>The image was edited.
 Do you want to save a copy?</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображение было изменено.
+Сохранить копию?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1056"/>
@@ -599,53 +603,53 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1077"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished">Выберите зону кадрирования используя Ctrl + левую кнопку мыши</translation>
+        <translation>Выберите зону кадрирования используя Ctrl + левую кнопку мыши</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1079"/>
         <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Выделите область затемнения с помощью Ctrl + левая кнопка мыши</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1081"/>
         <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Выделите область картуша с помощью Ctrl + левая кнопка мыши</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
         <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Выделите область аннотации с помощью Ctrl + левая кнопка мыши</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1109"/>
         <location filename="../ImageViewer.cpp" line="1131"/>
         <source>Pick a color</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите цвет</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1130"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Цвет</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1256"/>
         <source>Flipped Horizontally</source>
-        <translation type="unfinished">Отражено по горизонтали</translation>
+        <translation>Отражено по горизонтали</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1256"/>
         <source>Unflipped Horizontally</source>
-        <translation type="unfinished">Возвращено в исходное положение по горизонтали</translation>
+        <translation>Возвращено в исходное положение по горизонтали</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1258"/>
         <source>Flipped Vertically</source>
-        <translation type="unfinished">Отражено по вертикали</translation>
+        <translation>Отражено по вертикали</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1258"/>
         <source>Unflipped Vertically</source>
-        <translation type="unfinished">Возвращено в исходное положение по вертикали</translation>
+        <translation>Возвращено в исходное положение по вертикали</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1314"/>
@@ -704,12 +708,12 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Locked</source>
-        <translation type="unfinished">Преобразования зафиксированы</translation>
+        <translation>Преобразования зафиксированы</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Unlocked</source>
-        <translation type="unfinished">Преобразования разблокированы</translation>
+        <translation>Преобразования разблокированы</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1521"/>
@@ -727,7 +731,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="59"/>
         <source>Remove</source>
-        <translation type="unfinished">Удалить</translation>
+        <translation>Убрать</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="70"/>
@@ -737,35 +741,38 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../InfoViewer.cpp" line="80"/>
         <source>Enter filter name</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите имя фильтра</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="81"/>
         <source>Enter a name (without leading &quot;$&quot;) for this filter.
 The special name&quot;preview&quot; is used for the filter in the viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите имя (без ведущего «$») для этого фильтра.
+Специальное имя «preview» используется для фильтра в просмотрщике.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
         <source>Edit filter: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменить фильтр: %1</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="85"/>
         <source>Clearing the filter will delete it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистка фильтра удалит его.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="109"/>
         <source>Save EXIF changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить изменения EXIF</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="116"/>
         <source>Left click: toggle logarithmic scale
 Right click: toggle size
 Hide with filter: |nohistogram|</source>
-        <translation type="unfinished"></translation>
+        <translation>Щелчок левой кнопкой: переключить логарифмическую шкалу
+Щелчок правой кнопкой: переключить размер
+Скрыть фильтром: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="393"/>
@@ -1547,38 +1554,38 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="2080"/>
         <location filename="../Phototonic.cpp" line="3086"/>
         <source>Copied %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Скопировано %n изображение</numerusform>
+            <numerusform>Скопировано %n изображения</numerusform>
+            <numerusform>Скопировано %n изображений</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2080"/>
         <location filename="../Phototonic.cpp" line="3087"/>
         <source>Moved %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Перемещено %n изображение</numerusform>
+            <numerusform>Перемещено %n изображения</numerusform>
+            <numerusform>Перемещено %n изображений</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2126"/>
         <source>Move %n selected image(s) to the trash?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Убрать %n выбранное изображение в корзину?</numerusform>
+            <numerusform>Убрать %n выбранных изображения в корзину?</numerusform>
+            <numerusform>Убрать %n выбранных изображений в корзину?</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2127"/>
         <source>Permanently delete %n selected image(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Безвозвратно удалить %n выбранное изображение?</numerusform>
+            <numerusform>Безвозвратно удалить %n выбранных изображения?</numerusform>
+            <numerusform>Безвозвратно удалить %n выбранных изображений?</numerusform>
         </translation>
     </message>
     <message>
@@ -1741,17 +1748,17 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="520"/>
         <source>Guides</source>
         <extracomment>The guides a lines across the image for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Направляющие</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="521"/>
         <source>Add vertical guide</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить вертикальную направляющую</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="524"/>
         <source>Add horizontal guide</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить горизонтальную направляющую</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="563"/>
@@ -1801,7 +1808,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="647"/>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Regenerate Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Пересоздать миниатюру</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="661"/>
@@ -1932,7 +1939,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="872"/>
         <source>Letterbox</source>
-        <translation type="unfinished">LetterBox</translation>
+        <translation>LetterBox</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="880"/>
@@ -1947,17 +1954,17 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="894"/>
         <source>Blackout</source>
-        <translation type="unfinished"></translation>
+        <translation>Затемнение</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="898"/>
         <source>Cartouche</source>
-        <translation type="unfinished"></translation>
+        <translation>Картуш</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="902"/>
         <source>Annotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Аннотация</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="928"/>
@@ -1971,101 +1978,101 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="932"/>
         <source>Slide Image Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Сдвинуть изображение влево</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="934"/>
         <source>Slide Image Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Сдвинуть изображение вправо</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="936"/>
         <source>Slide Image Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Сдвинуть изображение вверх</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="938"/>
         <source>Slide Image Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Сдвинуть изображение вниз</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="954"/>
         <source>Edit Current Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Править текущий путь</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1051"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Окно</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1063"/>
         <source>Thumbnails Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировка миниатюр</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1166"/>
         <source>Accuracy: </source>
-        <translation type="unfinished"></translation>
+        <translation>Точность: </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1183"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Это не совсем искусственный интеллект.&lt;p&gt;Дубликаты обнаруживаются через полутоновую мозаику&lt;br&gt;(&lt;i&gt;выглядят ли обесцвеченные изображения одинаково с очень далёкого расстояния?&lt;/i&gt;)&lt;br&gt;и путём сравнения распределения цветов&lt;br&gt;(&lt;i&gt;устойчиво к отражениям, повороту, анаморфотным масштабам …&lt;/i&gt;)&lt;br&gt;Оба метода могут давать забавные ложные срабатывания.&lt;/p&gt;&lt;p&gt;Требуемую близость распределения цветов можно настроить здесь.&lt;br&gt;60% — разумное значение по умолчанию, но может быть слишком низким для монохромных изображений.&lt;br&gt;Слишком низкое значение приведёт к большому количеству ложных срабатываний, увеличьте точность, чтобы избавиться от них.&lt;/p&gt;&lt;h3&gt;Обратите внимание, это может привести к непересекающимся группам совпадений!&lt;/h3&gt;&lt;p&gt;[A] может быть похож на [B] и [C], в то время как [B] и [C] недостаточно близки.&lt;br&gt;В результате [A] &lt;b&gt;одно и то же изображение может появляться несколько раз!&lt;/b&gt;&lt;br&gt;Не предполагайте, что сортировка ошибочна и это явные дубликаты, и не нажимайте удалить. Это &lt;b&gt;одно и то же изображение&lt;/b&gt;, и удаление одного означает&lt;br&gt;удаление обоих.&lt;/p&gt;&lt;h3&gt;Обращайте внимание на имена файлов!&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1216"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[подстрока] [/ ограничение [/ другие ограничения]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;соответствует foo, старше 5 дней, но младше месяца - или меньше 10кБ&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Больше/После: &amp;gt;&lt;/li&gt;&lt;li&gt;Меньше/До: &amp;lt;&lt;/li&gt;&lt;li&gt;Точный возраст или (округлённый) размер иначе подразумевается или явно указывается с помощью: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Даты абсолютные (ГГГГ-ММ-ДД) или относительные (5м:ч:д:н:М:г)&lt;/li&gt;&lt;li&gt;Размеры с суффиксами 4кБ:МБ:ГБ или 4МП (мегапиксель)&lt;/li&gt;&lt;li&gt;Размеры с пре/ин/суффиксом «x» ([ширина]x[высота])&lt;/li&gt;&lt;li&gt;Цветовая вариация с суффиксом [0-255]цв (реальные значения редко бывают &gt; 100)&lt;/li&gt;&lt;li&gt;Яркость с суффиксом [0.0-1.0]|[0-255]яр&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Все суффиксы нечувствительны к регистру, кроме м|инута и М|есяц&lt;/i&gt;&lt;br&gt;Последующие &quot;/&quot; начинают новую группу достаточных условий, соответствие подстроке необязательно.&lt;hr&gt;Дополнительно можно фильтровать по&lt;br&gt;&lt;b&gt;чёрный, белый, коричневый, тёмный, яркий, тёплый, холодный, монохромный, серый&lt;/b&gt; и цветам&lt;br&gt;&lt;b&gt;красный, оранжевый, жёлтый, лаймовый, зелёный, мятный, голубой, лазурный, синий, фиолетовый, пурпурный, розовый&lt;/b&gt;&lt;hr&gt;Начальное двоеточие &lt;b&gt;соответствует тегам&lt;/b&gt;, так &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; находит все изображения с тегом &apos;foo&apos;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1268"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Меню</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1277"/>
         <source>Viewer Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Панель инструментов просмотра</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1379"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпросмотр</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1599"/>
         <source>Commands using %f or %u cannot be used with multiple files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Команды, использующие %f или %u, не могут использоваться с несколькими файлами.</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1762"/>
         <source>Copied %n image(s) to clipboard</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Скопировано %n изображение в буфер обмена</numerusform>
+            <numerusform>Скопировано %n изображения в буфер обмена</numerusform>
+            <numerusform>Скопировано %n изображений в буфер обмена</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="1763"/>
         <source>Cut %n image(s) to clipboard</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Вырезано %n изображение в буфер обмена</numerusform>
+            <numerusform>Вырезано %n изображения в буфер обмена</numerusform>
+            <numerusform>Вырезано %n изображений в буфер обмена</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1841"/>
         <source>Maximum Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное увеличение</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1845"/>
         <source>Minimum Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Минимальное увеличение</translation>
     </message>
     <message>
         <source>Flipped Vertically</source>
@@ -2086,175 +2093,176 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1956"/>
         <source>No crop area defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Область обрезки не задана</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1969"/>
         <source>Create backups?</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать резервные копии?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1969"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Не задан общий каталог сохранения, изображения будут перезаписаны.&lt;h3&gt;Создать резервные копии?&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1973"/>
         <source>Create backups and overwrite the original files</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать резервные копии и перезаписать исходные файлы</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1973"/>
         <source>Overwrite the original files</source>
-        <translation type="unfinished"></translation>
+        <translation>Перезаписать исходные файлы</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1976"/>
         <source>Save the transformed images to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить преобразованные изображения в %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1985"/>
         <source>&lt;h3&gt;Perform batch transformation?&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Выполнить пакетное преобразование?&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1979"/>
         <source>&lt;ul&gt;&lt;li&gt;Rotate %1 images by %2°&lt;/li&gt;&lt;li&gt;Crop them to %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;ul&gt;&lt;li&gt;Повернуть %1 изображений на %2°&lt;/li&gt;&lt;li&gt;Обрезать их до %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="967"/>
         <source>Show Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать сетку</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1401"/>
         <source>Thumbs</source>
-        <translation type="unfinished"></translation>
+        <translation>Миниатюры</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1985"/>
         <source>Batch transformation</source>
-        <translation type="unfinished"></translation>
+        <translation>Пакетное преобразование</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2173"/>
         <source>Deleting %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Удаление %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2195"/>
         <source>Failed to move image to the trash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось переместить изображение в корзину.</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2216"/>
         <source>Deleted %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Удалено %n изображение</numerusform>
+            <numerusform>Удалено %n изображения</numerusform>
+            <numerusform>Удалено %n изображений</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2244"/>
         <source>Move %1 to the trash</source>
-        <translation type="unfinished"></translation>
+        <translation>Переместить %1 в корзину</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2244"/>
         <source>Permanently delete %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Безвозвратно удалить %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2260"/>
         <source>Deleted %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалено %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2343"/>
         <source>Invalid Path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Неверный путь: %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3229"/>
         <source>Files List</source>
-        <translation type="unfinished"></translation>
+        <translation>Список файлов</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3240"/>
         <source>Rename %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3258"/>
         <source>Failed to rename directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось переименовать каталог.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3365"/>
         <location filename="../Phototonic.cpp" line="3378"/>
         <source>File collision!</source>
-        <translation type="unfinished"></translation>
+        <translation>Конфликт файлов!</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3365"/>
         <location filename="../Phototonic.cpp" line="3378"/>
         <source>Existing files collide with the rename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Существующие файлы конфликтуют с переименованием.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3373"/>
         <source>Refusing ambigious rename pattern.
 Multiple files would get the same name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неоднозначный шаблон переименования.
+Несколько файлов получили бы одно имя.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3379"/>
         <source>Do you want to incorporate them (ie. skip their indexes)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Хотите включить их (т.е. пропустить их индексы)?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3451"/>
         <source>Permanently remove all Exif metadata from selected images?</source>
-        <translation type="unfinished"></translation>
+        <translation>Безвозвратно удалить все метаданные Exif из выбранных изображений?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3454"/>
         <source>Failed to remove Exif metadata.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось удалить метаданные Exif.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3459"/>
         <source>Metadata removed from selected images</source>
-        <translation type="unfinished"></translation>
+        <translation>Метаданные удалены из выбранных изображений</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3475"/>
         <source>Write Exif Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Записать миниатюру Exif</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Do you also want to write the thumbnail to the images metadata?</source>
-        <translation type="unfinished"></translation>
+        <translation>Хотите также записать миниатюру в метаданные изображения?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3493"/>
         <source>Move directory %1 to the trash?</source>
-        <translation type="unfinished"></translation>
+        <translation>Убрать каталог %1 в корзину?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3494"/>
         <source>Permanently delete the directory %1 and all of its contents?</source>
-        <translation type="unfinished"></translation>
+        <translation>Безвозвратно удалить каталог %1 и всё его содержимое?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3498"/>
         <location filename="../Phototonic.cpp" line="3500"/>
         <source>Delete Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить каталог</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3498"/>
@@ -2264,37 +2272,37 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../Phototonic.cpp" line="3507"/>
         <source>Failed to move directory to the trash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось переместить каталог в корзину.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3508"/>
         <source>Failed to delete directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось удалить каталог.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3529"/>
         <source>New Sub directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Новый подкаталог</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3530"/>
         <source>New directory name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя нового каталога:</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3545"/>
         <source>Failed to create new directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось создать новый каталог.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3549"/>
         <source>Created %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Создано %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3555"/>
         <source>Directory to save images into:</source>
-        <translation type="unfinished"></translation>
+        <translation>Каталог для сохранения изображений:</translation>
     </message>
     <message>
         <source>Mirroring Disabled</source>
@@ -2390,58 +2398,59 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="139"/>
         <source>Skip,Replace,Index,Rename,Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Пропустить,Заменить,Индексировать,Переименовать,ИмяФайла</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="186"/>
         <source>New file also exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Новый файл также существует</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="187"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation type="unfinished"></translation>
+        <translation>Новое имя файла также конфликтует с существующим файлом.
+Существующий файл будет перезаписан!</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="259"/>
         <source>File collision resolver</source>
-        <translation type="unfinished"></translation>
+        <translation>Решение конфликтов файлов</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="261"/>
         <source>&lt;h3&gt;Some of the destination files already exist&lt;/h3&gt;You can resolve the conflicts here or abort the entire copy/move operation.&lt;br&gt;&lt;b&gt;By default, the conflicting files will be skipped.&lt;/b&gt;&lt;br&gt;You can also replace or rename the destination, or automatically add a counter for a conflict-free filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Некоторые целевые файлы уже существуют&lt;/h3&gt;Вы можете разрешить конфликты здесь или прервать всю операцию копирования/перемещения.&lt;br&gt;&lt;b&gt;По умолчанию конфликтующие файлы будут пропущены.&lt;/b&gt;&lt;br&gt;Вы также можете заменить или переименовать целевой файл или автоматически добавить счётчик для создания имени без конфликта.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="271"/>
         <source>Size</source>
-        <translation type="unfinished">Размер</translation>
+        <translation>Размер</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="271"/>
         <source>Modified</source>
-        <translation type="unfinished">Изменён</translation>
+        <translation>Изменён</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="271"/>
         <source>Resolution</source>
-        <translation type="unfinished">Разрешение</translation>
+        <translation>Разрешение</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="271"/>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="356"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Копирование &quot;%1&quot; в &quot;%2&quot;.</translation>
+        <translation>Копирование «%1» в «%2».</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="356"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Перемещение &quot;%1&quot; в &quot;%2&quot;.</translation>
+        <translation>Перемещение «%1» в «%2».</translation>
     </message>
 </context>
 <context>
@@ -2464,12 +2473,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../RenameDialog.cpp" line="41"/>
         <source>New name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Новое имя: </translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="47"/>
         <source>&lt;h3&gt;Rename files according to pattern&lt;/h3&gt;Supported placeholders:&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;th align=right&gt;%index :&lt;/th&gt;&lt;td&gt;0-padded index, based on selection order&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%date :&lt;/th&gt;&lt;td&gt;Date and time of last modification, ISO8601 format&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%exifdate :&lt;/th&gt;&lt;td&gt;Date and time of EXIF timestamp or file creation, ISO8601 format&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%size :&lt;/th&gt;&lt;td&gt;Image size, WxH&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Переименование файлов по шаблону&lt;/h3&gt;Поддерживаемые плейсхолдеры:&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;th align=right&gt;%index :&lt;/th&gt;&lt;td&gt;индекс с дополнением нулями, основанный на порядке выбора&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%date :&lt;/th&gt;&lt;td&gt;дата и время последнего изменения, формат ISO8601&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%exifdate :&lt;/th&gt;&lt;td&gt;дата и время из временной метки EXIF или создания файла, формат ISO8601&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%size :&lt;/th&gt;&lt;td&gt;размер изображения, ШxВ&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</translation>
     </message>
 </context>
 <context>
@@ -2504,17 +2513,17 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ResizeDialog.cpp" line="51"/>
         <source>Current size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Текущий размер:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="54"/>
         <source>New Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая ширина:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="55"/>
         <source>New Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая высота:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="56"/>
@@ -2534,7 +2543,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ResizeDialog.cpp" line="65"/>
         <source>Keep aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранять пропорции</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="72"/>
@@ -2565,22 +2574,22 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="71"/>
         <source>Default quality when saving:</source>
-        <translation type="unfinished"></translation>
+        <translation>Качество по умолчанию при сохранении:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="85"/>
         <source>Rotate image according to Exif orientation value</source>
-        <translation type="unfinished"></translation>
+        <translation>Поворачивать изображение согласно значению ориентации Exif</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="89"/>
         <source>Show image file name in viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать имя файла изображения в просмотрщике</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="155"/>
         <source>Thumbnails and Preview Background Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Цвет фона миниатюр и предпросмотра:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="179"/>
@@ -2599,58 +2608,58 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="209"/>
         <source>Rotate thumbnail according to Exif orientation value</source>
-        <translation type="unfinished"></translation>
+        <translation>Поворачивать миниатюру согласно значению ориентации Exif</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="213"/>
         <source>Scale up small images in preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Увеличивать маленькие изображения в предпросмотре</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="216"/>
         <source>Always use the thumbnail embedded in the image</source>
-        <translation type="unfinished"></translation>
+        <translation>Всегда использовать миниатюру, встроенную в изображение</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="217"/>
         <source>Othwise it will only be used and upscaled if its at least half the required size</source>
-        <translation type="unfinished"></translation>
+        <translation>В противном случае она будет использоваться и масштабироваться, только если её размер составляет не менее половины требуемого</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="234"/>
         <source>Swap mouse double-click and middle-click actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Поменять местами действия двойного щелчка и щелчка средней кнопкой</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="242"/>
         <source>Startup directory if not specified by command line</source>
-        <translation type="unfinished"></translation>
+        <translation>Каталог запуска, если не указан в командной строке</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="244"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>По умолчанию</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="286"/>
         <location filename="../SettingsDialog.cpp" line="410"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Сочетания клавиш</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Filter Items</source>
-        <translation type="unfinished">Фильтровать элементы</translation>
+        <translation>Фильтровать элементы</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="296"/>
         <source>Select an entry and press a key to set a new shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите запись и нажмите клавишу для назначения нового сочетания</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="303"/>
         <source>Set the application icon according to the current image</source>
-        <translation type="unfinished"></translation>
+        <translation>Устанавливать значок приложения в соответствии с текущим изображением</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="96"/>
@@ -2660,27 +2669,27 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="92"/>
         <source>Use scroll wheel for zooming</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать колесо прокрутки для масштабирования</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="110"/>
         <source>Crossfade images</source>
-        <translation type="unfinished"></translation>
+        <translation>Плавное переключение изображений</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="115"/>
         <source>Slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation>Слайд-шоу</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="123"/>
         <source>Viewer toolbar items:</source>
-        <translation type="unfinished"></translation>
+        <translation>Элементы панели инструментов просмотрщика:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="316"/>
         <source>&lt;p&gt;Bangs allow you to use external commands to generate the list of shown images.&lt;br&gt;The main purpose is to query databases like locate, baloo or tracker, but anything that can generate a list of image files is suitable&lt;/p&gt;&lt;p&gt;The token &lt;b&gt;%s&lt;/b&gt; in the command will be replaced with the parameter.&lt;/p&gt;&lt;p&gt;Eg. for plocate, using the shortcut &lt;i&gt;locate&lt;/i&gt; and the command&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;allows you to enter &lt;i&gt;locate:waldo&lt;/i&gt; to display indexed jpg&apos;s and png&apos;s of waldo.&lt;/p&gt;&lt;p&gt;Phototonic tests the files for existence and will remove duplicates (including file and directory symlinks.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Восклицательные команды позволяют использовать внешние команды для создания списка отображаемых изображений.&lt;br&gt;Основная цель — запросы к базам данных, таким как locate, baloo или tracker, но подходит всё, что может создать список файлов изображений.&lt;/p&gt;&lt;p&gt;Токен &lt;b&gt;%s&lt;/b&gt; в команде будет заменён на параметр.&lt;/p&gt;&lt;p&gt;Например, для plocate, используя ярлык &lt;i&gt;locate&lt;/i&gt; и команду&lt;br&gt;&lt;i&gt;bash -c &quot;locate -i &apos;*%s*&apos; | grep --line-buffered -iE &apos;(jpe?g|png)$&apos;&quot;&lt;/i&gt;&lt;br&gt;можно ввести &lt;i&gt;locate:waldo&lt;/i&gt; для отображения проиндексированных jpg и png изображений waldo.&lt;/p&gt;&lt;p&gt;Phototonic проверяет существование файлов и удаляет дубликаты (включая символьные ссылки на файлы и каталоги).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="333"/>
@@ -2690,7 +2699,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="334"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Команда</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="383"/>
@@ -2787,7 +2796,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="238"/>
         <source>Delete confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Подтверждение удаления</translation>
     </message>
     <message>
         <source>Keyboard Shortcuts</source>
@@ -2801,17 +2810,17 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="414"/>
         <source>Bangs</source>
-        <translation type="unfinished"></translation>
+        <translation>Восклицательные команды</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="496"/>
         <source>Select background color</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите цвет фона</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="512"/>
         <source>Choose Startup Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите каталог запуска</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="518"/>
@@ -2856,17 +2865,17 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ShortcutsTable.cpp" line="85"/>
         <source>%1 is reserved for launching external applications.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 зарезервировано для запуска внешних приложений.</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="114"/>
         <source>%1 is already assigned to %2, reassign shortcut?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 уже назначено для %2, переназначить сочетание?</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="114"/>
         <source>Overwrite Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Перезаписать сочетание клавиш</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="140"/>
@@ -2990,16 +2999,16 @@ The existing file would be overwritten!</source>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="239"/>
         <source>Selected %1 of %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Выбрано %1 из %n изображения</numerusform>
+            <numerusform>Выбрано %1 из %n изображений</numerusform>
+            <numerusform>Выбрано %1 из %n изображений</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="262"/>
         <source>Tagging %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Назначение тегов %1</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="270"/>
@@ -3009,7 +3018,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ThumbsViewer.cpp" line="270"/>
         <source>Failed to save tags to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось сохранить теги в %1</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="947"/>
@@ -3019,10 +3028,10 @@ The existing file would be overwritten!</source>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1118"/>
         <source>%n of %1 image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n из %1 изображения</numerusform>
+            <numerusform>%n из %1 изображений</numerusform>
+            <numerusform>%n из %1 изображений</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -3043,31 +3052,31 @@ The existing file would be overwritten!</source>
         <location filename="../ThumbsViewer.cpp" line="1236"/>
         <location filename="../ThumbsViewer.cpp" line="1349"/>
         <source>Found %n duplicate(s) among %1 files</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Найдена %n копия среди %1 файлов</numerusform>
+            <numerusform>Найдено %n копии среди %1 файлов</numerusform>
+            <numerusform>Найдено %n копий среди %1 файлов</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1433"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Прервать</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1433"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка...</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1473"/>
         <source>Comparing...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сравнение...</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1506"/>
         <source>Sorting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировка...</translation>
     </message>
 </context>
 <context>
@@ -3075,42 +3084,42 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../main.cpp" line="58"/>
         <source>files or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>файлы или каталог</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="59"/>
         <source>files or directory to open, &quot;-&quot; to read them from stdin.</source>
-        <translation type="unfinished"></translation>
+        <translation>файлы или каталог для открытия, &quot;«-» для чтения из стандартного ввода.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="60"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
-        <translation type="unfinished"></translation>
+        <translation>[ФАЙЛ...] | [КАТАЛОГ] | [-]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="63"/>
         <source>start with a specific translation</source>
-        <translation type="unfinished"></translation>
+        <translation>запустить с определённым переводом</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="64"/>
         <source>language</source>
-        <translation type="unfinished"></translation>
+        <translation>язык</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="68"/>
         <source>Copy all modified images into &lt;directory&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Скопировать все изменённые изображения в &lt;каталог&gt;.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="69"/>
         <source>directory</source>
-        <translation type="unfinished"></translation>
+        <translation>каталог</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="73"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
-        <translation type="unfinished"></translation>
+        <translation>Запустить один экземпляр Phototonic или открыть файлы в уже запущенном.</translation>
     </message>
 </context>
 </TS>

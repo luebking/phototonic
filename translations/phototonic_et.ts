@@ -598,12 +598,12 @@ Kas soovid salvestada uue failina?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Locked</source>
-        <translation type="unfinished">Muudatused on lukustatud</translation>
+        <translation>Muudatused on lukustatud</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Unlocked</source>
-        <translation type="unfinished">Teisenduste lukustus on eemaldatud</translation>
+        <translation>Teisenduste lukustus on eemaldatud</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1521"/>
@@ -1199,7 +1199,7 @@ Filtriga peitmine: |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="647"/>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Regenerate Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Loo pisipildid uuesti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="661"/>
@@ -1415,7 +1415,7 @@ Filtriga peitmine: |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="1216"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[alamstring] [/ piirang [/ rohkem piiranguid]]&lt;/h2&gt;&lt;tt&gt;puhh / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;vastab stringile „puhh“, vanem kui 5 päeva, kuid noorem kui kuu – või alla 10 kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Suurem kui/pärast: &amp;gt;&lt;/li&gt;&lt;li&gt;Väiksem kui/Enne: &amp;lt;&lt;/li&gt;&lt;li&gt;Täpne vanus või (ümmardatud) suurus on muul juhul kaudselt või otseselt väljendatud järgmiselt: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Kuupäevad on absoluutsed (YYYY-MM-DD) või suhtelised (5m:h:d:w:M:y) &lt;/li&gt;&lt;li&gt;Suurustele on lisatud järelliide 4 kB: MB: GB või 4 MP (megapiksel)&lt;/li&gt;&lt;li&gt;Mõõtmetele on eel-/vahe-/järelliides „x“ ([laius]x[kõrgus])&lt;/li&gt;&lt;li&gt;Kromaatilisele variatsioonile on lisatud järelliide [0–255]cr (tegelikud väärtused on harva &gt; 100)&lt;/li&gt;&lt;li&gt;Heledus on järelliitega [0,0-1,0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Kõik järelliites er arvesta suurtähti, välja arvatud m|inute ja M|onth&lt;/i&gt;&lt;br&gt;Järgnev „/“ alustab uut piisava tingimuse rühma, alamstringi vaste on valikuline. &lt;hr&gt;Lisaks saad filtreerida järgmiste kriteeriumide järgi:&lt;br&gt;&lt;b&gt;must, valge, pruun, tume, hele, soe, külm, mustvalge, hall black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; ja värvid&lt;br&gt;&lt;b&gt;punane, oranž, kollane, laimiroheline, roheline, menta, tsüaan, taevasinine, sinine, lilla, magenta, roosa (red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink)&lt;/b&gt;&lt;hr&gt;Esimesed koolonid &lt;b&gt;vastavad siltidele&lt;/b&gt;, seega ‚/&lt;b&gt;:puhh&lt;/b&gt;‘ leiab kõik pildid, millel on silt „puhh“</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1268"/>
@@ -1766,12 +1766,12 @@ Filtriga peitmine: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="967"/>
         <source>Show Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Näita ruudustikku</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1401"/>
         <source>Thumbs</source>
-        <translation type="unfinished"></translation>
+        <translation>Pisipildid</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2173"/>
@@ -1873,12 +1873,12 @@ Selle tulemusel oleks mitmel failil sama nimi.</translation>
     <message>
         <location filename="../Phototonic.cpp" line="3475"/>
         <source>Write Exif Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvesta pisipilt Exif-metainfona</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Do you also want to write the thumbnail to the images metadata?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kas tahaksid pisipildid salvestada pildifaili metateabena?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3507"/>
@@ -1986,7 +1986,7 @@ Olemasolev fail saab olema üle kirjutatud!</translation>
     <message>
         <location filename="../RenameDialog.cpp" line="47"/>
         <source>&lt;h3&gt;Rename files according to pattern&lt;/h3&gt;Supported placeholders:&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;th align=right&gt;%index :&lt;/th&gt;&lt;td&gt;0-padded index, based on selection order&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%date :&lt;/th&gt;&lt;td&gt;Date and time of last modification, ISO8601 format&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%exifdate :&lt;/th&gt;&lt;td&gt;Date and time of EXIF timestamp or file creation, ISO8601 format&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%size :&lt;/th&gt;&lt;td&gt;Image size, WxH&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Failide ümbernimetamine vastavalt mustrile&lt;/h3&gt;Toetatud asendusmärgid:&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;th align=right&gt;%index :&lt;/th&gt;&lt;td&gt;0-täitega indeks, valiku järjekorra alusel&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%date :&lt;/th&gt;&lt;td&gt;Viimase muutmise kuupäev ja kellaaeg, ISO8601 vormingus&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%exifdate :&lt;/th&gt;&lt;td&gt;EXIF-metateabes leiduva ajatempli või faili loomise kuupäev ja kellaaeg, ISO8601 vormingus&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th align=right&gt;%size :&lt;/th&gt;&lt;td&gt;Pildi suurus, WxH&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</translation>
     </message>
 </context>
 <context>
@@ -2117,7 +2117,7 @@ Olemasolev fail saab olema üle kirjutatud!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="123"/>
         <source>Viewer toolbar items:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaatamisliidese tööriistariba objektid:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="155"/>
@@ -2147,12 +2147,12 @@ Olemasolev fail saab olema üle kirjutatud!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="216"/>
         <source>Always use the thumbnail embedded in the image</source>
-        <translation type="unfinished"></translation>
+        <translation>Alati kasuta pilti lõimitud pisipilti</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="217"/>
         <source>Othwise it will only be used and upscaled if its at least half the required size</source>
-        <translation type="unfinished"></translation>
+        <translation>Vastasel juhul kasutatakse ja suurendatakse seda ainult siis, kui ta mõõt on vähemalt poole vajalikust suurusest</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="234"/>

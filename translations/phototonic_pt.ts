@@ -751,12 +751,12 @@ Pretende gravar uma cópia?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Locked</source>
-        <translation type="unfinished">Transformações bloqueadas</translation>
+        <translation>Transformações bloqueadas</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Unlocked</source>
-        <translation type="unfinished">Transformações desbloqueadas</translation>
+        <translation>Transformações desbloqueadas</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1521"/>
@@ -1559,7 +1559,7 @@ Ocultar com filtro: |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="647"/>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Regenerate Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Regenerar miniatura</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="661"/>
@@ -2046,12 +2046,12 @@ Ocultar com filtro: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="967"/>
         <source>Show Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar grelha</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1401"/>
         <source>Thumbs</source>
-        <translation type="unfinished"></translation>
+        <translation>Thumbs</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3187"/>
@@ -2106,12 +2106,12 @@ Vários ficheiros receberiam o mesmo nome.</translation>
     <message>
         <location filename="../Phototonic.cpp" line="3475"/>
         <source>Write Exif Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Gravar miniatura Exif</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Do you also want to write the thumbnail to the images metadata?</source>
-        <translation type="unfinished"></translation>
+        <translation>Também pretende gravar a miniatura nos metadados das imagens?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3493"/>
@@ -2687,7 +2687,7 @@ O ficheiro existente seria substituído!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="123"/>
         <source>Viewer toolbar items:</source>
-        <translation type="unfinished"></translation>
+        <translation>Itens da barra de ferramentas do visualizador:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="155"/>
@@ -2717,12 +2717,12 @@ O ficheiro existente seria substituído!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="216"/>
         <source>Always use the thumbnail embedded in the image</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar sempre a miniatura incorporada na imagem</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="217"/>
         <source>Othwise it will only be used and upscaled if its at least half the required size</source>
-        <translation type="unfinished"></translation>
+        <translation>Caso contrário, só será utilizado e ampliado se tiver pelo menos metade do tamanho necessário</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="234"/>

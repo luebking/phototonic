@@ -836,12 +836,12 @@ Czy chcesz zapisać kopię?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Locked</source>
-        <translation type="unfinished">Przekształcenia zablokowane</translation>
+        <translation>Przekształcenia zablokowane</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Unlocked</source>
-        <translation type="unfinished">Przekształcenia odblokowane</translation>
+        <translation>Przekształcenia odblokowane</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1521"/>
@@ -876,7 +876,7 @@ Czy chcesz zapisać kopię?</translation>
         <source>Enter a name (without leading &quot;$&quot;) for this filter.
 The special name&quot;preview&quot; is used for the filter in the viewer.</source>
         <translation>Wpisz nazwę (bez znaku „$”) tego filtra.
-W&#xa0;przeglądarce używana jest specjalna nazwa „podgląd”.</translation>
+W przeglądarce używana jest specjalna nazwa „podgląd”.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
@@ -1367,7 +1367,7 @@ Ukryj z filtrem: |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="647"/>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Regenerate Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Wygeneruj ponownie miniaturę</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="661"/>
@@ -1528,7 +1528,7 @@ Ukryj z filtrem: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="967"/>
         <source>Show Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż siatkę</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1166"/>
@@ -1723,7 +1723,7 @@ Ukryj z filtrem: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="1401"/>
         <source>Thumbs</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatury</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1985"/>
@@ -1867,12 +1867,12 @@ Wiele plików otrzymałoby tę samą nazwę.</translation>
     <message>
         <location filename="../Phototonic.cpp" line="3475"/>
         <source>Write Exif Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz miniaturę Exif</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Do you also want to write the thumbnail to the images metadata?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy chcesz również dodać miniaturę do metadanych obrazu?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3493"/>
@@ -2783,7 +2783,7 @@ Wiele plików otrzymałoby tę samą nazwę.</translation>
         <location filename="../CopyMoveDialog.cpp" line="187"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation>Nowa nazwa pliku koliduje również z&#xa0;istniejącym plikiem.
+        <translation>Nowa nazwa pliku koliduje również z istniejącym plikiem.
 Istniejący plik zostałby nadpisany!</translation>
     </message>
     <message>
@@ -3060,17 +3060,17 @@ Istniejący plik zostałby nadpisany!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="123"/>
         <source>Viewer toolbar items:</source>
-        <translation type="unfinished"></translation>
+        <translation>Elementy paska narzędzi przeglądarki:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="216"/>
         <source>Always use the thumbnail embedded in the image</source>
-        <translation type="unfinished"></translation>
+        <translation>Zawsze używaj miniatury osadzonej w obrazie</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="217"/>
         <source>Othwise it will only be used and upscaled if its at least half the required size</source>
-        <translation type="unfinished"></translation>
+        <translation>W przeciwnym razie będzie ona używana i skalowana tylko wtedy, gdy będzie miała co najmniej połowę wymaganego rozmiaru</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="316"/>
