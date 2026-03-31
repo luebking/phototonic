@@ -111,9 +111,11 @@ int main(int argc, char *argv[]) {
             QObject::connect(watcher, &QFileSystemWatcher::fileChanged, [=,&futuretonic]() {
                 watcher->blockSignals(true);
                 QFile singleton(singletonPath);
-                singleton.open(QIODevice::ReadOnly | QIODevice::Text);
-                const QString newPath = QString::fromUtf8(singleton.readLine(4096));
-                singleton.close();
+                QString newPath;
+                if (singleton.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                    newPath = QString::fromUtf8(singleton.readLine(4096));
+                    singleton.close();
+                }
                 singleton.resize(0);
                 if (newPath == "activate")
                     futuretonic->activateWindow();
