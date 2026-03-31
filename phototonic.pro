@@ -87,6 +87,7 @@ TRANSLATIONS =  translations/phototonic.ts \
                 translations/phototonic_hr.ts \
                 translations/phototonic_it.ts \
                 translations/phototonic_ka.ts \
+                translations/phototonic_kab.ts \
                 translations/phototonic_lt.ts \
                 translations/phototonic_nl.ts \
                 translations/phototonic_pl.ts \
