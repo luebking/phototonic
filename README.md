@@ -25,7 +25,7 @@ webcam shots and align them well enough to make a time-lapse video.
 <img src="https://translate.lxqt-project.org/widgets/luebking/-/phototonic/multi-blue.svg" align="right" alt="Translation status" />
 </a>
 
-#### 4. April 2025
+#### 4. April 2026
 Release 3.2.0
 * Support embedded thumbnails (use for preview, update and write back)
 * Allow to either dock thumbnails or preview
