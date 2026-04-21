@@ -406,6 +406,14 @@ void InfoView::read(QString imageFullPath, const QImage &histogram) {
 
         for (auto i = m_hints.cbegin(), end = m_hints.cend(); i != end; ++i)
             addEntry(i.key(), i.value());
+        const QStringList textKeys = imageInfoReader.textKeys();
+        if (!textKeys.isEmpty()) {
+            addTitleEntry("Text");
+            for (const QString &textKey : imageInfoReader.textKeys()) {
+                const QString text = imageInfoReader.text(textKey);
+                addEntry(textKey, text/* , true, text */);
+            }
+        }
     } else {
         imageInfoReader.read();
         key = tr("Error");
