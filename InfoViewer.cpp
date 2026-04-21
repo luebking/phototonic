@@ -160,7 +160,6 @@ void InfoView::showInfoViewMenu(QPoint pt) {
         m_removeAction->setVisible(item && item->isEditable());
         infoMenu->popup(infoViewerTable->viewport()->mapToGlobal(pt));
     }
-    selectedEntry = QModelIndex();
 }
 
 void InfoView::clear() {
