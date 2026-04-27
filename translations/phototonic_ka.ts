@@ -249,7 +249,10 @@
 · %u and %tu with their respective URIs (file:///path/to/file)
 · %lat %lon and %alt with the GPS location in signed decimals (&quot;altitude&quot;…)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f და %tf ჩანაცვლდება ერთი გამოსახულებისა და მინიატურის ბილიკებით
+· %u და %tu მათი შესაბამისი URI-ებით (file:///path/to/file)
+· %lat %lon და %alt GPS მდებარეობით ნიშნიან ათობით რიცხვებში (&quot;სიმაღლე&quot;…)
+· ნაგულისხმევად მონიშნული გამოსახულებები ბრძანებას ბოლოში მიეწერება</translation>
     </message>
     <message>
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
@@ -611,12 +614,12 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Locked</source>
-        <translation type="unfinished">გარდაქმნები დაბლოკილია</translation>
+        <translation>გარდაქმნები დაბლოკილია</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Unlocked</source>
-        <translation type="unfinished">გარდაქმნები განბლოკილია</translation>
+        <translation>გარდაქმნები განბლოკილია</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1521"/>
@@ -1012,7 +1015,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="967"/>
         <source>Show Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>ბადის ჩვენება</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1002"/>
@@ -1236,7 +1239,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="647"/>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Regenerate Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>მინიატურის რეგენერაცია</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="661"/>
@@ -1814,7 +1817,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1401"/>
         <source>Thumbs</source>
-        <translation type="unfinished"></translation>
+        <translation>მინიატურები</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2173"/>
@@ -1916,12 +1919,12 @@ Multiple files would get the same name.</source>
     <message>
         <location filename="../Phototonic.cpp" line="3475"/>
         <source>Write Exif Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Exif მინიატურის ჩაწერა</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Do you also want to write the thumbnail to the images metadata?</source>
-        <translation type="unfinished"></translation>
+        <translation>გნებავთ მინიატურებში გამოსახულების მეტამონაცემების ჩაწერა?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3507"/>
@@ -2186,7 +2189,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="123"/>
         <source>Viewer toolbar items:</source>
-        <translation type="unfinished"></translation>
+        <translation>დამთვალიერებლის პანელის ელემენტები:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="155"/>
@@ -2216,7 +2219,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="216"/>
         <source>Always use the thumbnail embedded in the image</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსახულებაში ჩაშენებული მინიატურის ყოველთვის გამოყენება</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="217"/>
