@@ -286,6 +286,8 @@
         <translation>
             <numerusform>למחוק את התגית הנבחרת?</numerusform>
             <numerusform>למחוק את שתי התגיות הנבחרות?</numerusform>
+            <numerusform>למחוק את %n התגיות הנבחרות?</numerusform>
+            <numerusform>למחוק את %n התגיות הנבחרות?</numerusform>
         </translation>
     </message>
     <message>
@@ -1450,6 +1452,8 @@ Hide with filter: |nohistogram|</source>
         <translation>
             <numerusform>הועתקה תמונה</numerusform>
             <numerusform>הועתקו שתי תמונות</numerusform>
+            <numerusform>הועתקו %n תמונות</numerusform>
+            <numerusform>הועתקו %n תמונות</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -1605,7 +1609,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3508"/>
         <source>Failed to delete directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>מחיקת התיקייה נכשלה.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3529"/>
@@ -1620,7 +1624,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3545"/>
         <source>Failed to create new directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>יצירת תיקייה חדשה נכשלה.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3549"/>
@@ -1630,7 +1634,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3555"/>
         <source>Directory to save images into:</source>
-        <translation type="unfinished"></translation>
+        <translation>תיקייה לשמירת תמונות:</translation>
     </message>
     <message numerus="yes">
         <source>%n image(s)</source>
@@ -1642,7 +1646,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="2263"/>
         <source>Failed to delete image</source>
-        <translation type="unfinished"></translation>
+        <translation>מחיקת התמונה נכשלה</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2125"/>
@@ -1653,7 +1657,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1956"/>
         <source>No crop area defined</source>
-        <translation type="unfinished"></translation>
+        <translation>לא הוגדר אזור חיתוך</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1969"/>
@@ -2098,7 +2102,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="334"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>פקודה</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="414"/>
@@ -2164,12 +2168,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="398"/>
         <source>Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>מציג</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="402"/>
         <source>Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>תמונות ממוזערות</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="406"/>
