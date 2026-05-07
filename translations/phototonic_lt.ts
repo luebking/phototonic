@@ -119,7 +119,7 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="108"/>
         <source>Delete Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištrinti žymelę</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="119"/>
@@ -249,7 +249,7 @@
         <location filename="../GuideWidget.cpp" line="40"/>
         <source>Remove Guide</source>
         <extracomment>The guide is a visible line for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Šalinti gairę</translation>
     </message>
 </context>
 <context>
@@ -278,7 +278,7 @@
     <message>
         <location filename="../Tags.cpp" line="599"/>
         <source>Tag %1 already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Žymė %1 jau yra</translation>
     </message>
     <message numerus="yes">
         <location filename="../Tags.cpp" line="614"/>
@@ -292,12 +292,12 @@
     <message>
         <location filename="../Tags.cpp" line="614"/>
         <source>Delete tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištrinti žymę</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="105"/>
         <source>New Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Nauja žymė</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="51"/>
@@ -313,7 +313,7 @@
     <message>
         <location filename="../Tags.cpp" line="583"/>
         <source>Add a new tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridėti naują žymę</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="58"/>
@@ -329,17 +329,17 @@
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti visas žymes</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="109"/>
         <source>Add to library</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridėti į biblioteką</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="112"/>
         <source>Remove from library</source>
-        <translation type="unfinished"></translation>
+        <translation>Šalinti iš bibliotekos</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="170"/>
@@ -349,7 +349,7 @@
     <message>
         <location filename="../Tags.cpp" line="170"/>
         <source>Invert filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Invertuoti filtrą</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="372"/>
@@ -379,12 +379,12 @@
     <message>
         <location filename="../Tags.cpp" line="584"/>
         <source>Enter new tag name</source>
-        <translation type="unfinished"></translation>
+        <translation>Įveskite naujos žymės pavadinimą</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="591"/>
         <source>No name entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Neįvestas joks pavadinimas</translation>
     </message>
 </context>
 <context>
@@ -392,12 +392,12 @@
     <message>
         <location filename="../ImageViewer.cpp" line="142"/>
         <source>Zoom Locked</source>
-        <translation type="unfinished"></translation>
+        <translation>Mastelis užrakintas</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="142"/>
         <source>Zoom Unlocked</source>
-        <translation type="unfinished"></translation>
+        <translation>Mastelis atrakintas</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="178"/>
@@ -418,7 +418,7 @@
         <location filename="../ImageViewer.cpp" line="266"/>
         <location filename="../ImageViewer.cpp" line="1246"/>
         <source>New image size: %1x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Naujas paveikslo dydis: %1x%2</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="689"/>
@@ -456,7 +456,7 @@ Ar norite įrašyti kopiją?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1077"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Žymėkite apkirpimo sritį naudodami Ctrl + kairįjį pelės mygtuką</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1079"/>
@@ -487,22 +487,22 @@ Ar norite įrašyti kopiją?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1256"/>
         <source>Flipped Horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Apverstas horizontaliai</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1256"/>
         <source>Unflipped Horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Atšauktas apvertimas horizontaliai</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1258"/>
         <source>Flipped Vertically</source>
-        <translation type="unfinished"></translation>
+        <translation>Apverstas vertikaliai</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1258"/>
         <source>Unflipped Vertically</source>
-        <translation type="unfinished"></translation>
+        <translation>Atšauktas apvertimas vertikaliai</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1314"/>
@@ -610,7 +610,7 @@ The special name&quot;preview&quot; is used for the filter in the viewer.</sourc
     <message>
         <location filename="../InfoViewer.cpp" line="85"/>
         <source>Clearing the filter will delete it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Išvalius filtrą, jis bus ištrintas.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="109"/>
@@ -704,12 +704,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="471"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Mastelis</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="469"/>
         <source>Transform</source>
-        <translation type="unfinished"></translation>
+        <translation>Transformuoti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="514"/>
@@ -840,13 +840,13 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="762"/>
         <source>Go Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Eiti aukštyn</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="315"/>
         <location filename="../Phototonic.cpp" line="766"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Pradžia</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="775"/>
@@ -857,7 +857,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="802"/>
         <source>Load Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Įkelti iškarpinę</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="809"/>
@@ -868,7 +868,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="817"/>
         <source>Add Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridėti žymelę</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="824"/>
@@ -893,7 +893,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="844"/>
         <source>Keep Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Išlaikyti mastelį</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="864"/>
@@ -908,7 +908,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="876"/>
         <source>Scale Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Keisti paveikslo dydį</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="886"/>
@@ -960,7 +960,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="491"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Taisyti</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1213"/>
@@ -976,13 +976,13 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1356"/>
         <source>Bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Žymelės</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1424"/>
         <source>Tags</source>
         <extracomment>tags are image metadata</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Žymės</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="270"/>
@@ -1104,7 +1104,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="611"/>
         <source>Show compact thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti glaustas miniatiūras</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="622"/>
@@ -1134,7 +1134,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="647"/>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Regenerate Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Sukurti miniatiūras iš naujo</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="661"/>
@@ -1225,7 +1225,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="798"/>
         <source>View Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti paveikslą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="806"/>
@@ -1240,7 +1240,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="821"/>
         <source>Delete Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištrinti žymelę</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="848"/>
@@ -1320,27 +1320,27 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="954"/>
         <source>Edit Current Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Taisyti dabartinį kelią</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="967"/>
         <source>Show Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti tinklelį</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1051"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Langas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1063"/>
         <source>Thumbnails Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatiūrų rikiavimas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1166"/>
         <source>Accuracy: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tikslumas: </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1183"/>
@@ -1356,22 +1356,22 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1268"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Meniu</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1277"/>
         <source>Viewer Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Žiūryklės įrankių juosta</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1379"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Peržiūra</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1401"/>
         <source>Thumbs</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatiūros</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1599"/>
@@ -1399,18 +1399,18 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1841"/>
         <source>Maximum Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Didžiausias mastelis</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1845"/>
         <source>Minimum Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Mažiausias mastelis</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1893"/>
         <location filename="../Phototonic.cpp" line="1946"/>
         <source>Rotation %1°</source>
-        <translation type="unfinished">Pasukimas %1°</translation>
+        <translation>Pasukimas %1°</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1952"/>
@@ -1421,7 +1421,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1952"/>
         <source>Please select the images to transform.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasirinkite, kuriuos paveikslus transformuoti.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1957"/>
@@ -1436,40 +1436,40 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="2052"/>
         <source>Can not copy or move to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyksta nukopijuoti ar perkelti į %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2062"/>
         <source>Can not move to the same directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Negalima perkelti į tą patį katalogą</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2080"/>
         <location filename="../Phototonic.cpp" line="3086"/>
         <source>Copied %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Nukopijuotas %n paveikslas</numerusform>
+            <numerusform>Nukopijuoti %n paveikslai</numerusform>
+            <numerusform>Nukopijuota %n paveikslų</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2080"/>
         <location filename="../Phototonic.cpp" line="3087"/>
         <source>Moved %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Perkeltas %n paveikslas</numerusform>
+            <numerusform>Perkelti %n paveikslai</numerusform>
+            <numerusform>Perkelta %n paveikslų</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2126"/>
         <source>Move %n selected image(s) to the trash?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Perkelti %n pažymėtą paveikslą į šiukšlinę?</numerusform>
+            <numerusform>Perkelti %n pažymėtus paveikslus į šiukšlinę?</numerusform>
+            <numerusform>Perkelti %n pažymėtų paveikslų į šiukšlinę?</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -1484,21 +1484,21 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="2195"/>
         <source>Failed to move image to the trash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko perkelti paveikslą į šiukšlinę.</translation>
     </message>
     <message numerus="yes">
         <location filename="../Phototonic.cpp" line="2216"/>
         <source>Deleted %n image(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Ištrintas %n paveikslas</numerusform>
+            <numerusform>Ištrinti %n paveikslai</numerusform>
+            <numerusform>Ištrinta %n paveikslų</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2244"/>
         <source>Move %1 to the trash</source>
-        <translation type="unfinished"></translation>
+        <translation>Perkelti %1 į šiukšlinę</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2244"/>
@@ -1513,7 +1513,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="2343"/>
         <source>Invalid Path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neteisingas kelias: %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3049"/>
@@ -1528,32 +1528,32 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3067"/>
         <source>Move directory %1 to %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>Perkelti katalogą %1 į %2?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3067"/>
         <source>Move directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Perkelti katalogą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3066"/>
         <source>Move Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Perkelti katalogą</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3070"/>
         <source>Failed to move directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko perkelti katalogą.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3072"/>
         <source>Directory moved</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalogas perkeltas</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3156"/>
         <source>Failed to open directory %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko atverti katalogą %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3155"/>
@@ -1569,7 +1569,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3258"/>
         <source>Failed to rename directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko pervadinti katalogą.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3451"/>
@@ -1920,52 +1920,52 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ResizeDialog.cpp" line="33"/>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Keisti dydį</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="36"/>
         <source>Cancel</source>
-        <translation type="unfinished">Atsisakyti</translation>
+        <translation>Atsisakyti</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="51"/>
         <source>Current size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dabartinis dydis:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="54"/>
         <source>New Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Naujas plotis:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="55"/>
         <source>New Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Naujas aukštis:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="56"/>
         <source>Units:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vienetai:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="58"/>
         <source>New size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Naujas dydis:</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="61"/>
         <source>Pixels</source>
-        <translation type="unfinished"></translation>
+        <translation>Pikseliai</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="65"/>
         <source>Keep aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Išlaikyti proporcijas</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="72"/>
         <source>Percent</source>
-        <translation type="unfinished"></translation>
+        <translation>Procentai</translation>
     </message>
 </context>
 <context>
@@ -1973,7 +1973,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="51"/>
         <source>Preferences</source>
-        <translation type="unfinished">Nuostatos</translation>
+        <translation>Nuostatos</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="67"/>
@@ -1983,17 +1983,17 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="81"/>
         <source>Enable GIF animation</source>
-        <translation type="unfinished"></translation>
+        <translation>Įjungti GIF animaciją</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="55"/>
         <source>Background color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fono spalva:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="71"/>
         <source>Default quality when saving:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numatytoji kokybė įrašant:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="85"/>
@@ -2003,12 +2003,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="89"/>
         <source>Show image file name in viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti žiūryklėje paveikslo failo pavadinimą</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="92"/>
         <source>Use scroll wheel for zooming</source>
-        <translation type="unfinished"></translation>
+        <translation>Mastelio keitimui naudoti slinkimo ratuką</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="110"/>
@@ -2018,12 +2018,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="123"/>
         <source>Viewer toolbar items:</source>
-        <translation type="unfinished"></translation>
+        <translation>Žiūryklės įrankių juostos elementai:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="155"/>
         <source>Thumbnails and Preview Background Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatiūrų ir peržiūros fono spalva:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="167"/>
@@ -2033,7 +2033,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="179"/>
         <source>Background image:</source>
-        <translation type="unfinished"></translation>
+        <translation>Foninis paveikslas:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="209"/>
@@ -2069,17 +2069,17 @@ The existing file would be overwritten!</source>
         <location filename="../SettingsDialog.cpp" line="286"/>
         <location filename="../SettingsDialog.cpp" line="410"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Spartieji klavišai</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="292"/>
         <source>Filter Items</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtruoti elementus</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="296"/>
         <source>Select an entry and press a key to set a new shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasirinkite įrašą ir paspauskite klavišą norėdami nustatyti naują spartųjį klavišą</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="303"/>
@@ -2089,7 +2089,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="115"/>
         <source>Slideshow</source>
-        <translation type="unfinished"></translation>
+        <translation>Skaidrių rodymas</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="316"/>
@@ -2099,12 +2099,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="333"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Spartusis klavišas</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="334"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Komanda</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="414"/>
@@ -2114,7 +2114,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="496"/>
         <source>Select background color</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasirinkti fono spalvą</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="512"/>
@@ -2134,23 +2134,23 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="106"/>
         <source>Show random images</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti atsitiktinius paveikslus</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="243"/>
         <source>Remember last</source>
-        <translation type="unfinished"></translation>
+        <translation>Prisiminti paskiausią</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="244"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Numatytasis</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="246"/>
         <source>Specify:</source>
         <extracomment>specificy a startup directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Nurodyti:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="238"/>
@@ -2160,37 +2160,37 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../SettingsDialog.cpp" line="383"/>
         <source>OK</source>
-        <translation type="unfinished">Gerai</translation>
+        <translation>Gerai</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="387"/>
         <source>Cancel</source>
-        <translation type="unfinished">Atsisakyti</translation>
+        <translation>Atsisakyti</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="398"/>
         <source>Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Žiūryklė</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="402"/>
         <source>Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatiūros</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="406"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Bendros</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="518"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>Atverti failą</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="519"/>
         <source>Images</source>
-        <translation type="unfinished">Paveikslai</translation>
+        <translation>Paveikslai</translation>
     </message>
 </context>
 <context>
@@ -2198,37 +2198,37 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ShortcutsTable.cpp" line="85"/>
         <source>%1 is reserved for launching external applications.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 yra rezervuotas išorinių programų paleidimui.</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="114"/>
         <source>%1 is already assigned to %2, reassign shortcut?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 jau yra priskirtas veiksmui %2, ar norite priskirti spartųjį klavišą iš naujo?</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="114"/>
         <source>Overwrite Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Perrašyti spartųjį klavišą</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="140"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Veiksmas</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="141"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Spartusis klavišas</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="44"/>
         <source>Delete shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištrinti spartųjį klavišą</translation>
     </message>
     <message>
         <location filename="../ShortcutsTable.cpp" line="85"/>
         <source>Set shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Nustatyti spartųjį klavišą</translation>
     </message>
 </context>
 <context>
@@ -2286,7 +2286,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ThumbsViewer.cpp" line="270"/>
         <source>Error</source>
-        <translation type="unfinished">Klaida</translation>
+        <translation>Klaida</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="270"/>
@@ -2310,16 +2310,16 @@ The existing file would be overwritten!</source>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1120"/>
         <source>%n image(s)</source>
-        <translation type="unfinished">
-            <numerusform>%n image</numerusform>
-            <numerusform>%n images</numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n paveikslas</numerusform>
+            <numerusform>%n paveikslai</numerusform>
+            <numerusform>%n paveikslų</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1116"/>
         <source>No images</source>
-        <translation type="unfinished"></translation>
+        <translation>Nėra paveikslų</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1236"/>
@@ -2334,22 +2334,22 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1433"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Nutraukti</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1433"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Įkeliama...</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1473"/>
         <source>Comparing...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyksta palyginimas...</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1506"/>
         <source>Sorting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rikiavimas...</translation>
     </message>
 </context>
 <context>
@@ -2357,7 +2357,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../main.cpp" line="58"/>
         <source>files or directory</source>
-        <translation type="unfinished"></translation>
+        <translation>failai ar katalogas</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="59"/>
@@ -2367,17 +2367,17 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../main.cpp" line="60"/>
         <source>[FILE...] | [DIRECTORY] | [-]</source>
-        <translation type="unfinished"></translation>
+        <translation>[FAILAS...] | [KATALOGAS] | [-]</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="63"/>
         <source>start with a specific translation</source>
-        <translation type="unfinished"></translation>
+        <translation>paleisti naudojant konkretų vertimą</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="64"/>
         <source>language</source>
-        <translation type="unfinished"></translation>
+        <translation>kalba</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="68"/>
@@ -2387,7 +2387,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../main.cpp" line="69"/>
         <source>directory</source>
-        <translation type="unfinished"></translation>
+        <translation>katalogas</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="73"/>
