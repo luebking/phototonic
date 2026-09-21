@@ -265,7 +265,10 @@
 · %u and %tu with their respective URIs (file:///path/to/file)
 · %lat %lon and %alt with the GPS location in signed decimals (&quot;altitude&quot;…)
 · by default the selected images are appended to the command</source>
-        <translation type="unfinished"></translation>
+        <translation>· %f та %tf будуть замінені шляхами з одним зображенням та мініатюри 
+· %u та %tu з відповідними URI (file:///path/to/file)
+· %lat %lon та %alt з GPS-розташування у десятих числах зі знаком (&quot;altitude&quot;…)
+· за замовчуванням вибрані зображення додані до команди</translation>
     </message>
     <message>
         <source>· %f and %tf will be substituted with the single image and thumbnail paths
@@ -507,12 +510,12 @@
     <message>
         <location filename="../ImageViewer.cpp" line="178"/>
         <source>Fit View</source>
-        <translation type="unfinished"></translation>
+        <translation>Умістити в область перегляду</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="183"/>
         <source>Fill View</source>
-        <translation type="unfinished"></translation>
+        <translation>Заповнити область перегляду</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="185"/>
@@ -561,22 +564,22 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1077"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Виберіть ділянку вирізання за допомогою клавіш Ctrl + лівою кнопкою миші</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1079"/>
         <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Виберіть ділянку затемнення за допомогою Ctrl + лівою кнопкою миші</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1081"/>
         <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Виберіть ділянку картушу за допомогою Ctrl + лівою кнопкою миші</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
         <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation type="unfinished"></translation>
+        <translation>Виберіть ділянку анотації за допомогою клавіші Ctrl + лівою кнопкою миші</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1109"/>
@@ -592,22 +595,22 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1256"/>
         <source>Flipped Horizontally</source>
-        <translation type="unfinished">Відбите по горизонталі</translation>
+        <translation>Перевернуте по горизонталі</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1256"/>
         <source>Unflipped Horizontally</source>
-        <translation type="unfinished">Повернене у вихідне положення по горизонталі</translation>
+        <translation>Повернене у вихідне положення по горизонталі</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1258"/>
         <source>Flipped Vertically</source>
-        <translation type="unfinished">Відбите по вертикалі</translation>
+        <translation>Перевернуте по вертикалі</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1258"/>
         <source>Unflipped Vertically</source>
-        <translation type="unfinished">Повернене у вихідне положення по вертикалі</translation>
+        <translation>Скасовано перевертання по вертикалі</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1314"/>
@@ -666,12 +669,12 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Locked</source>
-        <translation type="unfinished">Перетворення зафіксовані</translation>
+        <translation>Перетворення зафіксовані</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Unlocked</source>
-        <translation type="unfinished">Перетворення розблоковані</translation>
+        <translation>Перетворення розблоковані</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1521"/>
@@ -857,17 +860,17 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="520"/>
         <source>Guides</source>
         <extracomment>The guides a lines across the image for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Напрямні</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="521"/>
         <source>Add vertical guide</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати вертикальну напрямну</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="524"/>
         <source>Add horizontal guide</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати горизонтальну напрямну</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="555"/>
@@ -1290,7 +1293,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="1213"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Фільтр - спробуйте &quot;/?&quot;...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1893"/>
@@ -1662,7 +1665,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1956"/>
         <source>No crop area defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Зона обрізання не визначена</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1969"/>
@@ -1672,12 +1675,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1969"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Глобальна директорія для збереження не визначена, зображення будуть перезаписані.&lt;h3&gt;Чи бажаєте створити резервну копію?&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1973"/>
         <source>Create backups and overwrite the original files</source>
-        <translation type="unfinished"></translation>
+        <translation>Створити резервні копії та перезаписати оригінальні файли</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1973"/>
@@ -1687,17 +1690,17 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1976"/>
         <source>Save the transformed images to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти перетворені зображення в %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1985"/>
         <source>&lt;h3&gt;Perform batch transformation?&lt;/h3&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Виконати пакетне перетворення?&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1979"/>
         <source>&lt;ul&gt;&lt;li&gt;Rotate %1 images by %2°&lt;/li&gt;&lt;li&gt;Crop them to %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;ul&gt;&lt;li&gt;Обернути %1 зображення на %2°&lt;/li&gt;&lt;li&gt;Обрізати їх до %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3049"/>
@@ -1832,63 +1835,63 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="139"/>
         <location filename="../Phototonic.cpp" line="362"/>
         <source>Average brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>Середня яскравість</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="461"/>
         <source>Navigate</source>
-        <translation type="unfinished"></translation>
+        <translation>Навігація</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="647"/>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Regenerate Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Перестворити мініатюру</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="894"/>
         <source>Blackout</source>
-        <translation type="unfinished"></translation>
+        <translation>Затемнення</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="898"/>
         <source>Cartouche</source>
-        <translation type="unfinished"></translation>
+        <translation>Картуш</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="902"/>
         <source>Annotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Анотація</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="932"/>
         <source>Slide Image Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Посунути зображення ліворуч</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="934"/>
         <source>Slide Image Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Посунути зображення праворуч</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="936"/>
         <source>Slide Image Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Посунути зображення вгору</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="938"/>
         <source>Slide Image Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Посунути зображення вниз</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="967"/>
         <source>Show Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати сітку</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1166"/>
         <source>Accuracy: </source>
-        <translation type="unfinished"></translation>
+        <translation>Точність: </translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1183"/>
@@ -1904,7 +1907,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1268"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Меню</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1277"/>
@@ -1914,7 +1917,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1401"/>
         <source>Thumbs</source>
-        <translation type="unfinished"></translation>
+        <translation>Мініатюри</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1599"/>
@@ -2071,7 +2074,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3240"/>
         <source>Rename %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Перейменувати %1</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3242"/>
@@ -2198,32 +2201,32 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="271"/>
         <source>Size</source>
-        <translation type="unfinished">Розмір</translation>
+        <translation>Розмір</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="271"/>
         <source>Modified</source>
-        <translation type="unfinished"></translation>
+        <translation>Змінено</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="271"/>
         <source>Resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Роздільність</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="271"/>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="356"/>
         <source>Copying &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Копіювання &quot;%1&quot; до &quot;%2&quot;.</translation>
+        <translation>Копіювання &quot;%1&quot; до &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../CopyMoveDialog.cpp" line="356"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished">Переміщення &quot;%1&quot; до &quot;%2&quot;.</translation>
+        <translation>Переміщення &quot;%1&quot; до &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>

@@ -812,12 +812,12 @@ Chcete uložit kopii?</translation>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Locked</source>
-        <translation type="unfinished">Proměny zamknuty</translation>
+        <translation>Proměny zamknuty</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1506"/>
         <source>Transformations Unlocked</source>
-        <translation type="unfinished">Přeměny odemknuty</translation>
+        <translation>Přeměny odemknuty</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1521"/>
@@ -1607,7 +1607,7 @@ Skryjte filtrem: |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="647"/>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Regenerate Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Znovu vytvořit náhled</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="661"/>
@@ -1793,7 +1793,7 @@ Skryjte filtrem: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="967"/>
         <source>Show Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit mřížku</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1051"/>
@@ -1839,7 +1839,7 @@ Skryjte filtrem: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="1401"/>
         <source>Thumbs</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhledy</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1599"/>
@@ -2074,12 +2074,12 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
     <message>
         <location filename="../Phototonic.cpp" line="3475"/>
         <source>Write Exif Thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapsat EXIF náhled</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3477"/>
         <source>Do you also want to write the thumbnail to the images metadata?</source>
-        <translation type="unfinished"></translation>
+        <translation>Opravdu chcete náhled zapsat do metadat obrázků?</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3493"/>
@@ -2903,12 +2903,12 @@ Existující soubor by byl přepsán!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="216"/>
         <source>Always use the thumbnail embedded in the image</source>
-        <translation type="unfinished"></translation>
+        <translation>Vždy použít náhled zapouzdřený v obrázku</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="217"/>
         <source>Othwise it will only be used and upscaled if its at least half the required size</source>
-        <translation type="unfinished"></translation>
+        <translation>V opačném případě bude použit (a přepočítán na vyšší rozlišení) pokud má alespoň polovinu potřebné velikosti</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="234"/>
@@ -2964,7 +2964,7 @@ Existující soubor by byl přepsán!</translation>
     <message>
         <location filename="../SettingsDialog.cpp" line="123"/>
         <source>Viewer toolbar items:</source>
-        <translation type="unfinished"></translation>
+        <translation>Položky na liště nástrojů prohlížeče:</translation>
     </message>
     <message>
         <location filename="../SettingsDialog.cpp" line="316"/>
