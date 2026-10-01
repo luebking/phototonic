@@ -1783,7 +1783,7 @@ bool ThumbsViewer::loadThumb(int currThumb, bool fastOnly, bool ignoreExisting, 
     bool shouldStoreThumbnail = ignoreExisting;
     QString imageFileName = m_model->item(currThumb)->data(FileNameRole).toString();
     QImage thumb = ignoreExisting ? QImage() : Metadata::thumbnail(imageFileName);
-    if (!Settings::alwaysUseExifThumb && qMax(thumb.width(),thumb.height()) < thumbSize/2) {
+    if (!Settings::alwaysUseExifThumb && qMax(thumb.width(),thumb.height()) < thumbSize*(1.0 - qMax(0,512-thumbSize)/992.0)) {
         thumb = QImage();
     } else if (!thumb.isNull()) {
         thumb = thumb.scaled(thumbSizeQ, Settings::thumbsLayout == Squares ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio, Qt::SmoothTransformation);
