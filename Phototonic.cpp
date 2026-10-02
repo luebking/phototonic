@@ -3752,16 +3752,26 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
         if (we->modifiers() == Qt::ControlModifier || Settings::scrollZooms) {
             zoom(scrollDelta / 120.0, we->position().toPoint());
         } else if (m_nextImageAction->isEnabled()) {
-            if (scrollDelta < 0) {
+            static int delta = 0;
+            delta += scrollDelta;
+            if (qAbs(scrollDelta) < 100 && qAbs(delta) < 360)
+                return true;
+            if (delta > 0) {
                 loadImage(Phototonic::Next);
             } else {
                 loadImage(Phototonic::Previous);
             }
+            delta = 0;
             return true;
         }
     } else if (o == thumbsViewer->viewport()) {
         if (we->modifiers() == Qt::ControlModifier) {
-            m_thumbSizeDelta += qRound(scrollDelta / 120.0);
+            static int delta = 0;
+            delta += scrollDelta;
+            if (qAbs(scrollDelta) < 100 && qAbs(delta) < 360)
+                return true;
+            m_thumbSizeDelta += qRound(delta / 120.0);
+            delta = 0;
             static QTimer *thumbResizer = nullptr;
             if (!thumbResizer) {
                 thumbResizer = new QTimer(this);
@@ -3771,6 +3781,8 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
             }
             thumbResizer->start();
         } else {
+            if (qAbs(scrollDelta) < 100)
+                return false; // doesn't reasonably work w/ touchpads or other high-res wheels
             if (we->modifiers() == Qt::ShiftModifier)
                 scrollThumbs(100*(scrollDelta/-qAbs(scrollDelta)));
             else
