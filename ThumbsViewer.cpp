@@ -600,8 +600,8 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                     return false;
                 m_constraints.last().minHue = min;
                 m_constraints.last().maxHue = max;
-                m_constraints.last().minBright = 25;
-                m_constraints.last().maxBright = 242;
+                m_constraints.last().minBright = qMax(m_constraints.last().minBright, 25); // account for prior "bright"
+                m_constraints.last().maxBright = qMin(m_constraints.last().maxBright, 242); // account for prior "dark"
                 m_constraints.last().minSaturation = 25;
                 needHistogram = true;
                 return true;
