@@ -1446,7 +1446,7 @@ void ThumbsViewer::scanForSort(UserRoles role) {
         }
 
         const QString filename = item->data(FileNameRole).toString();
-        if (item->data(BrightnessRole).isValid() && !cacheSignatures(filename)) {
+        if (item->data(BrightnessRole).isValid() || !cacheSignatures(filename)) {
             continue;
         }
 
