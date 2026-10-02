@@ -72,7 +72,7 @@ InfoView::InfoView(QWidget *parent) : QWidget(parent) {
     m_filter->setEditText(QString()); // start w/ empty filter
 
     m_manageFiltersButton = new QPushButton("+", this);
-    connect(m_manageFiltersButton, &QPushButton::clicked, [=]() {
+    connect(m_manageFiltersButton, &QPushButton::clicked, [this]() {
         bool ok;
         QString filter = Settings::exifFilters.value(m_filter->currentText());
         QString dlgTitle, dlgText;

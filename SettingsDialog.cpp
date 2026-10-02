@@ -109,7 +109,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     // Slide show random
     slideCrossfadeCheckBox = new QCheckBox(tr("Crossfade images"), this);
     slideCrossfadeCheckBox->setChecked(Settings::slideShowCrossfade);
-    connect(slideDelaySpinBox, &QDoubleSpinBox::valueChanged, [=](double d){ slideCrossfadeCheckBox->setEnabled(d >= 1.0);});
+    connect(slideDelaySpinBox, &QDoubleSpinBox::valueChanged, [this](double d){ slideCrossfadeCheckBox->setEnabled(d >= 1.0);});
 
     // Slide show options
     QGroupBox *slideshowGroupBox = new QGroupBox(tr("Slideshow"));
@@ -127,11 +127,11 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     list.sort();
     QCompleter *completer = new QCompleter(list, this);
     completer->setWidget(toolbarItemActions);
-    connect(toolbarItemActions, &QLineEdit::textEdited, [=](const QString &text) {
+    connect(toolbarItemActions, &QLineEdit::textEdited, [this,completer](const QString &text) {
         completer->setCompletionPrefix(text.section(',',-1));
         completer->complete();
     });
-    connect(completer, qOverload<const QString &>(&QCompleter::highlighted), [=](const QString &text) {
+    connect(completer, qOverload<const QString &>(&QCompleter::highlighted), [this](const QString &text) {
         toolbarItemActions->setText(toolbarItemActions->text().section(',',0,-2) + ',' + text);
     });
     toolbarItemActions->setText(Settings::imageToolActions.join(','));
@@ -342,7 +342,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
         bangTable->setItem(row++, 1, new QTableWidgetItem(i.value()));
     }
     bangLayout->addWidget(bangTable);
-    connect (bangTable, &QTableWidget::cellChanged, this, [=](int row, int col) {
+    connect (bangTable, &QTableWidget::cellChanged, this, [this](int row, int col) {
         if (row < bangTable->rowCount() - 1 && bangTable->item(row,0)->text().isEmpty() && bangTable->item(row,1)->text().isEmpty()) {
             bangTable->removeRow(row);
         } else {
@@ -373,7 +373,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     QAction *act = new QAction;
     act->setShortcut(Qt::Key_Delete);
     act->setShortcutContext(Qt::WidgetShortcut);
-    connect(act, &QAction::triggered, [=]() {
+    connect(act, &QAction::triggered, [this]() {
         bangTable->currentItem()->setText(QString());
     });
     bangTable->addAction(act);

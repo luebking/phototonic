@@ -28,6 +28,12 @@
 #include "CopyMoveToDialog.h"
 #include "Settings.h"
 
+#if __cplusplus >= 202002L
+#define _LCD_ =,this
+#else
+#define _LCD_ =
+#endif
+
 static QStringList gs_tmpPaths;
 
 void CopyMoveToDialog::savePaths() {
@@ -87,7 +93,7 @@ CopyMoveToDialog::CopyMoveToDialog(QWidget *parent, QString thumbsPath, bool cop
     pathsTable->horizontalHeader()->setStretchLastSection(true);
     pathsTable->setShowGrid(false);
 
-    connect(pathsTable->selectionModel(), &QItemSelectionModel::selectionChanged, [=](){
+    connect(pathsTable->selectionModel(), &QItemSelectionModel::selectionChanged, [this](){
         m_destination = QString();
         QModelIndexList indexesList;
         QStandardItem *item;
@@ -97,7 +103,7 @@ CopyMoveToDialog::CopyMoveToDialog(QWidget *parent, QString thumbsPath, bool cop
         destinationLabel->setText(m_destination);
     });
 
-    connect(pathsTable, &QTableView::doubleClicked, this, [=](){ m_destination.isEmpty() ? reject() : accept(); });
+    connect(pathsTable, &QTableView::doubleClicked, this, [this](){ m_destination.isEmpty() ? reject() : accept(); });
 
     QVBoxLayout *addRemoveBox = new QVBoxLayout;
 
@@ -106,7 +112,7 @@ CopyMoveToDialog::CopyMoveToDialog(QWidget *parent, QString thumbsPath, bool cop
     addRemoveBox->addWidget(addButton, 0);
 
     QPushButton *removeButton = new QPushButton(tr("Delete Bookmark"));
-    connect(removeButton, &QPushButton::clicked, this, [=]() {
+    connect(removeButton, &QPushButton::clicked, this, [_LCD_]() {
         QModelIndexList indexesList;
         if ((indexesList = pathsTable->selectionModel()->selectedIndexes()).size())
             pathsTableModel->removeRow(indexesList.first().row());
@@ -117,13 +123,13 @@ CopyMoveToDialog::CopyMoveToDialog(QWidget *parent, QString thumbsPath, bool cop
 
     QHBoxLayout *buttonsHbox = new QHBoxLayout;
     QPushButton *cancelButton = new QPushButton(tr("Cancel"));
-    connect(cancelButton, &QPushButton::clicked, this, [=](){ reject(); });
+    connect(cancelButton, &QPushButton::clicked, this, [this](){ reject(); });
 
     QPushButton *okButton = new QPushButton(copyOp ? tr("Copy") : tr("Move"));
     okButton->setDefault(true);
     connect(addButton, SIGNAL(clicked()), okButton, SLOT(setFocus()));
 
-    connect(okButton, &QPushButton::clicked, this, [=](){ m_destination.isEmpty() ? reject() : accept(); });
+    connect(okButton, &QPushButton::clicked, this, [this](){ m_destination.isEmpty() ? reject() : accept(); });
 
     buttonsHbox->addStretch(1);
     buttonsHbox->addWidget(cancelButton, 0);

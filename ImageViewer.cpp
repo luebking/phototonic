@@ -55,6 +55,12 @@
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
+#if __cplusplus >= 202002L
+#define _LCD_ =,this
+#else
+#define _LCD_ =
+#endif
+
 namespace { // anonymous, not visible outside of this file
 class ClickToClose : public QObject {
     public:
@@ -151,13 +157,13 @@ void ImageViewer::zoomTo(float goal, QPoint focus, int duration) {
     m_zoomMode = ZoomOriginal;
     if (!zoominator) {
         zoominator = new QVariantAnimation(this);
-        connect(zoominator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
+        connect(zoominator, &QVariantAnimation::valueChanged, [_LCD_](const QVariant &value) {
             if (zoominator->state() != QAbstractAnimation::Running)
                 return;
             m_zoom = value.toFloat();
             resizeImage(zoominator->property("zoomfocus").toPoint());
         });
-        connect(zoominator, &QObject::destroyed, [=]() {zoominator = nullptr;});
+        connect(zoominator, &QObject::destroyed, [_LCD_]() {zoominator = nullptr;});
     }
     zoominator->setDuration(duration);
     zoominator->setProperty("zoomfocus", focus);
@@ -185,7 +191,7 @@ void ImageViewer::zoomTo(ImageViewer::ZoomMode mode, QPoint focus, int duration)
         setFeedback(tr("Original Size"));
     }
     zoomTo(factor, focus, duration);
-    QTimer::singleShot(duration, this, [=]() {m_zoomMode = mode;});
+    QTimer::singleShot(duration, this, [_LCD_]() {m_zoomMode = mode;});
 }
 
 void ImageViewer::rotateTo(qreal r, Rotate direction) {
@@ -203,13 +209,13 @@ void ImageViewer::rotateTo(qreal r, Rotate direction) {
     if (!rotator) {
         rotator = new QVariantAnimation(this);
         rotator->setEasingCurve(QEasingCurve::InOutCubic);
-        connect(rotator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
+        connect(rotator, &QVariantAnimation::valueChanged, [_LCD_](const QVariant &value) {
             if (rotator->state() != QAbstractAnimation::Running)
                     return;
             m_rotation = value.toReal();
             update();
         });
-        connect(rotator, &QObject::destroyed, [=]() {rotator = nullptr;});
+        connect(rotator, &QObject::destroyed, [_LCD_]() {rotator = nullptr;});
     }
     rotator->setDuration(2*qAbs(r - m_rotation));
     rotator->setStartValue(m_rotation);
@@ -511,11 +517,11 @@ void ImageViewer::colorize() {
         int batch = viewerImage.height()/threadCount;
         if (threadCount > 1) {
             for (int i = 0; i < threadCount-1; ++i) {
-                threads[i] = QThread::create([=](){colorize(bits, bpl, i*batch, (i+1)*batch, &contrastTransform, &brightTransform);});
+                threads[i] = QThread::create([_LCD_](){colorize(bits, bpl, i*batch, (i+1)*batch, &contrastTransform, &brightTransform);});
                 threads[i]->start();
             }
         }
-        threads[threadCount-1] = QThread::create([=](){colorize(bits, bpl, (threadCount-1)*batch, viewerImage.height(), &contrastTransform, &brightTransform);});
+        threads[threadCount-1] = QThread::create([_LCD_](){colorize(bits, bpl, (threadCount-1)*batch, viewerImage.height(), &contrastTransform, &brightTransform);});
         threads[threadCount-1]->start();
 
 #if 1
@@ -595,14 +601,14 @@ void ImageViewer::setImage(const QImage &i)
             fadeAnimator->setStartValue(1.0);
             fadeAnimator->setEndValue(0.0);
             fadeAnimator->setDuration(250);
-            connect(fadeAnimator, &QVariantAnimation::valueChanged, [=](const QVariant &value) {
+            connect(fadeAnimator, &QVariantAnimation::valueChanged, [_LCD_](const QVariant &value) {
                 if (fadeAnimator->state() != QAbstractAnimation::Running)
                     return;
                 m_fadeout = value.toFloat();
                 update();
             });
-            connect(fadeAnimator, &QVariantAnimation::finished, [=]() {m_prevImage = QImage();});
-            connect(fadeAnimator, &QObject::destroyed, [=]() {fadeAnimator = nullptr;});
+            connect(fadeAnimator, &QVariantAnimation::finished, [this]() {m_prevImage = QImage();});
+            connect(fadeAnimator, &QObject::destroyed, [_LCD_]() {fadeAnimator = nullptr;});
         }
         fadeAnimator->start();
     } else {
@@ -699,7 +705,7 @@ void ImageViewer::reload() {
             animation->setParent(this);
 //            animation->start();
 //            setImage(animation->currentImage());
-            connect(animation, &QMovie::updated, this, [=]() {
+            connect(animation, &QMovie::updated, this, [_LCD_]() {
 //                QImage preImg = m_prevImage;
 //                m_prevImage = QImage();
                 const bool crossfade = m_crossfade;
@@ -720,7 +726,7 @@ void ImageViewer::reload() {
     delete animation;
     animation = nullptr;
 
-    auto loadThreaded = [=](QThread *thread) {
+    auto loadThreaded = [_LCD_](QThread *thread) {
         s_busy = true;
         while (!thread->wait(30)) {
             QApplication::processEvents();
@@ -903,7 +909,7 @@ void ImageViewer::preload(QString imageFileName) {
             if (!m_preloadThread)
                 break; // we've lost this to the main loader or below
         }
-        QTimer::singleShot(0, this, [=](){ preload(imageFileName); }); // allow event processing, notably reload
+        QTimer::singleShot(0, this, [_LCD_](){ preload(imageFileName); }); // allow event processing, notably reload
         return;
     }
 
@@ -1061,7 +1067,7 @@ void ImageViewer::updateRubberBandFeedback(QRect geom) {
         doubleclickhint = new QTimer(this);
         doubleclickhint->setInterval(2000);
         doubleclickhint->setSingleShot(true);
-        connect(doubleclickhint, &QTimer::timeout, [=]() {
+        connect(doubleclickhint, &QTimer::timeout, [this]() {
                                         if (cropRubberBand && cropRubberBand->isVisible())
                                             setFeedback(tr("Doubleclick to crop, right click to abort"), 10000);
                                         });
@@ -1128,7 +1134,7 @@ void ImageViewer::edit() {
         QFontComboBox *fonts = new QFontComboBox(&dlg);
         hl->addWidget(fonts);
         QPushButton *cb = new QPushButton(tr("Color"), &dlg);
-        connect(cb, &QPushButton::clicked, [=,&c]() { c = QColorDialog::getColor(Qt::black, this, tr("Pick a color")); });
+        connect(cb, &QPushButton::clicked, [_LCD_,&c]() { c = QColorDialog::getColor(Qt::black, this, tr("Pick a color")); });
         hl->addWidget(cb);
         vl->addLayout(hl);
         QTextEdit *te = new QTextEdit(&dlg);
@@ -1264,7 +1270,7 @@ void ImageViewer::configureLetterbox() {
     static CropDialog *dlg = nullptr;
     if (!dlg) {
         dlg = new CropDialog(this);
-        connect(dlg, &CropDialog::valuesChanged, [=](int left, int top, int right, int bottom) {
+        connect(dlg, &CropDialog::valuesChanged, [this](int left, int top, int right, int bottom) {
             m_letterbox = QRect(QPoint(left, top), QPoint(100-right, 100-bottom));
             update();
         });

@@ -48,18 +48,18 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
     buttonsHbox->addWidget(okButton, 0, Qt::AlignRight);
     okButton->setDefault(true);
 
-    auto makeSlider = [=](QString label, QSlider **slider) {
+    auto makeSlider = [this](QString label, QSlider **slider) {
         *slider = new QSlider(Qt::Horizontal);
         (*slider)->setTickPosition(QSlider::TicksAbove);
         (*slider)->setTickInterval(25);
         (*slider)->setRange(-100, 100);
         (*slider)->setTracking(false);
         (*slider)->setToolTip("0");
-        connect(*slider, &QSlider::valueChanged, [=](int v) {
+        connect(*slider, &QSlider::valueChanged, [this,slider](int v) {
             (*slider)->setToolTip(QString::number(v));
             applyColors();
         });
-        connect(*slider, &QSlider::sliderMoved, [=](int v) {
+        connect(*slider, &QSlider::sliderMoved, [this,slider](int v) {
             const QString n = QString::number(v);
             (*slider)->setToolTip(n);
             QToolTip::showText(QCursor::pos(), n, nullptr, QRect(), 0);
@@ -67,7 +67,7 @@ ColorsDialog::ColorsDialog(QWidget *parent, ImageViewer *imageViewer) : QDialog(
         QAction *zero = new QAction(*slider);
         zero->setShortcut(Qt::Key_0);
         zero->setShortcutContext(Qt::WidgetWithChildrenShortcut);
-        connect(zero, &QAction::triggered, [=]() { (*slider)->setValue(0); });
+        connect(zero, &QAction::triggered, [this,slider]() { (*slider)->setValue(0); });
         (*slider)->addAction(zero);
         return new QLabel(label);
     };

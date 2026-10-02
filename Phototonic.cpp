@@ -78,6 +78,12 @@
 #include "Tags.h"
 #include "ThumbsViewer.h"
 
+#if __cplusplus >= 202002L
+#define _LCD_ =,this
+#else
+#define _LCD_ =
+#endif
+
 static QString localFile(const QString &fileOrUrl) {
     QUrl url(fileOrUrl);
     if (url.scheme().isEmpty())
@@ -152,7 +158,7 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QString filt
     pal.setColor(m_statusLabel->backgroundRole(), QColor(0,0,0,192));
     pal.setColor(m_statusLabel->foregroundRole(), QColor(255,255,255,192));
 
-    connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, this, [=](const QModelIndex &current) {
+    connect (thumbsViewer, &ThumbsViewer::currentIndexChanged, this, [this](const QModelIndex &current) {
         if (!current.isValid())
             return;
         if (m_infoViewer->isVisible()) {
@@ -252,7 +258,7 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
             bouncer = new QTimer(this);
             bouncer->setInterval(30);
             bouncer->setSingleShot(true);
-            connect(bouncer, &QTimer::timeout, [=]() {
+            connect(bouncer, &QTimer::timeout, [_LCD_]() {
                 loadStartupFileList(newFiles, 0);
                 newFiles.clear();
                 thumbsViewer->reload(true);
@@ -260,7 +266,7 @@ void Phototonic::processStartupArguments(QStringList argumentsList, int filesSta
             if (!Settings::filesList.isEmpty())
                 bouncer->start(); // for the first file
         }
-        connect (snr, &QSocketNotifier::activated, [=](){
+        connect (snr, &QSocketNotifier::activated, [_LCD_](){
             QByteArray ba = input->readLine();
             if (ba.isEmpty()) { // effectively EOF
                 snr->setEnabled(false);
@@ -339,10 +345,10 @@ void Phototonic::loadStartupFileList(QStringList argumentsList, int filesStartAt
         QToolButton *btn = static_cast<QToolButton*>(myMainToolBar->widgetForAction(m_goHomeAction));
         QMenu *btnmenu = new QMenu(btn);
         QAction *act = btnmenu->addAction(tr("Home"));
-        connect(act, &QAction::triggered, [=]() { goTo(QDir::homePath()); });
+        connect(act, &QAction::triggered, [this]() { goTo(QDir::homePath()); });
         //: The file list is the optional list of files in the execution parameters, some virtual directory
         act = btnmenu->addAction(tr("File List"));
-        connect(act, &QAction::triggered, [=]() { goTo("Phototonic::FileList"); });
+        connect(act, &QAction::triggered, [this]() { goTo("Phototonic::FileList"); });
         btn->setMenu(btnmenu);
         setFileListMode(true);
     }
@@ -366,7 +372,7 @@ void Phototonic::createThumbsViewer() {
     connect(thumbsViewer->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
             this, SLOT(updateActions()));
     connect (thumbsViewer, &ThumbsViewer::status, this, &Phototonic::setStatus);
-    connect (thumbsViewer, &ThumbsViewer::progress, [=](unsigned int v, unsigned int t) {
+    connect (thumbsViewer, &ThumbsViewer::progress, [this](unsigned int v, unsigned int t) {
                 m_progressBar->setMaximum(t);
                 m_progressBar->setValue(v);
             });
@@ -377,7 +383,7 @@ void Phototonic::createThumbsViewer() {
     m_infoViewer = new InfoView(this);
     imageInfoDock->setWidget(m_infoViewer);
     m_logHistogram = false;
-    connect(imageInfoDock, &QDockWidget::visibilityChanged, [=](bool visible) {
+    connect(imageInfoDock, &QDockWidget::visibilityChanged, [this](bool visible) {
         if (!m_presentationMode) {
             Settings::imageInfoDockVisible = visible;
         }
@@ -392,7 +398,7 @@ void Phototonic::createThumbsViewer() {
             }
         }
     } );
-    connect(m_infoViewer, &InfoView::histogramClicked, [=](){
+    connect(m_infoViewer, &InfoView::histogramClicked, [this](){
         m_logHistogram = !m_logHistogram;
         int currentRow = thumbsViewer->currentIndex().row();
         if (currentRow > -1) {
@@ -400,7 +406,7 @@ void Phototonic::createThumbsViewer() {
             m_infoViewer->read(filePath, thumbsViewer->renderHistogram(filePath, m_logHistogram));
         }
     });
-    connect(m_infoViewer, &InfoView::exifChanged, [=](const QString &fileName) {
+    connect(m_infoViewer, &InfoView::exifChanged, [this](const QString &fileName) {
         thumbsViewer->updateThumbnail(fileName);
         m_imageTags->setSelectedFiles(thumbsViewer->selectedFiles());
     });
@@ -414,14 +420,14 @@ void Phototonic::createImageViewer() {
     connect(action("copyImage"), SIGNAL(triggered()), imageViewer, SLOT(copyImage()));
     connect(action("pasteImage"), SIGNAL(triggered()), imageViewer, SLOT(pasteImage()));
     QAction *rotateMouse = action("rotateMouse");
-    connect(imageViewer, &ImageViewer::toolsUpdated, [=](){ rotateMouse->setChecked(Settings::mouseRotateEnabled); });
-    connect(imageViewer, &ImageViewer::gotFocus, [=](){
+    connect(imageViewer, &ImageViewer::toolsUpdated, [_LCD_](){ rotateMouse->setChecked(Settings::mouseRotateEnabled); });
+    connect(imageViewer, &ImageViewer::gotFocus, [this](){
         if (thumbsViewer->selectionModel()->selectedIndexes().size() < 1)
             thumbsViewer->setCurrentIndex(imageViewer->fullImagePath);
     });
     connect(imageViewer, &ImageViewer::imageSaved, thumbsViewer, &ThumbsViewer::updateThumbnail);
     m_editSteps = 0;
-    connect(imageViewer, &ImageViewer::imageEdited, [=](bool yes) {
+    connect(imageViewer, &ImageViewer::imageEdited, [this](bool yes) {
         m_editSteps = yes ? m_editSteps+1 : 0;
         m_saveAction->setEnabled(m_editSteps);
         m_saveAsAction->setEnabled(m_editSteps);
@@ -545,10 +551,10 @@ void Phototonic::createImageViewer() {
     //: The guides a lines across the image for orientation
     submenu = menu->addMenu(tr("Guides"));
     QAction *act = new QAction(tr("Add vertical guide"), submenu);
-    connect(act, &QAction::triggered, [=]() { new GuideWidget(imageViewer, Qt::Vertical, imageViewer->contextSpot().x()); });
+    connect(act, &QAction::triggered, [this]() { new GuideWidget(imageViewer, Qt::Vertical, imageViewer->contextSpot().x()); });
     submenu->addAction(act);
     act = new QAction(tr("Add horizontal guide"), submenu);
-    connect(act, &QAction::triggered, [=]() { new GuideWidget(imageViewer, Qt::Horizontal, imageViewer->contextSpot().y()); });
+    connect(act, &QAction::triggered, [this]() { new GuideWidget(imageViewer, Qt::Horizontal, imageViewer->contextSpot().y()); });
     submenu->addAction(act);
 
     menu->addSeparator();
@@ -601,14 +607,14 @@ void Phototonic::createActions() {
     connect(action, SIGNAL(triggered()), this, SLOT(close()));
 
     MAKE_ACTION_NOSC(tr("Enlarge Thumbnails"), "thumbsZoomIn");
-    connect(action, &QAction::triggered, [=]() {m_thumbSizeDelta = 1; resizeThumbs();});
+    connect(action, &QAction::triggered, [this]() {m_thumbSizeDelta = 1; resizeThumbs();});
     action->setIcon(QIcon::fromTheme("zoom-in", QIcon(":/images/zoom_in.png")));
     if (thumbsViewer->thumbSize == THUMB_SIZE_MAX) {
         action->setEnabled(false);
     }
 
     MAKE_ACTION_NOSC(tr("Shrink Thumbnails"), "thumbsZoomOut");
-    connect(action, &QAction::triggered, [=]() {m_thumbSizeDelta = -1; resizeThumbs();});
+    connect(action, &QAction::triggered, [this]() {m_thumbSizeDelta = -1; resizeThumbs();});
     action->setIcon(QIcon::fromTheme("zoom-out", QIcon(":/images/zoom_out.png")));
     if (thumbsViewer->thumbSize == THUMB_SIZE_MIN) {
         action->setEnabled(false);
@@ -616,34 +622,34 @@ void Phototonic::createActions() {
 
     m_cutAction = MAKE_ACTION(tr("Cut"), "cut", "Ctrl+X");
     action->setIcon(QIcon::fromTheme("edit-cut", QIcon(":/images/cut.png")));
-    connect(action, &QAction::triggered, [=]() { copyOrCutThumbs(false); });
+    connect(action, &QAction::triggered, [this]() { copyOrCutThumbs(false); });
     action->setEnabled(false);
 
     m_copyAction = MAKE_ACTION(tr("Copy"), "copy", "Ctrl+C");
     action->setIcon(QIcon::fromTheme("edit-copy", QIcon(":/images/copy.png")));
-    connect(action, &QAction::triggered, [=]() { copyOrCutThumbs(true); });
+    connect(action, &QAction::triggered, [this]() { copyOrCutThumbs(true); });
     action->setEnabled(false);
 
     MAKE_ACTION_NOSC(tr("Show classic thumbnails"), "setClassicThumbs");
     action->setCheckable(true);
     action->setChecked(Settings::thumbsLayout == ThumbsViewer::Classic);
-    connect(action, &QAction::triggered, [=](){ Settings::thumbsLayout = ThumbsViewer::Classic; thumbsViewer->refreshThumbs(); });
+    connect(action, &QAction::triggered, [this](){ Settings::thumbsLayout = ThumbsViewer::Classic; thumbsViewer->refreshThumbs(); });
 
     MAKE_ACTION_NOSC(tr("Show square thumbnails"), "setSquareThumbs");
     action->setCheckable(true);
     action->setChecked(Settings::thumbsLayout == ThumbsViewer::Squares);
-    connect(action, &QAction::triggered, [=](){ Settings::thumbsLayout = ThumbsViewer::Squares; thumbsViewer->refreshThumbs(); });
+    connect(action, &QAction::triggered, [this](){ Settings::thumbsLayout = ThumbsViewer::Squares; thumbsViewer->refreshThumbs(); });
 
     MAKE_ACTION_NOSC(tr("Show compact thumbnails"), "setCompactThumbs");
     action->setCheckable(true);
     action->setChecked(Settings::thumbsLayout == ThumbsViewer::Compact);
-    connect(action, &QAction::triggered, [=](){ Settings::thumbsLayout = ThumbsViewer::Compact; thumbsViewer->refreshThumbs(); });
+    connect(action, &QAction::triggered, [this](){ Settings::thumbsLayout = ThumbsViewer::Compact; thumbsViewer->refreshThumbs(); });
 
     m_copyToAction = MAKE_ACTION(tr("Copy to..."), "copyTo", "Ctrl+Y");
-    connect(action, &QAction::triggered, [=]() { copyOrMoveImages(true); });
+    connect(action, &QAction::triggered, [this]() { copyOrMoveImages(true); });
 
     m_moveToAction = MAKE_ACTION(tr("Move to..."), "moveTo", "Ctrl+M");
-    connect(action, &QAction::triggered, [=]() { copyOrMoveImages(false); });
+    connect(action, &QAction::triggered, [this]() { copyOrMoveImages(false); });
 
     m_trashAction = MAKE_ACTION(tr("Move to Trash"), "moveToTrash", "Del");
     action->setIcon(style()->standardIcon(QStyle::SP_TrashIcon));
@@ -677,7 +683,7 @@ void Phototonic::createActions() {
     connect(action, SIGNAL(triggered()), this, SLOT(selectAllThumbs()));
 
     MAKE_ACTION_NOSC(tr("About"), "about");
-    connect(action, &QAction::triggered, [=](){MessageBox(this).about();});
+    connect(action, &QAction::triggered, [this](){MessageBox(this).about();});
 
     // Sort actions
     #define CHECKABLE_SORT action->setCheckable(true); connect(action, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
@@ -732,7 +738,7 @@ void Phototonic::createActions() {
     MAKE_ACTION_NOSC(tr("Show Toolbar"), "showViewerToolbar");
     action->setCheckable(true);
     action->setChecked(Settings::showViewerToolbar);
-    connect(action, &QAction::triggered, [=]() {
+    connect(action, &QAction::triggered, [this,action]() {
         Settings::showViewerToolbar = action->isChecked();
         m_imageToolBar->setVisible(Settings::showViewerToolbar);
         positionImageToolbar();
@@ -762,7 +768,7 @@ void Phototonic::createActions() {
 
     m_goBackAction = MAKE_ACTION(tr("Back"), "goBack", "Alt+Left");
     m_goBackAction->setIcon(QIcon::fromTheme("go-previous", QIcon(":/images/back.png")));
-    connect(m_goBackAction, &QAction::triggered, this, [=]() {
+    connect(m_goBackAction, &QAction::triggered, this, [this]() {
         if (currentHistoryIdx < 1)
             return;
         needHistoryRecord = false;
@@ -775,7 +781,7 @@ void Phototonic::createActions() {
 
     m_goFrwdAction = MAKE_ACTION(tr("Forward"), "goFrwd", "Alt+Right");
     m_goFrwdAction->setIcon(QIcon::fromTheme("go-next", QIcon(":/images/next.png")));
-    connect(m_goFrwdAction, &QAction::triggered, this, [=]() {
+    connect(m_goFrwdAction, &QAction::triggered, this, [this]() {
         if (currentHistoryIdx > pathHistoryList.size() - 2)
             return;
         needHistoryRecord = false;
@@ -787,10 +793,10 @@ void Phototonic::createActions() {
 
     m_goUpAction = MAKE_ACTION(tr("Go Up"), "up", "Alt+Up");
     action->setIcon(QIcon::fromTheme("go-up", QIcon(":/images/up.png")));
-    connect(action, &QAction::triggered, [=](){ goTo(QFileInfo(Settings::currentDirectory).dir().absolutePath()); });
+    connect(action, &QAction::triggered, [this](){ goTo(QFileInfo(Settings::currentDirectory).dir().absolutePath()); });
 
     m_goHomeAction = MAKE_ACTION_NOSC(tr("Home"), "goHome");
-    connect(action, &QAction::triggered, [=](){
+    connect(action, &QAction::triggered, [this](){
         if (Settings::isFileListLoaded || Settings::filesList.isEmpty() || Settings::currentDirectory != QDir::homePath())
             goTo(QDir::homePath());
         else
@@ -799,27 +805,27 @@ void Phototonic::createActions() {
     action->setIcon(QIcon::fromTheme("go-home", QIcon(":/images/home.png")));
 
     MAKE_ACTION(tr("Slide Show"), "toggleSlideShow", "Ctrl+W");
-    connect(action, &QAction::triggered, this, [=]() { setSlideShow(!m_slideShowActive); });
+    connect(action, &QAction::triggered, this, [this]() { setSlideShow(!m_slideShowActive); });
     action->setIcon(QIcon::fromTheme("media-playback-start", QIcon(":/images/play.png")));
 
     m_nextImageAction = MAKE_ACTION(tr("Next Image"), "nextImage", "PgDown");
     action->setIcon(QIcon::fromTheme("go-next", QIcon(":/images/next.png")));
-    connect(action, &QAction::triggered, [=](){ loadImage(Phototonic::Next); });
+    connect(action, &QAction::triggered, [this](){ loadImage(Phototonic::Next); });
 
     m_prevImageAction = MAKE_ACTION(tr("Previous Image"), "prevImage", "PgUp");
     action->setIcon(QIcon::fromTheme("go-previous", QIcon(":/images/back.png")));
-    connect(action, &QAction::triggered, [=](){ loadImage(Phototonic::Previous); });
+    connect(action, &QAction::triggered, [this](){ loadImage(Phototonic::Previous); });
 
     MAKE_ACTION(tr("First Image"), "firstImage", "Home");
     action->setIcon(QIcon::fromTheme("go-first", QIcon(":/images/first.png")));
-    connect(action, &QAction::triggered, [=](){ loadImage(Phototonic::First); });
+    connect(action, &QAction::triggered, [this](){ loadImage(Phototonic::First); });
 
     MAKE_ACTION(tr("Last Image"), "lastImage", "End");
     action->setIcon(QIcon::fromTheme("go-last", QIcon(":/images/last.png")));
-    connect(action, &QAction::triggered, [=](){ loadImage(Phototonic::Last); });
+    connect(action, &QAction::triggered, [this](){ loadImage(Phototonic::Last); });
 
     MAKE_ACTION(tr("Random Image"), "randomImage", "Ctrl+D");
-    connect(action, &QAction::triggered, [=](){ loadImage(Phototonic::Random); });
+    connect(action, &QAction::triggered, [this](){ loadImage(Phototonic::Random); });
 
     m_viewImageAction = MAKE_ACTION(tr("View Image"), "open", "Return");
     action->setIcon(QIcon::fromTheme("document-open", QIcon(":/images/open.png")));
@@ -842,22 +848,22 @@ void Phototonic::createActions() {
 
     MAKE_ACTION_NOSC(tr("Add Bookmark"), "addBookmark");
     action->setIcon(QIcon(":/images/new_bookmark.png"));
-    connect(action, &QAction::triggered, [=](){ addBookmark(getSelectedPath()); });
+    connect(action, &QAction::triggered, [this](){ addBookmark(getSelectedPath()); });
 
     MAKE_ACTION_NOSC(tr("Delete Bookmark"), "removeBookmark");
     action->setIcon(QIcon::fromTheme("edit-delete", QIcon(":/images/delete.png")));
 
     MAKE_ACTION(tr("Zoom Out"), "zoomOut", "-");
-    connect(action, &QAction::triggered, [=](){ zoom(-1.0f); });
+    connect(action, &QAction::triggered, [this](){ zoom(-1.0f); });
     action->setIcon(QIcon::fromTheme("zoom-out", QIcon(":/images/zoom_out.png")));
 
     MAKE_ACTION(tr("Zoom In"), "zoomIn", "+");
-    connect(action, &QAction::triggered, [=](){ zoom(1.0f); });
+    connect(action, &QAction::triggered, [this](){ zoom(1.0f); });
     action->setIcon(QIcon::fromTheme("zoom-in", QIcon(":/images/zoom_out.png")));
 
     MAKE_ACTION(tr("Reset Zoom"), "resetZoom", "*");
     action->setIcon(QIcon::fromTheme("zoom-fit-best", QIcon(":/images/zoom.png")));
-    connect(action, &QAction::triggered, this, [=](){
+    connect(action, &QAction::triggered, this, [this](){
         imageViewer->zoomTo(imageViewer->zoomMode() == ImageViewer::ZoomToFit ?
                                                                     ImageViewer::ZoomToFill :
                                                                     ImageViewer::ZoomToFit);
@@ -865,24 +871,24 @@ void Phototonic::createActions() {
 
     MAKE_ACTION(tr("Original Size"), "origZoom", "/");
     action->setIcon(QIcon::fromTheme("zoom-original", QIcon(":/images/zoom1.png")));
-    connect(action, &QAction::triggered, this, [=](){ imageViewer->zoomTo(ImageViewer::ZoomOriginal); });
+    connect(action, &QAction::triggered, this, [this](){ imageViewer->zoomTo(ImageViewer::ZoomOriginal); });
 
     MAKE_ACTION_NOSC(tr("Keep Zoom"), "keepZoom");
     action->setCheckable(true);
-    connect(action, &QAction::toggled, this, [=](bool keep) {imageViewer->lockZoom(keep);});
+    connect(action, &QAction::toggled, this, [this](bool keep) {imageViewer->lockZoom(keep);});
 
     MAKE_ACTION(tr("Rotate 90° CCW"), "rotateLeft", "Ctrl+Left");
     action->setIcon(QIcon::fromTheme("object-rotate-left", QIcon(":/images/rotate_left.png")));
-    connect(action, &QAction::triggered, this, [=]() { rotate(-90); });
+    connect(action, &QAction::triggered, this, [this]() { rotate(-90); });
 
     MAKE_ACTION(tr("Rotate 90° CW"), "rotateRight", "Ctrl+Right");
     action->setIcon(QIcon::fromTheme("object-rotate-right", QIcon(":/images/rotate_right.png")));
-    connect(action, &QAction::triggered, this, [=]() { rotate(+90); });
+    connect(action, &QAction::triggered, this, [this]() { rotate(+90); });
 
     MAKE_ACTION_NOSC(tr("Rotate with mouse"), "rotateMouse");
     action->setIcon(QIcon::fromTheme("rotation-allowed", QIcon(":/images/rotate.png")));
     action->setCheckable(true);
-    connect(action, &QAction::triggered, [=](){
+    connect(action, &QAction::triggered, [this,action](){
         Settings::mouseRotateEnabled = action->isChecked();
         imageViewer->setFeedback(tr("Or try holding Shift"));
     });
@@ -904,10 +910,10 @@ void Phototonic::createActions() {
     connect(action, SIGNAL(triggered()), this, SLOT(scaleImage()));
 
     MAKE_ACTION(tr("Rotate 1° CCW"), "freeRotateLeft", "Ctrl+Shift+Left");
-    connect(action, &QAction::triggered, this, [=]() { freeRotate(-1); });
+    connect(action, &QAction::triggered, this, [this]() { freeRotate(-1); });
 
     MAKE_ACTION(tr("Rotate 1° CW"), "freeRotateRight", "Ctrl+Shift+Right");
-    connect(action, &QAction::triggered, this, [=]() { freeRotate(+1); });
+    connect(action, &QAction::triggered, this, [this]() { freeRotate(+1); });
 
     MAKE_ACTION(tr("Colors"), "colors", "Ctrl+O");
     connect(action, SIGNAL(triggered()), this, SLOT(showColorsDialog()));
@@ -915,24 +921,24 @@ void Phototonic::createActions() {
 
     MAKE_ACTION_NOSC(tr("Crop"), "crop");
     action->setIcon(QIcon(":/images/crop.png"));
-    connect(action, &QAction::triggered, [=](){ imageViewer->setEditMode(ImageViewer::Crop); });
+    connect(action, &QAction::triggered, [this](){ imageViewer->setEditMode(ImageViewer::Crop); });
 
     MAKE_ACTION_NOSC(tr("Blackout"), "blackout");
     action->setIcon(QIcon(":/images/blackout.png"));
-    connect(action, &QAction::triggered, [=](){ imageViewer->setEditMode(ImageViewer::Blackout); });
+    connect(action, &QAction::triggered, [this](){ imageViewer->setEditMode(ImageViewer::Blackout); });
 
     MAKE_ACTION_NOSC(tr("Cartouche"), "cartouche");
     action->setIcon(QIcon(":/images/cartouche.png"));
-    connect(action, &QAction::triggered, [=](){ imageViewer->setEditMode(ImageViewer::Cartouche);  });
+    connect(action, &QAction::triggered, [this](){ imageViewer->setEditMode(ImageViewer::Cartouche);  });
 
     MAKE_ACTION_NOSC(tr("Annotate"), "annotate");
     action->setIcon(QIcon(":/images/annotate.png"));
-    connect(action, &QAction::triggered, [=](){ imageViewer->setEditMode(ImageViewer::Annotate); });
+    connect(action, &QAction::triggered, [this](){ imageViewer->setEditMode(ImageViewer::Annotate); });
 
     m_findDupesAction = MAKE_ACTION_NOSC(tr("Find Duplicate Images"), "findDupes");
     action->setIcon(QIcon(":/images/duplicates.png"));
     action->setCheckable(true);
-    connect(action, &QAction::triggered, [=]() {
+    connect(action, &QAction::triggered, [_LCD_]() {
         if (action->isChecked()) {
             sortByName->setChecked(false);
             sortByTime->setChecked(false);
@@ -953,16 +959,16 @@ void Phototonic::createActions() {
 
     MAKE_ACTION(tr("Keep Transformations"), "keepTransform", "Ctrl+K");
     action->setCheckable(true);
-    connect(action, &QAction::triggered, [=](){ imageViewer->keepTransformation(action->isChecked()); });
+    connect(action, &QAction::triggered, [this,action](){ imageViewer->keepTransformation(action->isChecked()); });
 
     m_moveLeftAction = MAKE_ACTION(tr("Slide Image Left"), "moveLeft", "Left");
-    connect(action, &QAction::triggered, [=](){ imageViewer->slideImage(QPoint(50, 0)); });
+    connect(action, &QAction::triggered, [this](){ imageViewer->slideImage(QPoint(50, 0)); });
     m_moveRightAction = MAKE_ACTION(tr("Slide Image Right"), "moveRight", "Right");
-    connect(action, &QAction::triggered, [=](){ imageViewer->slideImage(QPoint(-50, 0)); });
+    connect(action, &QAction::triggered, [this](){ imageViewer->slideImage(QPoint(-50, 0)); });
     m_moveUpAction = MAKE_ACTION(tr("Slide Image Up"), "moveUp", "Up");
-    connect(action, &QAction::triggered, [=](){ imageViewer->slideImage(QPoint(0, 50)); });
+    connect(action, &QAction::triggered, [this](){ imageViewer->slideImage(QPoint(0, 50)); });
     m_moveDownAction = MAKE_ACTION(tr("Slide Image Down"), "moveDown", "Down");
-    connect(action, &QAction::triggered, [=](){ imageViewer->slideImage(QPoint(0, -50)); });
+    connect(action, &QAction::triggered, [this](){ imageViewer->slideImage(QPoint(0, -50)); });
 
     MAKE_ACTION_NOSC(tr("Invert Selection"), "invertSelection");
     connect(action, SIGNAL(triggered()), thumbsViewer, SLOT(invertSelection()));
@@ -982,7 +988,7 @@ void Phototonic::createActions() {
 
     m_imageInfoAction = MAKE_ACTION_NOSC(tr("Image Info"), "imageinfo");
     action->setCheckable(true);
-    connect(action, &QAction::triggered, [=]() {
+    connect(action, &QAction::triggered, [this,action]() {
         if (action->isChecked()) {
             m_infoViewer->read(imageViewer->fullImagePath);
             imageViewer->setFeedback(m_infoViewer->html(), false);
@@ -992,7 +998,7 @@ void Phototonic::createActions() {
     });
     m_showGridAction =  MAKE_ACTION_NOSC(tr("Show Grid"), "showgrid");
     action->setCheckable(true);
-    connect(action, &QAction::triggered, [=]() { imageViewer->showGrid(action->isChecked()); });
+    connect(action, &QAction::triggered, [this,action]() { imageViewer->showGrid(action->isChecked()); });
 }
 
 QAction *Phototonic::action(const QString name, bool dropCache) const {
@@ -1174,7 +1180,7 @@ void Phototonic::createToolBars() {
     connect(dirCompleter, SIGNAL(activated(QString)), this, SLOT(goPathBarDir()));
     std::unique_ptr<QMetaObject::Connection> pconn{new QMetaObject::Connection};
     QMetaObject::Connection &conn = *pconn;
-    conn = connect(pathLineEdit, &QLineEdit::textEdited, [=](){fileSystemModel->setRootPath("/"); QObject::disconnect(conn);});
+    conn = connect(pathLineEdit, &QLineEdit::textEdited, [_LCD_](){fileSystemModel->setRootPath("/"); QObject::disconnect(conn);});
     pathLineEdit->setMinimumWidth(200);
     connect(pathLineEdit, SIGNAL(returnPressed()), this, SLOT(goPathBarDir()));
     m_pathLineEditAction = myMainToolBar->addWidget(pathLineEdit);
@@ -1193,14 +1199,14 @@ void Phototonic::createToolBars() {
     precision->setSuffix("%");
     precision->setValue(Settings::dupeAccuracy);
     m_findDupesAction->setToolTip(m_findDupesAction->text() + "\n" + precision->text());
-    connect(precision, &QSpinBox::valueChanged, [=](int v) {
+    connect(precision, &QSpinBox::valueChanged, [_LCD_](int v) {
         Settings::dupeAccuracy = v;
         m_findDupesAction->setToolTip(m_findDupesAction->text() + "\n" + precision->text());
     });
     QAction *act = new QAction(btn->text());
     act->setShortcut(Qt::Key_Enter);
     act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
-    connect(act, &QAction::triggered, [=]() {
+    connect(act, &QAction::triggered, [this]() {
         m_findDupesAction->setChecked(false); m_findDupesAction->trigger();
     });
     precision->addAction(act);
@@ -1260,7 +1266,7 @@ void Phototonic::createToolBars() {
     QTimer *filterBouncer = new QTimer(this);
     filterBouncer->setSingleShot(true);
     filterBouncer->setInterval(250);
-    connect (filterBouncer, &QTimer::timeout, this, [=]() {
+    connect (filterBouncer, &QTimer::timeout, this, [this]() {
         if (filterLineEdit->text().contains("/?"))
             return;
         QString error;
@@ -1270,7 +1276,7 @@ void Phototonic::createToolBars() {
             QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
                                 error, filterLineEdit);
     });
-    connect(filterLineEdit, &QLineEdit::textEdited, [=](){
+    connect(filterLineEdit, &QLineEdit::textEdited, [_LCD_](){
         if (filterLineEdit->text().contains("/?"))
             QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
                                 rtfm, filterLineEdit, {}, 300000);
@@ -1285,7 +1291,7 @@ void Phototonic::createToolBars() {
     act = new QAction;
     act->setShortcut(Qt::Key_Escape);
     act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
-    connect(act, &QAction::triggered, [=]() {
+    connect(act, &QAction::triggered, [this]() {
         thumbsViewer->setFocus(Qt::OtherFocusReason);
     });
     pathLineEdit->addAction(act);
@@ -1344,7 +1350,7 @@ void Phototonic::createFileSystemDock() {
     fileSystemTree->addAction(action("addBookmark"));
     fileSystemTree->setContextMenuPolicy(Qt::ActionsContextMenu);
 
-    connect(fileSystemTree, &FileSystemTree::clicked, this, [=]() { goTo(getSelectedPath()); });
+    connect(fileSystemTree, &FileSystemTree::clicked, this, [this]() { goTo(getSelectedPath()); });
     connect(fileSystemModel, &QFileSystemModel::rowsRemoved, this, &Phototonic::checkDirState);
     connect(fileSystemTree, &FileSystemTree::dropOp, this, &Phototonic::dropOp);
 
@@ -1357,9 +1363,9 @@ void Phototonic::createFileSystemDock() {
     fileSystemTreeMainWidget->setLayout(mainLayout);
 
     fileSystemDock->setWidget(fileSystemTreeMainWidget);
-    connect(fileSystemDock, &QDockWidget::visibilityChanged, [=](bool visible) {
+    connect(fileSystemDock, &QDockWidget::visibilityChanged, [this](bool visible) {
         if (visible && !fileSystemTree->model()) {
-            QTimer::singleShot(50, [=](){
+            QTimer::singleShot(50, [this](){
                 fileSystemModel->setOptions(QFileSystemModel::Options());
                 fileSystemTree->setModel(fileSystemModel);
                 for (int i = 1; i < fileSystemModel->columnCount(); ++i) {
@@ -1384,12 +1390,12 @@ void Phototonic::createBookmarksDock() {
     bookmarks = new BookMarks(bookmarksDock);
     bookmarksDock->setWidget(bookmarks);
 
-    connect(bookmarksDock, &QDockWidget::visibilityChanged, [=](bool visible) {
+    connect(bookmarksDock, &QDockWidget::visibilityChanged, [this](bool visible) {
         if (!m_presentationMode) {
             Settings::bookmarksDockVisible = visible;
         }
     });
-    connect(bookmarks, &BookMarks::itemClicked, [=](QTreeWidgetItem *item, int col) { goTo(item->toolTip(col)); });
+    connect(bookmarks, &BookMarks::itemClicked, [this](QTreeWidgetItem *item, int col) { goTo(item->toolTip(col)); });
     connect(action("removeBookmark"), SIGNAL(triggered()), bookmarks, SLOT(removeBookmark()));
     connect(bookmarks, SIGNAL(dropOp(Qt::KeyboardModifiers, bool, QString)),
             this, SLOT(dropOp(Qt::KeyboardModifiers, bool, QString)));
@@ -1404,7 +1410,7 @@ void Phototonic::createBookmarksDock() {
 void Phototonic::createImagePreviewDock() {
     imagePreviewDock = new QDockWidget(tr("Preview"), this);
     imagePreviewDock->setObjectName("ImagePreview");
-    connect(imagePreviewDock, &QDockWidget::visibilityChanged, [=](bool visible) {
+    connect(imagePreviewDock, &QDockWidget::visibilityChanged, [this](bool visible) {
         if (!m_presentationMode) {
             Settings::imagePreviewDockVisible = visible;
             if (visible) {
@@ -1416,7 +1422,7 @@ void Phototonic::createImagePreviewDock() {
                 if (currentRow > -1)
                     imageViewer->loadImage(thumbsViewer->fullPathOf(currentRow), thumbsViewer->icon(currentRow).pixmap(THUMB_SIZE_MAX).toImage());
             } else {
-                QTimer::singleShot(100, this, [=](){if (!imageViewer->isVisible()) imageViewer->clearImage();});
+                QTimer::singleShot(100, this, [this](){if (!imageViewer->isVisible()) imageViewer->clearImage();});
             }
         }
     });
@@ -1426,7 +1432,7 @@ void Phototonic::createImagePreviewDock() {
 void Phototonic::createThumbviewDock() {
     m_thumbViewDock = new QDockWidget(tr("Thumbs"), this);
     m_thumbViewDock->setObjectName("ThumbView");
-    connect(m_thumbViewDock, &QDockWidget::visibilityChanged, [=](bool visible) {
+    connect(m_thumbViewDock, &QDockWidget::visibilityChanged, [this](bool visible) {
         if (!m_presentationMode) {
             Settings::thumbViewDockVisible = visible;
             if (visible) {
@@ -1452,16 +1458,16 @@ void Phototonic::createImageTagsDock() {
     m_imageTags = new ImageTags(tagsDock);
     tagsDock->setWidget(m_imageTags);
 
-    connect(tagsDock, &QDockWidget::visibilityChanged, [=](bool visible) {
+    connect(tagsDock, &QDockWidget::visibilityChanged, [this](bool visible) {
         if (!m_presentationMode) {
             Settings::tagsDockVisible = visible;
         }
     });
     connect(m_imageTags, &ImageTags::filterChanged, this,
-        [=](const QStringList &mandatory, const QStringList &sufficient, bool invert) {
+        [this](const QStringList &mandatory, const QStringList &sufficient, bool invert) {
             thumbsViewer->setTagFilters(mandatory, sufficient, invert);
     });
-    connect(m_imageTags, &ImageTags::tagRequest, [=](const QStringList &tagsAdded, const QStringList &tagsRemoved) {
+    connect(m_imageTags, &ImageTags::tagRequest, [this](const QStringList &tagsAdded, const QStringList &tagsRemoved) {
         thumbsViewer->tagSelected(tagsAdded, tagsRemoved);
         if (m_infoViewer && m_infoViewer->isVisible())
             m_infoViewer->reloadExifData();
@@ -1470,7 +1476,7 @@ void Phototonic::createImageTagsDock() {
     connect(thumbsViewer, &ThumbsViewer::filesHidden, m_imageTags, &ImageTags::removeTagsFor);
     connect(thumbsViewer, &ThumbsViewer::filesShown, m_imageTags, &ImageTags::addTagsFor);
 
-    connect(thumbsViewer, &ThumbsViewer::lazySelectionChanged, m_imageTags, [=]() {
+    connect(thumbsViewer, &ThumbsViewer::lazySelectionChanged, m_imageTags, [this]() {
         m_imageTags->setSelectedFiles(thumbsViewer->selectedFiles());
     });
 
@@ -1575,7 +1581,7 @@ void Phototonic::runExternalApp() {
     QString execCommand = sender() == m_wallpaperAction ? Settings::wallpaperCommand :
                         Settings::externalApps[static_cast<QAction*>(sender())->text()];
 
-    auto substituteCommand = [=,&execCommand](QString path) {
+    auto substituteCommand = [this,&execCommand](QString path) {
         char parameter = 2;
         if (execCommand.contains("%f", Qt::CaseInsensitive))
             execCommand.replace("%f", path, Qt::CaseInsensitive);
@@ -1794,13 +1800,13 @@ void Phototonic::copyOrMoveImages(bool isCopyOperation) {
     setSlideShow(false);
 
     if (!isCopyOperation && thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
-        QTimer::singleShot(100, this, [=](){copyOrMoveImages(isCopyOperation);});
+        QTimer::singleShot(100, this, [_LCD_](){copyOrMoveImages(isCopyOperation);});
         return;
     }
 
     imageViewer->setCursorHiding(false);
 
-    auto cleanup = [=]() { if (isFullScreen()) imageViewer->setCursorHiding(true); };
+    auto cleanup = [this]() { if (isFullScreen()) imageViewer->setCursorHiding(true); };
 
     CopyMoveToDialog copyMoveToDialog(this, getSelectedPath(), isCopyOperation);
     if (!copyMoveToDialog.exec())
@@ -2038,8 +2044,8 @@ void Phototonic::showColorsDialog() {
 
     if (!colorsDialog) {
         colorsDialog = new ColorsDialog(this, imageViewer);
-        connect(colorsDialog, &QDialog::finished, [=](){ Settings::colorsActive = false; });
-        connect(imageViewer, &ImageViewer::imageEdited, [=](bool dirty){ if (!dirty)colorsDialog->reset(); });
+        connect(colorsDialog, &QDialog::finished, [this](){ Settings::colorsActive = false; });
+        connect(imageViewer, &ImageViewer::imageEdited, [this](bool dirty){ if (!dirty)colorsDialog->reset(); });
     }
 
     imageViewer->setCursorHiding(false);
@@ -2091,7 +2097,7 @@ void Phototonic::pasteThumbs(QString destDir) {
     }
 
     if (pasteInProgress || thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
-        QTimer::singleShot(100, this, [=](){pasteThumbs();});
+        QTimer::singleShot(100, this, [this](){pasteThumbs();});
         return;
     }
 
@@ -2137,7 +2143,7 @@ void Phototonic::deleteImages(bool trash) { // Deleting selected thumbnails
     if (m_deleteInProgress)
         return; // no.
     if (thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
-        QTimer::singleShot(100, this, [=](){deleteImages(trash);});
+        QTimer::singleShot(100, this, [_LCD_](){deleteImages(trash);});
         return;
     }
     ASSERT_IMAGES_SELECTED
@@ -2257,7 +2263,7 @@ void Phototonic::deleteFromViewer(bool trash) {
     imageViewer->setCursorHiding(false); // tells that sth. is happening
 
     if (thumbsViewer->isBusy()) { // defer, don't alter while the thumbsviewer is loading stuff
-        QTimer::singleShot(100, this, [=](){deleteFromViewer(trash);});
+        QTimer::singleShot(100, this, [_LCD_](){deleteFromViewer(trash);});
         return;
     }
 
@@ -2352,7 +2358,7 @@ void Phototonic::goPathBarDir() {
         QString command = it.value();
         command.replace("%s", pathLineEdit->text().section(':', 1));
         QProcess *job = new QProcess(this);
-        connect(job, &QProcess::readyReadStandardOutput, this, [=]() {
+        connect(job, &QProcess::readyReadStandardOutput, this, [_LCD_]() {
             QByteArray ba = job->readAllStandardOutput();
             QStringList list = QString::fromLocal8Bit(ba).split('\n');
             loadStartupFileList(list, 0);
@@ -2737,7 +2743,7 @@ void Phototonic::newImage() {
 
 void Phototonic::setDocksVisibility(bool visible) {
     layout()->setEnabled(false);
-    auto vis = [=](QDockWidget *d) { return visible || d->isFloating(); };
+    auto vis = [_LCD_](QDockWidget *d) { return visible || d->isFloating(); };
     fileSystemDock->setVisible(vis(fileSystemDock) && Settings::fileSystemDockVisible);
     bookmarksDock->setVisible(vis(bookmarksDock) && Settings::bookmarksDockVisible);
     imagePreviewDock->setVisible(vis(imagePreviewDock) && Settings::imagePreviewDockVisible);
@@ -2903,7 +2909,7 @@ void Phototonic::slideShowHandler() {
         thumbsViewer->setCurrentIndex(next, false);
 #if 0 // poor man's ken burns - disabled for now
         if (imageViewer->crossfade() && !action("keepZoom")->isChecked())
-            QTimer::singleShot(300, this, [=]() {imageViewer->zoomTo(ImageViewer::ZoomToFill, QPoint(-1,-1), Settings::slideShowDelay * 1000.0 - 500);});
+            QTimer::singleShot(300, this, [this]() {imageViewer->zoomTo(ImageViewer::ZoomToFill, QPoint(-1,-1), Settings::slideShowDelay * 1000.0 - 500);});
 #endif
     }
     last = thumbsViewer->currentIndex().row();
@@ -2953,7 +2959,7 @@ void Phototonic::slideShowHandler() {
         next = Settings::wrapImageList ? -1 : -2;
 
     if (next > -1 && next < thumbsViewer->model()->rowCount())
-        connect (imageViewer, &ImageViewer::imageLoaded, this, [=]() { imageViewer->preload(thumbsViewer->fullPathOf(next));}, Qt::SingleShotConnection);
+        connect (imageViewer, &ImageViewer::imageLoaded, this, [this]() { imageViewer->preload(thumbsViewer->fullPathOf(next));}, Qt::SingleShotConnection);
 }
 
 void Phototonic::loadImage(SpecialImageIndex idx) {
@@ -3083,7 +3089,7 @@ void Phototonic::dropOp(Qt::KeyboardModifiers keyMods, bool dirOp, QString copyM
     }
 
     if (!Settings::isCopyOperation && (m_deleteInProgress || thumbsViewer->isBusy())) { // defer, don't alter while the thumbsviewer is loading stuff
-        QTimer::singleShot(100, this, [=](){dropOp(keyMods, dirOp, copyMoveDirPath);});
+        QTimer::singleShot(100, this, [_LCD_](){dropOp(keyMods, dirOp, copyMoveDirPath);});
         return;
     }
 
@@ -3675,7 +3681,7 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
     }
 
     static QPropertyAnimation *animator = nullptr;
-    auto scrollThumbs = [=](int steps) {
+    auto scrollThumbs = [this](int steps) {
         if (!animator) {
                 animator = new QPropertyAnimation(thumbsViewer->verticalScrollBar(), "value");
                 animator->setDuration(150); // default is 250
@@ -3805,7 +3811,7 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
                 thumbResizer = new QTimer(this);
                 thumbResizer->setInterval(125);
                 thumbResizer->setSingleShot(true);
-                connect(thumbResizer, &QTimer::timeout, [=](){resizeThumbs();});
+                connect(thumbResizer, &QTimer::timeout, [this](){resizeThumbs();});
             }
             thumbResizer->start();
         } else {

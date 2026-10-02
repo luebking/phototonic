@@ -22,6 +22,12 @@
 #include "MessageBox.h"
 #include "Phototonic.h"
 
+#if __cplusplus >= 202002L
+#define _LCD_ =,this
+#else
+#define _LCD_ =
+#endif
+
 MessageBox::MessageBox(QWidget *parent, StandardButtons buttons, StandardButton defaultButton) : QMessageBox(parent) {
     setWindowIcon(QIcon(":/images/phototonic.png"));
     if (buttons != NoButton) {
@@ -132,7 +138,7 @@ void MessageBox::about() {
     int idx = 0;
     QTimer *t = new QTimer(this);
     t->setInterval(3000);
-    connect (t, &QTimer::timeout, [=,&idx]() {
+    connect (t, &QTimer::timeout, [_LCD_,&idx]() {
         idx = (idx + 1) % contributers.size();
         if (magicAnimation) {
             magicAnimation->setStartValue(1);
@@ -140,7 +146,7 @@ void MessageBox::about() {
             magicAnimation->setEasingCurve(QEasingCurve::OutQuad);
             magicAnimation->start();
         }
-        QTimer::singleShot(125, this, [=]() {
+        QTimer::singleShot(125, this, [_LCD_]() {
             setInformativeText(contributers.at(idx));
             if (magicAnimation) {
                 magicAnimation->setStartValue(0);

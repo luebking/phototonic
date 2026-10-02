@@ -44,7 +44,7 @@ CropDialog::CropDialog(QWidget *parent) : QDialog(parent) {
     buttonsHbox->addWidget(okButton, 0, Qt::AlignRight);
 
     QSlider *topSlide = nullptr, *bottomSlide = nullptr,  *leftSlide = nullptr, *rightSlide = nullptr;
-    auto setupSliders = [=](QSlider **sliderp, QSpinBox **spinboxp) {
+    auto setupSliders = [this](QSlider **sliderp, QSpinBox **spinboxp) {
         QSlider *slider = new QSlider(Qt::Horizontal, this);
         slider->setTickPosition(QSlider::TicksAbove);
         slider->setTickInterval(10);

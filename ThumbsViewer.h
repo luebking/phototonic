@@ -19,6 +19,7 @@
 #ifndef THUMBS_VIEWER_H
 #define THUMBS_VIEWER_H
 
+class QBitArray;
 class QFileSystemWatcher;
 class QStandardItem;
 class QStandardItemModel;

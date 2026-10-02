@@ -47,6 +47,12 @@
 #include "Tags.h"
 #include "ThumbsViewer.h"
 
+#if __cplusplus >= 202002L
+#define _LCD_ =,this
+#else
+#define _LCD_ =
+#endif
+
 static QCollator gs_filenameCollator;
 
 class PStandardItem : public QStandardItem {
@@ -97,7 +103,7 @@ ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
     m_selectionChangedTimer.setInterval(100);
     m_selectionChangedTimer.setSingleShot(true);
     connect(&m_selectionChangedTimer, &QTimer::timeout, this, &ThumbsViewer::promoteSelectionChange);
-    connect(this->selectionModel(), &QItemSelectionModel::selectionChanged, this, [=]() {
+    connect(this->selectionModel(), &QItemSelectionModel::selectionChanged, this, [this]() {
         if (!m_selectionChangedTimer.isActive()) {
             m_selectionChangedTimer.start();
         }
@@ -105,12 +111,12 @@ ThumbsViewer::ThumbsViewer(QWidget *parent) : QListView(parent) {
 
     m_loadThumbTimer.setInterval(250);
     m_loadThumbTimer.setSingleShot(true);
-    connect(&m_loadThumbTimer, &QTimer::timeout, [=](){ loadVisibleThumbs(verticalScrollBar()->value(), true); });
+    connect(&m_loadThumbTimer, &QTimer::timeout, [this](){ loadVisibleThumbs(verticalScrollBar()->value(), true); });
 
     QTimer *fsUpdateDelay = new QTimer(this);
     fsUpdateDelay->setSingleShot(true);
     fsUpdateDelay->setInterval(500);
-    connect(fsUpdateDelay, &QTimer::timeout, this, [=]() {reload(true);});
+    connect(fsUpdateDelay, &QTimer::timeout, this, [this]() {reload(true);});
     m_fsWatcher = new QFileSystemWatcher(this);
     connect(m_fsWatcher, &QFileSystemWatcher::directoryChanged, fsUpdateDelay, qOverload<>(&QTimer::start));
 
@@ -466,7 +472,7 @@ void ThumbsViewer::loadFileList(bool iterative) {
 void ThumbsViewer::reload(bool iterative) {
     if (m_busy) {
         abort();
-        QTimer::singleShot(50, this, [=]() { reload(iterative); });
+        QTimer::singleShot(50, this, [_LCD_]() { reload(iterative); });
         return;
     }
     static QTimer *scrollDelay = nullptr;
@@ -474,7 +480,7 @@ void ThumbsViewer::reload(bool iterative) {
         scrollDelay = new QTimer(this);
         scrollDelay->setInterval(150);
         scrollDelay->setSingleShot(true);
-        connect(scrollDelay, &QTimer::timeout, [=]() { loadVisibleThumbs(verticalScrollBar()->value(), true); });
+        connect(scrollDelay, &QTimer::timeout, [this]() { loadVisibleThumbs(verticalScrollBar()->value(), true); });
     }
     scrollDelay->stop();
     disconnect(verticalScrollBar(), SIGNAL(valueChanged(int)), scrollDelay, SLOT(start()));
@@ -589,7 +595,7 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
         QStringList subtokens = tokens.at(i).split(' ', Qt::SkipEmptyParts);
         char side = 0;
         for (QString t : subtokens) {
-            auto setHue = [=,&needHistogram](QString name, unsigned char min, unsigned char max) {
+            auto setHue = [_LCD_,&needHistogram](QString name, unsigned char min, unsigned char max) {
                 if (t.compare(name, Qt::CaseInsensitive))
                     return false;
                 m_constraints.last().minHue = min;
@@ -675,7 +681,7 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 side = 3;
             if (t.isEmpty())
                 continue;
-            auto setSizeConstraint = [=](int multiplier) {
+            auto setSizeConstraint = [_LCD_](int multiplier) {
                 bool ok;
                 qint64 v = t.chopped(2).toFloat(&ok) * multiplier;
                 if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; return false; }
@@ -687,7 +693,7 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 }
                 return true;
             };
-            auto setAgeConstraint = [=](int multiplier) {
+            auto setAgeConstraint = [_LCD_](int multiplier) {
                 bool ok;
                 qint64 v = t.chopped(1).toFloat(&ok) * multiplier;
                 if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; return false; }
@@ -937,7 +943,7 @@ void ThumbsViewer::loadDuplicates()
 {
     if (m_busy) {
         abort();
-        QTimer::singleShot(50, this, [=]() { loadDuplicates(); });
+        QTimer::singleShot(50, this, [this]() { loadDuplicates(); });
         return;
     }
     m_busy = true;

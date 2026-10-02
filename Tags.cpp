@@ -36,6 +36,12 @@
 
 #define BLOCK_RECURSION QSignalBlocker blocker(tagsTree);
 
+#if __cplusplus >= 202002L
+#define _LCD_ =,this
+#else
+#define _LCD_ =
+#endif
+
 enum { NewTag = Qt::UserRole + 1, InScope };
 
 ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
@@ -52,13 +58,13 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
     tabs->setTabIcon(0, QIcon(":/images/tag_yellow.png"));
     tabs->setTabIcon(1, QIcon(":/images/tag_filter_off.png"));
     tabs->setExpanding(false);
-    connect(tabs, &QTabBar::currentChanged, this, [=](int idx) { idx ? showTagsFilter() : showSelectedImagesTags(); });
+    connect(tabs, &QTabBar::currentChanged, this, [this](int idx) { idx ? showTagsFilter() : showSelectedImagesTags(); });
 
     QToolButton *btn = new QToolButton;
     btn->setToolTip(tr("Show only library tags"));
     m_tagGroup = 3;
     btn->setIcon(QIcon(":/images/tag_multi.png"));
-    connect (btn, &QToolButton::clicked, this, [=]() {
+    connect (btn, &QToolButton::clicked, this, [_LCD_]() {
         if (m_tagGroup == 3) {
             m_tagGroup = 1;
             btn->setIcon(QIcon(":/images/tag_grey.png"));
@@ -119,7 +125,7 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
 
     negateAction = new QAction(this);
     negateAction->setCheckable(true);
-    connect(negateAction, &QAction::triggered, this, [=]() {applyTagFiltering();});
+    connect(negateAction, &QAction::triggered, this, [this]() {applyTagFiltering();});
 
     tagsMenu = new QMenu("");
     tagsMenu->addAction(addToSelectionAction);
@@ -132,7 +138,7 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
     tagsMenu->addAction(actionClearTagsFilter);
     tagsMenu->addAction(negateAction);
 
-    QObject::connect(tagsTree, &QListWidget::itemChanged, this, [=](QListWidgetItem *item) {
+    QObject::connect(tagsTree, &QListWidget::itemChanged, this, [this](QListWidgetItem *item) {
         BLOCK_RECURSION
         if (currentDisplayMode == DirectoryTagsDisplay)
             applyTagFiltering(item);
@@ -151,7 +157,7 @@ void ImageTags::sortTags() {
         bouncer = new QTimer(this);
         bouncer->setSingleShot(true);
         bouncer->setInterval(250);
-        connect (bouncer, &QTimer::timeout, this, [=]() {
+        connect (bouncer, &QTimer::timeout, this, [this]() {
             BLOCK_RECURSION
             tagsTree->sortItems(Qt::AscendingOrder);
             m_needToSort = false;

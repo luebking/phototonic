@@ -31,10 +31,10 @@ ResizeDialog::ResizeDialog(QSize originalSize, QWidget *parent) : QDialog(parent
 
     QHBoxLayout *buttonsHbox = new QHBoxLayout;
     QPushButton *okButton = new QPushButton(tr("Scale"));
-    connect(okButton, &QPushButton::clicked, [=]() { accept(); });
+    connect(okButton, &QPushButton::clicked, [this]() { accept(); });
     okButton->setDefault(true);
     QPushButton *cancelButton = new QPushButton(tr("Cancel"));
-    connect(cancelButton, &QPushButton::clicked, [=]() { reject(); });
+    connect(cancelButton, &QPushButton::clicked, [this]() { reject(); });
     buttonsHbox->addWidget(cancelButton, 1, Qt::AlignRight);
     buttonsHbox->addWidget(okButton, 0, Qt::AlignRight);
 
