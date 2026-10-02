@@ -73,6 +73,11 @@ int main(int argc, char *argv[]) {
             QCoreApplication::translate("main", "Run a single instance of Phototonic or open files in such already running."));
     parser.addOption(singletonOption);
 
+    QCommandLineOption filterOption(QStringList() << "f" << "filter",
+            QCoreApplication::translate("main", "Apply <filter> to the directory and print matches."),
+            QCoreApplication::translate("main", "filter"));
+    parser.addOption(filterOption);
+
     parser.process(QApp);
 
     Phototonic *futuretonic = nullptr;
@@ -157,7 +162,7 @@ int main(int argc, char *argv[]) {
                     qUtf8Printable(QLibraryInfo::path(QLibraryInfo::TranslationsPath)));
     }
 
-    Phototonic phototonic(parser.positionalArguments(), 0);
+    Phototonic phototonic(parser.positionalArguments(), 0, parser.value(filterOption));
     futuretonic = &phototonic;
     if (parser.isSet(targetDirectoryOption))
         phototonic.setSaveDirectory(parser.value(targetDirectoryOption));

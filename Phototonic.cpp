@@ -78,7 +78,14 @@
 #include "Tags.h"
 #include "ThumbsViewer.h"
 
-Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *parent) : QMainWindow(parent) {
+static QString localFile(const QString &fileOrUrl) {
+    QUrl url(fileOrUrl);
+    if (url.scheme().isEmpty())
+        return fileOrUrl;
+    return url.toLocalFile();
+}
+
+Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QString filter, QWidget *parent) : QMainWindow(parent) {
     imageViewer = nullptr;
     m_presentationMode = false;
     Settings::appSettings = new QSettings("phototonic", "phototonic");
@@ -91,6 +98,32 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
     setDockOptions(QMainWindow::AllowNestedDocks);
     readSettings();
     createThumbsViewer();
+    if (!filter.isEmpty()) {
+        if (argumentsList.size()) {
+            QFileInfo firstArgument(localFile(argumentsList.at(filesStartAt)));
+            if (firstArgument.isDir()) {
+                // Confusingly we need the absoluteFile and not absolutePath if it's a directory
+                Settings::currentDirectory = firstArgument.absoluteFilePath();
+            }
+        }
+        if (Settings::currentDirectory.isEmpty())
+            Settings::currentDirectory = QDir::currentPath();
+        thumbsViewer->disconnect();
+        thumbsViewer->selectionModel()->disconnect();
+        thumbsViewer->reload();
+        if (thumbsViewer->setFilter(filter)) {
+            thumbsViewer->filterRows();
+            for (int i = 0; i < thumbsViewer->model()->rowCount(); ++i) {
+                if (!thumbsViewer->isRowHidden(i))
+                    printf("%s\n", qPrintable(thumbsViewer->fullPathOf(i)));
+            }
+        } else {
+            qWarning() << "Inalid filter:" << filter;
+        }
+        close();
+        QMetaObject::invokeMethod(qApp, "exit", Qt::QueuedConnection);
+        return;
+    }
     createActions();
     myMainMenu = new QMenu(this);
     statusBar()->setVisible(false);
@@ -178,13 +211,6 @@ Phototonic::Phototonic(QStringList argumentsList, int filesStartAt, QWidget *par
         thumbsViewer->setFocus(Qt::OtherFocusReason);
     }
     action(QString()); // clear hash
-}
-
-static QString localFile(const QString &fileOrUrl) {
-    QUrl url(fileOrUrl);
-    if (url.scheme().isEmpty())
-        return fileOrUrl;
-    return url.toLocalFile();
 }
 
 void Phototonic::processStartupArguments(QStringList argumentsList, int filesStartAt) {
@@ -2401,6 +2427,8 @@ void Phototonic::updateActions() {
 }
 
 void Phototonic::writeSettings() {
+    if (!initComplete)
+        return;
     if (!m_presentationMode) {
         // withdraw the max/fullscreen states - Qt sucks at tracking them
         // the (then to be restored size) more or less encodes the state and we rely on the WM

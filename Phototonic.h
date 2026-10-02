@@ -45,7 +45,7 @@ class Phototonic : public QMainWindow {
 Q_OBJECT
 
 public:
-    Phototonic(QStringList argumentsList, int filesStartAt, QWidget *parent = 0);
+    Phototonic(QStringList argumentsList, int filesStartAt, QString filter = QString(), QWidget *parent = 0);
     QMenu *createPopupMenu() override;
     void setCurrentFileOrDirectory(const QString &path);
 
