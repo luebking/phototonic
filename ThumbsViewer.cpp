@@ -890,7 +890,8 @@ void ThumbsViewer::loadPrepare() {
     m_histSorted = false;
     m_visibleThumbs = 0;
     if (Settings::isFileListLoaded || lastPath != Settings::currentDirectory) {
-        m_fsWatcher->removePaths(m_fsWatcher->directories());
+        if (!m_fsWatcher->directories().isEmpty())
+            m_fsWatcher->removePaths(m_fsWatcher->directories());
         lastPath = Settings::isFileListLoaded ? QString() : Settings::currentDirectory;
         Metadata::dropCache();
         m_histogramFiles.clear(); // these can grow out of control and currently sort O(n^2)
@@ -942,7 +943,8 @@ void ThumbsViewer::loadDuplicates()
     m_busy = true;
     loadPrepare();
     // we don't want to reload the directory (even iteratively) when looking for dupes
-    m_fsWatcher->removePaths(m_fsWatcher->directories());
+    if (!m_fsWatcher->directories().isEmpty())
+        m_fsWatcher->removePaths(m_fsWatcher->directories());
 
     emit status(tr("Searching duplicate images..."));
 
