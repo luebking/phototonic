@@ -632,6 +632,14 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 needHistogram = true;
                 m_constraints.last().minBright = 168; continue;
             }
+            if (!t.compare("!dark", Qt::CaseInsensitive)) {
+                needHistogram = true;
+                m_constraints.last().minBright = 65; continue; // is 25% good?
+            }
+            if (!t.compare("!bright", Qt::CaseInsensitive)) {
+                needHistogram = true;
+                m_constraints.last().maxBright = 167; continue;
+            }
             if (!t.compare("black", Qt::CaseInsensitive)) {
                 needHistogram = true;
                 m_constraints.last().maxBright = 12; continue; // … or 5%
