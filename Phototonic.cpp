@@ -583,13 +583,15 @@ void Phototonic::createActions() {
 #define MAKE_ACTION(_TEXT_, _NAME_, _SHORTCUT_) \
     MAKE_ACTION_NOSC(_TEXT_, _NAME_); action->setProperty("sc_default", _SHORTCUT_)
 
+#define SET_ICON(_ICON_) action->setIcon(QIcon::fromTheme("_ICON_", QIcon(":/images/_ICON_.png")))
+
     QAction *action;
     MAKE_ACTION(tr("Top"), "thumbsGoTop", "Ctrl+Home");
-    action->setIcon(QIcon::fromTheme("go-top", QIcon(":/images/go-top.png")));
+    SET_ICON(go-top);
     connect(action, &QAction::triggered, thumbsViewer, &ThumbsViewer::scrollToTop);
 
     MAKE_ACTION(tr("Bottom"), "thumbsGoBottom", "Ctrl+End");
-    action->setIcon(QIcon::fromTheme("go-bottom", QIcon(":/images/go-bottom.png")));
+    SET_ICON(go-bottom);
     connect(action, &QAction::triggered, thumbsViewer, &ThumbsViewer::scrollToBottom);
 
     m_closeImageAction = MAKE_ACTION(tr("Close Viewer"), "closeImage", "Esc");
@@ -600,7 +602,7 @@ void Phototonic::createActions() {
     connect(action, SIGNAL(triggered()), this, SLOT(toggleFullScreen()));
 
     MAKE_ACTION(tr("Preferences"), "settings", "Ctrl+P");
-    action->setIcon(QIcon::fromTheme("preferences-system", QIcon(":/images/preferences-system.png")));
+    SET_ICON(preferences-system);
     connect(action, SIGNAL(triggered()), this, SLOT(showSettings()));
 
     MAKE_ACTION(tr("Exit"), "exit", "Ctrl+Q");
@@ -608,25 +610,25 @@ void Phototonic::createActions() {
 
     MAKE_ACTION_NOSC(tr("Enlarge Thumbnails"), "thumbsZoomIn");
     connect(action, &QAction::triggered, [this]() {m_thumbSizeDelta = 1; resizeThumbs();});
-    action->setIcon(QIcon::fromTheme("zoom-in", QIcon(":/images/zoom-in.png")));
+    SET_ICON(zoom-in);
     if (thumbsViewer->thumbSize == THUMB_SIZE_MAX) {
         action->setEnabled(false);
     }
 
     MAKE_ACTION_NOSC(tr("Shrink Thumbnails"), "thumbsZoomOut");
     connect(action, &QAction::triggered, [this]() {m_thumbSizeDelta = -1; resizeThumbs();});
-    action->setIcon(QIcon::fromTheme("zoom-out", QIcon(":/images/zoom-out.png")));
+    SET_ICON(zoom-out);
     if (thumbsViewer->thumbSize == THUMB_SIZE_MIN) {
         action->setEnabled(false);
     }
 
     m_cutAction = MAKE_ACTION(tr("Cut"), "cut", "Ctrl+X");
-    action->setIcon(QIcon::fromTheme("edit-cut", QIcon(":/images/edit-cut.png")));
+    SET_ICON(edit-cut);
     connect(action, &QAction::triggered, [this]() { copyOrCutThumbs(false); });
     action->setEnabled(false);
 
     m_copyAction = MAKE_ACTION(tr("Copy"), "copy", "Ctrl+C");
-    action->setIcon(QIcon::fromTheme("edit-copy", QIcon(":/images/edit-copy.png")));
+    SET_ICON(edit-copy);
     connect(action, &QAction::triggered, [this]() { copyOrCutThumbs(true); });
     action->setEnabled(false);
 
@@ -656,15 +658,15 @@ void Phototonic::createActions() {
     connect(action, SIGNAL(triggered()), this, SLOT(deleteOperation()));
 
     m_deleteAction = MAKE_ACTION(tr("Delete"), "delete", "Shift+Del");
-    action->setIcon(QIcon::fromTheme("edit-delete", QIcon(":/images/edit-delete.png")));
+    SET_ICON(edit-delete);
     connect(action, SIGNAL(triggered()), this, SLOT(deletePermanentlyOperation()));
 
     m_saveAction = MAKE_ACTION(tr("Save"), "save", "Ctrl+S");
-    action->setIcon(QIcon::fromTheme("document-save", QIcon(":/images/document-save.png")));
+    SET_ICON(document-save);
     action->setEnabled(false);
 
     m_saveAsAction = MAKE_ACTION_NOSC(tr("Save As"), "saveAs");
-    action->setIcon(QIcon::fromTheme("document-save-as", QIcon(":/images/document-save-as.png")));
+    SET_ICON(document-save-as);
     action->setEnabled(false);
 
     MAKE_ACTION(tr("Copy Image"), "copyImage", "Ctrl+Shift+C");
@@ -745,7 +747,7 @@ void Phototonic::createActions() {
     });
 
     m_refreshAction = MAKE_ACTION(tr("Reload"), "refresh", "F5");
-    action->setIcon(QIcon::fromTheme("view-refresh", QIcon(":/images/view-refresh.png")));
+    SET_ICON(view-refresh);
     connect(action, SIGNAL(triggered()), this, SLOT(reload()));
 
     m_includeSubDirsAction = MAKE_ACTION_NOSC(tr("Include Sub-directories"), "includeSubDirs");
@@ -754,17 +756,17 @@ void Phototonic::createActions() {
     connect(action, SIGNAL(triggered()), this, SLOT(setIncludeSubDirs()));
 
     MAKE_ACTION(tr("Paste Here"), "paste", "Ctrl+V");
-    action->setIcon(QIcon::fromTheme("edit-paste", QIcon(":/images/edit-paste.png")));
+    SET_ICON(edit-paste);
     connect(action, SIGNAL(triggered()), this, SLOT(pasteThumbs()));
     action->setEnabled(false);
 
     MAKE_ACTION_NOSC(tr("New Directory"), "createDir");
     connect(action, SIGNAL(triggered()), this, SLOT(createSubDirectory()));
-    action->setIcon(QIcon::fromTheme("folder-new", QIcon(":/images/folder-new.png")));
+    SET_ICON(folder-new);
 
     MAKE_ACTION_NOSC(tr("Set Save Directory"), "setSaveDir");
     connect(action, SIGNAL(triggered()), this, SLOT(setSaveDirectory()));
-    action->setIcon(QIcon::fromTheme("folder-visiting", QIcon(":/images/folder-visiting.png")));
+    SET_ICON(folder-visiting);
 
     m_goBackAction = MAKE_ACTION(tr("Back"), "goBack", "Alt+Left");
     m_goBackAction->setIcon(QIcon::fromTheme("go-previous", QIcon(":/images/go-previous.png")));
@@ -792,7 +794,7 @@ void Phototonic::createActions() {
     m_goFrwdAction->setEnabled(false);
 
     m_goUpAction = MAKE_ACTION(tr("Go Up"), "up", "Alt+Up");
-    action->setIcon(QIcon::fromTheme("go-up", QIcon(":/images/go-up.png")));
+    SET_ICON(go-up);
     connect(action, &QAction::triggered, [this](){ goTo(QFileInfo(Settings::currentDirectory).dir().absolutePath()); });
 
     m_goHomeAction = MAKE_ACTION_NOSC(tr("Home"), "goHome");
@@ -802,37 +804,37 @@ void Phototonic::createActions() {
         else
             goTo("Phototonic::FileList");
     });
-    action->setIcon(QIcon::fromTheme("go-home", QIcon(":/images/go-home.png")));
+    SET_ICON(go-home);
 
     MAKE_ACTION(tr("Slide Show"), "toggleSlideShow", "Ctrl+W");
     connect(action, &QAction::triggered, this, [this]() { setSlideShow(!m_slideShowActive); });
-    action->setIcon(QIcon::fromTheme("media-playback-start", QIcon(":/images/media-playback-start.png")));
+    SET_ICON(media-playback-start);
 
     m_nextImageAction = MAKE_ACTION(tr("Next Image"), "nextImage", "PgDown");
-    action->setIcon(QIcon::fromTheme("go-next", QIcon(":/images/go-next.png")));
+    SET_ICON(go-next);
     connect(action, &QAction::triggered, [this](){ loadImage(Phototonic::Next); });
 
     m_prevImageAction = MAKE_ACTION(tr("Previous Image"), "prevImage", "PgUp");
-    action->setIcon(QIcon::fromTheme("go-previous", QIcon(":/images/go-previous.png")));
+    SET_ICON(go-previous);
     connect(action, &QAction::triggered, [this](){ loadImage(Phototonic::Previous); });
 
     MAKE_ACTION(tr("First Image"), "firstImage", "Home");
-    action->setIcon(QIcon::fromTheme("go-first", QIcon(":/images/go-first.png")));
+    SET_ICON(go-first);
     connect(action, &QAction::triggered, [this](){ loadImage(Phototonic::First); });
 
     MAKE_ACTION(tr("Last Image"), "lastImage", "End");
-    action->setIcon(QIcon::fromTheme("go-last", QIcon(":/images/go-last.png")));
+    SET_ICON(go-last);
     connect(action, &QAction::triggered, [this](){ loadImage(Phototonic::Last); });
 
     MAKE_ACTION(tr("Random Image"), "randomImage", "Ctrl+D");
     connect(action, &QAction::triggered, [this](){ loadImage(Phototonic::Random); });
 
     m_viewImageAction = MAKE_ACTION(tr("View Image"), "open", "Return");
-    action->setIcon(QIcon::fromTheme("document-open", QIcon(":/images/document-open.png")));
+    SET_ICON(document-open);
     connect(action, SIGNAL(triggered()), this, SLOT(viewImage()));
 
     MAKE_ACTION_NOSC(tr("Load Clipboard"), "showClipboard");
-    action->setIcon(QIcon::fromTheme("insert-image", QIcon(":/images/insert-image.png")));
+    SET_ICON(insert-image);
     connect(action, SIGNAL(triggered()), this, SLOT(newImage()));
 
     m_wallpaperAction = MAKE_ACTION_NOSC(tr("Set Wallpaper"), "setwallpaper");
@@ -851,18 +853,18 @@ void Phototonic::createActions() {
     connect(action, &QAction::triggered, [this](){ addBookmark(getSelectedPath()); });
 
     MAKE_ACTION_NOSC(tr("Delete Bookmark"), "removeBookmark");
-    action->setIcon(QIcon::fromTheme("edit-delete", QIcon(":/images/edit-delete.png")));
+    SET_ICON(edit-delete);
 
     MAKE_ACTION(tr("Zoom Out"), "zoomOut", "-");
     connect(action, &QAction::triggered, [this](){ zoom(-1.0f); });
-    action->setIcon(QIcon::fromTheme("zoom-out", QIcon(":/images/zoom-out.png")));
+    SET_ICON(zoom-out);
 
     MAKE_ACTION(tr("Zoom In"), "zoomIn", "+");
     connect(action, &QAction::triggered, [this](){ zoom(1.0f); });
-    action->setIcon(QIcon::fromTheme("zoom-in", QIcon(":/images/zoom-in.png")));
+    SET_ICON(zoom-in);
 
     MAKE_ACTION(tr("Reset Zoom"), "resetZoom", "*");
-    action->setIcon(QIcon::fromTheme("zoom-fit-best", QIcon(":/images/zoom-fit-best.png")));
+    SET_ICON(zoom-fit-best);
     connect(action, &QAction::triggered, this, [this](){
         imageViewer->zoomTo(imageViewer->zoomMode() == ImageViewer::ZoomToFit ?
                                                                     ImageViewer::ZoomToFill :
@@ -870,7 +872,7 @@ void Phototonic::createActions() {
     });
 
     MAKE_ACTION(tr("Original Size"), "origZoom", "/");
-    action->setIcon(QIcon::fromTheme("zoom-original", QIcon(":/images/zoom-original.png")));
+    SET_ICON(zoom-original);
     connect(action, &QAction::triggered, this, [this](){ imageViewer->zoomTo(ImageViewer::ZoomOriginal); });
 
     MAKE_ACTION_NOSC(tr("Keep Zoom"), "keepZoom");
@@ -878,15 +880,15 @@ void Phototonic::createActions() {
     connect(action, &QAction::toggled, this, [this](bool keep) {imageViewer->lockZoom(keep);});
 
     MAKE_ACTION(tr("Rotate 90° CCW"), "rotateLeft", "Ctrl+Left");
-    action->setIcon(QIcon::fromTheme("object-rotate-left", QIcon(":/images/object-rotate-left.png")));
+    SET_ICON(object-rotate-left);
     connect(action, &QAction::triggered, this, [this]() { rotate(-90); });
 
     MAKE_ACTION(tr("Rotate 90° CW"), "rotateRight", "Ctrl+Right");
-    action->setIcon(QIcon::fromTheme("object-rotate-right", QIcon(":/images/object-rotate-right.png")));
+    SET_ICON(object-rotate-right);
     connect(action, &QAction::triggered, this, [this]() { rotate(+90); });
 
     MAKE_ACTION_NOSC(tr("Rotate with mouse"), "rotateMouse");
-    action->setIcon(QIcon::fromTheme("rotation-allowed", QIcon(":/images/rotation-allowed.png")));
+    SET_ICON(rotation-allowed);
     action->setCheckable(true);
     connect(action, &QAction::triggered, [this,action](){
         Settings::mouseRotateEnabled = action->isChecked();
@@ -894,11 +896,11 @@ void Phototonic::createActions() {
     });
 
     MAKE_ACTION(tr("Flip Horizontally"), "flipH", "Ctrl+Down");
-    action->setIcon(QIcon::fromTheme("object-flip-horizontal", QIcon(":/images/object-flip-horizontal.png")));
+    SET_ICON(object-flip-horizontal);
     connect(action, SIGNAL(triggered()), this, SLOT(flipHorizontal()));
 
     MAKE_ACTION(tr("Flip Vertically"), "flipV", "Ctrl+Up");
-    action->setIcon(QIcon::fromTheme("object-flip-vertical", QIcon(":/images/object-flip-vertical.png")));
+    SET_ICON(object-flip-vertical);
     connect(action, SIGNAL(triggered()), this, SLOT(flipVertical()));
 
     MAKE_ACTION(tr("Letterbox"), "letterbox", "Ctrl+G");
@@ -906,7 +908,7 @@ void Phototonic::createActions() {
     connect(action, SIGNAL(triggered()), this, SLOT(cropImage()));
 
     MAKE_ACTION(tr("Scale Image"), "resize", "Ctrl+I");
-    action->setIcon(QIcon::fromTheme("transform-scale", QIcon(":/images/transform-scale.png")));
+    SET_ICON(transform-scale);
     connect(action, SIGNAL(triggered()), this, SLOT(scaleImage()));
 
     MAKE_ACTION(tr("Rotate 1° CCW"), "freeRotateLeft", "Ctrl+Shift+Left");
