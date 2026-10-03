@@ -589,13 +589,12 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
     m_filter = tokens.first().trimmed();
     m_constraints.clear();
     bool sane = true;
-    bool needHistogram = false;
     for (int i = 1; i < tokens.size(); ++i) {
         m_constraints.append(Constraint());
         QStringList subtokens = tokens.at(i).split(' ', Qt::SkipEmptyParts);
         char side = 0;
         for (QString t : subtokens) {
-            auto setHue = [_LCD_,&needHistogram](QString name, unsigned char min, unsigned char max) {
+            auto setHue = [_LCD_](QString name, unsigned char min, unsigned char max) {
                 if (t.compare(name, Qt::CaseInsensitive))
                     return false;
                 m_constraints.last().minHue = min;
@@ -603,7 +602,6 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 m_constraints.last().minBright = qMax(m_constraints.last().minBright, 25); // account for prior "bright"
                 m_constraints.last().maxBright = qMin(m_constraints.last().maxBright, 242); // account for prior "dark"
                 m_constraints.last().minSaturation = 25;
-                needHistogram = true;
                 return true;
             };
             // the "hue" ranges [0,255] and also is shifted by 15°,
@@ -627,35 +625,27 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
             if (setHue("cold", 101, 175)) continue;
             if (setHue("!cold", 176, 100)) continue;
             if (!t.compare("dark", Qt::CaseInsensitive)) {
-                needHistogram = true;
                 m_constraints.last().maxBright = 64; continue; // is 25% good?
             }
             if (!t.compare("bright", Qt::CaseInsensitive)) {
-                needHistogram = true;
                 m_constraints.last().minBright = 168; continue;
             }
             if (!t.compare("!dark", Qt::CaseInsensitive)) {
-                needHistogram = true;
                 m_constraints.last().minBright = 65; continue; // is 25% good?
             }
             if (!t.compare("!bright", Qt::CaseInsensitive)) {
-                needHistogram = true;
                 m_constraints.last().maxBright = 167; continue;
             }
             if (!t.compare("black", Qt::CaseInsensitive)) {
-                needHistogram = true;
                 m_constraints.last().maxBright = 12; continue; // … or 5%
             }
             if (!t.compare("white", Qt::CaseInsensitive)) {
-                needHistogram = true;
                 m_constraints.last().minBright = 242; continue;
             }
             if (!t.compare("monochrome", Qt::CaseInsensitive)) {
-                needHistogram = true;
                 m_constraints.last().maxChroma = 3; continue;
             }
             if (!t.compare("gray", Qt::CaseInsensitive)) {
-                needHistogram = true;
                 m_constraints.last().maxSaturation = 15;
                 m_constraints.last().maxChroma = 3; continue;
             }
@@ -666,7 +656,6 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 m_constraints.last().maxBright = 112;
                 m_constraints.last().minSaturation = 60;
                 m_constraints.last().maxSaturation = 160;
-                needHistogram = true;
                 continue;
             }
             if (t.startsWith(":")) {
@@ -726,19 +715,16 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 uint v = t.chopped(2).toUInt(&ok);
                 if (!ok) v = t.chopped(2).toFloat(&ok) * 255; // try [0,1]
                 if (!ok) { LOG_ERROR; break; }
-                needHistogram = true;
                 v = qMin(v, 255u);
                 SET_CONSTRAINTS(Bright)
             } else if (t.endsWith("cr")) {
                 uint v = t.chopped(2).toUInt(&ok);
                 if (!ok) { LOG_ERROR; break; }
-                needHistogram = true;
                 v = qMin(v, 255u);
                 SET_CONSTRAINTS(Chroma)
             } else if (t.endsWith("°")) {
                 uint v = t.chopped(1).toUInt(&ok);
                 if (!ok) { LOG_ERROR; break; }
-                needHistogram = true;
                 int h = qMin(v, 359u) + 15; // shift hue by 15°
                 if (h > 359) h -= 360; // normalize
                 v = qMax(0, qMin(255, qRound(h/359.0f*255))); // map to byte
@@ -746,7 +732,6 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
             } else if (t.endsWith("%")) {
                 uint v = t.chopped(1).toUInt(&ok);
                 if (!ok) { LOG_ERROR; break; }
-                needHistogram = true;
                 v = qMin(255, qRound(qMin(v, 100u)/100.0f*255)); // map to byte
                 SET_CONSTRAINTS(Saturation)
             } else if (t.endsWith("kb", Qt::CaseInsensitive)) {
@@ -813,8 +798,6 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
         side = 0;
     }
     if (sane) {
-//        if (needHistogram) // yes, "BrightnessRole" - we don't need to sort it
-//            scanForSort(BrightnessRole);
         m_filterDirty = true;
         QMetaObject::invokeMethod(this, "filterRows", Qt::QueuedConnection);
     }
