@@ -806,8 +806,8 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
         side = 0;
     }
     if (sane) {
-        if (needHistogram) // yes, "BrightnessRole" - we don't need to sort it
-            scanForSort(BrightnessRole);
+//        if (needHistogram) // yes, "BrightnessRole" - we don't need to sort it
+//            scanForSort(BrightnessRole);
         m_filterDirty = true;
         QMetaObject::invokeMethod(this, "filterRows", Qt::QueuedConnection);
     }
