@@ -583,7 +583,7 @@ void Phototonic::createActions() {
 #define MAKE_ACTION(_TEXT_, _NAME_, _SHORTCUT_) \
     MAKE_ACTION_NOSC(_TEXT_, _NAME_); action->setProperty("sc_default", _SHORTCUT_)
 
-#define SET_ICON(_ICON_) action->setIcon(QIcon::fromTheme("_ICON_", QIcon(":/images/_ICON_.png")))
+#define SET_ICON(_ICON_) action->setProperty("icon_name", #_ICON_)
 
     QAction *action;
     MAKE_ACTION(tr("Top"), "thumbsGoTop", "Ctrl+Home");
@@ -1001,6 +1001,23 @@ void Phototonic::createActions() {
     m_showGridAction =  MAKE_ACTION_NOSC(tr("Show Grid"), "showgrid");
     action->setCheckable(true);
     connect(action, &QAction::triggered, [this,action]() { imageViewer->showGrid(action->isChecked()); });
+
+    QTimer::singleShot(500, this, [this]() {
+        QElapsedTimer profiler;
+        profiler.start();
+        QList<QAction*> actionlist = findChildren<QAction*>(Qt::FindDirectChildrenOnly);
+        for (QAction *action : actionlist) {
+            if (profiler.elapsed() > 30) {
+                QApplication::processEvents();
+                profiler.restart();
+            }
+            const QString icon = action->property("icon_name").toString();
+            if (icon.isEmpty())
+                continue;
+            action->setIcon(QIcon::fromTheme(icon, QIcon(":/images/" + icon + ".png")));
+            action->setProperty("icon_name", QVariant());
+        }
+    });
 }
 
 QAction *Phototonic::action(const QString name, bool dropCache) const {
@@ -1328,6 +1345,14 @@ void Phototonic::createToolBars() {
     m_imageToolBar->setIconSize(QSize(24,24));
 
     setToolbarIconSize();
+
+    for (QAction *action : myMainToolBar->actions()) {
+        const QString icon = action->property("icon_name").toString();
+        if (icon.isEmpty())
+            continue;
+        action->setIcon(QIcon::fromTheme(icon, QIcon(":/images/" + icon + ".png")));
+        action->setProperty("icon_name", QVariant());
+    }
 }
 
 void Phototonic::setToolbarIconSize() {
