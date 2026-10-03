@@ -179,27 +179,27 @@
         <translation type="vanished">Přidat</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="43"/>
+        <location filename="../CopyMoveToDialog.cpp" line="54"/>
         <source>Choose Directory</source>
         <translation>Zvolte složku</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="69"/>
+        <location filename="../CopyMoveToDialog.cpp" line="80"/>
         <source>Move to...</source>
         <translation>Přesunout do…</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="66"/>
+        <location filename="../CopyMoveToDialog.cpp" line="77"/>
         <source>Copy to...</source>
         <translation>Zkopírovat do…</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="104"/>
+        <location filename="../CopyMoveToDialog.cpp" line="115"/>
         <source>Browse...</source>
         <translation>Procházet…</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="108"/>
+        <location filename="../CopyMoveToDialog.cpp" line="119"/>
         <source>Delete Bookmark</source>
         <translation>Smazat záložku</translation>
     </message>
@@ -208,7 +208,7 @@
         <translation type="vanished">Odstranit</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="119"/>
+        <location filename="../CopyMoveToDialog.cpp" line="130"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
@@ -217,7 +217,7 @@
         <translation type="vanished">OK</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="146"/>
+        <location filename="../CopyMoveToDialog.cpp" line="157"/>
         <source>Destination:</source>
         <translation>Cíl:</translation>
     </message>
@@ -230,12 +230,12 @@
         <translation type="vanished">Zavřít</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="122"/>
+        <location filename="../CopyMoveToDialog.cpp" line="133"/>
         <source>Copy</source>
         <translation>Zkopírovat</translation>
     </message>
     <message>
-        <location filename="../CopyMoveToDialog.cpp" line="122"/>
+        <location filename="../CopyMoveToDialog.cpp" line="133"/>
         <source>Move</source>
         <translation>Přesunout</translation>
     </message>
@@ -391,94 +391,94 @@
 <context>
     <name>ImageTags</name>
     <message>
-        <location filename="../Tags.cpp" line="50"/>
+        <location filename="../Tags.cpp" line="56"/>
         <source>Selection</source>
         <translation>Výběr</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="58"/>
-        <location filename="../Tags.cpp" line="73"/>
+        <location filename="../Tags.cpp" line="64"/>
+        <location filename="../Tags.cpp" line="79"/>
         <source>Show only library tags</source>
         <translation>Zobrazit pouze štítky dané knihovny</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="65"/>
+        <location filename="../Tags.cpp" line="71"/>
         <source>Show only relevant tags</source>
         <translation>Zobrazit pouze relevantní štítky</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="69"/>
+        <location filename="../Tags.cpp" line="75"/>
         <source>Show all tags</source>
         <translation>Zobrazit všechny štítky</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="98"/>
+        <location filename="../Tags.cpp" line="104"/>
         <source>Tag</source>
         <translation>Opatřit štítkem</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="102"/>
+        <location filename="../Tags.cpp" line="108"/>
         <source>Untag</source>
         <translation>Odebrat štítek</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="109"/>
+        <location filename="../Tags.cpp" line="115"/>
         <source>Add to library</source>
         <translation>Přidat do knihovny</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="112"/>
+        <location filename="../Tags.cpp" line="118"/>
         <source>Remove from library</source>
         <translation>Odebrat z knihovny</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="170"/>
+        <location filename="../Tags.cpp" line="176"/>
         <source>Show untagged</source>
         <translation>Zobrazit neopatřené štítky</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="170"/>
+        <location filename="../Tags.cpp" line="176"/>
         <source>Invert filter</source>
         <translation>Převrátit filtr</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="372"/>
+        <location filename="../Tags.cpp" line="378"/>
         <source>Mandatory:</source>
         <translation>Povinné:</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="373"/>
+        <location filename="../Tags.cpp" line="379"/>
         <source>Sufficient:</source>
         <translation>Postačující:</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="374"/>
+        <location filename="../Tags.cpp" line="380"/>
         <source>The image must not have this tag</source>
         <translation>Je třeba, aby obrázek neměl tento štítek</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="375"/>
+        <location filename="../Tags.cpp" line="381"/>
         <source>The image must have this tag</source>
         <translation>Je třeba, aby obrázek měl tento štítek</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="376"/>
+        <location filename="../Tags.cpp" line="382"/>
         <source>The image must have any of these tags</source>
         <translation>Je třeba, aby obrázek měl jakýkoli z těchto štítků</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="81"/>
-        <location filename="../Tags.cpp" line="116"/>
+        <location filename="../Tags.cpp" line="87"/>
+        <location filename="../Tags.cpp" line="122"/>
         <source>Clear Filters</source>
         <translation>Vyčistit filtry</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="599"/>
+        <location filename="../Tags.cpp" line="605"/>
         <source>Tag %1 already exists</source>
         <translation>Štítek %1 už existuje</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Tags.cpp" line="614"/>
+        <location filename="../Tags.cpp" line="620"/>
         <source>Delete %n selected tags(s)?</source>
         <translation>
             <numerusform>Smazat %n označený štítek?</numerusform>
@@ -487,12 +487,12 @@
         </translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="614"/>
+        <location filename="../Tags.cpp" line="620"/>
         <source>Delete tag</source>
         <translation>Smazat štítek</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="105"/>
+        <location filename="../Tags.cpp" line="111"/>
         <source>New Tag</source>
         <translation>Nová štítek</translation>
     </message>
@@ -501,7 +501,7 @@
         <translation type="vanished">Značky obrázků</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="51"/>
+        <location filename="../Tags.cpp" line="57"/>
         <source>Filter</source>
         <translation>Filtrovat</translation>
     </message>
@@ -514,8 +514,8 @@
         <translation type="vanished">Vyloučit</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="591"/>
-        <location filename="../Tags.cpp" line="599"/>
+        <location filename="../Tags.cpp" line="597"/>
+        <location filename="../Tags.cpp" line="605"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
@@ -532,17 +532,17 @@
         <translation type="vanished">Ruší se značky </translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="583"/>
+        <location filename="../Tags.cpp" line="589"/>
         <source>Add a new tag</source>
         <translation>Přidat nový štítek</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="584"/>
+        <location filename="../Tags.cpp" line="590"/>
         <source>Enter new tag name</source>
         <translation>Zadejte název pro nový štítek</translation>
     </message>
     <message>
-        <location filename="../Tags.cpp" line="591"/>
+        <location filename="../Tags.cpp" line="597"/>
         <source>No name entered</source>
         <translation>Nezadán žádný název</translation>
     </message>
@@ -641,150 +641,150 @@
 <context>
     <name>ImageViewer</name>
     <message>
-        <location filename="../ImageViewer.cpp" line="142"/>
+        <location filename="../ImageViewer.cpp" line="148"/>
         <source>Zoom Locked</source>
         <translation>Zvětšení zamknuto</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="142"/>
+        <location filename="../ImageViewer.cpp" line="148"/>
         <source>Zoom Unlocked</source>
         <translation>Zvětšení odemknuto</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="178"/>
+        <location filename="../ImageViewer.cpp" line="184"/>
         <source>Fit View</source>
         <translation>Přizpůsobit zobrazení</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="183"/>
+        <location filename="../ImageViewer.cpp" line="189"/>
         <source>Fill View</source>
         <translation>Vyplnit zobrazení</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="185"/>
+        <location filename="../ImageViewer.cpp" line="191"/>
         <source>Original Size</source>
         <translation>Původní velikost</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="266"/>
-        <location filename="../ImageViewer.cpp" line="1246"/>
+        <location filename="../ImageViewer.cpp" line="272"/>
+        <location filename="../ImageViewer.cpp" line="1252"/>
         <source>New image size: %1x%2</source>
         <translation>Nová velikost obrázku: %1x%2</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="689"/>
+        <location filename="../ImageViewer.cpp" line="695"/>
         <source>skipping animation in batch mode:</source>
         <extracomment>this is a warning on the console</extracomment>
         <translation>přeskakuje se animace v dávkovém režimu:</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="767"/>
+        <location filename="../ImageViewer.cpp" line="773"/>
         <source>&lt;h1&gt;Warning&lt;/h1&gt;Original image size %1x%2 exceeds limits&lt;br&gt;Downscaled to %3x%4&lt;br&gt;&lt;h3&gt;Saving edits will save the smaller image!&lt;/h3&gt;</source>
         <translation>&lt;h1&gt;Varování&lt;/h1&gt;Původní velikost obrázku %1x%2 překračuje limity&lt;br&gt;Přepočítáno níže na %3x%4&lt;br&gt;&lt;h3&gt;Uložení úprav uloží menší obrázek!&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="950"/>
+        <location filename="../ImageViewer.cpp" line="956"/>
         <source>Save edits?</source>
         <translation>Uložit úpravy?</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="950"/>
+        <location filename="../ImageViewer.cpp" line="956"/>
         <source>The image was edited.
 Do you want to save a copy?</source>
         <translation>Obrázek byl upraven.
 Chcete uložit kopii?</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1056"/>
+        <location filename="../ImageViewer.cpp" line="1062"/>
         <source>Selection: </source>
         <translation>Výběr: </translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1066"/>
+        <location filename="../ImageViewer.cpp" line="1072"/>
         <source>Doubleclick to crop, right click to abort</source>
         <translation>Dvojklikem oříznete, kliknutím pravým tlačítkem zrušíte</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1077"/>
+        <location filename="../ImageViewer.cpp" line="1083"/>
         <source>Select the crop area with Ctrl + left mouse button</source>
         <translation>Vyberte oblast pro oříznutí pomocí Ctrl + levého tlačítka myši</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1079"/>
+        <location filename="../ImageViewer.cpp" line="1085"/>
         <source>Select the blackout area with Ctrl + left mouse button</source>
         <translation>Vyberte oblast pro začernění pomocí Ctrl + levého tlačítka myši</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1081"/>
+        <location filename="../ImageViewer.cpp" line="1087"/>
         <source>Select the cartouche area with Ctrl + left mouse button</source>
         <translation>Vyberte oblast pro vyplnění vzorem pomocí Ctrl + levého tlačítka myši</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1083"/>
+        <location filename="../ImageViewer.cpp" line="1089"/>
         <source>Select the annotation area with Ctrl + left mouse button</source>
         <translation>Vyberte oblast pro anotaci pomocí Ctrl + levého tlačítka myši</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1109"/>
-        <location filename="../ImageViewer.cpp" line="1131"/>
+        <location filename="../ImageViewer.cpp" line="1115"/>
+        <location filename="../ImageViewer.cpp" line="1137"/>
         <source>Pick a color</source>
         <translation>Vyberte barvu</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1130"/>
+        <location filename="../ImageViewer.cpp" line="1136"/>
         <source>Color</source>
         <translation>Barva</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1256"/>
+        <location filename="../ImageViewer.cpp" line="1262"/>
         <source>Flipped Horizontally</source>
         <translation>Převráceno vodorovně</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1256"/>
+        <location filename="../ImageViewer.cpp" line="1262"/>
         <source>Unflipped Horizontally</source>
         <translation>Vodorovné převrácení zrušeno</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1258"/>
+        <location filename="../ImageViewer.cpp" line="1264"/>
         <source>Flipped Vertically</source>
         <translation>Převráceno svisle</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1258"/>
+        <location filename="../ImageViewer.cpp" line="1264"/>
         <source>Unflipped Vertically</source>
         <translation>Svislé převrácení zrušeno</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1314"/>
+        <location filename="../ImageViewer.cpp" line="1320"/>
         <source>Rotation %1°</source>
         <translation>Otočení o %1°</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1408"/>
+        <location filename="../ImageViewer.cpp" line="1414"/>
         <source>Saving...</source>
         <translation>Ukládání…</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1430"/>
-        <location filename="../ImageViewer.cpp" line="1440"/>
-        <location filename="../ImageViewer.cpp" line="1470"/>
+        <location filename="../ImageViewer.cpp" line="1436"/>
+        <location filename="../ImageViewer.cpp" line="1446"/>
+        <location filename="../ImageViewer.cpp" line="1476"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1430"/>
-        <location filename="../ImageViewer.cpp" line="1470"/>
+        <location filename="../ImageViewer.cpp" line="1436"/>
+        <location filename="../ImageViewer.cpp" line="1476"/>
         <source>Failed to save image.</source>
         <translation>Obrázek se nepodařilo uložit.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1438"/>
+        <location filename="../ImageViewer.cpp" line="1444"/>
         <source>Don&apos;t show this message again</source>
         <translation>Tuto zprávu znovu nezobrazovat</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1440"/>
+        <location filename="../ImageViewer.cpp" line="1446"/>
         <source>Failed to save Exif metadata.</source>
         <translation>Nepodařilo se uložit EXIF metadata.</translation>
     </message>
@@ -794,33 +794,33 @@ Chcete uložit kopii?</translation>
         <translation type="vanished">Exif metadata se nepodařilo uložit:</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1447"/>
-        <location filename="../ImageViewer.cpp" line="1474"/>
+        <location filename="../ImageViewer.cpp" line="1453"/>
+        <location filename="../ImageViewer.cpp" line="1480"/>
         <source>Image saved.</source>
         <translation>Obrázek uložen.</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1455"/>
+        <location filename="../ImageViewer.cpp" line="1461"/>
         <source>Save image as</source>
         <translation>Uložit obrázek jako</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1457"/>
+        <location filename="../ImageViewer.cpp" line="1463"/>
         <source>Images</source>
         <translation>Obrázky</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1506"/>
+        <location filename="../ImageViewer.cpp" line="1512"/>
         <source>Transformations Locked</source>
         <translation>Proměny zamknuty</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1506"/>
+        <location filename="../ImageViewer.cpp" line="1512"/>
         <source>Transformations Unlocked</source>
         <translation>Přeměny odemknuty</translation>
     </message>
     <message>
-        <location filename="../ImageViewer.cpp" line="1521"/>
+        <location filename="../ImageViewer.cpp" line="1527"/>
         <source>Clipboard</source>
         <translation>Schránka</translation>
     </message>
@@ -879,47 +879,47 @@ Kliknutí pravým tlačítkem: změna velikosti
 Skryjte filtrem: |nohistogram|</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="393"/>
+        <location filename="../InfoViewer.cpp" line="392"/>
         <source>Image</source>
         <translation>Obrázek</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="394"/>
+        <location filename="../InfoViewer.cpp" line="393"/>
         <source>File name</source>
         <translation>Název souboru</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="395"/>
+        <location filename="../InfoViewer.cpp" line="394"/>
         <source>Location</source>
         <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="396"/>
+        <location filename="../InfoViewer.cpp" line="395"/>
         <source>Size</source>
         <translation>Velikost</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="397"/>
+        <location filename="../InfoViewer.cpp" line="396"/>
         <source>Modified</source>
         <translation>Změněno</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="401"/>
+        <location filename="../InfoViewer.cpp" line="400"/>
         <source>Format</source>
         <translation>Formát</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="404"/>
+        <location filename="../InfoViewer.cpp" line="403"/>
         <source>Resolution</source>
         <translation>Rozlišení</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="405"/>
+        <location filename="../InfoViewer.cpp" line="404"/>
         <source>Megapixel</source>
         <translation>Megapixelů</translation>
     </message>
     <message>
-        <location filename="../InfoViewer.cpp" line="411"/>
+        <location filename="../InfoViewer.cpp" line="418"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
@@ -946,22 +946,22 @@ Skryjte filtrem: |nohistogram|</translation>
 <context>
     <name>MessageBox</name>
     <message>
-        <location filename="../MessageBox.cpp" line="106"/>
+        <location filename="../MessageBox.cpp" line="114"/>
         <source>Image Viewer and Organizer</source>
         <translation>Prohlížení a uspořádávání obrázků</translation>
     </message>
     <message>
-        <location filename="../MessageBox.cpp" line="107"/>
+        <location filename="../MessageBox.cpp" line="115"/>
         <source>Home page and bug reports</source>
         <translation>Domovská stránka a hlášení chyb</translation>
     </message>
     <message>
-        <location filename="../MessageBox.cpp" line="113"/>
+        <location filename="../MessageBox.cpp" line="121"/>
         <source>Special thanks to our contributers.</source>
         <translation>Zvláštní poděkování našim přispěvatelům.</translation>
     </message>
     <message>
-        <location filename="../MessageBox.cpp" line="116"/>
+        <location filename="../MessageBox.cpp" line="124"/>
         <source>About</source>
         <translation>O aplikaci</translation>
     </message>
@@ -973,18 +973,18 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Panely a nástrojové pruhy</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="349"/>
-        <location filename="../Phototonic.cpp" line="957"/>
+        <location filename="../Phototonic.cpp" line="381"/>
+        <location filename="../Phototonic.cpp" line="991"/>
         <source>Image Info</source>
         <translation>Informace o obrázku</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="471"/>
+        <location filename="../Phototonic.cpp" line="503"/>
         <source>Zoom</source>
         <translation>Zvětšení</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="469"/>
+        <location filename="../Phototonic.cpp" line="501"/>
         <source>Transform</source>
         <translation>Proměna</translation>
     </message>
@@ -993,12 +993,12 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Zrcadlení</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="555"/>
+        <location filename="../Phototonic.cpp" line="589"/>
         <source>Top</source>
         <translation>Ve složce nahoru</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="559"/>
+        <location filename="../Phototonic.cpp" line="593"/>
         <source>Bottom</source>
         <translation>Ve složce dolů</translation>
     </message>
@@ -1007,37 +1007,37 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Zavřít obrázek</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="566"/>
+        <location filename="../Phototonic.cpp" line="600"/>
         <source>Full Screen</source>
         <translation>Na celou obrazovku</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="570"/>
+        <location filename="../Phototonic.cpp" line="604"/>
         <source>Preferences</source>
         <translation>Nastavení</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="574"/>
+        <location filename="../Phototonic.cpp" line="608"/>
         <source>Exit</source>
         <translation>Ukončit</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="577"/>
+        <location filename="../Phototonic.cpp" line="611"/>
         <source>Enlarge Thumbnails</source>
         <translation>Zvětšit náhledy</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="584"/>
+        <location filename="../Phototonic.cpp" line="618"/>
         <source>Shrink Thumbnails</source>
         <translation>Zmenšit náhledy</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="591"/>
+        <location filename="../Phototonic.cpp" line="625"/>
         <source>Cut</source>
         <translation>Vyjmout</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="596"/>
+        <location filename="../Phototonic.cpp" line="630"/>
         <source>Copy</source>
         <translation>Zkopírovat</translation>
     </message>
@@ -1046,43 +1046,43 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Kopírovat nebo přesunout do...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="626"/>
+        <location filename="../Phototonic.cpp" line="660"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="630"/>
+        <location filename="../Phototonic.cpp" line="664"/>
         <source>Save</source>
         <translation>Uložit</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="634"/>
+        <location filename="../Phototonic.cpp" line="668"/>
         <source>Save As</source>
         <translation>Uložit jako</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="638"/>
+        <location filename="../Phototonic.cpp" line="672"/>
         <source>Copy Image</source>
         <translation>Zkopírovat obrázek</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="639"/>
+        <location filename="../Phototonic.cpp" line="673"/>
         <source>Paste Image</source>
         <translation>Vložit obrázek</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="641"/>
+        <location filename="../Phototonic.cpp" line="675"/>
         <source>Rename</source>
         <translation>Přejmenovat</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="650"/>
+        <location filename="../Phototonic.cpp" line="684"/>
         <source>Select All</source>
         <translation>Vybrat vše</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="653"/>
-        <location filename="../Phototonic.cpp" line="1087"/>
+        <location filename="../Phototonic.cpp" line="687"/>
+        <location filename="../Phototonic.cpp" line="1142"/>
         <source>About</source>
         <translation>O aplikaci</translation>
     </message>
@@ -1107,7 +1107,7 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Obráceně</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="691"/>
+        <location filename="../Phototonic.cpp" line="725"/>
         <source>Show Hidden Files</source>
         <translation>Zobrazovat skryté soubory</translation>
     </message>
@@ -1136,7 +1136,7 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Přibližně čtvercové</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="715"/>
+        <location filename="../Phototonic.cpp" line="749"/>
         <source>Reload</source>
         <translation>Načíst znovu</translation>
     </message>
@@ -1145,7 +1145,7 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Zahrnout podsložky</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="724"/>
+        <location filename="../Phototonic.cpp" line="758"/>
         <source>Paste Here</source>
         <translation>Vložit sem</translation>
     </message>
@@ -1158,12 +1158,12 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Spravovat</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="737"/>
+        <location filename="../Phototonic.cpp" line="771"/>
         <source>Back</source>
         <translation>Zpět</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="750"/>
+        <location filename="../Phototonic.cpp" line="784"/>
         <source>Forward</source>
         <translation>Vpřed</translation>
     </message>
@@ -1172,14 +1172,14 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Nahoru</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="315"/>
-        <location filename="../Phototonic.cpp" line="766"/>
+        <location filename="../Phototonic.cpp" line="347"/>
+        <location filename="../Phototonic.cpp" line="800"/>
         <source>Home</source>
         <translation>Domů</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="775"/>
-        <location filename="../Phototonic.cpp" line="2816"/>
+        <location filename="../Phototonic.cpp" line="809"/>
+        <location filename="../Phototonic.cpp" line="2884"/>
         <source>Slide Show</source>
         <translation>Promítání</translation>
     </message>
@@ -1220,27 +1220,27 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Spravovat vnější programy</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="824"/>
+        <location filename="../Phototonic.cpp" line="858"/>
         <source>Zoom Out</source>
         <translation>Oddálit</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="828"/>
+        <location filename="../Phototonic.cpp" line="862"/>
         <source>Zoom In</source>
         <translation>Přiblížit</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="832"/>
+        <location filename="../Phototonic.cpp" line="866"/>
         <source>Reset Zoom</source>
         <translation>Vrátit úroveň přiblížení na výchozí</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="840"/>
+        <location filename="../Phototonic.cpp" line="874"/>
         <source>Original Size</source>
         <translation>Původní velikost</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="844"/>
+        <location filename="../Phototonic.cpp" line="878"/>
         <source>Keep Zoom</source>
         <translation>Zachovat zvětšení</translation>
     </message>
@@ -1253,12 +1253,12 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Otočit vpravo</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="864"/>
+        <location filename="../Phototonic.cpp" line="898"/>
         <source>Flip Horizontally</source>
         <translation>Převrátit vodorovně</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="868"/>
+        <location filename="../Phototonic.cpp" line="902"/>
         <source>Flip Vertically</source>
         <translation>Převrátit svisle</translation>
     </message>
@@ -1267,7 +1267,7 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Oříznutí</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="876"/>
+        <location filename="../Phototonic.cpp" line="910"/>
         <source>Scale Image</source>
         <translation>Změnit rozlišení obrázku</translation>
     </message>
@@ -1280,7 +1280,7 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Otočit o 1 stupeň vpravo</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="886"/>
+        <location filename="../Phototonic.cpp" line="920"/>
         <source>Colors</source>
         <translation>Barvy</translation>
     </message>
@@ -1305,7 +1305,7 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Čtveřice</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1424"/>
+        <location filename="../Phototonic.cpp" line="1490"/>
         <source>Tags</source>
         <extracomment>tags are image metadata</extracomment>
         <translation>Štítky</translation>
@@ -1319,8 +1319,8 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Největší zvětšení</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1893"/>
-        <location filename="../Phototonic.cpp" line="1946"/>
+        <location filename="../Phototonic.cpp" line="1959"/>
+        <location filename="../Phototonic.cpp" line="2012"/>
         <source>Rotation %1°</source>
         <translation>Otočení o %1°</translation>
     </message>
@@ -1349,23 +1349,23 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Nepodařilo se otevřít složku:</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3227"/>
+        <location filename="../Phototonic.cpp" line="3295"/>
         <source>Duplicate images in %1</source>
         <translation>Zduplikovat obrázky v %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3229"/>
+        <location filename="../Phototonic.cpp" line="3297"/>
         <source>Files List</source>
         <translation>Seznam souborů</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3240"/>
+        <location filename="../Phototonic.cpp" line="3308"/>
         <source>Rename %1</source>
         <translation>Přejmenovat %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3250"/>
-        <location filename="../Phototonic.cpp" line="3537"/>
+        <location filename="../Phototonic.cpp" line="3318"/>
+        <location filename="../Phototonic.cpp" line="3605"/>
         <source>Invalid name entered.</source>
         <translation>Zadán neplatný název.</translation>
     </message>
@@ -1378,12 +1378,12 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Zadat nový název pro &quot;%1&quot;:</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3310"/>
+        <location filename="../Phototonic.cpp" line="3378"/>
         <source>No name entered.</source>
         <translation>Nezadán žádný název.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3430"/>
+        <location filename="../Phototonic.cpp" line="3498"/>
         <source>Failed to rename image.</source>
         <translation>Nepodařilo se přejmenovat obrázek.</translation>
     </message>
@@ -1396,7 +1396,7 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Nepodařilo se smazat složku.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3512"/>
+        <location filename="../Phototonic.cpp" line="3580"/>
         <source>Removed &quot;%1&quot;</source>
         <translation>Odstraněno „%1“</translation>
     </message>
@@ -1409,12 +1409,12 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Vytvořeno &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3785"/>
+        <location filename="../Phototonic.cpp" line="3865"/>
         <source>Cannot perform action with temporary image.</source>
         <translation>Akci není možné s dočasným souborem provést.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="928"/>
+        <location filename="../Phototonic.cpp" line="962"/>
         <source>Keep Transformations</source>
         <translation>Zachovat proměny</translation>
     </message>
@@ -1435,33 +1435,33 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Posunout dolů</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="941"/>
+        <location filename="../Phototonic.cpp" line="975"/>
         <source>Invert Selection</source>
         <translation>Obrátit výběr</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="948"/>
+        <location filename="../Phototonic.cpp" line="982"/>
         <source>Rotate and Crop images</source>
         <translation>Otočit a oříznout obrázky</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1002"/>
+        <location filename="../Phototonic.cpp" line="1057"/>
         <source>&amp;File</source>
         <translation>&amp;Soubor</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1013"/>
+        <location filename="../Phototonic.cpp" line="1068"/>
         <source>&amp;Edit</source>
         <translation>Úp&amp;ravy</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1035"/>
+        <location filename="../Phototonic.cpp" line="1090"/>
         <source>&amp;Go</source>
         <extracomment>&quot;go&quot; like in go forward, backward, etc</extracomment>
         <translation>&amp;Pohyb</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1050"/>
+        <location filename="../Phototonic.cpp" line="1105"/>
         <source>&amp;View</source>
         <extracomment>configure visual features of the app</extracomment>
         <translation>&amp;Zobrazení</translation>
@@ -1475,7 +1475,7 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Nápo&amp;věda</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="491"/>
+        <location filename="../Phototonic.cpp" line="523"/>
         <source>Edit</source>
         <translation>Úpravy</translation>
     </message>
@@ -1484,7 +1484,7 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Pohyb</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="514"/>
+        <location filename="../Phototonic.cpp" line="546"/>
         <source>View</source>
         <translation>Pohled</translation>
     </message>
@@ -1497,7 +1497,7 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">Spouští se...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1308"/>
+        <location filename="../Phototonic.cpp" line="1374"/>
         <source>File System</source>
         <translation>Souborový systém</translation>
     </message>
@@ -1506,348 +1506,354 @@ Skryjte filtrem: |nohistogram|</translation>
         <translation type="vanished">&lt;p&gt;Prohlížeč a správce obrázků&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1610"/>
+        <location filename="../Phototonic.cpp" line="1676"/>
         <source>Failed to start external application.</source>
         <translation>Nepodařilo se spustit externí aplikaci.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1591"/>
+        <location filename="../Phototonic.cpp" line="1657"/>
         <source>Invalid selection.</source>
         <translation>Neplatný výběr.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="128"/>
-        <location filename="../Phototonic.cpp" line="139"/>
-        <location filename="../Phototonic.cpp" line="362"/>
+        <location filename="../Phototonic.cpp" line="167"/>
+        <location filename="../Phototonic.cpp" line="178"/>
+        <location filename="../Phototonic.cpp" line="394"/>
         <source>Average brightness</source>
         <translation>Průměrný jas</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="270"/>
+        <location filename="../Phototonic.cpp" line="302"/>
         <source>Failed to open file %1, file not found.</source>
         <translation>Soubor %1 se nepodařilo otevřít – nenalezen.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="318"/>
+        <location filename="../Phototonic.cpp" line="350"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
         <translation>Seznam souborů</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="461"/>
+        <location filename="../Phototonic.cpp" line="493"/>
         <source>Navigate</source>
         <translation>Navigovat</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="479"/>
+        <location filename="../Phototonic.cpp" line="511"/>
         <source>Flip and Flop and Rotate</source>
         <translation>Zrcadlit vodorovně, svisle a otočit</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="890"/>
+        <location filename="../Phototonic.cpp" line="924"/>
         <source>Crop</source>
         <translation>Oříznout</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="502"/>
+        <location filename="../Phototonic.cpp" line="534"/>
         <source>File</source>
         <translation>Soubor</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="520"/>
+        <location filename="../Phototonic.cpp" line="552"/>
         <source>Guides</source>
         <extracomment>The guides a lines across the image for orientation</extracomment>
         <translation>Vodítka</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="521"/>
+        <location filename="../Phototonic.cpp" line="553"/>
         <source>Add vertical guide</source>
         <translation>Přidat svislé vodítko</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="524"/>
+        <location filename="../Phototonic.cpp" line="556"/>
         <source>Add horizontal guide</source>
         <translation>Přidat vodorovné vodítko</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="563"/>
+        <location filename="../Phototonic.cpp" line="597"/>
         <source>Close Viewer</source>
         <translation>Zavřít prohlížeč</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="601"/>
+        <location filename="../Phototonic.cpp" line="635"/>
         <source>Show classic thumbnails</source>
         <translation>Zobrazit klasické náhledy</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="606"/>
+        <location filename="../Phototonic.cpp" line="640"/>
         <source>Show square thumbnails</source>
         <translation>Zobrazit čtvercové náhledy</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="611"/>
+        <location filename="../Phototonic.cpp" line="645"/>
         <source>Show compact thumbnails</source>
         <translation>Zobrazit kompaktní náhledy</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="622"/>
-        <location filename="../Phototonic.cpp" line="2125"/>
-        <location filename="../Phototonic.cpp" line="2243"/>
+        <location filename="../Phototonic.cpp" line="656"/>
+        <location filename="../Phototonic.cpp" line="2191"/>
+        <location filename="../Phototonic.cpp" line="2309"/>
         <source>Move to Trash</source>
         <translation>Přesunout do Koše</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="644"/>
-        <location filename="../Phototonic.cpp" line="3449"/>
-        <location filename="../Phototonic.cpp" line="3451"/>
+        <location filename="../Phototonic.cpp" line="678"/>
+        <location filename="../Phototonic.cpp" line="3517"/>
+        <location filename="../Phototonic.cpp" line="3519"/>
         <source>Remove Metadata</source>
         <translation>Odebrat Metadata</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="647"/>
-        <location filename="../Phototonic.cpp" line="3477"/>
+        <location filename="../Phototonic.cpp" line="681"/>
+        <location filename="../Phototonic.cpp" line="3545"/>
         <source>Regenerate Thumbnail</source>
         <translation>Znovu vytvořit náhled</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="661"/>
+        <location filename="../Phototonic.cpp" line="695"/>
         <source>Sort by Name</source>
         <translation>Seřadit podle názvu</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="663"/>
-        <location filename="../Phototonic.cpp" line="665"/>
+        <location filename="../Phototonic.cpp" line="697"/>
+        <location filename="../Phototonic.cpp" line="699"/>
         <source>Sort by Time</source>
         <translation>Seřadit podle času</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="667"/>
+        <location filename="../Phototonic.cpp" line="701"/>
         <source>Sort by Size</source>
         <translation>Seřadit podle velikosti</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="669"/>
+        <location filename="../Phototonic.cpp" line="703"/>
         <source>Sort by Type</source>
         <translation>Seřadit podle typu</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="671"/>
+        <location filename="../Phototonic.cpp" line="705"/>
         <source>Sort by Similarity</source>
         <translation>Seřadit podle podobnosti</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="673"/>
+        <location filename="../Phototonic.cpp" line="707"/>
         <source>Sort by Brightness</source>
         <translation>Seřadit podle jasu</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="675"/>
+        <location filename="../Phototonic.cpp" line="709"/>
         <source>Sort by Color</source>
         <translation>Seřadit podle barvy</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="687"/>
+        <location filename="../Phototonic.cpp" line="721"/>
         <source>Reverse Sort Order</source>
         <translation>Obrátit pořadí řazení</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="696"/>
+        <location filename="../Phototonic.cpp" line="730"/>
         <source>Small Toolbar Icons</source>
         <translation>Malé ikony v pruhu nástrojů</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="719"/>
+        <location filename="../Phototonic.cpp" line="753"/>
         <source>Include Sub-directories</source>
         <translation>Zahrnout podsložky</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="729"/>
+        <location filename="../Phototonic.cpp" line="763"/>
         <source>New Directory</source>
         <translation>Nová složka</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="733"/>
+        <location filename="../Phototonic.cpp" line="767"/>
         <source>Set Save Directory</source>
         <translation>Nastavit složku pro ukládání</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="779"/>
+        <location filename="../Phototonic.cpp" line="813"/>
         <source>Next Image</source>
         <translation>Následující obrázek</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="783"/>
+        <location filename="../Phototonic.cpp" line="817"/>
         <source>Previous Image</source>
         <translation>Předchozí obrázek</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="787"/>
+        <location filename="../Phototonic.cpp" line="821"/>
         <source>First Image</source>
         <translation>První obrázek</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="791"/>
+        <location filename="../Phototonic.cpp" line="825"/>
         <source>Last Image</source>
         <translation>Poslední obrázek</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="795"/>
+        <location filename="../Phototonic.cpp" line="829"/>
         <source>Random Image</source>
         <translation>Náhodný obrázek</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="798"/>
+        <location filename="../Phototonic.cpp" line="832"/>
         <source>View Image</source>
         <translation>Zobrazit obrázek</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="806"/>
+        <location filename="../Phototonic.cpp" line="840"/>
         <source>Set Wallpaper</source>
         <translation>Nastavit pozadí plochy</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="813"/>
+        <location filename="../Phototonic.cpp" line="847"/>
         <source>External Applications</source>
         <translation>Externí aplikace</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="821"/>
+        <location filename="../Phototonic.cpp" line="855"/>
         <source>Delete Bookmark</source>
         <translation>Smazat záložku</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="848"/>
+        <location filename="../Phototonic.cpp" line="882"/>
         <source>Rotate 90° CCW</source>
         <translation>Otočit o 90° doleva</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="852"/>
+        <location filename="../Phototonic.cpp" line="886"/>
         <source>Rotate 90° CW</source>
         <translation>Otočit o 90° doprava</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="856"/>
+        <location filename="../Phototonic.cpp" line="890"/>
         <source>Rotate with mouse</source>
         <translation>Otočit myší</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="861"/>
+        <location filename="../Phototonic.cpp" line="895"/>
         <source>Or try holding Shift</source>
         <translation>Nebo zkuste podržet Shift</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="872"/>
+        <location filename="../Phototonic.cpp" line="906"/>
         <source>Letterbox</source>
         <translation>Rámeček</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="880"/>
+        <location filename="../Phototonic.cpp" line="914"/>
         <source>Rotate 1° CCW</source>
         <translation>Otočit o 1° doleva</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="883"/>
+        <location filename="../Phototonic.cpp" line="917"/>
         <source>Rotate 1° CW</source>
         <translation>Otočit o 1° doprava</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="894"/>
+        <location filename="../Phototonic.cpp" line="928"/>
         <source>Blackout</source>
         <translation>Zatmění</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="898"/>
+        <location filename="../Phototonic.cpp" line="932"/>
         <source>Cartouche</source>
         <translation>Kartuše</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="902"/>
+        <location filename="../Phototonic.cpp" line="936"/>
         <source>Annotate</source>
         <translation>Anotovat</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="932"/>
+        <location filename="../Phototonic.cpp" line="966"/>
         <source>Slide Image Left</source>
         <translation>Posunout obrázek vlevo</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="934"/>
+        <location filename="../Phototonic.cpp" line="968"/>
         <source>Slide Image Right</source>
         <translation>Posunout obrázek vpravo</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="936"/>
+        <location filename="../Phototonic.cpp" line="970"/>
         <source>Slide Image Up</source>
         <translation>Posunout obrázek nahoru</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="938"/>
+        <location filename="../Phototonic.cpp" line="972"/>
         <source>Slide Image Down</source>
         <translation>Posunout obrázek dolů</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="954"/>
+        <location filename="../Phototonic.cpp" line="988"/>
         <source>Edit Current Path</source>
         <translation>Upravit stávající popis umístění</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="967"/>
+        <location filename="../Phototonic.cpp" line="1001"/>
         <source>Show Grid</source>
         <translation>Zobrazit mřížku</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1051"/>
+        <location filename="../Phototonic.cpp" line="1106"/>
         <source>Window</source>
         <translation>Okno</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1063"/>
+        <location filename="../Phototonic.cpp" line="1118"/>
         <source>Thumbnails Sorting</source>
         <translation>Řazení náhledů</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1166"/>
+        <location filename="../Phototonic.cpp" line="1221"/>
         <source>Accuracy: </source>
         <translation>Přesnost: </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1183"/>
+        <location filename="../Phototonic.cpp" line="1238"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
         <translation>Jasně, v tomto případě se nejedná o využití AI.&lt;p&gt;Duplicity jsou zjišťovány pomocí mozaiky stupňů šedi&lt;br&gt;(&lt;i&gt;vypadají odbarvené obrázky na velkou dálku podobně?&lt;/i&gt;)&lt;br&gt;a porovnáváním distribuce barev&lt;br&gt;(&lt;i&gt;imunní vůči zrcadlení, otočení, roztažení v jednom směru …&lt;/i&gt;)&lt;br&gt;Obojí může způsobovat zábavné omyly.&lt;/p&gt;&lt;p&gt;Potřebnou blízkost distribuce barev je možné nastavit zde&lt;br&gt;60% je smysluplná výchozí hodnota, ale je možná příliš volná, pokud pracujete s monochromatickými obrázky&lt;br&gt;Pokud byste šli mnohem níže, způsobovalo by to mnoho omylů – přesnost zvyšte a vyhnete se tomu&lt;/p&gt;&lt;h3&gt;Povšimněte si, že toto může způsobovat disjunktní skupiny shod!&lt;/h3&gt;&lt;p&gt;[A] může být podobné s [B] a [C], zatímco [B] a C] se liší příliš.&lt;br&gt;Výsledek je, že [A] &lt;b&gt;stejný obrázek se může zobrazit několikrát!&lt;/b&gt;&lt;br&gt;Nepředpokládejte, že je prostě řazení špatně a jsou to jasné duplicity&lt;br&gt;a nemačkejte Delete. Jedná se o &lt;b&gt;ten stejný obrázek&lt;/b&gt; a jeho smazání by znamenalo, že&lt;br&gt;bude smazán všude.&lt;/p&gt;&lt;h3&gt;Všímejte si názvů souborů!&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1213"/>
+        <location filename="../Phototonic.cpp" line="1268"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
         <translation>Filtr – vyzkoušejte „/?“…</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1268"/>
+        <location filename="../Phototonic.cpp" line="1271"/>
+        <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Hue is suffixed [0-359]° (center red is at 0/360)&lt;/li&gt;&lt;li&gt;Saturation is suffixed [0-100]%&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;br&gt;!dark, !bright, !warm &amp;amp; !cold will invert the match (they&apos;re not complementary)&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
+        <extracomment>This is a tooltip explaining extended filter features</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="1326"/>
         <source>Menu</source>
         <translation>Nabídka</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1277"/>
+        <location filename="../Phototonic.cpp" line="1335"/>
         <source>Viewer Toolbar</source>
         <translation>Pruh nástrojů prohlížeče</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1379"/>
+        <location filename="../Phototonic.cpp" line="1445"/>
         <source>Preview</source>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1401"/>
+        <location filename="../Phototonic.cpp" line="1467"/>
         <source>Thumbs</source>
         <translation>Náhledy</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1599"/>
+        <location filename="../Phototonic.cpp" line="1665"/>
         <source>Commands using %f or %u cannot be used with multiple files.</source>
         <translation>Příkazy používající %f nebo %u není možné použít v případě vícero souborů.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1762"/>
+        <location filename="../Phototonic.cpp" line="1828"/>
         <source>Copied %n image(s) to clipboard</source>
         <translation>
             <numerusform>%n obrázek zkopírován do schránky</numerusform>
@@ -1856,7 +1862,7 @@ Skryjte filtrem: |nohistogram|</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1763"/>
+        <location filename="../Phototonic.cpp" line="1829"/>
         <source>Cut %n image(s) to clipboard</source>
         <translation>
             <numerusform>%n obrázek vyjmut do schránky</numerusform>
@@ -1865,79 +1871,79 @@ Skryjte filtrem: |nohistogram|</translation>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1809"/>
-        <location filename="../Phototonic.cpp" line="1993"/>
+        <location filename="../Phototonic.cpp" line="1875"/>
+        <location filename="../Phototonic.cpp" line="2059"/>
         <source>Failed to copy or move image.</source>
         <translation>Nepodařilo se kopírovat nebo přesunout obrázek.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1841"/>
+        <location filename="../Phototonic.cpp" line="1907"/>
         <source>Maximum Zoom</source>
         <translation>Největší přiblížení</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1845"/>
+        <location filename="../Phototonic.cpp" line="1911"/>
         <source>Minimum Zoom</source>
         <translation>Největší oddálení</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1873"/>
+        <location filename="../Phototonic.cpp" line="1939"/>
         <source>Zoom %1%</source>
         <extracomment>nb the trailing &quot;%&quot; for eg. 80%</extracomment>
         <translation>Zvětšení %1%</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1956"/>
+        <location filename="../Phototonic.cpp" line="2022"/>
         <source>No crop area defined</source>
         <translation>Neurčena žádná oblast pro ořez</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1969"/>
+        <location filename="../Phototonic.cpp" line="2035"/>
         <source>Create backups?</source>
         <translation>Vytvořit zálohy?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1969"/>
+        <location filename="../Phototonic.cpp" line="2035"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
         <translation>Neurčena žádná globální složka pro ukládání – obrázky proto budou přepsány.&lt;h3&gt;Chcete vytvořit zálohy?&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1973"/>
+        <location filename="../Phototonic.cpp" line="2039"/>
         <source>Create backups and overwrite the original files</source>
         <translation>Vytvořit zálohy a přepsat původní soubory</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1973"/>
+        <location filename="../Phototonic.cpp" line="2039"/>
         <source>Overwrite the original files</source>
         <translation>Přepsat původní soubory</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1976"/>
+        <location filename="../Phototonic.cpp" line="2042"/>
         <source>Save the transformed images to %1</source>
         <translation>Uložit pozměněné obrázky do %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1985"/>
+        <location filename="../Phototonic.cpp" line="2051"/>
         <source>&lt;h3&gt;Perform batch transformation?&lt;/h3&gt;</source>
         <translation>&lt;h3&gt;Provést dávkovou transformaci?&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1979"/>
+        <location filename="../Phototonic.cpp" line="2045"/>
         <source>&lt;ul&gt;&lt;li&gt;Rotate %1 images by %2°&lt;/li&gt;&lt;li&gt;Crop them to %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;ul&gt;&lt;li&gt;Otočit %1 obrázků o %2°&lt;/li&gt;&lt;li&gt;Oříznout je na %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2173"/>
+        <location filename="../Phototonic.cpp" line="2239"/>
         <source>Deleting %1</source>
         <translation>Maže se %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2195"/>
+        <location filename="../Phototonic.cpp" line="2261"/>
         <source>Failed to move image to the trash.</source>
         <translation>Obrázek se nepodařilo přesunout do koše.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2216"/>
+        <location filename="../Phototonic.cpp" line="2282"/>
         <source>Deleted %n image(s)</source>
         <translation>
             <numerusform>Smazán %n obrázek</numerusform>
@@ -1946,194 +1952,193 @@ Skryjte filtrem: |nohistogram|</translation>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2244"/>
+        <location filename="../Phototonic.cpp" line="2310"/>
         <source>Move %1 to the trash</source>
         <translation>Přesunout %1 do Koše</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2244"/>
+        <location filename="../Phototonic.cpp" line="2310"/>
         <source>Permanently delete %1</source>
         <translation>Nevratně smazat %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2260"/>
+        <location filename="../Phototonic.cpp" line="2326"/>
         <source>Deleted %1</source>
         <translation>%1 smazáno</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2343"/>
+        <location filename="../Phototonic.cpp" line="2409"/>
         <source>Invalid Path: %1</source>
         <translation>Neplatný popis umístění: %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3049"/>
+        <location filename="../Phototonic.cpp" line="3117"/>
         <source>Can not move or copy images to this directory.</source>
         <translation>Není možné přesunout nebo zkopírovat obrázky do této složky.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3054"/>
+        <location filename="../Phototonic.cpp" line="3122"/>
         <source>Destination directory is the same as the source directory.</source>
         <translation>Cílová složka je stejná jako ta zdrojová.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3067"/>
+        <location filename="../Phototonic.cpp" line="3135"/>
         <source>Move directory %1 to %2?</source>
         <translation>Přesunout složku %1 do %2?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3067"/>
+        <location filename="../Phototonic.cpp" line="3135"/>
         <source>Move directory</source>
         <translation>Přesunout složku</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3066"/>
+        <location filename="../Phototonic.cpp" line="3134"/>
         <source>Move Directory</source>
         <translation>Přesunout složku</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3070"/>
+        <location filename="../Phototonic.cpp" line="3138"/>
         <source>Failed to move directory.</source>
         <translation>Složku se nepodařilo přesunout.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3072"/>
+        <location filename="../Phototonic.cpp" line="3140"/>
         <source>Directory moved</source>
         <translation>Složka přesunuta</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3156"/>
+        <location filename="../Phototonic.cpp" line="3224"/>
         <source>Failed to open directory %1</source>
         <translation>Složku %1 se nepodařilo otevřít</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3155"/>
+        <location filename="../Phototonic.cpp" line="3223"/>
         <source>No directory selected</source>
         <translation>Nevybrána žádná složka</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1216"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation>&lt;h2&gt;[dílčí řetězec] [/ omezení [/ další omezení]]&lt;/h2&gt;&lt;tt&gt;něco / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;odpovídá „něco“, starší než 5 dnů, ale mladší než měsíc – nebo pod 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Větší než/Po: &amp;gt;&lt;/li&gt;&lt;li&gt;Menší než/Před: &amp;lt;&lt;/li&gt;&lt;li&gt;Přesné stáří neb (zaokrouhlená) velikost je jinak předpokládána nebo výslovná pomocí: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Datumy jsou absolutní (RRRR-MM-DD) nebo relativní (5m:h:d:t:M:r)&lt;/li&gt;&lt;li&gt;Velikosti jsou s příponami 4kB:MB:GB nebo 4MP (megapixely)&lt;/li&gt;&lt;li&gt;Rozměry jsou před/v/s příponou „x“ ([šířka]x[výška])&lt;/li&gt;&lt;li&gt;Chromatická variance je s příponou [0-255]cr (skutečné hodnoty málokdy budou &gt; 100)&lt;/li&gt;&lt;li&gt;Svítivost je s příponou [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;U žádných přípon NEjsou rozlišována malá-VELKÁ písmena kromě m|inuty a M|ěsíce&lt;/i&gt;&lt;br&gt;Pokračování dopředným lomítkem („/“) začíná další skupinu postačujících podmínek, shoda v dílčím řetězci je volitelná.&lt;hr&gt;Krom toho je možné filtrovat ohledně&lt;br&gt;&lt;b&gt;černé, bílé, hnědé, tmavé, světlé, teplé, studené, monochromatické, šedé&lt;/b&gt; a barev&lt;br&gt;&lt;b&gt;červená, oranžová, žlutá, limetková, zelená, mint, cyan, azurová, modrá, purpurová, fialová, růžová&lt;/b&gt;&lt;hr&gt;Uvozující dvojtečky &lt;b&gt;odpovídají štítkům&lt;/b&gt;, takže „/&lt;b&gt;:něco&lt;/b&gt;“ najde všechny obrázky, které mají štítek „něco“</translation>
+        <translation type="vanished">&lt;h2&gt;[dílčí řetězec] [/ omezení [/ další omezení]]&lt;/h2&gt;&lt;tt&gt;něco / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;odpovídá „něco“, starší než 5 dnů, ale mladší než měsíc – nebo pod 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Větší než/Po: &amp;gt;&lt;/li&gt;&lt;li&gt;Menší než/Před: &amp;lt;&lt;/li&gt;&lt;li&gt;Přesné stáří neb (zaokrouhlená) velikost je jinak předpokládána nebo výslovná pomocí: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Datumy jsou absolutní (RRRR-MM-DD) nebo relativní (5m:h:d:t:M:r)&lt;/li&gt;&lt;li&gt;Velikosti jsou s příponami 4kB:MB:GB nebo 4MP (megapixely)&lt;/li&gt;&lt;li&gt;Rozměry jsou před/v/s příponou „x“ ([šířka]x[výška])&lt;/li&gt;&lt;li&gt;Chromatická variance je s příponou [0-255]cr (skutečné hodnoty málokdy budou &gt; 100)&lt;/li&gt;&lt;li&gt;Svítivost je s příponou [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;U žádných přípon NEjsou rozlišována malá-VELKÁ písmena kromě m|inuty a M|ěsíce&lt;/i&gt;&lt;br&gt;Pokračování dopředným lomítkem („/“) začíná další skupinu postačujících podmínek, shoda v dílčím řetězci je volitelná.&lt;hr&gt;Krom toho je možné filtrovat ohledně&lt;br&gt;&lt;b&gt;černé, bílé, hnědé, tmavé, světlé, teplé, studené, monochromatické, šedé&lt;/b&gt; a barev&lt;br&gt;&lt;b&gt;červená, oranžová, žlutá, limetková, zelená, mint, cyan, azurová, modrá, purpurová, fialová, růžová&lt;/b&gt;&lt;hr&gt;Uvozující dvojtečky &lt;b&gt;odpovídají štítkům&lt;/b&gt;, takže „/&lt;b&gt;:něco&lt;/b&gt;“ najde všechny obrázky, které mají štítek „něco“</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1985"/>
+        <location filename="../Phototonic.cpp" line="2051"/>
         <source>Batch transformation</source>
         <translation>Dávková transformace</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3187"/>
+        <location filename="../Phototonic.cpp" line="3255"/>
         <source>Searching duplicates: %v / %m</source>
         <extracomment>%v and %m are literal pattterns for QProgressBar (value and maximum)</extracomment>
         <translation>Hledání duplicit: %v / %m</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3258"/>
+        <location filename="../Phototonic.cpp" line="3326"/>
         <source>Failed to rename directory.</source>
         <translation>Složku se nepodařilo přejmenovat.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3365"/>
-        <location filename="../Phototonic.cpp" line="3378"/>
+        <location filename="../Phototonic.cpp" line="3433"/>
+        <location filename="../Phototonic.cpp" line="3446"/>
         <source>File collision!</source>
         <translation>Kolize souborů!</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3365"/>
-        <location filename="../Phototonic.cpp" line="3378"/>
+        <location filename="../Phototonic.cpp" line="3433"/>
+        <location filename="../Phototonic.cpp" line="3446"/>
         <source>Existing files collide with the rename.</source>
         <translation>Přejmenování koliduje s existujícími soubory.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3373"/>
+        <location filename="../Phototonic.cpp" line="3441"/>
         <source>Refusing ambigious rename pattern.
 Multiple files would get the same name.</source>
         <translation>Odmítá se nejednoznačný vzor přejmenování.
 Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3379"/>
+        <location filename="../Phototonic.cpp" line="3447"/>
         <source>Do you want to incorporate them (ie. skip their indexes)?</source>
         <translation>Opravdu je chcete zahrnout (tj. přeskočit jejich rejstříky)?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3451"/>
+        <location filename="../Phototonic.cpp" line="3519"/>
         <source>Permanently remove all Exif metadata from selected images?</source>
         <translation>Nevratně odebrat veškerá Exif metadata z vybraných obrázků?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3454"/>
+        <location filename="../Phototonic.cpp" line="3522"/>
         <source>Failed to remove Exif metadata.</source>
         <translation>Exif metadata se nepodařilo odebrat.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3459"/>
+        <location filename="../Phototonic.cpp" line="3527"/>
         <source>Metadata removed from selected images</source>
         <translation>Z označených obrázků odebrána metadata</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3475"/>
+        <location filename="../Phototonic.cpp" line="3543"/>
         <source>Write Exif Thumbnail</source>
         <translation>Zapsat EXIF náhled</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3477"/>
+        <location filename="../Phototonic.cpp" line="3545"/>
         <source>Do you also want to write the thumbnail to the images metadata?</source>
         <translation>Opravdu chcete náhled zapsat do metadat obrázků?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3493"/>
+        <location filename="../Phototonic.cpp" line="3561"/>
         <source>Move directory %1 to the trash?</source>
         <translation>Přesunout složku %1 do Koše?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3494"/>
+        <location filename="../Phototonic.cpp" line="3562"/>
         <source>Permanently delete the directory %1 and all of its contents?</source>
         <translation>Nevratně smazat složku %1 a všechen obsah v ní?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3498"/>
-        <location filename="../Phototonic.cpp" line="3500"/>
+        <location filename="../Phototonic.cpp" line="3566"/>
+        <location filename="../Phototonic.cpp" line="3568"/>
         <source>Delete Directory</source>
         <translation>Smazat složku</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3498"/>
+        <location filename="../Phototonic.cpp" line="3566"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3507"/>
+        <location filename="../Phototonic.cpp" line="3575"/>
         <source>Failed to move directory to the trash.</source>
         <translation>Složku se nepodařilo přesunout do Koše.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3508"/>
+        <location filename="../Phototonic.cpp" line="3576"/>
         <source>Failed to delete directory.</source>
         <translation>Složku se nepodařilo smazat.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3529"/>
+        <location filename="../Phototonic.cpp" line="3597"/>
         <source>New Sub directory</source>
         <translation>Nová podsložka</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3530"/>
+        <location filename="../Phototonic.cpp" line="3598"/>
         <source>New directory name:</source>
         <translation>Název nové složky:</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3545"/>
+        <location filename="../Phototonic.cpp" line="3613"/>
         <source>Failed to create new directory.</source>
         <translation>Novou složku se nepodařilo vytvořit.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3549"/>
+        <location filename="../Phototonic.cpp" line="3617"/>
         <source>Created %1</source>
         <translation>Vytvořeno %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3555"/>
+        <location filename="../Phototonic.cpp" line="3623"/>
         <source>Directory to save images into:</source>
         <translation>Složka do které ukládat obrázky:</translation>
     </message>
@@ -2162,7 +2167,7 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">Smazat trvale</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2196"/>
+        <location filename="../Phototonic.cpp" line="2262"/>
         <source>Failed to delete image.</source>
         <translation>Nepodařilo se smazat obrázek.</translation>
     </message>
@@ -2207,35 +2212,35 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">Překladatelé:&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3288"/>
-        <location filename="../Phototonic.cpp" line="3442"/>
-        <location filename="../Phototonic.cpp" line="3468"/>
+        <location filename="../Phototonic.cpp" line="3356"/>
+        <location filename="../Phototonic.cpp" line="3510"/>
+        <location filename="../Phototonic.cpp" line="3536"/>
         <source>Invalid selection</source>
         <translation>Neplatný výběr</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="270"/>
-        <location filename="../Phototonic.cpp" line="1610"/>
-        <location filename="../Phototonic.cpp" line="1809"/>
-        <location filename="../Phototonic.cpp" line="1993"/>
-        <location filename="../Phototonic.cpp" line="2052"/>
-        <location filename="../Phototonic.cpp" line="2062"/>
-        <location filename="../Phototonic.cpp" line="2195"/>
-        <location filename="../Phototonic.cpp" line="2263"/>
-        <location filename="../Phototonic.cpp" line="2343"/>
-        <location filename="../Phototonic.cpp" line="3049"/>
-        <location filename="../Phototonic.cpp" line="3054"/>
-        <location filename="../Phototonic.cpp" line="3070"/>
-        <location filename="../Phototonic.cpp" line="3156"/>
-        <location filename="../Phototonic.cpp" line="3250"/>
-        <location filename="../Phototonic.cpp" line="3258"/>
-        <location filename="../Phototonic.cpp" line="3310"/>
-        <location filename="../Phototonic.cpp" line="3373"/>
-        <location filename="../Phototonic.cpp" line="3430"/>
-        <location filename="../Phototonic.cpp" line="3454"/>
-        <location filename="../Phototonic.cpp" line="3507"/>
-        <location filename="../Phototonic.cpp" line="3537"/>
-        <location filename="../Phototonic.cpp" line="3545"/>
+        <location filename="../Phototonic.cpp" line="302"/>
+        <location filename="../Phototonic.cpp" line="1676"/>
+        <location filename="../Phototonic.cpp" line="1875"/>
+        <location filename="../Phototonic.cpp" line="2059"/>
+        <location filename="../Phototonic.cpp" line="2118"/>
+        <location filename="../Phototonic.cpp" line="2128"/>
+        <location filename="../Phototonic.cpp" line="2261"/>
+        <location filename="../Phototonic.cpp" line="2329"/>
+        <location filename="../Phototonic.cpp" line="2409"/>
+        <location filename="../Phototonic.cpp" line="3117"/>
+        <location filename="../Phototonic.cpp" line="3122"/>
+        <location filename="../Phototonic.cpp" line="3138"/>
+        <location filename="../Phototonic.cpp" line="3224"/>
+        <location filename="../Phototonic.cpp" line="3318"/>
+        <location filename="../Phototonic.cpp" line="3326"/>
+        <location filename="../Phototonic.cpp" line="3378"/>
+        <location filename="../Phototonic.cpp" line="3441"/>
+        <location filename="../Phototonic.cpp" line="3498"/>
+        <location filename="../Phototonic.cpp" line="3522"/>
+        <location filename="../Phototonic.cpp" line="3575"/>
+        <location filename="../Phototonic.cpp" line="3605"/>
+        <location filename="../Phototonic.cpp" line="3613"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
@@ -2276,7 +2281,7 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">Smazat trvale </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2263"/>
+        <location filename="../Phototonic.cpp" line="2329"/>
         <source>Failed to delete image</source>
         <translation>Nepodařilo se smazat obrázek</translation>
     </message>
@@ -2285,34 +2290,34 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">Žádný výběr</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1952"/>
-        <location filename="../Phototonic.cpp" line="3704"/>
+        <location filename="../Phototonic.cpp" line="2018"/>
+        <location filename="../Phototonic.cpp" line="3772"/>
         <source>No images selected</source>
         <translation>Nevybrány žádné obrázky</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1952"/>
+        <location filename="../Phototonic.cpp" line="2018"/>
         <source>Please select the images to transform.</source>
         <translation>Vyberte obrázky které přeměnit.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1957"/>
+        <location filename="../Phototonic.cpp" line="2023"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation>&lt;h3&gt;Definujte oblast ořezu&lt;/h3&gt;&lt;p&gt;Otevřete obrázek (a třeba ho i otočte).&lt;br&gt;poté stiskněte a držte Ctrl a natáhněte ořezový obdélník.&lt;br&gt;&lt;b&gt;Ne&lt;/b&gt;ořízněte dvojklikem na výběr!&lt;br&gt;Pokud nepoužíváte náhled, ukončete prohlížeč.&lt;/p&gt;Nyní je možné nahranou akci zopakovat na vícero obrázků.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2052"/>
+        <location filename="../Phototonic.cpp" line="2118"/>
         <source>Can not copy or move to %1</source>
         <translation>Není možné zkopírovat nebo přesunout do %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2062"/>
+        <location filename="../Phototonic.cpp" line="2128"/>
         <source>Can not move to the same directory</source>
         <translation>Není možné přesunout do té stejné složky</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2080"/>
-        <location filename="../Phototonic.cpp" line="3086"/>
+        <location filename="../Phototonic.cpp" line="2146"/>
+        <location filename="../Phototonic.cpp" line="3154"/>
         <source>Copied %n image(s)</source>
         <translation>
             <numerusform>Zkopírován %n obrázek</numerusform>
@@ -2321,8 +2326,8 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2080"/>
-        <location filename="../Phototonic.cpp" line="3087"/>
+        <location filename="../Phototonic.cpp" line="2146"/>
+        <location filename="../Phototonic.cpp" line="3155"/>
         <source>Moved %n image(s)</source>
         <translation>
             <numerusform>Přesunut %n obrázek</numerusform>
@@ -2331,7 +2336,7 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2126"/>
+        <location filename="../Phototonic.cpp" line="2192"/>
         <source>Move %n selected image(s) to the trash?</source>
         <translation>
             <numerusform>Přesunout %n označený obrázek do Koše?</numerusform>
@@ -2340,7 +2345,7 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2127"/>
+        <location filename="../Phototonic.cpp" line="2193"/>
         <source>Permanently delete %n selected image(s)?</source>
         <translation>
             <numerusform>Nevratně smazat %n označený obrázek?</numerusform>
@@ -2349,8 +2354,8 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2125"/>
-        <location filename="../Phototonic.cpp" line="2243"/>
+        <location filename="../Phototonic.cpp" line="2191"/>
+        <location filename="../Phototonic.cpp" line="2309"/>
         <source>Delete images</source>
         <translation>Smazat obrázky</translation>
     </message>
@@ -2359,12 +2364,12 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">Trvale smazat vybrané obrázky?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="616"/>
+        <location filename="../Phototonic.cpp" line="650"/>
         <source>Copy to...</source>
         <translation>Zkopírovat do…</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="619"/>
+        <location filename="../Phototonic.cpp" line="653"/>
         <source>Move to...</source>
         <translation>Přesunout do…</translation>
     </message>
@@ -2377,33 +2382,33 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">Vložit data obrázku</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="701"/>
+        <location filename="../Phototonic.cpp" line="735"/>
         <source>Hide Dock Title Bars</source>
         <translation>Skrýt titulní lišty doku</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="706"/>
+        <location filename="../Phototonic.cpp" line="740"/>
         <source>Show Toolbar</source>
         <translation>Zobrazit pruh nástrojů</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="762"/>
+        <location filename="../Phototonic.cpp" line="796"/>
         <source>Go Up</source>
         <translation>O úroveň výš</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="802"/>
+        <location filename="../Phototonic.cpp" line="836"/>
         <source>Load Clipboard</source>
         <translation>Načíst schránku</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="809"/>
-        <location filename="../Phototonic.cpp" line="810"/>
+        <location filename="../Phototonic.cpp" line="843"/>
+        <location filename="../Phototonic.cpp" line="844"/>
         <source>Open With...</source>
         <translation>Otevřít pomocí…</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="817"/>
+        <location filename="../Phototonic.cpp" line="851"/>
         <source>Add Bookmark</source>
         <translation>Přidat záložku</translation>
     </message>
@@ -2416,7 +2421,7 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">Oříznout výběr</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="906"/>
+        <location filename="../Phototonic.cpp" line="940"/>
         <source>Find Duplicate Images</source>
         <translation>Najít duplicitní obrázky</translation>
     </message>
@@ -2425,7 +2430,7 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">Uzamknout proměny</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="952"/>
+        <location filename="../Phototonic.cpp" line="986"/>
         <source>Filter by Name</source>
         <translation>Filtrovat podle názvu</translation>
     </message>
@@ -2442,7 +2447,7 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">Obrázek</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1356"/>
+        <location filename="../Phototonic.cpp" line="1422"/>
         <source>Bookmarks</source>
         <translation>Záložky</translation>
     </message>
@@ -2539,7 +2544,7 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">Neplatná cesta: </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2741"/>
+        <location filename="../Phototonic.cpp" line="2809"/>
         <source>No images</source>
         <translation>Žádné obrázky</translation>
     </message>
@@ -2552,17 +2557,17 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">, soubor nebyl nalezen</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2817"/>
+        <location filename="../Phototonic.cpp" line="2885"/>
         <source>Slide show stopped</source>
         <translation>Promítání zastaveno</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2846"/>
+        <location filename="../Phototonic.cpp" line="2914"/>
         <source>Stop Slide Show</source>
         <translation>Zastavit promítání</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2847"/>
+        <location filename="../Phototonic.cpp" line="2915"/>
         <source>Slide show started</source>
         <translation>Promítání spuštěno</translation>
     </message>
@@ -2603,7 +2608,7 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">Přejmenovat </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3242"/>
+        <location filename="../Phototonic.cpp" line="3310"/>
         <source>New name:</source>
         <translation>Nový název:</translation>
     </message>
@@ -2668,7 +2673,7 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
         <translation type="vanished">Spustit správce souborů...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3785"/>
+        <location filename="../Phototonic.cpp" line="3865"/>
         <source>Warning</source>
         <translation>Varování</translation>
     </message>
@@ -3419,7 +3424,7 @@ Existující soubor by byl přepsán!</translation>
 <context>
     <name>ThumbsViewer</name>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="239"/>
+        <location filename="../ThumbsViewer.cpp" line="245"/>
         <source>Selected %1 of %n image(s)</source>
         <translation>
             <numerusform>Označen %1 z %n obrázků</numerusform>
@@ -3428,27 +3433,27 @@ Existující soubor by byl přepsán!</translation>
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="262"/>
+        <location filename="../ThumbsViewer.cpp" line="268"/>
         <source>Tagging %1</source>
         <translation>Opatřování %1 štítkem</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="270"/>
+        <location filename="../ThumbsViewer.cpp" line="276"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="270"/>
+        <location filename="../ThumbsViewer.cpp" line="276"/>
         <source>Failed to save tags to %1</source>
         <translation>Nepodařilo se uložit štítky do %1</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="947"/>
+        <location filename="../ThumbsViewer.cpp" line="953"/>
         <source>Searching duplicate images...</source>
         <translation>Hledání duplicitních obrázků…</translation>
     </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="1118"/>
+        <location filename="../ThumbsViewer.cpp" line="1130"/>
         <source>%n of %1 image(s)</source>
         <translation>
             <numerusform>%n z %1 obrázku</numerusform>
@@ -3457,7 +3462,7 @@ Existující soubor by byl přepsán!</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="1120"/>
+        <location filename="../ThumbsViewer.cpp" line="1132"/>
         <source>%n image(s)</source>
         <translation>
             <numerusform>%n obrázek</numerusform>
@@ -3466,13 +3471,13 @@ Existující soubor by byl přepsán!</translation>
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1116"/>
+        <location filename="../ThumbsViewer.cpp" line="1128"/>
         <source>No images</source>
         <translation>Žádné obrázky</translation>
     </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="1236"/>
-        <location filename="../ThumbsViewer.cpp" line="1349"/>
+        <location filename="../ThumbsViewer.cpp" line="1248"/>
+        <location filename="../ThumbsViewer.cpp" line="1361"/>
         <source>Found %n duplicate(s) among %1 files</source>
         <translation>
             <numerusform>Nalezena %n duplicita mezi %1 soubory</numerusform>
@@ -3481,22 +3486,22 @@ Existující soubor by byl přepsán!</translation>
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1433"/>
+        <location filename="../ThumbsViewer.cpp" line="1445"/>
         <source>Abort</source>
         <translation>Přerušit</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1433"/>
+        <location filename="../ThumbsViewer.cpp" line="1445"/>
         <source>Loading...</source>
         <translation>Načítání…</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1473"/>
+        <location filename="../ThumbsViewer.cpp" line="1485"/>
         <source>Comparing...</source>
         <translation>Porovnávání…</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1506"/>
+        <location filename="../ThumbsViewer.cpp" line="1518"/>
         <source>Sorting...</source>
         <translation>Seřazování…</translation>
     </message>
@@ -3542,6 +3547,16 @@ Existující soubor by byl přepsán!</translation>
         <location filename="../main.cpp" line="73"/>
         <source>Run a single instance of Phototonic or open files in such already running.</source>
         <translation>Spustit jedinou instanci Phototonic nebo soubory otevřít v takové už spuštěné.</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="77"/>
+        <source>Apply &lt;filter&gt; to the directory and print matches.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="78"/>
+        <source>filter</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
