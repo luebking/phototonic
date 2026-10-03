@@ -1024,12 +1024,17 @@ QAction *Phototonic::action(const QString name, bool dropCache) const {
     static QHash<QString,QAction*> actions;
     if (name.isEmpty()) {
         actions.clear();
-//        qDebug() << "drop cache";
         return nullptr;
     }
     if (actions.isEmpty()) {
-//        qDebug() << "build cache";
         QList<QAction*> actionlist = findChildren<QAction*>(Qt::FindDirectChildrenOnly);
+        if (dropCache) {
+            for (QAction *action : actionlist)
+                if (action->objectName() == name)
+                    return action;
+            qWarning() << "NO SUCH ACTION" << name;
+            return nullptr;
+        }
         for (QAction *action : actionlist)
             actions[action->objectName()] = action;
     }
@@ -1037,7 +1042,6 @@ QAction *Phototonic::action(const QString name, bool dropCache) const {
     if (!act)
         qWarning() << "NO SUCH ACTION" << name;
     if (dropCache) {
-//        qDebug() << "drop cache";
         actions.clear();
     }
     return act;
