@@ -691,10 +691,13 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 side = 3;
             if (t.isEmpty())
                 continue;
-            auto setSizeConstraint = [_LCD_](int multiplier) {
+
+#define LOG_ERROR if (error) { *error += "Invalid value: " + t + "\n"; } sane = false
+
+            auto setSizeConstraint = [_LCD_,&sane](int multiplier) {
                 bool ok;
                 qint64 v = t.chopped(2).toFloat(&ok) * multiplier;
-                if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; return false; }
+                if (!ok) { LOG_ERROR; return false; }
                 if (side & 1) m_constraints.last().smaller = v;
                 if (side & 2) m_constraints.last().bigger = v;
                 if ((side & 3) == 3) {
@@ -703,10 +706,10 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 }
                 return true;
             };
-            auto setAgeConstraint = [_LCD_](int multiplier) {
+            auto setAgeConstraint = [_LCD_,&sane](int multiplier) {
                 bool ok;
                 qint64 v = t.chopped(1).toFloat(&ok) * multiplier;
-                if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; return false; }
+                if (!ok) { LOG_ERROR; return false; }
                 if (side & 1) m_constraints.last().younger = v;
                 if (side & 2) m_constraints.last().older = v;
                 if ((side & 3) == 3) {
@@ -716,81 +719,57 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 return true;
             };
 
+#define SET_CONSTRAINTS(_WHAT_) if (side & 1) m_constraints.last().max##_WHAT_ = v; if (side & 2) m_constraints.last().min##_WHAT_ = v; \
+    if ((side & 3) == 3) { m_constraints.last().min##_WHAT_ =  qMax(0u, v - 1);  m_constraints.last().max##_WHAT_ =  qMin(v + 1, 255u); }
+            bool ok;
             if (t.endsWith("lm")) {
-                bool ok;
                 uint v = t.chopped(2).toUInt(&ok);
                 if (!ok) v = t.chopped(2).toFloat(&ok) * 255; // try [0,1]
-                if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; sane = false; break; }
+                if (!ok) { LOG_ERROR; break; }
                 needHistogram = true;
                 v = qMin(v, 255u);
-                if (side & 1) m_constraints.last().maxBright = v;
-                if (side & 2) m_constraints.last().minBright = v;
-                if ((side & 3) == 3) {
-                    m_constraints.last().minBright =  v - 1;
-                    m_constraints.last().maxBright =  v + 1;
-                }
+                SET_CONSTRAINTS(Bright)
             } else if (t.endsWith("cr")) {
-                bool ok;
                 uint v = t.chopped(2).toUInt(&ok);
-                if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; sane = false; break; }
+                if (!ok) { LOG_ERROR; break; }
                 needHistogram = true;
                 v = qMin(v, 255u);
-                if (side & 1) m_constraints.last().maxChroma = v;
-                if (side & 2) m_constraints.last().minChroma = v;
-                if ((side & 3) == 3) {
-                    m_constraints.last().minChroma =  v - 1;
-                    m_constraints.last().maxChroma =  v + 1;
-                }
+                SET_CONSTRAINTS(Chroma)
             } else if (t.endsWith("°")) {
-                bool ok;
                 uint v = t.chopped(1).toUInt(&ok);
-                if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; sane = false; break; }
+                if (!ok) { LOG_ERROR; break; }
                 needHistogram = true;
                 int h = qMin(v, 359u) + 15; // shift hue by 15°
                 if (h > 359) h -= 360; // normalize
-                h = qMax(0, qMin(255, qRound(h/359.0f*255))); // map to byte
-                if (side & 1) m_constraints.last().maxHue = h;
-                if (side & 2) m_constraints.last().minHue = h;
-                if ((side & 3) == 3) {
-                    m_constraints.last().minHue =  qMax(0, h - 1);
-                    m_constraints.last().maxHue =  qMin(h + 1, 255);
-                }
+                v = qMax(0, qMin(255, qRound(h/359.0f*255))); // map to byte
+                SET_CONSTRAINTS(Hue)
             } else if (t.endsWith("%")) {
-                bool ok;
                 uint v = t.chopped(1).toUInt(&ok);
-                if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; sane = false; break; }
+                if (!ok) { LOG_ERROR; break; }
                 needHistogram = true;
                 v = qMin(255, qRound(qMin(v, 100u)/100.0f*255)); // map to byte
-                if (side & 1) m_constraints.last().maxSaturation = v;
-                if (side & 2) m_constraints.last().minSaturation = v;
-                if ((side & 3) == 3) {
-                    m_constraints.last().minSaturation =  v - 1;
-                    m_constraints.last().maxSaturation =  v + 1;
-                }
+                SET_CONSTRAINTS(Saturation)
             } else if (t.endsWith("kb", Qt::CaseInsensitive)) {
-                if (!setSizeConstraint(1024)) { sane = false; break; }
+                if (!setSizeConstraint(1024)) break;
             } else if (t.endsWith("mb", Qt::CaseInsensitive)) {
-                if (!setSizeConstraint(1024*1024)) { sane = false; break; }
+                if (!setSizeConstraint(1024*1024)) break;
             } else if (t.endsWith("gb", Qt::CaseInsensitive)) {
-                if (!setSizeConstraint(1024*1024*1024)) { sane = false; break; }
+                if (!setSizeConstraint(1024*1024*1024)) break;
             } else if (t.endsWith("m", Qt::CaseSensitive)) {
-                if (!setAgeConstraint(60)) { sane = false; break; }
+                if (!setAgeConstraint(60)) break;
             } else if (t.endsWith("h", Qt::CaseInsensitive)) {
-                if (!setAgeConstraint(60*60)) { sane = false; break; }
+                if (!setAgeConstraint(60*60)) break;
             } else if (t.endsWith("d", Qt::CaseInsensitive)) {
-                if (!setAgeConstraint(24*60*60)) { sane = false; break; }
+                if (!setAgeConstraint(24*60*60)) break;
             } else if (t.endsWith("w", Qt::CaseInsensitive)) {
-                if (!setAgeConstraint(7*24*60*60)) { sane = false; break; }
+                if (!setAgeConstraint(7*24*60*60)) break;
             } else if (t.endsWith("M", Qt::CaseInsensitive)) {
-                if (!setAgeConstraint(30*24*60*60)) { sane = false; break; }
+                if (!setAgeConstraint(30*24*60*60)) break;
             } else if (t.endsWith("y", Qt::CaseInsensitive)) {
-                if (!setAgeConstraint(365*24*60*60)) { sane = false; break; }
+                if (!setAgeConstraint(365*24*60*60)) break;
             } else if (t.endsWith("mp", Qt::CaseInsensitive)) {
-                bool ok;
                 qint64 v = t.chopped(2).toFloat(&ok) * 1000*1000;
-                if (!ok) {
-                    if (error) { *error += "Invalid value: " + t + "\n"; } sane = false;  break;
-                }
+                if (!ok) { LOG_ERROR; break; }
                 if (side & 1) m_constraints.last().maxPix = v;
                 if (side & 2) m_constraints.last().minPix = v;
                 if ((side & 3) == 3) {
@@ -800,22 +779,22 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
             } else if (t.contains("x", Qt::CaseInsensitive)) {
                 QStringList st = t.split('x', Qt::KeepEmptyParts, Qt::CaseInsensitive);
                 if (st.size() != 2) {
-                    if (error) { *error += "Invalid value: " + t + "\n"; } sane = false;  break;
+                    LOG_ERROR; break;
                 }
-                QSize sz(0,0); bool ok; int v;
-                v = st.at(0).toInt(&ok);
+                QSize sz(0,0);
+                int v = st.at(0).toInt(&ok);
                 if (ok) sz.setWidth(v);
                 v = st.at(1).toInt(&ok);
                 if (ok) sz.setHeight(v);
                 if (sz.isNull()) {
-                    if (error) { *error += "Invalid value: " + t + "\n"; } sane = false;  break;
+                    LOG_ERROR; break;
                 }
                 if (side & 1) m_constraints.last().maxRes = sz;
                 if (side & 2) m_constraints.last().minRes = sz;
             } else {
                 QDateTime date = QDateTime::fromString(t, "yyyy-MM-dd");
                 if (!date.isValid()) {
-                    if (error) { *error += "Invalid value: " + t + "\n"; } sane = false; break;
+                    LOG_ERROR; break;
                 }
                 qint64 secs = date.secsTo(QDateTime::currentDateTime());
                 if (secs < 0) {
