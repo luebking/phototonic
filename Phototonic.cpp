@@ -1278,12 +1278,15 @@ void Phototonic::createToolBars() {
         "<li>Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)</li>"
         "<li>Dimensions are pre/in/suffixed \"x\" ([width]x[height])</li>"
         "<li>Chromatic variance is suffixed [0-255]cr (real values will rarely be > 100)</li>"
+        "<li>Hue is suffixed [0-359]° (center red is at 0/360)</li>"
+        "<li>Saturation is suffixed [0-100]%</li>"
         "<li>Luminance is suffixed [0.0-1.0]|[0-255]lm</li></ul>"
         "<i>All suffixes are case-insensitive but m|inute and M|onth</i><br>"
         "Subsequent \"/\" start a new sufficient condition group, the substring match is optional."
         "<hr>In addition you can filter for<br>"
         "<b>black, white, brown, dark, bright, warm, cold, monochrome, gray</b> and the colors<br>"
         "<b>red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink</b>"
+        "<br>!dark, !bright, !warm &amp; !cold will invert the match (they're not complementary)"
         "<hr>Leading colons <b>match tags</b>, so '/<b>:foo</b>' finds all images with the tag 'foo'");
 
     QTimer *filterBouncer = new QTimer(this);
