@@ -623,7 +623,9 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
             if (setHue("magenta", 213, 235)) continue;
             if (setHue("pink", 234, 255)) continue;
             if (setHue("warm", 0, 75)) continue;
+            if (setHue("!warm", 76, 255)) continue;
             if (setHue("cold", 101, 175)) continue;
+            if (setHue("!cold", 176, 100)) continue;
             if (!t.compare("dark", Qt::CaseInsensitive)) {
                 needHistogram = true;
                 m_constraints.last().maxBright = 64; continue; // is 25% good?
@@ -738,6 +740,32 @@ bool ThumbsViewer::setFilter(const QString &filter, QString *error) {
                 if ((side & 3) == 3) {
                     m_constraints.last().minChroma =  v - 1;
                     m_constraints.last().maxChroma =  v + 1;
+                }
+            } else if (t.endsWith("°")) {
+                bool ok;
+                uint v = t.chopped(1).toUInt(&ok);
+                if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; sane = false; break; }
+                needHistogram = true;
+                int h = qMin(v, 359u) + 15; // shift hue by 15°
+                if (h > 359) h -= 360; // normalize
+                h = qMax(0, qMin(255, qRound(h/359.0f*255))); // map to byte
+                if (side & 1) m_constraints.last().maxHue = h;
+                if (side & 2) m_constraints.last().minHue = h;
+                if ((side & 3) == 3) {
+                    m_constraints.last().minHue =  qMax(0, h - 1);
+                    m_constraints.last().maxHue =  qMin(h + 1, 255);
+                }
+            } else if (t.endsWith("%")) {
+                bool ok;
+                uint v = t.chopped(1).toUInt(&ok);
+                if (!ok) { if (error) *error += "Invalid value: " + t + "\n"; sane = false; break; }
+                needHistogram = true;
+                v = qMin(255, qRound(qMin(v, 100u)/100.0f*255)); // map to byte
+                if (side & 1) m_constraints.last().maxSaturation = v;
+                if (side & 2) m_constraints.last().minSaturation = v;
+                if ((side & 3) == 3) {
+                    m_constraints.last().minSaturation =  v - 1;
+                    m_constraints.last().maxSaturation =  v + 1;
                 }
             } else if (t.endsWith("kb", Qt::CaseInsensitive)) {
                 if (!setSizeConstraint(1024)) { sane = false; break; }
@@ -1014,7 +1042,7 @@ bool ThumbsViewer::isConstrained(const QFileInfo &fileInfo) {
             if ((constrained = (c.maxRes.width() > 0 && res.width() > c.maxRes.width()))) continue;
             if ((constrained = (c.maxRes.height() > 0 && res.height() > c.maxRes.height()))) continue;
         }
-        if (c.minHue > -1 || c.minHue > -1 || c.minBright > -1 || c.maxBright > -1 ||
+        if (c.minHue > -1 || c.maxHue > -1 || c.minBright > -1 || c.maxBright > -1 ||
             c.minSaturation > -1 || c.maxSaturation > -1 || c.minChroma > -1 || c.maxChroma > -1) {
             int idx = m_histogramFiles.indexOf(fileInfo.absoluteFilePath());
             if (idx < 0 && cacheSignatures(fileInfo.absoluteFilePath()))
@@ -1022,8 +1050,14 @@ bool ThumbsViewer::isConstrained(const QFileInfo &fileInfo) {
             if (idx < 0)
                 break; // no histogram? give it a pass
 #define CONSTRAIN_COLOR(_V_, _OP_, _C_) if ((constrained = (c._C_ > -1 && m_histograms.at(idx)._V_ _OP_ c._C_))) continue
-            CONSTRAIN_COLOR(hueIndicator, <=, minHue);
-            CONSTRAIN_COLOR(hueIndicator, >=, maxHue);
+            if (c.minHue > c.maxHue && c.maxHue > -1) { // invert
+                const int hue = m_histograms.at(idx).hueIndicator;
+                if ((constrained = (hue <= c.minHue && hue >= c.maxHue)))
+                    continue;
+            } else {
+                CONSTRAIN_COLOR(hueIndicator, <=, minHue);
+                CONSTRAIN_COLOR(hueIndicator, >=, maxHue);
+            }
             CONSTRAIN_COLOR(brightness, <=, minBright);
             CONSTRAIN_COLOR(brightness, >=, maxBright);
             CONSTRAIN_COLOR(saturation, <=, minSaturation);
