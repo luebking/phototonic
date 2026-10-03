@@ -31,12 +31,12 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="78"/>
         <source>Lightness</source>
-        <translation>Luminosidad</translation>
+        <translation>Iluminacion</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="81"/>
         <source>Colorize</source>
-        <translation type="unfinished"></translation>
+        <translation>Colorear</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="85"/>
@@ -114,7 +114,7 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="104"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="108"/>
@@ -148,7 +148,7 @@
         <location filename="../CropDialog.cpp" line="31"/>
         <source>Letterbox</source>
         <extracomment>Like a bad dvd where you get a black frame around the image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Buzón</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="38"/>
@@ -173,12 +173,12 @@
     <message>
         <location filename="../CropDialog.cpp" line="77"/>
         <source>Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Arriba</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="81"/>
         <source>Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>Abajo</translation>
     </message>
 </context>
 <context>

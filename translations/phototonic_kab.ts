@@ -6,7 +6,7 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="35"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Initen</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="41"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="../ColorsDialog.cpp" line="136"/>
         <source>Brightness</source>
-        <translation type="unfinished"></translation>
+        <translation>Tifawit</translation>
     </message>
     <message>
         <location filename="../ColorsDialog.cpp" line="137"/>
@@ -104,17 +104,17 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="69"/>
         <source>Move to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Senkez ar...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="66"/>
         <source>Copy to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nɣel ɣer...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="104"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Snirem...</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="108"/>
@@ -134,7 +134,7 @@
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="122"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Senkez</translation>
     </message>
     <message>
         <location filename="../CopyMoveToDialog.cpp" line="146"/>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../CropDialog.cpp" line="38"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Wennez</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="40"/>
@@ -163,22 +163,22 @@
     <message>
         <location filename="../CropDialog.cpp" line="69"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Ẓelmaḍ</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="73"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeffus</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="77"/>
         <source>Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Asawen</translation>
     </message>
     <message>
         <location filename="../CropDialog.cpp" line="81"/>
         <source>Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>Akessar</translation>
     </message>
 </context>
 <context>
@@ -296,12 +296,12 @@
     <message>
         <location filename="../Tags.cpp" line="105"/>
         <source>New Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabzimt tamaynut</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="51"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Imsizdeg</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="591"/>
@@ -328,7 +328,7 @@
     <message>
         <location filename="../Tags.cpp" line="69"/>
         <source>Show all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Sken-dakk tibzimin</translation>
     </message>
     <message>
         <location filename="../Tags.cpp" line="109"/>
@@ -510,7 +510,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1408"/>
         <source>Saving...</source>
-        <translation type="unfinished"></translation>
+        <translation>Asekles...</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1430"/>
@@ -564,7 +564,7 @@ Do you want to save a copy?</source>
     <message>
         <location filename="../ImageViewer.cpp" line="1521"/>
         <source>Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Tacfawit</translation>
     </message>
 </context>
 <context>
@@ -625,12 +625,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../InfoViewer.cpp" line="394"/>
         <source>File name</source>
-        <translation type="unfinished"></translation>
+        <translation>Isem n ufaylu</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="395"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Adig</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="396"/>
@@ -640,7 +640,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../InfoViewer.cpp" line="397"/>
         <source>Modified</source>
-        <translation type="unfinished"></translation>
+        <translation>Yettwabeddel</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="401"/>
@@ -707,7 +707,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="514"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>Timeẓri</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="555"/>
@@ -722,12 +722,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="566"/>
         <source>Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Agdil aččuṛan</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="570"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Imenyafen</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="574"/>
@@ -757,12 +757,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="616"/>
         <source>Copy to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nɣel ɣer...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="619"/>
         <source>Move to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Senkez ar...</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="626"/>
@@ -777,17 +777,17 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="634"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekles am</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="641"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Beddel isem</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="650"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Fren-iten akk</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="653"/>
@@ -798,7 +798,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="691"/>
         <source>Show Hidden Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Sken-d ifuyla yeffren</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="701"/>
@@ -808,7 +808,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="706"/>
         <source>Show Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Sken-d afeggag n ifecka</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="715"/>
@@ -818,28 +818,28 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="724"/>
         <source>Paste Here</source>
-        <translation type="unfinished"></translation>
+        <translation>Senṭeḍ da</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="737"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Uɣal</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="750"/>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Ɣer sdat</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="762"/>
         <source>Go Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ddu d asawen</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="315"/>
         <location filename="../Phototonic.cpp" line="766"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Agejdan</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="775"/>
@@ -856,12 +856,12 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="809"/>
         <location filename="../Phototonic.cpp" line="810"/>
         <source>Open With...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ldi s…</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="817"/>
         <source>Add Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Rnu ticreḍt</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="824"/>
@@ -906,7 +906,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="886"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Initen</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="906"/>
@@ -964,18 +964,18 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="1308"/>
         <source>File System</source>
-        <translation type="unfinished"></translation>
+        <translation>Anagraw n ifuyla</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1356"/>
         <source>Bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Ticraḍ</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1424"/>
         <source>Tags</source>
         <extracomment>tags are image metadata</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Tibzimin</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="270"/>
@@ -1041,12 +1041,12 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="318"/>
         <source>File List</source>
         <extracomment>The file list is the optional list of files in the execution parameters, some virtual directory</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Umuɣ n yifuyla</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="461"/>
         <source>Navigate</source>
-        <translation type="unfinished"></translation>
+        <translation>Inig</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="479"/>
@@ -1056,7 +1056,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="890"/>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Nǧer</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="502"/>
@@ -1067,7 +1067,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="520"/>
         <source>Guides</source>
         <extracomment>The guides a lines across the image for orientation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Imniren</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="521"/>
@@ -1109,12 +1109,12 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="638"/>
         <source>Copy Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Nɣel tugna</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="639"/>
         <source>Paste Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Senteḍ tugna</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="644"/>
@@ -1132,18 +1132,18 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="661"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Asmizzwer s yisem</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="663"/>
         <location filename="../Phototonic.cpp" line="665"/>
         <source>Sort by Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Smizzwer s wakud</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="667"/>
         <source>Sort by Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Smizzwer s tiddi</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="669"/>
@@ -1183,7 +1183,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="729"/>
         <source>New Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Akaram amaynut</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="733"/>
@@ -1193,17 +1193,17 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="779"/>
         <source>Next Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Tugna tuḍfirt</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="783"/>
         <source>Previous Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Tugna tuzwirt</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="787"/>
         <source>First Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Tugna tamezwarut</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="791"/>
@@ -1586,7 +1586,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="3498"/>
         <location filename="../Phototonic.cpp" line="3500"/>
         <source>Delete Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Kkes akaram</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3498"/>
@@ -1729,7 +1729,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="3242"/>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Isem amaynut:</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3250"/>
@@ -1877,7 +1877,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../RenameDialog.cpp" line="31"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Beddel isem</translation>
     </message>
     <message>
         <location filename="../RenameDialog.cpp" line="35"/>
@@ -1940,7 +1940,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ResizeDialog.cpp" line="61"/>
         <source>Pixels</source>
-        <translation type="unfinished"></translation>
+        <translation>Ipiksilen</translation>
     </message>
     <message>
         <location filename="../ResizeDialog.cpp" line="65"/>
@@ -2311,7 +2311,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1433"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Sefsex</translation>
     </message>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1433"/>
