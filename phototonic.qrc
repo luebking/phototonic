@@ -1,58 +1,59 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/error_image.png</file>
-        <file>images/no_image.png</file>
-        <file>images/home.png</file>
-        <file>images/next.png</file>
-        <file>images/back.png</file>
-        <file>images/up.png</file>
-        <file>images/refresh.png</file>
-        <file>images/cut.png</file>
-        <file>images/copy.png</file>
-        <file>images/paste.png</file>
-        <file>images/delete.png</file>
         <file>images/about.png</file>
-        <file>images/new_folder.png</file>
-        <file>images/folder-visiting.png</file>
-        <file>images/settings.png</file>
-        <file>images/phototonic.png</file>
-        <file>images/zoom_in.png</file>
-        <file>images/zoom_out.png</file>
-        <file>images/first.png</file>
-        <file>images/last.png</file>
-        <file>images/top.png</file>
-        <file>images/bottom.png</file>
-        <file>images/zoom.png</file>
-        <file>images/zoom1.png</file>
-        <file>images/rotate_left.png</file>
-        <file>images/rotate_right.png</file>
-        <file>images/rotate.png</file>
-        <file>images/flipH.png</file>
-        <file>images/flipV.png</file>
-        <file>images/save.png</file>
-        <file>images/open.png</file>
-        <file>images/colors.png</file>
-        <file>images/new.png</file>
-        <file>images/tree.png</file>
-        <file>images/clear.png</file>
-        <file>images/play.png</file>
-        <file>images/stop.png</file>
-        <file>images/crop.png</file>
-        <file>images/scale.png</file>
-        <file>images/save_as.png</file>
+        <file>images/annotate.png</file>
+        <file>images/blackout.png</file>
         <file>images/bookmarks.png</file>
+        <file>images/cartouche.png</file>
+        <file>images/clear.png</file>
+        <file>images/colors.png</file>
+        <file>images/crop.png</file>
+        <file>images/document-open.png</file>
+        <file>images/document-save-as.png</file>
+        <file>images/document-save.png</file>
+        <file>images/duplicates.png</file>
+        <file>images/edit-copy.png</file>
+        <file>images/edit-cut.png</file>
+        <file>images/edit-delete.png</file>
+        <file>images/edit-paste.png</file>
+        <file>images/error_image.png</file>
+        <file>images/folder-new.png</file>
+        <file>images/folder-visiting.png</file>
+        <file>images/go-bottom.png</file>
+        <file>images/go-first.png</file>
+        <file>images/go-home.png</file>
+        <file>images/go-last.png</file>
+        <file>images/go-next.png</file>
+        <file>images/go-previous.png</file>
+        <file>images/go-top.png</file>
+        <file>images/go-up.png</file>
+        <file>images/insert-image.png</file>
+        <file>images/media-playback-start.png</file>
+        <file>images/media-playback-stop.png</file>
         <file>images/new_bookmark.png</file>
+        <file>images/new_tag.png</file>
+        <file>images/no_image.png</file>
+        <file>images/object-flip-horizontal.png</file>
+        <file>images/object-flip-vertical.png</file>
+        <file>images/object-rotate-left.png</file>
+        <file>images/object-rotate-right.png</file>
+        <file>images/phototonic.png</file>
+        <file>images/preferences-system.png</file>
+        <file>images/rotation-allowed.png</file>
+        <file>images/tag_filter_negate.png</file>
+        <file>images/tag_filter_off.png</file>
+        <file>images/tag_filter_on.png</file>
         <file>images/tag_grey.png</file>
         <file>images/tag_multi.png</file>
         <file>images/tag_red.png</file>
         <file>images/tag_yellow.png</file>
-        <file>images/new_tag.png</file>
-        <file>images/tag_filter_on.png</file>
-        <file>images/tag_filter_negate.png</file>
-        <file>images/tag_filter_off.png</file>
-        <file>images/duplicates.png</file>
-        <file>images/blackout.png</file>
-        <file>images/cartouche.png</file>
-        <file>images/annotate.png</file>
+        <file>images/transform-scale.png</file>
+        <file>images/tree.png</file>
+        <file>images/view-refresh.png</file>
+        <file>images/zoom-fit-best.png</file>
+        <file>images/zoom-in.png</file>
+        <file>images/zoom-original.png</file>
+        <file>images/zoom-out.png</file>
     </qresource>
 </RCC>
+

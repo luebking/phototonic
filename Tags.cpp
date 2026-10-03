@@ -85,7 +85,7 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
 
     btn = new QToolButton;
     btn->setToolTip(tr("Clear Filters"));
-    btn->setIcon(QIcon::fromTheme("edit-delete", QIcon(":/images/delete.png")));
+    btn->setIcon(QIcon::fromTheme("edit-delete", QIcon(":/images/edit-delete.png")));
     connect (btn, &QToolButton::clicked, this, &ImageTags::clearTagFilters);
     tabs->setTabButton(1, QTabBar::RightSide, btn);
     btn->setEnabled(false);
@@ -116,7 +116,7 @@ ImageTags::ImageTags(QWidget *parent) : QWidget(parent) {
     connect(learnTagAction, SIGNAL(triggered()), this, SLOT(learnTags()));
 
     removeTagAction = new QAction(tr("Remove from library"), this);
-    removeTagAction->setIcon(QIcon::fromTheme("edit-delete", QIcon(":/images/delete.png")));
+    removeTagAction->setIcon(QIcon::fromTheme("edit-delete", QIcon(":/images/edit-delete.png")));
     connect(removeTagAction, SIGNAL(triggered()), this, SLOT(removeTags()));
 
     actionClearTagsFilter = new QAction(tr("Clear Filters"), this);

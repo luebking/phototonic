@@ -49,7 +49,7 @@ QStringList SettingsDialog::defaultImageToolActions() {
 
 SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     setWindowTitle(tr("Preferences"));
-    setWindowIcon(QIcon::fromTheme("preferences-system", QIcon(":/images/phototonic.png")));
+    setWindowIcon(QIcon::fromTheme("preferences-system", QIcon(":/images/preferences-system.png")));
 
     // imageViewer background color
     QLabel *backgroundColorLabel = new QLabel(tr("Background color:"));
@@ -183,7 +183,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
 
 
     QPushButton *chooseThumbsBackImageButton = new QPushButton();
-    chooseThumbsBackImageButton->setIcon(QIcon::fromTheme("document-open", QIcon(":/images/open.png")));
+    chooseThumbsBackImageButton->setIcon(QIcon::fromTheme("document-open", QIcon(":/images/document-open.png")));
     chooseThumbsBackImageButton->setFixedSize(26, 26);
     chooseThumbsBackImageButton->setIconSize(QSize(16, 16));
     connect(chooseThumbsBackImageButton, SIGNAL(clicked()), this, SLOT(pickBackgroundImage()));
@@ -251,7 +251,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) : QDialog(parent) {
     startupDirLineEdit->setMaximumWidth(400);
 
     QPushButton *chooseStartupDirButton = new QPushButton();
-    chooseStartupDirButton->setIcon(QIcon::fromTheme("document-open", QIcon(":/images/open.png")));
+    chooseStartupDirButton->setIcon(QIcon::fromTheme("document-open", QIcon(":/images/document-open.png")));
     chooseStartupDirButton->setFixedSize(26, 26);
     chooseStartupDirButton->setIconSize(QSize(16, 16));
     connect(chooseStartupDirButton, SIGNAL(clicked()), this, SLOT(pickStartupDir()));

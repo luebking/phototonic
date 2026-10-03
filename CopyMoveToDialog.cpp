@@ -44,6 +44,11 @@ void CopyMoveToDialog::savePaths() {
     }
 }
 
+static QIcon &folderIcon() {
+    static QIcon icon = QIcon::fromTheme("folder");
+    return icon;
+}
+
 
 void CopyMoveToDialog::add() {
     QString dirName = QFileDialog::getExistingDirectory(this, tr("Choose Directory"), currentPath,
@@ -54,7 +59,7 @@ void CopyMoveToDialog::add() {
 
     if (!gs_tmpPaths.contains(dirName))
         gs_tmpPaths << dirName;
-    QStandardItem *item = new QStandardItem(QIcon::fromTheme("folder"), dirName);
+    QStandardItem *item = new QStandardItem(folderIcon(), dirName);
     pathsTableModel->insertRow(pathsTableModel->rowCount(), item);
 
     pathsTable->selectionModel()->clearSelection();
@@ -158,6 +163,6 @@ CopyMoveToDialog::CopyMoveToDialog(QWidget *parent, QString thumbsPath, bool cop
     for (const QString &s : Settings::bookmarkPaths)
         pathsTableModel->insertRow(pathsTableModel->rowCount(), new QStandardItem(QIcon(":/images/bookmarks.png"), s));
     for (const QString &s : gs_tmpPaths)
-        pathsTableModel->insertRow(pathsTableModel->rowCount(), new QStandardItem(QIcon::fromTheme("folder"), s));
+        pathsTableModel->insertRow(pathsTableModel->rowCount(), new QStandardItem(folderIcon(), s));
     pathsTableModel->sort(0);
 }

@@ -27,7 +27,7 @@
 
 ResizeDialog::ResizeDialog(QSize originalSize, QWidget *parent) : QDialog(parent) {
     setWindowTitle(tr("Scale Image"));
-    setWindowIcon(QIcon::fromTheme("transform-scale", QIcon(":/images/phototonic.png")));
+    setWindowIcon(QIcon::fromTheme("transform-scale", QIcon(":/images/transform-scale.png")));
 
     QHBoxLayout *buttonsHbox = new QHBoxLayout;
     QPushButton *okButton = new QPushButton(tr("Scale"));
