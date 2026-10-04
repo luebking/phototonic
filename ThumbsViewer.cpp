@@ -420,7 +420,7 @@ int ThumbsViewer::firstVisibleThumb() {
         if (isRowHidden(currThumb))
             continue;
         const QModelIndex idx = m_model->indexFromItem(m_model->item(currThumb));
-        if (viewport()->rect().contains(QPoint(0, visualRect(idx).bottom() + 1))) {
+        if (viewport()->rect().intersects(visualRect(idx))) {
             return idx.row();
         }
     }
@@ -432,7 +432,7 @@ int ThumbsViewer::lastVisibleThumb() {
         if (isRowHidden(currThumb))
             continue;
         const QModelIndex idx = m_model->indexFromItem(m_model->item(currThumb));
-        if (viewport()->rect().contains(QPoint(0, visualRect(idx).y() + 1))) {
+        if (viewport()->rect().intersects(visualRect(idx))) {
             return idx.row();
         }
     }

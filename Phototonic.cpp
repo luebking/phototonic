@@ -414,6 +414,7 @@ void Phototonic::createThumbsViewer() {
 
 void Phototonic::createImageViewer() {
     imageViewer = new ImageViewer(this);
+    imageViewer->setFocusPolicy(Qt::StrongFocus);
     imageViewer->installEventFilter(this);
     connect(m_saveAction, SIGNAL(triggered()), imageViewer, SLOT(saveImage()));
     connect(m_saveAsAction, SIGNAL(triggered()), imageViewer, SLOT(saveImageAs()));
@@ -2443,7 +2444,7 @@ void Phototonic::updateActions() {
         toggleFileSpecificActions(!focusIsOnBrowsing());
     }
 
-    if (m_centralLayout->currentWidget() == imageViewer) {
+    if (m_centralLayout->currentWidget() == imageViewer && !focusIsOnBrowsing()) {
         setViewerKeyEventsEnabled(true);
         m_fullScreenAction->setEnabled(true);
         m_closeImageAction->setEnabled(true);
@@ -3819,12 +3820,14 @@ bool Phototonic::eventFilter(QObject *o, QEvent *e)
     if (o == imageViewer) {
         if (we->modifiers() == Qt::ControlModifier || Settings::scrollZooms) {
             zoom(scrollDelta / 120.0, we->position().toPoint());
-        } else if (m_nextImageAction->isEnabled()) {
+        } else if (true /* m_nextImageAction->isEnabled() */) { /// @todo, why would we discriminate this?
             static int delta = 0;
             delta += scrollDelta;
             if (qAbs(scrollDelta) < 100 && qAbs(delta) < 360)
                 return true;
-            if (delta > 0) {
+            if (scrollDelta != delta || scrollDelta % 120) // actual wheels run at 120° per click - it's unlikely to hit that w/ a touchpad
+                delta = -delta;
+            if (delta < 0) {
                 loadImage(Phototonic::Next);
             } else {
                 loadImage(Phototonic::Previous);
