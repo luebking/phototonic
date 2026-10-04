@@ -25,11 +25,24 @@ webcam shots and align them well enough to make a time-lapse video.
 <img src="https://translate.lxqt-project.org/widgets/luebking/-/phototonic/multi-blue.svg" align="right" alt="Translation status" />
 </a>
 
+#### 30. October 2026
+Release 3.3.0
+* Improve touchpad/hi-res wheel scrolling
+* Improve input handling with central viewer and docked thumbnails
+* Use ctrl as rotation and shift as cropping modifier (aligns with overall ctrl use)
+* Be more conservative when upscaling exif thumbnails
+* Filter for hue and saturation and inversions of dark/bright/cold/warm
+* Non-interactive --filter to filter directories in scripts
+* Show image text metadata next to exif data
+* Delay action icon loading for faster startup
+* Some bugfixes on the road
+* Introduce some brand new bugs
+
 #### 4. April 2026
 Release 3.2.0
 * Support embedded thumbnails (use for preview, update and write back)
 * Allow to either dock thumbnails or preview
-* add toggleabble ("g") grid to viewer to check for horizont, falling lines and warping
+* Add toggleabble ("g") grid to viewer to check for horizont, falling lines and warping
 * AI support for better AI display (**A**nimated **I**mages use the same acclerated viewer )
 * Code streamlining and cleanup
 * Add "GUI" to cofigure the viewer toolbar
