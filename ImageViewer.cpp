@@ -1012,7 +1012,7 @@ void ImageViewer::mouseDoubleClickEvent(QMouseEvent *event) {
 
 void ImageViewer::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
-        if (event->modifiers() == Qt::ControlModifier && !animation) {
+        if (event->modifiers() == Qt::ShiftModifier && !animation) {
             cropOrigin = event->pos();
             if (!cropRubberBand) {
                 cropRubberBand = new CropRubberBand(this);
@@ -1023,7 +1023,7 @@ void ImageViewer::mousePressEvent(QMouseEvent *event) {
             }
             cropRubberBand->show();
             cropRubberBand->setGeometry(QRect(cropOrigin, event->pos()).normalized());
-        } else if (!(Settings::mouseRotateEnabled || event->modifiers() == Qt::ShiftModifier)) {
+        } else if (!(Settings::mouseRotateEnabled || event->modifiers() == Qt::ControlModifier)) {
             if (cropRubberBand && cropRubberBand->isVisible()) {
                 cropRubberBand->hide();
                 setFeedback("", false);
@@ -1080,13 +1080,13 @@ void ImageViewer::setEditMode(Edit mode) {
     QString msg;
     switch (m_editMode) {
     case Crop:
-        msg = tr("Select the crop area with Ctrl + left mouse button"); break;
+        msg = tr("Select the crop area with Shift + left mouse button"); break;
     case Blackout:
-        msg = tr("Select the blackout area with Ctrl + left mouse button"); break;
+        msg = tr("Select the blackout area with Shift + left mouse button"); break;
     case Cartouche:
-        msg = tr("Select the cartouche area with Ctrl + left mouse button"); break;
+        msg = tr("Select the cartouche area with Shift + left mouse button"); break;
     case Annotate:
-        msg = tr("Select the annotation area with Ctrl + left mouse button"); break;
+        msg = tr("Select the annotation area with Shift + left mouse button"); break;
     default:
         qDebug() << "wtf";
         break;
@@ -1291,7 +1291,7 @@ void ImageViewer::setMouseMoveData(bool lockMove, int lMouseX, int lMouseY) {
 }
 
 void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
-    if (event->modifiers() == Qt::ControlModifier) {
+    if (event->modifiers() == Qt::ShiftModifier) {
         if (!cropRubberBand || !cropRubberBand->isVisible()) {
             return;
         }
@@ -1300,7 +1300,7 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
 /*** @todo this doesn't work at all and also the resize typically happens unconstrained using the qsizegrip
         figure whether to keep this at all
         // Force square
-        if (event->modifiers() & Qt::ShiftModifier) {
+        if (event->modifiers() & Qt::ControlModifier) {
             const int deltaX = cropOrigin.x() - event->pos().x();
             const int deltaY = cropOrigin.y() - event->pos().y();
             newRect.setSize(QSize(-deltaX, deltaY < 0 ? qAbs(deltaX) : -qAbs(deltaX)));
@@ -1308,7 +1308,7 @@ void ImageViewer::mouseMoveEvent(QMouseEvent *event) {
         **/
         cropRubberBand->setGeometry(newRect.normalized());
 
-    } else if (Settings::mouseRotateEnabled || event->modifiers() == Qt::ShiftModifier) {
+    } else if (Settings::mouseRotateEnabled || event->modifiers() == Qt::ControlModifier) {
         QPointF fulcrum(QPointF(width() / 2.0, height() / 2.0));
         QLineF vector(fulcrum, event->position());
         m_rotation = initialRotation - vector.angle();

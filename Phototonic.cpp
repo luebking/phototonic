@@ -2023,7 +2023,7 @@ void Phototonic::batchTransform() {
         MessageBox(this).warning(   tr("No crop area defined"),
                                     tr( "<h3>Define a crop area</h3>"
                                         "<p>Open an image, maybe rotate it.<br>"
-                                        "Then press and hold ctrl to select a crop rect.<br>"
+                                        "Then press and hold shift to select a crop rect.<br>"
                                         "Do <b>not</b> apply the crop by double clicking the selection!<br>"
                                         "If not using the preview, exit the Viewer.</p>"
                                         "You can now replay the action on multiple images."));
