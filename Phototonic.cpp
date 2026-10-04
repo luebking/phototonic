@@ -2689,18 +2689,21 @@ void Phototonic::lockDocks() {
     delete imagePreviewDock->titleBarWidget();
     delete tagsDock->titleBarWidget();
     delete imageInfoDock->titleBarWidget();
+    delete m_thumbViewDock->titleBarWidget();
     if (Settings::hideDockTitlebars) {
         fileSystemDock->setTitleBarWidget(new QWidget(fileSystemDock));
         bookmarksDock->setTitleBarWidget(new QWidget(bookmarksDock));
         imagePreviewDock->setTitleBarWidget(new QWidget(imagePreviewDock));
         tagsDock->setTitleBarWidget(new QWidget(tagsDock));
         imageInfoDock->setTitleBarWidget(new QWidget(imageInfoDock));
+        m_thumbViewDock->setTitleBarWidget(new QWidget(m_thumbViewDock));
     } else {
         fileSystemDock->setTitleBarWidget(nullptr);
         bookmarksDock->setTitleBarWidget(nullptr);
         imagePreviewDock->setTitleBarWidget(nullptr);
         tagsDock->setTitleBarWidget(nullptr);
         imageInfoDock->setTitleBarWidget(nullptr);
+        m_thumbViewDock->setTitleBarWidget(nullptr);
     }
 }
 
