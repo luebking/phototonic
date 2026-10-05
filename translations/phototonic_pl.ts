@@ -876,7 +876,7 @@ Czy chcesz zapisać kopię?</translation>
         <source>Enter a name (without leading &quot;$&quot;) for this filter.
 The special name&quot;preview&quot; is used for the filter in the viewer.</source>
         <translation>Wpisz nazwę (bez znaku „$”) tego filtra.
-W&#xa0;przeglądarce używana jest specjalna nazwa „podgląd”.</translation>
+W przeglądarce używana jest specjalna nazwa „podgląd”.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
@@ -2788,7 +2788,7 @@ Wiele plików otrzymałoby tę samą nazwę.</translation>
         <location filename="../CopyMoveDialog.cpp" line="187"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation>Nowa nazwa pliku koliduje również z&#xa0;istniejącym plikiem.
+        <translation>Nowa nazwa pliku koliduje również z istniejącym plikiem.
 Istniejący plik zostałby nadpisany!</translation>
     </message>
     <message>
@@ -3677,12 +3677,12 @@ Istniejący plik zostałby nadpisany!</translation>
     <message>
         <location filename="../main.cpp" line="77"/>
         <source>Apply &lt;filter&gt; to the directory and print matches.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastosuj &lt;filter&gt; do katalogu i wypisz dopasowania.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="78"/>
         <source>filter</source>
-        <translation type="unfinished"></translation>
+        <translation>filtr</translation>
     </message>
 </context>
 </TS>

@@ -2497,12 +2497,12 @@ Olemasolev fail saab olema üle kirjutatud!</translation>
     <message>
         <location filename="../main.cpp" line="77"/>
         <source>Apply &lt;filter&gt; to the directory and print matches.</source>
-        <translation type="unfinished"></translation>
+        <translation>Rakenda kaustadele &lt;filter&gt; filtrit ja väljasta vasted.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="78"/>
         <source>filter</source>
-        <translation type="unfinished"></translation>
+        <translation>filtreeri</translation>
     </message>
 </context>
 </TS>
