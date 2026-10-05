@@ -455,22 +455,22 @@ Ar norite įrašyti kopiją?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Žymėkite apkirpimo sritį naudodami Ctrl + kairįjį pelės mygtuką</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>Žymėkite apkirpimo sritį naudodami Shift + kairįjį pelės mygtuką</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
+        <source>Select the blackout area with Shift + left mouse button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
+        <source>Select the cartouche area with Shift + left mouse button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
+        <source>Select the annotation area with Shift + left mouse button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1419,7 +1419,7 @@ Hide with filter: |nohistogram|</source>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

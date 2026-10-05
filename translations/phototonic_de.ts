@@ -597,7 +597,7 @@
         <translation type="vanished">Keine Auswahl</translation>
     </message>
     <message>
-        <source>Hold down the Ctrl key and select a region using the mouse.</source>
+        <source>Hold down the Shift key and select a region using the mouse.</source>
         <translation type="vanished">Halten Sie die STRG-Taste gedrückt und markieren einen Bereich mit der Maus.</translation>
     </message>
     <message>
@@ -613,7 +613,7 @@
         <translation type="vanished">Bild gespeichert.</translation>
     </message>
     <message>
-        <source>Hold down the Ctrl key and select a region using the mouse</source>
+        <source>Hold down the Shift key and select a region using the mouse</source>
         <translation type="vanished">Halten Sie die STRG-Taste gedrückt und markieren einen Bereich mit der Maus</translation>
     </message>
     <message>
@@ -721,22 +721,22 @@ Soll eine Kopie gespeichert werden?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
+        <source>Select the crop area with Shift + left mouse button</source>
         <translation>Den Zuschneidebereich mit Strg + linke Maustaste auswählen</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
+        <source>Select the blackout area with Shift + left mouse button</source>
         <translation>Den zu schwärzenden Bereich mit Strg + linke Maustaste auswählen</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
+        <source>Select the cartouche area with Shift + left mouse button</source>
         <translation>Den zu umrahmenden Bereich mit Strg + linke Maustaste auswählen</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
+        <source>Select the annotation area with Shift + left mouse button</source>
         <translation>Den Textbereich mit Strg + linke Maustaste auswählen</translation>
     </message>
     <message>
@@ -1934,7 +1934,7 @@ Mit Filter deaktivieren: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation>&lt;h3&gt;Ausschnitt wählen&lt;/h3&gt;&lt;p&gt;Ein Bild öffnen und nach Bedarf drehen&lt;br&gt;Dann Strg halten und mit der Maus einen Ausschnitt bestimmen.&lt;br&gt;&lt;b&gt;Nicht&lt;/b&gt; per Doppelclick zuschneiden!&lt;br&gt;Sofern nicht die Vorschau genutzt wird, den Betrachter schließen.&lt;/p&gt;Die Aktion kann nun auf mehrere Bilder wiederholt angewendet werden.</translation>
     </message>
     <message>
@@ -2025,7 +2025,7 @@ Mit Filter deaktivieren: |nohistogram|</translation>
         <translation>Zuschneiden</translation>
     </message>
     <message>
-        <source>Select the crop area with Ctrl + left mouse button</source>
+        <source>Select the crop area with Shift + left mouse button</source>
         <translation type="vanished">Wähle den Zuschnitt mit Strg + linker Maustaste aus</translation>
     </message>
     <message>
@@ -2337,7 +2337,7 @@ Mit Filter deaktivieren: |nohistogram|</translation>
         <translation>Kein Ausschnitt definiert</translation>
     </message>
     <message>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;Exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;Exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation type="vanished">&lt;h3&gt;Ausschnitt wählen&lt;/h3&gt;&lt;p&gt;Ein Bild öffnen und nach Bedarf rotieren&lt;br&gt;Dann strg halten und mit der Maus einen Ausschnitt bestimmen.&lt;br&gt;&lt;b&gt;Nicht&lt;/b&gt; per Doppelclick zuschneiden!&lt;br&gt;Den Betrachter schließen.&lt;/p&gt;Sie könen jetzt die Aktion auf mehrere Bilder replizieren.</translation>
     </message>
     <message>

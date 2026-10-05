@@ -545,8 +545,8 @@
         <translation type="vanished">Nada selecionado</translation>
     </message>
     <message>
-        <source>Hold down the Ctrl key and select a region using the mouse.</source>
-        <translation type="vanished">Pressione a tecla Ctrl e selecione uma região com o mouse.</translation>
+        <source>Hold down the Shift key and select a region using the mouse.</source>
+        <translation type="vanished">Pressione a tecla Shift e selecione uma região com o mouse.</translation>
     </message>
     <message>
         <source>Saving...</source>
@@ -645,23 +645,23 @@ Pretende gravar uma cópia?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Selecionar a área a recortar com Ctrl + botão esquerdo do rato</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>Selecionar a área a recortar com Shift + botão esquerdo do rato</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>Selecionar a área de blackout com Ctrl + botão esquerdo do rato</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>Selecionar a área de blackout com Shift + botão esquerdo do rato</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation>Selecionar a área do cartucho com Ctrl + botão esquerdo do rato</translation>
+        <source>Select the cartouche area with Shift + left mouse button</source>
+        <translation>Selecionar a área do cartucho com Shift + botão esquerdo do rato</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>Selecionar a área de anotação com Ctrl + botão esquerdo do rato</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>Selecionar a área de anotação com Shift + botão esquerdo do rato</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -1487,8 +1487,8 @@ Ocultar com filtro: |nohistogram|</translation>
         <translation>Recortar</translation>
     </message>
     <message>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="vanished">Selecionar a área a recortar com Ctrl + botão esquerdo do rato</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation type="vanished">Selecionar a área a recortar com Shift + botão esquerdo do rato</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="534"/>
@@ -1912,8 +1912,8 @@ Ocultar com filtro: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation>&lt;h3&gt;Defina uma área de recorte&lt;/h3&gt;&lt;p&gt;Abra uma imagem, talvez rode-a. &lt;br&gt;De seguida, pressione Ctrl para selecionar um recorte retangular. &lt;br&gt;Não&lt;b&gt; aplique o recorte clicando duas vezes na seleção!&lt;br&gt;Se não estiver a utilizar a pré-visualização, saia do Visualizador.&lt;/p&gt;Pode agora repetir a ação em várias imagens.</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation>&lt;h3&gt;Defina uma área de recorte&lt;/h3&gt;&lt;p&gt;Abra uma imagem, talvez rode-a. &lt;br&gt;De seguida, pressione Shift para selecionar um recorte retangular. &lt;br&gt;Não&lt;b&gt; aplique o recorte clicando duas vezes na seleção!&lt;br&gt;Se não estiver a utilizar a pré-visualização, saia do Visualizador.&lt;/p&gt;Pode agora repetir a ação em várias imagens.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2051"/>

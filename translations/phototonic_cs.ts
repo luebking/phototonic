@@ -586,8 +586,8 @@
         <translation type="vanished">Žádný výběr</translation>
     </message>
     <message>
-        <source>Hold down the Ctrl key and select a region using the mouse.</source>
-        <translation type="vanished">Podržte klávesu Ctrl a pomocí myši vyberte oblast.</translation>
+        <source>Hold down the Shift key and select a region using the mouse.</source>
+        <translation type="vanished">Podržte klávesu Shift a pomocí myši vyberte oblast.</translation>
     </message>
     <message>
         <source>Failed to save image.</source>
@@ -602,8 +602,8 @@
         <translation type="vanished">Obrázek uložen.</translation>
     </message>
     <message>
-        <source>Hold down the Ctrl key and select a region using the mouse</source>
-        <translation type="vanished">Podržte klávesu Ctrl a pomocí myši vyberte oblast</translation>
+        <source>Hold down the Shift key and select a region using the mouse</source>
+        <translation type="vanished">Podržte klávesu Shift a pomocí myši vyberte oblast</translation>
     </message>
     <message>
         <source>Saving...</source>
@@ -706,23 +706,23 @@ Chcete uložit kopii?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Vyberte oblast pro oříznutí pomocí Ctrl + levého tlačítka myši</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>Vyberte oblast pro oříznutí pomocí Shift + levého tlačítka myši</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>Vyberte oblast pro začernění pomocí Ctrl + levého tlačítka myši</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>Vyberte oblast pro začernění pomocí Shift + levého tlačítka myši</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation>Vyberte oblast pro vyplnění vzorem pomocí Ctrl + levého tlačítka myši</translation>
+        <source>Select the cartouche area with Shift + left mouse button</source>
+        <translation>Vyberte oblast pro vyplnění vzorem pomocí Shift + levého tlačítka myši</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>Vyberte oblast pro anotaci pomocí Ctrl + levého tlačítka myši</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>Vyberte oblast pro anotaci pomocí Shift + levého tlačítka myši</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -2302,8 +2302,8 @@ Došlo by k tomu, že vícero souborů by dostalo stejný název.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation>&lt;h3&gt;Definujte oblast ořezu&lt;/h3&gt;&lt;p&gt;Otevřete obrázek (a třeba ho i otočte).&lt;br&gt;poté stiskněte a držte Ctrl a natáhněte ořezový obdélník.&lt;br&gt;&lt;b&gt;Ne&lt;/b&gt;ořízněte dvojklikem na výběr!&lt;br&gt;Pokud nepoužíváte náhled, ukončete prohlížeč.&lt;/p&gt;Nyní je možné nahranou akci zopakovat na vícero obrázků.</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation>&lt;h3&gt;Definujte oblast ořezu&lt;/h3&gt;&lt;p&gt;Otevřete obrázek (a třeba ho i otočte).&lt;br&gt;poté stiskněte a držte Shift a natáhněte ořezový obdélník.&lt;br&gt;&lt;b&gt;Ne&lt;/b&gt;ořízněte dvojklikem na výběr!&lt;br&gt;Pokud nepoužíváte náhled, ukončete prohlížeč.&lt;/p&gt;Nyní je možné nahranou akci zopakovat na vícero obrázků.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2118"/>

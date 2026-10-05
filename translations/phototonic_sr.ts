@@ -477,7 +477,7 @@
         <translation type="vanished">Без селекције за резање</translation>
     </message>
     <message>
-        <source>To make a selection, hold down the Ctrl key and select a region using the mouse.</source>
+        <source>To make a selection, hold down the Shift key and select a region using the mouse.</source>
         <translation type="vanished">За одабир селекције, држите Цтрл типку и изаберите регију користећи миш.</translation>
     </message>
     <message>
@@ -546,23 +546,23 @@ Do you want to save a copy?</source>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Изаберите област за исецање помоћу Ctrl + левог дугмета миша</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>Изаберите област за исецање помоћу Shift + левог дугмета миша</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>Изаберите област за зацрњење помоћу Ctrl + левог дугмета миша</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>Изаберите област за зацрњење помоћу Shift + левог дугмета миша</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation>Изабери област картуша помоћу Ctrl + левог дугмета миша</translation>
+        <source>Select the cartouche area with Shift + left mouse button</source>
+        <translation>Изабери област картуша помоћу Shift + левог дугмета миша</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>Изабери област анотације помоћу Ctrl + левог дугмета миша</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>Изабери област анотације помоћу Shift + левог дугмета миша</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -1952,8 +1952,8 @@ Hide with filter: |nohistogram|</source>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation>&lt;h3&gt;Одредите зону исецања&lt;/h3&gt;&lt;p&gt;Отворите слику, можда је заокрените.&lt;br&gt;Затим притисните и држите Ctrl да изаберете правоугаоник за исецање.&lt;br&gt;&lt;b&gt;Не&lt;/b&gt; примењујте исецање двокликом по избору!&lt;br&gt;Ако не користите преглед, изађите из Прегледача.&lt;/p&gt;Сада можете поново покренути ову радњу на више слика.</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation>&lt;h3&gt;Одредите зону исецања&lt;/h3&gt;&lt;p&gt;Отворите слику, можда је заокрените.&lt;br&gt;Затим притисните и држите Shift да изаберете правоугаоник за исецање.&lt;br&gt;&lt;b&gt;Не&lt;/b&gt; примењујте исецање двокликом по избору!&lt;br&gt;Ако не користите преглед, изађите из Прегледача.&lt;/p&gt;Сада можете поново покренути ову радњу на више слика.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2051"/>

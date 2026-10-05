@@ -537,23 +537,23 @@ Vuoi salvarne una copia?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Selezionare l&apos;area di ritaglio con Ctrl + tasto sinistro del mouse</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>Selezionare l&apos;area di ritaglio con Shift + tasto sinistro del mouse</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>Seleziona l&apos;area da oscurare con Ctrl + tasto sinistro del mouse</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>Seleziona l&apos;area da oscurare con Shift + tasto sinistro del mouse</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
+        <source>Select the cartouche area with Shift + left mouse button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>Selezionare l&apos;area di annotazione con Ctrl + tasto sinistro del mouse</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>Selezionare l&apos;area di annotazione con Shift + tasto sinistro del mouse</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -812,8 +812,8 @@ Nascondi con filtro: |nohistogram|</translation>
         <translation>Ritaglia</translation>
     </message>
     <message>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="vanished">Selezionare l&apos;area di ritaglio con Ctrl + tasto sinistro del mouse</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation type="vanished">Selezionare l&apos;area di ritaglio con Shift + tasto sinistro del mouse</translation>
     </message>
     <message>
         <source>Mirror</source>
@@ -1474,8 +1474,8 @@ Nascondi con filtro: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation>&lt;h3&gt;Definisci un&apos;area di ritaglio&lt;/h3&gt;&lt;p&gt;Apri un&apos;immagine, magari ruotala.&lt;br&gt;Quindi tieni premuto Ctrl per selezionare un rettangolo di ritaglio.&lt;br&gt;Non applicare il ritaglio facendo doppio clic sulla selezione!&lt;br&gt;Se non stai utilizzando l&apos;anteprima, esci dal Visualizzatore.&lt;/p&gt;Ora puoi ripetere l&apos;azione su più immagini.</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation>&lt;h3&gt;Definisci un&apos;area di ritaglio&lt;/h3&gt;&lt;p&gt;Apri un&apos;immagine, magari ruotala.&lt;br&gt;Quindi tieni premuto Shift per selezionare un rettangolo di ritaglio.&lt;br&gt;Non applicare il ritaglio facendo doppio clic sulla selezione!&lt;br&gt;Se non stai utilizzando l&apos;anteprima, esci dal Visualizzatore.&lt;/p&gt;Ora puoi ripetere l&apos;azione su più immagini.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2128"/>
@@ -1755,8 +1755,8 @@ Nascondi con filtro: |nohistogram|</translation>
         <translation>Nessun area di ritaglio definita</translation>
     </message>
     <message>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;Exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation type="vanished">&lt;h3&gt;Definisci un&apos;area di ritaglio&lt;/h3&gt;&lt;p&gt;Apri un&apos;immagine, eventualmente ruotala.&lt;br&gt;Quindi premi e tieni premuto Ctrl per selezionare un rettangolo di ritaglio.&lt;br&gt;&lt;b&gt;Non&lt;/b&gt; applicare il ritaglio facendo doppio clic sulla selezione!&lt;br&gt;Esci dal Visualizzatore.&lt;/p&gt;Ora puoi ripetere l&apos;azione su più immagini.</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;Exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation type="vanished">&lt;h3&gt;Definisci un&apos;area di ritaglio&lt;/h3&gt;&lt;p&gt;Apri un&apos;immagine, eventualmente ruotala.&lt;br&gt;Quindi premi e tieni premuto Shift per selezionare un rettangolo di ritaglio.&lt;br&gt;&lt;b&gt;Non&lt;/b&gt; applicare il ritaglio facendo doppio clic sulla selezione!&lt;br&gt;Esci dal Visualizzatore.&lt;/p&gt;Ora puoi ripetere l&apos;azione su più immagini.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2035"/>

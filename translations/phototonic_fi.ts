@@ -457,23 +457,23 @@ Haluatko tallentaa kopion?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Valitse rajattava alue painamalla Ctrl ja raahaamalla hiiren vasemmalla</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>Valitse rajattava alue painamalla Shift ja raahaamalla hiiren vasemmalla</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>Valitse tyhjennettävä alue painamalla Ctrl ja raahaamalla hiiren vasemmalla painikkeella</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>Valitse tyhjennettävä alue painamalla Shift ja raahaamalla hiiren vasemmalla painikkeella</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation>Valitse kehystettävä alue painamalla Ctrl ja raahaamalla hiiren vasemmalla</translation>
+        <source>Select the cartouche area with Shift + left mouse button</source>
+        <translation>Valitse kehystettävä alue painamalla Shift ja raahaamalla hiiren vasemmalla</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>Valitse tekstikentän alue painamalla Ctrl ja raahaamalla hiiren vasemmalla</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>Valitse tekstikentän alue painamalla Shift ja raahaamalla hiiren vasemmalla</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -1430,7 +1430,7 @@ Piilota suodattimella: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation>&lt;h3&gt;Määritä rajausalue&lt;/h3&gt;&lt;p&gt;Avaa kuva ja kierrä sitä tarvittaessa.&lt;br&gt;Paina sitten Ctrl-näppäintä ja pidä se painettuna valitaksesi rajausalueen.&lt;br&gt;&lt;b&gt;Älä&lt;/b&gt; hyväksy rajausta kaksoisnapsauttamalla valintaa!&lt;br&gt;Jos et käytä esikatselua, sulje katseluohjelma.&lt;/p&gt;Voit nyt toistaa toiminnon useaan kuvaan.</translation>
     </message>
     <message>

@@ -484,8 +484,8 @@
         <translation type="vanished">Bez selekcije za rezanje</translation>
     </message>
     <message>
-        <source>To make a selection, hold down the Ctrl key and select a region using the mouse.</source>
-        <translation type="vanished">Za odabir selekcije, držite Ctrl tipku i izaberite regiju koristeći miš.</translation>
+        <source>To make a selection, hold down the Shift key and select a region using the mouse.</source>
+        <translation type="vanished">Za odabir selekcije, držite Shift tipku i izaberite regiju koristeći miš.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="148"/>
@@ -553,23 +553,23 @@ Do you want to save a copy?</source>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Odaberi područje obrezivanja pomoću Ctrl + lijeva tipka miša</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>Odaberi područje obrezivanja pomoću Shift + lijeva tipka miša</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>Odaberi područje zacrnjenja pomoću Ctrl + lijeva tipka miša</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>Odaberi područje zacrnjenja pomoću Shift + lijeva tipka miša</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation>Odaberi područje za uokvirivanje pomoću Ctrl + lijeva tipka miša</translation>
+        <source>Select the cartouche area with Shift + left mouse button</source>
+        <translation>Odaberi područje za uokvirivanje pomoću Shift + lijeva tipka miša</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>Odaberi područje za zabilješke pomoću Ctrl + lijeve tipke miša</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>Odaberi područje za zabilješke pomoću Shift + lijeve tipke miša</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -841,8 +841,8 @@ Sakrij pomoću filtra: |nohistogram|</translation>
         <translation>Obreži</translation>
     </message>
     <message>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="vanished">Odaberi područje obrezivanja pomoću Ctrl + lijeva tipke miša</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation type="vanished">Odaberi područje obrezivanja pomoću Shift + lijeva tipke miša</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="534"/>
@@ -1970,7 +1970,7 @@ Sakrij pomoću filtra: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation>&lt;h3&gt;Definiraj područje za obrezivanje&lt;/h3&gt;&lt;p&gt;Otvori sliku, po potrebi je okreni.&lt;br&gt;Zatim pritisni i drži tipku **Ctrl** pritisnutom za biranje pravokutnika za ogrezivanje.&lt;br&gt;**Nemoj** primijeniti obrezivanje dvostrukim klikom na odabrano područje!&lt;br&gt;Ako ne koristiš pregled, izađi iz Preglednika.&lt;/p&gt;Sada možeš ponovo primijeniti ovu radnju na više slika.</translation>
     </message>
     <message>

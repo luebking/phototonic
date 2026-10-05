@@ -508,23 +508,23 @@ Do you want to save a copy?</source>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>აირჩიეთ ამოსაჭრელი ალაგი Ctrl + თაგუნას მარცხენა ღილაკით</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>აირჩიეთ ამოსაჭრელი ალაგი Shift + თაგუნას მარცხენა ღილაკით</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>მონიშნეთ გასაშავებელი ადგილი Ctrl + თაგუნას მარცხენა ღილაკით</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>მონიშნეთ გასაშავებელი ადგილი Shift + თაგუნას მარცხენა ღილაკით</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation>აირჩიეთ კარტუშის არე Ctrl + თაგუნას მარცხენა ღილაკით</translation>
+        <source>Select the cartouche area with Shift + left mouse button</source>
+        <translation>აირჩიეთ კარტუშის არე Shift + თაგუნას მარცხენა ღილაკით</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>აირჩიეთ ანოტაციის არე Ctrl + თაგუნას მარცხენა ღილაკით</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>აირჩიეთ ანოტაციის არე Shift + თაგუნას მარცხენა ღილაკით</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -1163,8 +1163,8 @@ Hide with filter: |nohistogram|</source>
         <translation>ამოჭრა</translation>
     </message>
     <message>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="vanished">აირჩიეთ ამოსაჭრელი ალაგი Ctrl + თაგუნას მარცხენა ღილაკით</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation type="vanished">აირჩიეთ ამოსაჭრელი ალაგი Shift + თაგუნას მარცხენა ღილაკით</translation>
     </message>
     <message>
         <source>Mirror</source>
@@ -1538,8 +1538,8 @@ Hide with filter: |nohistogram|</source>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation>&lt;h3&gt;აღწერეთ ამოსაჭრელი ალაგი&lt;/h3&gt;&lt;p&gt;გახსენით გამოსახულება, სურვილის შემთხვევაში შემოაბრუნეთ.&lt;br&gt;შემდეგ დააჭირეთ და გეჭიროთ ღილაკზე Ctrl და მორნიშნეთ ამოსაჭრელი მართკუთხედი.&lt;br&gt;&lt;b&gt;არ&lt;/b&gt; გადაატაროთ ამოჭრა მონიშნულზე ორმაგი წკაპით!&lt;br&gt;თუ მინიატურას არ იყენებთ, გადით დამთვალიერებლიდან.&lt;/p&gt;ახლა შეგიძლიათ, ეს ქმედება ერთზე მეტ გამოსახულებაზე შეასრულოთ.</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation>&lt;h3&gt;აღწერეთ ამოსაჭრელი ალაგი&lt;/h3&gt;&lt;p&gt;გახსენით გამოსახულება, სურვილის შემთხვევაში შემოაბრუნეთ.&lt;br&gt;შემდეგ დააჭირეთ და გეჭიროთ ღილაკზე Shift და მორნიშნეთ ამოსაჭრელი მართკუთხედი.&lt;br&gt;&lt;b&gt;არ&lt;/b&gt; გადაატაროთ ამოჭრა მონიშნულზე ორმაგი წკაპით!&lt;br&gt;თუ მინიატურას არ იყენებთ, გადით დამთვალიერებლიდან.&lt;/p&gt;ახლა შეგიძლიათ, ეს ქმედება ერთზე მეტ გამოსახულებაზე შეასრულოთ.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2051"/>

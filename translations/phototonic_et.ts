@@ -492,23 +492,23 @@ Kas soovid salvestada uue failina?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Vali kadreeritav ala Ctrl klahvi ja hiire vasaku nupuga</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>Vali kadreeritav ala Shift klahvi ja hiire vasaku nupuga</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>Vali pimendatud ala klahvikombinatsiooniga Ctrl + hiire vasak nupp</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>Vali pimendatud ala klahvikombinatsiooniga Shift + hiire vasak nupp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation>Vali kartušši ehk märkenurga ala klahvikombinatsiooniga Ctrl + hiire vasak nupp</translation>
+        <source>Select the cartouche area with Shift + left mouse button</source>
+        <translation>Vali kartušši ehk märkenurga ala klahvikombinatsiooniga Shift + hiire vasak nupp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>Vali märkuste ala klahvikombinatsiooniga Ctrl + hiire vasak nupp</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>Vali märkuste ala klahvikombinatsiooniga Shift + hiire vasak nupp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -1127,8 +1127,8 @@ Filtriga peitmine: |nohistogram|</translation>
         <translation>Kadreeri</translation>
     </message>
     <message>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="vanished">Vali kadreeritav ala Ctrl klahvi ja hiire vasaku nupuga</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation type="vanished">Vali kadreeritav ala Shift klahvi ja hiire vasaku nupuga</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="534"/>
@@ -1497,7 +1497,7 @@ Filtriga peitmine: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation>&lt;h3&gt;Kadreerimisala määratlemine&lt;/h3&gt;&lt;p&gt;Ava pilt, vajadusel pööra teda.&lt;br&gt;Kadreeritava ala hiirega valimiseks vajuta alla ja hoia all ctrl-klahvi.&lt;br&gt;Kindlasti &lt;b&gt;ära&lt;/b&gt; ürita kadreerimist jõustada valiku topeltklõpsimisega!&lt;br&gt;Kui sa ei kasuta eelvaadet, siis välju vaaterežiimist.&lt;/p&gt;Sama tegevust saad nüüd korrata mitmete piltidega.</translation>
     </message>
     <message>

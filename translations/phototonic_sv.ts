@@ -512,23 +512,23 @@ Vill du spara en kopia?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Välj beskärningsområdet med Ctrl + vänster musknapp</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>Välj beskärningsområdet med Shift + vänster musknapp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>Välj det mörka området med Ctrl + vänster musknapp</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>Välj det mörka området med Shift + vänster musknapp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation>Välj kartuschområdet med Ctrl + vänster musknapp</translation>
+        <source>Select the cartouche area with Shift + left mouse button</source>
+        <translation>Välj kartuschområdet med Shift + vänster musknapp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>Välj anteckningsområdet med Ctrl + vänster musknapp</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>Välj anteckningsområdet med Shift + vänster musknapp</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -1178,8 +1178,8 @@ Dölj med filter: |nohistogram|</translation>
         <translation>Beskär</translation>
     </message>
     <message>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="vanished">Välj beskärningsområdet med Ctrl + vänster musknapp</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation type="vanished">Välj beskärningsområdet med Shift + vänster musknapp</translation>
     </message>
     <message>
         <source>Mirror</source>
@@ -1550,8 +1550,8 @@ Dölj med filter: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation>&lt;h3&gt;Definiera ett beskärningsområde&lt;/h3&gt;&lt;p&gt;Öppna en bild, kanske rotera den.&lt;br&gt;Tryck sedan och håll ned ctrl för att välja en beskärningskorrigering.&lt;br&gt;Använd &lt;b&gt;inte&lt;/b&gt; beskärningen genom att dubbelklicka på markeringen!&lt;br&gt;Om du inte använder förhandsgranskningen, avsluta visaren.&lt;/p&gt;Du kan nu göra den här åtgärden på flera bilder.</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation>&lt;h3&gt;Definiera ett beskärningsområde&lt;/h3&gt;&lt;p&gt;Öppna en bild, kanske rotera den.&lt;br&gt;Tryck sedan och håll ned shift för att välja en beskärningskorrigering.&lt;br&gt;Använd &lt;b&gt;inte&lt;/b&gt; beskärningen genom att dubbelklicka på markeringen!&lt;br&gt;Om du inte använder förhandsgranskningen, avsluta visaren.&lt;/p&gt;Du kan nu göra den här åtgärden på flera bilder.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2051"/>

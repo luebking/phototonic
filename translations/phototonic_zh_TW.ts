@@ -511,23 +511,23 @@ Do you want to save a copy?</source>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>選擇裁切區域用 Ctrl + 滑鼠左鍵</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>選擇裁切區域用 Shift + 滑鼠左鍵</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>選擇暗黑區域用 Ctrl + 滑鼠左鍵</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>選擇暗黑區域用 Shift + 滑鼠左鍵</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation>選擇楕圓飾框區域用 Ctrl + 滑鼠左鍵</translation>
+        <source>Select the cartouche area with Shift + left mouse button</source>
+        <translation>選擇楕圓飾框區域用 Shift + 滑鼠左鍵</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>選擇批註區域用 Ctrl + 滑鼠左鍵</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>選擇批註區域用 Shift + 滑鼠左鍵</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -1177,8 +1177,8 @@ Hide with filter: |nohistogram|</source>
         <translation>裁切</translation>
     </message>
     <message>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="vanished">選擇裁切區域用 Ctrl + 滑鼠左鍵</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation type="vanished">選擇裁切區域用 Shift + 滑鼠左鍵</translation>
     </message>
     <message>
         <source>Mirror</source>
@@ -1547,8 +1547,8 @@ Hide with filter: |nohistogram|</source>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation>&lt;h3&gt;定義裁切區域&lt;/h3&gt;&lt;p&gt;開啟圖檔，可以旋轉它。&lt;br&gt;然後按住 Ctrl 鍵選擇裁切矩形。&lt;br&gt;&lt;b&gt;切勿&lt;/b&gt;點按二下進行選擇來套用裁切！ &lt;br&gt;如果不使用預覽，請退出檢視器。&lt;/p&gt;您現在可以在多張圖檔上重覆此操作。</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation>&lt;h3&gt;定義裁切區域&lt;/h3&gt;&lt;p&gt;開啟圖檔，可以旋轉它。&lt;br&gt;然後按住 Shift 鍵選擇裁切矩形。&lt;br&gt;&lt;b&gt;切勿&lt;/b&gt;點按二下進行選擇來套用裁切！ &lt;br&gt;如果不使用預覽，請退出檢視器。&lt;/p&gt;您現在可以在多張圖檔上重覆此操作。</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2051"/>

@@ -529,8 +529,8 @@
         <translation type="vanished">Geen selectie voor bijsnijden en draaien</translation>
     </message>
     <message>
-        <source>To make a selection, hold down the Ctrl key and select a region using the mouse. To rotate, hold down the Ctrl and Shift keys and drag the mouse near the right edge.</source>
-        <translation type="vanished">Houd de Ctrl-toets ingedrukt en selecteer een gebied met de cursor om een selectie te maken. Houd Ctrl en Shift ingedrukt en verplaats de cursor langs de rechterzijde om te draaien.</translation>
+        <source>To make a selection, hold down the Shift key and select a region using the mouse. To rotate, hold down the Shift and Shift keys and drag the mouse near the right edge.</source>
+        <translation type="vanished">Houd de Ctrl-toets ingedrukt en selecteer een gebied met de cursor om een selectie te maken. Houd Shift en Shift ingedrukt en verplaats de cursor langs de rechterzijde om te draaien.</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="272"/>
@@ -611,22 +611,22 @@ Wilt u een kopie opslaan?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
+        <source>Select the crop area with Shift + left mouse button</source>
         <translation>Selecteer een bijsnijdgebied met Ctrl+linkermuisknop</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
+        <source>Select the blackout area with Shift + left mouse button</source>
         <translation>Selecteer een te verduisteren gebied met Ctrl+linkermuisknop</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
+        <source>Select the cartouche area with Shift + left mouse button</source>
         <translation>Selecteer een patroongebied met Ctrl+linkermuisknop</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
+        <source>Select the annotation area with Shift + left mouse button</source>
         <translation>Selecteer een aantekeningsgebied met Ctrl+linkermuisknop</translation>
     </message>
     <message>
@@ -1112,8 +1112,8 @@ Verbergen met filter: |nohistogram|</translation>
         <translation>Geen bijsnijdgebied gekozen</translation>
     </message>
     <message>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;Exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation type="vanished">&lt;h3&gt;Kies een bijsnijdgebied&lt;/h3&gt;&lt;p&gt;Open een afbeelding en draai die eventueel.&lt;br&gt;Houd vervolgens Ctrl ingedrukt om een selectie voor het bijsnijden te maken.&lt;br&gt;Dubbelklik &lt;b&gt;niet&lt;/b&gt; om bij te snijden!&lt;br&gt;Sluit de afbeeldingsweergave.&lt;/p&gt;U kunt deze actie nu herhalen op meerdere afbeeldingen.</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;Exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation type="vanished">&lt;h3&gt;Kies een bijsnijdgebied&lt;/h3&gt;&lt;p&gt;Open een afbeelding en draai die eventueel.&lt;br&gt;Houd vervolgens Shift ingedrukt om een selectie voor het bijsnijden te maken.&lt;br&gt;Dubbelklik &lt;b&gt;niet&lt;/b&gt; om bij te snijden!&lt;br&gt;Sluit de afbeeldingsweergave.&lt;/p&gt;U kunt deze actie nu herhalen op meerdere afbeeldingen.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2035"/>
@@ -1798,7 +1798,7 @@ Verbergen met filter: |nohistogram|</translation>
         <translation>Bijsnijden</translation>
     </message>
     <message>
-        <source>Select the crop area with Ctrl + left mouse button</source>
+        <source>Select the crop area with Shift + left mouse button</source>
         <translation type="vanished">Selecteer een bijsnijdgebied met Ctrl+linkermuisknop</translation>
     </message>
     <message>
@@ -1954,8 +1954,8 @@ Verbergen met filter: |nohistogram|</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation>&lt;h3&gt;Kies een bijsnijdgebied&lt;/h3&gt;&lt;p&gt;Open een afbeelding en draai deze eventueel.&lt;br&gt;Houd vervolgens Ctrl ingedrukt om een rechthoekig bijsnijdgereedschap te tonen.&lt;br&gt;Let op: pas het bijsnijden &lt;b&gt;niet&lt;/b&gt; toe door buiten de selectie te dubbelklikken!&lt;br&gt;Als u geen gebruikmaakt van de voorvertoning, sluit dan de afbeeldingsweergave.&lt;/p&gt;U kunt de actie vervolgens op meerdere afbeeldingen toepassen.</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation>&lt;h3&gt;Kies een bijsnijdgebied&lt;/h3&gt;&lt;p&gt;Open een afbeelding en draai deze eventueel.&lt;br&gt;Houd vervolgens Shift ingedrukt om een rechthoekig bijsnijdgereedschap te tonen.&lt;br&gt;Let op: pas het bijsnijden &lt;b&gt;niet&lt;/b&gt; toe door buiten de selectie te dubbelklikken!&lt;br&gt;Als u geen gebruikmaakt van de voorvertoning, sluit dan de afbeeldingsweergave.&lt;/p&gt;U kunt de actie vervolgens op meerdere afbeeldingen toepassen.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2051"/>

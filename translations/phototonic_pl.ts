@@ -586,8 +586,8 @@
         <translation type="vanished">Brak zaznaczenia</translation>
     </message>
     <message>
-        <source>Hold down the Ctrl key and select a region using the mouse.</source>
-        <translation type="vanished">Przytrzymaj klawisz Ctrl i zaznacz rejon używając mysz.</translation>
+        <source>Hold down the Shift key and select a region using the mouse.</source>
+        <translation type="vanished">Przytrzymaj klawisz Shift i zaznacz rejon używając mysz.</translation>
     </message>
     <message>
         <source>Failed to save image.</source>
@@ -602,8 +602,8 @@
         <translation type="vanished">Obrazek zapisany.</translation>
     </message>
     <message>
-        <source>Hold down the Ctrl key and select a region using the mouse</source>
-        <translation type="vanished">Przytrzymaj klawisz Ctrl i zaznacz rejon używając mysz</translation>
+        <source>Hold down the Shift key and select a region using the mouse</source>
+        <translation type="vanished">Przytrzymaj klawisz Shift i zaznacz rejon używając mysz</translation>
     </message>
     <message>
         <source>Saving...</source>
@@ -730,23 +730,23 @@ Czy chcesz zapisać kopię?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Zaznacz obszar przycinania za pomocą kombinacji klawisz Ctrl + lewy przycisk myszy</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>Zaznacz obszar przycinania za pomocą kombinacji klawisz Shift + lewy przycisk myszy</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>Wybierz obszar zaciemniony za pomocą kombinacji klawisz Ctrl + lewy przycisk myszy</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>Wybierz obszar zaciemniony za pomocą kombinacji klawisz Shift + lewy przycisk myszy</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation>Wybierz obszar kartusza za pomocą kombinacji klawisz Ctrl + lewy przycisk myszy</translation>
+        <source>Select the cartouche area with Shift + left mouse button</source>
+        <translation>Wybierz obszar kartusza za pomocą kombinacji klawisz Shift + lewy przycisk myszy</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>Wybierz obszar adnotacji za pomocą kombinacji klawisz Ctrl + lewy przycisk myszy</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>Wybierz obszar adnotacji za pomocą kombinacji klawisz Shift + lewy przycisk myszy</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -1333,8 +1333,8 @@ Ukryj z filtrem: |nohistogram|</translation>
         <translation>Przytnij</translation>
     </message>
     <message>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="vanished">Zaznacz obszar przycinania za pomocą kombinacji klawisz Ctrl + lewy przycisk myszy</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation type="vanished">Zaznacz obszar przycinania za pomocą kombinacji klawisz Shift + lewy przycisk myszy</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="597"/>
@@ -1676,7 +1676,7 @@ Ukryj z filtrem: |nohistogram|</translation>
         <translation>Nie określono obszaru przycięcia</translation>
     </message>
     <message>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;Exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;Exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation type="vanished">&lt;h3&gt;Określ obszar przycinania&lt;/h3&gt;&lt;p&gt;Otwórz obraz, być może go obróć.&lt;br&gt;Następnie naciśnij i przytrzymaj klawisz Ctrl, aby zaznaczyć prostokąt przycinania.&lt;br&gt;Nie stosuj&lt;/b&gt; przycinania poprzez dwukrotne kliknięcie zaznaczenia!&lt;br&gt;Wyjdź z przeglądarki.&lt;/p&gt;Teraz możesz powtórzyć czynność na wielu obrazach.</translation>
     </message>
     <message>
@@ -2403,7 +2403,7 @@ Wiele plików otrzymałoby tę samą nazwę.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation>&lt;h3&gt;Określ obszar przycinania&lt;/h3&gt;&lt;p&gt;Otwórz obraz, ewentualnie obróć go.&lt;br&gt;Następnie naciśnij i przytrzymaj klawisz Ctrl, aby zaznaczyć prostokąt przycinania.&lt;br&gt;&lt;b&gt;Nie&lt;/b&gt; stosuj przycinania, klikając dwukrotnie zaznaczenie!&lt;br&gt;Jeśli nie używasz podglądu, zamknij przeglądarkę.&lt;/p&gt;Teraz możesz powtórzyć czynność na wielu obrazach.</translation>
     </message>
     <message>

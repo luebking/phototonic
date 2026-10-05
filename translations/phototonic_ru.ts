@@ -502,8 +502,8 @@
         <translation type="vanished">Нет выделения</translation>
     </message>
     <message>
-        <source>Hold down the Ctrl key and select a region using the mouse.</source>
-        <translation type="vanished">Зажмите клавишу Ctrl и выделите область изображения с помощью мыши.</translation>
+        <source>Hold down the Shift key and select a region using the mouse.</source>
+        <translation type="vanished">Зажмите клавишу Shift и выделите область изображения с помощью мыши.</translation>
     </message>
     <message>
         <source>Failed to save image.</source>
@@ -602,23 +602,23 @@ Do you want to save a copy?</source>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Выберите зону кадрирования используя Ctrl + левую кнопку мыши</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>Выберите зону кадрирования используя Shift + левую кнопку мыши</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>Выделите область затемнения с помощью Ctrl + левая кнопка мыши</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>Выделите область затемнения с помощью Shift + левая кнопка мыши</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation>Выделите область картуша с помощью Ctrl + левая кнопка мыши</translation>
+        <source>Select the cartouche area with Shift + left mouse button</source>
+        <translation>Выделите область картуша с помощью Shift + левая кнопка мыши</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>Выделите область аннотации с помощью Ctrl + левая кнопка мыши</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>Выделите область аннотации с помощью Shift + левая кнопка мыши</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -1537,8 +1537,8 @@ Hide with filter: |nohistogram|</source>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation>&lt;h3&gt;Задайте зону кадрирования&lt;/h3&gt;&lt;p&gt;Откройте изображение, возможно даже при наклоне.&lt;br&gt;Потом нажмите и удерживайте Ctrl чтобы выделить зону кадрирования.&lt;br&gt; &lt;b&gt;Не&lt;/b&gt; применяйте кадрирование двойным щелчком мыши!&lt;br&gt;Если вы не используйте предпросмотр, выйдите из просмотрщика.&lt;/p&gt;Теперь вы можете повторить данное действие на нескольких изображениях.</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation>&lt;h3&gt;Задайте зону кадрирования&lt;/h3&gt;&lt;p&gt;Откройте изображение, возможно даже при наклоне.&lt;br&gt;Потом нажмите и удерживайте Shift чтобы выделить зону кадрирования.&lt;br&gt; &lt;b&gt;Не&lt;/b&gt; применяйте кадрирование двойным щелчком мыши!&lt;br&gt;Если вы не используйте предпросмотр, выйдите из просмотрщика.&lt;/p&gt;Теперь вы можете повторить данное действие на нескольких изображениях.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2118"/>
@@ -1736,8 +1736,8 @@ Hide with filter: |nohistogram|</source>
         <translation>Кадрировать</translation>
     </message>
     <message>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="vanished">Выберите зону кадрирования используя Ctrl + левую кнопку мыши</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation type="vanished">Выберите зону кадрирования используя Shift + левую кнопку мыши</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="534"/>

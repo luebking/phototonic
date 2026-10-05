@@ -605,8 +605,8 @@
         <translation type="vanished">Aucune sélection</translation>
     </message>
     <message>
-        <source>Hold down the Ctrl key and select a region using the mouse.</source>
-        <translation type="vanished">Maintenez la touche Ctrl enfoncée et sélectionnez une région à l&apos;aide de la souris.</translation>
+        <source>Hold down the Shift key and select a region using the mouse.</source>
+        <translation type="vanished">Maintenez la touche Shift enfoncée et sélectionnez une région à l&apos;aide de la souris.</translation>
     </message>
     <message>
         <source>Failed to save image.</source>
@@ -621,8 +621,8 @@
         <translation type="vanished">Image enregistrée.</translation>
     </message>
     <message>
-        <source>Hold down the Ctrl key and select a region using the mouse</source>
-        <translation type="vanished">Maintenez la touche Ctrl enfoncée et sélectionnez une région à l&apos;aide de la souris</translation>
+        <source>Hold down the Shift key and select a region using the mouse</source>
+        <translation type="vanished">Maintenez la touche Shift enfoncée et sélectionnez une région à l&apos;aide de la souris</translation>
     </message>
     <message>
         <source>Saving...</source>
@@ -749,23 +749,23 @@ Voulez-vous enregistrer une copie ?</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1083"/>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation>Sélectionnez la zone de recadrage avec Ctrl + bouton gauche de la souris</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation>Sélectionnez la zone de recadrage avec Shift + bouton gauche de la souris</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1085"/>
-        <source>Select the blackout area with Ctrl + left mouse button</source>
-        <translation>Sélectionnez la zone de masquage avec Ctrl + bouton gauche de la souris</translation>
+        <source>Select the blackout area with Shift + left mouse button</source>
+        <translation>Sélectionnez la zone de masquage avec Shift + bouton gauche de la souris</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1087"/>
-        <source>Select the cartouche area with Ctrl + left mouse button</source>
-        <translation>Sélectionnez la zone de la cartouche avec Ctrl + bouton gauche de la souris</translation>
+        <source>Select the cartouche area with Shift + left mouse button</source>
+        <translation>Sélectionnez la zone de la cartouche avec Shift + bouton gauche de la souris</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1089"/>
-        <source>Select the annotation area with Ctrl + left mouse button</source>
-        <translation>Sélectionnez la zone d’annotation avec Ctrl + bouton gauche de la souris</translation>
+        <source>Select the annotation area with Shift + left mouse button</source>
+        <translation>Sélectionnez la zone d’annotation avec Shift + bouton gauche de la souris</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="1115"/>
@@ -1648,8 +1648,8 @@ Masquer avec filtre : |nohistogram|</translation>
         <translation>Recadrer</translation>
     </message>
     <message>
-        <source>Select the crop area with Ctrl + left mouse button</source>
-        <translation type="vanished">Sélectionner la zone à recadrer avec Ctrl + clic gauche</translation>
+        <source>Select the crop area with Shift + left mouse button</source>
+        <translation type="vanished">Sélectionner la zone à recadrer avec Shift + clic gauche</translation>
     </message>
     <message>
         <source>Mirror</source>
@@ -2020,8 +2020,8 @@ Masquer avec filtre : |nohistogram|</translation>
         <translation>Zone de recadrage non définie</translation>
     </message>
     <message>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;Exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation type="vanished">&lt;h3&gt;Définir une zone de recadrage&lt;/h3&gt;&lt;p&gt;Ouvrir une image et éventuellement appliquer une rotation.&lt;br&gt;Puis maintenir pressée la touche ctrl pour sélection la zone à recadrer.&lt;br&gt;Ne&lt;b&gt;pas&lt;/b&gt; appliquer le recadrage par double-clic sur la sélection !&lt;br&gt;Quitter la visionneuse.&lt;/p&gt;Effectuer la manipulation sur d&apos;autres images si nécessaire.</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;Exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation type="vanished">&lt;h3&gt;Définir une zone de recadrage&lt;/h3&gt;&lt;p&gt;Ouvrir une image et éventuellement appliquer une rotation.&lt;br&gt;Puis maintenir pressée la touche shift pour sélection la zone à recadrer.&lt;br&gt;Ne&lt;b&gt;pas&lt;/b&gt; appliquer le recadrage par double-clic sur la sélection !&lt;br&gt;Quitter la visionneuse.&lt;/p&gt;Effectuer la manipulation sur d&apos;autres images si nécessaire.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2035"/>
@@ -2509,8 +2509,8 @@ Plusieurs fichiers obtiendraient le même nom.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2023"/>
-        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold ctrl to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
-        <translation>&lt;h3&gt;Définir la zone à recadrer&lt;/h3&gt;&lt;p&gt;Ouvrir une image, la pivoter si besoin.&lt;br&gt;Puis maintenir pressée la touche Ctrl pour sélectionner la zone à recadrer.&lt;br&gt;Ne &lt;b&gt;pas&lt;/b&gt; utiliser le double-clic pour confirmer la zone à recadrer!&lt;br&gt;Si l&apos;aperçu activé, quitter la visionneuse.&lt;/p&gt;Si nécessaire, renouveler la manipulation.</translation>
+        <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
+        <translation>&lt;h3&gt;Définir la zone à recadrer&lt;/h3&gt;&lt;p&gt;Ouvrir une image, la pivoter si besoin.&lt;br&gt;Puis maintenir pressée la touche Shift pour sélectionner la zone à recadrer.&lt;br&gt;Ne &lt;b&gt;pas&lt;/b&gt; utiliser le double-clic pour confirmer la zone à recadrer!&lt;br&gt;Si l&apos;aperçu activé, quitter la visionneuse.&lt;/p&gt;Si nécessaire, renouveler la manipulation.</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="2118"/>
