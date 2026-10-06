@@ -984,12 +984,15 @@ finish:
     ab.setRgb((ab.red()*9+t.red())/10, (ab.blue()*9+t.blue())/10, (ab.blue()*9+t.blue())/10);
     bool alternate = true;
     quint64 last = 0;
+    int group = 0; // lame human count
     for (int i = 0; i < m_model->rowCount(); ++i) {
         QStandardItem *item = m_model->item(i);
         quint64 tag = item->data(SortRole).toULongLong();
-        item->setToolTip(QString::number(tag));
-        if (tag != last)
+        if (tag != last) {
+            ++group;
             alternate = !alternate;
+        }
+        item->setToolTip(tr("Group: %1").arg(group));
         last = tag;
         if (alternate)
             item->setBackground(ab);
