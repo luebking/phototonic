@@ -978,6 +978,23 @@ finish:
     thumbsDir.setPath(Settings::currentDirectory); // reset
     Settings::isFileListLoaded = isFileListLoaded;
     m_model->sort(0);
+
+    QColor ab = palette().color(QPalette::Base);
+    QColor t = palette().color(QPalette::Text);
+    ab.setRgb((ab.red()*9+t.red())/10, (ab.blue()*9+t.blue())/10, (ab.blue()*9+t.blue())/10);
+    bool alternate = true;
+    quint64 last = 0;
+    for (int i = 0; i < m_model->rowCount(); ++i) {
+        QStandardItem *item = m_model->item(i);
+        quint64 tag = item->data(SortRole).toULongLong();
+        item->setToolTip(QString::number(tag));
+        if (tag != last)
+            alternate = !alternate;
+        last = tag;
+        if (alternate)
+            item->setBackground(ab);
+    }
+
     m_busy = false;
     return;
 }
@@ -1275,18 +1292,28 @@ void ThumbsViewer::findDupes(bool resetCounters)
         else
             continue;
 
-        QList<QStringList*> dupes;
-        QStringList *closest = nullptr;
+        auto uuid = [](const QBitArray &bits) {
+            quint64 factor = 1;
+            quint64 ret = 0;
+            for (int i = 0; i < 64; ++i, factor *= 2) {
+                if (bits.testBit(i))
+                    ret += factor;
+            }
+            return ret;
+        };
+
+        QMap<quint64, QStringList*> dupes;
+        quint64 closest = 0;
         float closestScore = 10000.0f;
         QBitArray imageHash = signature(imageFileName);
-        QHash<QBitArray, QStringList>::iterator match = imageHashes.find(imageHash);
-        if (match == imageHashes.end()) {
+        QHash<QBitArray, QStringList>::const_iterator match = imageHashes.constFind(imageHash);
+        if (match == imageHashes.constEnd()) {
             imageHashes.insert(imageHash, QStringList(imageFileName));
         } else {
-            closest = &match.value();
+            closest = uuid(imageHash);
             closestScore = 0.0f;
             if (!dupes.contains(closest))
-                dupes << closest;
+                dupes.insert(closest, const_cast<QStringList*>(&(match.value())));
         }
 #if 1
 //        profiler.start();
@@ -1312,12 +1339,12 @@ void ThumbsViewer::findDupes(bool resetCounters)
                     continue; // images with different average hue are not the same
                 const float score = m_histograms.at(histIdx).compare(m_histograms.at(otherIdx));
                 if (score <= accuracy) {
-                    const QStringList *dupe = &(hash.value());
+                    quint64 dupe = uuid(hash.key());
                     if (!dupes.contains(dupe))
-                        dupes.append(const_cast<QStringList*>(dupe));
+                        dupes.insert(dupe, const_cast<QStringList*>(&(hash.value())));
                     if (score < closestScore) {
                         closestScore = score;
-                        closest = const_cast<QStringList*>(dupe);
+                        closest = dupe;
                     }
                 }
             }
@@ -1327,16 +1354,17 @@ void ThumbsViewer::findDupes(bool resetCounters)
 //        if (closest)
 //            qDebug() << closestScore;
         int newFiles = 0;
-        for (QStringList *dupe : dupes) {
+        for (auto i = dupes.cbegin(), end = dupes.cend(); i != end; ++i) {
             // display sibling
-            if (dupe->size() == 1) {
-                if (QStandardItem *item = addThumb(QFileInfo(dupe->at(0)))) {
+            QStringList *dupeList = i.value();
+            if (dupeList->size() == 1) {
+                if (QStandardItem *item = addThumb(QFileInfo(dupeList->at(0)))) {
                     ++newFiles;
-                    item->setData(quint64(dupe), SortRole);
+                    item->setData(i.key(), SortRole);
                 }
             }
             // ... and ...
-            *dupe << imageFileName;
+            *dupeList << imageFileName;
         }
         if (dupes.size()) {
             // ... this one
