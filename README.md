@@ -29,6 +29,7 @@ webcam shots and align them well enough to make a time-lapse video.
 Release 3.3.0
 * Improve touchpad/hi-res wheel scrolling
 * Improve input handling with central viewer and docked thumbnails
+* Improve duplicate grouping
 * Use ctrl as rotation and shift as cropping modifier (aligns with overall ctrl use)
 * Be more conservative when upscaling exif thumbnails
 * Filter for hue and saturation and inversions of dark/bright/cold/warm
@@ -135,46 +136,6 @@ First alpha release
 
 ##### December 2024
 + revive and Qt6 port
-
-##### 11 Mar 2018 - v2.1
-+ Rotate preview by Exif rotation
-+ Fixed bug in image filtering
-+ Bug fixes for multiple UI issues and actions
-+ Add shortcuts for all missing actions
-
-##### 28 Feb 2018 - v2.0
-+ Move to Trash
-+ File List support
-+ Bug fixes
-
-##### 15 Jan 2018 - v2.0 - Snapshot
-+ Back after a long break
-+ Code cleanup and removal of useless features
-+ Lots of bug fixes
-+ Added Remove Image Metadata action
-+ Enhanced keyboard settings
-+ Enhanced image info
-
-##### 12 Nov 2015 - v1.7.1
-+ Changes to the way layouts are being switched, now faster and more efficient
-+ Fixed issue with not reading image tags correctly when exif data was missing from image
-+ Added Negate option to image tags filtering
-+ Docks can now be nested to create more customized layouts
-+ Some enhancements to Tags user experience and icons
-+ Fixed issue with limited zoom functionality
-+ Better error handling when reading corrupted images
-+ New translations added
-
-##### 8 Aug 2015 - v1.6.17
-+ Image tags improvements and bug fixes
-+ Changes to default key mapping
-+ Small fixes to image extensions
-+ Fixed issue with thumb label appearing after rename when labels are not displayed
-+ Improvements to image feedback
-+ Some dialog usability fixes
-+ Added Negativity settings per color channel
-+ Fixed colors manipulations for images with alpha channel and non animated GIF images
-+ Other Bug fixes
 
 [Older updates](HISTORY.md)
 
