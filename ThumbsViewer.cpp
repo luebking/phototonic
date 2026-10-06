@@ -985,6 +985,7 @@ finish:
     bool alternate = true;
     quint64 last = 0;
     int group = 0; // lame human count
+    QHash<QString, QList<int>> groups;
     for (int i = 0; i < m_model->rowCount(); ++i) {
         QStandardItem *item = m_model->item(i);
         quint64 tag = item->data(SortRole).toULongLong();
@@ -992,12 +993,19 @@ finish:
             ++group;
             alternate = !alternate;
         }
-        item->setToolTip(tr("Group: %1").arg(group));
+        groups[item->data(FileNameRole).toString()] << group;
         last = tag;
         if (alternate)
             item->setBackground(ab);
     }
-
+    for (int i = 0; i < m_model->rowCount(); ++i) {
+        QStandardItem *item = m_model->item(i);
+        const QList<int> gl = groups.value(item->data(FileNameRole).toString());
+        QStringList tip;
+        for (const int &group : gl)
+            tip << tr("Group: %1").arg(group);
+        item->setToolTip(tip.join("\n"));
+    }
     m_busy = false;
     return;
 }
