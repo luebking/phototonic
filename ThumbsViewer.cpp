@@ -1365,15 +1365,14 @@ void ThumbsViewer::findDupes(bool resetCounters)
             }
             // ... and ...
             *dupeList << imageFileName;
-        }
-        if (dupes.size()) {
             // ... this one
-            ++duplicateFiles;
             if (QStandardItem *item = addThumb(QFileInfo(imageFileName))) {
                 ++newFiles;
-                item->setData(quint64(closest), SortRole);
+                item->setData(i.key(), SortRole);
             }
         }
+        if (dupes.size())
+            ++duplicateFiles;
         if (newFiles) {
             m_filterDirty = true;
             filterRows(m_model->rowCount() - newFiles);
