@@ -690,24 +690,25 @@ void Phototonic::createActions() {
 
     // Sort actions
     #define CHECKABLE_SORT action->setCheckable(true); connect(action, SIGNAL(triggered()), this, SLOT(sortThumbnails()));
-    QAction *sortByName, *sortByTime, *sortByExifTime, *sortBySize, *sortByType, *sortBySimilarity,
-            *sortByBrightness, *sortByColor;
+    QAction *sortByName, *sortByTime, *sortBySize, *sortByType, *sortByDuplicate;
 
     sortByName = MAKE_ACTION_NOSC(tr("Sort by Name"), "sortByName");
     CHECKABLE_SORT
+    sortByDuplicate = MAKE_ACTION_NOSC(tr("Sort by Duplicate Group"), "sortByDuplicate");
+    CHECKABLE_SORT
     sortByTime = MAKE_ACTION_NOSC(tr("Sort by Time"), "sortByTime");
     CHECKABLE_SORT
-    sortByExifTime = MAKE_ACTION_NOSC(tr("Sort by Time") + " (Exif)", "sortByExifTime");
+    MAKE_ACTION_NOSC(tr("Sort by Time") + " (Exif)", "sortByExifTime");
     CHECKABLE_SORT
     sortBySize = MAKE_ACTION_NOSC(tr("Sort by Size"), "sortBySize");
     CHECKABLE_SORT
     sortByType = MAKE_ACTION_NOSC(tr("Sort by Type"), "sortByType");
     CHECKABLE_SORT
-    sortBySimilarity = MAKE_ACTION_NOSC(tr("Sort by Similarity"), "sortBySimilarity");
+    MAKE_ACTION_NOSC(tr("Sort by Similarity"), "sortBySimilarity");
     CHECKABLE_SORT
-    sortByBrightness = MAKE_ACTION_NOSC(tr("Sort by Brightness"), "sortByBrightness");
+    MAKE_ACTION_NOSC(tr("Sort by Brightness"), "sortByBrightness");
     CHECKABLE_SORT
-    sortByColor = MAKE_ACTION_NOSC(tr("Sort by Color"), "sortByColor");
+    MAKE_ACTION_NOSC(tr("Sort by Color"), "sortByColor");
     CHECKABLE_SORT
 
     if (thumbsViewer->thumbsSortFlags & QDir::Time)
@@ -718,6 +719,7 @@ void Phototonic::createActions() {
         sortByType->setChecked(true);
     else
         sortByName->setChecked(true);
+    sortByDuplicate->setVisible(false);
 
     MAKE_ACTION_NOSC(tr("Reverse Sort Order"), "sortReverse");
     CHECKABLE_SORT
@@ -943,19 +945,16 @@ void Phototonic::createActions() {
     action->setCheckable(true);
     connect(action, &QAction::triggered, [_LCD_]() {
         if (action->isChecked()) {
-            sortByName->setChecked(false);
-            sortByTime->setChecked(false);
-            sortByExifTime->setChecked(false);
-            sortBySize->setChecked(false);
-            sortByType->setChecked(false);
-            sortBySimilarity->setChecked(false);
-            sortByBrightness->setChecked(false);
-            sortByColor->setChecked(false);
+            sortByDuplicate->setVisible(true);
+            sortByDuplicate->setChecked(true);
             // scenario: user enters a filter and clicks the duplicate button
             QString error;
             if (!thumbsViewer->setFilter(filterLineEdit->text(), &error))
                 QToolTip::showText(filterLineEdit->mapToGlobal(QPoint(0, filterLineEdit->height()*6/5)),
                                 error, filterLineEdit);
+        } else {
+            sortByDuplicate->setVisible(false);
+            sortByName->setChecked(true);
         }
         refreshThumbs(true);
     });
@@ -1120,6 +1119,7 @@ void Phototonic::createMenus() {
     sortMenu->setIcon(style()->standardIcon(QStyle::SP_FileDialogDetailedView));
     QActionGroup *sortTypesGroup = new QActionGroup(this);
     sortTypesGroup->addAction(action("sortByName"));
+    sortTypesGroup->addAction(action("sortByDuplicate"));
     sortTypesGroup->addAction(action("sortByTime"));
     sortTypesGroup->addAction(action("sortByExifTime"));
     sortTypesGroup->addAction(action("sortBySize"));
@@ -1525,6 +1525,8 @@ void Phototonic::sortThumbnails() {
 
         if (trigger->objectName() == "sortByName") {
             thumbModel->setSortRole(Qt::DisplayRole/* ThumbsViewer::SortRole */);
+        } else if (trigger->objectName() == "sortByDuplicate") {
+            thumbModel->setSortRole(ThumbsViewer::SortRole);
         } else if (trigger->objectName() == "sortByTime") {
             thumbsViewer->thumbsSortFlags |= QDir::Time;
             thumbModel->setSortRole(ThumbsViewer::TimeRole);
