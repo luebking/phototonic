@@ -1316,6 +1316,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
         QMap<quint64, QStringList*> dupes;
         quint64 closest = 0;
         float closestScore = 10000.0f;
+        QStringList *closestList = nullptr;
         QBitArray imageHash = signature(imageFileName);
         QHash<QBitArray, QStringList>::const_iterator match = imageHashes.constFind(imageHash);
         if (match == imageHashes.constEnd()) {
@@ -1323,8 +1324,7 @@ void ThumbsViewer::findDupes(bool resetCounters)
         } else {
             closest = uuid(imageHash);
             closestScore = 0.0f;
-            if (!dupes.contains(closest))
-                dupes.insert(closest, const_cast<QStringList*>(&(match.value())));
+            closestList = const_cast<QStringList*>(&(match.value()));
         }
 #if 1
 //        profiler.start();
@@ -1350,16 +1350,17 @@ void ThumbsViewer::findDupes(bool resetCounters)
                     continue; // images with different average hue are not the same
                 const float score = m_histograms.at(histIdx).compare(m_histograms.at(otherIdx));
                 if (score <= accuracy) {
-                    quint64 dupe = uuid(hash.key());
-                    if (!dupes.contains(dupe))
-                        dupes.insert(dupe, const_cast<QStringList*>(&(hash.value())));
                     if (score < closestScore) {
                         closestScore = score;
-                        closest = dupe;
+                        closest = uuid(hash.key());
+                        closestList = const_cast<QStringList*>(&(hash.value()));
                     }
                 }
             }
         }
+
+        if (closestList && !dupes.contains(closest))
+            dupes.insert(closest, closestList);
 //        totalCompareTime += profiler.elapsed();
 #endif
 //        if (closest)
