@@ -3,18 +3,21 @@
 
 ### About
 Phototonic is an image viewer and organizer built with Qt and Exiv2, released under GNU General Public License v3.
-The ec1oud fork is for work on batch-processing features: specifically to take a directory full of crooked
-webcam shots and align them well enough to make a time-lapse video.
 
 ### Features
 <img src="images/screenshot.jpg" align="right"  width="300">
 
 + Support for [common image formats](https://doc.qt.io/qt-6/qimage.html#reading-and-writing-image-files) and GIF animation
-+ Supports tagging images, and filtering images by tags (IPTC)
++ Display image information and edit metadata
++ Supports tagging images (IPTC)
++ Powerful filtering by image attributes (eg. average color) and tags - also non-interactively in scripts
++ Find duplicate images
++ Basic image transformation and color manipulation (screenshot editing)
++ Browse externally and internally generated image lists (find, locate, …)
++ View slideshows
++ Execute custom actions on images (eg. to set as wallpaper or look up GPS coordinates in a browser)
 + Browse thumbnails recursively down a folder tree
 + Dynamic thumbnails loading
-+ Image transformation and color manipulation
-+ Display image information and metadata
 + Does not depend on any desktop environment
 
 ---
