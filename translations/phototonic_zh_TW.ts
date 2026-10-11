@@ -1676,7 +1676,7 @@ Hide with filter: |nohistogram|</source>
         <location filename="../Phototonic.cpp" line="1271"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Hue is suffixed [0-359]° (center red is at 0/360)&lt;/li&gt;&lt;li&gt;Saturation is suffixed [0-100]%&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;br&gt;!dark, !bright, !warm &amp;amp; !cold will invert the match (they&apos;re not complementary)&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Hue is suffixed [0-359]° (center red is at 0/360)&lt;/li&gt;&lt;li&gt;Saturation is suffixed [0-100]%&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;br&gt;!dark, !bright, !warm &amp;amp; !cold will invert the match (they&apos;re not complementary)&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3255"/>
@@ -2580,12 +2580,12 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../main.cpp" line="77"/>
         <source>Apply &lt;filter&gt; to the directory and print matches.</source>
-        <translation type="unfinished"></translation>
+        <translation>套用 &lt;篩選器&gt; 至目錄並列印相符的項目。</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="78"/>
         <source>filter</source>
-        <translation type="unfinished"></translation>
+        <translation>篩選器</translation>
     </message>
 </context>
 </TS>
