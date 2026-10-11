@@ -761,12 +761,12 @@ Hide with filter: |nohistogram|</source>
         <translation>影像圖檔資訊</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="503"/>
+        <location filename="../Phototonic.cpp" line="504"/>
         <source>Zoom</source>
         <translation>縮放</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="501"/>
+        <location filename="../Phototonic.cpp" line="502"/>
         <source>Transform</source>
         <translation>轉換</translation>
     </message>
@@ -777,237 +777,242 @@ Hide with filter: |nohistogram|</source>
         <translation>檔案列表</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="546"/>
+        <location filename="../Phototonic.cpp" line="547"/>
         <source>View</source>
         <translation>檢視</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="589"/>
+        <location filename="../Phototonic.cpp" line="590"/>
         <source>Top</source>
         <translation>上</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="593"/>
+        <location filename="../Phototonic.cpp" line="594"/>
         <source>Bottom</source>
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="600"/>
+        <location filename="../Phototonic.cpp" line="601"/>
         <source>Full Screen</source>
         <translation>全螢幕</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="604"/>
+        <location filename="../Phototonic.cpp" line="605"/>
         <source>Preferences</source>
         <translation>偏好設定</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="608"/>
+        <location filename="../Phototonic.cpp" line="609"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="611"/>
+        <location filename="../Phototonic.cpp" line="612"/>
         <source>Enlarge Thumbnails</source>
         <translation>放大縮圖</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="618"/>
+        <location filename="../Phototonic.cpp" line="619"/>
         <source>Shrink Thumbnails</source>
         <translation>縮小縮圖</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="625"/>
+        <location filename="../Phototonic.cpp" line="626"/>
         <source>Cut</source>
         <translation>剪下</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="630"/>
+        <location filename="../Phototonic.cpp" line="631"/>
         <source>Copy</source>
         <translation>複製</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="650"/>
+        <location filename="../Phototonic.cpp" line="651"/>
         <source>Copy to...</source>
         <translation>複製至…</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="653"/>
+        <location filename="../Phototonic.cpp" line="654"/>
         <source>Move to...</source>
         <translation>移動至…</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="660"/>
+        <location filename="../Phototonic.cpp" line="661"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="664"/>
+        <location filename="../Phototonic.cpp" line="665"/>
         <source>Save</source>
         <translation>儲存檔案</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="668"/>
+        <location filename="../Phototonic.cpp" line="669"/>
         <source>Save As</source>
         <translation>另存檔案</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="675"/>
+        <location filename="../Phototonic.cpp" line="676"/>
         <source>Rename</source>
         <translation>重新命名</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="681"/>
-        <location filename="../Phototonic.cpp" line="3545"/>
+        <location filename="../Phototonic.cpp" line="682"/>
+        <location filename="../Phototonic.cpp" line="3551"/>
         <source>Regenerate Thumbnail</source>
         <translation>重新產生縮圖</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="684"/>
+        <location filename="../Phototonic.cpp" line="685"/>
         <source>Select All</source>
         <translation>選擇全部</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="687"/>
-        <location filename="../Phototonic.cpp" line="1142"/>
+        <location filename="../Phototonic.cpp" line="688"/>
+        <location filename="../Phototonic.cpp" line="1143"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="709"/>
+        <location filename="../Phototonic.cpp" line="697"/>
+        <source>Sort by Duplicate Group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="711"/>
         <source>Sort by Color</source>
         <translation>依照顏色排序</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="725"/>
+        <location filename="../Phototonic.cpp" line="728"/>
         <source>Show Hidden Files</source>
         <translation>顯示隱藏檔案</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="735"/>
+        <location filename="../Phototonic.cpp" line="738"/>
         <source>Hide Dock Title Bars</source>
         <translation>隱藏工具台標題列</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="740"/>
+        <location filename="../Phototonic.cpp" line="743"/>
         <source>Show Toolbar</source>
         <translation>顯示工具列</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="749"/>
+        <location filename="../Phototonic.cpp" line="752"/>
         <source>Reload</source>
         <translation>重新載人</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="758"/>
+        <location filename="../Phototonic.cpp" line="761"/>
         <source>Paste Here</source>
         <translation>在此貼上</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="771"/>
+        <location filename="../Phototonic.cpp" line="774"/>
         <source>Back</source>
         <translation>往後</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="784"/>
+        <location filename="../Phototonic.cpp" line="787"/>
         <source>Forward</source>
         <translation>往前</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="796"/>
+        <location filename="../Phototonic.cpp" line="799"/>
         <source>Go Up</source>
         <translation>往上</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="347"/>
-        <location filename="../Phototonic.cpp" line="800"/>
+        <location filename="../Phototonic.cpp" line="803"/>
         <source>Home</source>
         <translation>主頁</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="809"/>
-        <location filename="../Phototonic.cpp" line="2884"/>
+        <location filename="../Phototonic.cpp" line="812"/>
+        <location filename="../Phototonic.cpp" line="2890"/>
         <source>Slide Show</source>
         <translation>投影片展示</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="836"/>
+        <location filename="../Phototonic.cpp" line="839"/>
         <source>Load Clipboard</source>
         <translation>載入剪貼簿</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="843"/>
-        <location filename="../Phototonic.cpp" line="844"/>
+        <location filename="../Phototonic.cpp" line="846"/>
+        <location filename="../Phototonic.cpp" line="847"/>
         <source>Open With...</source>
         <translation>開啟使用…</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="851"/>
+        <location filename="../Phototonic.cpp" line="854"/>
         <source>Add Bookmark</source>
         <translation>增加書籤</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="858"/>
+        <location filename="../Phototonic.cpp" line="861"/>
         <source>Zoom Out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="862"/>
+        <location filename="../Phototonic.cpp" line="865"/>
         <source>Zoom In</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="866"/>
+        <location filename="../Phototonic.cpp" line="869"/>
         <source>Reset Zoom</source>
         <translation>重設縮放</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="874"/>
+        <location filename="../Phototonic.cpp" line="877"/>
         <source>Original Size</source>
         <translation>原始大小</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="878"/>
+        <location filename="../Phototonic.cpp" line="881"/>
         <source>Keep Zoom</source>
         <translation>保持縮放</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="898"/>
+        <location filename="../Phototonic.cpp" line="901"/>
         <source>Flip Horizontally</source>
         <translation>水平翻轉</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="902"/>
+        <location filename="../Phototonic.cpp" line="905"/>
         <source>Flip Vertically</source>
         <translation>垂直翻轉</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="910"/>
+        <location filename="../Phototonic.cpp" line="913"/>
         <source>Scale Image</source>
         <translation>調整影像大小</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="920"/>
+        <location filename="../Phototonic.cpp" line="923"/>
         <source>Colors</source>
         <translation>顏色</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="928"/>
+        <location filename="../Phototonic.cpp" line="931"/>
         <source>Blackout</source>
         <translation>暗黑</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="932"/>
+        <location filename="../Phototonic.cpp" line="935"/>
         <source>Cartouche</source>
         <translation>楕圓飾框</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="936"/>
+        <location filename="../Phototonic.cpp" line="939"/>
         <source>Annotate</source>
         <translation>批註</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="940"/>
+        <location filename="../Phototonic.cpp" line="943"/>
         <source>Find Duplicate Images</source>
         <translation>尋找重複影像圖檔</translation>
     </message>
@@ -1054,12 +1059,12 @@ Hide with filter: |nohistogram|</source>
         <translation>檢視(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="523"/>
+        <location filename="../Phototonic.cpp" line="524"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1268"/>
+        <location filename="../Phototonic.cpp" line="1269"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
         <translation>篩選 - 試用 &quot;/?&quot;...</translation>
@@ -1070,65 +1075,65 @@ Hide with filter: |nohistogram|</source>
         <translation type="vanished">&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;匹配 foo，大於 5天但小於 1個月 - 或是小於 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;大於/之後： &amp;gt;&lt;/li&gt;&lt;li&gt;小於/之前： &amp;lt;&lt;/li&gt;&lt;li&gt;確切年期或(四捨五入)尺寸大小用以下方式暗示或明確：=&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;日期是絕對日期 (YYYY-MM-DD) 或相對日期 (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;尺寸大小表示 4 kB:MB:GB 或 4MP (百萬像素)&lt;/li&gt;&lt;li&gt;面積尺寸以“x”表示（[寬度] x [高度]）&lt;/li&gt;&lt;li&gt;色差變異數表示 [0-255]cr (實際值很少 &gt; 100)&lt;/li&gt;&lt;li&gt;亮度表示 [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;全部表示不分大小寫，除了 m|inute 和 M|onth 之外&lt;/i&gt;&lt;br&gt;後面接續的 &quot;/&quot; 開始一個新的充分條件群組，子字串匹配是可選用的。&lt;hr&gt;此外，您還可以篩選&lt;b&gt;黑色、白色、深色、亮色、單色、灰色&lt;/b&gt; 以及顏色&lt;br&gt;&lt;b&gt;紅色、橙色、黃色、黃綠色、綠色、薄荷綠、青色、天藍色、藍色、紫色、洋紅色、粉紅色&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1374"/>
+        <location filename="../Phototonic.cpp" line="1375"/>
         <source>File System</source>
         <translation>檔案系統</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1422"/>
+        <location filename="../Phototonic.cpp" line="1423"/>
         <source>Bookmarks</source>
         <translation>書籤</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1490"/>
+        <location filename="../Phototonic.cpp" line="1491"/>
         <source>Tags</source>
         <extracomment>tags are image metadata</extracomment>
         <translation>標記</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="302"/>
-        <location filename="../Phototonic.cpp" line="1676"/>
-        <location filename="../Phototonic.cpp" line="1875"/>
-        <location filename="../Phototonic.cpp" line="2059"/>
-        <location filename="../Phototonic.cpp" line="2118"/>
-        <location filename="../Phototonic.cpp" line="2128"/>
-        <location filename="../Phototonic.cpp" line="2261"/>
-        <location filename="../Phototonic.cpp" line="2329"/>
-        <location filename="../Phototonic.cpp" line="2409"/>
-        <location filename="../Phototonic.cpp" line="3117"/>
-        <location filename="../Phototonic.cpp" line="3122"/>
-        <location filename="../Phototonic.cpp" line="3138"/>
-        <location filename="../Phototonic.cpp" line="3224"/>
-        <location filename="../Phototonic.cpp" line="3318"/>
-        <location filename="../Phototonic.cpp" line="3326"/>
-        <location filename="../Phototonic.cpp" line="3378"/>
-        <location filename="../Phototonic.cpp" line="3441"/>
-        <location filename="../Phototonic.cpp" line="3498"/>
-        <location filename="../Phototonic.cpp" line="3522"/>
-        <location filename="../Phototonic.cpp" line="3575"/>
-        <location filename="../Phototonic.cpp" line="3605"/>
-        <location filename="../Phototonic.cpp" line="3613"/>
+        <location filename="../Phototonic.cpp" line="1679"/>
+        <location filename="../Phototonic.cpp" line="1878"/>
+        <location filename="../Phototonic.cpp" line="2062"/>
+        <location filename="../Phototonic.cpp" line="2121"/>
+        <location filename="../Phototonic.cpp" line="2131"/>
+        <location filename="../Phototonic.cpp" line="2264"/>
+        <location filename="../Phototonic.cpp" line="2332"/>
+        <location filename="../Phototonic.cpp" line="2412"/>
+        <location filename="../Phototonic.cpp" line="3123"/>
+        <location filename="../Phototonic.cpp" line="3128"/>
+        <location filename="../Phototonic.cpp" line="3144"/>
+        <location filename="../Phototonic.cpp" line="3230"/>
+        <location filename="../Phototonic.cpp" line="3324"/>
+        <location filename="../Phototonic.cpp" line="3332"/>
+        <location filename="../Phototonic.cpp" line="3384"/>
+        <location filename="../Phototonic.cpp" line="3447"/>
+        <location filename="../Phototonic.cpp" line="3504"/>
+        <location filename="../Phototonic.cpp" line="3528"/>
+        <location filename="../Phototonic.cpp" line="3581"/>
+        <location filename="../Phototonic.cpp" line="3611"/>
+        <location filename="../Phototonic.cpp" line="3619"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1676"/>
+        <location filename="../Phototonic.cpp" line="1679"/>
         <source>Failed to start external application.</source>
         <translation>啟動外部應用程式失敗。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1657"/>
+        <location filename="../Phototonic.cpp" line="1660"/>
         <source>Invalid selection.</source>
         <translation>無效的選擇。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1875"/>
-        <location filename="../Phototonic.cpp" line="2059"/>
+        <location filename="../Phototonic.cpp" line="1878"/>
+        <location filename="../Phototonic.cpp" line="2062"/>
         <source>Failed to copy or move image.</source>
         <translation>複製或移動影像圖檔失敗。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1939"/>
+        <location filename="../Phototonic.cpp" line="1942"/>
         <source>Zoom %1%</source>
         <extracomment>nb the trailing &quot;%&quot; for eg. 80%</extracomment>
         <translation>縮放 %1%</translation>
@@ -1162,17 +1167,17 @@ Hide with filter: |nohistogram|</source>
         <translation>開啟檔案 %1 失敗，查無檔案。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="493"/>
+        <location filename="../Phototonic.cpp" line="494"/>
         <source>Navigate</source>
         <translation>導航</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="511"/>
+        <location filename="../Phototonic.cpp" line="512"/>
         <source>Flip and Flop and Rotate</source>
         <translation>翻轉與旋轉</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="924"/>
+        <location filename="../Phototonic.cpp" line="927"/>
         <source>Crop</source>
         <translation>裁切</translation>
     </message>
@@ -1185,67 +1190,67 @@ Hide with filter: |nohistogram|</source>
         <translation type="vanished">鏡像</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="534"/>
+        <location filename="../Phototonic.cpp" line="535"/>
         <source>File</source>
         <translation>檔案</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="552"/>
+        <location filename="../Phototonic.cpp" line="553"/>
         <source>Guides</source>
         <extracomment>The guides a lines across the image for orientation</extracomment>
         <translation>定位線</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="553"/>
+        <location filename="../Phototonic.cpp" line="554"/>
         <source>Add vertical guide</source>
         <translation>增加垂直定位線</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="556"/>
+        <location filename="../Phototonic.cpp" line="557"/>
         <source>Add horizontal guide</source>
         <translation>增加水平定位線</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="597"/>
+        <location filename="../Phototonic.cpp" line="598"/>
         <source>Close Viewer</source>
         <translation>關閉檢視</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="635"/>
+        <location filename="../Phototonic.cpp" line="636"/>
         <source>Show classic thumbnails</source>
         <translation>顯示縮圖經典型式</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="640"/>
+        <location filename="../Phototonic.cpp" line="641"/>
         <source>Show square thumbnails</source>
         <translation>顯示縮圖正方型式</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="645"/>
+        <location filename="../Phototonic.cpp" line="646"/>
         <source>Show compact thumbnails</source>
         <translation>顯示縮圖緊密型式</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="656"/>
-        <location filename="../Phototonic.cpp" line="2191"/>
-        <location filename="../Phototonic.cpp" line="2309"/>
+        <location filename="../Phototonic.cpp" line="657"/>
+        <location filename="../Phototonic.cpp" line="2194"/>
+        <location filename="../Phototonic.cpp" line="2312"/>
         <source>Move to Trash</source>
         <translation>移動至垃圾桶</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="672"/>
+        <location filename="../Phototonic.cpp" line="673"/>
         <source>Copy Image</source>
         <translation>複製影像</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="673"/>
+        <location filename="../Phototonic.cpp" line="674"/>
         <source>Paste Image</source>
         <translation>貼上影像</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="678"/>
-        <location filename="../Phototonic.cpp" line="3517"/>
-        <location filename="../Phototonic.cpp" line="3519"/>
+        <location filename="../Phototonic.cpp" line="679"/>
+        <location filename="../Phototonic.cpp" line="3523"/>
+        <location filename="../Phototonic.cpp" line="3525"/>
         <source>Remove Metadata</source>
         <translation>移除元件資訊</translation>
     </message>
@@ -1259,133 +1264,133 @@ Hide with filter: |nohistogram|</source>
         <translation>依照名稱排序</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="697"/>
         <location filename="../Phototonic.cpp" line="699"/>
+        <location filename="../Phototonic.cpp" line="701"/>
         <source>Sort by Time</source>
         <translation>依照時間排序</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="701"/>
+        <location filename="../Phototonic.cpp" line="703"/>
         <source>Sort by Size</source>
         <translation>依照大小排序</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="703"/>
+        <location filename="../Phototonic.cpp" line="705"/>
         <source>Sort by Type</source>
         <translation>依照類型排序</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="705"/>
+        <location filename="../Phototonic.cpp" line="707"/>
         <source>Sort by Similarity</source>
         <translation>依照相似性排序</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="707"/>
+        <location filename="../Phototonic.cpp" line="709"/>
         <source>Sort by Brightness</source>
         <translation>依照亮度排序</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="721"/>
+        <location filename="../Phototonic.cpp" line="724"/>
         <source>Reverse Sort Order</source>
         <translation>反轉排序順序</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="730"/>
+        <location filename="../Phototonic.cpp" line="733"/>
         <source>Small Toolbar Icons</source>
         <translation>小型工具列圖示</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="753"/>
+        <location filename="../Phototonic.cpp" line="756"/>
         <source>Include Sub-directories</source>
         <translation>包含子資料夾</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="763"/>
+        <location filename="../Phototonic.cpp" line="766"/>
         <source>New Directory</source>
         <translation>新建目錄</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="767"/>
+        <location filename="../Phototonic.cpp" line="770"/>
         <source>Set Save Directory</source>
         <translation>設定儲存目錄</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="813"/>
+        <location filename="../Phototonic.cpp" line="816"/>
         <source>Next Image</source>
         <translation>下一個影像圖檔</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="817"/>
+        <location filename="../Phototonic.cpp" line="820"/>
         <source>Previous Image</source>
         <translation>上一個影像圖檔</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="821"/>
+        <location filename="../Phototonic.cpp" line="824"/>
         <source>First Image</source>
         <translation>第一個影像圖檔</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="825"/>
+        <location filename="../Phototonic.cpp" line="828"/>
         <source>Last Image</source>
         <translation>最後一個影像圖檔</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="829"/>
+        <location filename="../Phototonic.cpp" line="832"/>
         <source>Random Image</source>
         <translation>隨機影像圖檔</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="832"/>
+        <location filename="../Phototonic.cpp" line="835"/>
         <source>View Image</source>
         <translation>檢視影像圖檔</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="840"/>
+        <location filename="../Phototonic.cpp" line="843"/>
         <source>Set Wallpaper</source>
         <translation>設定壁紙</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="847"/>
+        <location filename="../Phototonic.cpp" line="850"/>
         <source>External Applications</source>
         <translation>外部應用程式</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="855"/>
+        <location filename="../Phototonic.cpp" line="858"/>
         <source>Delete Bookmark</source>
         <translation>刪除書籤</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="882"/>
+        <location filename="../Phototonic.cpp" line="885"/>
         <source>Rotate 90° CCW</source>
         <translation>逆時針旋轉 90°</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="886"/>
+        <location filename="../Phototonic.cpp" line="889"/>
         <source>Rotate 90° CW</source>
         <translation>順時針旋轉 90°</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="890"/>
+        <location filename="../Phototonic.cpp" line="893"/>
         <source>Rotate with mouse</source>
         <translation>使用滑鼠旋轉</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="895"/>
+        <location filename="../Phototonic.cpp" line="898"/>
         <source>Or try holding Shift</source>
         <translation>或嘗試按住 Shift 鍵</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="906"/>
+        <location filename="../Phototonic.cpp" line="909"/>
         <source>Letterbox</source>
         <translation>黑邊</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="914"/>
+        <location filename="../Phototonic.cpp" line="917"/>
         <source>Rotate 1° CCW</source>
         <translation>逆時針旋轉 1°</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="917"/>
+        <location filename="../Phototonic.cpp" line="920"/>
         <source>Rotate 1° CW</source>
         <translation>順時針旋轉 1°</translation>
     </message>
@@ -1454,12 +1459,12 @@ Hide with filter: |nohistogram|</source>
         <translation>縮圖正在排序</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1221"/>
+        <location filename="../Phototonic.cpp" line="1222"/>
         <source>Accuracy: </source>
         <translation>準確度： </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1238"/>
+        <location filename="../Phototonic.cpp" line="1239"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
         <translation>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</translation>
     </message>
@@ -1469,52 +1474,52 @@ Hide with filter: |nohistogram|</source>
         <translation type="vanished">篩選 - 試用 &quot;/&quot;...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1326"/>
+        <location filename="../Phototonic.cpp" line="1327"/>
         <source>Menu</source>
         <translation>選單</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1335"/>
+        <location filename="../Phototonic.cpp" line="1336"/>
         <source>Viewer Toolbar</source>
         <translation>檢視器工具列</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1445"/>
+        <location filename="../Phototonic.cpp" line="1446"/>
         <source>Preview</source>
         <translation>預覽</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1665"/>
+        <location filename="../Phototonic.cpp" line="1668"/>
         <source>Commands using %f or %u cannot be used with multiple files.</source>
         <translation>指令運用 %f 或 %u 無法在多重檔案上使用。</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1828"/>
+        <location filename="../Phototonic.cpp" line="1831"/>
         <source>Copied %n image(s) to clipboard</source>
         <translation>
             <numerusform>複製影像圖檔至剪貼簿</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1829"/>
+        <location filename="../Phototonic.cpp" line="1832"/>
         <source>Cut %n image(s) to clipboard</source>
         <translation>
             <numerusform>剪下 %n 個影像圖檔至剪貼簿</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1907"/>
+        <location filename="../Phototonic.cpp" line="1910"/>
         <source>Maximum Zoom</source>
         <translation>縮放最大</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1911"/>
+        <location filename="../Phototonic.cpp" line="1914"/>
         <source>Minimum Zoom</source>
         <translation>縮放最小</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1959"/>
-        <location filename="../Phototonic.cpp" line="2012"/>
+        <location filename="../Phototonic.cpp" line="1962"/>
+        <location filename="../Phototonic.cpp" line="2015"/>
         <source>Rotation %1°</source>
         <translation>旋轉 1°</translation>
     </message>
@@ -1535,193 +1540,193 @@ Hide with filter: |nohistogram|</source>
         <translation type="vanished">不用水平翻轉</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2018"/>
-        <location filename="../Phototonic.cpp" line="3772"/>
+        <location filename="../Phototonic.cpp" line="2021"/>
+        <location filename="../Phototonic.cpp" line="3778"/>
         <source>No images selected</source>
         <translation>未有選取影像圖檔</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2018"/>
+        <location filename="../Phototonic.cpp" line="2021"/>
         <source>Please select the images to transform.</source>
         <translation>請選擇影像圖檔進行轉換。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2023"/>
+        <location filename="../Phototonic.cpp" line="2026"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation>&lt;h3&gt;定義裁切區域&lt;/h3&gt;&lt;p&gt;開啟圖檔，可以旋轉它。&lt;br&gt;然後按住 Shift 鍵選擇裁切矩形。&lt;br&gt;&lt;b&gt;切勿&lt;/b&gt;點按二下進行選擇來套用裁切！ &lt;br&gt;如果不使用預覽，請退出檢視器。&lt;/p&gt;您現在可以在多張圖檔上重覆此操作。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2051"/>
+        <location filename="../Phototonic.cpp" line="2054"/>
         <source>Batch transformation</source>
         <translation>批次處理轉換</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2118"/>
+        <location filename="../Phototonic.cpp" line="2121"/>
         <source>Can not copy or move to %1</source>
         <translation>不可複製或移動至 %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2128"/>
+        <location filename="../Phototonic.cpp" line="2131"/>
         <source>Can not move to the same directory</source>
         <translation>不可移動至相同的目錄</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2146"/>
-        <location filename="../Phototonic.cpp" line="3154"/>
+        <location filename="../Phototonic.cpp" line="2149"/>
+        <location filename="../Phototonic.cpp" line="3160"/>
         <source>Copied %n image(s)</source>
         <translation>
             <numerusform>複製 %n 個影像圖檔</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2146"/>
-        <location filename="../Phototonic.cpp" line="3155"/>
+        <location filename="../Phototonic.cpp" line="2149"/>
+        <location filename="../Phototonic.cpp" line="3161"/>
         <source>Moved %n image(s)</source>
         <translation>
             <numerusform>移動 %n 個影像圖檔</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2192"/>
+        <location filename="../Phototonic.cpp" line="2195"/>
         <source>Move %n selected image(s) to the trash?</source>
         <translation>
             <numerusform>移動 %n 個所選的影像圖檔至垃圾桶？</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2193"/>
+        <location filename="../Phototonic.cpp" line="2196"/>
         <source>Permanently delete %n selected image(s)?</source>
         <translation>
             <numerusform>永久刪除 %n 個所選的影像圖檔？</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2261"/>
+        <location filename="../Phototonic.cpp" line="2264"/>
         <source>Failed to move image to the trash.</source>
         <translation>移動影像圖檔至垃圾桶失敗。</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2282"/>
+        <location filename="../Phototonic.cpp" line="2285"/>
         <source>Deleted %n image(s)</source>
         <translation>
             <numerusform>刪除 %n 個影像圖檔</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2310"/>
+        <location filename="../Phototonic.cpp" line="2313"/>
         <source>Move %1 to the trash</source>
         <translation>移動 %1 至垃圾桶</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2310"/>
+        <location filename="../Phototonic.cpp" line="2313"/>
         <source>Permanently delete %1</source>
         <translation>永久刪除 %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2326"/>
+        <location filename="../Phototonic.cpp" line="2329"/>
         <source>Deleted %1</source>
         <translation>刪除 %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2409"/>
+        <location filename="../Phototonic.cpp" line="2412"/>
         <source>Invalid Path: %1</source>
         <translation>無效路徑： %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3117"/>
+        <location filename="../Phototonic.cpp" line="3123"/>
         <source>Can not move or copy images to this directory.</source>
         <translation>不可移動或複製影像圖檔至此目錄。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3122"/>
+        <location filename="../Phototonic.cpp" line="3128"/>
         <source>Destination directory is the same as the source directory.</source>
         <translation>目的地目錄與來源目錄相同。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3135"/>
+        <location filename="../Phototonic.cpp" line="3141"/>
         <source>Move directory %1 to %2?</source>
         <translation>移動目錄 %1 至 %2 ？</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3135"/>
+        <location filename="../Phototonic.cpp" line="3141"/>
         <source>Move directory</source>
         <translation>移動目錄</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3134"/>
+        <location filename="../Phototonic.cpp" line="3140"/>
         <source>Move Directory</source>
         <translation>移動目錄</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3138"/>
+        <location filename="../Phototonic.cpp" line="3144"/>
         <source>Failed to move directory.</source>
         <translation>移動目錄失敗。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3140"/>
+        <location filename="../Phototonic.cpp" line="3146"/>
         <source>Directory moved</source>
         <translation>目錄已經移動</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3224"/>
+        <location filename="../Phototonic.cpp" line="3230"/>
         <source>Failed to open directory %1</source>
         <translation>開啟目錄 %1 失敗</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3223"/>
+        <location filename="../Phototonic.cpp" line="3229"/>
         <source>No directory selected</source>
         <translation>沒有選擇目錄</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1271"/>
+        <location filename="../Phototonic.cpp" line="1272"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Hue is suffixed [0-359]° (center red is at 0/360)&lt;/li&gt;&lt;li&gt;Saturation is suffixed [0-100]%&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;br&gt;!dark, !bright, !warm &amp;amp; !cold will invert the match (they&apos;re not complementary)&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
         <translation type="unfinished">&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Hue is suffixed [0-359]° (center red is at 0/360)&lt;/li&gt;&lt;li&gt;Saturation is suffixed [0-100]%&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;br&gt;!dark, !bright, !warm &amp;amp; !cold will invert the match (they&apos;re not complementary)&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3255"/>
+        <location filename="../Phototonic.cpp" line="3261"/>
         <source>Searching duplicates: %v / %m</source>
         <extracomment>%v and %m are literal pattterns for QProgressBar (value and maximum)</extracomment>
         <translation>搜尋重複： %v / %m</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3326"/>
+        <location filename="../Phototonic.cpp" line="3332"/>
         <source>Failed to rename directory.</source>
         <translation>變更目錄名稱失敗。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3519"/>
+        <location filename="../Phototonic.cpp" line="3525"/>
         <source>Permanently remove all Exif metadata from selected images?</source>
         <translation>由所選的影像圖檔永久移除全部 Exif 資料？</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3522"/>
+        <location filename="../Phototonic.cpp" line="3528"/>
         <source>Failed to remove Exif metadata.</source>
         <translation>移除 Exif 資料失敗。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3527"/>
+        <location filename="../Phototonic.cpp" line="3533"/>
         <source>Metadata removed from selected images</source>
         <translation>所選影像圖檔已經移除元件資料</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3561"/>
+        <location filename="../Phototonic.cpp" line="3567"/>
         <source>Move directory %1 to the trash?</source>
         <translation>移動目錄 %1 至垃圾桶？</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3562"/>
+        <location filename="../Phototonic.cpp" line="3568"/>
         <source>Permanently delete the directory %1 and all of its contents?</source>
         <translation>永久刪除目錄 %1 及其全部內容？</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3566"/>
-        <location filename="../Phototonic.cpp" line="3568"/>
+        <location filename="../Phototonic.cpp" line="3572"/>
+        <location filename="../Phototonic.cpp" line="3574"/>
         <source>Delete Directory</source>
         <translation>刪除目錄</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3566"/>
+        <location filename="../Phototonic.cpp" line="3572"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -1730,32 +1735,32 @@ Hide with filter: |nohistogram|</source>
         <translation type="vanished">移動資料夾至垃圾桶失敗：</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3576"/>
+        <location filename="../Phototonic.cpp" line="3582"/>
         <source>Failed to delete directory.</source>
         <translation>刪除目錄失敗。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3597"/>
+        <location filename="../Phototonic.cpp" line="3603"/>
         <source>New Sub directory</source>
         <translation>新建下層目錄</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3598"/>
+        <location filename="../Phototonic.cpp" line="3604"/>
         <source>New directory name:</source>
         <translation>新建資料名稱：</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3613"/>
+        <location filename="../Phototonic.cpp" line="3619"/>
         <source>Failed to create new directory.</source>
         <translation>建立新的目錄失敗。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3617"/>
+        <location filename="../Phototonic.cpp" line="3623"/>
         <source>Created %1</source>
         <translation>已經建立 %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3623"/>
+        <location filename="../Phototonic.cpp" line="3629"/>
         <source>Directory to save images into:</source>
         <translation>目錄儲存影像圖檔至：</translation>
     </message>
@@ -1766,13 +1771,13 @@ Hide with filter: |nohistogram|</source>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2329"/>
+        <location filename="../Phototonic.cpp" line="2332"/>
         <source>Failed to delete image</source>
         <translation>刪除影像圖檔失敗</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2191"/>
-        <location filename="../Phototonic.cpp" line="2309"/>
+        <location filename="../Phototonic.cpp" line="2194"/>
+        <location filename="../Phototonic.cpp" line="2312"/>
         <source>Delete images</source>
         <translation>刪除影像圖檔</translation>
     </message>
@@ -1782,42 +1787,42 @@ Hide with filter: |nohistogram|</source>
         <translation type="vanished">&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;符合 foo， 超過五天但少於一 個月 - 或低於 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;較大於/之後： &amp;gt;&lt;/li&gt;&lt;li&gt;較小於/之前： &amp;lt;&lt;/li&gt;&lt;li&gt;確切的年齡或(四捨五入)大小是另有暗示或明確的：=&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;日期是絕對日期 (YYYY-MM-DD) 或相對日期 (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;大小單位是以 4 kB:MB:GB 或 4MP(百萬像素)作為後綴&lt;/li&gt;&lt;li&gt;大小是使用 &quot;x&quot; ([寬度] x [高度])&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;所有後綴不區分大小寫，但 m|分鐘 和 M|月份&lt;/i&gt;&lt;br&gt;後續的 &quot;/&quot; 開始一個新的充分條件群組，子字串匹配是可選的。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2022"/>
+        <location filename="../Phototonic.cpp" line="2025"/>
         <source>No crop area defined</source>
         <translation>未有裁切區域定出</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2035"/>
+        <location filename="../Phototonic.cpp" line="2038"/>
         <source>Create backups?</source>
         <translation>建立備份？</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2035"/>
+        <location filename="../Phototonic.cpp" line="2038"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
         <translation>尚無定義整體儲存目錄，影像圖檔將會被覆寫。&lt;h3&gt;確定要建立備份嗎？&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2039"/>
+        <location filename="../Phototonic.cpp" line="2042"/>
         <source>Create backups and overwrite the original files</source>
         <translation>建立備份並覆蓋原始檔案</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2039"/>
+        <location filename="../Phototonic.cpp" line="2042"/>
         <source>Overwrite the original files</source>
         <translation>覆蓋原始檔案</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2042"/>
+        <location filename="../Phototonic.cpp" line="2045"/>
         <source>Save the transformed images to %1</source>
         <translation>儲存已經轉換的影像圖檔至 %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2051"/>
+        <location filename="../Phototonic.cpp" line="2054"/>
         <source>&lt;h3&gt;Perform batch transformation?&lt;/h3&gt;</source>
         <translation>&lt;h3&gt;執行批次轉換？&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2045"/>
+        <location filename="../Phototonic.cpp" line="2048"/>
         <source>&lt;ul&gt;&lt;li&gt;Rotate %1 images by %2°&lt;/li&gt;&lt;li&gt;Crop them to %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;ul&gt;&lt;li&gt;旋轉 %1 個影像圖檔 %2°&lt;/li&gt;&lt;li&gt;裁切成為 %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -1827,134 +1832,134 @@ Hide with filter: |nohistogram|</source>
         <translation type="vanished">&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;符合 foo，超過5天但不到1個月 - 或是低於 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;大於/之後： &amp;gt;&lt;/li&gt;&lt;li&gt;小於/之前： &amp;lt;&lt;/li&gt;&lt;li&gt;確切的年期或(整數)大小是有暗示或明確的： =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;日期是絕對值 (YYYY-MM-DD) 或相對值 (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;大小值是 4kB:MB:GB 或 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;尺寸是 pre/in/suffixed &quot;x&quot; ([寬]x[高])&lt;/li&gt;&lt;li&gt;色差變數是 [0-255]cr (實際值很少會是 &gt; 100)&lt;/li&gt;&lt;li&gt;亮度是 [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;全部都是大小寫不拘，除了 m|inute 分 及 M|onth 月&lt;/i&gt;&lt;br&gt;隨後 &quot;/&quot; 啟始新建的足夠條件群組，次要字串符合是選用的。&lt;hr&gt;此外你可以篩選黑色、白色、棕色、暗色、亮色、溫色、冷色、單色、灰色&lt;/b&gt;和顏色&lt;br&gt;&lt;b&gt;紅、橙、黃、灰、綠、薄荷、青、藍、靛、紫、洋紅、粉紅等&lt;/b&gt;&lt;hr&gt;開頭冒號 &lt;b&gt;符合標記&lt;/b&gt;，如 &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; 找到全部圖片含有標記 &apos;foo&apos;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1467"/>
+        <location filename="../Phototonic.cpp" line="1468"/>
         <source>Thumbs</source>
         <translation>縮圖</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2239"/>
+        <location filename="../Phototonic.cpp" line="2242"/>
         <source>Deleting %1</source>
         <translation>正在刪除 %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2262"/>
+        <location filename="../Phototonic.cpp" line="2265"/>
         <source>Failed to delete image.</source>
         <translation>刪除影像圖檔失敗。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2809"/>
+        <location filename="../Phototonic.cpp" line="2815"/>
         <source>No images</source>
         <translation>無影像圖檔</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2885"/>
+        <location filename="../Phototonic.cpp" line="2891"/>
         <source>Slide show stopped</source>
         <translation>投影片展示已經停止</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2914"/>
+        <location filename="../Phototonic.cpp" line="2920"/>
         <source>Stop Slide Show</source>
         <translation>停止投影片展示</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2915"/>
+        <location filename="../Phototonic.cpp" line="2921"/>
         <source>Slide show started</source>
         <translation>投影片展示已經開始</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3295"/>
+        <location filename="../Phototonic.cpp" line="3301"/>
         <source>Duplicate images in %1</source>
         <translation>複製影像圖檔於 %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3297"/>
+        <location filename="../Phototonic.cpp" line="3303"/>
         <source>Files List</source>
         <translation>檔案列表</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3308"/>
+        <location filename="../Phototonic.cpp" line="3314"/>
         <source>Rename %1</source>
         <translation>重新命名 %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3310"/>
+        <location filename="../Phototonic.cpp" line="3316"/>
         <source>New name:</source>
         <translation>新建名稱：</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3318"/>
-        <location filename="../Phototonic.cpp" line="3605"/>
+        <location filename="../Phototonic.cpp" line="3324"/>
+        <location filename="../Phototonic.cpp" line="3611"/>
         <source>Invalid name entered.</source>
         <translation>無效的名稱輸入。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3356"/>
-        <location filename="../Phototonic.cpp" line="3510"/>
-        <location filename="../Phototonic.cpp" line="3536"/>
+        <location filename="../Phototonic.cpp" line="3362"/>
+        <location filename="../Phototonic.cpp" line="3516"/>
+        <location filename="../Phototonic.cpp" line="3542"/>
         <source>Invalid selection</source>
         <translation>無效的選擇</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3378"/>
+        <location filename="../Phototonic.cpp" line="3384"/>
         <source>No name entered.</source>
         <translation>未有名稱輸入。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3433"/>
-        <location filename="../Phototonic.cpp" line="3446"/>
+        <location filename="../Phototonic.cpp" line="3439"/>
+        <location filename="../Phototonic.cpp" line="3452"/>
         <source>File collision!</source>
         <translation>檔案衝突！</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3433"/>
-        <location filename="../Phototonic.cpp" line="3446"/>
+        <location filename="../Phototonic.cpp" line="3439"/>
+        <location filename="../Phototonic.cpp" line="3452"/>
         <source>Existing files collide with the rename.</source>
         <translation>現有檔案使用重新命名發生衝突。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3441"/>
+        <location filename="../Phototonic.cpp" line="3447"/>
         <source>Refusing ambigious rename pattern.
 Multiple files would get the same name.</source>
         <translation>拒絕模糊的的重新命名模式。
 多重檔案會取得相同的名稱。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3447"/>
+        <location filename="../Phototonic.cpp" line="3453"/>
         <source>Do you want to incorporate them (ie. skip their indexes)?</source>
         <translation>確定要整合它們(即是略過其索引)嗎？</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3498"/>
+        <location filename="../Phototonic.cpp" line="3504"/>
         <source>Failed to rename image.</source>
         <translation>變更影像圖檔名稱失敗。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3543"/>
+        <location filename="../Phototonic.cpp" line="3549"/>
         <source>Write Exif Thumbnail</source>
         <translation>寫入 Exif 縮圖</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3545"/>
+        <location filename="../Phototonic.cpp" line="3551"/>
         <source>Do you also want to write the thumbnail to the images metadata?</source>
         <translation>您是否也想將縮圖寫入圖片資料元？</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3575"/>
+        <location filename="../Phototonic.cpp" line="3581"/>
         <source>Failed to move directory to the trash.</source>
         <translation>移動目錄至垃圾桶失敗。</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3580"/>
+        <location filename="../Phototonic.cpp" line="3586"/>
         <source>Removed &quot;%1&quot;</source>
         <translation>已經移除 &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3865"/>
+        <location filename="../Phototonic.cpp" line="3873"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3865"/>
+        <location filename="../Phototonic.cpp" line="3873"/>
         <source>Cannot perform action with temporary image.</source>
         <translation>不可使用暫時影像圖檔執行操作。</translation>
     </message>
@@ -2479,50 +2484,55 @@ The existing file would be overwritten!</source>
         <source>Searching duplicate images...</source>
         <translation>搜尋重複的影像圖檔…</translation>
     </message>
+    <message>
+        <location filename="../ThumbsViewer.cpp" line="1006"/>
+        <source>Group: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="1130"/>
+        <location filename="../ThumbsViewer.cpp" line="1158"/>
         <source>%n of %1 image(s)</source>
         <translation>
             <numerusform>%n / %1 個影像圖檔</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="1132"/>
+        <location filename="../ThumbsViewer.cpp" line="1160"/>
         <source>%n image(s)</source>
         <translation>
             <numerusform>%n 個影像圖檔</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1128"/>
+        <location filename="../ThumbsViewer.cpp" line="1156"/>
         <source>No images</source>
         <translation>查無影像圖檔</translation>
     </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="1248"/>
-        <location filename="../ThumbsViewer.cpp" line="1361"/>
+        <location filename="../ThumbsViewer.cpp" line="1276"/>
+        <location filename="../ThumbsViewer.cpp" line="1401"/>
         <source>Found %n duplicate(s) among %1 files</source>
         <translation>
             <numerusform>查到 %n 個重複的於 %1 個檔案中</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1445"/>
+        <location filename="../ThumbsViewer.cpp" line="1485"/>
         <source>Abort</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1445"/>
+        <location filename="../ThumbsViewer.cpp" line="1485"/>
         <source>Loading...</source>
         <translation>載入中…</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1485"/>
+        <location filename="../ThumbsViewer.cpp" line="1525"/>
         <source>Comparing...</source>
         <translation>比較…</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1518"/>
+        <location filename="../ThumbsViewer.cpp" line="1558"/>
         <source>Sorting...</source>
         <translation>排序…</translation>
     </message>

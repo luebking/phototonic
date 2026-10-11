@@ -762,12 +762,12 @@ Dölj med filter: |nohistogram|</translation>
         <translation>Bildinformation</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="503"/>
+        <location filename="../Phototonic.cpp" line="504"/>
         <source>Zoom</source>
         <translation>Zoom</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="501"/>
+        <location filename="../Phototonic.cpp" line="502"/>
         <source>Transform</source>
         <translation>Transformera</translation>
     </message>
@@ -778,237 +778,242 @@ Dölj med filter: |nohistogram|</translation>
         <translation>Fil lista</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="546"/>
+        <location filename="../Phototonic.cpp" line="547"/>
         <source>View</source>
         <translation>Visa</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="589"/>
+        <location filename="../Phototonic.cpp" line="590"/>
         <source>Top</source>
         <translation>Högst upp</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="593"/>
+        <location filename="../Phototonic.cpp" line="594"/>
         <source>Bottom</source>
         <translation>Längst ned</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="600"/>
+        <location filename="../Phototonic.cpp" line="601"/>
         <source>Full Screen</source>
         <translation>Helskärm</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="604"/>
+        <location filename="../Phototonic.cpp" line="605"/>
         <source>Preferences</source>
         <translation>Inställningar</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="608"/>
+        <location filename="../Phototonic.cpp" line="609"/>
         <source>Exit</source>
         <translation>Avsluta</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="611"/>
+        <location filename="../Phototonic.cpp" line="612"/>
         <source>Enlarge Thumbnails</source>
         <translation>Förstora tumnaglar</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="618"/>
+        <location filename="../Phototonic.cpp" line="619"/>
         <source>Shrink Thumbnails</source>
         <translation>Förminska tumnaglar</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="625"/>
+        <location filename="../Phototonic.cpp" line="626"/>
         <source>Cut</source>
         <translation>Klipp ut</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="630"/>
+        <location filename="../Phototonic.cpp" line="631"/>
         <source>Copy</source>
         <translation>Kopiera</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="650"/>
+        <location filename="../Phototonic.cpp" line="651"/>
         <source>Copy to...</source>
         <translation>Kopiera till...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="653"/>
+        <location filename="../Phototonic.cpp" line="654"/>
         <source>Move to...</source>
         <translation>Flytta till...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="660"/>
+        <location filename="../Phototonic.cpp" line="661"/>
         <source>Delete</source>
         <translation>Ta bort</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="664"/>
+        <location filename="../Phototonic.cpp" line="665"/>
         <source>Save</source>
         <translation>Spara</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="668"/>
+        <location filename="../Phototonic.cpp" line="669"/>
         <source>Save As</source>
         <translation>Spara som</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="675"/>
+        <location filename="../Phototonic.cpp" line="676"/>
         <source>Rename</source>
         <translation>Byt namn</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="681"/>
-        <location filename="../Phototonic.cpp" line="3545"/>
+        <location filename="../Phototonic.cpp" line="682"/>
+        <location filename="../Phototonic.cpp" line="3551"/>
         <source>Regenerate Thumbnail</source>
         <translation>Regenerera tumnaglar</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="684"/>
+        <location filename="../Phototonic.cpp" line="685"/>
         <source>Select All</source>
         <translation>Välj alla</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="687"/>
-        <location filename="../Phototonic.cpp" line="1142"/>
+        <location filename="../Phototonic.cpp" line="688"/>
+        <location filename="../Phototonic.cpp" line="1143"/>
         <source>About</source>
         <translation>Om</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="709"/>
+        <location filename="../Phototonic.cpp" line="697"/>
+        <source>Sort by Duplicate Group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Phototonic.cpp" line="711"/>
         <source>Sort by Color</source>
         <translation>Sortera efter färg</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="725"/>
+        <location filename="../Phototonic.cpp" line="728"/>
         <source>Show Hidden Files</source>
         <translation>Visa dolda filer</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="735"/>
+        <location filename="../Phototonic.cpp" line="738"/>
         <source>Hide Dock Title Bars</source>
         <translation>Dölj dockningstitelrader</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="740"/>
+        <location filename="../Phototonic.cpp" line="743"/>
         <source>Show Toolbar</source>
         <translation>Visa verktygsfält</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="749"/>
+        <location filename="../Phototonic.cpp" line="752"/>
         <source>Reload</source>
         <translation>Ladda om</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="758"/>
+        <location filename="../Phototonic.cpp" line="761"/>
         <source>Paste Here</source>
         <translation>Klistra in här</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="771"/>
+        <location filename="../Phototonic.cpp" line="774"/>
         <source>Back</source>
         <translation>Tillbaka</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="784"/>
+        <location filename="../Phototonic.cpp" line="787"/>
         <source>Forward</source>
         <translation>Framåt</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="796"/>
+        <location filename="../Phototonic.cpp" line="799"/>
         <source>Go Up</source>
         <translation>Gå upp</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="347"/>
-        <location filename="../Phototonic.cpp" line="800"/>
+        <location filename="../Phototonic.cpp" line="803"/>
         <source>Home</source>
         <translation>Hem</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="809"/>
-        <location filename="../Phototonic.cpp" line="2884"/>
+        <location filename="../Phototonic.cpp" line="812"/>
+        <location filename="../Phototonic.cpp" line="2890"/>
         <source>Slide Show</source>
         <translation>Bildspel</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="836"/>
+        <location filename="../Phototonic.cpp" line="839"/>
         <source>Load Clipboard</source>
         <translation>Ladda Urklipp</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="843"/>
-        <location filename="../Phototonic.cpp" line="844"/>
+        <location filename="../Phototonic.cpp" line="846"/>
+        <location filename="../Phototonic.cpp" line="847"/>
         <source>Open With...</source>
         <translation>Öppna med...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="851"/>
+        <location filename="../Phototonic.cpp" line="854"/>
         <source>Add Bookmark</source>
         <translation>Lägg till bokmärke</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="858"/>
+        <location filename="../Phototonic.cpp" line="861"/>
         <source>Zoom Out</source>
         <translation>Zooma ut</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="862"/>
+        <location filename="../Phototonic.cpp" line="865"/>
         <source>Zoom In</source>
         <translation>Zooma in</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="866"/>
+        <location filename="../Phototonic.cpp" line="869"/>
         <source>Reset Zoom</source>
         <translation>Återställ Zoom</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="874"/>
+        <location filename="../Phototonic.cpp" line="877"/>
         <source>Original Size</source>
         <translation>Originalstorlek</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="878"/>
+        <location filename="../Phototonic.cpp" line="881"/>
         <source>Keep Zoom</source>
         <translation>Behåll zoom</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="898"/>
+        <location filename="../Phototonic.cpp" line="901"/>
         <source>Flip Horizontally</source>
         <translation>Vänd horisontellt</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="902"/>
+        <location filename="../Phototonic.cpp" line="905"/>
         <source>Flip Vertically</source>
         <translation>Vänd vertikalt</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="910"/>
+        <location filename="../Phototonic.cpp" line="913"/>
         <source>Scale Image</source>
         <translation>Skala bild</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="920"/>
+        <location filename="../Phototonic.cpp" line="923"/>
         <source>Colors</source>
         <translation>Färger</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="928"/>
+        <location filename="../Phototonic.cpp" line="931"/>
         <source>Blackout</source>
         <translation>Mörka området</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="932"/>
+        <location filename="../Phototonic.cpp" line="935"/>
         <source>Cartouche</source>
         <translation>Kartusch</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="936"/>
+        <location filename="../Phototonic.cpp" line="939"/>
         <source>Annotate</source>
         <translation>Annotera</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="940"/>
+        <location filename="../Phototonic.cpp" line="943"/>
         <source>Find Duplicate Images</source>
         <translation>Hitta duplicerade bilder</translation>
     </message>
@@ -1055,12 +1060,12 @@ Dölj med filter: |nohistogram|</translation>
         <translation>&amp;Visa</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="523"/>
+        <location filename="../Phototonic.cpp" line="524"/>
         <source>Edit</source>
         <translation>Redigera</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1268"/>
+        <location filename="../Phototonic.cpp" line="1269"/>
         <source>Filter - try &quot;/?&quot;...</source>
         <extracomment>hint for the filter lineedit, &quot;/&quot; triggers more hints at extended features</extracomment>
         <translation>Filter - prova &quot;/?&quot;...</translation>
@@ -1071,65 +1076,65 @@ Dölj med filter: |nohistogram|</translation>
         <translation type="vanished">&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &lt;1M / &lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matchar foo, äldre än 5 dagar men yngre än en månad - eller under 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Större än/Efter: &amp;gt;&lt;/li&gt;&lt;li&gt;Mindre än/Före: &amp;lt;&lt;/li&gt;&lt;li&gt;Den exakta åldern eller (avrundad) storleken är annars underförstådd eller explicit med: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Datum är absoluta (ÅÅÅÅ-MM-DD) eller relativa (5m:h:d:v:M:å)&lt;/li&gt;&lt;li&gt;Storlekar har suffixet 4kB:MB:GB eller 4MP (megapixel)&lt;/li&gt;&lt;li&gt;Mått har suffixet &quot;x&quot; ([bredd]x[höjd])&lt;/li&gt;&lt;li&gt;Kromatisk varians har suffixet [0-255]cr (verkliga värden kommer sällan att vara &gt; 100)&lt;/li&gt;&lt;li&gt;Luminans har suffixet [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Alla suffix är skiftlägeskänsliga men m|minuter och M|månad&lt;/i&gt;&lt;br&gt;Efterföljande &quot;/&quot; startar en ny tillräcklig villkorsgrupp, delsträngsmatchningen är valfri.&lt;hr&gt;Dessutom kan du filtrera efter &lt;b&gt;svart, vit, mörk, ljus, monokrom, grå&lt;/b&gt; och färgerna&lt;br&gt;&lt;b&gt;röd, orange, gul, lime, grön, mint, cyan, azurblå, blå, lila, magenta, rosa&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1374"/>
+        <location filename="../Phototonic.cpp" line="1375"/>
         <source>File System</source>
         <translation>Filsystem</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1422"/>
+        <location filename="../Phototonic.cpp" line="1423"/>
         <source>Bookmarks</source>
         <translation>Bokmärken</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1490"/>
+        <location filename="../Phototonic.cpp" line="1491"/>
         <source>Tags</source>
         <extracomment>tags are image metadata</extracomment>
         <translation>Taggar</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="302"/>
-        <location filename="../Phototonic.cpp" line="1676"/>
-        <location filename="../Phototonic.cpp" line="1875"/>
-        <location filename="../Phototonic.cpp" line="2059"/>
-        <location filename="../Phototonic.cpp" line="2118"/>
-        <location filename="../Phototonic.cpp" line="2128"/>
-        <location filename="../Phototonic.cpp" line="2261"/>
-        <location filename="../Phototonic.cpp" line="2329"/>
-        <location filename="../Phototonic.cpp" line="2409"/>
-        <location filename="../Phototonic.cpp" line="3117"/>
-        <location filename="../Phototonic.cpp" line="3122"/>
-        <location filename="../Phototonic.cpp" line="3138"/>
-        <location filename="../Phototonic.cpp" line="3224"/>
-        <location filename="../Phototonic.cpp" line="3318"/>
-        <location filename="../Phototonic.cpp" line="3326"/>
-        <location filename="../Phototonic.cpp" line="3378"/>
-        <location filename="../Phototonic.cpp" line="3441"/>
-        <location filename="../Phototonic.cpp" line="3498"/>
-        <location filename="../Phototonic.cpp" line="3522"/>
-        <location filename="../Phototonic.cpp" line="3575"/>
-        <location filename="../Phototonic.cpp" line="3605"/>
-        <location filename="../Phototonic.cpp" line="3613"/>
+        <location filename="../Phototonic.cpp" line="1679"/>
+        <location filename="../Phototonic.cpp" line="1878"/>
+        <location filename="../Phototonic.cpp" line="2062"/>
+        <location filename="../Phototonic.cpp" line="2121"/>
+        <location filename="../Phototonic.cpp" line="2131"/>
+        <location filename="../Phototonic.cpp" line="2264"/>
+        <location filename="../Phototonic.cpp" line="2332"/>
+        <location filename="../Phototonic.cpp" line="2412"/>
+        <location filename="../Phototonic.cpp" line="3123"/>
+        <location filename="../Phototonic.cpp" line="3128"/>
+        <location filename="../Phototonic.cpp" line="3144"/>
+        <location filename="../Phototonic.cpp" line="3230"/>
+        <location filename="../Phototonic.cpp" line="3324"/>
+        <location filename="../Phototonic.cpp" line="3332"/>
+        <location filename="../Phototonic.cpp" line="3384"/>
+        <location filename="../Phototonic.cpp" line="3447"/>
+        <location filename="../Phototonic.cpp" line="3504"/>
+        <location filename="../Phototonic.cpp" line="3528"/>
+        <location filename="../Phototonic.cpp" line="3581"/>
+        <location filename="../Phototonic.cpp" line="3611"/>
+        <location filename="../Phototonic.cpp" line="3619"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1676"/>
+        <location filename="../Phototonic.cpp" line="1679"/>
         <source>Failed to start external application.</source>
         <translation>Misslyckades med att starta externt program.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1657"/>
+        <location filename="../Phototonic.cpp" line="1660"/>
         <source>Invalid selection.</source>
         <translation>Ogiltigt val.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1875"/>
-        <location filename="../Phototonic.cpp" line="2059"/>
+        <location filename="../Phototonic.cpp" line="1878"/>
+        <location filename="../Phototonic.cpp" line="2062"/>
         <source>Failed to copy or move image.</source>
         <translation>Misslyckades med att kopiera eller flytta bild.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1939"/>
+        <location filename="../Phototonic.cpp" line="1942"/>
         <source>Zoom %1%</source>
         <extracomment>nb the trailing &quot;%&quot; for eg. 80%</extracomment>
         <translation>Zoom %1%</translation>
@@ -1163,17 +1168,17 @@ Dölj med filter: |nohistogram|</translation>
         <translation>Misslyckades med att öppna fil %1, filen hittades inte.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="493"/>
+        <location filename="../Phototonic.cpp" line="494"/>
         <source>Navigate</source>
         <translation>Navigera</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="511"/>
+        <location filename="../Phototonic.cpp" line="512"/>
         <source>Flip and Flop and Rotate</source>
         <translation>Flip och flopp och rotera</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="924"/>
+        <location filename="../Phototonic.cpp" line="927"/>
         <source>Crop</source>
         <translation>Beskär</translation>
     </message>
@@ -1186,67 +1191,67 @@ Dölj med filter: |nohistogram|</translation>
         <translation type="vanished">Spegel</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="534"/>
+        <location filename="../Phototonic.cpp" line="535"/>
         <source>File</source>
         <translation>Fil</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="552"/>
+        <location filename="../Phototonic.cpp" line="553"/>
         <source>Guides</source>
         <extracomment>The guides a lines across the image for orientation</extracomment>
         <translation>Guider</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="553"/>
+        <location filename="../Phototonic.cpp" line="554"/>
         <source>Add vertical guide</source>
         <translation>Lägg till vertikal guide</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="556"/>
+        <location filename="../Phototonic.cpp" line="557"/>
         <source>Add horizontal guide</source>
         <translation>Lägg till horisontell guide</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="597"/>
+        <location filename="../Phototonic.cpp" line="598"/>
         <source>Close Viewer</source>
         <translation>Stäng visare</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="635"/>
+        <location filename="../Phototonic.cpp" line="636"/>
         <source>Show classic thumbnails</source>
         <translation>Visa klassiska tumnaglar</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="640"/>
+        <location filename="../Phototonic.cpp" line="641"/>
         <source>Show square thumbnails</source>
         <translation>Visa fyrkantiga tumnaglar</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="645"/>
+        <location filename="../Phototonic.cpp" line="646"/>
         <source>Show compact thumbnails</source>
         <translation>Visa kompakta tumnaglar</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="656"/>
-        <location filename="../Phototonic.cpp" line="2191"/>
-        <location filename="../Phototonic.cpp" line="2309"/>
+        <location filename="../Phototonic.cpp" line="657"/>
+        <location filename="../Phototonic.cpp" line="2194"/>
+        <location filename="../Phototonic.cpp" line="2312"/>
         <source>Move to Trash</source>
         <translation>Flytta till papperskorg</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="672"/>
+        <location filename="../Phototonic.cpp" line="673"/>
         <source>Copy Image</source>
         <translation>Kopiera bild</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="673"/>
+        <location filename="../Phototonic.cpp" line="674"/>
         <source>Paste Image</source>
         <translation>Klistra in bild</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="678"/>
-        <location filename="../Phototonic.cpp" line="3517"/>
-        <location filename="../Phototonic.cpp" line="3519"/>
+        <location filename="../Phototonic.cpp" line="679"/>
+        <location filename="../Phototonic.cpp" line="3523"/>
+        <location filename="../Phototonic.cpp" line="3525"/>
         <source>Remove Metadata</source>
         <translation>Ta bort metadata</translation>
     </message>
@@ -1260,133 +1265,133 @@ Dölj med filter: |nohistogram|</translation>
         <translation>Sortera efter namn</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="697"/>
         <location filename="../Phototonic.cpp" line="699"/>
+        <location filename="../Phototonic.cpp" line="701"/>
         <source>Sort by Time</source>
         <translation>Sortera efter tid</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="701"/>
+        <location filename="../Phototonic.cpp" line="703"/>
         <source>Sort by Size</source>
         <translation>Sortera efter storlek</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="703"/>
+        <location filename="../Phototonic.cpp" line="705"/>
         <source>Sort by Type</source>
         <translation>Sortera efter typ</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="705"/>
+        <location filename="../Phototonic.cpp" line="707"/>
         <source>Sort by Similarity</source>
         <translation>Sortera efter likhet</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="707"/>
+        <location filename="../Phototonic.cpp" line="709"/>
         <source>Sort by Brightness</source>
         <translation>Sortera efter ljusstyrka</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="721"/>
+        <location filename="../Phototonic.cpp" line="724"/>
         <source>Reverse Sort Order</source>
         <translation>Omvänd sorteringsordning</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="730"/>
+        <location filename="../Phototonic.cpp" line="733"/>
         <source>Small Toolbar Icons</source>
         <translation>Små verktygsfältikoner</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="753"/>
+        <location filename="../Phototonic.cpp" line="756"/>
         <source>Include Sub-directories</source>
         <translation>Inkludera underkataloger</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="763"/>
+        <location filename="../Phototonic.cpp" line="766"/>
         <source>New Directory</source>
         <translation>Ny katalog</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="767"/>
+        <location filename="../Phototonic.cpp" line="770"/>
         <source>Set Save Directory</source>
         <translation>Ställ in Spara katalog</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="813"/>
+        <location filename="../Phototonic.cpp" line="816"/>
         <source>Next Image</source>
         <translation>Nästa bild</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="817"/>
+        <location filename="../Phototonic.cpp" line="820"/>
         <source>Previous Image</source>
         <translation>Föregående bild</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="821"/>
+        <location filename="../Phototonic.cpp" line="824"/>
         <source>First Image</source>
         <translation>Första bilden</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="825"/>
+        <location filename="../Phototonic.cpp" line="828"/>
         <source>Last Image</source>
         <translation>Sista bilden</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="829"/>
+        <location filename="../Phototonic.cpp" line="832"/>
         <source>Random Image</source>
         <translation>Slumpmässig bild</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="832"/>
+        <location filename="../Phototonic.cpp" line="835"/>
         <source>View Image</source>
         <translation>Visa bild</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="840"/>
+        <location filename="../Phototonic.cpp" line="843"/>
         <source>Set Wallpaper</source>
         <translation>Ställ in Skrivbordsbakgrund</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="847"/>
+        <location filename="../Phototonic.cpp" line="850"/>
         <source>External Applications</source>
         <translation>Externa program</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="855"/>
+        <location filename="../Phototonic.cpp" line="858"/>
         <source>Delete Bookmark</source>
         <translation>Ta bort bokmärke</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="882"/>
+        <location filename="../Phototonic.cpp" line="885"/>
         <source>Rotate 90° CCW</source>
         <translation>Rotera 90° moturs</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="886"/>
+        <location filename="../Phototonic.cpp" line="889"/>
         <source>Rotate 90° CW</source>
         <translation>Rotera 90° medurs</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="890"/>
+        <location filename="../Phototonic.cpp" line="893"/>
         <source>Rotate with mouse</source>
         <translation>Rotera med musen</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="895"/>
+        <location filename="../Phototonic.cpp" line="898"/>
         <source>Or try holding Shift</source>
         <translation>Eller prova att hålla nere Shift</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="906"/>
+        <location filename="../Phototonic.cpp" line="909"/>
         <source>Letterbox</source>
         <translation>Letterbox</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="914"/>
+        <location filename="../Phototonic.cpp" line="917"/>
         <source>Rotate 1° CCW</source>
         <translation>Rotera 1° moturs</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="917"/>
+        <location filename="../Phototonic.cpp" line="920"/>
         <source>Rotate 1° CW</source>
         <translation>Rotera 1° medurs</translation>
     </message>
@@ -1455,12 +1460,12 @@ Dölj med filter: |nohistogram|</translation>
         <translation>Sortering av tumnaglar</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1221"/>
+        <location filename="../Phototonic.cpp" line="1222"/>
         <source>Accuracy: </source>
         <translation>Noggrannhet: </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1238"/>
+        <location filename="../Phototonic.cpp" line="1239"/>
         <source>Ok, this isn&apos;t exactly AI driven.&lt;p&gt;Duplicates are detected via a grayscale mosaic&lt;br&gt;(&lt;i&gt;do the desaturated images look the same from very far away?&lt;/i&gt;)&lt;br&gt;and by comparing the color distribution&lt;br&gt;(&lt;i&gt;immune against mirrors, rotation, anamorphic scales …&lt;/i&gt;)&lt;br&gt;Both can cause funny false positives.&lt;/p&gt;&lt;p&gt;The required proximity of the color distribution can be configured here&lt;br&gt;60% is a sensible default, but can be too easy if you&apos;re dealing with monochrome pictures&lt;br&gt;Going much lower will cause too many false positives, increase the accuracy to get rid of such&lt;/p&gt;&lt;h3&gt;Notice that this can cause disjunct match groups!&lt;/h3&gt;&lt;p&gt;[A] can be similar to [B] and [C], while [B] and [C] are not close enough.&lt;br&gt;The result is that [A] the &lt;b&gt;same image can show up multiple times!&lt;/b&gt;&lt;br&gt;Don&apos;t just assume the sorting is wrong these are clearly duplicates&lt;br&gt;and press delete. They are &lt;b&gt;the same image&lt;/b&gt; and deleting one means to&lt;br&gt;delete both.&lt;/p&gt;&lt;h3&gt;Pay attention to the file names!&lt;/h3&gt;</source>
         <translation>Okej, det här är inte direkt AI-drivet.&lt;p&gt;Duplikat upptäcks via en gråskalemosaik&lt;br&gt;(&lt;i&gt;ser de desaturerade bilderna likadana ut på väldigt långt håll?&lt;/i&gt;)&lt;br&gt;och genom att jämföra färgfördelningen&lt;br&gt;(&lt;i&gt;immun mot speglar, rotation, anamorfiska skalor …&lt;/i&gt;)&lt;br&gt;Båda kan orsaka roliga falska positiva resultat.&lt;/p&gt;&lt;p&gt;Den erforderliga närheten för färgfördelningen kan konfigureras här&lt;br&gt;60 % är en rimlig standard, men kan vara för enkel om du har att göra med monokroma bilder&lt;br&gt;Att gå mycket lägre kommer att orsaka för många falska positiva resultat, öka noggrannheten för att bli av med sådana&lt;/p&gt;&lt;h3&gt;Observera att detta kan orsaka disjunkta matchningsgrupper!&lt;/h3&gt;&lt;p&gt;[A] kan likna [B] och [C], medan [B] och [C] inte är tillräckligt nära.&lt;br&gt;Resultatet är att [A] &lt;b&gt;samma bild kan dyka upp flera gånger!&lt;/b&gt;&lt;br&gt;Anta inte bara att sorteringen är fel, dessa är helt klart dubbletter&lt;br&gt;och tryck på delete. De är &lt;b&gt;samma bild&lt;/b&gt; och att om du tar bort en av dem innebär att&lt;br&gt;båda raderas.&lt;/p&gt;&lt;h3&gt;Var uppmärksam på filnamnen!&lt;/h3&gt;</translation>
     </message>
@@ -1470,27 +1475,27 @@ Dölj med filter: |nohistogram|</translation>
         <translation type="vanished">Filtrera - prova &quot;/&quot;...</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1326"/>
+        <location filename="../Phototonic.cpp" line="1327"/>
         <source>Menu</source>
         <translation>Meny</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1335"/>
+        <location filename="../Phototonic.cpp" line="1336"/>
         <source>Viewer Toolbar</source>
         <translation>Visare verktygsfältet</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1445"/>
+        <location filename="../Phototonic.cpp" line="1446"/>
         <source>Preview</source>
         <translation>Förhandsvisning</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1665"/>
+        <location filename="../Phototonic.cpp" line="1668"/>
         <source>Commands using %f or %u cannot be used with multiple files.</source>
         <translation>Kommandon som använder %f eller %u kan inte användas med flera filer.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1828"/>
+        <location filename="../Phototonic.cpp" line="1831"/>
         <source>Copied %n image(s) to clipboard</source>
         <translation>
             <numerusform>Kopierade %n bild till urklipp</numerusform>
@@ -1498,7 +1503,7 @@ Dölj med filter: |nohistogram|</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="1829"/>
+        <location filename="../Phototonic.cpp" line="1832"/>
         <source>Cut %n image(s) to clipboard</source>
         <translation>
             <numerusform>Klipp ut %n bild till urklipp</numerusform>
@@ -1506,18 +1511,18 @@ Dölj med filter: |nohistogram|</translation>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1907"/>
+        <location filename="../Phototonic.cpp" line="1910"/>
         <source>Maximum Zoom</source>
         <translation>Maximal zoom</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1911"/>
+        <location filename="../Phototonic.cpp" line="1914"/>
         <source>Minimum Zoom</source>
         <translation>Minimal zoom</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1959"/>
-        <location filename="../Phototonic.cpp" line="2012"/>
+        <location filename="../Phototonic.cpp" line="1962"/>
+        <location filename="../Phototonic.cpp" line="2015"/>
         <source>Rotation %1°</source>
         <translation>Rotation %1°</translation>
     </message>
@@ -1538,39 +1543,39 @@ Dölj med filter: |nohistogram|</translation>
         <translation type="vanished">Uppfälld horisontellt</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2018"/>
-        <location filename="../Phototonic.cpp" line="3772"/>
+        <location filename="../Phototonic.cpp" line="2021"/>
+        <location filename="../Phototonic.cpp" line="3778"/>
         <source>No images selected</source>
         <translation>Inga bilder valda</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2018"/>
+        <location filename="../Phototonic.cpp" line="2021"/>
         <source>Please select the images to transform.</source>
         <translation>Välj de bilder som ska transformeras.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2023"/>
+        <location filename="../Phototonic.cpp" line="2026"/>
         <source>&lt;h3&gt;Define a crop area&lt;/h3&gt;&lt;p&gt;Open an image, maybe rotate it.&lt;br&gt;Then press and hold shift to select a crop rect.&lt;br&gt;Do &lt;b&gt;not&lt;/b&gt; apply the crop by double clicking the selection!&lt;br&gt;If not using the preview, exit the Viewer.&lt;/p&gt;You can now replay the action on multiple images.</source>
         <translation>&lt;h3&gt;Definiera ett beskärningsområde&lt;/h3&gt;&lt;p&gt;Öppna en bild, kanske rotera den.&lt;br&gt;Tryck sedan och håll ned shift för att välja en beskärningskorrigering.&lt;br&gt;Använd &lt;b&gt;inte&lt;/b&gt; beskärningen genom att dubbelklicka på markeringen!&lt;br&gt;Om du inte använder förhandsgranskningen, avsluta visaren.&lt;/p&gt;Du kan nu göra den här åtgärden på flera bilder.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2051"/>
+        <location filename="../Phototonic.cpp" line="2054"/>
         <source>Batch transformation</source>
         <translation>Batchtransformation</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2118"/>
+        <location filename="../Phototonic.cpp" line="2121"/>
         <source>Can not copy or move to %1</source>
         <translation>Kan inte kopiera eller flytta till %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2128"/>
+        <location filename="../Phototonic.cpp" line="2131"/>
         <source>Can not move to the same directory</source>
         <translation>Kan inte flytta till samma katalog</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2146"/>
-        <location filename="../Phototonic.cpp" line="3154"/>
+        <location filename="../Phototonic.cpp" line="2149"/>
+        <location filename="../Phototonic.cpp" line="3160"/>
         <source>Copied %n image(s)</source>
         <translation>
             <numerusform>Kopierade %n bild</numerusform>
@@ -1578,8 +1583,8 @@ Dölj med filter: |nohistogram|</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2146"/>
-        <location filename="../Phototonic.cpp" line="3155"/>
+        <location filename="../Phototonic.cpp" line="2149"/>
+        <location filename="../Phototonic.cpp" line="3161"/>
         <source>Moved %n image(s)</source>
         <translation>
             <numerusform>Flyttade %n bild</numerusform>
@@ -1587,7 +1592,7 @@ Dölj med filter: |nohistogram|</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2192"/>
+        <location filename="../Phototonic.cpp" line="2195"/>
         <source>Move %n selected image(s) to the trash?</source>
         <translation>
             <numerusform>Flytta %n vald bild till papperskorgen?</numerusform>
@@ -1595,7 +1600,7 @@ Dölj med filter: |nohistogram|</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2193"/>
+        <location filename="../Phototonic.cpp" line="2196"/>
         <source>Permanently delete %n selected image(s)?</source>
         <translation>
             <numerusform>Vill du ta bort %n vald bild permanent?</numerusform>
@@ -1603,12 +1608,12 @@ Dölj med filter: |nohistogram|</translation>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2261"/>
+        <location filename="../Phototonic.cpp" line="2264"/>
         <source>Failed to move image to the trash.</source>
         <translation>Misslyckades med att flytta bilden till papperskorgen.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../Phototonic.cpp" line="2282"/>
+        <location filename="../Phototonic.cpp" line="2285"/>
         <source>Deleted %n image(s)</source>
         <translation>
             <numerusform>Tog bort %n bild</numerusform>
@@ -1616,120 +1621,120 @@ Dölj med filter: |nohistogram|</translation>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2310"/>
+        <location filename="../Phototonic.cpp" line="2313"/>
         <source>Move %1 to the trash</source>
         <translation>Flytta %1 till papperskorgen</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2310"/>
+        <location filename="../Phototonic.cpp" line="2313"/>
         <source>Permanently delete %1</source>
         <translation>Ta permanent bort %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2326"/>
+        <location filename="../Phototonic.cpp" line="2329"/>
         <source>Deleted %1</source>
         <translation>Borttagen %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2409"/>
+        <location filename="../Phototonic.cpp" line="2412"/>
         <source>Invalid Path: %1</source>
         <translation>Ogiltig sökväg: %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3117"/>
+        <location filename="../Phototonic.cpp" line="3123"/>
         <source>Can not move or copy images to this directory.</source>
         <translation>Kan inte flytta eller kopiera bilder till den här katalogen.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3122"/>
+        <location filename="../Phototonic.cpp" line="3128"/>
         <source>Destination directory is the same as the source directory.</source>
         <translation>Destinationskatalogen är densamma som källkatalogen.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3135"/>
+        <location filename="../Phototonic.cpp" line="3141"/>
         <source>Move directory %1 to %2?</source>
         <translation>Flytta katalog %1 till %2?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3135"/>
+        <location filename="../Phototonic.cpp" line="3141"/>
         <source>Move directory</source>
         <translation>Flytta katalog</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3134"/>
+        <location filename="../Phototonic.cpp" line="3140"/>
         <source>Move Directory</source>
         <translation>Flytta katalog</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3138"/>
+        <location filename="../Phototonic.cpp" line="3144"/>
         <source>Failed to move directory.</source>
         <translation>Misslyckades med att flytta katalog.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3140"/>
+        <location filename="../Phototonic.cpp" line="3146"/>
         <source>Directory moved</source>
         <translation>Katalog flyttad</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3224"/>
+        <location filename="../Phototonic.cpp" line="3230"/>
         <source>Failed to open directory %1</source>
         <translation>Misslyckades med att öppna katalog %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3223"/>
+        <location filename="../Phototonic.cpp" line="3229"/>
         <source>No directory selected</source>
         <translation>Ingen katalog har valts</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1271"/>
+        <location filename="../Phototonic.cpp" line="1272"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Hue is suffixed [0-359]° (center red is at 0/360)&lt;/li&gt;&lt;li&gt;Saturation is suffixed [0-100]%&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;br&gt;!dark, !bright, !warm &amp;amp; !cold will invert the match (they&apos;re not complementary)&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3255"/>
+        <location filename="../Phototonic.cpp" line="3261"/>
         <source>Searching duplicates: %v / %m</source>
         <extracomment>%v and %m are literal pattterns for QProgressBar (value and maximum)</extracomment>
         <translation>Söker efter dubbletter: %v / %m</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3326"/>
+        <location filename="../Phototonic.cpp" line="3332"/>
         <source>Failed to rename directory.</source>
         <translation>Misslyckades med att byta namn på katalog.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3519"/>
+        <location filename="../Phototonic.cpp" line="3525"/>
         <source>Permanently remove all Exif metadata from selected images?</source>
         <translation>Vill du ta bort all Exif-metadata från valda bilder permanent?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3522"/>
+        <location filename="../Phototonic.cpp" line="3528"/>
         <source>Failed to remove Exif metadata.</source>
         <translation>Misslyckades med att ta bort Exif metadata.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3527"/>
+        <location filename="../Phototonic.cpp" line="3533"/>
         <source>Metadata removed from selected images</source>
         <translation>Metadata har tagits bort från valda bilder</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3561"/>
+        <location filename="../Phototonic.cpp" line="3567"/>
         <source>Move directory %1 to the trash?</source>
         <translation>Flytta katalog %1 till papperskorgen?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3562"/>
+        <location filename="../Phototonic.cpp" line="3568"/>
         <source>Permanently delete the directory %1 and all of its contents?</source>
         <translation>Vill du ta bort katalogen %1 och allt dess innehåll permanent?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3566"/>
-        <location filename="../Phototonic.cpp" line="3568"/>
+        <location filename="../Phototonic.cpp" line="3572"/>
+        <location filename="../Phototonic.cpp" line="3574"/>
         <source>Delete Directory</source>
         <translation>Ta bort katalog</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3566"/>
+        <location filename="../Phototonic.cpp" line="3572"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -1738,32 +1743,32 @@ Dölj med filter: |nohistogram|</translation>
         <translation type="vanished">Misslyckades med att flytta katalogen till papperskorgen:</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3576"/>
+        <location filename="../Phototonic.cpp" line="3582"/>
         <source>Failed to delete directory.</source>
         <translation>Misslyckades med att ta bort katalog.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3597"/>
+        <location filename="../Phototonic.cpp" line="3603"/>
         <source>New Sub directory</source>
         <translation>Ny underkatalog</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3598"/>
+        <location filename="../Phototonic.cpp" line="3604"/>
         <source>New directory name:</source>
         <translation>Nytt katalognamn:</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3613"/>
+        <location filename="../Phototonic.cpp" line="3619"/>
         <source>Failed to create new directory.</source>
         <translation>Misslyckades med att skapa en ny katalog.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3617"/>
+        <location filename="../Phototonic.cpp" line="3623"/>
         <source>Created %1</source>
         <translation>Skapad %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3623"/>
+        <location filename="../Phototonic.cpp" line="3629"/>
         <source>Directory to save images into:</source>
         <translation>Katalog att spara bilder i:</translation>
     </message>
@@ -1775,13 +1780,13 @@ Dölj med filter: |nohistogram|</translation>
         </translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2329"/>
+        <location filename="../Phototonic.cpp" line="2332"/>
         <source>Failed to delete image</source>
         <translation>Misslyckades med att ta bort bild</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2191"/>
-        <location filename="../Phototonic.cpp" line="2309"/>
+        <location filename="../Phototonic.cpp" line="2194"/>
+        <location filename="../Phototonic.cpp" line="2312"/>
         <source>Delete images</source>
         <translation>Ta bort bilder</translation>
     </message>
@@ -1791,42 +1796,42 @@ Dölj med filter: |nohistogram|</translation>
         <translation type="vanished">&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matchar foo, äldre än 5 dagar men yngre än en månad - eller under 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Större än/Efter: &amp;gt;&lt;/li&gt;&lt;li&gt;Mindre än/Före: &amp;lt;&lt;/li&gt;&lt;li&gt;Den exakta åldern eller (avrundad) storleken är på annat sätt underförstådd eller explicit med: =&lt;/li&gt;&lt;ul&gt;&lt;ul&gt; är absolut/datum. (ÅÅÅÅ-MM-DD) eller relativ (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Storlekarna är suffixerade 4kB:MB:GB eller 4MP (megapixel)&lt;/li&gt;&lt;li&gt;Måtten är pre/in/suffixed &quot;x&quot; ([bredd]x[höjd])&lt;/li&gt;&lt;/ulinuffixte är skiftlägeskänsliga och skiftlägeskänsliga. M|onth&lt;/i&gt;&lt;br&gt;Efterföljande &quot;/&quot; startar en ny tillräcklig villkorsgrupp, delsträngsmatchningen är valfri.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2022"/>
+        <location filename="../Phototonic.cpp" line="2025"/>
         <source>No crop area defined</source>
         <translation>Inget urklippsområde definierat</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2035"/>
+        <location filename="../Phototonic.cpp" line="2038"/>
         <source>Create backups?</source>
         <translation>Skapa säkerhetskopior?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2035"/>
+        <location filename="../Phototonic.cpp" line="2038"/>
         <source>No global save directory is defined, the images will be overwritten.&lt;h3&gt;Do you want to create backups?&lt;/h3&gt;</source>
         <translation>Ingen global sparakatalog är definierad, bilderna kommer att skrivas över.&lt;h3&gt;Vill du skapa säkerhetskopior?&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2039"/>
+        <location filename="../Phototonic.cpp" line="2042"/>
         <source>Create backups and overwrite the original files</source>
         <translation>Skapa säkerhetskopior och skriv över originalfilerna</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2039"/>
+        <location filename="../Phototonic.cpp" line="2042"/>
         <source>Overwrite the original files</source>
         <translation>Skriv över originalfilerna</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2042"/>
+        <location filename="../Phototonic.cpp" line="2045"/>
         <source>Save the transformed images to %1</source>
         <translation>Spara de transformerade bilderna till %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2051"/>
+        <location filename="../Phototonic.cpp" line="2054"/>
         <source>&lt;h3&gt;Perform batch transformation?&lt;/h3&gt;</source>
         <translation>&lt;h3&gt;Utför batchtransformation?&lt;/h3&gt;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2045"/>
+        <location filename="../Phototonic.cpp" line="2048"/>
         <source>&lt;ul&gt;&lt;li&gt;Rotate %1 images by %2°&lt;/li&gt;&lt;li&gt;Crop them to %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;ul&gt;&lt;li&gt;Rotera %1 bilder med %2°&lt;/li&gt;&lt;li&gt;Beskär dem till %3+%4+%5x%6&lt;/li&gt;&lt;li&gt;%7&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -1836,134 +1841,134 @@ Dölj med filter: |nohistogram|</translation>
         <translation type="vanished">&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matchar foo, äldre än 5 dagar men yngre än en månad - eller under 10 kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Större än/Efter: &amp;gt;&lt;/li&gt;&lt;li&gt;Mindre än/Före: &amp;lt;&lt;/li&gt;&lt;li&gt;Den exakta åldern eller (avrundade) storleken är annars underförstådd eller explicit med: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Datum är absoluta (ÅÅÅÅ-MM-DD) eller relativa (5m:h:d:v:M:å)&lt;/li&gt;&lt;li&gt;Storlekar har suffixet 4kB:MB:GB eller 4MP (megapixel)&lt;/li&gt;&lt;li&gt;Mått har suffixet &quot;x&quot; ([bredd]x[höjd])&lt;/li&gt;&lt;li&gt;Kromatisk varians har suffixet [0-255]cr (verkliga värden kommer sällan att vara &gt; 100)&lt;/li&gt;&lt;li&gt;Luminans har suffixet [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Alla suffix är skiftlägesokänsliga men m|minut och M|month&lt;/i&gt;&lt;br&gt;Efterföljande &quot;/&quot; startar en ny tillräcklig villkorsgrupp, delsträngsmatchningen är valfri.&lt;hr&gt;Dessutom kan du filtrera efter&lt;br&gt;&lt;b&gt;svart, vit, brun, mörk, ljus, varm, kall, monokrom, grå&lt;/b&gt; och färgerna&lt;br&gt;&lt;b&gt;röd, orange, gul, lime, grön, mint, cyan, azurblå, blå, lila, magenta, rosa&lt;/b&gt;&lt;hr&gt;Inledande kolon &lt;b&gt;matchar taggar&lt;/b&gt;, så &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; hittar alla bilder med taggen &apos;foo&apos;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="1467"/>
+        <location filename="../Phototonic.cpp" line="1468"/>
         <source>Thumbs</source>
         <translation>Tumnaglar</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2239"/>
+        <location filename="../Phototonic.cpp" line="2242"/>
         <source>Deleting %1</source>
         <translation>Tar bort %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2262"/>
+        <location filename="../Phototonic.cpp" line="2265"/>
         <source>Failed to delete image.</source>
         <translation>Misslyckades med att ta bort bild.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2809"/>
+        <location filename="../Phototonic.cpp" line="2815"/>
         <source>No images</source>
         <translation>Inga bilder</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2885"/>
+        <location filename="../Phototonic.cpp" line="2891"/>
         <source>Slide show stopped</source>
         <translation>Bildspelet har stoppats</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2914"/>
+        <location filename="../Phototonic.cpp" line="2920"/>
         <source>Stop Slide Show</source>
         <translation>Stoppa bildspel</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="2915"/>
+        <location filename="../Phototonic.cpp" line="2921"/>
         <source>Slide show started</source>
         <translation>Bildspelet startade</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3295"/>
+        <location filename="../Phototonic.cpp" line="3301"/>
         <source>Duplicate images in %1</source>
         <translation>Dubbletter av bilder i %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3297"/>
+        <location filename="../Phototonic.cpp" line="3303"/>
         <source>Files List</source>
         <translation>Fillista</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3308"/>
+        <location filename="../Phototonic.cpp" line="3314"/>
         <source>Rename %1</source>
         <translation>Byt namn på %1</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3310"/>
+        <location filename="../Phototonic.cpp" line="3316"/>
         <source>New name:</source>
         <translation>Nytt namn:</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3318"/>
-        <location filename="../Phototonic.cpp" line="3605"/>
+        <location filename="../Phototonic.cpp" line="3324"/>
+        <location filename="../Phototonic.cpp" line="3611"/>
         <source>Invalid name entered.</source>
         <translation>Ogiltigt namn har angetts.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3356"/>
-        <location filename="../Phototonic.cpp" line="3510"/>
-        <location filename="../Phototonic.cpp" line="3536"/>
+        <location filename="../Phototonic.cpp" line="3362"/>
+        <location filename="../Phototonic.cpp" line="3516"/>
+        <location filename="../Phototonic.cpp" line="3542"/>
         <source>Invalid selection</source>
         <translation>Ogiltigt val</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3378"/>
+        <location filename="../Phototonic.cpp" line="3384"/>
         <source>No name entered.</source>
         <translation>Inget namn angett.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3433"/>
-        <location filename="../Phototonic.cpp" line="3446"/>
+        <location filename="../Phototonic.cpp" line="3439"/>
+        <location filename="../Phototonic.cpp" line="3452"/>
         <source>File collision!</source>
         <translation>Filkollision!</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3433"/>
-        <location filename="../Phototonic.cpp" line="3446"/>
+        <location filename="../Phototonic.cpp" line="3439"/>
+        <location filename="../Phototonic.cpp" line="3452"/>
         <source>Existing files collide with the rename.</source>
         <translation>Befintliga filer kolliderar med namnbyte.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3441"/>
+        <location filename="../Phototonic.cpp" line="3447"/>
         <source>Refusing ambigious rename pattern.
 Multiple files would get the same name.</source>
         <translation>Vägrar tvetydigt namnbytesmönster.
 Flera filer skulle få samma namn.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3447"/>
+        <location filename="../Phototonic.cpp" line="3453"/>
         <source>Do you want to incorporate them (ie. skip their indexes)?</source>
         <translation>Vill du införliva dem (dvs. hoppa över deras index)?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3498"/>
+        <location filename="../Phototonic.cpp" line="3504"/>
         <source>Failed to rename image.</source>
         <translation>Misslyckades att byta namn på bild.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3543"/>
+        <location filename="../Phototonic.cpp" line="3549"/>
         <source>Write Exif Thumbnail</source>
         <translation>Skriv Exif tumnaglar</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3545"/>
+        <location filename="../Phototonic.cpp" line="3551"/>
         <source>Do you also want to write the thumbnail to the images metadata?</source>
         <translation>Vill du också skriva tumnagel till bildernas metadata?</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3575"/>
+        <location filename="../Phototonic.cpp" line="3581"/>
         <source>Failed to move directory to the trash.</source>
         <translation>Misslyckades att flytta katalog till papperskorgen.</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3580"/>
+        <location filename="../Phototonic.cpp" line="3586"/>
         <source>Removed &quot;%1&quot;</source>
         <translation>Tog bort &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3865"/>
+        <location filename="../Phototonic.cpp" line="3873"/>
         <source>Warning</source>
         <translation>Varning</translation>
     </message>
     <message>
-        <location filename="../Phototonic.cpp" line="3865"/>
+        <location filename="../Phototonic.cpp" line="3873"/>
         <source>Cannot perform action with temporary image.</source>
         <translation>Kan inte utföra åtgärd med tillfällig bild.</translation>
     </message>
@@ -2493,8 +2498,13 @@ Den befintliga filen skulle skrivas över!</translation>
         <source>Searching duplicate images...</source>
         <translation>Söker efter dubbletter av bilder...</translation>
     </message>
+    <message>
+        <location filename="../ThumbsViewer.cpp" line="1006"/>
+        <source>Group: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="1130"/>
+        <location filename="../ThumbsViewer.cpp" line="1158"/>
         <source>%n of %1 image(s)</source>
         <translation>
             <numerusform>%n av %1 bild</numerusform>
@@ -2502,7 +2512,7 @@ Den befintliga filen skulle skrivas över!</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="1132"/>
+        <location filename="../ThumbsViewer.cpp" line="1160"/>
         <source>%n image(s)</source>
         <translation>
             <numerusform>%n bild</numerusform>
@@ -2510,13 +2520,13 @@ Den befintliga filen skulle skrivas över!</translation>
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1128"/>
+        <location filename="../ThumbsViewer.cpp" line="1156"/>
         <source>No images</source>
         <translation>Inga bilder</translation>
     </message>
     <message numerus="yes">
-        <location filename="../ThumbsViewer.cpp" line="1248"/>
-        <location filename="../ThumbsViewer.cpp" line="1361"/>
+        <location filename="../ThumbsViewer.cpp" line="1276"/>
+        <location filename="../ThumbsViewer.cpp" line="1401"/>
         <source>Found %n duplicate(s) among %1 files</source>
         <translation>
             <numerusform>Hittade %n dubblett bland %1 fil</numerusform>
@@ -2524,22 +2534,22 @@ Den befintliga filen skulle skrivas över!</translation>
         </translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1445"/>
+        <location filename="../ThumbsViewer.cpp" line="1485"/>
         <source>Abort</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1445"/>
+        <location filename="../ThumbsViewer.cpp" line="1485"/>
         <source>Loading...</source>
         <translation>Laddar...</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1485"/>
+        <location filename="../ThumbsViewer.cpp" line="1525"/>
         <source>Comparing...</source>
         <translation>Jämför...</translation>
     </message>
     <message>
-        <location filename="../ThumbsViewer.cpp" line="1518"/>
+        <location filename="../ThumbsViewer.cpp" line="1558"/>
         <source>Sorting...</source>
         <translation>Sorterar...</translation>
     </message>
