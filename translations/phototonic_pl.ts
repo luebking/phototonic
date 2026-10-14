@@ -876,7 +876,7 @@ Czy chcesz zapisać kopię?</translation>
         <source>Enter a name (without leading &quot;$&quot;) for this filter.
 The special name&quot;preview&quot; is used for the filter in the viewer.</source>
         <translation>Wpisz nazwę (bez znaku „$”) tego filtra.
-W&#xa0;przeglądarce używana jest specjalna nazwa „podgląd”.</translation>
+W przeglądarce używana jest specjalna nazwa „podgląd”.</translation>
     </message>
     <message>
         <location filename="../InfoViewer.cpp" line="84"/>
@@ -1377,7 +1377,7 @@ Ukryj z filtrem: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="697"/>
         <source>Sort by Duplicate Group</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortuj wg grupy duplikatów</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="699"/>
@@ -1822,7 +1822,7 @@ Ukryj z filtrem: |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="1272"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Hue is suffixed [0-359]° (center red is at 0/360)&lt;/li&gt;&lt;li&gt;Saturation is suffixed [0-100]%&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;br&gt;!dark, !bright, !warm &amp;amp; !cold will invert the match (they&apos;re not complementary)&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[podciąg] [/ warunek [/ kolejne warunki]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;pasuje do foo, starszych niż 5 dni, ale młodszych niż miesiąc – lub o rozmiarze poniżej 10 kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Większe niż / Późniejsze niż: &amp;gt;&lt;/li&gt;&lt;li&gt;Mniejsze niż / Wcześniejsze niż: &amp;lt;&lt;/li&gt;&lt;li&gt;Dokładny wiek lub (zaokrąglony) rozmiar określa się domyślnie lub jawnie za pomocą: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Daty mogą być bezwzględne (RRRR-MM-DD) lub względne (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Rozmiary podaje się z przyrostkiem kB, MB, GB lub MP (megapiksele)&lt;/li&gt;&lt;li&gt;Wymiary zapisuje się w formacie [szerokość]x[wysokość]&lt;/li&gt;&lt;li&gt;Wariancję chromatyczną określa przyrostek [0-255]cr (wartości rzeczywiste rzadko przekraczają 100)&lt;/li&gt;&lt;li&gt;Odcień określa przyrostek [0-359]° (środek czerwieni przypada na 0/360)&lt;/li&gt;&lt;li&gt;Nasycenie określa przyrostek [0-100]%&lt;/li&gt;&lt;li&gt;Luminancję określa przyrostek [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Wielkość liter w przyrostkach nie ma znaczenia, z wyjątkiem m (minuta) i M (miesiąc)&lt;/i&gt;&lt;br&gt;Kolejne znaki „/” rozpoczynają nową grupę warunków; dopasowanie fragmentu nazwy jest opcjonalne.&lt;hr&gt;Dodatkowo można filtrować według cech:&lt;br&gt;&lt;b&gt;black&lt;/b&gt; (czarny), &lt;b&gt;white&lt;/b&gt; (biały), &lt;b&gt;brown&lt;/b&gt; (brązowy), &lt;b&gt;dark&lt;/b&gt; (ciemny), &lt;b&gt;bright&lt;/b&gt; (jasny), &lt;b&gt;warm&lt;/b&gt; (ciepły), &lt;b&gt;cold&lt;/b&gt; (zimny), &lt;b&gt;monochrome&lt;/b&gt; (monochromatyczny), &lt;b&gt;gray&lt;/b&gt; (szary)&lt;br&gt;oraz kolorów:&lt;br&gt;&lt;b&gt;red&lt;/b&gt; (czerwony), &lt;b&gt;orange&lt;/b&gt; (pomarańczowy), &lt;b&gt;yellow&lt;/b&gt; (żółty), &lt;b&gt;lime&lt;/b&gt; (limonkowy), &lt;b&gt;green&lt;/b&gt; (zielony), &lt;b&gt;mint&lt;/b&gt; (miętowy), &lt;b&gt;cyan&lt;/b&gt; (cyjan), &lt;b&gt;azure&lt;/b&gt; (lazurowy), &lt;b&gt;blue&lt;/b&gt; (niebieski), &lt;b&gt;purple&lt;/b&gt; (fioletowy), &lt;b&gt;magenta&lt;/b&gt; (purpurowy), &lt;b&gt;pink&lt;/b&gt; (różowy)&lt;br&gt;!dark, !bright, !warm i !cold odwracają wynik dopasowania (nie są to wartości dopełniające)&lt;hr&gt;Dwukropek na początku oznacza &lt;b&gt;dopasowanie tagu&lt;/b&gt;, więc &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; znajduje wszystkie obrazy z tagiem „foo”</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3261"/>
@@ -2793,7 +2793,7 @@ Wiele plików otrzymałoby tę samą nazwę.</translation>
         <location filename="../CopyMoveDialog.cpp" line="187"/>
         <source>The new filename also conflicts with an existing file.
 The existing file would be overwritten!</source>
-        <translation>Nowa nazwa pliku koliduje również z&#xa0;istniejącym plikiem.
+        <translation>Nowa nazwa pliku koliduje również z istniejącym plikiem.
 Istniejący plik zostałby nadpisany!</translation>
     </message>
     <message>
@@ -3578,7 +3578,7 @@ Istniejący plik zostałby nadpisany!</translation>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1006"/>
         <source>Group: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupa: %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1158"/>
