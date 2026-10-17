@@ -516,7 +516,7 @@
     <message>
         <location filename="../ImageViewer.cpp" line="191"/>
         <source>Original Size</source>
-        <translation type="unfinished">Dimensione originale</translation>
+        <translation>Dimensione originale</translation>
     </message>
     <message>
         <location filename="../ImageViewer.cpp" line="956"/>
