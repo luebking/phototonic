@@ -1569,7 +1569,7 @@ Ocultar com filtro: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="697"/>
         <source>Sort by Duplicate Group</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordenar por grupo de duplicados</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="699"/>
@@ -2056,7 +2056,7 @@ Ocultar com filtro: |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="1272"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Hue is suffixed [0-359]° (center red is at 0/360)&lt;/li&gt;&lt;li&gt;Saturation is suffixed [0-100]%&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;br&gt;!dark, !bright, !warm &amp;amp; !cold will invert the match (they&apos;re not complementary)&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[substring] [/ restrição [/ mais restrições]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;corresponde a foo, com mais de 5 dias, mas menos de um mês — ou com menos de 10 kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Maior que/Posterior a: &amp;gt;&lt;/li&gt;&lt;li&gt;Menor que/Antes de: &amp;lt;&lt;/li&gt;&lt;li&gt;A idade exata ou o tamanho (arredondado) é, de outra forma, implícito ou explícito com: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;As datas são absolutas (AAAA-MM-DD) ou relativas (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Os tamanhos têm o sufixo 4 kB: MB:GB ou 4MP (megapíxels)&lt;/li&gt;&lt;li&gt;As dimensões são precedidas, intercaladas ou seguidas por «x» ([largura]x[altura])&lt;/li&gt;&lt;li&gt;A variação cromática é seguida do sufixo [0-255]cr (os valores reais raramente serão &gt; 100)&lt;/li&gt;&lt;li&gt;A matiz é seguida do sufixo [0-359]° (o vermelho central está em 0/360)&lt;/li&gt;&lt;li&gt;A saturação é indicada com o sufixo [0-100]%&lt;/li&gt;&lt;li&gt;A luminância é indicada com o sufixo [0,0-1,0] |[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Todos os sufixos ignoram maiúsculas e minúsculas, exceto m|inuto e M|ês&lt;/i&gt;&lt;br&gt;Os «/» subsequentes iniciam um novo grupo de condições suficientes; a correspondência da subcadeia de caracteres é opcional. &lt;hr&gt;Além disso, pode filtrar por&lt;br&gt;&lt;b&gt;preto, branco, castanho, escuro, claro, quente, frio, monocromático, cinzento&lt;/b&gt; e as cores&lt;br&gt;&lt;b&gt;vermelho, laranja, amarelo, lima, verde, menta, ciano, azul-celeste, azul, roxo, magenta, rosa&lt;/b&gt;&lt;br&gt;!escuro, !claro, !quente e ! frio irão inverter a correspondência (não são complementares)&lt;hr&gt;Os dois pontos iniciais &lt;b&gt;correspondem a etiquetas&lt;/b&gt;, pelo que ‘/&lt;b&gt;:foo&lt;/b&gt;’ encontra todas as imagens com a etiqueta &apos;foo&apos;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="1468"/>
@@ -3075,7 +3075,7 @@ O ficheiro existente seria substituído!</translation>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1006"/>
         <source>Group: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupo: %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1158"/>
@@ -3173,12 +3173,12 @@ O ficheiro existente seria substituído!</translation>
     <message>
         <location filename="../main.cpp" line="77"/>
         <source>Apply &lt;filter&gt; to the directory and print matches.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar o &lt;filtro&gt; ao diretório e apresentar os resultados correspondentes.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="78"/>
         <source>filter</source>
-        <translation type="unfinished"></translation>
+        <translation>filtro</translation>
     </message>
 </context>
 </TS>

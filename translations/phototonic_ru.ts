@@ -1818,7 +1818,7 @@ Hide with filter: |nohistogram|</source>
     <message>
         <location filename="../Phototonic.cpp" line="697"/>
         <source>Sort by Duplicate Group</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировать по группе дубликатов</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="699"/>
@@ -3038,7 +3038,7 @@ The existing file would be overwritten!</source>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1006"/>
         <source>Group: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Группа: %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1158"/>
