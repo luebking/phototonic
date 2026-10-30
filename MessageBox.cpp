@@ -85,7 +85,8 @@ void MessageBox::about() {
                     << "French: Rémi Verschelde" // akien@mageia.org
                     << "Georgian: NorwayFun" //  <temuri.doghonadze@gmail.com>
                     << "German: Damir Perisa" // <damir.perisa@gmail.com>
-                    << "German: EttoreAtalan" // <atalanttore@googlemail.com>
+                    << "German: Demian" // <Demian@gmx.co.uk>
+                    << "German: Ettore Atalan" // <atalanttore@googlemail.com>
                     << "German: Jonathan Hooverman" // jonathan.hooverman@gmail.com
                     << "German: Some wordstumbling fool" // thomas.luebking@gmail.com
                     << "Hebrew: Yaron Shahrabani" // <sh.yaron@gmail.com>
@@ -97,20 +98,26 @@ void MessageBox::about() {
                     << "Polish: Robert Wojewódzki" // robwoj44@poczta.onet.pl
                     << "Portuguese: Hugo Carvalho" // <hugokarvalho@hotmail.com>
                     << "Portuguese: Marcos M. Nascimento" // wstlmn@uol.com.br
+                    << "Portuguese: virtual-hand" // <handvirtual@tutamail.com>
                     << "Russian: Azasis" // <lionovdmitrij386@gmail.com>
                     << "Russian: Dmitry" // <dmitrydmitry761@gmail.com>
                     << "Russian: Ilya Alexandrovich" // yast4ik@gmail.com
                     << "Russian: Valera" // <ValeraDX@yandex.ru>
+                    << "Russian: Andrei Stepanov" // <adem4ik@gmail.com>
                     << "Serbian: Dino Duratović" // dinomol@mail.com
+                    << "Serbian: Марко Костић" // <marko.m.kostic@gmail.com>
                     << "Spanish: Roberalz" // <lumintnian@outlook.com>
                     << "Spanish: Megido" // <hibarioath@proton.me>
+                    << "Spanish: lq259" // <wadekuhn87@gmail.com>
 //                    << "Swedish: Luna Jernberg" // <droidbittin@gmail.com>
                     << "Swedish: bittin" // <bittin@reimu.nl>
                     << "Swedish: Daniel Nylander" // <po@danielnylander.se>
                     << "Ukrainian: Ihor Hordiichuk" // <igor_ck@outlook.com>
+                    << "Ukrainian: Earthquakehunter" // <ustymolesh777@gmail.com>
+                    << "Ukrainian: opensourcemount" // <opensourcemount@gmail.com>
                     << "Standreas and the entire LXQt weblate team"
                     ;
-    QString aboutString = "<h1>Phototonic 3.3 β¹</h1>" // + QString(VERSION)
+    QString aboutString = "<h1>Phototonic 3.3</h1>" // + QString(VERSION)
                           "<h4>" + tr("Image Viewer and Organizer") + "</h4>"
                           "<a href=\"https://github.com/luebking/phototonic\">" + tr("Home page and bug reports") + "</a>"
                           "<dl><dt>Copyright</dt><dd>"
