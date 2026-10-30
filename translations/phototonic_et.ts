@@ -1209,7 +1209,7 @@ Filtriga peitmine: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="697"/>
         <source>Sort by Duplicate Group</source>
-        <translation type="unfinished"></translation>
+        <translation>Järjesta topeltgrupi alusel</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="699"/>
@@ -2409,7 +2409,7 @@ Olemasolev fail saab olema üle kirjutatud!</translation>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1006"/>
         <source>Group: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupp: %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1158"/>

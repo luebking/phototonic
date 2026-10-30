@@ -877,7 +877,7 @@ Dölj med filter: |nohistogram|</translation>
     <message>
         <location filename="../Phototonic.cpp" line="697"/>
         <source>Sort by Duplicate Group</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortera efter duplikattgrupp</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="711"/>
@@ -1689,7 +1689,7 @@ Dölj med filter: |nohistogram|</translation>
         <location filename="../Phototonic.cpp" line="1272"/>
         <source>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matches foo, older than 5 days but younger than a month - or below 10kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Bigger than/After: &amp;gt;&lt;/li&gt;&lt;li&gt;Smaller than/Before: &amp;lt;&lt;/li&gt;&lt;li&gt;The exact age or (rounded) size is otherwise implied or explicit with: =&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Dates are absolute (YYYY-MM-DD) or relative (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Sizes are suffixed 4kB:MB:GB or 4MP (mega-pixel)&lt;/li&gt;&lt;li&gt;Dimensions are pre/in/suffixed &quot;x&quot; ([width]x[height])&lt;/li&gt;&lt;li&gt;Chromatic variance is suffixed [0-255]cr (real values will rarely be &gt; 100)&lt;/li&gt;&lt;li&gt;Hue is suffixed [0-359]° (center red is at 0/360)&lt;/li&gt;&lt;li&gt;Saturation is suffixed [0-100]%&lt;/li&gt;&lt;li&gt;Luminance is suffixed [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;All suffixes are case-insensitive but m|inute and M|onth&lt;/i&gt;&lt;br&gt;Subsequent &quot;/&quot; start a new sufficient condition group, the substring match is optional.&lt;hr&gt;In addition you can filter for&lt;br&gt;&lt;b&gt;black, white, brown, dark, bright, warm, cold, monochrome, gray&lt;/b&gt; and the colors&lt;br&gt;&lt;b&gt;red, orange, yellow, lime, green, mint, cyan, azure, blue, purple, magenta, pink&lt;/b&gt;&lt;br&gt;!dark, !bright, !warm &amp;amp; !cold will invert the match (they&apos;re not complementary)&lt;hr&gt;Leading colons &lt;b&gt;match tags&lt;/b&gt;, so &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; finds all images with the tag &apos;foo&apos;</source>
         <extracomment>This is a tooltip explaining extended filter features</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h2&gt;[substring] [/ constraint [/ more constraints]]&lt;/h2&gt;&lt;tt&gt;foo / &amp;gt; 5d &amp;lt; 1M / &amp;lt; 10kb&lt;/tt&gt;&lt;br&gt;&lt;i&gt;matchar foo, äldre än 5 dagarmen yngre än en månad – eller under 10 kB&lt;/i&gt;&lt;ul&gt;&lt;li&gt;Större än/Efter &amp;gt;&lt;/li&gt;&lt;li&gt;Mindre än/Före: &amp;lt;&lt;/li&gt;&lt;li&gt;Den exakta åldern eller den (avrundade) storleken framgår i övrigt antingen underförstått eller uttryckligen genom:=&lt;/li&gt;&lt;/ul&gt;&lt;hr&gt;&lt;ul&gt;&lt;li&gt;Datum är absoluta (ÅÅÅÅ-MM-DD) eller relativa (5m:h:d:w:M:y)&lt;/li&gt;&lt;li&gt;Storlekar anges med suffixet 4kB:MB:GB eller 4MP (megapixlar)&lt;/li&gt;&lt;li&gt;Dimensionerna är före/i/med tillägget &quot;x&quot;([bredd]x[höjd])&lt;/li&gt;&lt;li&gt;Kromatisk varians förses med ett suffix [0-255]cr (verkliga värden kommer sällan att vara &gt; 100)&lt;/li&gt;&lt;li&gt;Nyans förses med ett suffix [0-359]° (mittrött är vid 0/360)&lt;/li&gt;&lt;li&gt;Mättnad förses med ett suffix [0-100]%&lt;/li&gt;&lt;li&gt;Luminans har suffixet [0.0-1.0]|[0-255]lm&lt;/li&gt;&lt;/ul&gt;&lt;i&gt;Alla suffix är inte skiftlägeskänsliga men m|inuter och M|ånad&lt;/i&gt;&lt;br&gt;Påföljande &quot;/&quot; Starta en ny grupp med tillräckliga villkor; delsträngsmatchning är valfri.&lt;hr&gt;Dessutom kan du filtrera efter&lt;br&gt;&lt;b&gt;svart, vit, brun, mörk, ljus, varm, kall, monokrom, grå&lt;/b&gt; samt färgerna&lt;br&gt;&lt;b&gt;röd, orange, gul, lime, grön, mint, cyan, azur, blå, lila, magenta, rosa&lt;/b&gt;&lt;br&gt;!mörk, !ljus, !varm och !kall inverterar matchningen (de är inte komplementära)&lt;hr&gt;Kolon i början &lt;b&gt;matchar taggar&lt;/b&gt;, så &apos;/&lt;b&gt;:foo&lt;/b&gt;&apos; hittar alla bilder med taggen &apos;foo&apos;</translation>
     </message>
     <message>
         <location filename="../Phototonic.cpp" line="3261"/>
@@ -2501,7 +2501,7 @@ Den befintliga filen skulle skrivas över!</translation>
     <message>
         <location filename="../ThumbsViewer.cpp" line="1006"/>
         <source>Group: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupp: %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../ThumbsViewer.cpp" line="1158"/>
@@ -2607,12 +2607,12 @@ Den befintliga filen skulle skrivas över!</translation>
     <message>
         <location filename="../main.cpp" line="77"/>
         <source>Apply &lt;filter&gt; to the directory and print matches.</source>
-        <translation type="unfinished"></translation>
+        <translation>Applicera &lt;filter&gt; på katalog och skriv ut träffar.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="78"/>
         <source>filter</source>
-        <translation type="unfinished"></translation>
+        <translation>filter</translation>
     </message>
 </context>
 </TS>
